@@ -1,0 +1,8 @@
+
+# ignore colcon workspace
+build
+install
+/log
+
+# ignore vscode folder
+.vscode
