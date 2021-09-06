@@ -13,7 +13,7 @@ repositories:
         version: 2.3.x
     fastdds_python:
         type: git
-        url: https://github.com/IkerLuengo/Fast-DDS-python.git
+        url: https://github.com/eProsima/Fast-DDS-python.git
         version: main
     fastrtpsgen:
         type: git
