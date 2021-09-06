@@ -13,6 +13,10 @@
 %ignore *::operator++;
 %ignore *::operator!;
 
+// Keywords that are not fully supported in SWIG
+// and make not difference in python anyways
+#define final
+
 // Definition of internal types
 typedef unsigned int uint32_t;
 
@@ -116,6 +120,12 @@ class LocatorList;
 } // namespace fastdds
 
 namespace fastrtps {
+namespace rtps {
+
+    class CDRMessage_t;
+
+} // namespace rtps
+
 namespace types {
 
 //class ReturnCode_t;
@@ -141,10 +151,11 @@ class TypeInformation;
 %include "fastdds/rtps/common/VendorId_t.i"
 %include "fastdds/rtps/common/Types.i"
 %include "fastrtps/types/TypesBase.i"
+%include "fastdds/rtps/common/SerializedPayload.i"
+%include "fastdds/rtps/common/CDRMessage_t.i"
 
 /*
 %include "fastdds/rtps/common/Property.i"
-%include "fastdds/rtps/common/SerializedPayload.i"
 %include "fastdds/rtps/common/FragmentNumber.i"
 %include "fastdds/rtps/common/LocatorSelector.i"
 %include "fastdds/rtps/common/LocatorSelectorEntry.i"
@@ -152,7 +163,6 @@ class TypeInformation;
 %include "fastdds/rtps/common/InstanceHandle.i"
 %include "fastdds/rtps/common/Time_t.i"
 %include "fastdds/rtps/common/LocatorListComparisons.i"
-%include "fastdds/rtps/common/CDRMessage_t.i"
 %include "fastdds/rtps/common/Token.i"
 %include "fastdds/rtps/common/MatchingInfo.i"
 %include "fastdds/rtps/common/LocatorList.i"
@@ -169,6 +179,32 @@ class TypeInformation;
 %include "fastdds/rtps/common/WriteParams.i"
 %include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/BinaryProperty.i"
+
+%include "fastrtps/rtps/common/Property.i"
+%include "fastrtps/rtps/common/SerializedPayload.i"
+%include "fastrtps/rtps/common/FragmentNumber.i"
+%include "fastrtps/rtps/common/LocatorSelector.i"
+%include "fastrtps/rtps/common/LocatorSelectorEntry.i"
+%include "fastrtps/rtps/common/CacheChange.i"
+%include "fastrtps/rtps/common/InstanceHandle.i"
+%include "fastrtps/rtps/common/Time_t.i"
+%include "fastrtps/rtps/common/LocatorListComparisons.i"
+%include "fastrtps/rtps/common/CDRMessage_t.i"
+%include "fastrtps/rtps/common/Token.i"
+%include "fastrtps/rtps/common/MatchingInfo.i"
+%include "fastrtps/rtps/common/Guid.i"
+%include "fastrtps/rtps/common/all_common.i"
+%include "fastrtps/rtps/common/PortParameters.i"
+%include "fastrtps/rtps/common/SampleIdentity.i"
+%include "fastrtps/rtps/common/Locator.i"
+%include "fastrtps/rtps/common/SequenceNumber.i"
+%include "fastrtps/rtps/common/RemoteLocators.i"
+%include "fastrtps/rtps/common/WriteParams.i"
+%include "fastrtps/rtps/common/BinaryProperty.i"
+%include "fastrtps/rtps/common/Types.i"
+
+
+
 %include "fastdds/statistics/IListeners.i"
 %include "fastdds/statistics/topic_names.i"
 %include "fastdds/statistics/rtps/StatisticsCommon.i"
@@ -373,28 +409,6 @@ class TypeInformation;
 %include "fastrtps/rtps/builtin/liveliness/WLP.i"
 %include "fastrtps/rtps/builtin/liveliness/WLPListener.i"
 %include "fastrtps/rtps/builtin/BuiltinProtocols.i"
-%include "fastrtps/rtps/common/Property.i"
-%include "fastrtps/rtps/common/SerializedPayload.i"
-%include "fastrtps/rtps/common/FragmentNumber.i"
-%include "fastrtps/rtps/common/LocatorSelector.i"
-%include "fastrtps/rtps/common/LocatorSelectorEntry.i"
-%include "fastrtps/rtps/common/CacheChange.i"
-%include "fastrtps/rtps/common/InstanceHandle.i"
-%include "fastrtps/rtps/common/Time_t.i"
-%include "fastrtps/rtps/common/LocatorListComparisons.i"
-%include "fastrtps/rtps/common/CDRMessage_t.i"
-%include "fastrtps/rtps/common/Token.i"
-%include "fastrtps/rtps/common/MatchingInfo.i"
-%include "fastrtps/rtps/common/Guid.i"
-%include "fastrtps/rtps/common/all_common.i"
-%include "fastrtps/rtps/common/PortParameters.i"
-%include "fastrtps/rtps/common/SampleIdentity.i"
-%include "fastrtps/rtps/common/Locator.i"
-%include "fastrtps/rtps/common/SequenceNumber.i"
-%include "fastrtps/rtps/common/RemoteLocators.i"
-%include "fastrtps/rtps/common/WriteParams.i"
-%include "fastrtps/rtps/common/BinaryProperty.i"
-%include "fastrtps/rtps/common/Types.i"
 %include "fastrtps/rtps/rtps_all.i"
 %include "fastrtps/rtps/attributes/HistoryAttributes.i"
 %include "fastrtps/rtps/attributes/EndpointAttributes.i"
@@ -480,7 +494,7 @@ class TypeInformation;
 %include "fastdds/dds/core/UserAllocatedSequence.i"
 %include "fastdds/dds/core/LoanableSequence.i"
 %include "fastdds/dds/core/LoanableArray.i"
-//%include "fastdds/dds/core/policy/ParameterTypes.i"
+%include "fastdds/dds/core/policy/ParameterTypes.i"
 //%include "fastdds/dds/core/policy/QosPolicies.i"
 //%include "fastdds/dds/core/policy/ReaderDataLifecycleQosPolicy.i"
 //%include "fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.i"
