@@ -61,6 +61,7 @@ class PropertyPolicyQos;
 class PublicationMatchedStatus;
 class PublisherQos;
 class PublishModeQosPolicy;
+enum QosPolicyId_t;
 class ReaderDataLifecycleQosPolicy;
 class ReliabilityQosPolicy;
 class RequestedDeadlineMissedStatus;
@@ -148,15 +149,16 @@ class TypeInformation;
 //%include "fastdds/dds/core/policy/QosPolicies.i"
 //%include "fastdds/dds/core/policy/ReaderDataLifecycleQosPolicy.i"
 //%include "fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.i"
-//%include "fastdds/dds/core/status/LivelinessChangedStatus.i"
+%include "fastdds/dds/core/status/LivelinessChangedStatus.i"
+// This give problems with undefined std::bitset -> need a wrapper for the STL
 //%include "fastdds/dds/core/status/StatusMask.i"
-//%include "fastdds/dds/core/status/SubscriptionMatchedStatus.i"
-//%include "fastdds/dds/core/status/BaseStatus.i"
-//%include "fastdds/dds/core/status/MatchedStatus.i"
-//%include "fastdds/dds/core/status/IncompatibleQosStatus.i"
-//%include "fastdds/dds/core/status/DeadlineMissedStatus.i"
-//%include "fastdds/dds/core/status/SampleRejectedStatus.i"
-//%include "fastdds/dds/core/status/PublicationMatchedStatus.i"
+%include "fastdds/dds/core/status/MatchedStatus.i"
+%include "fastdds/dds/core/status/SubscriptionMatchedStatus.i"
+%include "fastdds/dds/core/status/BaseStatus.i"
+%include "fastdds/dds/core/status/IncompatibleQosStatus.i"
+%include "fastdds/dds/core/status/DeadlineMissedStatus.i"
+%include "fastdds/dds/core/status/SampleRejectedStatus.i"
+%include "fastdds/dds/core/status/PublicationMatchedStatus.i"
 %include "fastdds/dds/topic/TopicDataType.i"
 %include "fastdds/dds/topic/qos/TopicQos.i"
 %include "fastdds/dds/topic/TypeSupport.i"
