@@ -19,6 +19,7 @@
 
 // Definition of internal types
 typedef unsigned int uint32_t;
+typedef unsigned int size_t;
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
@@ -500,7 +501,7 @@ class TypeInformation;
 %include "fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.i"
 %include "fastdds/dds/core/status/LivelinessChangedStatus.i"
 // This give problems with undefined std::bitset -> need a wrapper for the STL
-//%include "fastdds/dds/core/status/StatusMask.i"
+%include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/core/status/MatchedStatus.i"
 %include "fastdds/dds/core/status/SubscriptionMatchedStatus.i"
 %include "fastdds/dds/core/status/BaseStatus.i"
