@@ -9,7 +9,7 @@
 %nodefaultctor eprosima::fastdds::dds::builtin::TypeLookup_ReplyPubSubType;  // Pure virtual
 %ignore eprosima::fastdds::dds::builtin::TypeLookup_ReplyPubSubType::TypeLookup_ReplyPubSubType;
 
-// Igonre overloaded methods that have no application on Python
+// Ignore overloaded methods that have no application on Python
 // Otherwise they will issue a warning
 %ignore eprosima::fastdds::dds::builtin::TypeLookup_getTypes_Result::TypeLookup_getTypes_Result(TypeLookup_getTypes_Result&&);
 %ignore eprosima::fastdds::dds::builtin::TypeLookup_getTypes_Result::result(TypeLookup_getTypes_Out &&);

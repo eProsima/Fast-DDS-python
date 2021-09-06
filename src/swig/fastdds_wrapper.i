@@ -539,17 +539,3 @@ class TypeInformation;
 %include "fastrtps/xmlparser/XMLProfileManager.i"
 %include "fastrtps/Domain.i"
 */
-
-
-%include "types/HelloWorld.i"
-%include "types/HelloWorldTopicDataType.i"
-
-namespace foo {
-    class Foo;
-namespace bar {
-    class Bar;
-}
-}
-
-%include "types/Foo.i"
-%include "types/Bar.i"
