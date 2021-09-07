@@ -7,14 +7,6 @@
 // We remove the one that is not used in the user API
 // We also remove all the related operators
 %ignore eprosima::fastrtps::rtps::Time_t;
-%ignore eprosima::fastrtps::rtps::operator==(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator!=(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator<(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator<=(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator>(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator>=(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator+(const Time_t&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator-(const Time_t&, const Time_t&);
 %ignore eprosima::fastrtps::rtps::operator<<(std::ostream&, const Time_t&);
 %ignore eprosima::fastrtps::rtps::operator>>(std::ostream&, const Time_t&);
 

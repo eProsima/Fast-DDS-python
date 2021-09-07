@@ -18,6 +18,7 @@
 #define final
 
 // Definition of internal types
+typedef int int32_t;
 typedef unsigned int uint32_t;
 typedef unsigned int size_t;
 
