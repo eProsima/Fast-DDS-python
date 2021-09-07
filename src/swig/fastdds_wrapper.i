@@ -26,122 +26,21 @@ typedef unsigned int size_t;
 #define RTPS_DllAPI
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 
-// Forward class definition inside the namespaces
-// SWIG generated code uses the interface definition as is, with no
-// namespace prepending.
-// Compilation will fail if we do not predeclare the classes here
-// on the appropriate namespace
+// Predeclaration of namespaces and/or classes not exported to the target language,
+// but that are part of the Fast DDS public API
+// SWIG will make an empty wrapper around these, but still needs to know they exists
+// or the wrapper will fail compilation
 namespace eprosima {
 namespace fastdds {
-namespace dds {
-
-class DataRepresentationQosPolicy;
-class DataSharingQosPolicy;
-class DeadlineQosPolicy;
-class DestinationOrderQosPolicy;
-class DisablePositiveACKsQosPolicy;
-using DomainId_t = uint32_t;
-class DomainParticipant;
-class DomainParticipantFactory;
-class DomainParticipantFactoryQos;
-class DomainParticipantQos;
-class DurabilityQosPolicy;
-class DurabilityServiceQosPolicy;
-class EntityFactoryQosPolicy;
-class GroupDataQosPolicy;
-class HistoryQosPolicy;
-class InconsistentTopicStatus;
-class InstanceHandle_t;
-class InstanceStateKind;
-class InstanceStateMask;
-class LatencyBudgetQosPolicy;
-class LifespanQosPolicy;
-class LivelinessLostStatus;
-class LivelinessQosPolicy;
-class OfferedDeadlineMissedStatus;
-class OfferedIncompatibleQosStatus;
-class OwnershipQosPolicy;
-class OwnershipStrengthQosPolicy;
-class ParticipantResourceLimitsQos;
-class PartitionQosPolicy;
-class PresentationQosPolicy;
-class PropertyPolicyQos;
-class PublicationMatchedStatus;
-class PublisherQos;
-class PublishModeQosPolicy;
-enum QosPolicyId_t;
-class ReaderDataLifecycleQosPolicy;
-class ReliabilityQosPolicy;
-class RequestedDeadlineMissedStatus;
-class RequestedIncompatibleQosStatus;
-class ResourceLimitsQosPolicy;
-class RTPSEndpointQos;
-class SampleInfo;
-class SampleLostStatus;
-class SampleRejectedStatus;
-class SampleStateKind;
-class SampleStateMask;
-class StatusCondition;
-class StatusMask;
-class SubscriberQos;
-class SubscriptionMatchedStatus;
-class TimeBasedFilterQosPolicy;
-class TopicDataQosPolicy;
-class TopicDataType;
-class TopicDescription;
-class TopicListener;
-class TopicQos;
-class TransportConfigQos;
-class TransportPriorityQosPolicy;
-class TypeConsistencyEnforcementQosPolicy;
-class TypeIdV1;
-class TypeObjectV1;
-class TypeSupport;
-class UserDataQosPolicy;
-class WireProtocolConfigQos;
-class WriterDataLifecycleQosPolicy;
-class WriterQos;
-class WriterResourceLimitsQos;
-class xtypes;
-
+namespace dds{
 namespace builtin {
 
-class BuiltinTopicKey_t;
+    // Just declaring the namespace
 
-} //namespace builtin
-
+} // namespace builtin
 } // namespace dds
-
-namespace rtps {
-
-class LocatorList;
-
-} // namespace rtps
-
 } // namespace fastdds
-
-namespace fastrtps {
-namespace rtps {
-
-    class CDRMessage_t;
-
-} // namespace rtps
-
-namespace types {
-
-//class ReturnCode_t;
-
-}// namespace types
-
-namespace xtypes {
-
-class TypeInformation;
-
-} // namespace xtypes
-} // namespace fastrtps
-
 } // namespace eprosima
-
 
 // Definition of the API exported to the binding.
 // The order of appearance in this list matters.
@@ -170,17 +69,14 @@ class TypeInformation;
 %include "fastdds/rtps/common/MatchingInfo.i"
 %include "fastdds/rtps/common/LocatorList.i"
 %include "fastdds/rtps/common/ChangeKind_t.i"
-%include "fastdds/rtps/common/Guid.i"
 %include "fastdds/rtps/common/LocatorsIterator.i"
 %include "fastdds/rtps/common/all_common.i"
 %include "fastdds/rtps/common/PortParameters.i"
-%include "fastdds/rtps/common/EntityId_t.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
 %include "fastdds/rtps/common/Locator.i"
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/RemoteLocators.i"
 %include "fastdds/rtps/common/WriteParams.i"
-%include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/BinaryProperty.i"
 
 %include "fastrtps/rtps/common/Property.i"
@@ -484,9 +380,18 @@ class TypeInformation;
 %include "fastrtps/Domain.i"
 */
 
-%include "fastdds/dds/core/Entity.i"
+%include "fastdds/dds/core/status/StatusMask.i"
+%include "fastdds/rtps/common/EntityId_t.i"
+%include "fastdds/rtps/common/GuidPrefix_t.i"
+%include "fastdds/rtps/common/Guid.i"
+%include "fastdds/rtps/common/InstanceHandle.i"
+%include "fastdds/dds/core/policy/ParameterTypes.i"
+%include "fastdds/dds/core/policy/QosPolicies.i"
+%include "fastdds/dds/topic/TopicDataType.i"
+%include "fastdds/dds/topic/TypeSupport.i"
 %include "fastdds/dds/core/condition/Condition.i"
 %include "fastdds/dds/core/condition/StatusCondition.i"
+%include "fastdds/dds/core/Entity.i"
 %include "fastdds/dds/core/condition/GuardCondition.i"
 %include "fastdds/dds/core/condition/WaitSet.i"
 %include "fastdds/dds/core/LoanableTypedCollection.i"
@@ -495,13 +400,9 @@ class TypeInformation;
 %include "fastdds/dds/core/UserAllocatedSequence.i"
 %include "fastdds/dds/core/LoanableSequence.i"
 %include "fastdds/dds/core/LoanableArray.i"
-%include "fastdds/dds/core/policy/ParameterTypes.i"
-%include "fastdds/dds/core/policy/QosPolicies.i"
 %include "fastdds/dds/core/policy/ReaderDataLifecycleQosPolicy.i"
 %include "fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.i"
 %include "fastdds/dds/core/status/LivelinessChangedStatus.i"
-// This give problems with undefined std::bitset -> need a wrapper for the STL
-%include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/core/status/MatchedStatus.i"
 %include "fastdds/dds/core/status/SubscriptionMatchedStatus.i"
 %include "fastdds/dds/core/status/BaseStatus.i"
@@ -509,42 +410,28 @@ class TypeInformation;
 %include "fastdds/dds/core/status/DeadlineMissedStatus.i"
 %include "fastdds/dds/core/status/SampleRejectedStatus.i"
 %include "fastdds/dds/core/status/PublicationMatchedStatus.i"
-%include "fastdds/dds/topic/TopicDataType.i"
 %include "fastdds/dds/topic/qos/TopicQos.i"
-%include "fastdds/dds/topic/TypeSupport.i"
 %include "fastdds/dds/topic/TopicDescription.i"
 %include "fastdds/dds/topic/Topic.i"
 %include "fastdds/dds/topic/TopicListener.i"
-%include "fastdds/dds/builtin/common/Types.i"
-%include "fastdds/dds/builtin/common/ReplyHeader.i"
-%include "fastdds/dds/builtin/common/RequestHeader.i"
 %include "fastdds/dds/subscriber/qos/ReaderQos.i"
-%include "fastdds/dds/subscriber/qos/DataReaderQos.i"
 %include "fastdds/dds/subscriber/qos/SubscriberQos.i"
+%include "fastdds/dds/subscriber/qos/DataReaderQos.i"
 %include "fastdds/dds/subscriber/DataReaderListener.i"
 %include "fastdds/dds/subscriber/SubscriberListener.i"
 %include "fastdds/dds/subscriber/ViewState.i"
-%include "fastdds/dds/subscriber/DataReader.i"
-%include "fastdds/dds/subscriber/SampleInfo.i"
 %include "fastdds/dds/subscriber/SampleState.i"
-%include "fastdds/dds/subscriber/Subscriber.i"
 %include "fastdds/dds/subscriber/InstanceState.i"
+%include "fastdds/dds/subscriber/SampleInfo.i"
+%include "fastdds/dds/subscriber/DataReader.i"
+%include "fastdds/dds/subscriber/Subscriber.i"
 %include "fastdds/dds/publisher/qos/PublisherQos.i"
-%include "fastdds/dds/publisher/qos/DataWriterQos.i"
 %include "fastdds/dds/publisher/qos/WriterQos.i"
-%include "fastdds/dds/publisher/DataWriter.i"
+%include "fastdds/dds/publisher/qos/DataWriterQos.i"
 %include "fastdds/dds/publisher/DataWriterListener.i"
 %include "fastdds/dds/publisher/PublisherListener.i"
+%include "fastdds/dds/publisher/DataWriter.i"
 %include "fastdds/dds/publisher/Publisher.i"
-%include "fastdds/dds/builtin/typelookup/common/TypeLookupTypes.i"
-%include "fastdds/dds/builtin/typelookup/TypeLookupRequestListener.i"
-%include "fastdds/dds/builtin/typelookup/TypeLookupReplyListener.i"
-%include "fastdds/dds/builtin/typelookup/TypeLookupManager.i"
-%include "fastdds/dds/builtin/topic/PublicationBuiltinTopicData.i"
-%include "fastdds/dds/builtin/topic/BuiltinTopicKey.i"
-%include "fastdds/dds/builtin/topic/TopicBuiltinTopicData.i"
-%include "fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.i"
-%include "fastdds/dds/builtin/topic/SubscriptionBuiltinTopicData.i"
 %include "fastdds/dds/domain/DomainParticipantListener.i"
 %include "fastdds/dds/domain/qos/DomainParticipantFactoryQos.i"
 %include "fastdds/dds/domain/qos/DomainParticipantQos.i"
