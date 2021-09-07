@@ -4,5 +4,8 @@ build
 install
 /log
 
+# ignore python folders
+__pycache__
+
 # ignore vscode folder
 .vscode
