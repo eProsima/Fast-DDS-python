@@ -385,7 +385,7 @@ namespace builtin {
 %include "fastdds/rtps/common/EntityId_t.i"
 %include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/Guid.i"
-%include "fastdds/rtps/common/InstanceHandle.i"
+%include "fastdds/dds/common/InstanceHandle.i"
 %include "fastdds/dds/core/policy/ParameterTypes.i"
 %include "fastdds/dds/core/policy/QosPolicies.i"
 %include "fastdds/dds/topic/TopicDataType.i"

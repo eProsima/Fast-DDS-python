@@ -9,4 +9,28 @@
 %ignore eprosima::fastrtps::rtps::operator<<(std::ostream&, const GUID_t&);
 %ignore eprosima::fastrtps::rtps::operator>>(std::ostream&, const GUID_t&);
 
+// Ignore the global comparison operators and make them class-internal
+%ignore eprosima::fastrtps::operator==(const Time_t&, const Time_t&);
+%ignore eprosima::fastrtps::operator!=(const Time_t&, const Time_t&);
+%ignore eprosima::fastrtps::operator<(const Time_t&, const Time_t&);
+
 %include "fastdds/rtps/common/Guid.h"
+
+// Declare the comparison operators as internal to the class
+%extend eprosima::fastrtps::rtps::GUID_t {
+    bool operator==(const eprosima::fastrtps::rtps::GUID_t& other) const
+    {
+        return *$self == other;
+    }
+
+    bool operator!=(const eprosima::fastrtps::rtps::GUID_t& other) const
+    {
+        return *$self != other;
+    }
+
+    bool operator<(const eprosima::fastrtps::rtps::GUID_t& other) const
+    {
+        return *$self < other;
+    }
+}
+
