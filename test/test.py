@@ -1,5 +1,5 @@
 import fastdds_wrapper
-import topic_types
+import HelloWorld
 
 class Reader:
   def __init__(self, domain):
@@ -8,7 +8,7 @@ class Reader:
     factory.get_default_participant_qos(self.participant_qos)
     self.participant = factory.create_participant(5, self.participant_qos)
 
-    self.topic_data_type = topic_types.HelloWorldTopicDataType()
+    self.topic_data_type = HelloWorld.HelloWorldPubSubType()
     self.topic_data_type.setName("HelloWorldDataType")
     self.type_support = fastdds_wrapper.TypeSupport(self.topic_data_type)
     self.participant.register_type(self.type_support)
@@ -27,10 +27,10 @@ class Reader:
 
   def read(self):
     info = fastdds_wrapper.SampleInfo()
-    data = topic_types.HelloWorld()
+    data = HelloWorld.HelloWorld()
     self.reader.take_next_sample(data, info)
     
-    print("Received {message} : {index}".format(message=data.get_message(), index=data.get_index()))
+    print("Received {message} : {index}".format(message=data.message(), index=data.index()))
 
 
 class Writer:
@@ -40,7 +40,7 @@ class Writer:
     factory.get_default_participant_qos(self.participant_qos)
     self.participant = factory.create_participant(5, self.participant_qos)
 
-    self.topic_data_type = topic_types.HelloWorldTopicDataType()
+    self.topic_data_type = HelloWorld.HelloWorldPubSubType()
     self.topic_data_type.setName("HelloWorldDataType")
     self.type_support = fastdds_wrapper.TypeSupport(self.topic_data_type)
     self.participant.register_type(self.type_support)
@@ -60,10 +60,10 @@ class Writer:
     self.index = 0
 
   def write(self):
-    data = topic_types.HelloWorld()
-    data.set_message("Hello World")
-    data.set_index(self.index)
+    data = HelloWorld.HelloWorld()
+    data.message("Hello World")
+    data.index(self.index)
     self.writer.write(data)
-    print("Sending {message} : {index}".format(message=data.get_message(), index=data.get_index()))
+    print("Sending {message} : {index}".format(message=data.message(), index=data.index()))
     self.index = self.index + 1
 

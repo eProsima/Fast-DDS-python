@@ -1,1 +1,0 @@
-../../../build/fastdds_python/test/types/src/swig/topic_types.py
