@@ -1,4 +1,4 @@
-# Python binding for Fast DDS Statistics Backend
+# Python binding for Fast DDS
 
 <a href="http://www.eprosima.com"><img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSd0PDlVz1U_7MgdTe0FRIWD0Jc9_YH-gGi0ZpLkr-qgCI6ZEoJZ5GBqQ" align="left" hspace="8" vspace="2" width="100" height="100" ></a>
 
@@ -25,6 +25,7 @@ pip install -U colcon-common-extensions vcstool
 *Fast DDS Python* depends on [Fast DDS](https://github.com/eProsima/Fast-DDS) and [Fast CDR](https://github.com/eProsima/Fast-CDR).
 For simplicity, this tutorial will build these dependencies alongside the binding itself.
 More advanced users can build or link to this packages separately.
+
 Install *Fast DDS* dependencies running:
 
 ```bash
@@ -34,14 +35,22 @@ sudo apt install -y \
     libtinyxml2-dev
 ```
 
+Additionally, *Fast DDS Python* also depends on [SWIG](http://www.swig.org/) and python3-dev. Install these dependencies running:
+```bash
+sudo apt update
+sudo apt install -y \
+    swig \
+    libpython3-dev
+```
+
 ### Build and install
 
 ```bash
 # Change directory to the location where the colcon workspace will be created
 cd <path_to_ws>
 # Create workspace directory
-mkdir -p fastdds_statistics_backend_ws/src
-cd fastdds_statistics_backend_ws
+mkdir -p fastdds_python_ws/src
+cd fastdds_python_ws
 # Get workspace setup file
 wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/main/fastdds_python.repos
 # Download repositories
@@ -54,8 +63,11 @@ colcon build
 
 This project is on the very early stages of development, and there are many features not available yet. These include, but are not restricted to:
 
-* QoS modification is not supported on python. If you need to use non-default QoS, please use XML configuration files.
+* QoS modification is not supported on python. It is possible to create a QoS object with the default constructor
+  or retrieve it with the `get_qos` methods of the entities, but it is not possible to modify the QoS values.
+  If you need to use non-default QoS, please use XML configuration files.
 * Status listeners are not available. Even though python will not complain if you add a listener to an entity, the listener will not be triggered.
+* Support in [*Fast DDS gen*](https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/usage/usage.html) is also limited to structs of simple types (no nested structs nor arrays or maps).
 
 
 ## Python example
@@ -74,7 +86,7 @@ struct HelloWorld
 };
 ```
 
-Use [*Fast DDS gen*](https://github.com/eProsima/Fast-DDS-Gen) to generate the necessary files from this IDL. If you installed *Fast DDS Python* using the `fastdds_python.repos` file, you will find *Fast DDS Gen* in the `src` file. Do not forget to use the `-python` option to create the files needed for the python binding:
+Use [*Fast DDS gen*](https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/usage/usage.html) to generate the necessary files from this IDL. If you installed *Fast DDS Python* using the `fastdds_python.repos` file, you will find *Fast DDS Gen* in the `src` file. Do not forget to use the `-python` option to create the files needed for the python binding:
 
 ```bash
 fastddsgen -python HelloWorld.idl
