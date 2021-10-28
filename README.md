@@ -67,7 +67,7 @@ This project is on the very early stages of development, and there are many feat
   or retrieve it with the `get_qos` methods of the entities, but it is not possible to modify the QoS values.
   If you need to use non-default QoS, please use XML configuration files.
 * Status listeners are not available. Even though python will not complain if you add a listener to an entity, the listener will not be triggered.
-* Support in [*Fast DDS gen*](https://github.com/eProsima/Fast-DDS-Gen) is also limited to structs of simple types (no nested structs nor arrays or maps).
+* Support in [*Fast DDS gen*](https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/usage/usage.html) is also limited to structs of simple types (no nested structs nor arrays or maps).
 
 
 ## Python example
@@ -86,7 +86,7 @@ struct HelloWorld
 };
 ```
 
-Use [*Fast DDS gen*](https://github.com/eProsima/Fast-DDS-Gen) to generate the necessary files from this IDL. If you installed *Fast DDS Python* using the `fastdds_python.repos` file, you will find *Fast DDS Gen* in the `src` file. Do not forget to use the `-python` option to create the files needed for the python binding:
+Use [*Fast DDS gen*](https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/usage/usage.html) to generate the necessary files from this IDL. If you installed *Fast DDS Python* using the `fastdds_python.repos` file, you will find *Fast DDS Gen* in the `src` file. Do not forget to use the `-python` option to create the files needed for the python binding:
 
 ```bash
 fastddsgen -python HelloWorld.idl
