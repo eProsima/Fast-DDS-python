@@ -46,6 +46,57 @@
 %ignore eprosima::fastdds::dds::TypeObjectV1::TypeObjectV1(TypeObjectV1 &&);
 %ignore eprosima::fastdds::dds::xtypes::TypeInformation::TypeInformation(TypeInformation &&);
 
+// Some classes still use the old namespaces
+namespace eprosima {
+namespace fastrtps {
+
+using QosPolicy = fastdds::dds::QosPolicy;
+using DurabilityQosPolicyKind = fastdds::dds::DurabilityQosPolicyKind;
+using DurabilityQosPolicy = fastdds::dds::DurabilityQosPolicy;
+using DeadlineQosPolicy = fastdds::dds::DeadlineQosPolicy;
+using LatencyBudgetQosPolicy  = fastdds::dds::LatencyBudgetQosPolicy;
+using LivelinessQosPolicyKind = fastdds::dds::LivelinessQosPolicyKind;
+using LivelinessQosPolicy = fastdds::dds::LivelinessQosPolicy;
+using ReliabilityQosPolicyKind = fastdds::dds::ReliabilityQosPolicyKind;
+using ReliabilityQosPolicy = fastdds::dds::ReliabilityQosPolicy;
+using OwnershipQosPolicyKind =  fastdds::dds::OwnershipQosPolicyKind;
+using OwnershipQosPolicy = fastdds::dds::OwnershipQosPolicy;
+using DestinationOrderQosPolicyKind = fastdds::dds::DestinationOrderQosPolicyKind;
+using DestinationOrderQosPolicy = fastdds::dds::DestinationOrderQosPolicy;
+using TimeBasedFilterQosPolicy = fastdds::dds::TimeBasedFilterQosPolicy;
+using PresentationQosPolicyAccessScopeKind = fastdds::dds::PresentationQosPolicyAccessScopeKind;
+using PresentationQosPolicy = fastdds::dds::PresentationQosPolicy;
+using PartitionQosPolicy = fastdds::dds::PartitionQosPolicy;
+using UserDataQosPolicy = fastdds::dds::UserDataQosPolicy;
+using TopicDataQosPolicy = fastdds::dds::TopicDataQosPolicy;
+using GroupDataQosPolicy = fastdds::dds::GroupDataQosPolicy;
+using HistoryQosPolicyKind = fastdds::dds::HistoryQosPolicyKind;
+using HistoryQosPolicy = fastdds::dds::HistoryQosPolicy;
+using ResourceLimitsQosPolicy = fastdds::dds::ResourceLimitsQosPolicy;
+using DurabilityServiceQosPolicy = fastdds::dds::DurabilityServiceQosPolicy;
+using LifespanQosPolicy = fastdds::dds::LifespanQosPolicy;
+using OwnershipStrengthQosPolicy = fastdds::dds::OwnershipStrengthQosPolicy;
+using TransportPriorityQosPolicy = fastdds::dds::TransportPriorityQosPolicy;
+using PublishModeQosPolicyKind = fastdds::dds::PublishModeQosPolicyKind;
+using PublishModeQosPolicy = fastdds::dds::PublishModeQosPolicy;
+using DataRepresentationId = fastdds::dds::DataRepresentationId;
+using DataRepresentationQosPolicy = fastdds::dds::DataRepresentationQosPolicy;
+using TypeConsistencyKind = fastdds::dds::TypeConsistencyKind;
+using TypeConsistencyEnforcementQosPolicy = fastdds::dds::TypeConsistencyEnforcementQosPolicy;
+using DisablePositiveACKsQosPolicy = fastdds::dds::DisablePositiveACKsQosPolicy;
+using DataSharingQosPolicy = fastdds::dds::DataSharingQosPolicy;
+using DataSharingKind = fastdds::dds::DataSharingKind;
+using TypeIdV1 = fastdds::dds::TypeIdV1;
+using TypeObjectV1 = fastdds::dds::TypeObjectV1;
+
+namespace xtypes {
+using TypeInformation = fastdds::dds::xtypes::TypeInformation;
+} //namespace xtypes
+
+} // namespace fastrtps
+} // namespace eprosima
+
+
 %include "fastdds/dds/core/policy/QosPolicies.hpp"
 
 // Deactivate class flattening
