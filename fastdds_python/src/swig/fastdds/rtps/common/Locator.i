@@ -16,6 +16,7 @@
 #include "fastdds/rtps/common/Locator.h"
 %}
 
+// Ignore overloaded constructor and methods that have no effect on target language
 %ignore eprosima::fastrtps::rtps::Locator_t::Locator_t(eprosima::fastrtps::rtps::Locator_t&&);
 %ignore operator==(const eprosima::fastrtps::rtps::Locator_t&, const eprosima::fastrtps::rtps::Locator_t&);
 

@@ -16,8 +16,11 @@
 #include "fastdds/rtps/common/LocatorList.hpp"
 %}
 
-%ignore eprosima::fastdds::rtps::LocatorList::LocatorList(eprosima::fastdds::rtps::LocatorList&&);
+// Ignore deprecated methods
 %ignore eprosima::fastdds::rtps::LocatorList::contains;
+
+// Ignore overloaded constructor that have no effect on target language
+%ignore eprosima::fastdds::rtps::LocatorList::LocatorList(eprosima::fastdds::rtps::LocatorList&&);
 
 %include "fastdds/rtps/common/LocatorList.hpp"
 

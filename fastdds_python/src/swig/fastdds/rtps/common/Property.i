@@ -16,9 +16,9 @@
 #include "fastdds/rtps/common/Property.h"
 %}
 
-// Ignore overloaded constructor that have no effect on target language
+// Ignore overloaded constructor and methods that have no effect on target language
 %ignore eprosima::fastrtps::rtps::Property::Property(Property &&);
-%ignore eprosima::fastrtps::rtps::Property::propagate();
+%ignore eprosima::fastrtps::rtps::Property::propagate() const;
 %template(PropertySeq) std::vector<eprosima::fastrtps::rtps::Property>;
 
 %extend eprosima::fastrtps::rtps::Property {
