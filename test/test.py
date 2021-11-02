@@ -16,12 +16,30 @@ Script to test Fast DDS python bindings
 """
 import argparse
 import threading
+import signal
+import sys
 
 import fastdds_wrapper
 import HelloWorld
 
 DESCRIPTION = """Script to test Fast DDS python bindings"""
 USAGE = ('python3 test.py -p publisher|subscriber [-d domainID -m machineID]')
+
+# To capture ctrl+C
+def signal_handler(sig, frame):
+    print('Interrupted!')
+
+class ReaderListener(fastdds_wrapper.DataReaderListener):
+    def __init__(self):
+        super().__init__()
+
+    def on_data_available(self, reader):
+        info = fastdds_wrapper.SampleInfo()
+        data = HelloWorld.HelloWorld()
+        reader.take_next_sample(data, info)
+    
+        print("Received {message} : {index}".format(message=data.message(), index=data.index()))
+
 
 class Reader():
   def __init__(self, domain):
@@ -43,16 +61,10 @@ class Reader():
     self.participant.get_default_subscriber_qos(self.subscriber_qos)
     self.subscriber = self.participant.create_subscriber(self.subscriber_qos)
 
+    self.listener = ReaderListener()
     self.reader_qos = fastdds_wrapper.DataReaderQos()
     self.subscriber.get_default_datareader_qos(self.reader_qos)
-    self.reader = self.subscriber.create_datareader(self.topic, self.reader_qos)
-
-  def read(self):
-    info = fastdds_wrapper.SampleInfo()
-    data = HelloWorld.HelloWorld()
-    self.reader.take_next_sample(data, info)
-    
-    print("Received {message} : {index}".format(message=data.message(), index=data.index()))
+    self.reader = self.subscriber.create_datareader(self.topic, self.reader_qos, self.listener)
 
   def delete(self):
     factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
@@ -60,11 +72,9 @@ class Reader():
     factory.delete_participant(self.participant)
 
   def run(self):
-    keep_going = 'y'
-    while keep_going != 'n':
-      if keep_going == 'y':
-        self.read()
-      keep_going = input('Send another sample? (y-yes, n-no): ')
+    signal.signal(signal.SIGINT, signal_handler)
+    print('Press Ctrl+C to stop')
+    signal.pause()
     self.delete()
 
 class Writer:
