@@ -11,4 +11,20 @@
 // Otherwise it will issue a warning
 %ignore eprosima::fastdds::dds::TypeSupport::TypeSupport(TypeSupport &&);
 
+// This constructor takes ownership of the TopicDataType pointer
+// We need SWIG to be aware of it, so we ignore it here and redefine it later
+%ignore eprosima::fastdds::dds::TypeSupport::TypeSupport(fastdds::dds::TopicDataType*);
+
+
 %include "fastdds/dds/topic/TypeSupport.hpp"
+
+// To make SWIG aware of the loss of the ownership, use the DISOWN typemap
+// Do not worry about the heap allocation, SWIG recognizes the method as a constructor
+// and successfully deallocates on destruction
+%extend eprosima::fastdds::dds::TypeSupport {
+    %apply SWIGTYPE *DISOWN { eprosima::fastdds::dds::TopicDataType* ptr };
+    TypeSupport(eprosima::fastdds::dds::TopicDataType* ptr)
+    {
+        return new eprosima::fastdds::dds::TypeSupport(ptr);
+    }
+}
