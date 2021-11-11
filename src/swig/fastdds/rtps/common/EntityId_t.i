@@ -6,9 +6,6 @@
 %ignore eprosima::fastrtps::rtps::EntityId_t::EntityId_t(EntityId_t &&);
 
 // Operators declared outside the class conflict with those declared for other types
-%ignore eprosima::fastrtps::rtps::operator<<(std::ostream&, const EntityId_t&);
-%ignore eprosima::fastrtps::rtps::operator>>(std::ostream&, const EntityId_t&);
-
 %ignore eprosima::fastrtps::rtps::operator==;
 %ignore eprosima::fastrtps::rtps::operator!=;
 
