@@ -20,13 +20,15 @@
 %include "std_shared_ptr.i"
 %include "std_vector.i"
 
+// Operators declared outside the class for different types do conflict
+%ignore operator<<;
+%ignore operator>>;
+
 // Some operators are ignored, as there is no such thing in Python.
 // Trying to export them issues a warning
 %ignore *::operator=;
 %ignore *::operator++;
-%ignore *::operator!;
-%ignore *::operator<<;
-%ignore *::operator>>;
+%rename(__not__) *::operator!;
 
 // Keywords that are not fully supported in SWIG
 // and make not difference in python anyways
@@ -41,6 +43,7 @@ typedef unsigned int size_t;
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
 #define RTPS_DllAPI
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
+#define FASTDDS_TODO_BEFORE(major, minor, msg)
 #define FASTRTPS_DEPRECATED(msg)
 
 // Predeclaration of namespaces and/or classes not exported to the target language,
@@ -78,6 +81,7 @@ namespace fastrtps{
 %include "fastdds/rtps/common/Time_t.i"
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
+%include "fastrtps/utils/md5.i"
 
 /*
 %include "fastrtps/rtps/common/SerializedPayload.i"
@@ -92,12 +96,9 @@ namespace fastrtps{
 %include "fastrtps/utils/collections/foonathan_memory_helpers.i"
 %include "fastrtps/utils/StringMatching.i"
 %include "fastrtps/utils/string_convert.i"
-%include "fastrtps/utils/IPFinder.i"
-%include "fastrtps/utils/IPLocator.i"
 %include "fastrtps/utils/TimedConditionVariable.i"
 %include "fastrtps/utils/fixed_size_bitmap.i"
 %include "fastrtps/utils/TimeConversion.i"
-%include "fastrtps/utils/md5.i"
 %include "fastrtps/utils/DBQueue.i"
 
 
@@ -119,6 +120,7 @@ namespace fastrtps{
 %include "fastdds/rtps/builtin/liveliness/WLP.i"
 %include "fastdds/rtps/builtin/liveliness/WLPListener.i"
 %include "fastdds/rtps/builtin/BuiltinProtocols.i"
+%include "fastdds/rtps/common/CacheChange.i"
 %include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
 %include "fastdds/rtps/reader/StatelessReader.i"
 %include "fastdds/rtps/reader/StatefulReader.i"
@@ -131,18 +133,9 @@ namespace fastrtps{
 %include "fastdds/rtps/history/WriterHistory.i"
 %include "fastdds/rtps/history/History.i"
 %include "fastdds/rtps/history/IChangePool.i"
-%include "fastdds/rtps/transport/TCPTransportDescriptor.i"
 %include "fastdds/rtps/transport/test_UDPv4TransportDescriptor.i"
-%include "fastdds/rtps/transport/UDPv4TransportDescriptor.i"
-%include "fastdds/rtps/transport/UDPTransportDescriptor.i"
-%include "fastdds/rtps/transport/UDPv6TransportDescriptor.i"
 %include "fastdds/rtps/transport/TransportInterface.i"
-%include "fastdds/rtps/transport/TCPv4TransportDescriptor.i"
-%include "fastdds/rtps/transport/SocketTransportDescriptor.i"
-%include "fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.i"
 %include "fastdds/rtps/transport/TransportReceiverInterface.i"
-%include "fastdds/rtps/transport/TransportDescriptorInterface.i"
-%include "fastdds/rtps/transport/TCPv6TransportDescriptor.i"
 %include "fastdds/rtps/exceptions/Exception.i"
 %include "fastdds/rtps/RTPSDomain.i"
 %include "fastdds/rtps/messages/RTPSMessageSenderInterface.i"
@@ -346,12 +339,13 @@ namespace fastrtps{
 %include "fastdds/rtps/common/Locator.i"
 %include "fastdds/rtps/common/LocatorsIterator.i"
 %include "fastdds/rtps/common/LocatorList.i"
+%include "fastrtps/utils/IPFinder.i"
+%include "fastrtps/utils/IPLocator.i"
 %include "fastdds/rtps/common/FragmentNumber.i"
 %include "fastdds/rtps/common/ChangeKind_t.i"
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
 %include "fastdds/rtps/common/WriteParams.i"
-%include "fastdds/rtps/common/CacheChange.i"
 %include "fastdds/rtps/common/LocatorSelectorEntry.i"
 %include "fastdds/rtps/common/LocatorSelector.i"
 %include "fastdds/rtps/common/LocatorListComparisons.i"
@@ -361,6 +355,15 @@ namespace fastrtps{
 %include "fastdds/rtps/common/MatchingInfo.i"
 %include "fastdds/rtps/common/PortParameters.i"
 %include "fastdds/rtps/common/RemoteLocators.i"
+%include "fastdds/rtps/transport/TransportDescriptorInterface.i"
+%include "fastdds/rtps/transport/SocketTransportDescriptor.i"
+%include "fastdds/rtps/transport/TCPTransportDescriptor.i"
+%include "fastdds/rtps/transport/TCPv4TransportDescriptor.i"
+%include "fastdds/rtps/transport/TCPv6TransportDescriptor.i"
+%include "fastdds/rtps/transport/UDPTransportDescriptor.i"
+%include "fastdds/rtps/transport/UDPv4TransportDescriptor.i"
+%include "fastdds/rtps/transport/UDPv6TransportDescriptor.i"
+%include "fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.i"
 %include "fastdds/rtps/resources/ResourceManagement.i"
 %include "fastdds/rtps/attributes/PropertyPolicy.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerConsts.i"
