@@ -39,8 +39,9 @@
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
 #define RTPS_DllAPI
-#define FASTRTPS_DEPRECATED(message)
+#define FASTRTPS_DEPRECATED(msg)
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
+#define FASTDDS_TODO_BEFORE(major, minor, msg)
 
 // Predeclaration of namespaces and/or classes not exported to the target language,
 // but that are part of the Fast DDS public API
