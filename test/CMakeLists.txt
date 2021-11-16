@@ -2,4 +2,4 @@
 # Test subdirectories
 ###############################################################################
 
-add_subdirectory(types)
+add_subdirectory(blackbox)
