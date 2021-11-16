@@ -21,6 +21,18 @@
 
 %ignore eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller;
 
+// TODO (richiware) review when api
+// SWIG does not support templates in the generated binding,
+// because not all output languages support them
+// We must explicitly declare the specializations of the templates
+%template(TransportDescriptorInterfaceShrPtr) std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface>;
+%template(TransportDescriptorInterfaceVector) std::vector<std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface>>;
+// The 'enum' here is very important, or SWIG will create a faulty wrapper
+//    * Enums are mapped as integer constants
+//    * The template expects a class type
+//    * Trying to push a mapped enum value (integer) will result on an error because it is not the expected type
+%template(DataRepresentationIdVector) std::vector<enum eprosima::fastdds::dds::DataRepresentationId>;
+
 // The class PartitionQosPolicy::const_iterator does not have default constructor
 // This tells SWIG it must wrap the constructors or the compilation will fail
 %feature("valuewrapper") eprosima::fastdds::dds::PartitionQosPolicy::const_iterator;

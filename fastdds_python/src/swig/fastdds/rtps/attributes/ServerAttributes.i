@@ -22,6 +22,6 @@
 %ignore eprosima::fastdds::rtps::RemoteServerAttributes::GetEDPPublicationsWriter;
 %ignore eprosima::fastdds::rtps::RemoteServerAttributes::GetEDPPublicationsReader;
 
-%template(RemoteServerList_t) std::list<eprosima::fastdds::rtps::RemoteServerAttributes>;
+%template(RemoteServerAttributesList) std::list<eprosima::fastdds::rtps::RemoteServerAttributes>;
 
 %include "fastdds/rtps/attributes/ServerAttributes.h"

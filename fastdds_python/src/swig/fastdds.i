@@ -14,6 +14,40 @@
 
 %module(directors="1", threads="1") fastdds
 
+// Handle exceptions on python callbacks and send them back to C++ so that they can be catched
+// Also, add some meaningful description of the error
+%feature("director:except") {
+  if ($error != NULL) {
+    PyObject *exc, *val, *tb;
+    PyErr_Fetch(&exc, &val, &tb);
+    PyErr_NormalizeException(&exc, &val, &tb);
+    std::string err_msg("In method '$symname': ");
+
+    PyObject* exc_str = PyObject_GetAttrString(exc, "__name__");
+    err_msg += PyUnicode_AsUTF8(exc_str);
+    Py_XDECREF(exc_str);
+
+    if (val != NULL)
+    {
+      PyObject* val_str = PyObject_Str(val);
+      err_msg += ": ";
+      err_msg += PyUnicode_AsUTF8(val_str);
+      Py_XDECREF(val_str);
+    }
+
+    Py_XDECREF(exc);
+    Py_XDECREF(val);
+    Py_XDECREF(tb);
+
+    Swig::DirectorMethodException::raise(err_msg.c_str());
+  }
+}
+
+%exception {
+    try { $action }
+    catch (Swig::DirectorException &e) { SWIG_fail; }
+}
+
 // SWIG helper modules
 %include "stdint.i"
 %include "std_list.i"
@@ -31,6 +65,12 @@
 %ignore *::operator!=;
 %ignore *::operator<<;
 %ignore *::operator>>;
+
+// This ensures that the returned string references can be used with the string API
+// Otherwise, they will be wrapped objects without API
+%typemap(out) std::string& {
+  $result = SWIG_From_std_string(*$1);
+}
 
 // Keywords that are not fully supported in SWIG
 // and make not difference in python anyways
@@ -67,8 +107,6 @@ namespace builtin {
 
 %include "fastdds/rtps/common/VendorId_t.i"
 %include "fastdds/rtps/common/Types.i"
-%include "fastdds/rtps/common/SerializedPayload.i"
-%include "fastdds/rtps/common/CDRMessage_t.i"
 %include "fastdds/rtps/common/Time_t.i"
 %include "fastdds/rtps/common/Locator.i"
 %include "fastdds/rtps/common/LocatorList.i"
@@ -92,6 +130,8 @@ namespace builtin {
 %include "fastdds/rtps/attributes/WriterAttributes.i"
 
 /*
+%include "fastdds/rtps/common/SerializedPayload.i"
+%include "fastdds/rtps/common/CDRMessage_t.i"
 %include "fastdds/rtps/common/FragmentNumber.i"
 %include "fastdds/rtps/common/LocatorSelector.i"
 %include "fastdds/rtps/common/LocatorSelectorEntry.i"

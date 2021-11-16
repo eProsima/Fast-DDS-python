@@ -16,4 +16,7 @@
 #include "fastrtps/utils/fixed_size_string.hpp"
 %}
 
+// Ignore method that causes warnings on SWIG
+%ignore eprosima::fastrtps::fixed_string::operator const char*() const;
+
 %include "fastrtps/utils/fixed_size_string.hpp"
