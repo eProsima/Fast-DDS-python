@@ -1,5 +1,5 @@
 // This class contains a 'const char*' member that may leak on destruction
-// However, converting it to a 'shar*' does not
+// However, converting it to a 'char*' does not
 // SWIG is very special)
 %typemap(out) char const *flow_controller_name = char *;
 %typemap(memberin) char const *flow_controller_name = char *;
@@ -14,7 +14,14 @@
 // SWIG does not support templates in the generated binding,
 // because not all output languages support them
 // We must explicitly declare the specializations of the templates
-%template(OctetResourceLimitedVector) eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>;
+%template(octet_ResourceLimitedVector) eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>;
+%template(TransportDescriptorInterfaceShrPtr) std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface>;
+%template(TransportDescriptorInterface_vector) std::vector<std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface>>;
+// The 'enum' here is very important, or SWIG will create a faulty wrapper
+//    * Enums are mapped as integer constants
+//    * The template expects a class type
+//    * Trying to push a mapped enum value (integer) will result on an error because it is not the expected type
+%template(DataRepresentationId_t_vector) std::vector<enum eprosima::fastdds::dds::DataRepresentationId>;
 
 // The class PartitionQosPolicy::const_iterator does not have default constructor
 // This tells SWIG it must wrap the constructors or the compilation will fail
