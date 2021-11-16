@@ -43,6 +43,10 @@ struct ResourceLimitedContainerConfig
     inline static ResourceLimitedContainerConfig dynamic_allocation_configuration(
             size_t increment = 1u);
 
+    size_t initial;
+    size_t maximum;
+    size_t increment;
+
 };
 
 inline bool operator == (
@@ -53,3 +57,15 @@ inline bool operator == (
 }  // namespace eprosima
 
 //%include "fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp"
+
+// This class has a global comparison operator that will be ignored by general rules.
+// Extend it with an internal operator
+%extend eprosima::fastrtps::ResourceLimitedContainerConfig {
+    bool operator ==(
+                const eprosima::fastrtps::ResourceLimitedContainerConfig& b) const
+        {
+            return ($self->initial == b.initial) &&
+                ($self->maximum == b.maximum) &&
+                ($self->increment == b.increment);
+        }
+}

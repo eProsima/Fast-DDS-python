@@ -14,11 +14,47 @@
 
 %module(directors="1", threads="1") fastdds
 
+// Handle exceptions on python callbacks and send them back to C++ so that they can be catched
+// Also, add some meaningful description of the error
+%feature("director:except") {
+  if ($error != NULL) {
+    PyObject *exc, *val, *tb;
+    PyErr_Fetch(&exc, &val, &tb);
+    PyErr_NormalizeException(&exc, &val, &tb);
+    std::string err_msg("In method '$symname': ");
+
+    PyObject* exc_str = PyObject_GetAttrString(exc, "__name__");
+    err_msg += PyUnicode_AsUTF8(exc_str);
+    Py_XDECREF(exc_str);
+    
+    if (val != NULL)
+    {
+      PyObject* val_str = PyObject_Str(val);
+      err_msg += ": ";
+      err_msg += PyUnicode_AsUTF8(val_str);
+      Py_XDECREF(val_str);
+    }
+
+    Py_XDECREF(exc);
+    Py_XDECREF(val);
+    Py_XDECREF(tb);
+    
+    Swig::DirectorMethodException::raise(err_msg.c_str());
+  }
+}
+
+%exception {
+    try { $action }
+    catch (Swig::DirectorException &e) { SWIG_fail; }
+}
+
 // SWIG helper modules
 %include "std_string.i"
 %include "typemaps.i"
 %include "std_shared_ptr.i"
 %include "std_vector.i"
+%include "std_list.i"
+%include "carrays.i"
 
 // Operators declared outside the class for different types do conflict
 %ignore operator<<;
@@ -30,14 +66,40 @@
 %ignore *::operator++;
 %rename(__not__) *::operator!;
 
+// This ensures that the returned string references can be used with the string API
+// Otherwise, they will be wrapped objects without API
+%typemap(out) std::string& {
+  $result = SWIG_From_std_string(*$1);
+}
+
 // Keywords that are not fully supported in SWIG
 // and make not difference in python anyways
 #define final
 
 // Definition of internal types
+typedef long int64_t;
 typedef int int32_t;
+typedef short int16_t;
+typedef char int8_t;
+
+typedef unsigned long uint64_t;
 typedef unsigned int uint32_t;
+typedef unsigned short uint16_t;
+typedef unsigned char uint8_t;
+
+typedef unsigned char octet;
 typedef unsigned int size_t;
+
+// Some very common template alias
+%template(uint64_t_vector) std::vector<uint64_t>;
+%template(uint32_t_vector) std::vector<uint32_t>;
+%template(uint16_t_vector) std::vector<uint16_t>;
+
+%template(int64_t_vector) std::vector<int64_t>;
+%template(int32_t_vector) std::vector<int32_t>;
+%template(int16_t_vector) std::vector<int16_t>;
+
+%template(string_vector) std::vector<std::string>;
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
@@ -82,6 +144,7 @@ namespace fastrtps{
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
 %include "fastrtps/utils/md5.i"
+%include "fastrtps/utils/fixed_size_string.i"
 
 /*
 %include "fastrtps/rtps/common/SerializedPayload.i"
@@ -91,7 +154,6 @@ namespace fastrtps{
 
 %include "fastrtps/utils/Semaphore.i"
 %include "fastrtps/utils/System.i"
-%include "fastrtps/utils/fixed_size_string.i"
 %include "fastrtps/utils/TimedMutex.i"
 %include "fastrtps/utils/collections/foonathan_memory_helpers.i"
 %include "fastrtps/utils/StringMatching.i"
@@ -114,14 +176,10 @@ namespace fastrtps{
 %include "fastdds/rtps/builtin/discovery/participant/PDP.i"
 %include "fastdds/rtps/builtin/discovery/participant/PDPListener.i"
 %include "fastdds/rtps/builtin/discovery/participant/PDPSimple.i"
-%include "fastdds/rtps/builtin/data/ReaderProxyData.i"
-%include "fastdds/rtps/builtin/data/ParticipantProxyData.i"
-%include "fastdds/rtps/builtin/data/WriterProxyData.i"
 %include "fastdds/rtps/builtin/liveliness/WLP.i"
 %include "fastdds/rtps/builtin/liveliness/WLPListener.i"
 %include "fastdds/rtps/builtin/BuiltinProtocols.i"
 %include "fastdds/rtps/common/CacheChange.i"
-%include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
 %include "fastdds/rtps/reader/StatelessReader.i"
 %include "fastdds/rtps/reader/StatefulReader.i"
 %include "fastdds/rtps/reader/ReaderListener.i"
@@ -165,7 +223,6 @@ namespace fastrtps{
 %include "fastdds/rtps/security/cryptography/Cryptography.i"
 %include "fastdds/rtps/security/cryptography/CryptoTransform.i"
 %include "fastdds/rtps/security/cryptography/CryptoKeyFactory.i"
-%include "fastdds/rtps/participant/ParticipantDiscoveryInfo.i"
 %include "fastdds/rtps/participant/RTPSParticipantListener.i"
 %include "fastdds/rtps/participant/RTPSParticipant.i"
 %include "fastdds/rtps/network/NetworkFactory.i"
@@ -184,7 +241,6 @@ namespace fastrtps{
 %include "fastdds/rtps/writer/IReaderDataFilter.i"
 %include "fastdds/rtps/writer/LocatorSelectorSender.i"
 %include "fastdds/rtps/writer/ReaderProxy.i"
-%include "fastdds/rtps/writer/WriterDiscoveryInfo.i"
 %include "fastdds/rtps/writer/StatelessPersistentWriter.i"
 %include "fastdds/rtps/writer/RTPSWriter.i"
 %include "fastdds/rtps/resources/ResourceEvent.i"
@@ -415,6 +471,8 @@ namespace fastrtps{
 %include "fastdds/dds/subscriber/qos/ReaderQos.i"
 %include "fastdds/dds/subscriber/qos/SubscriberQos.i"
 %include "fastdds/dds/subscriber/qos/DataReaderQos.i"
+%include "fastdds/rtps/builtin/data/ReaderProxyData.i"
+%include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
 %include "fastdds/dds/subscriber/DataReaderListener.i"
 %include "fastdds/dds/subscriber/SubscriberListener.i"
 %include "fastdds/dds/subscriber/ViewState.i"
@@ -426,10 +484,14 @@ namespace fastrtps{
 %include "fastdds/dds/publisher/qos/PublisherQos.i"
 %include "fastdds/dds/publisher/qos/WriterQos.i"
 %include "fastdds/dds/publisher/qos/DataWriterQos.i"
+%include "fastdds/rtps/builtin/data/WriterProxyData.i"
+%include "fastdds/rtps/writer/WriterDiscoveryInfo.i"
 %include "fastdds/dds/publisher/DataWriterListener.i"
 %include "fastdds/dds/publisher/PublisherListener.i"
 %include "fastdds/dds/publisher/DataWriter.i"
 %include "fastdds/dds/publisher/Publisher.i"
+%include "fastdds/rtps/builtin/data/ParticipantProxyData.i"
+%include "fastdds/rtps/participant/ParticipantDiscoveryInfo.i"
 %include "fastdds/dds/domain/DomainParticipantListener.i"
 %include "fastdds/dds/domain/qos/DomainParticipantFactoryQos.i"
 %include "fastdds/dds/domain/qos/DomainParticipantQos.i"
