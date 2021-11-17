@@ -14,8 +14,7 @@
 
 from unittest import TestCase
 
-import HelloWorld
-import fastdds_wrapper as fastdds
+import fastdds
 
 class TestQosValues(TestCase):
 
