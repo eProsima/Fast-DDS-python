@@ -22,8 +22,11 @@
 %module HelloWorld
 
 // SWIG helper modules
-%include "std_string.i"
 %include "typemaps.i"
+%include "std_string.i"
+%include "std_vector.i"
+%include "std_array.i"
+%include "std_map.i"
 
 // Assignemt operators are ignored, as there is no such thing in Python.
 // Trying to export them issues a warning
@@ -33,19 +36,20 @@
 
 typedef char int8_t;
 typedef short int16_t;
-typedef long int32_t;
-typedef long long int64_t;
+typedef int int32_t;
+typedef long int64_t;
 
 typedef unsigned char uint8_t;
 typedef unsigned short uint16_t;
-typedef unsigned long uint32_t;
-typedef unsigned long long uint64_t;
+typedef unsigned int uint32_t;
+typedef unsigned long uint64_t;
 
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
 #define RTPS_DllAPI
 #define eProsima_user_DllExport
+
 
 %{
 #include "HelloWorld.h"
@@ -61,11 +65,15 @@ typedef unsigned long long uint64_t;
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
+%ignore HelloWorld::index(uint32_t&&);
 %ignore HelloWorld::index();
 %rename("%s") HelloWorld::index() const;
 
+
+%ignore HelloWorld::message(std::string&&);
 %ignore HelloWorld::message();
 %rename("%s") HelloWorld::message() const;
+
 
 
 

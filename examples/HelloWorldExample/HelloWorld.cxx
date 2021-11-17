@@ -36,9 +36,9 @@ using namespace eprosima::fastcdr::exception;
 
 HelloWorld::HelloWorld()
 {
-    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@543c6f6d
+    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@7403c468
     m_index = 0;
-    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@7403c468
+    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@43738a82
     m_message ="";
 
 }
@@ -81,6 +81,19 @@ HelloWorld& HelloWorld::operator =(
     m_message = std::move(x.m_message);
 
     return *this;
+}
+
+bool HelloWorld::operator ==(
+        const HelloWorld& x)
+{
+
+    return (m_index == x.m_index && m_message == x.m_message);
+}
+
+bool HelloWorld::operator !=(
+        const HelloWorld& x)
+{
+    return !(*this == x);
 }
 
 size_t HelloWorld::getMaxCdrSerializedSize(

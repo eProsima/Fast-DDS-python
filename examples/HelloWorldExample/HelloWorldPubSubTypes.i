@@ -25,4 +25,6 @@
 #include "HelloWorldPubSubTypes.h"
 %}
 
+#define GEN_API_VER 1
+
 %include "HelloWorldPubSubTypes.h"
