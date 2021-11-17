@@ -33,15 +33,15 @@ use_udpv4 = True
 #****** Auxiliary print functions  ******#
 def default_receive_print(data) :
     if isinstance(data, TestTypes.HelloWorld):
-        print("Received HelloWorld {}".format(data.index()))
+        print("Received HelloWorld {}".format(data.message()))
     if isinstance(data, TestTypes.Data64kb):
-        print("Received Data64kb {}".format(data.data[0]))
+        print("Received Data64kb {}".format(data.data()[0]))
 
 def default_send_print(data) :
     if isinstance(data, TestTypes.HelloWorld):
         print("Sent HelloWorld {}".format(data.index()))
     if isinstance(data, TestTypes.Data64kb):
-        print("Sent Data64kb {}".format(data.data[0]))
+        print("Sent Data64kb {}".format(data.data()[0]))
 
 #****** Auxiliary data generators *******#
 def default_helloworld_data_generator(max = 0) :
@@ -71,8 +71,8 @@ def default_data64kb_data_generator(max = 0) :
         msg.data().resize(data64kb_length)
         msg.data()[0] = index
         i = 1
-        while(1 < data64kb_length) :
-            msg.data()[i] = index + i
+        while(i < data64kb_length) :
+            msg.data()[i] = (index + i) % 255
             i += 1
         ret.append(msg)
         index += 1
