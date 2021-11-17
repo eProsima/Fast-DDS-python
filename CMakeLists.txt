@@ -34,5 +34,3 @@ FIND_PACKAGE(fastrtps REQUIRED)
 ###############################################################################
 
 add_subdirectory(src/swig)
-add_subdirectory(test)
-

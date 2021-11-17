@@ -15,9 +15,8 @@
 Script to test Fast DDS python bindings
 """
 import argparse
-import threading
 import signal
-import sys
+from threading import Condition
 
 import fastdds_wrapper
 import HelloWorld
@@ -39,6 +38,31 @@ class ReaderListener(fastdds_wrapper.DataReaderListener):
         reader.take_next_sample(data, info)
     
         print("Received {message} : {index}".format(message=data.message(), index=data.index()))
+
+    def on_subscription_matched(self, datareader, info) :
+        if (0 < info.current_count_change) :
+            print ("Subscriber matched publisher {}".format(info.last_publication_handle))
+        else :
+            print ("Subscriber unmatched publisher {}".format(info.last_publication_handle))
+
+class WriterListener (fastdds_wrapper.DataWriterListener) :
+    def __init__(self, writer) :
+        self._writer = writer
+        super().__init__()
+
+    def on_publication_matched(self, datawriter, info) :
+        if (0 < info.current_count_change) :
+            print ("Publisher matched subscriber {}".format(info.last_subscription_handle))
+            self._writer._cvDiscovery.acquire()
+            self._writer._matched_reader += 1
+            self._writer._cvDiscovery.notify()
+            self._writer._cvDiscovery.release()
+        else :
+            print ("Publisher unmatched subscriber {}".format(info.last_subscription_handle))
+            self._writer._cvDiscovery.acquire()
+            self._writer._matched_reader += 1
+            self._writer._cvDiscovery.notify()
+            self._writer._cvDiscovery.release()
 
 
 class Reader():
@@ -80,6 +104,8 @@ class Reader():
 class Writer:
   def __init__(self, domain, machine):
     self.machine = machine
+    self._matched_reader = 0
+    self._cvDiscovery = Condition()
 
     factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
     self.participant_qos = fastdds_wrapper.DomainParticipantQos()
@@ -99,9 +125,10 @@ class Writer:
     self.participant.get_default_publisher_qos(self.publisher_qos)
     self.publisher = self.participant.create_publisher(self.publisher_qos)
 
+    self.listener = WriterListener(self)
     self.writer_qos = fastdds_wrapper.DataWriterQos()
     self.publisher.get_default_datawriter_qos(self.writer_qos)
-    self.writer = self.publisher.create_datawriter(self.topic, self.writer_qos)
+    self.writer = self.publisher.create_datawriter(self.topic, self.writer_qos, self.listener)
     
     self.index = 0
 
@@ -122,12 +149,18 @@ class Writer:
     factory.delete_participant(self.participant)
 
   def run(self):
-    keep_going = 'y'
-    while keep_going != 'n':
-      if keep_going == 'y':
+    self.wait_discovery()
+    for x in range(10) :
         self.write()
-      keep_going = input('Send another sample? (y-yes, n-no): ')
     self.delete()
+
+  def wait_discovery(self) :
+    self._cvDiscovery.acquire()
+    print ("Writer is waiting discovery...")
+    self._cvDiscovery.wait_for(lambda : self._matched_reader != 0)
+    self._cvDiscovery.release()
+    print("Writer discovery finished...")
+
 
 def parse_options():
   """"

@@ -108,6 +108,20 @@ public:
             HelloWorld&& x);
 
     /*!
+     * @brief Comparison operator.
+     * @param x HelloWorld object to compare.
+     */
+    eProsima_user_DllExport bool operator ==(
+            const HelloWorld& x);
+
+    /*!
+     * @brief Comparison operator.
+     * @param x HelloWorld object to compare.
+     */
+    eProsima_user_DllExport bool operator !=(
+            const HelloWorld& x);
+
+    /*!
      * @brief This function sets a value in member index
      * @param _index New value for member index
      */
