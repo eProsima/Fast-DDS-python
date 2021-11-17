@@ -1,4 +1,4 @@
-%module(directors="1", threads="1") fastdds_wrapper
+%module(directors="1", threads="1") fastdds
 
 // Handle exceptions on python callbacks and send them back to C++ so that they can be catched
 // Also, add some meaningful description of the error

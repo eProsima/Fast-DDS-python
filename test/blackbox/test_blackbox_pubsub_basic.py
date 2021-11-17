@@ -15,7 +15,7 @@
 from unittest import TestCase
 
 import TestTypes
-import fastdds_wrapper as fastdds
+import fastdds
 from blackbox_common import *
 from PubSubReader import PubSubReader
 from PubSubWriter import PubSubWriter

@@ -60,7 +60,7 @@ This project is on the very early stages of development, and there are many feat
 
 ## Python example
 
-The *Fast DDS* functionality is contained in the `fastdds_wrapper` module, so you will need to include that module in your script. You will also need to create the python binding for your data type and include its module. This example will guide you through these steps in a simple example.
+The *Fast DDS* functionality is contained in the `fastdds` module, so you will need to include that module in your script. You will also need to create the python binding for your data type and include its module. This example will guide you through these steps in a simple example.
 
 ### Generate a data type
 
@@ -93,32 +93,32 @@ This will create a `HelloWorld.py` file with a `HelloWorld` module that you will
 
 ### Creating the DataWriter
 
-Import the `fastdds_wrapper` and the `HelloWorld` modules and follow the usual steps to create a DataWriter:
+Import the `fastdds` and the `HelloWorld` modules and follow the usual steps to create a DataWriter:
 
 ```python
-import fastdds_wrapper
+import fastdds
 import HelloWorld
 
 domain = 5;
-factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
-participant_qos = fastdds_wrapper.DomainParticipantQos()
+factory = fastdds.DomainParticipantFactory.get_instance()
+participant_qos = fastdds.DomainParticipantQos()
 factory.get_default_participant_qos(participant_qos)
 participant = factory.create_participant(domain, participant_qos)
 
 topic_data_type = HelloWorld.HelloWorldPubSubType()
 topic_data_type.setName("HelloWorldDataType")
-type_support = fastdds_wrapper.TypeSupport(topic_data_type)
+type_support = fastdds.TypeSupport(topic_data_type)
 participant.register_type(type_support)
 
-topic_qos = fastdds_wrapper.TopicQos()
+topic_qos = fastdds.TopicQos()
 participant.get_default_topic_qos(topic_qos)
 topic = self.participant.create_topic("myTopic", topic_data_type.getName(), topic_qos)
 
-publisher_qos = fastdds_wrapper.PublisherQos()
+publisher_qos = fastdds.PublisherQos()
 participant.get_default_publisher_qos(publisher_qos)
 publisher = participant.create_publisher(publisher_qos)
 
-writer_qos = fastdds_wrapper.DataWriterQos()
+writer_qos = fastdds.DataWriterQos()
 publisher.get_default_datawriter_qos(writer_qos)
 writer = self.publisher.create_datawriter(topic, writer_qos)
 ```
@@ -136,32 +136,32 @@ writer.write(data)
 
 ### Creating the DataReader
 
-Import the `fastdds_wrapper` and the `HelloWorld` modules and follow the usual steps to create a DataReader:
+Import the `fastdds` and the `HelloWorld` modules and follow the usual steps to create a DataReader:
 
 ```python
-import fastdds_wrapper
+import fastdds
 import HelloWorld
 
 domain = 5;
-factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
-participant_qos = fastdds_wrapper.DomainParticipantQos()
+factory = fastdds.DomainParticipantFactory.get_instance()
+participant_qos = fastdds.DomainParticipantQos()
 factory.get_default_participant_qos(participant_qos)
 participant = factory.create_participant(domain, participant_qos)
 
 topic_data_type = HelloWorld.HelloWorldPubSubType()
 topic_data_type.setName("HelloWorldDataType")
-type_support = fastdds_wrapper.TypeSupport(topic_data_type)
+type_support = fastdds.TypeSupport(topic_data_type)
 participant.register_type(type_support)
 
-topic_qos = fastdds_wrapper.TopicQos()
+topic_qos = fastdds.TopicQos()
 participant.get_default_topic_qos(topic_qos)
 topic = participant.create_topic("myTopic", topic_data_type.getName(), topic_qos)
 
-subscriber_qos = fastdds_wrapper.SubscriberQos()
+subscriber_qos = fastdds.SubscriberQos()
 participant.get_default_subscriber_qos(subscriber_qos)
 subscriber = participant.create_subscriber(subscriber_qos)
 
-reader_qos = fastdds_wrapper.DataReaderQos()
+reader_qos = fastdds.DataReaderQos()
 subscriber.get_default_datareader_qos(reader_qos)
 reader = subscriber.create_datareader(topic, reader_qos)
 ```
@@ -171,7 +171,7 @@ reader = subscriber.create_datareader(topic, reader_qos)
 You can read a sample the same way you would do it in C++:
 
 ```python
-info = fastdds_wrapper.SampleInfo()
+info = fastdds.SampleInfo()
 data = HelloWorld.HelloWorld()
 reader.take_next_sample(data, info)
 

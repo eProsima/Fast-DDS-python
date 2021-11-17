@@ -18,7 +18,7 @@ import argparse
 import signal
 from threading import Condition
 
-import fastdds_wrapper
+import fastdds
 import HelloWorld
 
 DESCRIPTION = """Script to test Fast DDS python bindings"""
@@ -28,12 +28,12 @@ USAGE = ('python3 test.py -p publisher|subscriber [-d domainID -m machineID]')
 def signal_handler(sig, frame):
     print('Interrupted!')
 
-class ReaderListener(fastdds_wrapper.DataReaderListener):
+class ReaderListener(fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
 
     def on_data_available(self, reader):
-        info = fastdds_wrapper.SampleInfo()
+        info = fastdds.SampleInfo()
         data = HelloWorld.HelloWorld()
         reader.take_next_sample(data, info)
     
@@ -45,7 +45,7 @@ class ReaderListener(fastdds_wrapper.DataReaderListener):
         else :
             print ("Subscriber unmatched publisher {}".format(info.last_publication_handle))
 
-class WriterListener (fastdds_wrapper.DataWriterListener) :
+class WriterListener (fastdds.DataWriterListener) :
     def __init__(self, writer) :
         self._writer = writer
         super().__init__()
@@ -67,31 +67,31 @@ class WriterListener (fastdds_wrapper.DataWriterListener) :
 
 class Reader():
   def __init__(self, domain):
-    factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
-    self.participant_qos = fastdds_wrapper.DomainParticipantQos()
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    self.participant_qos = fastdds.DomainParticipantQos()
     factory.get_default_participant_qos(self.participant_qos)
     self.participant = factory.create_participant(domain, self.participant_qos)
 
     self.topic_data_type = HelloWorld.HelloWorldPubSubType()
     self.topic_data_type.setName("HelloWorldDataType")
-    self.type_support = fastdds_wrapper.TypeSupport(self.topic_data_type)
+    self.type_support = fastdds.TypeSupport(self.topic_data_type)
     self.participant.register_type(self.type_support)
 
-    self.topic_qos = fastdds_wrapper.TopicQos()
+    self.topic_qos = fastdds.TopicQos()
     self.participant.get_default_topic_qos(self.topic_qos)
     self.topic = self.participant.create_topic("myTopic", self.topic_data_type.getName(), self.topic_qos)
 
-    self.subscriber_qos = fastdds_wrapper.SubscriberQos()
+    self.subscriber_qos = fastdds.SubscriberQos()
     self.participant.get_default_subscriber_qos(self.subscriber_qos)
     self.subscriber = self.participant.create_subscriber(self.subscriber_qos)
 
     self.listener = ReaderListener()
-    self.reader_qos = fastdds_wrapper.DataReaderQos()
+    self.reader_qos = fastdds.DataReaderQos()
     self.subscriber.get_default_datareader_qos(self.reader_qos)
     self.reader = self.subscriber.create_datareader(self.topic, self.reader_qos, self.listener)
 
   def delete(self):
-    factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
+    factory = fastdds.DomainParticipantFactory.get_instance()
     self.participant.delete_contained_entities()
     factory.delete_participant(self.participant)
 
@@ -107,26 +107,26 @@ class Writer:
     self._matched_reader = 0
     self._cvDiscovery = Condition()
 
-    factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
-    self.participant_qos = fastdds_wrapper.DomainParticipantQos()
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    self.participant_qos = fastdds.DomainParticipantQos()
     factory.get_default_participant_qos(self.participant_qos)
     self.participant = factory.create_participant(domain, self.participant_qos)
 
     self.topic_data_type = HelloWorld.HelloWorldPubSubType()
     self.topic_data_type.setName("HelloWorldDataType")
-    self.type_support = fastdds_wrapper.TypeSupport(self.topic_data_type)
+    self.type_support = fastdds.TypeSupport(self.topic_data_type)
     self.participant.register_type(self.type_support)
 
-    self.topic_qos = fastdds_wrapper.TopicQos()
+    self.topic_qos = fastdds.TopicQos()
     self.participant.get_default_topic_qos(self.topic_qos)
     self.topic = self.participant.create_topic("myTopic", self.topic_data_type.getName(), self.topic_qos)
 
-    self.publisher_qos = fastdds_wrapper.PublisherQos()
+    self.publisher_qos = fastdds.PublisherQos()
     self.participant.get_default_publisher_qos(self.publisher_qos)
     self.publisher = self.participant.create_publisher(self.publisher_qos)
 
     self.listener = WriterListener(self)
-    self.writer_qos = fastdds_wrapper.DataWriterQos()
+    self.writer_qos = fastdds.DataWriterQos()
     self.publisher.get_default_datawriter_qos(self.writer_qos)
     self.writer = self.publisher.create_datawriter(self.topic, self.writer_qos, self.listener)
     
@@ -144,7 +144,7 @@ class Writer:
     self.index = self.index + 1
 
   def delete(self):
-    factory = fastdds_wrapper.DomainParticipantFactory.get_instance()
+    factory = fastdds.DomainParticipantFactory.get_instance()
     self.participant.delete_contained_entities()
     factory.delete_participant(self.participant)
 

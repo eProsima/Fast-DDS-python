@@ -12,7 +12,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-import fastdds_wrapper as fastdds
+import fastdds
 from blackbox_common import *
 
 from threading import Thread, Lock, Condition
