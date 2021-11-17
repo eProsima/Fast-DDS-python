@@ -66,12 +66,14 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore HelloWorld::index(uint32_t&&);
-%ignore HelloWorld::index() const;
 
+%ignore HelloWorld::index();
+%rename("%s") HelloWorld::index() const;
 
 %ignore HelloWorld::message(std::string&&);
-%ignore HelloWorld::message() const;
 
+%ignore HelloWorld::message();
+%rename("%s") HelloWorld::message() const;
 
 
 ////////////////////////////////////////////////////////
@@ -85,16 +87,19 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore KeyedHelloWorld::key(uint16_t&&);
-%ignore KeyedHelloWorld::key() const;
 
+%ignore KeyedHelloWorld::key();
+%rename("%s") KeyedHelloWorld::key() const;
 
 %ignore KeyedHelloWorld::index(uint32_t&&);
-%ignore KeyedHelloWorld::index() const;
 
+%ignore KeyedHelloWorld::index();
+%rename("%s") KeyedHelloWorld::index() const;
 
 %ignore KeyedHelloWorld::message(std::string&&);
-%ignore KeyedHelloWorld::message() const;
 
+%ignore KeyedHelloWorld::message();
+%rename("%s") KeyedHelloWorld::message() const;
 
 
 ////////////////////////////////////////////////////////
@@ -108,8 +113,9 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore FixedSize::index(uint16_t&&);
-%ignore FixedSize::index() const;
 
+%ignore FixedSize::index();
+%rename("%s") FixedSize::index() const;
 
 
 ////////////////////////////////////////////////////////
@@ -123,8 +129,8 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore Data64kb::data(std::vector<uint8_t>&&);
-%ignore Data64kb::data() const;
 
+%ignore Data64kb::data() const;
 %template(uint8_t_vector) std::vector<uint8_t>;
 
 
@@ -139,8 +145,8 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore Data1mb::data(std::vector<uint8_t>&&);
-%ignore Data1mb::data() const;
 
+%ignore Data1mb::data() const;
 %template(uint8_t_vector) std::vector<uint8_t>;
 
 
@@ -155,12 +161,13 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore KeyedData1mb::key(uint16_t&&);
-%ignore KeyedData1mb::key() const;
 
+%ignore KeyedData1mb::key();
+%rename("%s") KeyedData1mb::key() const;
 
 %ignore KeyedData1mb::data(std::vector<uint8_t>&&);
-%ignore KeyedData1mb::data() const;
 
+%ignore KeyedData1mb::data() const;
 %template(uint8_t_vector) std::vector<uint8_t>;
 
 
@@ -175,8 +182,9 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore StringType::message(std::string&&);
-%ignore StringType::message() const;
 
+%ignore StringType::message();
+%rename("%s") StringType::message() const;
 
 
 
