@@ -1,4 +1,4 @@
-%module(directors="1", threads="1") fastdds_wrapper
+%module(directors="1", threads="1") fastdds
 
 // SWIG helper modules
 %include "std_string.i"

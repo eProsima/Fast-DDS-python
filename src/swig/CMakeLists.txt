@@ -8,7 +8,7 @@ message(STATUS "Configuring FastDDS wrapper for Python...")
 find_package (PythonInterp REQUIRED)
 
 set(${PROJECT_NAME}_MODULE
-    fastdds_wrapper
+    fastdds
     )
 
 set(${PROJECT_NAME}_FILES
