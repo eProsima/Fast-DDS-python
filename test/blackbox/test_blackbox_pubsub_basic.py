@@ -108,8 +108,7 @@ class TestPubSubBasic(TestCase):
         self.assertTrue(len(data) == 0)
         reader.block_for_all()
 
-    '''
-    # Fails because teh 64K generator cannot set the values of the vector
+
     def test_PubSubAsReliableData64kb(self):
         reader = PubSubReader(TestTypes.Data64kb, TestTypes.Data64kbPubSubType, self.id())
         writer = PubSubWriter(TestTypes.Data64kb, TestTypes.Data64kbPubSubType, self.id())
@@ -129,7 +128,7 @@ class TestPubSubBasic(TestCase):
         writer.send(data)
         self.assertTrue(len(data) == 0)
         reader.block_for_all()
-    '''
+
 
     def test_PubSubMoreThan256Unacknowledged(self):
         reader = PubSubReader(TestTypes.HelloWorld, TestTypes.HelloWorldPubSubType, self.id())
