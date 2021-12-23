@@ -424,7 +424,9 @@ namespace fastrtps{
 %include "fastdds/rtps/attributes/WriterAttributes.i"
 %include "fastdds/rtps/attributes/ServerAttributes.i"
 
+%include "fastdds/dds/topic/IContentFilter.i"
 %include "fastdds/dds/topic/TopicDataType.i"
+%include "fastdds/dds/topic/IContentFilterFactory.i"
 %include "fastdds/dds/topic/TypeSupport.i"
 %include "fastdds/dds/core/condition/Condition.i"
 %include "fastdds/dds/core/condition/StatusCondition.i"
@@ -450,6 +452,7 @@ namespace fastrtps{
 %include "fastdds/dds/topic/qos/TopicQos.i"
 %include "fastdds/dds/topic/TopicDescription.i"
 %include "fastdds/dds/topic/Topic.i"
+%include "fastdds/dds/topic/ContentFilteredTopic.i"
 %include "fastdds/dds/topic/TopicListener.i"
 %include "fastdds/dds/subscriber/qos/ReaderQos.i"
 %include "fastdds/dds/subscriber/qos/SubscriberQos.i"
