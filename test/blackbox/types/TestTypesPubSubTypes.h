@@ -20,8 +20,8 @@
  */
 
 
-#ifndef _TESTTYPES_PUBSUBTYPES_H_
-#define _TESTTYPES_PUBSUBTYPES_H_
+#ifndef _FAST_DDS_GENERATED_TESTTYPES_PUBSUBTYPES_H_
+#define _FAST_DDS_GENERATED_TESTTYPES_PUBSUBTYPES_H_
 
 #include <fastdds/dds/topic/TopicDataType.hpp>
 #include <fastrtps/utils/md5.h>
@@ -29,7 +29,8 @@
 #include "TestTypes.h"
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 1)
-#error Generated TestTypes is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.
+#error \
+    Generated TestTypes is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.
 #endif  // GEN_API_VER
 
 /*!
@@ -481,4 +482,4 @@ public:
     unsigned char* m_keyBuffer;
 };
 
-#endif // _TESTTYPES_PUBSUBTYPES_H_
+#endif // _FAST_DDS_GENERATED_TESTTYPES_PUBSUBTYPES_H_
