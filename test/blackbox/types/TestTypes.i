@@ -45,7 +45,7 @@ typedef unsigned int uint32_t;
 typedef unsigned long uint64_t;
 
 
-// Macro delcarations
+// Macro declarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
 #define RTPS_DllAPI
 #define eProsima_user_DllExport
@@ -67,11 +67,17 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore HelloWorld::index(uint32_t&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore HelloWorld::index();
 %rename("%s") HelloWorld::index() const;
 
 %ignore HelloWorld::message(std::string&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore HelloWorld::message();
 %rename("%s") HelloWorld::message() const;
 
@@ -88,16 +94,25 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore KeyedHelloWorld::key(uint16_t&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore KeyedHelloWorld::key();
 %rename("%s") KeyedHelloWorld::key() const;
 
 %ignore KeyedHelloWorld::index(uint32_t&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore KeyedHelloWorld::index();
 %rename("%s") KeyedHelloWorld::index() const;
 
 %ignore KeyedHelloWorld::message(std::string&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore KeyedHelloWorld::message();
 %rename("%s") KeyedHelloWorld::message() const;
 
@@ -114,6 +129,9 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore FixedSize::index(uint16_t&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore FixedSize::index();
 %rename("%s") FixedSize::index() const;
 
@@ -130,6 +148,9 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore Data64kb::data(std::vector<uint8_t>&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore Data64kb::data() const;
 %template(uint8_t_vector) std::vector<uint8_t>;
 
@@ -146,6 +167,9 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore Data1mb::data(std::vector<uint8_t>&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore Data1mb::data() const;
 %template(uint8_t_vector) std::vector<uint8_t>;
 
@@ -162,11 +186,17 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore KeyedData1mb::key(uint16_t&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore KeyedData1mb::key();
 %rename("%s") KeyedData1mb::key() const;
 
 %ignore KeyedData1mb::data(std::vector<uint8_t>&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore KeyedData1mb::data() const;
 %template(uint8_t_vector) std::vector<uint8_t>;
 
@@ -183,6 +213,9 @@ typedef unsigned long uint64_t;
 // Avoid a warning ignoring all but one
 %ignore StringType::message(std::string&&);
 
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore StringType::message();
 %rename("%s") StringType::message() const;
 

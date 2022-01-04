@@ -36,9 +36,9 @@ using namespace eprosima::fastcdr::exception;
 
 HelloWorld::HelloWorld()
 {
-    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@7403c468
+    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@74a10858
     m_index = 0;
-    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@43738a82
+    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@23fe1d71
     m_message ="";
 
 }
@@ -84,14 +84,14 @@ HelloWorld& HelloWorld::operator =(
 }
 
 bool HelloWorld::operator ==(
-        const HelloWorld& x)
+        const HelloWorld& x) const
 {
 
     return (m_index == x.m_index && m_message == x.m_message);
 }
 
 bool HelloWorld::operator !=(
-        const HelloWorld& x)
+        const HelloWorld& x) const
 {
     return !(*this == x);
 }
@@ -237,11 +237,11 @@ void HelloWorld::serializeKey(
 
 KeyedHelloWorld::KeyedHelloWorld()
 {
-    // m_key com.eprosima.idl.parser.typecode.PrimitiveTypeCode@32cf48b7
+    // m_key com.eprosima.idl.parser.typecode.PrimitiveTypeCode@6e2c9341
     m_key = 0;
-    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@679b62af
+    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@32464a14
     m_index = 0;
-    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@5cdd8682
+    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@4e4aea35
     m_message ="";
 
 }
@@ -292,14 +292,14 @@ KeyedHelloWorld& KeyedHelloWorld::operator =(
 }
 
 bool KeyedHelloWorld::operator ==(
-        const KeyedHelloWorld& x)
+        const KeyedHelloWorld& x) const
 {
 
     return (m_key == x.m_key && m_index == x.m_index && m_message == x.m_message);
 }
 
 bool KeyedHelloWorld::operator !=(
-        const KeyedHelloWorld& x)
+        const KeyedHelloWorld& x) const
 {
     return !(*this == x);
 }
@@ -485,7 +485,7 @@ void KeyedHelloWorld::serializeKey(
 
 FixedSize::FixedSize()
 {
-    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@11c20519
+    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@45afc369
     m_index = 0;
 
 }
@@ -525,14 +525,14 @@ FixedSize& FixedSize::operator =(
 }
 
 bool FixedSize::operator ==(
-        const FixedSize& x)
+        const FixedSize& x) const
 {
 
     return (m_index == x.m_index);
 }
 
 bool FixedSize::operator !=(
-        const FixedSize& x)
+        const FixedSize& x) const
 {
     return !(*this == x);
 }
@@ -631,7 +631,7 @@ void FixedSize::serializeKey(
 
 Data64kb::Data64kb()
 {
-    // m_data com.eprosima.idl.parser.typecode.SequenceTypeCode@7364985f
+    // m_data com.eprosima.idl.parser.typecode.SequenceTypeCode@23a5fd2
 
 
 }
@@ -671,14 +671,14 @@ Data64kb& Data64kb::operator =(
 }
 
 bool Data64kb::operator ==(
-        const Data64kb& x)
+        const Data64kb& x) const
 {
 
     return (m_data == x.m_data);
 }
 
 bool Data64kb::operator !=(
-        const Data64kb& x)
+        const Data64kb& x) const
 {
     return !(*this == x);
 }
@@ -793,7 +793,7 @@ void Data64kb::serializeKey(
 
 Data1mb::Data1mb()
 {
-    // m_data com.eprosima.idl.parser.typecode.SequenceTypeCode@3f200884
+    // m_data com.eprosima.idl.parser.typecode.SequenceTypeCode@709ba3fb
 
 
 }
@@ -833,14 +833,14 @@ Data1mb& Data1mb::operator =(
 }
 
 bool Data1mb::operator ==(
-        const Data1mb& x)
+        const Data1mb& x) const
 {
 
     return (m_data == x.m_data);
 }
 
 bool Data1mb::operator !=(
-        const Data1mb& x)
+        const Data1mb& x) const
 {
     return !(*this == x);
 }
@@ -955,9 +955,9 @@ void Data1mb::serializeKey(
 
 KeyedData1mb::KeyedData1mb()
 {
-    // m_key com.eprosima.idl.parser.typecode.PrimitiveTypeCode@4d49af10
+    // m_key com.eprosima.idl.parser.typecode.PrimitiveTypeCode@61d47554
     m_key = 0;
-    // m_data com.eprosima.idl.parser.typecode.SequenceTypeCode@279ad2e3
+    // m_data com.eprosima.idl.parser.typecode.SequenceTypeCode@69b794e2
 
 
 }
@@ -1003,14 +1003,14 @@ KeyedData1mb& KeyedData1mb::operator =(
 }
 
 bool KeyedData1mb::operator ==(
-        const KeyedData1mb& x)
+        const KeyedData1mb& x) const
 {
 
     return (m_key == x.m_key && m_data == x.m_data);
 }
 
 bool KeyedData1mb::operator !=(
-        const KeyedData1mb& x)
+        const KeyedData1mb& x) const
 {
     return !(*this == x);
 }
@@ -1170,7 +1170,7 @@ void KeyedData1mb::serializeKey(
 
 StringType::StringType()
 {
-    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@77e4c80f
+    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@6591f517
     m_message ="";
 
 }
@@ -1210,14 +1210,14 @@ StringType& StringType::operator =(
 }
 
 bool StringType::operator ==(
-        const StringType& x)
+        const StringType& x) const
 {
 
     return (m_message == x.m_message);
 }
 
 bool StringType::operator !=(
-        const StringType& x)
+        const StringType& x) const
 {
     return !(*this == x);
 }
