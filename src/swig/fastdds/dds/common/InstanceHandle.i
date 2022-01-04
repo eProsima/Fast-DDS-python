@@ -18,6 +18,10 @@ long hash(const eprosima::fastrtps::rtps::InstanceHandle_t& handle)
 // SWIG does not support type conversion operators correctly unless converted to a normal method
 %rename(get_guid) eprosima::fastrtps::rtps::InstanceHandle_t::operator const GUID_t&;
 
+%ignore eprosima::fastrtps::rtps::InstanceHandleValue_t::operator [] const;
+%rename(read_pointer_cast) eprosima::fastrtps::rtps::InstanceHandleValue_t::operator const octet* () const;
+%rename(write_pointer_cast) eprosima::fastrtps::rtps::InstanceHandleValue_t::operator octet* ();
+
 %include "fastdds/rtps/common/InstanceHandle.h"
 
 namespace eprosima {
