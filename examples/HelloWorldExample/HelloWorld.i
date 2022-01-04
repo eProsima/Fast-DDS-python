@@ -45,7 +45,7 @@ typedef unsigned int uint32_t;
 typedef unsigned long uint64_t;
 
 
-// Macro delcarations
+// Macro declarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
 #define RTPS_DllAPI
 #define eProsima_user_DllExport
@@ -66,14 +66,20 @@ typedef unsigned long uint64_t;
 // Overloaded getter methods shadow each other and are equivalent in python
 // Avoid a warning ignoring all but one
 %ignore HelloWorld::index(uint32_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore HelloWorld::index();
 %rename("%s") HelloWorld::index() const;
 
-
 %ignore HelloWorld::message(std::string&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
 %ignore HelloWorld::message();
 %rename("%s") HelloWorld::message() const;
-
 
 
 
