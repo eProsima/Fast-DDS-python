@@ -38,7 +38,31 @@ add_subdirectory(src/swig)
 ###############################################################################
 # Testing options
 ###############################################################################
-enable_testing()
-include(CTest)
-add_subdirectory(test)
+option(BUILD_TESTS "Build Fast DDS Python Bindings and documentation tests" OFF)
+option(BUILD_LIBRARY_TESTS "Build Fast DDS Python Bindings tests" OFF)
+option(BUILD_DOCUMENTATION_TESTS "Build Fast DDS Python Bindings documentation tests" OFF)
 
+if (BUILD_TESTS)
+    set(BUILD_LIBRARY_TESTS ON)
+    set(BUILD_DOCUMENTATION_TESTS ON)
+endif()
+
+if (BUILD_LIBRARY_TESTS OR BUILD_DOCUMENTATION_TESTS)
+    # CTest needs to be included here, otherwise it is not possible to run the tests from the root
+    # of the build directory
+    enable_testing()
+    include(CTest)
+endif()
+
+if (BUILD_LIBRARY_TESTS)
+    add_subdirectory(test)
+endif()
+
+###############################################################################
+# Documentation
+###############################################################################
+option(BUILD_DOCUMENTATION "Generate documentation" OFF)
+if (BUILD_DOCUMENTATION OR BUILD_DOCUMENTATION_TESTS)
+    set (BUILD_DOCUMENTATION ON)
+    add_subdirectory(docs)
+endif()

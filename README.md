@@ -54,9 +54,7 @@ colcon build
 
 This project is on the very early stages of development, and there are many features not available yet. These include, but are not restricted to:
 
-* QoS modification is not supported on python. If you need to use non-default QoS, please use XML configuration files.
-* Status listeners are not available. Even though python will not complain if you add a listener to an entity, the listener will not be triggered.
-
+* QoS modification is partially supported on python. If you need to use non-default QoS, it is advised to use XML configuration files for the moment.
 
 ## Python example
 

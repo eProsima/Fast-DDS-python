@@ -1,0 +1,17 @@
+Version 0.1.0
+-------------
+
+This first **beta** release includes the following features:
+
+* Basic API for publishing and subscribing
+
+Known limitations:
+
+* QoS modification is not supported on Python.
+  It is possible to create a QoS object with the default constructor or retrieve it with the :code:`get_qos` methods
+  of the entities, but it is not possible to modify the QoS values.
+  Please, use XML configuration files if non-default QoS are needed.
+* Status listeners are not available.
+  Even though Python will not complain if a listener is added to an entity, its callbacks will not be triggered.
+* Support in `Fast DDS Gen <https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/usage/usage.html>`_ is also
+  limited to structs of simple types (no nested structs nor arrays or maps).
