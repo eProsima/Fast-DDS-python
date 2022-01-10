@@ -9,7 +9,9 @@
 [![Stars](https://img.shields.io/github/stars/eProsima/Fast-DDS-python.svg)](https://github.com/eProsima/Fast-DDS-python/stargazers)
 
 
-*eProsima Fast DDS Python* is a Python binding for the [*eProsima Fast DDS*](https://github.com/eProsima/Fast-DDS) C++ library. This is a work in progress, but ultimately the goal is having the complete *Fast DDS* API available in Python.
+*eProsima Fast DDS Python* is a Python binding for the [*eProsima Fast DDS*](https://github.com/eProsima/Fast-DDS) C++ library.
+This is a work in progress, but ultimately the goal is having the complete *Fast DDS* API available in Python.
+Two packages are available in this repository: the proper Python binding, `fastdds_python`, and the examples, `fastdds_python_examples`.
 
 ## Installation guide
 
@@ -58,6 +60,8 @@ vcs import src < fastdds_python.repos
 # Build the workspace
 colcon build
 ```
+
+Please, refer to [colcon documentation](https://colcon.readthedocs.io/en/released/reference/verb/build.html) for more information, such as building only one of the packages.
 
 ## Limitations
 
@@ -186,4 +190,3 @@ reader.take_next_sample(data, info)
 
 print("Received {message} : {index}".format(message=data.message(), index=data.index()))
 ```
-
