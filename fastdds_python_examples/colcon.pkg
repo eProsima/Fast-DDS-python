@@ -1,0 +1,9 @@
+{
+    "name": "fastdds_python_examples",
+    "type": "cmake",
+    "build-dependencies": [
+        "fastdds_python",
+        "fastcdr",
+        "fastrtps"
+    ]
+}

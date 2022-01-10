@@ -29,8 +29,8 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 
 project(HelloWorld)
 
-FIND_PACKAGE(fastcdr REQUIRED)
-FIND_PACKAGE(fastrtps REQUIRED)
+FIND_PACKAGE(fastcdr REQUIRED CONFIG)
+FIND_PACKAGE(fastrtps REQUIRED CONFIG)
 
 
 set(${PROJECT_NAME}_FILES
