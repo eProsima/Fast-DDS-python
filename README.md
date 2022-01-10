@@ -66,9 +66,6 @@ This project is on the very early stages of development, and there are many feat
 * QoS modification is not supported on python. It is possible to create a QoS object with the default constructor
   or retrieve it with the `get_qos` methods of the entities, but it is not possible to modify the QoS values.
   If you need to use non-default QoS, please use XML configuration files.
-* Status listeners are not available. Even though python will not complain if you add a listener to an entity, the listener will not be triggered.
-* Support in [*Fast DDS gen*](https://fast-dds.docs.eprosima.com/en/latest/fastddsgen/usage/usage.html) is also limited to structs of simple types (no nested structs nor arrays or maps).
-
 
 ## Python example
 
