@@ -21,8 +21,8 @@ from threading import Condition
 import fastdds
 import HelloWorld
 
-DESCRIPTION = """Script to test Fast DDS python bindings"""
-USAGE = ('python3 test.py -p publisher|subscriber [-d domainID -m machineID]')
+DESCRIPTION = """HelloWorld example for Fast DDS python bindings"""
+USAGE = ('python3 HelloWorldExample.py -p publisher|subscriber [-d domainID -m machineID]')
 
 # To capture ctrl+C
 def signal_handler(sig, frame):
