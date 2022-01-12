@@ -4,10 +4,6 @@
 
 cmake_minimum_required(VERSION 3.13)
 
-if(NOT CMAKE_VERSION VERSION_LESS 3.0)
-    cmake_policy(SET CMP0048 NEW)
-endif()
-
 # SWIG: use standard target name.
 if(POLICY CMP0078)
   cmake_policy(SET CMP0078 NEW)
@@ -29,8 +25,8 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 
 project(HelloWorld)
 
-FIND_PACKAGE(fastcdr REQUIRED)
-FIND_PACKAGE(fastrtps REQUIRED)
+find_package(fastcdr REQUIRED)
+find_package(fastrtps REQUIRED)
 
 
 set(${PROJECT_NAME}_FILES
@@ -38,7 +34,7 @@ set(${PROJECT_NAME}_FILES
     HelloWorldPubSubTypes.cxx
     )
 
-INCLUDE_DIRECTORIES()
+include_directories()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -49,49 +45,44 @@ target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps)
 ###############################################################################
 # Python bindings for type
 
-project(HelloWorldWrapper)
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
+set(CMAKE_SWIG_FLAGS "")
 
-FIND_PACKAGE(SWIG REQUIRED)
-INCLUDE(${SWIG_USE_FILE})
-SET(CMAKE_SWIG_FLAGS "")
-
-FIND_PACKAGE(Python3 COMPONENTS Interpreter Development REQUIRED)
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 set(PYTHON_INCLUDE_PATH ${Python3_INCLUDE_DIRS})
 set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
 set(PYTHON_LIBRARIES ${Python3_LIBRARY})
 
-INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
-
-FIND_PACKAGE(fastcdr REQUIRED)
-FIND_PACKAGE(fastrtps REQUIRED)
+include_directories(${PYTHON_INCLUDE_PATH})
 
 set(${PROJECT_NAME}_MODULE
-    HelloWorld
+    HelloWorldWrapper
     )
 
-set(${PROJECT_NAME}_FILES
-    ${${PROJECT_NAME}_MODULE}.i
+set(${PROJECT_NAME}_MODULE_FILES
+    ${PROJECT_NAME}.i
     )
 
 SET_SOURCE_FILES_PROPERTIES(
-    ${${PROJECT_NAME}_FILES}
+    ${${PROJECT_NAME}_MODULE_FILES}
     PROPERTIES CPLUSPLUS ON
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-INCLUDE_DIRECTORIES(
+include_directories(
     ${PROJECT_SOURCE_DIR}
     )
 
-SWIG_ADD_LIBRARY(${PROJECT_NAME}
+SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
     LANGUAGE python
-    SOURCES ${${PROJECT_NAME}_FILES})
+    SOURCES ${${PROJECT_NAME}_MODULE_FILES})
 
-SWIG_LINK_LIBRARIES(${PROJECT_NAME}
+SWIG_LINK_LIBRARIES(${${PROJECT_NAME}_MODULE}
     ${PYTHON_LIBRARIES}
     fastrtps
-    HelloWorld
+    ${PROJECT_NAME}
     )
 
 # Find the installation path
@@ -106,6 +97,7 @@ SET (PYTHON_MODULE_PATH
     )
 
 # Install
-INSTALL ( FILES ${CMAKE_CURRENT_BINARY_DIR}/_${PROJECT_NAME}.so DESTINATION ${PYTHON_MODULE_PATH} )
-INSTALL ( FILES ${CMAKE_CURRENT_BINARY_DIR}/lib${${PROJECT_NAME}_MODULE}.so DESTINATION ${PYTHON_MODULE_PATH} )
-INSTALL ( FILES ${CMAKE_CURRENT_BINARY_DIR}/${${PROJECT_NAME}_MODULE}.py DESTINATION ${PYTHON_MODULE_PATH} )
+install(TARGETS ${PROJECT_NAME} DESTINATION ${PYTHON_MODULE_PATH})
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
+get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})

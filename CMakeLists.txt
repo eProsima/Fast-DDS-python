@@ -1,8 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
-
-if(NOT CMAKE_VERSION VERSION_LESS 3.0)
-    cmake_policy(SET CMP0048 NEW)
-endif()
+cmake_minimum_required(VERSION 3.13)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
