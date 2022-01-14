@@ -1,8 +1,4 @@
-cmake_minimum_required(VERSION 2.8.12)
-
-if(NOT CMAKE_VERSION VERSION_LESS 3.0)
-    cmake_policy(SET CMP0048 NEW)
-endif()
+cmake_minimum_required(VERSION 3.13)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -24,7 +20,7 @@ FIND_PACKAGE(SWIG REQUIRED)
 INCLUDE(${SWIG_USE_FILE})
 SET(CMAKE_SWIG_FLAGS "")
 
-FIND_PACKAGE(PythonLibs)
+FIND_PACKAGE(PythonLibs REQUIRED)
 INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
 FIND_PACKAGE(fastrtps REQUIRED)
@@ -34,5 +30,3 @@ FIND_PACKAGE(fastrtps REQUIRED)
 ###############################################################################
 
 add_subdirectory(src/swig)
-add_subdirectory(test)
-
