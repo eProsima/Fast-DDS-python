@@ -2,7 +2,7 @@
 # ignore colcon workspace
 build
 install
-/log
+log
 
 # ignore python folders
 __pycache__
