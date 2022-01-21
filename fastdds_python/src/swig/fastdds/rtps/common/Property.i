@@ -16,4 +16,8 @@
 #include "fastdds/rtps/common/Property.h"
 %}
 
+// Ignore overloaded constructor that have no effect on target language
+%ignore eprosima::fastrtps::rtps::Property::Property(Property &&);
+%ignore eprosima::fastrtps::rtps::Property::propagate();
+
 %include "fastdds/rtps/common/Property.h"

@@ -24,7 +24,7 @@ if(POLICY CMP0086)
   cmake_policy(SET CMP0086 NEW)
 endif()
 
-project(FastDdsPythonWrapper)
+project(fastdds_python VERSION 0.2.0)
 
 ###############################################################################
 # Dependencies
