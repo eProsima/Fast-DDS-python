@@ -20,6 +20,8 @@ message(STATUS "Configuring FastDDS wrapper for Python...")
 
 find_package (PythonInterp REQUIRED)
 
+set(LIB_INSTALL_DIR lib/ CACHE PATH "Installation directory for libraries")
+
 set(${PROJECT_NAME}_MODULE
     fastdds
     )
@@ -36,7 +38,12 @@ SET_SOURCE_FILES_PROPERTIES(
 
 INCLUDE_DIRECTORIES()
 
-SWIG_ADD_LIBRARY(${PROJECT_NAME} 
+option(BUILD_DOCUMENTATION "Use doxygen to create product documentation" OFF)
+if (BUILD_DOCUMENTATION)
+    set(CMAKE_SWIG_FLAGS "-doxygen")
+endif (BUILD_DOCUMENTATION)
+
+SWIG_ADD_LIBRARY(${PROJECT_NAME}
     TYPE SHARED
     LANGUAGE python 
     SOURCES ${${PROJECT_NAME}_FILES}
@@ -59,6 +66,32 @@ SET (PYTHON_MODULE_PATH
     )
 
 # Install
-install(TARGETS ${PROJECT_NAME} DESTINATION ${PYTHON_MODULE_PATH})
+install(TARGETS ${PROJECT_NAME}
+    EXPORT ${PROJECT_NAME}-targets
+    DESTINATION ${PYTHON_MODULE_PATH}
+    )
 get_property(support_files TARGET ${PROJECT_NAME} PROPERTY SWIG_SUPPORT_FILES)
 install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})
+
+export(TARGETS ${PROJECT_NAME} FILE ${PROJECT_BINARY_DIR}/cmake/config/${PROJECT_NAME}-targets.cmake)
+
+install(EXPORT ${PROJECT_NAME}-targets
+    DESTINATION ${LIB_INSTALL_DIR}/cmake/${PROJECT_NAME}/
+    )
+
+# Create CMake config file.
+include(CMakePackageConfigHelpers)
+
+configure_package_config_file(${PROJECT_SOURCE_DIR}/cmake/packaging/Config.cmake.in
+    ${PROJECT_BINARY_DIR}/cmake/config/${PROJECT_NAME}-config.cmake
+    INSTALL_DESTINATION ${LIB_INSTALL_DIR}/cmake/${PROJECT_NAME}
+    PATH_VARS LIB_INSTALL_DIR
+    )
+write_basic_package_version_file(${PROJECT_BINARY_DIR}/cmake/config/${PROJECT_NAME}-config-version.cmake
+    VERSION ${PROJECT_VERSION}
+    COMPATIBILITY SameMajorVersion
+    )
+install(FILES ${PROJECT_BINARY_DIR}/cmake/config/${PROJECT_NAME}-config.cmake
+    ${PROJECT_BINARY_DIR}/cmake/config/${PROJECT_NAME}-config-version.cmake
+    DESTINATION ${LIB_INSTALL_DIR}/cmake/${PROJECT_NAME}
+    )

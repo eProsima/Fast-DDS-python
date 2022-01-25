@@ -15,6 +15,7 @@
 %module(directors="1", threads="1") fastdds
 
 // SWIG helper modules
+%include "stdint.i"
 %include "std_string.i"
 %include "typemaps.i"
 %include "std_shared_ptr.i"
@@ -29,11 +30,6 @@
 // Keywords that are not fully supported in SWIG
 // and make not difference in python anyways
 #define final
-
-// Definition of internal types
-typedef int int32_t;
-typedef unsigned int uint32_t;
-typedef unsigned int size_t;
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
@@ -72,7 +68,6 @@ namespace builtin {
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
 
 /*
-%include "fastdds/rtps/common/Property.i"
 %include "fastdds/rtps/common/FragmentNumber.i"
 %include "fastdds/rtps/common/LocatorSelector.i"
 %include "fastdds/rtps/common/LocatorSelectorEntry.i"
@@ -89,7 +84,6 @@ namespace builtin {
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/RemoteLocators.i"
 %include "fastdds/rtps/common/WriteParams.i"
-%include "fastdds/rtps/common/BinaryProperty.i"
 
 %include "fastrtps/rtps/common/SerializedPayload.i"
 %include "fastrtps/rtps/common/Time_t.i"
@@ -139,7 +133,6 @@ namespace builtin {
 %include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
 %include "fastdds/rtps/attributes/ServerAttributes.i"
-%include "fastdds/rtps/attributes/PropertyPolicy.i"
 %include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
 %include "fastdds/rtps/reader/StatelessReader.i"
 %include "fastdds/rtps/reader/StatefulReader.i"
@@ -365,10 +358,17 @@ namespace builtin {
 %include "fastrtps/Domain.i"
 */
 
-%include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/rtps/common/EntityId_t.i"
 %include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/Guid.i"
+
+/*
+%include "fastdds/rtps/common/BinaryProperty.i"
+%include "fastdds/rtps/common/Property.i"
+%include "fastdds/rtps/attributes/PropertyPolicy.i"
+*/
+
+%include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/common/InstanceHandle.i"
 %include "fastdds/dds/core/policy/ParameterTypes.i"
 %include "fastdds/dds/core/policy/QosPolicies.i"
@@ -426,7 +426,7 @@ namespace builtin {
 %include "fastdds/dds/domain/DomainParticipant.i"
 %include "fastdds/dds/domain/DomainParticipantFactory.i"
 
-// Log functionality not available in the bind 
+// Log functionality not available in the bind
 // Logs in the library is still available, only 'Log' class will not be available on Python
 /*
 %include "fastdds/dds/log/Log.i"
