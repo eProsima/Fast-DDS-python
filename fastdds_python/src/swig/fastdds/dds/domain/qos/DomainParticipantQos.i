@@ -19,11 +19,21 @@
 
 %extend eprosima::fastdds::dds::DomainParticipantQos {
 
+    /**
+     * Getter for the Participant name
+     *
+     * @return name
+     */
     const std::string name() const
     {
         return self->name().to_string();
     }
 
+    /**
+     * Setter for the Participant name
+     *
+     * @param value New name to be set.
+     */
     void name(
             const std::string& value)
     {
