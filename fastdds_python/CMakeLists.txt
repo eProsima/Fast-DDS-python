@@ -34,6 +34,8 @@ FIND_PACKAGE(SWIG REQUIRED)
 INCLUDE(${SWIG_USE_FILE})
 SET(CMAKE_SWIG_FLAGS "")
 
+find_package (PythonInterp REQUIRED)
+
 FIND_PACKAGE(PythonLibs REQUIRED)
 INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
 
@@ -44,3 +46,10 @@ FIND_PACKAGE(fastrtps REQUIRED)
 ###############################################################################
 
 add_subdirectory(src/swig)
+
+###############################################################################
+# Testing options
+###############################################################################
+enable_testing()
+include(CTest)
+add_subdirectory(test)

@@ -18,8 +18,6 @@
 
 message(STATUS "Configuring FastDDS wrapper for Python...")
 
-find_package (PythonInterp REQUIRED)
-
 set(LIB_INSTALL_DIR lib/ CACHE PATH "Installation directory for libraries")
 
 set(${PROJECT_NAME}_MODULE
@@ -45,7 +43,7 @@ endif (BUILD_DOCUMENTATION)
 
 SWIG_ADD_LIBRARY(${PROJECT_NAME}
     TYPE SHARED
-    LANGUAGE python 
+    LANGUAGE python
     SOURCES ${${PROJECT_NAME}_FILES}
     )
 
