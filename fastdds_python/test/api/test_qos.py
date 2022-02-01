@@ -56,13 +56,13 @@ def test_participant_qos():
     flow.max_bytes_per_period = 3000
     flow.period_ms = 5000
     flow.scheduler = fastdds.FlowControllerSchedulerPolicy_ROUND_ROBIN
-    participant_qos.flow_controllers().append(flow)
+    participant_qos.flow_controllers().push_back(flow)
     flow = fastdds.FlowControllerDescriptor()
     flow.name = 'Flow2'
     flow.max_bytes_per_period = 5000
     flow.period_ms = 3000
     flow.scheduler = fastdds.FlowControllerSchedulerPolicy_HIGH_PRIORITY
-    participant_qos.flow_controllers().append(flow)
+    participant_qos.flow_controllers().push_back(flow)
     count = 1
     for flow_controller in participant_qos.flow_controllers():
         if 1 == count:
@@ -85,11 +85,11 @@ def test_participant_qos():
     property = fastdds.Property()
     property.name('Property1')
     property.value('Value1')
-    participant_qos.properties().properties().append(property)
+    participant_qos.properties().properties().push_back(property)
     property = fastdds.Property()
     property.name('Property2')
     property.value('Value2')
-    participant_qos.properties().properties().append(property)
+    participant_qos.properties().properties().push_back(property)
     count = 1
     for prop in participant_qos.properties().properties():
         if 1 == count:
@@ -107,6 +107,22 @@ def test_participant_qos():
     assert(10000 == participant_qos.transport().listen_socket_buffer_size)
     assert(20000 == participant_qos.transport().send_socket_buffer_size)
     assert(False == participant_qos.transport().use_builtin_transports)
+
+    participant_qos.user_data().push_back(0)
+    participant_qos.user_data().push_back(1)
+    participant_qos.user_data().push_back(2)
+    participant_qos.user_data().push_back(3)
+    count = 1
+    for user_value in participant_qos.user_data():
+        if 1 == count:
+            assert(0 == user_value)
+        elif 2 == count:
+            assert(1 == user_value)
+        elif 3 == count:
+            assert(2 == user_value)
+        else:
+            assert(3 == user_value)
+        count += 1
 
     # Check agains default_participant_qos
     factory = fastdds.DomainParticipantFactory.get_instance()
@@ -176,3 +192,16 @@ def test_participant_qos():
     assert(10000 == default_participant_qos.transport().listen_socket_buffer_size)
     assert(20000 == default_participant_qos.transport().send_socket_buffer_size)
     assert(False == default_participant_qos.transport().use_builtin_transports)
+
+    # .user_data
+    count = 1
+    for user_value in default_participant_qos.user_data():
+        if 1 == count:
+            assert(0 == user_value)
+        elif 2 == count:
+            assert(1 == user_value)
+        elif 3 == count:
+            assert(2 == user_value)
+        else:
+            assert(3 == user_value)
+        count += 1
