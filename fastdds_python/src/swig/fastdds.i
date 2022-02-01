@@ -69,6 +69,9 @@ namespace builtin {
 %include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.i"
+%include "fastdds/rtps/common/BinaryProperty.i"
+%include "fastdds/rtps/common/Property.i"
+%include "fastdds/rtps/attributes/PropertyPolicy.i"
 
 /*
 %include "fastdds/rtps/common/FragmentNumber.i"
@@ -88,12 +91,8 @@ namespace builtin {
 %include "fastdds/rtps/common/RemoteLocators.i"
 %include "fastdds/rtps/common/WriteParams.i"
 
-%include "fastrtps/rtps/common/SerializedPayload.i"
-%include "fastrtps/rtps/common/Time_t.i"
 %include "fastrtps/rtps/common/LocatorListComparisons.i"
-%include "fastrtps/rtps/common/CDRMessage_t.i"
 %include "fastrtps/rtps/common/PortParameters.i"
-%include "fastrtps/rtps/common/Types.i"
 
 %include "fastrtps/utils/Semaphore.i"
 %include "fastrtps/utils/System.i"
@@ -361,12 +360,6 @@ namespace builtin {
 %include "fastdds/rtps/common/EntityId_t.i"
 %include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/Guid.i"
-
-/*
-%include "fastdds/rtps/common/BinaryProperty.i"
-%include "fastdds/rtps/common/Property.i"
-%include "fastdds/rtps/attributes/PropertyPolicy.i"
-*/
 
 %include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/common/InstanceHandle.i"

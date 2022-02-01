@@ -81,6 +81,26 @@ def test_participant_qos():
     participant_qos.name("test name")
     assert("test name" == participant_qos.name())
 
+    # .properties
+    property = fastdds.Property()
+    property.name('Property1')
+    property.value('Value1')
+    participant_qos.properties().properties().append(property)
+    property = fastdds.Property()
+    property.name('Property2')
+    property.value('Value2')
+    participant_qos.properties().properties().append(property)
+    count = 1
+    for prop in participant_qos.properties().properties():
+        if 1 == count:
+            assert('Property1' == prop.name())
+            assert('Value1' == prop.value())
+        else:
+            assert('Property2' == prop.name())
+            assert('Value2' == prop.value())
+        count += 1
+
+    # Check agains default_participant_qos
     factory = fastdds.DomainParticipantFactory.get_instance()
     factory.set_default_participant_qos(participant_qos)
 
@@ -132,3 +152,14 @@ def test_participant_qos():
 
     # .name
     assert("test name" == default_participant_qos.name())
+
+    # . properties
+    count = 1
+    for prop in default_participant_qos.properties().properties():
+        if 1 == count:
+            assert('Property1' == prop.name())
+            assert('Value1' == prop.value())
+        else:
+            assert('Property2' == prop.name())
+            assert('Value2' == prop.value())
+        count += 1

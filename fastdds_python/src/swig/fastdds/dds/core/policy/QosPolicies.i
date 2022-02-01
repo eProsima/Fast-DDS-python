@@ -15,9 +15,6 @@
 // This class contains a 'const char*' member that may leak on destruction
 // However, converting it to a 'char*' does not
 // SWIG is very special)
-%typemap(out) char const *flow_controller_name = char *;
-%typemap(memberin) char const *flow_controller_name = char *;
-
 %{
 #include "fastdds/dds/core/policy/QosPolicies.hpp"
 %}
@@ -47,12 +44,9 @@ namespace eprosima {
 namespace fastdds {
 namespace dds {
     struct ParticipantResourceLimitsQos : public fastrtps::rtps::RTPSParticipantAllocationAttributes {};
+    struct PropertyPolicyQos : public fastrtps::rtps::PropertyPolicy {};
 }
 }
 }
 
 %include "fastdds/dds/core/policy/QosPolicies.hpp"
-
-// Undo the mapping for future classes
-%typemap(out) char const *flow_controller_name;
-%typemap(memberin) char const *flow_controller_name;

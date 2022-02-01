@@ -19,5 +19,54 @@
 // Ignore overloaded constructor that have no effect on target language
 %ignore eprosima::fastrtps::rtps::Property::Property(Property &&);
 %ignore eprosima::fastrtps::rtps::Property::propagate();
+%template(PropertySeq) std::vector<eprosima::fastrtps::rtps::Property>;
+
+%extend eprosima::fastrtps::rtps::Property {
+
+    /**
+     * Getter for the Property name
+     *
+     * @return name
+     */
+    const std::string name() const
+    {
+        return self->name();
+    }
+
+    /**
+     * Setter for the Property name
+     *
+     * @param value New name to be set.
+     */
+    void name(
+            const std::string& value)
+    {
+        self->name(value);
+    }
+
+    /**
+     * Getter for the Property value
+     *
+     * @return value
+     */
+    const std::string value() const
+    {
+        return self->value();
+    }
+
+    /**
+     * Setter for the Property value
+     *
+     * @param value New value to be set.
+     */
+    void value(
+            const std::string& value)
+    {
+        self->value(value);
+    }
+};
+
+%ignore eprosima::fastrtps::rtps::Property::name;
+%ignore eprosima::fastrtps::rtps::Property::value;
 
 %include "fastdds/rtps/common/Property.h"
