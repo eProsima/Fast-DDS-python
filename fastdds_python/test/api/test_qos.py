@@ -46,6 +46,10 @@ def test_participant_qos():
     assert(400 == participant_qos.allocation().total_writers().maximum)
     assert(3 == participant_qos.allocation().total_writers().increment)
 
+    # .entity_factory
+    participant_qos.entity_factory().autoenable_created_entities = False
+    assert(False == participant_qos.entity_factory().autoenable_created_entities)
+
     # .name
     participant_qos.name("test name")
     assert("test name" == participant_qos.name())
@@ -80,6 +84,9 @@ def test_participant_qos():
     assert(100 == default_participant_qos.allocation().total_writers().initial)
     assert(400 == default_participant_qos.allocation().total_writers().maximum)
     assert(3 == default_participant_qos.allocation().total_writers().increment)
+
+    # .entity_factory
+    assert(False == default_participant_qos.entity_factory().autoenable_created_entities)
 
     # .name
     assert("test name" == default_participant_qos.name())
