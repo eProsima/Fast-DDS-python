@@ -66,6 +66,7 @@ namespace builtin {
 %include "fastdds/rtps/common/Time_t.i"
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
+%include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
 
 /*
 %include "fastdds/rtps/common/FragmentNumber.i"
@@ -130,7 +131,6 @@ namespace builtin {
 %include "fastdds/rtps/attributes/EndpointAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.i"
-%include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
 %include "fastdds/rtps/attributes/ServerAttributes.i"
 %include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"

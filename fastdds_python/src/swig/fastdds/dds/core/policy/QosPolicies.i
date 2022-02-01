@@ -22,9 +22,6 @@
 #include "fastdds/dds/core/policy/QosPolicies.hpp"
 %}
 
-// Flatten nested classes
-%feature("flatnested", "1");
-
 // SWIG does not support templates in the generated binding,
 // because not all output languages support them
 // We must explicitly declare the specializations of the templates
@@ -46,10 +43,15 @@
 %ignore eprosima::fastdds::dds::TypeObjectV1::TypeObjectV1(TypeObjectV1 &&);
 %ignore eprosima::fastdds::dds::xtypes::TypeInformation::TypeInformation(TypeInformation &&);
 
-%include "fastdds/dds/core/policy/QosPolicies.hpp"
+namespace eprosima {
+namespace fastdds {
+namespace dds {
+    struct ParticipantResourceLimitsQos : public fastrtps::rtps::RTPSParticipantAllocationAttributes {};
+}
+}
+}
 
-// Deactivate class flattening
-%feature("flatnested", "0");
+%include "fastdds/dds/core/policy/QosPolicies.hpp"
 
 // Undo the mapping for future classes
 %typemap(out) char const *flow_controller_name;
