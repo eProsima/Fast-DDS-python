@@ -17,6 +17,8 @@
 %}
 
 
+%template(FlowControllerDescriptorList) std::vector<std::shared_ptr<eprosima::fastdds::rtps::FlowControllerDescriptor>>;
+
 %extend eprosima::fastdds::dds::DomainParticipantQos {
 
     /**

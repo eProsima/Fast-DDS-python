@@ -50,6 +50,33 @@ def test_participant_qos():
     participant_qos.entity_factory().autoenable_created_entities = False
     assert(False == participant_qos.entity_factory().autoenable_created_entities)
 
+    # .flow_controllers
+    flow = fastdds.FlowControllerDescriptor()
+    flow.name = 'Flow1'
+    flow.max_bytes_per_period = 3000
+    flow.period_ms = 5000
+    flow.scheduler = fastdds.FlowControllerSchedulerPolicy_ROUND_ROBIN
+    participant_qos.flow_controllers().append(flow)
+    flow = fastdds.FlowControllerDescriptor()
+    flow.name = 'Flow2'
+    flow.max_bytes_per_period = 5000
+    flow.period_ms = 3000
+    flow.scheduler = fastdds.FlowControllerSchedulerPolicy_HIGH_PRIORITY
+    participant_qos.flow_controllers().append(flow)
+    count = 1
+    for flow_controller in participant_qos.flow_controllers():
+        if 1 == count:
+            assert('Flow1' == flow_controller.name)
+            assert(3000 == flow_controller.max_bytes_per_period)
+            assert(5000 == flow_controller.period_ms)
+            assert(fastdds.FlowControllerSchedulerPolicy_ROUND_ROBIN == flow_controller.scheduler)
+        else:
+            assert('Flow2' == flow_controller.name)
+            assert(5000 == flow_controller.max_bytes_per_period)
+            assert(3000 == flow_controller.period_ms)
+            assert(fastdds.FlowControllerSchedulerPolicy_HIGH_PRIORITY == flow_controller.scheduler)
+        count += 1
+
     # .name
     participant_qos.name("test name")
     assert("test name" == participant_qos.name())
@@ -87,6 +114,21 @@ def test_participant_qos():
 
     # .entity_factory
     assert(False == default_participant_qos.entity_factory().autoenable_created_entities)
+
+    # .flow_controllers
+    count = 1
+    for flow_controller in default_participant_qos.flow_controllers():
+        if 1 == count:
+            assert('Flow1' == flow_controller.name)
+            assert(3000 == flow_controller.max_bytes_per_period)
+            assert(5000 == flow_controller.period_ms)
+            assert(fastdds.FlowControllerSchedulerPolicy_ROUND_ROBIN == flow_controller.scheduler)
+        else:
+            assert('Flow2' == flow_controller.name)
+            assert(5000 == flow_controller.max_bytes_per_period)
+            assert(3000 == flow_controller.period_ms)
+            assert(fastdds.FlowControllerSchedulerPolicy_HIGH_PRIORITY == flow_controller.scheduler)
+        count += 1
 
     # .name
     assert("test name" == default_participant_qos.name())

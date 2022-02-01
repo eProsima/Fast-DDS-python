@@ -67,6 +67,8 @@ namespace builtin {
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
+%include "fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.i"
+%include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.i"
 
 /*
 %include "fastdds/rtps/common/FragmentNumber.i"
@@ -209,10 +211,8 @@ namespace builtin {
 %include "fastdds/rtps/writer/WriterDiscoveryInfo.i"
 %include "fastdds/rtps/writer/StatelessPersistentWriter.i"
 %include "fastdds/rtps/writer/RTPSWriter.i"
-%include "fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.i"
 %include "fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerConsts.i"
-%include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.i"
 %include "fastdds/rtps/resources/ResourceEvent.i"
 %include "fastdds/rtps/resources/ResourceManagement.i"
 %include "fastdds/rtps/resources/TimedEvent.i"
