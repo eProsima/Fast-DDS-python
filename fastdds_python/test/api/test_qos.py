@@ -100,6 +100,14 @@ def test_participant_qos():
             assert('Value2' == prop.value())
         count += 1
 
+    # .transports
+    participant_qos.transport().listen_socket_buffer_size = 10000
+    participant_qos.transport().send_socket_buffer_size = 20000
+    participant_qos.transport().use_builtin_transports = False
+    assert(10000 == participant_qos.transport().listen_socket_buffer_size)
+    assert(20000 == participant_qos.transport().send_socket_buffer_size)
+    assert(False == participant_qos.transport().use_builtin_transports)
+
     # Check agains default_participant_qos
     factory = fastdds.DomainParticipantFactory.get_instance()
     factory.set_default_participant_qos(participant_qos)
@@ -153,7 +161,7 @@ def test_participant_qos():
     # .name
     assert("test name" == default_participant_qos.name())
 
-    # . properties
+    # .properties
     count = 1
     for prop in default_participant_qos.properties().properties():
         if 1 == count:
@@ -163,3 +171,8 @@ def test_participant_qos():
             assert('Property2' == prop.name())
             assert('Value2' == prop.value())
         count += 1
+
+    # .transports
+    assert(10000 == default_participant_qos.transport().listen_socket_buffer_size)
+    assert(20000 == default_participant_qos.transport().send_socket_buffer_size)
+    assert(False == default_participant_qos.transport().use_builtin_transports)
