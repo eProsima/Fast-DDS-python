@@ -103,3 +103,23 @@ public:
         return OctetResourceLimitedVectorIterator($self->begin(), $self->end());
     }
 }
+
+// TODO (richiware) missing exceptions
+%extend eprosima::fastdds::dds::PartitionQosPolicy
+{
+    size_t __len__() const
+    {
+        return self->size();
+    }
+
+    std::string __getitem__(int i)
+    {
+        auto it = self->begin();
+        for (int count = 0; count < i; ++count)
+        {
+            it++;
+        }
+
+        return std::string((*it).name());
+    }
+};

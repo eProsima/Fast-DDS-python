@@ -21,6 +21,7 @@
 
 %include "fastdds/rtps/common/LocatorList.hpp"
 
+// TODO (richiware) missing exceptions
 %extend eprosima::fastdds::rtps::LocatorList
 {
     size_t __len__() const
