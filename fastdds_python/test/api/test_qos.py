@@ -3,6 +3,326 @@ import fastdds
 import inspect
 
 
+def test_datareader_qos():
+    # DataReaderQos
+    datareader_qos = fastdds.DataReaderQos()
+
+    # .durability
+    datareader_qos.durability().kind = fastdds.TRANSIENT_DURABILITY_QOS
+    assert(fastdds.TRANSIENT_DURABILITY_QOS == datareader_qos.durability().kind)
+
+    # .deadline
+    datareader_qos.deadline().period.seconds = 10
+    datareader_qos.deadline().period.nanosec = 20
+    assert(10 == datareader_qos.deadline().period.seconds)
+    assert(20 == datareader_qos.deadline().period.nanosec)
+
+    # .latency_budget
+    datareader_qos.latency_budget().duration.seconds = 20
+    datareader_qos.latency_budget().duration.nanosec = 30
+    assert(20 == datareader_qos.latency_budget().duration.seconds)
+    assert(30 == datareader_qos.latency_budget().duration.nanosec)
+
+    # .liveliness
+    datareader_qos.liveliness().kind = fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS
+    datareader_qos.liveliness().lease_duration.seconds = 40
+    datareader_qos.liveliness().lease_duration.nanosec = 61
+    datareader_qos.liveliness().announcement_period.seconds = 30
+    datareader_qos.liveliness().announcement_period.nanosec = 50
+    assert(fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS == datareader_qos.liveliness().kind)
+    assert(40 == datareader_qos.liveliness().lease_duration.seconds)
+    assert(61 == datareader_qos.liveliness().lease_duration.nanosec)
+    assert(30 == datareader_qos.liveliness().announcement_period.seconds)
+    assert(50 == datareader_qos.liveliness().announcement_period.nanosec)
+
+    # .reliability
+    datareader_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
+    assert(fastdds.RELIABLE_RELIABILITY_QOS == datareader_qos.reliability().kind)
+
+    # .destination_order
+    datareader_qos.destination_order().kind = fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS
+    assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == datareader_qos.destination_order().kind)
+
+    # . history
+    datareader_qos.history().kind = fastdds.KEEP_ALL_HISTORY_QOS
+    datareader_qos.history().depth = 1000
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == datareader_qos.history().kind)
+    assert(1000 == datareader_qos.history().depth)
+
+    # .resource_limits
+    datareader_qos.resource_limits().max_samples = 3000
+    datareader_qos.resource_limits().max_instances = 100
+    datareader_qos.resource_limits().max_samples_per_instance = 500
+    datareader_qos.resource_limits().allocated_samples = 50
+    datareader_qos.resource_limits().extra_samples = 2
+    assert(3000 == datareader_qos.resource_limits().max_samples)
+    assert(100 == datareader_qos.resource_limits().max_instances)
+    assert(500 == datareader_qos.resource_limits().max_samples_per_instance)
+    assert(50 == datareader_qos.resource_limits().allocated_samples)
+    assert(2 == datareader_qos.resource_limits().extra_samples)
+
+    # .user_data
+    datareader_qos.user_data().push_back(0)
+    datareader_qos.user_data().push_back(1)
+    datareader_qos.user_data().push_back(2)
+    datareader_qos.user_data().push_back(3)
+    count = 1
+    for user_value in datareader_qos.user_data():
+        if 1 == count:
+            assert(0 == user_value)
+        elif 2 == count:
+            assert(1 == user_value)
+        elif 3 == count:
+            assert(2 == user_value)
+        else:
+            assert(3 == user_value)
+        count += 1
+
+    # .ownership
+    datareader_qos.ownership().kind = fastdds.EXCLUSIVE_OWNERSHIP_QOS
+    assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == datareader_qos.ownership().kind)
+
+    # .time_based_filter
+    datareader_qos.time_based_filter().minimum_separation.seconds = fastdds.TIME_T_INFINITE_SECONDS
+    #TODO datareader_qos.time_based_filter().minimum_separation.nanosec = fastdds.TIME_T_INFINITE_NANOSECONDS
+    datareader_qos.time_based_filter().minimum_separation.nanosec = 100
+    assert(fastdds.TIME_T_INFINITE_SECONDS == datareader_qos.time_based_filter().minimum_separation.seconds)
+    assert(100 == datareader_qos.time_based_filter().minimum_separation.nanosec)
+
+    # .reader_data_lifecycle
+    datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.seconds = 100
+    datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.nanosec = 30000
+    datareader_qos.reader_data_lifecycle().autopurge_no_writer_samples_delay.seconds = 30000
+    datareader_qos.reader_data_lifecycle().autopurge_no_writer_samples_delay.nanosec = 100
+    assert(100 == datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.seconds)
+    assert(30000 == datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.nanosec)
+    assert(30000 == datareader_qos.reader_data_lifecycle().autopurge_no_writer_samples_delay.seconds)
+    assert(100 == datareader_qos.reader_data_lifecycle().autopurge_no_writer_samples_delay.nanosec)
+
+    # .lifespan
+    datareader_qos.lifespan().duration.seconds = 10
+    datareader_qos.lifespan().duration.nanosec = 33
+    assert(10 == datareader_qos.lifespan().duration.seconds)
+    assert(33 == datareader_qos.lifespan().duration.nanosec)
+
+    # .durability_service
+    datareader_qos.durability_service().history_kind = fastdds.KEEP_ALL_HISTORY_QOS
+    datareader_qos.durability_service().history_depth = 10
+    datareader_qos.durability_service().max_samples = 5
+    datareader_qos.durability_service().max_instances = 20
+    datareader_qos.durability_service().max_samples_per_instance = 30
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == datareader_qos.durability_service().history_kind)
+    assert(10 == datareader_qos.durability_service().history_depth)
+    assert(5 == datareader_qos.durability_service().max_samples)
+    assert(20 == datareader_qos.durability_service().max_instances)
+    assert(30 == datareader_qos.durability_service().max_samples_per_instance)
+
+    # .reliable_reader_qos
+    datareader_qos.reliable_reader_qos().times.initialAcknackDelay.seconds = 34
+    datareader_qos.reliable_reader_qos().times.initialAcknackDelay.nanosec = 32
+    datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay.seconds = 432
+    datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay.nanosec = 43
+    datareader_qos.reliable_reader_qos().disable_positive_ACKs.enabled = True
+    datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration.seconds = 13
+    datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration.nanosec = 320
+    assert(34 == datareader_qos.reliable_reader_qos().times.initialAcknackDelay.seconds)
+    assert(32 == datareader_qos.reliable_reader_qos().times.initialAcknackDelay.nanosec)
+    assert(432 == datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay.seconds)
+    assert(43 == datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay.nanosec)
+    assert(True == datareader_qos.reliable_reader_qos().disable_positive_ACKs.enabled)
+    assert(13 == datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration.seconds)
+    assert(320 == datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration.nanosec)
+
+    # TODO .type_consistency
+
+    # .expects_inline_qos
+    datareader_qos.expects_inline_qos(True)
+    assert(True == datareader_qos.expects_inline_qos())
+
+    # .properties
+    property = fastdds.Property()
+    property.name('Property1')
+    property.value('Value1')
+    datareader_qos.properties().properties().push_back(property)
+    property = fastdds.Property()
+    property.name('Property2')
+    property.value('Value2')
+    datareader_qos.properties().properties().push_back(property)
+    count = 1
+    for prop in datareader_qos.properties().properties():
+        if 1 == count:
+            assert('Property1' == prop.name())
+            assert('Value1' == prop.value())
+        else:
+            assert('Property2' == prop.name())
+            assert('Value2' == prop.value())
+        count += 1
+
+    # .endpoint
+    datareader_qos.endpoint().user_defined_id = 1
+    datareader_qos.endpoint().entity_id = 2
+    datareader_qos.endpoint().history_memory_policy = fastdds.PREALLOCATED_WITH_REALLOC_MEMORY_MODE
+    assert(1 == datareader_qos.endpoint().user_defined_id)
+    assert(2 == datareader_qos.endpoint().entity_id)
+    assert(fastdds.PREALLOCATED_WITH_REALLOC_MEMORY_MODE == datareader_qos.endpoint().history_memory_policy)
+
+    # .reader_resource_limits
+    datareader_qos.reader_resource_limits().matched_publisher_allocation.initial = 30
+    datareader_qos.reader_resource_limits().matched_publisher_allocation.maximum = 300
+    datareader_qos.reader_resource_limits().matched_publisher_allocation.increment = 4
+    datareader_qos.reader_resource_limits().sample_infos_allocation.initial = 40
+    datareader_qos.reader_resource_limits().sample_infos_allocation.maximum = 400
+    datareader_qos.reader_resource_limits().sample_infos_allocation.increment = 5
+    datareader_qos.reader_resource_limits().outstanding_reads_allocation.initial = 50
+    datareader_qos.reader_resource_limits().outstanding_reads_allocation.maximum = 500
+    datareader_qos.reader_resource_limits().outstanding_reads_allocation.increment = 6
+    datareader_qos.reader_resource_limits().max_samples_per_read = 33
+    assert(30 == datareader_qos.reader_resource_limits().matched_publisher_allocation.initial)
+    assert(300 == datareader_qos.reader_resource_limits().matched_publisher_allocation.maximum)
+    assert(4 == datareader_qos.reader_resource_limits().matched_publisher_allocation.increment)
+    assert(40 == datareader_qos.reader_resource_limits().sample_infos_allocation.initial)
+    assert(400 == datareader_qos.reader_resource_limits().sample_infos_allocation.maximum)
+    assert(5 == datareader_qos.reader_resource_limits().sample_infos_allocation.increment)
+    assert(50 == datareader_qos.reader_resource_limits().outstanding_reads_allocation.initial)
+    assert(500 == datareader_qos.reader_resource_limits().outstanding_reads_allocation.maximum)
+    assert(6 == datareader_qos.reader_resource_limits().outstanding_reads_allocation.increment)
+    assert(33 == datareader_qos.reader_resource_limits().max_samples_per_read)
+
+    # .data_sharing
+    datareader_qos.data_sharing().on("/")
+    assert(fastdds.ON == datareader_qos.data_sharing().kind())
+    assert("/" == datareader_qos.data_sharing().shm_directory())
+
+    # Check agains default_topic_qos
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(None != participant)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(None != subscriber)
+    subscriber.set_default_datareader_qos(datareader_qos)
+
+    default_datareader_qos = fastdds.DataReaderQos()
+    subscriber.get_default_datareader_qos(default_datareader_qos)
+    participant.delete_subscriber(subscriber)
+    factory.delete_participant(participant)
+
+    # .durability
+    assert(fastdds.TRANSIENT_DURABILITY_QOS == default_datareader_qos.durability().kind)
+
+    # .deadline
+    assert(10 == default_datareader_qos.deadline().period.seconds)
+    assert(20 == default_datareader_qos.deadline().period.nanosec)
+
+    # .latency_budget
+    assert(20 == default_datareader_qos.latency_budget().duration.seconds)
+    assert(30 == default_datareader_qos.latency_budget().duration.nanosec)
+
+    # .liveliness
+    assert(fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS == default_datareader_qos.liveliness().kind)
+    assert(40 == default_datareader_qos.liveliness().lease_duration.seconds)
+    assert(61 == default_datareader_qos.liveliness().lease_duration.nanosec)
+    assert(30 == default_datareader_qos.liveliness().announcement_period.seconds)
+    assert(50 == default_datareader_qos.liveliness().announcement_period.nanosec)
+
+    # .reliability
+    assert(fastdds.RELIABLE_RELIABILITY_QOS == default_datareader_qos.reliability().kind)
+
+    # .destination_order
+    assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == default_datareader_qos.destination_order().kind)
+
+    # . history
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == default_datareader_qos.history().kind)
+    assert(1000 == default_datareader_qos.history().depth)
+
+    # .resource_limits
+    assert(3000 == default_datareader_qos.resource_limits().max_samples)
+    assert(100 == default_datareader_qos.resource_limits().max_instances)
+    assert(500 == default_datareader_qos.resource_limits().max_samples_per_instance)
+    assert(50 == default_datareader_qos.resource_limits().allocated_samples)
+    assert(2 == default_datareader_qos.resource_limits().extra_samples)
+
+    # .user_data
+    count = 1
+    for user_value in default_datareader_qos.user_data():
+        if 1 == count:
+            assert(0 == user_value)
+        elif 2 == count:
+            assert(1 == user_value)
+        elif 3 == count:
+            assert(2 == user_value)
+        else:
+            assert(3 == user_value)
+        count += 1
+
+    # .ownership
+    assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == default_datareader_qos.ownership().kind)
+
+    # .time_based_filter
+    assert(fastdds.TIME_T_INFINITE_SECONDS == default_datareader_qos.time_based_filter().minimum_separation.seconds)
+    assert(100 == default_datareader_qos.time_based_filter().minimum_separation.nanosec)
+
+    # .reader_data_lifecycle
+    assert(100 == default_datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.seconds)
+    assert(30000 == default_datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.nanosec)
+    assert(30000 == default_datareader_qos.reader_data_lifecycle().autopurge_no_writer_samples_delay.seconds)
+    assert(100 == default_datareader_qos.reader_data_lifecycle().autopurge_no_writer_samples_delay.nanosec)
+
+    # .lifespan
+    assert(10 == default_datareader_qos.lifespan().duration.seconds)
+    assert(33 == default_datareader_qos.lifespan().duration.nanosec)
+
+    # .durability_service
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == default_datareader_qos.durability_service().history_kind)
+    assert(10 == default_datareader_qos.durability_service().history_depth)
+    assert(5 == default_datareader_qos.durability_service().max_samples)
+    assert(20 == default_datareader_qos.durability_service().max_instances)
+    assert(30 == default_datareader_qos.durability_service().max_samples_per_instance)
+
+    # .reliable_reader_qos
+    assert(34 == default_datareader_qos.reliable_reader_qos().times.initialAcknackDelay.seconds)
+    assert(32 == default_datareader_qos.reliable_reader_qos().times.initialAcknackDelay.nanosec)
+    assert(432 == default_datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay.seconds)
+    assert(43 == default_datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay.nanosec)
+    assert(True == default_datareader_qos.reliable_reader_qos().disable_positive_ACKs.enabled)
+    assert(13 == default_datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration.seconds)
+    assert(320 == default_datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration.nanosec)
+
+    # .expects_inline_qos
+    assert(True == default_datareader_qos.expects_inline_qos())
+
+    # .properties
+    count = 1
+    for prop in default_datareader_qos.properties().properties():
+        if 1 == count:
+            assert('Property1' == prop.name())
+            assert('Value1' == prop.value())
+        else:
+            assert('Property2' == prop.name())
+            assert('Value2' == prop.value())
+        count += 1
+
+    # .endpoint
+    assert(1 == default_datareader_qos.endpoint().user_defined_id)
+    assert(2 == default_datareader_qos.endpoint().entity_id)
+    assert(fastdds.PREALLOCATED_WITH_REALLOC_MEMORY_MODE == default_datareader_qos.endpoint().history_memory_policy)
+
+    # .reader_resource_limits
+    assert(30 == default_datareader_qos.reader_resource_limits().matched_publisher_allocation.initial)
+    assert(300 == default_datareader_qos.reader_resource_limits().matched_publisher_allocation.maximum)
+    assert(4 == default_datareader_qos.reader_resource_limits().matched_publisher_allocation.increment)
+    assert(40 == default_datareader_qos.reader_resource_limits().sample_infos_allocation.initial)
+    assert(400 == default_datareader_qos.reader_resource_limits().sample_infos_allocation.maximum)
+    assert(5 == default_datareader_qos.reader_resource_limits().sample_infos_allocation.increment)
+    assert(50 == default_datareader_qos.reader_resource_limits().outstanding_reads_allocation.initial)
+    assert(500 == default_datareader_qos.reader_resource_limits().outstanding_reads_allocation.maximum)
+    assert(6 == default_datareader_qos.reader_resource_limits().outstanding_reads_allocation.increment)
+    assert(33 == default_datareader_qos.reader_resource_limits().max_samples_per_read)
+
+    # .data_sharing
+    assert(fastdds.ON == default_datareader_qos.data_sharing().kind())
+    assert("/" == default_datareader_qos.data_sharing().shm_directory())
+
+
 def test_datawriter_qos():
     # DataWriterQos
     datawriter_qos = fastdds.DataWriterQos()
