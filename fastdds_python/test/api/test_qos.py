@@ -3,6 +3,82 @@ import fastdds
 import inspect
 
 
+def test_subscriber_qos():
+    # SubscriberQos
+    subscriber_qos = fastdds.SubscriberQos()
+
+
+    # .presentation
+    subscriber_qos.presentation().access_scope = fastdds.TOPIC_PRESENTATION_QOS
+    subscriber_qos.presentation().coherent_access = True
+    subscriber_qos.presentation().ordered_access = True
+    assert(fastdds.TOPIC_PRESENTATION_QOS == subscriber_qos.presentation().access_scope)
+    assert(True == subscriber_qos.presentation().coherent_access)
+    assert(True == subscriber_qos.presentation().ordered_access)
+
+    # .partition
+    subscriber_qos.partition().push_back('Partition1')
+    subscriber_qos.partition().push_back('Partition2')
+    assert('Partition1' == subscriber_qos.partition()[0])
+    assert('Partition2' == subscriber_qos.partition()[1])
+
+    # .group_data
+    subscriber_qos.group_data().push_back(0)
+    subscriber_qos.group_data().push_back(1)
+    subscriber_qos.group_data().push_back(2)
+    subscriber_qos.group_data().push_back(3)
+    count = 1
+    for group_value in subscriber_qos.group_data():
+        if 1 == count:
+            assert(0 == group_value)
+        elif 2 == count:
+            assert(1 == group_value)
+        elif 3 == count:
+            assert(2 == group_value)
+        else:
+            assert(3 == group_value)
+        count += 1
+
+    # .entity_factory
+    subscriber_qos.entity_factory().autoenable_created_entities = False
+    assert(False == subscriber_qos.entity_factory().autoenable_created_entities)
+
+    # Check agains default_subscriber_qos
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(None != participant)
+    participant.set_default_subscriber_qos(subscriber_qos)
+
+    default_subscriber_qos = fastdds.SubscriberQos()
+    participant.get_default_subscriber_qos(default_subscriber_qos)
+    factory.delete_participant(participant)
+
+    # .presentation
+    assert(fastdds.TOPIC_PRESENTATION_QOS == default_subscriber_qos.presentation().access_scope)
+    assert(True == default_subscriber_qos.presentation().coherent_access)
+    assert(True == default_subscriber_qos.presentation().ordered_access)
+
+    # .partition
+    assert('Partition1' == default_subscriber_qos.partition()[0])
+    assert('Partition2' == default_subscriber_qos.partition()[1])
+
+    # . group_data
+    count = 1
+    for group_value in default_subscriber_qos.group_data():
+        if 1 == count:
+            assert(0 == group_value)
+        elif 2 == count:
+            assert(1 == group_value)
+        elif 3 == count:
+            assert(2 == group_value)
+        else:
+            assert(3 == group_value)
+        count += 1
+
+    # .entity_factory
+    assert(False == default_subscriber_qos.entity_factory().autoenable_created_entities)
+
+
 def test_publisher_qos():
     # PublisherQos
     publisher_qos = fastdds.PublisherQos()
