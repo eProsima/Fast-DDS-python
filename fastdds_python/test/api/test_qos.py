@@ -3,6 +3,191 @@ import fastdds
 import inspect
 
 
+def test_topic_qos():
+    # TopicQos
+    topic_qos = fastdds.TopicQos()
+
+    # .topic_data
+    topic_qos.topic_data().push_back(0)
+    topic_qos.topic_data().push_back(1)
+    topic_qos.topic_data().push_back(2)
+    topic_qos.topic_data().push_back(3)
+    count = 1
+    for topic_value in topic_qos.topic_data():
+        if 1 == count:
+            assert(0 == topic_value)
+        elif 2 == count:
+            assert(1 == topic_value)
+        elif 3 == count:
+            assert(2 == topic_value)
+        else:
+            assert(3 == topic_value)
+        count += 1
+
+    # .durability
+    topic_qos.durability().kind = fastdds.TRANSIENT_DURABILITY_QOS
+    assert(fastdds.TRANSIENT_DURABILITY_QOS == topic_qos.durability().kind)
+
+    # .durability_service
+    topic_qos.durability_service().history_kind = fastdds.KEEP_ALL_HISTORY_QOS
+    topic_qos.durability_service().history_depth = 10
+    topic_qos.durability_service().max_samples = 5
+    topic_qos.durability_service().max_instances = 20
+    topic_qos.durability_service().max_samples_per_instance = 30
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == topic_qos.durability_service().history_kind)
+    assert(10 == topic_qos.durability_service().history_depth)
+    assert(5 == topic_qos.durability_service().max_samples)
+    assert(20 == topic_qos.durability_service().max_instances)
+    assert(30 == topic_qos.durability_service().max_samples_per_instance)
+
+    # .deadline
+    topic_qos.deadline().period.seconds = 10
+    topic_qos.deadline().period.nanosec = 20
+    assert(10 == topic_qos.deadline().period.seconds)
+    assert(20 == topic_qos.deadline().period.nanosec)
+
+    # .latency_budget
+    topic_qos.latency_budget().duration.seconds = 20
+    topic_qos.latency_budget().duration.nanosec = 30
+    assert(20 == topic_qos.latency_budget().duration.seconds)
+    assert(30 == topic_qos.latency_budget().duration.nanosec)
+
+    # .liveliness
+    topic_qos.liveliness().kind = fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS
+    topic_qos.liveliness().lease_duration.seconds = 40
+    topic_qos.liveliness().lease_duration.nanosec = 61
+    topic_qos.liveliness().announcement_period.seconds = 30
+    topic_qos.liveliness().announcement_period.nanosec = 50
+    assert(fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS == topic_qos.liveliness().kind)
+    assert(40 == topic_qos.liveliness().lease_duration.seconds)
+    assert(61 == topic_qos.liveliness().lease_duration.nanosec)
+    assert(30 == topic_qos.liveliness().announcement_period.seconds)
+    assert(50 == topic_qos.liveliness().announcement_period.nanosec)
+
+    # .reliability
+    topic_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
+    topic_qos.reliability().max_blocking_time.seconds = 100
+    #TODO topic_qos.reliability().max_blocking_time.nanosec = fastdds.TIME_T_INFINITE_NANOSECONDS
+    topic_qos.reliability().max_blocking_time.nanosec = 1000
+    assert(fastdds.RELIABLE_RELIABILITY_QOS == topic_qos.reliability().kind)
+    assert(100 == topic_qos.reliability().max_blocking_time.seconds)
+    assert(1000 == topic_qos.reliability().max_blocking_time.nanosec)
+
+
+    # .destination_order
+    topic_qos.destination_order().kind = fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS
+    assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == topic_qos.destination_order().kind)
+
+    # .history
+    topic_qos.history().kind = fastdds.KEEP_ALL_HISTORY_QOS
+    topic_qos.history().depth = 1000
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == topic_qos.history().kind)
+    assert(1000 == topic_qos.history().depth)
+
+    # .resource_limits
+    topic_qos.resource_limits().max_samples = 3000
+    topic_qos.resource_limits().max_instances = 100
+    topic_qos.resource_limits().max_samples_per_instance = 500
+    topic_qos.resource_limits().allocated_samples = 50
+    topic_qos.resource_limits().extra_samples = 2
+    assert(3000 == topic_qos.resource_limits().max_samples)
+    assert(100 == topic_qos.resource_limits().max_instances)
+    assert(500 == topic_qos.resource_limits().max_samples_per_instance)
+    assert(50 == topic_qos.resource_limits().allocated_samples)
+    assert(2 == topic_qos.resource_limits().extra_samples)
+
+    # .transport_priority
+    topic_qos.transport_priority().value = 10
+    assert(10 == topic_qos.transport_priority().value)
+
+    # .lifespan
+    topic_qos.lifespan().duration.seconds = 10
+    topic_qos.lifespan().duration.nanosec = 33
+    assert(10 == topic_qos.lifespan().duration.seconds)
+    assert(33 == topic_qos.lifespan().duration.nanosec)
+
+    # .ownership
+    topic_qos.ownership().kind = fastdds.EXCLUSIVE_OWNERSHIP_QOS
+    assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == topic_qos.ownership().kind)
+
+    # Check agains default_topic_qos
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(None != participant)
+    participant.set_default_topic_qos(topic_qos)
+
+    default_topic_qos = fastdds.TopicQos()
+    participant.get_default_topic_qos(default_topic_qos)
+    factory.delete_participant(participant)
+
+    # .topic_data
+    count = 1
+    for topic_value in default_topic_qos.topic_data():
+        if 1 == count:
+            assert(0 == topic_value)
+        elif 2 == count:
+            assert(1 == topic_value)
+        elif 3 == count:
+            assert(2 == topic_value)
+        else:
+            assert(3 == topic_value)
+        count += 1
+
+    # .durability
+    assert(fastdds.TRANSIENT_DURABILITY_QOS == default_topic_qos.durability().kind)
+
+    # .durability_service
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == default_topic_qos.durability_service().history_kind)
+    assert(10 == default_topic_qos.durability_service().history_depth)
+    assert(5 == default_topic_qos.durability_service().max_samples)
+    assert(20 == default_topic_qos.durability_service().max_instances)
+    assert(30 == default_topic_qos.durability_service().max_samples_per_instance)
+
+    # .deadline
+    assert(10 == default_topic_qos.deadline().period.seconds)
+    assert(20 == default_topic_qos.deadline().period.nanosec)
+
+    # .latency_budget
+    assert(20 == default_topic_qos.latency_budget().duration.seconds)
+    assert(30 == default_topic_qos.latency_budget().duration.nanosec)
+
+    # .liveliness
+    assert(fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS == default_topic_qos.liveliness().kind)
+    assert(40 == default_topic_qos.liveliness().lease_duration.seconds)
+    assert(61 == default_topic_qos.liveliness().lease_duration.nanosec)
+    assert(30 == default_topic_qos.liveliness().announcement_period.seconds)
+    assert(50 == default_topic_qos.liveliness().announcement_period.nanosec)
+
+    # .reliability
+    assert(fastdds.RELIABLE_RELIABILITY_QOS == default_topic_qos.reliability().kind)
+    assert(100 == default_topic_qos.reliability().max_blocking_time.seconds)
+    assert(1000 == default_topic_qos.reliability().max_blocking_time.nanosec)
+
+    # .destination_order
+    assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == default_topic_qos.destination_order().kind)
+
+    # .history
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == default_topic_qos.history().kind)
+    assert(1000 == default_topic_qos.history().depth)
+
+    # .resource_limits
+    assert(3000 == default_topic_qos.resource_limits().max_samples)
+    assert(100 == default_topic_qos.resource_limits().max_instances)
+    assert(500 == default_topic_qos.resource_limits().max_samples_per_instance)
+    assert(50 == default_topic_qos.resource_limits().allocated_samples)
+    assert(2 == default_topic_qos.resource_limits().extra_samples)
+
+    # .transport_priority
+    assert(10 == default_topic_qos.transport_priority().value)
+
+    # .lifespan
+    assert(10 == default_topic_qos.lifespan().duration.seconds)
+    assert(33 == default_topic_qos.lifespan().duration.nanosec)
+
+    # .ownership
+    assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == default_topic_qos.ownership().kind)
+
+
 def test_subscriber_qos():
     # SubscriberQos
     subscriber_qos = fastdds.SubscriberQos()
