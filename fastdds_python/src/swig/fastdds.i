@@ -87,6 +87,7 @@ namespace builtin {
 %include "fastdds/rtps/attributes/PropertyPolicy.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.i"
 %include "fastdds/rtps/attributes/ServerAttributes.i"
+%include "fastdds/rtps/attributes/WriterAttributes.i"
 
 /*
 %include "fastdds/rtps/common/FragmentNumber.i"
@@ -143,7 +144,6 @@ namespace builtin {
 %include "fastdds/rtps/attributes/HistoryAttributes.i"
 %include "fastdds/rtps/attributes/EndpointAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
-%include "fastdds/rtps/attributes/WriterAttributes.i"
 %include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
 %include "fastdds/rtps/reader/StatelessReader.i"
 %include "fastdds/rtps/reader/StatefulReader.i"

@@ -3,6 +3,315 @@ import fastdds
 import inspect
 
 
+def test_datawriter_qos():
+    # DataWriterQos
+    datawriter_qos = fastdds.DataWriterQos()
+
+    # .durability
+    datawriter_qos.durability().kind = fastdds.TRANSIENT_DURABILITY_QOS
+    assert(fastdds.TRANSIENT_DURABILITY_QOS == datawriter_qos.durability().kind)
+
+    # .durability_service
+    datawriter_qos.durability_service().history_kind = fastdds.KEEP_ALL_HISTORY_QOS
+    datawriter_qos.durability_service().history_depth = 10
+    datawriter_qos.durability_service().max_samples = 5
+    datawriter_qos.durability_service().max_instances = 20
+    datawriter_qos.durability_service().max_samples_per_instance = 30
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == datawriter_qos.durability_service().history_kind)
+    assert(10 == datawriter_qos.durability_service().history_depth)
+    assert(5 == datawriter_qos.durability_service().max_samples)
+    assert(20 == datawriter_qos.durability_service().max_instances)
+    assert(30 == datawriter_qos.durability_service().max_samples_per_instance)
+
+    # .deadline
+    datawriter_qos.deadline().period.seconds = 10
+    datawriter_qos.deadline().period.nanosec = 20
+    assert(10 == datawriter_qos.deadline().period.seconds)
+    assert(20 == datawriter_qos.deadline().period.nanosec)
+
+    # .latency_budget
+    datawriter_qos.latency_budget().duration.seconds = 20
+    datawriter_qos.latency_budget().duration.nanosec = 30
+    assert(20 == datawriter_qos.latency_budget().duration.seconds)
+    assert(30 == datawriter_qos.latency_budget().duration.nanosec)
+
+    # .liveliness
+    datawriter_qos.liveliness().kind = fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS
+    datawriter_qos.liveliness().lease_duration.seconds = 40
+    datawriter_qos.liveliness().lease_duration.nanosec = 61
+    datawriter_qos.liveliness().announcement_period.seconds = 30
+    datawriter_qos.liveliness().announcement_period.nanosec = 50
+    assert(fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS == datawriter_qos.liveliness().kind)
+    assert(40 == datawriter_qos.liveliness().lease_duration.seconds)
+    assert(61 == datawriter_qos.liveliness().lease_duration.nanosec)
+    assert(30 == datawriter_qos.liveliness().announcement_period.seconds)
+    assert(50 == datawriter_qos.liveliness().announcement_period.nanosec)
+
+    # .reliability
+    datawriter_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
+    datawriter_qos.reliability().max_blocking_time.seconds = 100
+    #TODO datawriter_qos.reliability().max_blocking_time.nanosec = fastdds.TIME_T_INFINITE_NANOSECONDS
+    datawriter_qos.reliability().max_blocking_time.nanosec = 1000
+    assert(fastdds.RELIABLE_RELIABILITY_QOS == datawriter_qos.reliability().kind)
+    assert(100 == datawriter_qos.reliability().max_blocking_time.seconds)
+    assert(1000 == datawriter_qos.reliability().max_blocking_time.nanosec)
+
+    # .destination_order
+    datawriter_qos.destination_order().kind = fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS
+    assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == datawriter_qos.destination_order().kind)
+
+    # .history
+    datawriter_qos.history().kind = fastdds.KEEP_ALL_HISTORY_QOS
+    datawriter_qos.history().depth = 1000
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == datawriter_qos.history().kind)
+    assert(1000 == datawriter_qos.history().depth)
+
+    # .resource_limits
+    datawriter_qos.resource_limits().max_samples = 3000
+    datawriter_qos.resource_limits().max_instances = 100
+    datawriter_qos.resource_limits().max_samples_per_instance = 500
+    datawriter_qos.resource_limits().allocated_samples = 50
+    datawriter_qos.resource_limits().extra_samples = 2
+    assert(3000 == datawriter_qos.resource_limits().max_samples)
+    assert(100 == datawriter_qos.resource_limits().max_instances)
+    assert(500 == datawriter_qos.resource_limits().max_samples_per_instance)
+    assert(50 == datawriter_qos.resource_limits().allocated_samples)
+    assert(2 == datawriter_qos.resource_limits().extra_samples)
+
+    # .transport_priority
+    datawriter_qos.transport_priority().value = 10
+    assert(10 == datawriter_qos.transport_priority().value)
+
+    # .lifespan
+    datawriter_qos.lifespan().duration.seconds = 10
+    datawriter_qos.lifespan().duration.nanosec = 33
+    assert(10 == datawriter_qos.lifespan().duration.seconds)
+    assert(33 == datawriter_qos.lifespan().duration.nanosec)
+
+    # .user_data
+    datawriter_qos.user_data().push_back(0)
+    datawriter_qos.user_data().push_back(1)
+    datawriter_qos.user_data().push_back(2)
+    datawriter_qos.user_data().push_back(3)
+    count = 1
+    for user_value in datawriter_qos.user_data():
+        if 1 == count:
+            assert(0 == user_value)
+        elif 2 == count:
+            assert(1 == user_value)
+        elif 3 == count:
+            assert(2 == user_value)
+        else:
+            assert(3 == user_value)
+        count += 1
+
+    # .ownership
+    datawriter_qos.ownership().kind = fastdds.EXCLUSIVE_OWNERSHIP_QOS
+    assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == datawriter_qos.ownership().kind)
+
+    # .ownership_strength
+    datawriter_qos.ownership_strength().value = 30
+    assert(30 == datawriter_qos.ownership_strength().value)
+
+    # .writer_data_lifecycle
+    datawriter_qos.writer_data_lifecycle().autodispose_unregistered_instances = False
+    assert(False == datawriter_qos.writer_data_lifecycle().autodispose_unregistered_instances)
+
+    # .publish_mode
+    datawriter_qos.publish_mode().kind = fastdds.ASYNCHRONOUS_PUBLISH_MODE
+    assert(fastdds.ASYNCHRONOUS_PUBLISH_MODE == datawriter_qos.publish_mode().kind)
+
+    # .properties
+    property = fastdds.Property()
+    property.name('Property1')
+    property.value('Value1')
+    datawriter_qos.properties().properties().push_back(property)
+    property = fastdds.Property()
+    property.name('Property2')
+    property.value('Value2')
+    datawriter_qos.properties().properties().push_back(property)
+    count = 1
+    for prop in datawriter_qos.properties().properties():
+        if 1 == count:
+            assert('Property1' == prop.name())
+            assert('Value1' == prop.value())
+        else:
+            assert('Property2' == prop.name())
+            assert('Value2' == prop.value())
+        count += 1
+
+    # .reliable_writer_qos
+    datawriter_qos.reliable_writer_qos().times.initialHeartbeatDelay.seconds = 2
+    datawriter_qos.reliable_writer_qos().times.initialHeartbeatDelay.nanosec = 15
+    datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.seconds = 3
+    datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.nanosec = 16
+    datawriter_qos.reliable_writer_qos().times.nackResponseDelay.seconds = 4
+    datawriter_qos.reliable_writer_qos().times.nackResponseDelay.nanosec = 17
+    datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.seconds = 5
+    datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.nanosec = 18
+    datawriter_qos.reliable_writer_qos().disable_positive_acks.enabled = True
+    datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.seconds = 13
+    datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.nanosec = 320
+    datawriter_qos.reliable_writer_qos().disable_heartbeat_piggyback = True
+    assert(2 == datawriter_qos.reliable_writer_qos().times.initialHeartbeatDelay.seconds)
+    assert(15 == datawriter_qos.reliable_writer_qos().times.initialHeartbeatDelay.nanosec)
+    assert(3 == datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.seconds)
+    assert(16 == datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.nanosec)
+    assert(4 == datawriter_qos.reliable_writer_qos().times.nackResponseDelay.seconds)
+    assert(17 == datawriter_qos.reliable_writer_qos().times.nackResponseDelay.nanosec)
+    assert(5 == datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.seconds)
+    assert(18 == datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.nanosec)
+    assert(13 == datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.seconds)
+    assert(320 == datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.nanosec)
+    assert(True == datawriter_qos.reliable_writer_qos().disable_heartbeat_piggyback)
+
+    # .endpoint
+    datawriter_qos.endpoint().user_defined_id = 1
+    datawriter_qos.endpoint().entity_id = 2
+    datawriter_qos.endpoint().history_memory_policy = fastdds.PREALLOCATED_WITH_REALLOC_MEMORY_MODE
+    assert(1 == datawriter_qos.endpoint().user_defined_id)
+    assert(2 == datawriter_qos.endpoint().entity_id)
+    assert(fastdds.PREALLOCATED_WITH_REALLOC_MEMORY_MODE == datawriter_qos.endpoint().history_memory_policy)
+
+    # .writer_resource_limits
+    datawriter_qos.writer_resource_limits().matched_subscriber_allocation.initial = 30
+    datawriter_qos.writer_resource_limits().matched_subscriber_allocation.maximum = 300
+    datawriter_qos.writer_resource_limits().matched_subscriber_allocation.increment = 400
+    assert(30 == datawriter_qos.writer_resource_limits().matched_subscriber_allocation.initial)
+    assert(300 == datawriter_qos.writer_resource_limits().matched_subscriber_allocation.maximum)
+    assert(400 == datawriter_qos.writer_resource_limits().matched_subscriber_allocation.increment)
+
+    # .data_sharing
+    datawriter_qos.data_sharing().on("/")
+    assert(fastdds.ON == datawriter_qos.data_sharing().kind())
+    assert("/" == datawriter_qos.data_sharing().shm_directory())
+
+    # Check agains default_topic_qos
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(None != participant)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(None != publisher)
+    publisher.set_default_datawriter_qos(datawriter_qos)
+
+    default_datawriter_qos = fastdds.DataWriterQos()
+    publisher.get_default_datawriter_qos(default_datawriter_qos)
+    participant.delete_publisher(publisher)
+    factory.delete_participant(participant)
+
+    # .durability
+    assert(fastdds.TRANSIENT_DURABILITY_QOS == default_datawriter_qos.durability().kind)
+
+    # .durability_service
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == default_datawriter_qos.durability_service().history_kind)
+    assert(10 == default_datawriter_qos.durability_service().history_depth)
+    assert(5 == default_datawriter_qos.durability_service().max_samples)
+    assert(20 == default_datawriter_qos.durability_service().max_instances)
+    assert(30 == default_datawriter_qos.durability_service().max_samples_per_instance)
+
+    # .deadline
+    assert(10 == default_datawriter_qos.deadline().period.seconds)
+    assert(20 == default_datawriter_qos.deadline().period.nanosec)
+
+    # .latency_budget
+    assert(20 == default_datawriter_qos.latency_budget().duration.seconds)
+    assert(30 == default_datawriter_qos.latency_budget().duration.nanosec)
+
+    # .liveliness
+    assert(fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS == default_datawriter_qos.liveliness().kind)
+    assert(40 == default_datawriter_qos.liveliness().lease_duration.seconds)
+    assert(61 == default_datawriter_qos.liveliness().lease_duration.nanosec)
+    assert(30 == default_datawriter_qos.liveliness().announcement_period.seconds)
+    assert(50 == default_datawriter_qos.liveliness().announcement_period.nanosec)
+
+    # .reliability
+    assert(fastdds.RELIABLE_RELIABILITY_QOS == default_datawriter_qos.reliability().kind)
+    assert(100 == default_datawriter_qos.reliability().max_blocking_time.seconds)
+    assert(1000 == default_datawriter_qos.reliability().max_blocking_time.nanosec)
+
+    # .destination_order
+    assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == default_datawriter_qos.destination_order().kind)
+
+    # .history
+    assert(fastdds.KEEP_ALL_HISTORY_QOS == default_datawriter_qos.history().kind)
+    assert(1000 == default_datawriter_qos.history().depth)
+
+    # .resource_limits
+    assert(3000 == default_datawriter_qos.resource_limits().max_samples)
+    assert(100 == default_datawriter_qos.resource_limits().max_instances)
+    assert(500 == default_datawriter_qos.resource_limits().max_samples_per_instance)
+    assert(50 == default_datawriter_qos.resource_limits().allocated_samples)
+    assert(2 == default_datawriter_qos.resource_limits().extra_samples)
+
+    # .transport_priority
+    default_datawriter_qos.transport_priority().value = 10
+    assert(10 == default_datawriter_qos.transport_priority().value)
+
+    # .lifespan
+    assert(10 == default_datawriter_qos.lifespan().duration.seconds)
+    assert(33 == default_datawriter_qos.lifespan().duration.nanosec)
+
+    # .user_data
+    count = 1
+    for user_value in default_datawriter_qos.user_data():
+        if 1 == count:
+            assert(0 == user_value)
+        elif 2 == count:
+            assert(1 == user_value)
+        elif 3 == count:
+            assert(2 == user_value)
+        else:
+            assert(3 == user_value)
+        count += 1
+
+    # .ownership
+    assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == default_datawriter_qos.ownership().kind)
+
+    # .ownership_strength
+    assert(30 == default_datawriter_qos.ownership_strength().value)
+
+    # .publish_mode
+    assert(fastdds.ASYNCHRONOUS_PUBLISH_MODE == default_datawriter_qos.publish_mode().kind)
+
+    # .properties
+    count = 1
+    for prop in default_datawriter_qos.properties().properties():
+        if 1 == count:
+            assert('Property1' == prop.name())
+            assert('Value1' == prop.value())
+        else:
+            assert('Property2' == prop.name())
+            assert('Value2' == prop.value())
+        count += 1
+
+    # .reliable_writer_qos
+    assert(2 == default_datawriter_qos.reliable_writer_qos().times.initialHeartbeatDelay.seconds)
+    assert(15 == default_datawriter_qos.reliable_writer_qos().times.initialHeartbeatDelay.nanosec)
+    assert(3 == default_datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.seconds)
+    assert(16 == default_datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.nanosec)
+    assert(4 == default_datawriter_qos.reliable_writer_qos().times.nackResponseDelay.seconds)
+    assert(17 == default_datawriter_qos.reliable_writer_qos().times.nackResponseDelay.nanosec)
+    assert(5 == default_datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.seconds)
+    assert(18 == default_datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.nanosec)
+    assert(13 == default_datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.seconds)
+    assert(320 == default_datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.nanosec)
+    assert(True == default_datawriter_qos.reliable_writer_qos().disable_heartbeat_piggyback)
+
+    # .endpoint
+    assert(1 == default_datawriter_qos.endpoint().user_defined_id)
+    assert(2 == default_datawriter_qos.endpoint().entity_id)
+    assert(fastdds.PREALLOCATED_WITH_REALLOC_MEMORY_MODE == default_datawriter_qos.endpoint().history_memory_policy)
+
+    # .writer_resource_limits
+    assert(30 == default_datawriter_qos.writer_resource_limits().matched_subscriber_allocation.initial)
+    assert(300 == default_datawriter_qos.writer_resource_limits().matched_subscriber_allocation.maximum)
+    assert(400 == default_datawriter_qos.writer_resource_limits().matched_subscriber_allocation.increment)
+
+    # .data_sharing
+    assert(fastdds.ON == default_datawriter_qos.data_sharing().kind())
+    assert("/" == default_datawriter_qos.data_sharing().shm_directory())
+
+
 def test_topic_qos():
     # TopicQos
     topic_qos = fastdds.TopicQos()
@@ -447,6 +756,7 @@ def test_participant_qos():
     assert(20000 == participant_qos.transport().send_socket_buffer_size)
     assert(False == participant_qos.transport().use_builtin_transports)
 
+    # .user_data
     participant_qos.user_data().push_back(0)
     participant_qos.user_data().push_back(1)
     participant_qos.user_data().push_back(2)

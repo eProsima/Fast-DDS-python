@@ -16,4 +16,6 @@
 #include "fastdds/rtps/attributes/WriterAttributes.h"
 %}
 
+%ignore eprosima::fastrtps::rtps::WriterAttributes;
+
 %include "fastdds/rtps/attributes/WriterAttributes.h"
