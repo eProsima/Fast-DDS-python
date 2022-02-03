@@ -16,16 +16,21 @@
 
 // SWIG helper modules
 %include "stdint.i"
+%include "std_list.i"
 %include "std_string.i"
-%include "typemaps.i"
 %include "std_shared_ptr.i"
 %include "std_vector.i"
+%include "typemaps.i"
 
 // Some operators are ignored, as there is no such thing in Python.
 // Trying to export them issues a warning
 %ignore *::operator=;
 %ignore *::operator++;
 %ignore *::operator!;
+%ignore *::operator==;
+%ignore *::operator!=;
+%ignore *::operator<<;
+%ignore *::operator>>;
 
 // Keywords that are not fully supported in SWIG
 // and make not difference in python anyways
@@ -34,6 +39,7 @@
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
 #define RTPS_DllAPI
+#define FASTRTPS_DEPRECATED(message)
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 
 // Predeclaration of namespaces and/or classes not exported to the target language,
@@ -60,18 +66,27 @@ namespace builtin {
 
 %include "fastdds/rtps/common/VendorId_t.i"
 %include "fastdds/rtps/common/Types.i"
-%include "fastrtps/types/TypesBase.i"
 %include "fastdds/rtps/common/SerializedPayload.i"
 %include "fastdds/rtps/common/CDRMessage_t.i"
 %include "fastdds/rtps/common/Time_t.i"
+%include "fastdds/rtps/common/Locator.i"
+%include "fastdds/rtps/common/LocatorList.i"
+%include "fastdds/rtps/common/BinaryProperty.i"
+%include "fastdds/rtps/common/Property.i"
+%include "fastdds/rtps/common/EntityId_t.i"
+%include "fastdds/rtps/common/GuidPrefix_t.i"
+%include "fastdds/rtps/common/Guid.i"
+%include "fastdds/rtps/common/PortParameters.i"
+%include "fastrtps/types/TypesBase.i"
+%include "fastdds/rtps/resources/ResourceManagement.i"
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.i"
-%include "fastdds/rtps/common/BinaryProperty.i"
-%include "fastdds/rtps/common/Property.i"
 %include "fastdds/rtps/attributes/PropertyPolicy.i"
+%include "fastdds/rtps/attributes/RTPSParticipantAttributes.i"
+%include "fastdds/rtps/attributes/ServerAttributes.i"
 
 /*
 %include "fastdds/rtps/common/FragmentNumber.i"
@@ -81,12 +96,9 @@ namespace builtin {
 %include "fastdds/rtps/common/LocatorListComparisons.i"
 %include "fastdds/rtps/common/Token.i"
 %include "fastdds/rtps/common/MatchingInfo.i"
-%include "fastdds/rtps/common/LocatorList.i"
 %include "fastdds/rtps/common/ChangeKind_t.i"
 %include "fastdds/rtps/common/LocatorsIterator.i"
-%include "fastdds/rtps/common/PortParameters.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
-%include "fastdds/rtps/common/Locator.i"
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/RemoteLocators.i"
 %include "fastdds/rtps/common/WriteParams.i"
@@ -131,9 +143,7 @@ namespace builtin {
 %include "fastdds/rtps/attributes/HistoryAttributes.i"
 %include "fastdds/rtps/attributes/EndpointAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
-%include "fastdds/rtps/attributes/RTPSParticipantAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
-%include "fastdds/rtps/attributes/ServerAttributes.i"
 %include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
 %include "fastdds/rtps/reader/StatelessReader.i"
 %include "fastdds/rtps/reader/StatefulReader.i"
@@ -213,7 +223,6 @@ namespace builtin {
 %include "fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerConsts.i"
 %include "fastdds/rtps/resources/ResourceEvent.i"
-%include "fastdds/rtps/resources/ResourceManagement.i"
 %include "fastdds/rtps/resources/TimedEvent.i"
 %include "fastdds/rtps/rtps_fwd.i"
 
@@ -356,10 +365,6 @@ namespace builtin {
 %include "fastrtps/xmlparser/XMLProfileManager.i"
 %include "fastrtps/Domain.i"
 */
-
-%include "fastdds/rtps/common/EntityId_t.i"
-%include "fastdds/rtps/common/GuidPrefix_t.i"
-%include "fastdds/rtps/common/Guid.i"
 
 %include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/common/InstanceHandle.i"

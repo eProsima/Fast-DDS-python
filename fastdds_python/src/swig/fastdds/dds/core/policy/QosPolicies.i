@@ -19,6 +19,7 @@
 #include "fastdds/dds/core/policy/QosPolicies.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller;
 
 // The class PartitionQosPolicy::const_iterator does not have default constructor
 // This tells SWIG it must wrap the constructors or the compilation will fail

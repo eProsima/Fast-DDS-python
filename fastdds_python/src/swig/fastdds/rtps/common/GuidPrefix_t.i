@@ -16,4 +16,38 @@
 #include "fastdds/rtps/common/GuidPrefix_t.hpp"
 %}
 
+%typemap(in) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::GuidPrefix_t::size](eprosima::fastrtps::rtps::octet temp[eprosima::fastrtps::rtps::GuidPrefix_t::size])
+{
+    if (PyTuple_Check($input))
+    {
+        if (!PyArg_ParseTuple($input, "BBBBBBBBBBBB",
+                    temp, temp+1, temp+2, temp+3, temp+4, temp+5, temp+6, temp+7, temp+8, temp+9, temp+10, temp+11))
+        {
+            PyErr_SetString(PyExc_TypeError, "tuple must have 12 elements");
+            SWIG_fail;
+        }
+        $1 = &temp[0];
+    }
+    else
+    {
+        PyErr_SetString(PyExc_TypeError, "expected a tuple.");
+        SWIG_fail;
+    }
+}
+
+%typemap(out) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::GuidPrefix_t::size]
+{
+    PyObject* python_tuple = PyTuple_New(eprosima::fastrtps::rtps::GuidPrefix_t::size);
+
+    if (python_tuple)
+    {
+        for(size_t count = 0; count < eprosima::fastrtps::rtps::GuidPrefix_t::size; ++count)
+        {
+            PyTuple_SetItem(python_tuple, count, PyInt_FromLong($1[count]));
+        }
+    }
+
+    $result = python_tuple;
+}
+
 %include "fastdds/rtps/common/GuidPrefix_t.hpp"

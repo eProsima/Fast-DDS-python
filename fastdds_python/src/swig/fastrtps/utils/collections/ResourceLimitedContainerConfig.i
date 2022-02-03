@@ -16,4 +16,7 @@
 #include "fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp"
 %}
 
+%ignore operator==(const eprosima::fastrtps::ResourceLimitedContainerConfig& lhs, const
+        %eprosima::fastrtps::ResourceLimitedContainerConfig& rhs);
+
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp"

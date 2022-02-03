@@ -16,4 +16,20 @@
 #include "fastdds/rtps/common/LocatorList.hpp"
 %}
 
+%ignore eprosima::fastdds::rtps::LocatorList::LocatorList(eprosima::fastdds::rtps::LocatorList&&);
+%ignore eprosima::fastdds::rtps::LocatorList::contains;
+
 %include "fastdds/rtps/common/LocatorList.hpp"
+
+%extend eprosima::fastdds::rtps::LocatorList
+{
+    size_t __len__() const
+    {
+        return self->size();
+    }
+
+    Locator __getitem__(int i)
+    {
+        return *(self->begin()+i);
+    }
+};

@@ -1,5 +1,7 @@
 import fastdds
 
+import inspect
+
 def test_participant_qos():
     # DomainParticipantQos
     participant_qos = fastdds.DomainParticipantQos()
@@ -124,6 +126,160 @@ def test_participant_qos():
             assert(3 == user_value)
         count += 1
 
+    # .wire_protocol
+    participant_qos.wire_protocol().prefix.value = (1,2,3,4,5,6,7,8,9,10,11,12)
+    participant_qos.wire_protocol().participant_id = 32
+    assert((1,2,3,4,5,6,7,8,9,10,11,12) == participant_qos.wire_protocol().prefix.value)
+    assert(32 == participant_qos.wire_protocol().participant_id)
+
+    ## .builtin
+    participant_qos.wire_protocol().builtin.use_WriterLivelinessProtocol = False
+    participant_qos.wire_protocol().builtin.readerHistoryMemoryPolicy = fastdds.PREALLOCATED_MEMORY_MODE;
+    participant_qos.wire_protocol().builtin.readerPayloadSize = 3
+    participant_qos.wire_protocol().builtin.writerHistoryMemoryPolicy = fastdds.PREALLOCATED_MEMORY_MODE;
+    participant_qos.wire_protocol().builtin.writerPayloadSize = 5
+    participant_qos.wire_protocol().builtin.mutation_tries = 50;
+    participant_qos.wire_protocol().builtin.avoid_builtin_multicast = False
+    assert(False == participant_qos.wire_protocol().builtin.use_WriterLivelinessProtocol)
+    assert(fastdds.PREALLOCATED_MEMORY_MODE == participant_qos.wire_protocol().builtin.readerHistoryMemoryPolicy)
+    assert(3 == participant_qos.wire_protocol().builtin.readerPayloadSize)
+    assert(fastdds.PREALLOCATED_MEMORY_MODE == participant_qos.wire_protocol().builtin.writerHistoryMemoryPolicy)
+    assert(5 == participant_qos.wire_protocol().builtin.writerPayloadSize)
+    assert(50 == participant_qos.wire_protocol().builtin.mutation_tries)
+    assert(False == participant_qos.wire_protocol().builtin.avoid_builtin_multicast)
+    ### .discovery_config
+    participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol = False
+    participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol = True
+    participant_qos.wire_protocol().builtin.discovery_config.leaseDuration.seconds = 30
+    participant_qos.wire_protocol().builtin.discovery_config.leaseDuration.nanosec = 10
+    participant_qos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod.seconds = 30
+    participant_qos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod.nanosec =  10
+    participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.count = 10
+    participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.period.seconds =  30
+    participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.period.nanosec =  10
+    participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP. use_PublicationWriterANDSubscriptionReader = False
+    participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter = False
+    found_secure_member = False
+    members = inspect.getmembers(participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP)
+    for m in members:
+        if 'enable_builtin_secure_publications_writer_and_subscriptions_reader' == m[0]:
+            found_secure_member = True
+            break
+    if found_secure_member:
+        participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.enable_builtin_secure_publications_writer_and_subscriptions_reader = False
+        participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.enable_builtin_secure_subscriptions_writer_and_publications_reader = False
+    participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.seconds = 30
+    participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.nanosec = 10
+    participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.nanosec = 10
+    server_info = fastdds.RemoteServerAttributes()
+    server_info.guidPrefix.value = (1,2,3,4,5,6,7,8,9,10,11,12)
+    locator = fastdds.Locator_t()
+    locator.address = (0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,1)
+    locator.port = 7400
+    locator.kind = fastdds.LOCATOR_KIND_UDPv4
+    server_info.metatrafficMulticastLocatorList.push_back(locator)
+    server_info.metatrafficUnicastLocatorList.push_back(locator)
+    participant_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers.push_back(server_info)
+    participant_qos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags = fastdds.FILTER_DIFFERENT_HOST
+    assert(False == participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol)
+    assert(True == participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol)
+    assert(30 == participant_qos.wire_protocol().builtin.discovery_config.leaseDuration.seconds)
+    assert(10 == participant_qos.wire_protocol().builtin.discovery_config.leaseDuration.nanosec)
+    assert(30 == participant_qos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod.seconds)
+    assert(10 == participant_qos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod.nanosec)
+    assert(10 == participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.count)
+    assert(30 == participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.period.seconds)
+    assert(10 == participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.period.nanosec)
+    assert(False == participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP. use_PublicationWriterANDSubscriptionReader)
+    assert(False == participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter)
+    if found_secure_member:
+        assert(False == participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.enable_builtin_secure_publications_writer_and_subscriptions_reader)
+        assert(False == participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.enable_builtin_secure_subscriptions_writer_and_publications_reader)
+    assert(30 == participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.seconds)
+    assert(10 == participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.nanosec)
+    assert(10 == participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.nanosec)
+    server_info = participant_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers[0]
+    assert((1,2,3,4,5,6,7,8,9,10,11,12) == server_info.guidPrefix.value)
+    locator = server_info.metatrafficMulticastLocatorList[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,1) == locator.address)
+    assert(7400 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    locator = server_info.metatrafficUnicastLocatorList[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,1) == locator.address)
+    assert(7400 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    assert(fastdds.FILTER_DIFFERENT_HOST == participant_qos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags)
+    ### .typelookup_config;
+    participant_qos.wire_protocol().builtin.typelookup_config.use_client = True
+    participant_qos.wire_protocol().builtin.typelookup_config.use_server = True
+    assert(True == participant_qos.wire_protocol().builtin.typelookup_config.use_client)
+    assert(True == participant_qos.wire_protocol().builtin.typelookup_config.use_server)
+    ### .metatrafficUnicastLocatorList;
+    locator = fastdds.Locator_t()
+    locator.address = (0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,2)
+    locator.port = 7401
+    locator.kind = fastdds.LOCATOR_KIND_TCPv4
+    participant_qos.wire_protocol().builtin.metatrafficUnicastLocatorList.push_back(locator)
+    locator = participant_qos.wire_protocol().builtin.metatrafficUnicastLocatorList[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,2) == locator.address)
+    assert(7401 == locator.port)
+    assert(fastdds.LOCATOR_KIND_TCPv4 == locator.kind)
+    ### .metatrafficMulticastLocatorList;
+    locator = fastdds.Locator_t()
+    locator.address = (1,0,0,0,0,0,0,0,0,0,0,0,255,233,0,9)
+    locator.port = 7411
+    locator.kind = fastdds.LOCATOR_KIND_UDPv4
+    participant_qos.wire_protocol().builtin.metatrafficMulticastLocatorList.push_back(locator)
+    locator = participant_qos.wire_protocol().builtin.metatrafficMulticastLocatorList[0]
+    assert((1,0,0,0,0,0,0,0,0,0,0,0,255,233,0,9) == locator.address)
+    assert(7411 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    ### .initialPeersList;
+    locator = fastdds.Locator_t()
+    locator.address = (1,0,255,0,0,0,0,0,0,0,0,0,127,0,0,1)
+    locator.port = 1024
+    locator.kind = fastdds.LOCATOR_KIND_UDPv4
+    participant_qos.wire_protocol().builtin.initialPeersList.push_back(locator)
+    locator = participant_qos.wire_protocol().builtin.initialPeersList[0]
+    assert((1,0,255,0,0,0,0,0,0,0,0,0,127,0,0,1) == locator.address)
+    assert(1024 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    ## .default_multicast_locator_list
+    locator = fastdds.Locator_t()
+    locator.address = (1,0,0,0,0,0,0,0,0,0,0,0,255,233,0,9)
+    locator.port = 7411
+    locator.kind = fastdds.LOCATOR_KIND_UDPv4
+    participant_qos.wire_protocol().default_multicast_locator_list.push_back(locator)
+    locator = participant_qos.wire_protocol().default_multicast_locator_list[0]
+    assert((1,0,0,0,0,0,0,0,0,0,0,0,255,233,0,9) == locator.address)
+    assert(7411 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    ## .default_unicast_locator_list
+    locator = fastdds.Locator_t()
+    locator.address = (0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,2)
+    locator.port = 7401
+    locator.kind = fastdds.LOCATOR_KIND_TCPv4
+    participant_qos.wire_protocol().default_unicast_locator_list.push_back(locator)
+    locator = participant_qos.wire_protocol().default_unicast_locator_list[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,2) == locator.address)
+    assert(7401 == locator.port)
+    assert(fastdds.LOCATOR_KIND_TCPv4 == locator.kind)
+    ## .port
+    participant_qos.wire_protocol().port.portBase = 7410
+    participant_qos.wire_protocol().port.domainIDGain = 200
+    participant_qos.wire_protocol().port.participantIDGain = 3
+    participant_qos.wire_protocol().port.offsetd0 = 1
+    participant_qos.wire_protocol().port.offsetd1 = 11
+    participant_qos.wire_protocol().port.offsetd2 = 21
+    participant_qos.wire_protocol().port.offsetd3 = 22
+    assert(7410 == participant_qos.wire_protocol().port.portBase)
+    assert(200 == participant_qos.wire_protocol().port.domainIDGain)
+    assert(3 == participant_qos.wire_protocol().port.participantIDGain)
+    assert(1 == participant_qos.wire_protocol().port.offsetd0)
+    assert(11 == participant_qos.wire_protocol().port.offsetd1)
+    assert(21 == participant_qos.wire_protocol().port.offsetd2)
+    assert(22 == participant_qos.wire_protocol().port.offsetd3)
+
     # Check agains default_participant_qos
     factory = fastdds.DomainParticipantFactory.get_instance()
     factory.set_default_participant_qos(participant_qos)
@@ -205,3 +361,81 @@ def test_participant_qos():
         else:
             assert(3 == user_value)
         count += 1
+
+
+    # .wire_protocol
+    assert((1,2,3,4,5,6,7,8,9,10,11,12) == default_participant_qos.wire_protocol().prefix.value)
+    assert(32 == default_participant_qos.wire_protocol().participant_id)
+    ## .builtin
+    assert(False == default_participant_qos.wire_protocol().builtin.use_WriterLivelinessProtocol)
+    assert(fastdds.PREALLOCATED_MEMORY_MODE == default_participant_qos.wire_protocol().builtin.readerHistoryMemoryPolicy)
+    assert(3 == default_participant_qos.wire_protocol().builtin.readerPayloadSize)
+    assert(fastdds.PREALLOCATED_MEMORY_MODE == default_participant_qos.wire_protocol().builtin.writerHistoryMemoryPolicy)
+    assert(5 == default_participant_qos.wire_protocol().builtin.writerPayloadSize)
+    assert(50 == default_participant_qos.wire_protocol().builtin.mutation_tries)
+    assert(False == default_participant_qos.wire_protocol().builtin.avoid_builtin_multicast)
+    ### .discovery_config
+    assert(False == default_participant_qos.wire_protocol().builtin.discovery_config.use_SIMPLE_EndpointDiscoveryProtocol)
+    assert(True == default_participant_qos.wire_protocol().builtin.discovery_config.use_STATIC_EndpointDiscoveryProtocol)
+    assert(30 == default_participant_qos.wire_protocol().builtin.discovery_config.leaseDuration.seconds)
+    assert(10 == default_participant_qos.wire_protocol().builtin.discovery_config.leaseDuration.nanosec)
+    assert(30 == default_participant_qos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod.seconds)
+    assert(10 == default_participant_qos.wire_protocol().builtin.discovery_config.leaseDuration_announcementperiod.nanosec)
+    assert(10 == default_participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.count)
+    assert(30 == default_participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.period.seconds)
+    assert(10 == default_participant_qos.wire_protocol().builtin.discovery_config.initial_announcements.period.nanosec)
+    assert(False == default_participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP. use_PublicationWriterANDSubscriptionReader)
+    assert(False == default_participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.use_PublicationReaderANDSubscriptionWriter)
+    if found_secure_member:
+        assert(False == default_participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.enable_builtin_secure_publications_writer_and_subscriptions_reader)
+        assert(False == default_participant_qos.wire_protocol().builtin.discovery_config.m_simpleEDP.enable_builtin_secure_subscriptions_writer_and_publications_reader)
+    assert(30 == default_participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.seconds)
+    assert(10 == default_participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.nanosec)
+    assert(10 == default_participant_qos.wire_protocol().builtin.discovery_config.discoveryServer_client_syncperiod.nanosec)
+    server_info = default_participant_qos.wire_protocol().builtin.discovery_config.m_DiscoveryServers[0]
+    assert((1,2,3,4,5,6,7,8,9,10,11,12) == server_info.guidPrefix.value)
+    locator = server_info.metatrafficMulticastLocatorList[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,1) == locator.address)
+    assert(7400 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    locator = server_info.metatrafficUnicastLocatorList[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,1) == locator.address)
+    assert(7400 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    assert(fastdds.FILTER_DIFFERENT_HOST == default_participant_qos.wire_protocol().builtin.discovery_config.ignoreParticipantFlags)
+    ### .typelookup_config;
+    assert(True == default_participant_qos.wire_protocol().builtin.typelookup_config.use_client)
+    assert(True == default_participant_qos.wire_protocol().builtin.typelookup_config.use_server)
+    ### .metatrafficUnicastLocatorList;
+    locator = default_participant_qos.wire_protocol().builtin.metatrafficUnicastLocatorList[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,2) == locator.address)
+    assert(7401 == locator.port)
+    assert(fastdds.LOCATOR_KIND_TCPv4 == locator.kind)
+    ### .metatrafficMulticastLocatorList;
+    locator = default_participant_qos.wire_protocol().builtin.metatrafficMulticastLocatorList[0]
+    assert((1,0,0,0,0,0,0,0,0,0,0,0,255,233,0,9) == locator.address)
+    assert(7411 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    ### .initialPeersList;
+    locator = default_participant_qos.wire_protocol().builtin.initialPeersList[0]
+    assert((1,0,255,0,0,0,0,0,0,0,0,0,127,0,0,1) == locator.address)
+    assert(1024 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    ## .default_multicast_locator_list
+    locator = default_participant_qos.wire_protocol().default_multicast_locator_list[0]
+    assert((1,0,0,0,0,0,0,0,0,0,0,0,255,233,0,9) == locator.address)
+    assert(7411 == locator.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+    ## .default_unicast_locator_list
+    locator = default_participant_qos.wire_protocol().default_unicast_locator_list[0]
+    assert((0,0,0,0,0,0,0,0,0,0,0,0,192,168,1,2) == locator.address)
+    assert(7401 == locator.port)
+    assert(fastdds.LOCATOR_KIND_TCPv4 == locator.kind)
+    ## .port
+    assert(7410 == default_participant_qos.wire_protocol().port.portBase)
+    assert(200 == default_participant_qos.wire_protocol().port.domainIDGain)
+    assert(3 == default_participant_qos.wire_protocol().port.participantIDGain)
+    assert(1 == default_participant_qos.wire_protocol().port.offsetd0)
+    assert(11 == default_participant_qos.wire_protocol().port.offsetd1)
+    assert(21 == default_participant_qos.wire_protocol().port.offsetd2)
+    assert(22 == default_participant_qos.wire_protocol().port.offsetd3)
