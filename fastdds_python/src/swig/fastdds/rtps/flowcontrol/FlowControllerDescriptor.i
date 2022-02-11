@@ -16,16 +16,14 @@
 #include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.hpp"
 %}
 
-%nodefaultctor eprosima::fastdds::rtps::FlowControllerDescriptor;
-
 // Avoid memory leak because a const char* in our API.
+%nodefaultctor eprosima::fastdds::rtps::FlowControllerDescriptor;
 %{
     struct _FlowControllerDescriptor : public eprosima::fastdds::rtps::FlowControllerDescriptor
     {
         std::string flow_name;
     };
 %}
-
 %extend eprosima::fastdds::rtps::FlowControllerDescriptor
 {
     FlowControllerDescriptor()
