@@ -83,11 +83,10 @@ def test_datareader_qos():
     assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == datareader_qos.ownership().kind)
 
     # .time_based_filter
-    datareader_qos.time_based_filter().minimum_separation.seconds = fastdds.TIME_T_INFINITE_SECONDS
-    #TODO datareader_qos.time_based_filter().minimum_separation.nanosec = fastdds.TIME_T_INFINITE_NANOSECONDS
-    datareader_qos.time_based_filter().minimum_separation.nanosec = 100
-    assert(fastdds.TIME_T_INFINITE_SECONDS == datareader_qos.time_based_filter().minimum_separation.seconds)
-    assert(100 == datareader_qos.time_based_filter().minimum_separation.nanosec)
+    datareader_qos.time_based_filter().minimum_separation.seconds = fastdds.Time_t.INFINITE_SECONDS
+    datareader_qos.time_based_filter().minimum_separation.nanosec = fastdds.Time_t.INFINITE_NANOSECONDS
+    assert(fastdds.Time_t.INFINITE_SECONDS == datareader_qos.time_based_filter().minimum_separation.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == datareader_qos.time_based_filter().minimum_separation.nanosec)
 
     # .reader_data_lifecycle
     datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.seconds = 100
@@ -258,8 +257,8 @@ def test_datareader_qos():
     assert(fastdds.EXCLUSIVE_OWNERSHIP_QOS == default_datareader_qos.ownership().kind)
 
     # .time_based_filter
-    assert(fastdds.TIME_T_INFINITE_SECONDS == default_datareader_qos.time_based_filter().minimum_separation.seconds)
-    assert(100 == default_datareader_qos.time_based_filter().minimum_separation.nanosec)
+    assert(fastdds.Time_t.INFINITE_SECONDS == default_datareader_qos.time_based_filter().minimum_separation.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == datareader_qos.time_based_filter().minimum_separation.nanosec)
 
     # .reader_data_lifecycle
     assert(100 == default_datareader_qos.reader_data_lifecycle().autopurge_disposed_samples_delay.seconds)
@@ -370,11 +369,10 @@ def test_datawriter_qos():
     # .reliability
     datawriter_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
     datawriter_qos.reliability().max_blocking_time.seconds = 100
-    #TODO datawriter_qos.reliability().max_blocking_time.nanosec = fastdds.TIME_T_INFINITE_NANOSECONDS
-    datawriter_qos.reliability().max_blocking_time.nanosec = 1000
+    datawriter_qos.reliability().max_blocking_time.nanosec = fastdds.Time_t.INFINITE_NANOSECONDS
     assert(fastdds.RELIABLE_RELIABILITY_QOS == datawriter_qos.reliability().kind)
     assert(100 == datawriter_qos.reliability().max_blocking_time.seconds)
-    assert(1000 == datawriter_qos.reliability().max_blocking_time.nanosec)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == datawriter_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     datawriter_qos.destination_order().kind = fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS
@@ -439,7 +437,9 @@ def test_datawriter_qos():
 
     # .publish_mode
     datawriter_qos.publish_mode().kind = fastdds.ASYNCHRONOUS_PUBLISH_MODE
+    datawriter_qos.publish_mode().flow_controller_name = 'Prueba'
     assert(fastdds.ASYNCHRONOUS_PUBLISH_MODE == datawriter_qos.publish_mode().kind)
+    assert('Prueba' == datawriter_qos.publish_mode().flow_controller_name)
 
     # .properties
     property = fastdds.Property()
@@ -547,7 +547,7 @@ def test_datawriter_qos():
     # .reliability
     assert(fastdds.RELIABLE_RELIABILITY_QOS == default_datawriter_qos.reliability().kind)
     assert(100 == default_datawriter_qos.reliability().max_blocking_time.seconds)
-    assert(1000 == default_datawriter_qos.reliability().max_blocking_time.nanosec)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == datawriter_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == default_datawriter_qos.destination_order().kind)
@@ -592,6 +592,7 @@ def test_datawriter_qos():
 
     # .publish_mode
     assert(fastdds.ASYNCHRONOUS_PUBLISH_MODE == default_datawriter_qos.publish_mode().kind)
+    assert('Prueba' == datawriter_qos.publish_mode().flow_controller_name)
 
     # .properties
     count = 1
@@ -613,6 +614,7 @@ def test_datawriter_qos():
     assert(17 == default_datawriter_qos.reliable_writer_qos().times.nackResponseDelay.nanosec)
     assert(5 == default_datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.seconds)
     assert(18 == default_datawriter_qos.reliable_writer_qos().times.nackSupressionDuration.nanosec)
+    assert(True == default_datawriter_qos.reliable_writer_qos().disable_positive_acks.enabled)
     assert(13 == default_datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.seconds)
     assert(320 == default_datawriter_qos.reliable_writer_qos().disable_positive_acks.duration.nanosec)
     assert(True == default_datawriter_qos.reliable_writer_qos().disable_heartbeat_piggyback)
@@ -696,11 +698,10 @@ def test_topic_qos():
     # .reliability
     topic_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
     topic_qos.reliability().max_blocking_time.seconds = 100
-    #TODO topic_qos.reliability().max_blocking_time.nanosec = fastdds.TIME_T_INFINITE_NANOSECONDS
-    topic_qos.reliability().max_blocking_time.nanosec = 1000
+    topic_qos.reliability().max_blocking_time.nanosec = fastdds.Time_t.INFINITE_NANOSECONDS
     assert(fastdds.RELIABLE_RELIABILITY_QOS == topic_qos.reliability().kind)
     assert(100 == topic_qos.reliability().max_blocking_time.seconds)
-    assert(1000 == topic_qos.reliability().max_blocking_time.nanosec)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == topic_qos.reliability().max_blocking_time.nanosec)
 
 
     # .destination_order
@@ -790,7 +791,7 @@ def test_topic_qos():
     # .reliability
     assert(fastdds.RELIABLE_RELIABILITY_QOS == default_topic_qos.reliability().kind)
     assert(100 == default_topic_qos.reliability().max_blocking_time.seconds)
-    assert(1000 == default_topic_qos.reliability().max_blocking_time.nanosec)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == topic_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS == default_topic_qos.destination_order().kind)
