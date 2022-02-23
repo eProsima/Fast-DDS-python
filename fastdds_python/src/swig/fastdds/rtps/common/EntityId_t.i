@@ -30,6 +30,8 @@ long hash(const eprosima::fastrtps::rtps::EntityId_t& id)
 
 // Overloaded constructor ignored
 %ignore eprosima::fastrtps::rtps::EntityId_t::EntityId_t(EntityId_t &&);
+%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const EntityId_t&);
+%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, EntityId_t&);
 
 // Operators declared outside the class conflict with those declared for other types
 %ignore eprosima::fastrtps::rtps::operator==;

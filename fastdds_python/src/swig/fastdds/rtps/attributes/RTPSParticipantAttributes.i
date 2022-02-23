@@ -20,5 +20,6 @@
 %ignore eprosima::fastrtps::rtps::DiscoverySettings::setStaticEndpointXMLFilename;
 %ignore eprosima::fastrtps::rtps::DiscoverySettings::getStaticEndpointXMLFilename;
 %ignore eprosima::fastrtps::rtps::RTPSParticipantAttributes;
+%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const DiscoveryProtocol&);;
 
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.h"

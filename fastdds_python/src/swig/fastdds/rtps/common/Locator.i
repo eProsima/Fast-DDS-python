@@ -17,7 +17,11 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastrtps::rtps::Locator_t::Locator_t(eprosima::fastrtps::rtps::Locator_t&&);
+%ignore eprosima::fastrtps::rtps::Locator_t::Locator_t(Locator_t&&);
+%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const Locator_t&);
+%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, Locator_t&);
+%ignore eprosima::fastrtps::rtps::operator ==(const Locator_t&, const Locator_t&);
+%ignore eprosima::fastrtps::rtps::operator !=(const Locator_t&, const Locator_t&);
 
 %typemap(in) eprosima::fastrtps::rtps::octet[16](eprosima::fastrtps::rtps::octet temp[16])
 {
@@ -55,3 +59,18 @@
 }
 
 %include "fastdds/rtps/common/Locator.h"
+
+%extend eprosima::fastrtps::rtps::Locator_t
+{
+    bool operator==(const Locator_t& other_locator) const
+    {
+        return *self == other_locator;
+
+    }
+
+    bool operator!=(const Locator_t& other_locator) const
+    {
+        return *self == other_locator;
+
+    }
+}

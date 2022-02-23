@@ -61,10 +61,6 @@
 %ignore *::operator=;
 %ignore *::operator++;
 %ignore *::operator!;
-%ignore *::operator==;
-%ignore *::operator!=;
-%ignore *::operator<<;
-%ignore *::operator>>;
 
 // This ensures that the returned string references can be used with the string API
 // Otherwise, they will be wrapped objects without API

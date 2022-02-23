@@ -30,6 +30,8 @@ long hash(const eprosima::fastrtps::rtps::GUID_t& guid)
 %ignore eprosima::fastrtps::operator==(const GUID_t&, const GUID_t&);
 %ignore eprosima::fastrtps::operator!=(const GUID_t&, const GUID_t&);
 %ignore eprosima::fastrtps::operator<(const GUID_t&, const GUID_t&);
+%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const GUID_t&);
+%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, GUID_t&);
 
 %include "fastdds/rtps/common/Guid.h"
 

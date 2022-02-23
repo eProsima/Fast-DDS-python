@@ -33,6 +33,8 @@ long hash(const eprosima::fastrtps::rtps::InstanceHandle_t& handle)
 %rename(get_guid) eprosima::fastrtps::rtps::InstanceHandle_t::operator const GUID_t&;
 
 %ignore eprosima::fastrtps::rtps::InstanceHandleValue_t::operator [] const;
+%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const InstanceHandle_t&);
+%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, InstanceHandle_t&);
 %rename(read_pointer_cast) eprosima::fastrtps::rtps::InstanceHandleValue_t::operator const octet* () const;
 %rename(write_pointer_cast) eprosima::fastrtps::rtps::InstanceHandleValue_t::operator octet* ();
 
