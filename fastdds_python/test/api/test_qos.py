@@ -135,12 +135,20 @@ def test_datareader_qos():
     datareader_qos.durability_service().max_samples = 5
     datareader_qos.durability_service().max_instances = 20
     datareader_qos.durability_service().max_samples_per_instance = 30
+    datareader_qos.durability_service().service_cleanup_delay.seconds = \
+        fastdds.Time_t.INFINITE_SECONDS
+    datareader_qos.durability_service().service_cleanup_delay.nanosec = \
+        fastdds.Time_t.INFINITE_NANOSECONDS
     assert(fastdds.KEEP_ALL_HISTORY_QOS ==
            datareader_qos.durability_service().history_kind)
     assert(10 == datareader_qos.durability_service().history_depth)
     assert(5 == datareader_qos.durability_service().max_samples)
     assert(20 == datareader_qos.durability_service().max_instances)
     assert(30 == datareader_qos.durability_service().max_samples_per_instance)
+    assert(fastdds.Time_t.INFINITE_SECONDS ==
+           datareader_qos.durability_service().service_cleanup_delay.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
+           datareader_qos.durability_service().service_cleanup_delay.nanosec)
 
     # .reliable_reader_qos
     datareader_qos.reliable_reader_qos().times.initialAcknackDelay.seconds = 34
@@ -366,6 +374,10 @@ def test_datareader_qos():
     assert(20 == default_datareader_qos.durability_service().max_instances)
     assert(30 == default_datareader_qos.durability_service().
            max_samples_per_instance)
+    assert(fastdds.Time_t.INFINITE_SECONDS == default_datareader_qos.
+           durability_service().service_cleanup_delay.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == default_datareader_qos.
+           durability_service().service_cleanup_delay.nanosec)
 
     # .reliable_reader_qos
     assert(34 == default_datareader_qos.reliable_reader_qos().times.
@@ -447,12 +459,20 @@ def test_datawriter_qos():
     datawriter_qos.durability_service().max_samples = 5
     datawriter_qos.durability_service().max_instances = 20
     datawriter_qos.durability_service().max_samples_per_instance = 30
+    datawriter_qos.durability_service().service_cleanup_delay.seconds = \
+        fastdds.Time_t.INFINITE_SECONDS
+    datawriter_qos.durability_service().service_cleanup_delay.nanosec = \
+        fastdds.Time_t.INFINITE_NANOSECONDS
     assert(fastdds.KEEP_ALL_HISTORY_QOS ==
            datawriter_qos.durability_service().history_kind)
     assert(10 == datawriter_qos.durability_service().history_depth)
     assert(5 == datawriter_qos.durability_service().max_samples)
     assert(20 == datawriter_qos.durability_service().max_instances)
     assert(30 == datawriter_qos.durability_service().max_samples_per_instance)
+    assert(fastdds.Time_t.INFINITE_SECONDS ==
+           datawriter_qos.durability_service().service_cleanup_delay.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
+           datawriter_qos.durability_service().service_cleanup_delay.nanosec)
 
     # .deadline
     datawriter_qos.deadline().period.seconds = 10
@@ -690,6 +710,10 @@ def test_datawriter_qos():
     assert(20 == default_datawriter_qos.durability_service().max_instances)
     assert(30 == default_datawriter_qos.durability_service().
            max_samples_per_instance)
+    assert(fastdds.Time_t.INFINITE_SECONDS == default_datawriter_qos.
+           durability_service().service_cleanup_delay.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == default_datawriter_qos.
+           durability_service().service_cleanup_delay.nanosec)
 
     # .deadline
     assert(10 == default_datawriter_qos.deadline().period.seconds)
