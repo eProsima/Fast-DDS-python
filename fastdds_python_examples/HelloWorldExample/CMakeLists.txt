@@ -25,8 +25,9 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 
 project(HelloWorld)
 
-find_package(fastcdr REQUIRED CONFIG)
-find_package(fastrtps REQUIRED CONFIG)
+find_package(fastcdr REQUIRED)
+find_package(fastrtps REQUIRED)
+
 
 set(${PROJECT_NAME}_FILES
     HelloWorld.cxx
@@ -85,10 +86,11 @@ SWIG_LINK_LIBRARIES(${${PROJECT_NAME}_MODULE}
     )
 
 # Find the installation path
-execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}' ) )"
-OUTPUT_VARIABLE _ABS_PYTHON_MODULE_PATH
-OUTPUT_STRIP_TRAILING_WHITESPACE
-)
+execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
+    OUTPUT_VARIABLE _ABS_PYTHON_MODULE_PATH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+
 get_filename_component (_ABS_PYTHON_MODULE_PATH ${_ABS_PYTHON_MODULE_PATH} ABSOLUTE)
 file (RELATIVE_PATH _REL_PYTHON_MODULE_PATH ${CMAKE_INSTALL_PREFIX} ${_ABS_PYTHON_MODULE_PATH})
 SET (PYTHON_MODULE_PATH
@@ -104,3 +106,4 @@ install(TARGETS ${PROJECT_NAME}
 install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
 install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})
+
