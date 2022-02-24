@@ -40,8 +40,14 @@ def test_datareader_qos():
 
     # .reliability
     datareader_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
+    datareader_qos.reliability().max_blocking_time.seconds = 100
+    datareader_qos.reliability().max_blocking_time.nanosec = \
+        fastdds.Time_t.INFINITE_NANOSECONDS
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            datareader_qos.reliability().kind)
+    assert(100 == datareader_qos.reliability().max_blocking_time.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
+           datareader_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     datareader_qos.destination_order().kind = \
@@ -293,6 +299,10 @@ def test_datareader_qos():
     # .reliability
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            default_datareader_qos.reliability().kind)
+    assert(100 == default_datareader_qos.reliability().
+           max_blocking_time.seconds)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
+           default_datareader_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS ==
