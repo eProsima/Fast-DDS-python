@@ -240,8 +240,19 @@ def test_datareader_qos():
 
     # .data_sharing
     datareader_qos.data_sharing().on("/")
+    datareader_qos.data_sharing().set_max_domains(3)
     assert(fastdds.ON == datareader_qos.data_sharing().kind())
     assert("/" == datareader_qos.data_sharing().shm_directory())
+    assert(3 == datareader_qos.data_sharing().max_domains())
+    datareader_qos.data_sharing().clear()
+    assert(fastdds.AUTO == datareader_qos.data_sharing().kind())
+    assert("" == datareader_qos.data_sharing().shm_directory())
+    assert(0 == datareader_qos.data_sharing().max_domains())
+    datareader_qos.data_sharing().on("/")
+    datareader_qos.data_sharing().set_max_domains(3)
+    assert(fastdds.ON == datareader_qos.data_sharing().kind())
+    assert("/" == datareader_qos.data_sharing().shm_directory())
+    assert(3 == datareader_qos.data_sharing().max_domains())
 
     # Check agains default_topic_qos
     factory = fastdds.DomainParticipantFactory.get_instance()
@@ -407,6 +418,7 @@ def test_datareader_qos():
     # .data_sharing
     assert(fastdds.ON == default_datareader_qos.data_sharing().kind())
     assert("/" == default_datareader_qos.data_sharing().shm_directory())
+    assert(3 == default_datareader_qos.data_sharing().max_domains())
 
 
 def test_datawriter_qos():
@@ -628,8 +640,19 @@ def test_datawriter_qos():
 
     # .data_sharing
     datawriter_qos.data_sharing().on("/")
+    datawriter_qos.data_sharing().set_max_domains(3)
     assert(fastdds.ON == datawriter_qos.data_sharing().kind())
     assert("/" == datawriter_qos.data_sharing().shm_directory())
+    assert(3 == datawriter_qos.data_sharing().max_domains())
+    datawriter_qos.data_sharing().clear()
+    assert(fastdds.AUTO == datawriter_qos.data_sharing().kind())
+    assert("" == datawriter_qos.data_sharing().shm_directory())
+    assert(0 == datawriter_qos.data_sharing().max_domains())
+    datawriter_qos.data_sharing().on("/")
+    datawriter_qos.data_sharing().set_max_domains(3)
+    assert(fastdds.ON == datawriter_qos.data_sharing().kind())
+    assert("/" == datawriter_qos.data_sharing().shm_directory())
+    assert(3 == datawriter_qos.data_sharing().max_domains())
 
     # Check agains default_topic_qos
     factory = fastdds.DomainParticipantFactory.get_instance()
@@ -788,6 +811,7 @@ def test_datawriter_qos():
     # .data_sharing
     assert(fastdds.ON == default_datawriter_qos.data_sharing().kind())
     assert("/" == default_datawriter_qos.data_sharing().shm_directory())
+    assert(3 == default_datawriter_qos.data_sharing().max_domains())
 
 
 def test_topic_qos():
