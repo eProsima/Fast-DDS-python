@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.15)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -30,16 +30,13 @@ project(fastdds_python VERSION 0.2.0)
 # Dependencies
 ###############################################################################
 
-FIND_PACKAGE(SWIG REQUIRED)
-INCLUDE(${SWIG_USE_FILE})
-SET(CMAKE_SWIG_FLAGS "")
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
+set(CMAKE_SWIG_FLAGS "")
 
-find_package (PythonInterp REQUIRED)
+find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
 
-FIND_PACKAGE(PythonLibs REQUIRED)
-INCLUDE_DIRECTORIES(${PYTHON_INCLUDE_PATH})
-
-FIND_PACKAGE(fastrtps REQUIRED)
+find_package(fastrtps REQUIRED)
 
 ###############################################################################
 # Project subdirectories
