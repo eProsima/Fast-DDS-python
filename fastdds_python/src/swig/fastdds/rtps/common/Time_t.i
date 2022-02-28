@@ -93,3 +93,17 @@
     }
 }
 
+namespace eprosima {
+namespace fastrtps {
+
+struct Duration_t : public Time_t
+{
+    Duration_t();
+
+    Duration_t(
+            int32_t sec,
+            uint32_t nsec);
+};
+
+} // namespace fastrtps
+} // namespace eprosima
