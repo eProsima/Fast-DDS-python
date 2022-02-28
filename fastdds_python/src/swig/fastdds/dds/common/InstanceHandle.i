@@ -15,8 +15,8 @@
 %{
 #include "fastdds/rtps/common/InstanceHandle.h"
 
-// Define a hash method in global scope for GuidPrefix_t types
-// This is necessary if we want other classes to hash an internal GuidPrefix_t
+// Define a hash method in global scope for InstanceHandle_t types
+// This is necessary if we want other classes to hash an internal InstanceHandle_t
 long hash(const eprosima::fastrtps::rtps::InstanceHandle_t& handle)
 {
     long ret = 0;
@@ -37,6 +37,43 @@ long hash(const eprosima::fastrtps::rtps::InstanceHandle_t& handle)
 %ignore eprosima::fastrtps::rtps::operator >>(std::istream&, InstanceHandle_t&);
 %rename(read_pointer_cast) eprosima::fastrtps::rtps::InstanceHandleValue_t::operator const octet* () const;
 %rename(write_pointer_cast) eprosima::fastrtps::rtps::InstanceHandleValue_t::operator octet* ();
+
+%typemap(in) eprosima::fastrtps::rtps::InstanceHandleValue_t*(eprosima::fastrtps::rtps::InstanceHandleValue_t temp)
+{
+    if (PyTuple_Check($input))
+    {
+        eprosima::fastrtps::rtps::octet* buf = temp;
+        if (!PyArg_ParseTuple($input, "BBBBBBBBBBBBBBBB",
+                    buf, buf+1, buf+2, buf+3, buf+4, buf+5, buf+6, buf+7, buf+8,
+                    buf+9, buf+10, buf+11, buf+12, buf+13, buf+14, buf+15))
+        {
+            PyErr_SetString(PyExc_TypeError, "tuple must have 16 elements");
+            SWIG_fail;
+        }
+        $1 = &temp;
+    }
+    else
+    {
+        PyErr_SetString(PyExc_TypeError, "expected a tuple.");
+        SWIG_fail;
+    }
+}
+
+%typemap(out) eprosima::fastrtps::rtps::InstanceHandleValue_t*
+{
+    constexpr size_t ih_size = std::tuple_size<eprosima::fastrtps::rtps::KeyHash_t>::value;
+    PyObject* python_tuple = PyTuple_New(ih_size);
+
+    if (python_tuple)
+    {
+        for(size_t count = 0; count < ih_size; ++count)
+        {
+            PyTuple_SetItem(python_tuple, count, PyInt_FromLong((*$1)[count]));
+        }
+    }
+
+    $result = python_tuple;
+}
 
 %include "fastdds/rtps/common/InstanceHandle.h"
 

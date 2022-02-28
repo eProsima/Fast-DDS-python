@@ -44,6 +44,40 @@ namespace std {
     struct hash;
 }
 
+%typemap(in) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::EntityId_t::size](eprosima::fastrtps::rtps::octet temp[eprosima::fastrtps::rtps::EntityId_t::size])
+{
+    if (PyTuple_Check($input))
+    {
+        if (!PyArg_ParseTuple($input, "BBBB",
+                    temp, temp+1, temp+2, temp+3))
+        {
+            PyErr_SetString(PyExc_TypeError, "tuple must have 4 elements");
+            SWIG_fail;
+        }
+        $1 = &temp[0];
+    }
+    else
+    {
+        PyErr_SetString(PyExc_TypeError, "expected a tuple.");
+        SWIG_fail;
+    }
+}
+
+%typemap(out) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::EntityId_t::size]
+{
+    PyObject* python_tuple = PyTuple_New(eprosima::fastrtps::rtps::EntityId_t::size);
+
+    if (python_tuple)
+    {
+        for(size_t count = 0; count < eprosima::fastrtps::rtps::EntityId_t::size; ++count)
+        {
+            PyTuple_SetItem(python_tuple, count, PyInt_FromLong($1[count]));
+        }
+    }
+
+    $result = python_tuple;
+}
+
 %include "fastdds/rtps/common/EntityId_t.hpp"
 
 // Declare the comparison operators as internal to the class
