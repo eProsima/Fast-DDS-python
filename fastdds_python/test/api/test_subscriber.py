@@ -1,9 +1,386 @@
 import fastdds
+import test_complete
 
 
 class SubscriberListener (fastdds.SubscriberListener):
     def __init__(self):
         super().__init__()
+
+
+class DataReaderListener (fastdds.DataReaderListener):
+    def __init__(self):
+        super().__init__()
+
+
+def test_create_and_delete_datareader():
+    """
+    This test checks:
+    - Subscriber::create_datareader
+    - Subscriber::delete_datareader
+    - DataReader::get_status_mask
+    - StatusMask::operator ==
+    - StatusMask::operator <<
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    # Overload 1 - Success
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    listener = DataReaderListener()
+    assert(listener is not None)
+
+    # Overload 1
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+
+    # Overload 2
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT, listener)
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+
+    # Overload 3
+    # - StatusMask.none
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.none())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.none() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_none())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_none() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.data_available
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.data_available())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.data_available() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_data_available())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_data_available() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.data_on_readers
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.data_on_readers())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.data_on_readers() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_data_on_readers())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_data_on_readers() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.inconsistent_topic
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.inconsistent_topic())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.inconsistent_topic() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_inconsistent_topic())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_inconsistent_topic() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.liveliness_changed
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.liveliness_changed())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.liveliness_changed() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_liveliness_changed())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_liveliness_changed() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.liveliness_lost
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.liveliness_lost())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.liveliness_lost() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_liveliness_lost())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_liveliness_lost() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.offered_deadline_missed
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.offered_deadline_missed())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.offered_deadline_missed() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_offered_deadline_missed())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_offered_deadline_missed() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.offered_incompatible_qos
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.offered_incompatible_qos())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.offered_incompatible_qos() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_offered_incompatible_qos())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_offered_incompatible_qos() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.publication_matched
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.publication_matched())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.publication_matched() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_publication_matched())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_publication_matched() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.requested_deadline_missed
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.requested_deadline_missed())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.requested_deadline_missed() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_requested_deadline_missed())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_requested_deadline_missed() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.requested_incompatible_qos
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.requested_incompatible_qos())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.requested_incompatible_qos() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_requested_incompatible_qos())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_requested_incompatible_qos() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.sample_lost
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.sample_lost())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.sample_lost() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_sample_lost())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_sample_lost() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.sample_rejected
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.sample_rejected())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.sample_rejected() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_sample_rejected())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_sample_rejected() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.subscription_matched
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.subscription_matched())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.subscription_matched() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_subscription_matched())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_subscription_matched() ==
+           datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - StatusMask.all
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.all())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask_all())
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask_all() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    # - Mix all  values of StatusMask
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT,
+            listener, fastdds.StatusMask.data_available() <<
+            fastdds.StatusMask.data_on_readers() <<
+            fastdds.StatusMask.inconsistent_topic() <<
+            fastdds.StatusMask.liveliness_changed() <<
+            fastdds.StatusMask.liveliness_lost() <<
+            fastdds.StatusMask.offered_deadline_missed() <<
+            fastdds.StatusMask.offered_incompatible_qos() <<
+            fastdds.StatusMask.publication_matched() <<
+            fastdds.StatusMask.requested_deadline_missed() <<
+            fastdds.StatusMask.requested_incompatible_qos() <<
+            fastdds.StatusMask.sample_lost() <<
+            fastdds.StatusMask.sample_rejected() <<
+            fastdds.StatusMask.subscription_matched()
+            )
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    m = fastdds.StatusMask_data_available() << \
+        fastdds.StatusMask_data_on_readers() << \
+        fastdds.StatusMask_inconsistent_topic() << \
+        fastdds.StatusMask_liveliness_changed() << \
+        fastdds.StatusMask_liveliness_lost() << \
+        fastdds.StatusMask_offered_deadline_missed() << \
+        fastdds.StatusMask_offered_incompatible_qos() << \
+        fastdds.StatusMask_publication_matched() << \
+        fastdds.StatusMask_requested_deadline_missed() << \
+        fastdds.StatusMask_requested_incompatible_qos() << \
+        fastdds.StatusMask_sample_lost() << \
+        fastdds.StatusMask_sample_rejected() << \
+        fastdds.StatusMask_subscription_matched()
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT, listener, m)
+    assert(datareader is not None)
+    assert(datareader.is_enabled())
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
 
 
 def test_enable():
