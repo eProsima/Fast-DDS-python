@@ -279,6 +279,11 @@ def test_datareader_qos():
 
     default_datareader_qos = fastdds.DataReaderQos()
     subscriber.get_default_datareader_qos(default_datareader_qos)
+
+    # Revert changes in default
+    datareader_qos = fastdds.DataReaderQos()
+    subscriber.set_default_datareader_qos(datareader_qos)
+
     participant.delete_subscriber(subscriber)
     factory.delete_participant(participant)
 
@@ -349,8 +354,8 @@ def test_datareader_qos():
     # .time_based_filter
     assert(fastdds.Time_t.INFINITE_SECONDS == default_datareader_qos.
            time_based_filter().minimum_separation.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           datareader_qos.time_based_filter().minimum_separation.nanosec)
+    assert(fastdds.Time_t.INFINITE_NANOSECONDS == default_datareader_qos.
+           time_based_filter().minimum_separation.nanosec)
 
     # .reader_data_lifecycle
     assert(100 == default_datareader_qos.reader_data_lifecycle().
@@ -695,6 +700,11 @@ def test_datawriter_qos():
 
     default_datawriter_qos = fastdds.DataWriterQos()
     publisher.get_default_datawriter_qos(default_datawriter_qos)
+
+    # Revert changes in default
+    datawriter_qos = fastdds.DataWriterQos()
+    publisher.set_default_datawriter_qos(datawriter_qos)
+
     participant.delete_publisher(publisher)
     factory.delete_participant(participant)
 
@@ -739,7 +749,7 @@ def test_datawriter_qos():
     assert(100 == default_datawriter_qos.reliability().
            max_blocking_time.seconds)
     assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           datawriter_qos.reliability().max_blocking_time.nanosec)
+           default_datawriter_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS ==
@@ -789,7 +799,8 @@ def test_datawriter_qos():
     # .publish_mode
     assert(fastdds.ASYNCHRONOUS_PUBLISH_MODE ==
            default_datawriter_qos.publish_mode().kind)
-    assert('Prueba' == datawriter_qos.publish_mode().flow_controller_name)
+    assert('Prueba' == default_datawriter_qos.publish_mode().
+            flow_controller_name)
 
     # .properties
     count = 1
@@ -968,6 +979,11 @@ def test_topic_qos():
 
     default_topic_qos = fastdds.TopicQos()
     participant.get_default_topic_qos(default_topic_qos)
+
+    # Revert changes in default
+    topic_qos = fastdds.TopicQos()
+    participant.set_default_topic_qos(topic_qos)
+
     factory.delete_participant(participant)
 
     # .topic_data
@@ -1017,7 +1033,7 @@ def test_topic_qos():
            default_topic_qos.reliability().kind)
     assert(100 == default_topic_qos.reliability().max_blocking_time.seconds)
     assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           topic_qos.reliability().max_blocking_time.nanosec)
+           default_topic_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS ==
@@ -1095,6 +1111,11 @@ def test_subscriber_qos():
 
     default_subscriber_qos = fastdds.SubscriberQos()
     participant.get_default_subscriber_qos(default_subscriber_qos)
+
+    # Revert changes in default
+    subscriber_qos = fastdds.SubscriberQos()
+    participant.set_default_subscriber_qos(subscriber_qos)
+
     factory.delete_participant(participant)
 
     # .presentation
@@ -1175,6 +1196,11 @@ def test_publisher_qos():
 
     default_publisher_qos = fastdds.PublisherQos()
     participant.get_default_publisher_qos(default_publisher_qos)
+
+    # Revert changes in default
+    publisher_qos = fastdds.PublisherQos()
+    participant.set_default_publisher_qos(publisher_qos)
+
     factory.delete_participant(participant)
 
     # .presentation
@@ -1560,6 +1586,10 @@ def test_domain_participant_qos():
     default_participant_qos = fastdds.DomainParticipantQos()
     factory.get_default_participant_qos(default_participant_qos)
 
+    # Revert changes in default
+    participant_qos = fastdds.DomainParticipantQos()
+    factory.set_default_participant_qos(participant_qos)
+
     # .allocation
     assert(10 == default_participant_qos.allocation().
            data_limits.max_properties)
@@ -1632,7 +1662,7 @@ def test_domain_participant_qos():
            listen_socket_buffer_size)
     assert(20000 == default_participant_qos.transport().
            send_socket_buffer_size)
-    assert(not participant_qos.transport().use_builtin_transports)
+    assert(not default_participant_qos.transport().use_builtin_transports)
 
     # .user_data
     count = 1
