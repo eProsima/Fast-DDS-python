@@ -32,7 +32,7 @@ def test_create_and_delete_publisher():
     - StatusMask::operator <<
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -385,7 +385,7 @@ def test_create_and_delete_subscriber():
     - StatusMask::operator <<
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -744,7 +744,7 @@ def test_create_and_delete_topic():
     - StatusMask::operator <<
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1130,13 +1130,52 @@ def test_create_and_delete_topic():
            factory.delete_participant(participant))
 
 
+#
+#    /**
+#     * @brief This operation enables the DomainParticipant
+#     *
+#     * @return RETCODE_OK
+#     */
+#    RTPS_DllAPI ReturnCode_t enable() override;
+#
+#    // DomainParticipant specific methods from DDS API
+def test_enable():
+    """
+    This test checks:
+    - DomainParticipant::enable
+    - DomainParticipant::is_enabled
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    factory_qos = fastdds.DomainParticipantFactoryQos()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.get_qos(factory_qos))
+    factory_qos.entity_factory().autoenable_created_entities = False
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.set_qos(factory_qos))
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+
+    assert(not participant.is_enabled())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.enable())
+    assert(participant.is_enabled())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+    factory_qos.entity_factory().autoenable_created_entities = True
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.set_qos(factory_qos))
+
+
 def test_find_topic():
     """
     This test checks:
     - DomainParticipant::find_topic
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1166,7 +1205,7 @@ def test_get_domain_id():
     - DomainParticipant::get_domain_id
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             32, fastdds.PARTICIPANT_QOS_DEFAULT)
 
@@ -1183,7 +1222,7 @@ def test_get_instance_handle():
     - DomainParticipant::guid
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
 
@@ -1228,7 +1267,7 @@ def test_get_set_listener():
     - StatusMask::operator <<
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1548,7 +1587,7 @@ def test_get_set_qos():
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     qos = fastdds.DomainParticipantQos()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(0, qos)
     assert(participant is not None)
 
@@ -1576,7 +1615,7 @@ def test_ignore_participant():
     - DomainParticipant::ignore_participant
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1596,7 +1635,7 @@ def test_ignore_publication():
     - DomainParticipant::ignore_publication
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1616,7 +1655,7 @@ def test_ignore_subscription():
     - DomainParticipant::ignore_subscription
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1636,7 +1675,7 @@ def test_ignore_topic():
     - DomainParticipant::ignore_topic
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1656,7 +1695,7 @@ def test_lookup_topicdescription():
     - DomainParticipant::lookup_topicdescription
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
+    assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
@@ -1681,15 +1720,6 @@ def test_lookup_topicdescription():
 
 
 
-#
-#    /**
-#     * @brief This operation enables the DomainParticipant
-#     *
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t enable() override;
-#
-#    // DomainParticipant specific methods from DDS API
 #
 #
 #    /**
