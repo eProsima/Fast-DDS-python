@@ -29,6 +29,17 @@
 %ignore eprosima::fastrtps::types::MemberFlag::MemberFlag(MemberFlag &&);
 %ignore eprosima::fastrtps::types::TypeFlag::TypeFlag(TypeFlag &&);
 
+// Ignore type ancillary within the namespace
+%ignore eprosima::fastrtps::types::to_size_t;
+
+%ignore eprosima::fastrtps::types::MemberFlag::serialize;
+%ignore eprosima::fastrtps::types::MemberFlag::deserialize;
+%ignore eprosima::fastrtps::types::MemberFlag::getCdrSerializedSize;
+
+%ignore eprosima::fastrtps::types::TypeFlag::serialize;
+%ignore eprosima::fastrtps::types::TypeFlag::deserialize;
+%ignore eprosima::fastrtps::types::TypeFlag::getCdrSerializedSize;
+
 %include "fastrtps/types/TypesBase.h"
 
 %extend eprosima::fastrtps::types::ReturnCode_t {

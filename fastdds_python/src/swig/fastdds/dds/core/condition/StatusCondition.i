@@ -13,10 +13,10 @@
 // limitations under the License.
 
 %{
-#include "fastdds/dds/topic/Topic.hpp"
+#include "fastdds/dds/core/condition/StatusCondition.hpp"
 %}
 
-// Ignore get_inconsistent_topic_status which is not exported
-%ignore eprosima::fastdds::dds::Topic::get_inconsistent_topic_status;
+// Ignore StatusCondition constructor
+%ignore eprosima::fastdds::dds::StatusCondition::StatusCondition;
 
-%include "fastdds/dds/topic/Topic.hpp"
+%include "fastdds/dds/core/condition/StatusCondition.hpp"

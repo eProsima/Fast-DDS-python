@@ -16,4 +16,6 @@
 #include "fastdds/dds/subscriber/qos/ReaderQos.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::ReaderQos::clear;
+
 %include "fastdds/dds/subscriber/qos/ReaderQos.hpp"
