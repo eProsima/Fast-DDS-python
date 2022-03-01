@@ -1130,15 +1130,33 @@ def test_create_and_delete_topic():
            factory.delete_participant(participant))
 
 
-#
-#    /**
-#     * @brief This operation enables the DomainParticipant
-#     *
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t enable() override;
-#
-#    // DomainParticipant specific methods from DDS API
+def test_delete_contained_entities():
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+
+    publisher = participant.create_publisher(
+            fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    subscriber = participant.create_subscriber(
+            fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_contained_entities())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_enable():
     """
     This test checks:
@@ -1199,6 +1217,25 @@ def test_find_topic():
            factory.delete_participant(participant))
 
 
+def test_get_builtin_subscriber():
+    """
+    This test checks:
+    - DomainParticipant::get_builtin_subscriber
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+
+    builtin_subscriber = participant.get_builtin_subscriber()
+    assert(builtin_subscriber is None)
+    # assert(builtin_subscriber.is_enabled())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_domain_id():
     """
     This test checks:
@@ -1208,6 +1245,7 @@ def test_get_domain_id():
     assert(factory is not None)
     participant = factory.create_participant(
             32, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
 
     assert(32 == participant.get_domain_id())
 
@@ -1848,13 +1886,6 @@ def test_lookup_topicdescription():
 #     * @return Pointer to the builtin Subscriber, nullptr in error case
 #     */
 #    RTPS_DllAPI const Subscriber* get_builtin_subscriber() const;
-#
-#    /**
-#     * Deletes all the entities that were created by means of the “create” methods
-#     *
-#     * @return RETURN_OK code if everything correct, error code otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t delete_contained_entities();
 #
 #    /**
 #     * This operation manually asserts the liveliness of the DomainParticipant.
