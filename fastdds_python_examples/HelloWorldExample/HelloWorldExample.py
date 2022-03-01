@@ -14,19 +14,21 @@
 """
 Script to test Fast DDS python bindings
 """
+import os
 import argparse
-import signal
 from threading import Condition
+
+# until https://bugs.python.org/issue46276 is not fixed we can apply this
+# workaround on windows
+#if os.name == 'nt':
+#    import win32api
+#    win32api.LoadLibrary('HelloWorld')
 
 import fastdds
 import HelloWorld
 
 DESCRIPTION = """HelloWorld example for Fast DDS python bindings"""
 USAGE = ('python3 HelloWorldExample.py -p publisher|subscriber [-d domainID -m machineID]')
-
-# To capture ctrl+C
-def signal_handler(sig, frame):
-    print('Interrupted!')
 
 class ReaderListener(fastdds.DataReaderListener):
     def __init__(self):
@@ -36,7 +38,7 @@ class ReaderListener(fastdds.DataReaderListener):
         info = fastdds.SampleInfo()
         data = HelloWorld.HelloWorld()
         reader.take_next_sample(data, info)
-    
+
         print("Received {message} : {index}".format(message=data.message(), index=data.index()))
 
     def on_subscription_matched(self, datareader, info) :
@@ -90,16 +92,16 @@ class Reader():
     self.subscriber.get_default_datareader_qos(self.reader_qos)
     self.reader = self.subscriber.create_datareader(self.topic, self.reader_qos, self.listener)
 
-  def delete(self):
+  def __del__(self):
     factory = fastdds.DomainParticipantFactory.get_instance()
     self.participant.delete_contained_entities()
     factory.delete_participant(self.participant)
 
   def run(self):
-    signal.signal(signal.SIGINT, signal_handler)
-    print('Press Ctrl+C to stop')
-    signal.pause()
-    self.delete()
+    try:
+      input('Press any key to stop')
+    except:
+      pass
 
 class Writer:
   def __init__(self, domain, machine):
@@ -143,7 +145,7 @@ class Writer:
     print("Sending {message} : {index}".format(message=data.message(), index=data.index()))
     self.index = self.index + 1
 
-  def delete(self):
+  def __del__(self):
     factory = fastdds.DomainParticipantFactory.get_instance()
     self.participant.delete_contained_entities()
     factory.delete_participant(self.participant)
@@ -152,7 +154,6 @@ class Writer:
     self.wait_discovery()
     for x in range(10) :
         self.write()
-    self.delete()
 
   def wait_discovery(self) :
     self._cvDiscovery.acquire()

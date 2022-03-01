@@ -16,4 +16,7 @@
 #include "fastdds/dds/subscriber/Subscriber.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::Subscriber::Subscriber;
+%ignore eprosima::fastdds::dds::Subscriber::~Subscriber;
+
 %include "fastdds/dds/subscriber/Subscriber.hpp"
