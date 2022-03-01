@@ -12,6 +12,30 @@ class DataReaderListener (fastdds.DataReaderListener):
         super().__init__()
 
 
+def test_access():
+    """
+    This test checks:
+    - ::resume_publications
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           subscriber.begin_access())
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           subscriber.end_access())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_create_and_delete_datareader():
     """
     This test checks:

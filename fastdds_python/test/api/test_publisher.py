@@ -12,6 +12,31 @@ class DataWriterListener (fastdds.DataWriterListener):
         super().__init__()
 
 
+def test_coherent_changes():
+    """
+    This test checks:
+    - Publisher::begin_coherent_changes
+    - Publisher::end_coherent_changes
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           publisher.begin_coherent_changes())
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           publisher.end_coherent_changes())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_create_and_delete_datawriter():
     """
     This test checks:
@@ -810,6 +835,32 @@ def test_lookup_datawriter():
            factory.delete_participant(participant))
 
 
+def test_suspend_publications():
+    """
+    This test checks:
+    - Publisher::suspend_publications
+    - Publisher::resume_publications
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           publisher.suspend_publications())
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           publisher.resume_publications())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+
 #
 #    /**
 #     * This operation creates a DataWriter. The returned DataWriter will be attached and belongs to the Publisher.
@@ -826,47 +877,6 @@ def test_lookup_datawriter():
 #            DataWriterListener* listener = nullptr,
 #            const StatusMask& mask = StatusMask::all());
 #
-#
-#    /**
-#     * This operation retrieves a previously created DataWriter belonging to the Publisher that is attached to a
-#     * Topic with a matching topic_name. If no such DataWriter exists, the operation will return nullptr.
-#     *
-#     * If multiple DataWriter attached to the Publisher satisfy this condition, then the operation will return
-#     * one of them. It is not specified which one.
-#     *
-#     * @param topic_name Name of the Topic
-#     * @return Pointer to a previously created DataWriter associated to a Topic with the requested topic_name
-#     */
-#    RTPS_DllAPI DataWriter* lookup_datawriter(
-#            const std::string& topic_name) const;
-#
-#    /**
-#     * @brief Indicates to FastDDS that the contained DataWriters are about to be modified
-#     *
-#     * @return RETCODE_OK if successful, an error code otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t suspend_publications();
-#
-#    /**
-#     * @brief Indicates to FastDDS that the modifications to the DataWriters are complete.
-#     *
-#     * @return RETCODE_OK if successful, an error code otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t resume_publications();
-#
-#    /**
-#     * @brief Signals the beginning of a set of coherent cache changes using the Datawriters attached to the publisher
-#     *
-#     * @return RETCODE_OK if successful, an error code otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t begin_coherent_changes();
-#
-#    /**
-#     * @brief Signals the end of a set of coherent cache changes
-#     *
-#     * @return RETCODE_OK if successful, an error code otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t end_coherent_changes();
 #
 #    /**
 #     * This operation blocks the calling thread until either all data written by the reliable DataWriter entities
