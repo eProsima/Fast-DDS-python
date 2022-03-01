@@ -79,6 +79,9 @@
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 #define FASTDDS_TODO_BEFORE(major, minor, msg)
 
+// Defined template for std::vector<std::string>
+%template(StringVector) std::vector<std::string>;
+
 // Predeclaration of namespaces and/or classes not exported to the target language,
 // but that are part of the Fast DDS public API
 // SWIG will make an empty wrapper around these, but still needs to know they exists

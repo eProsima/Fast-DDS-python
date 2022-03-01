@@ -1617,6 +1617,31 @@ def test_get_set_listener():
            factory.delete_participant(participant))
 
 
+#    /**
+#     * @brief Getter for the participant names
+#     *
+#     * @return Vector with the names
+#     */
+#    RTPS_DllAPI std::vector<std::string> get_participant_names() const;
+def test_get_partitipant_names():
+    """
+    This test checks:
+    - DomainParticipant::get_participant_names
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    qos = fastdds.DomainParticipantQos()
+    qos.name('TestName')
+    participant = factory.create_participant(0, qos)
+    assert(participant is not None)
+
+    names = participant.get_participant_names()
+    assert('TestName' == names[0])
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_set_qos():
     """
     This test checks:
@@ -1624,8 +1649,8 @@ def test_get_set_qos():
     - DomainParticipant::set_qos
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
-    qos = fastdds.DomainParticipantQos()
     assert(factory is not None)
+    qos = fastdds.DomainParticipantQos()
     participant = factory.create_participant(0, qos)
     assert(participant is not None)
 
@@ -1905,49 +1930,6 @@ def test_lookup_topicdescription():
 #    RTPS_DllAPI ReturnCode_t assert_liveliness();
 #
 #    /**
-#     * This operation sets a default value of the Publisher QoS policies which will be used for newly created
-#     * Publisher entities in the case where the QoS policies are defaulted in the create_publisher operation.
-#     *
-#     * This operation will check that the resulting policies are self consistent; if they are not,
-#     * the operation will have no effect and return false.
-#     *
-#     * The special value PUBLISHER_QOS_DEFAULT may be passed to this operation to indicate that the default QoS
-#     * should be reset back to the initial values the factory would use, that is the values that would be used
-#     * if the set_default_publisher_qos operation had never been called.
-#     *
-#     * @param qos PublisherQos to be set
-#     * @return RETCODE_INCONSISTENT_POLICY if the Qos is not self consistent and RETCODE_OK if the qos is changed correctly.
-#     */
-#    RTPS_DllAPI ReturnCode_t set_default_publisher_qos(
-#            const PublisherQos& qos);
-#
-#    /**
-#     * This operation retrieves the default value of the Publisher QoS, that is, the QoS policies which will be used
-#     * for newly created Publisher entities in the case where the QoS policies are defaulted in the
-#     * create_publisher operation.
-#     *
-#     * The values retrieved get_default_publisher_qos will match the set of values specified on the last successful
-#     * call to set_default_publisher_qos, or else, if the call was never made, the default values.
-#     *
-#     * @return Current default publisher qos.
-#     */
-#    RTPS_DllAPI const PublisherQos& get_default_publisher_qos() const;
-#
-#    /**
-#     * This operation retrieves the default value of the Publisher QoS, that is, the QoS policies which will be used
-#     * for newly created Publisher entities in the case where the QoS policies are defaulted in the
-#     * create_publisher operation.
-#     *
-#     * The values retrieved get_default_publisher_qos will match the set of values specified on the last successful
-#     * call to set_default_publisher_qos, or else, if the call was never made, the default values.
-#     *
-#     * @param qos PublisherQos reference where the default_publisher_qos is returned
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_default_publisher_qos(
-#            PublisherQos& qos) const;
-#
-#    /**
 #     * Fills the PublisherQos with the values of the XML profile.
 #     *
 #     * @param profile_name Publisher profile name.
@@ -1958,48 +1940,6 @@ def test_lookup_topicdescription():
 #            const std::string& profile_name,
 #            PublisherQos& qos) const;
 #
-#    /**
-#     * This operation sets a default value of the Subscriber QoS policies that will be used for newly created
-#     * Subscriber entities in the case where the QoS policies are defaulted in the create_subscriber operation.
-#     *
-#     * This operation will check that the resulting policies are self consistent; if they are not,
-#     * the operation will have no effect and return false.
-#     *
-#     * The special value SUBSCRIBER_QOS_DEFAULT may be passed to this operation to indicate that the default QoS
-#     * should be reset back to the initial values the factory would use, that is the values that would be used
-#     * if the set_default_subscriber_qos operation had never been called.
-#     *
-#     * @param qos SubscriberQos to be set
-#     * @return RETCODE_INCONSISTENT_POLICY if the Qos is not self consistent and RETCODE_OK if the qos is changed correctly.
-#     */
-#    RTPS_DllAPI ReturnCode_t set_default_subscriber_qos(
-#            const SubscriberQos& qos);
-#
-#    /**
-#     * This operation retrieves the default value of the Subscriber QoS, that is, the QoS policies which will be used
-#     * for newly created Subscriber entities in the case where the QoS policies are defaulted in the
-#     * create_subscriber operation.
-#     *
-#     * The values retrieved get_default_subscriber_qos will match the set of values specified on the last successful
-#     * call to set_default_subscriber_qos, or else, if the call was never made, the default values.
-#     *
-#     * @return Current default subscriber qos.
-#     */
-#    RTPS_DllAPI const SubscriberQos& get_default_subscriber_qos() const;
-#
-#    /**
-#     * This operation retrieves the default value of the Subscriber QoS, that is, the QoS policies which will be used
-#     * for newly created Subscriber entities in the case where the QoS policies are defaulted in the
-#     * create_subscriber operation.
-#     *
-#     * The values retrieved get_default_subscriber_qos will match the set of values specified on the last successful
-#     * call to set_default_subscriber_qos, or else, if the call was never made, the default values.
-#     *
-#     * @param qos SubscriberQos reference where the default_subscriber_qos is returned
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_default_subscriber_qos(
-#            SubscriberQos& qos) const;
 #
 #    /**
 #     * Fills the SubscriberQos with the values of the XML profile.
@@ -2012,48 +1952,6 @@ def test_lookup_topicdescription():
 #            const std::string& profile_name,
 #            SubscriberQos& qos) const;
 #
-#    /**
-#     * This operation sets a default value of the Topic QoS policies which will be used for newly created
-#     * Topic entities in the case where the QoS policies are defaulted in the create_topic operation.
-#     *
-#     * This operation will check that the resulting policies are self consistent; if they are not, the operation
-#     * will have no effect and return INCONSISTENT_POLICY.
-#     *
-#     * The special value TOPIC_QOS_DEFAULT may be passed to this operation to indicate that the default QoS
-#     * should be reset back to the initial values the factory would use, that is the values that would be used
-#     * if the set_default_topic_qos operation had never been called.
-#     *
-#     * @param qos TopicQos to be set
-#     * @return RETCODE_INCONSISTENT_POLICY if the Qos is not self consistent and RETCODE_OK if the qos is changed correctly.
-#     */
-#    RTPS_DllAPI ReturnCode_t set_default_topic_qos(
-#            const TopicQos& qos);
-#
-#    /**
-#     * This operation retrieves the default value of the Topic QoS, that is, the QoS policies that will be used
-#     * for newly created Topic entities in the case where the QoS policies are defaulted in the create_topic
-#     * operation.
-#     *
-#     * The values retrieved get_default_topic_qos will match the set of values specified on the last successful
-#     * call to set_default_topic_qos, or else, TOPIC_QOS_DEFAULT if the call was never made.
-#     *
-#     * @return Current default topic qos.
-#     */
-#    RTPS_DllAPI const TopicQos& get_default_topic_qos() const;
-#
-#    /**
-#     * This operation retrieves the default value of the Topic QoS, that is, the QoS policies that will be used
-#     * for newly created Topic entities in the case where the QoS policies are defaulted in the create_topic
-#     * operation.
-#     *
-#     * The values retrieved get_default_topic_qos will match the set of values specified on the last successful
-#     * call to set_default_topic_qos, or else, TOPIC_QOS_DEFAULT if the call was never made.
-#     *
-#     * @param qos TopicQos reference where the default_topic_qos is returned
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_default_topic_qos(
-#            TopicQos& qos) const;
 #
 #    /**
 #     * Fills the TopicQos with the values of the XML profile.
@@ -2172,15 +2070,6 @@ def test_lookup_topicdescription():
 #     */
 #    RTPS_DllAPI TypeSupport find_type(
 #            const std::string& type_name) const;
-#
-#    // From here legacy RTPS methods.
-#
-#    /**
-#     * @brief Getter for the Participant GUID
-#     *
-#     * @return A reference to the GUID
-#     */
-#    RTPS_DllAPI const fastrtps::rtps::GUID_t& guid() const;
 #
 #    /**
 #     * @brief Getter for the participant names
