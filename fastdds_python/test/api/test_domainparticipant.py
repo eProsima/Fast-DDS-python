@@ -22,6 +22,28 @@ class TopicListener (fastdds.TopicListener):
         super().__init__()
 
 
+def test_contains_entity():
+    """
+    This test checks:
+    - DomainParticipant::contains_entity
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+
+    assert(participant.contains_entity(publisher.get_instance_handle()))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_create_and_delete_publisher():
     """
     This test checks:
@@ -1236,6 +1258,26 @@ def test_get_builtin_subscriber():
            factory.delete_participant(participant))
 
 
+def test_get_discovered_participants():
+    """
+    This test checks:
+    - DomainParticipant::get_discovered_participants
+    - DomainParticipant::get_discovered_participant_data
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    participant2 = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant2 is not None)
+
+    ihs = fastdds.InstanceHandleVector()
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           participant.get_discovered_participants(ihs))
+
+
 def test_get_domain_id():
     """
     This test checks:
@@ -1617,12 +1659,6 @@ def test_get_set_listener():
            factory.delete_participant(participant))
 
 
-#    /**
-#     * @brief Getter for the participant names
-#     *
-#     * @return Vector with the names
-#     */
-#    RTPS_DllAPI std::vector<std::string> get_participant_names() const;
 def test_get_partitipant_names():
     """
     This test checks:
@@ -1906,13 +1942,6 @@ def test_lookup_topicdescription():
 #            const MultiTopic* a_multitopic);
 #
 #    /**
-#     * Allows access to the builtin Subscriber.
-#     *
-#     * @return Pointer to the builtin Subscriber, nullptr in error case
-#     */
-#    RTPS_DllAPI const Subscriber* get_builtin_subscriber() const;
-#
-#    /**
 #     * This operation manually asserts the liveliness of the DomainParticipant.
 #     * This is used in combination with the LIVELINESS QoS policy to indicate to the Service that the entity
 #     * remains active.
@@ -1963,26 +1992,6 @@ def test_lookup_topicdescription():
 #    RTPS_DllAPI ReturnCode_t get_topic_qos_from_profile(
 #            const std::string& profile_name,
 #            TopicQos& qos) const;
-#
-#    /**
-#     * Retrieves the list of DomainParticipants that have been discovered in the domain and are not "ignored".
-#     *
-#     * @param[out]  participant_handles Reference to the vector where discovered participants will be returned
-#     * @return RETCODE_OK if everything correct, error code otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t get_discovered_participants(
-#            std::vector<InstanceHandle_t>& participant_handles) const;
-#
-#    /**
-#     * Retrieves the DomainParticipant data of a discovered not ignored participant.
-#     *
-#     * @param[out]  participant_data Reference to the ParticipantBuiltinTopicData object to return the data
-#     * @param participant_handle InstanceHandle of DomainParticipant to retrieve the data from
-#     * @return RETCODE_OK if everything correct, PRECONDITION_NOT_MET if participant does not exist
-#     */
-#    RTPS_DllAPI ReturnCode_t get_discovered_participant_data(
-#            builtin::ParticipantBuiltinTopicData& participant_data,
-#            const InstanceHandle_t& participant_handle) const;
 #
 #    /**
 #     * Retrieves the list of topics that have been discovered in the domain and are not "ignored".

@@ -115,6 +115,7 @@ namespace builtin {
 %include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/Guid.i"
 %include "fastdds/rtps/common/PortParameters.i"
+%include "fastdds/rtps/common/InstanceHandle.i"
 %include "fastrtps/types/TypesBase.i"
 %include "fastdds/rtps/resources/ResourceManagement.i"
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
