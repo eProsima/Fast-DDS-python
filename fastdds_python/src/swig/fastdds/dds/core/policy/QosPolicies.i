@@ -108,15 +108,53 @@ public:
     }
 }
 
-%extend eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet> {
+%exception eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::__getitem__
+{
+    try
+    {
+        $action
+    }
+    catch(std::out_of_range)
+    {
+        SWIG_exception(SWIG_IndexError, "Index out of bounds");
+    }
+}
+
+%extend eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>
+{
     OctetResourceLimitedVectorIterator __iter__()
     {
         // return a constructed Iterator object
         return OctetResourceLimitedVectorIterator($self->begin(), $self->end());
     }
+
+    size_t __len__() const
+    {
+        return self->size();
+    }
+
+    eprosima::fastrtps::rtps::octet __getitem__(int i)
+    {
+        if (self->size() <= i)
+        {
+            throw std::out_of_range("Index out of bounds");
+        }
+        return (*self)[i];
+    }
 }
 
-// TODO (richiware) missing exceptions
+%exception eprosima::fastdds::dds::PartitionQosPolicy::__getitem__
+{
+    try
+    {
+        $action
+    }
+    catch(std::out_of_range)
+    {
+        SWIG_exception(SWIG_IndexError, "Index out of bounds");
+    }
+}
+
 %extend eprosima::fastdds::dds::PartitionQosPolicy
 {
     size_t __len__() const
@@ -126,6 +164,11 @@ public:
 
     std::string __getitem__(int i)
     {
+        if (self->size() <= i)
+        {
+            throw std::out_of_range("Index out of bounds");
+        }
+
         auto it = self->begin();
         for (int count = 0; count < i; ++count)
         {

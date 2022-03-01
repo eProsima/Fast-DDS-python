@@ -1130,32 +1130,94 @@ def test_create_and_delete_topic():
            factory.delete_participant(participant))
 
 
-#    /**
-#     * Allows accessing the DomainParticipantListener.
-#     *
-#     * @return DomainParticipantListener pointer
-#     */
-#    RTPS_DllAPI const DomainParticipantListener* get_listener() const;
-#
-#    /**
-#     * Modifies the DomainParticipantListener, sets the mask to StatusMask::all()
-#     *
-#     * @param listener new value for the DomainParticipantListener
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t set_listener(
-#            DomainParticipantListener* listener);
-#
-#    /**
-#     * Modifies the DomainParticipantListener.
-#     *
-#     * @param listener new value for the DomainParticipantListener
-#     * @param mask StatusMask that holds statuses the listener responds to
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t set_listener(
-#            DomainParticipantListener* listener,
-#            const StatusMask& mask);
+def test_find_topic():
+    """
+    This test checks:
+    - DomainParticipant::find_topic
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+
+    topic_copy = participant.find_topic("Complete", fastdds.Duration_t(1, 0))
+    assert(topic_copy is None)  # Not implemented yet
+    # assert(topic.get_type_name() == topic_copy.get_type_name())
+    # assert(topic.get_name() == topic_copy.get_name())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_domain_id():
+    """
+    This test checks:
+    - DomainParticipant::get_domain_id
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory)
+    participant = factory.create_participant(
+            32, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    assert(32 == participant.get_domain_id())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_instance_handle():
+    """
+    This test checks:
+    - DomainParticipant::get_instance_handle
+    - DomainParticipant::guid
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    ih = participant.get_instance_handle()
+    assert(ih is not None)
+    # assert(ih.isDefined())
+    guid = participant.guid()
+    assert(guid is not None)
+
+    assert(ih != fastdds.c_InstanceHandle_Unknown)
+    assert(guid != fastdds.c_Guid_Unknown)
+
+    assert(guid.get_instance_handle() == ih)
+    assert(guid.guidPrefix.value[0] == ih.value[0])
+    assert(guid.guidPrefix.value[1] == ih.value[1])
+    assert(guid.guidPrefix.value[2] == ih.value[2])
+    assert(guid.guidPrefix.value[3] == ih.value[3])
+    assert(guid.guidPrefix.value[4] == ih.value[4])
+    assert(guid.guidPrefix.value[5] == ih.value[5])
+    assert(guid.guidPrefix.value[6] == ih.value[6])
+    assert(guid.guidPrefix.value[7] == ih.value[7])
+    assert(guid.guidPrefix.value[8] == ih.value[8])
+    assert(guid.guidPrefix.value[9] == ih.value[9])
+    assert(guid.guidPrefix.value[10] == ih.value[10])
+    assert(guid.guidPrefix.value[11] == ih.value[11])
+    assert(guid.entityId.value[0] == ih.value[12])
+    assert(guid.entityId.value[1] == ih.value[13])
+    assert(guid.entityId.value[2] == ih.value[14])
+    assert(guid.entityId.value[3] == ih.value[15])
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_set_listener():
     """
     This test checks:
@@ -1478,62 +1540,32 @@ def test_get_set_listener():
            factory.delete_participant(participant))
 
 
-def test_lookup_topicdescription():
+def test_get_set_qos():
     """
     This test checks:
-    - DomainParticipant::lookup_topicdescription
+    - DomainParticipant::get_qos
+    - DomainParticipant::set_qos
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
+    qos = fastdds.DomainParticipantQos()
     assert(factory)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    participant = factory.create_participant(0, qos)
     assert(participant is not None)
 
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-
-    topic_desc = participant.lookup_topicdescription("Complete")
-    assert(topic_desc is not None)
-    assert(topic.get_type_name() == topic_desc.get_type_name())
-    assert(topic.get_name() == topic_desc.get_name())
+    qos.user_data().push_back(1)
+    qos.user_data().push_back(2)
+    assert(2 == len(qos.user_data()))
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
+           participant.set_qos(qos))
+
+    qos2 = fastdds.DomainParticipantQos()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
+           participant.get_qos(qos2))
+    assert(2 == len(qos2.user_data()))
+    assert(1 == qos2.user_data()[0])
+    assert(2 == qos2.user_data()[1])
 
-
-def test_find_topic():
-    """
-    This test checks:
-    - DomainParticipant::find_topic
-    """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-
-    topic_copy = participant.find_topic("Complete", fastdds.Duration_t(1, 0))
-    assert(topic_copy is None)  # Not implemented yet
-    # assert(topic.get_type_name() == topic_copy.get_type_name())
-    # assert(topic.get_name() == topic_copy.get_name())
-
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
@@ -1618,74 +1650,37 @@ def test_ignore_topic():
            factory.delete_participant(participant))
 
 
-#
-#    /**
-#     * Returns the DomainParticipant's handle.
-#     *
-#     * @return InstanceHandle of this DomainParticipant.
-#     */
-#    RTPS_DllAPI const InstanceHandle_t& get_instance_handle() const;
-def test_get_instance_handle():
+def test_lookup_topicdescription():
     """
     This test checks:
-    - DomainParticipant::get_instance_handle
-    - DomainParticipant::guid
+    - DomainParticipant::lookup_topicdescription
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
 
-    ih = participant.get_instance_handle();
-    assert(ih is not None)
-    # assert(ih.isDefined())
-    guid = participant.guid()
-    assert(guid is not None)
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
 
-    assert(ih != fastdds.c_InstanceHandle_Unknown)
-    assert(guid != fastdds.c_Guid_Unknown)
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
 
-    assert(guid.get_instance_handle() == ih)
-    assert(guid.guidPrefix.value[0] == ih.value[0])
-    assert(guid.guidPrefix.value[1] == ih.value[1])
-    assert(guid.guidPrefix.value[2] == ih.value[2])
-    assert(guid.guidPrefix.value[3] == ih.value[3])
-    assert(guid.guidPrefix.value[4] == ih.value[4])
-    assert(guid.guidPrefix.value[5] == ih.value[5])
-    assert(guid.guidPrefix.value[6] == ih.value[6])
-    assert(guid.guidPrefix.value[7] == ih.value[7])
-    assert(guid.guidPrefix.value[8] == ih.value[8])
-    assert(guid.guidPrefix.value[9] == ih.value[9])
-    assert(guid.guidPrefix.value[10] == ih.value[10])
-    assert(guid.guidPrefix.value[11] == ih.value[11])
-    assert(guid.entityId.value[0] == ih.value[12])
-    assert(guid.entityId.value[1] == ih.value[13])
-    assert(guid.entityId.value[2] == ih.value[14])
-    assert(guid.entityId.value[3] == ih.value[15])
+    topic_desc = participant.lookup_topicdescription("Complete")
+    assert(topic_desc is not None)
+    assert(topic.get_type_name() == topic_desc.get_type_name())
+    assert(topic.get_name() == topic_desc.get_name())
 
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
-#    RTPS_DllAPI ReturnCode_t get_qos(
-#            DomainParticipantQos& qos) const;
-#
-#    /**
-#     * @brief This operation returns the value of the DomainParticipant QoS policies
-#     *
-#     * @return A reference to the DomainParticipantQos
-#     */
-#    RTPS_DllAPI const DomainParticipantQos& get_qos() const;
-#
-#    /**
-#     * This operation sets the value of the DomainParticipant QoS policies.
-#     *
-#     * @param qos DomainParticipantQos to be set
-#     * @return RETCODE_IMMUTABLE_POLICY if any of the Qos cannot be changed, RETCODE_INCONSISTENT_POLICY if the Qos is not
-#     * self consistent and RETCODE_OK if the qos is changed correctly.
-#     */
-#    RTPS_DllAPI ReturnCode_t set_qos(
-#            const DomainParticipantQos& qos) const;
-#
+
+
 #
 #    /**
 #     * @brief This operation enables the DomainParticipant
@@ -1823,15 +1818,6 @@ def test_get_instance_handle():
 #     * @return Pointer to the builtin Subscriber, nullptr in error case
 #     */
 #    RTPS_DllAPI const Subscriber* get_builtin_subscriber() const;
-#
-#
-#    /**
-#     * This operation retrieves the domain_id used to create the DomainParticipant.
-#     * The domain_id identifies the DDS domain to which the DomainParticipant belongs.
-#     *
-#     * @return The Participant's domain_id
-#     */
-#    RTPS_DllAPI DomainId_t get_domain_id() const;
 #
 #    /**
 #     * Deletes all the entities that were created by means of the “create” methods
