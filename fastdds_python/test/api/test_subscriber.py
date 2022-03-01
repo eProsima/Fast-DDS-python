@@ -97,7 +97,8 @@ def test_create_and_delete_datareader():
             listener, fastdds.StatusMask.data_on_readers())
     assert(datareader is not None)
     assert(datareader.is_enabled())
-    assert(fastdds.StatusMask.data_on_readers() == datareader.get_status_mask())
+    assert(fastdds.StatusMask.data_on_readers() ==
+           datareader.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
     datareader = subscriber.create_datareader(
@@ -105,7 +106,8 @@ def test_create_and_delete_datareader():
             listener, fastdds.StatusMask_data_on_readers())
     assert(datareader is not None)
     assert(datareader.is_enabled())
-    assert(fastdds.StatusMask_data_on_readers() == datareader.get_status_mask())
+    assert(fastdds.StatusMask_data_on_readers() ==
+           datareader.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
     # - StatusMask.inconsistent_topic
@@ -285,7 +287,8 @@ def test_create_and_delete_datareader():
             listener, fastdds.StatusMask.sample_rejected())
     assert(datareader is not None)
     assert(datareader.is_enabled())
-    assert(fastdds.StatusMask.sample_rejected() == datareader.get_status_mask())
+    assert(fastdds.StatusMask.sample_rejected() ==
+           datareader.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
     datareader = subscriber.create_datareader(
@@ -293,7 +296,8 @@ def test_create_and_delete_datareader():
             listener, fastdds.StatusMask_sample_rejected())
     assert(datareader is not None)
     assert(datareader.is_enabled())
-    assert(fastdds.StatusMask_sample_rejected() == datareader.get_status_mask())
+    assert(fastdds.StatusMask_sample_rejected() ==
+           datareader.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
     # - StatusMask.subscription_matched
@@ -763,6 +767,43 @@ def test_get_set_listener():
     assert(subscriber.get_listener() == listener)
     assert(fastdds.StatusMask_all() == subscriber.get_status_mask())
 
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_lookup_datareader():
+    """
+    This test checks:
+    - subscriber::lookup_datareader
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    # Overload 1 - Success
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    datareader2 = subscriber.lookup_datareader('Complete')
+    assert(datareader2 is not None)
+    assert(datareader == datareader2)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==

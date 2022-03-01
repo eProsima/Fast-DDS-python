@@ -97,7 +97,8 @@ def test_create_and_delete_datawriter():
             listener, fastdds.StatusMask.data_on_readers())
     assert(datawriter is not None)
     assert(datawriter.is_enabled())
-    assert(fastdds.StatusMask.data_on_readers() == datawriter.get_status_mask())
+    assert(fastdds.StatusMask.data_on_readers() ==
+           datawriter.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
     datawriter = publisher.create_datawriter(
@@ -105,7 +106,8 @@ def test_create_and_delete_datawriter():
             listener, fastdds.StatusMask_data_on_readers())
     assert(datawriter is not None)
     assert(datawriter.is_enabled())
-    assert(fastdds.StatusMask_data_on_readers() == datawriter.get_status_mask())
+    assert(fastdds.StatusMask_data_on_readers() ==
+           datawriter.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
     # - StatusMask.inconsistent_topic
@@ -285,7 +287,8 @@ def test_create_and_delete_datawriter():
             listener, fastdds.StatusMask.sample_rejected())
     assert(datawriter is not None)
     assert(datawriter.is_enabled())
-    assert(fastdds.StatusMask.sample_rejected() == datawriter.get_status_mask())
+    assert(fastdds.StatusMask.sample_rejected() ==
+           datawriter.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
     datawriter = publisher.create_datawriter(
@@ -293,7 +296,8 @@ def test_create_and_delete_datawriter():
             listener, fastdds.StatusMask_sample_rejected())
     assert(datawriter is not None)
     assert(datawriter.is_enabled())
-    assert(fastdds.StatusMask_sample_rejected() == datawriter.get_status_mask())
+    assert(fastdds.StatusMask_sample_rejected() ==
+           datawriter.get_status_mask())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
     # - StatusMask.subscription_matched
@@ -768,6 +772,44 @@ def test_get_set_listener():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
+
+def test_lookup_datawriter():
+    """
+    This test checks:
+    - Publisher::lookup_datawriter
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    # Overload 1 - Success
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    datawriter2 = publisher.lookup_datawriter('Complete')
+    assert(datawriter2 is not None)
+    assert(datawriter == datawriter2)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 #
 #    /**
 #     * This operation creates a DataWriter. The returned DataWriter will be attached and belongs to the Publisher.
@@ -784,23 +826,6 @@ def test_get_set_listener():
 #            DataWriterListener* listener = nullptr,
 #            const StatusMask& mask = StatusMask::all());
 #
-#    /**
-#     * This operation deletes a DataWriter that belongs to the Publisher.
-#     *
-#     * The delete_datawriter operation must be called on the same Publisher object used to create the DataWriter.
-#     * If delete_datawriter is called on a different Publisher, the operation will have no effect and it will
-#     * return false.
-#     *
-#     * The deletion of the DataWriter will automatically unregister all instances.
-#     * Depending on the settings of the WRITER_DATA_LIFECYCLE QosPolicy, the deletion of the DataWriter
-#     * may also dispose all instances.
-#     *
-#     * @param writer DataWriter to delete
-#     * @return RETCODE_PRECONDITION_NOT_MET if it does not belong to this Publisher, RETCODE_OK if it is correctly deleted and
-#     * RETCODE_ERROR otherwise.
-#     */
-#    RTPS_DllAPI ReturnCode_t delete_datawriter(
-#            const DataWriter* writer);
 #
 #    /**
 #     * This operation retrieves a previously created DataWriter belonging to the Publisher that is attached to a
