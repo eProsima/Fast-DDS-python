@@ -437,6 +437,29 @@ def test_enable():
            factory.delete_participant(participant))
 
 
+def test_get_participant():
+    """
+    This test checks:
+    - Subscriber::get_participant
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+
+    participant2 = subscriber.get_participant()
+    assert(participant2 is not None)
+    assert(participant == participant2)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_set_qos():
     """
     This test checks:

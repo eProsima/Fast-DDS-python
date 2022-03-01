@@ -438,6 +438,29 @@ def test_enable():
            factory.delete_participant(participant))
 
 
+def test_get_participant():
+    """
+    This test checks:
+    - Publisher::get_participant
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+
+    participant2 = publisher.get_participant()
+    assert(participant2 is not None)
+    assert(participant == participant2)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_set_qos():
     """
     This test checks:
@@ -860,6 +883,28 @@ def test_suspend_publications():
            factory.delete_participant(participant))
 
 
+def test_wait_for_acknowlegments():
+    """
+    This test checks:
+    - Publisher::wait_for_acknowledgments
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.wait_for_acknowledgments(fastdds.Duration_t(3, 0)))
+    # TODO Test a timeout
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
 
 #
 #    /**
@@ -877,27 +922,6 @@ def test_suspend_publications():
 #            DataWriterListener* listener = nullptr,
 #            const StatusMask& mask = StatusMask::all());
 #
-#
-#    /**
-#     * This operation blocks the calling thread until either all data written by the reliable DataWriter entities
-#     * is acknowledged by all matched reliable DataReader entities, or else the duration specified by the max_wait
-#     * parameter elapses, whichever happens first. A return value of true indicates that all the samples written
-#     * have been acknowledged by all reliable matched data readers; a return value of false indicates that max_wait
-#     * elapsed before all the data was acknowledged.
-#     *
-#     * @param max_wait Maximum blocking time for this operation
-#     * @return RETCODE_TIMEOUT if the function takes more than the maximum blocking time established, RETCODE_OK if the
-#     * Publisher receives the acknowledgments and RETCODE_ERROR otherwise.
-#     */
-#    RTPS_DllAPI ReturnCode_t wait_for_acknowledgments(
-#            const fastrtps::Duration_t& max_wait);
-#
-#    /**
-#     * This operation returns the DomainParticipant to which the Publisher belongs.
-#     *
-#     * @return Pointer to the DomainParticipant
-#     */
-#    RTPS_DllAPI const DomainParticipant* get_participant() const;
 #
 #    /**
 #     * @brief Deletes all contained DataWriters
