@@ -90,7 +90,7 @@ public:
     catch (OctetResourceLimitedVectorStopIterator)
     {
         PyErr_SetString(PyExc_StopIteration, "End of iterator");
-        return NULL;
+        return nullptr;
     }
 }
 
