@@ -471,6 +471,45 @@ def test_enable():
            factory.delete_participant(participant))
 
 
+def test_get_datawriters():
+    """
+    This test checks:
+    - Publisher::get_datawriters
+    - Publisher::has_datawriters
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    assert(publisher.has_datawriters())
+    datawriters = fastdds.DataWriterVector()
+    assert(publisher.get_datawriters(datawriters))
+    assert(1 == len(datawriters))
+    assert(datawriter == datawriters[0])
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_instance_handle():
     """
     This test checks:
@@ -1023,19 +1062,3 @@ def test_wait_for_acknowlegments():
 #    RTPS_DllAPI ReturnCode_t get_datawriter_qos_from_profile(
 #            const std::string& profile_name,
 #            DataWriterQos& qos) const;
-#
-#    /**
-#     * Fills the given vector with all the datawriters of this publisher.
-#     *
-#     * @param writers Vector where the DataWriters are returned
-#     * @return true
-#     */
-#    RTPS_DllAPI bool get_datawriters(
-#            std::vector<DataWriter*>& writers) const;
-#
-#    /**
-#     * This operation checks if the publisher has DataWriters
-#     *
-#     * @return true if the publisher has one or several DataWriters, false otherwise
-#     */
-#    RTPS_DllAPI bool has_datawriters() const;

@@ -16,4 +16,7 @@
 #include "fastdds/dds/subscriber/DataReader.hpp"
 %}
 
+// Template for std::vector<DataReader*>
+%template(DataReaderVector) std::vector<eprosima::fastdds::dds::DataReader*>;
+
 %include "fastdds/dds/subscriber/DataReader.hpp"
