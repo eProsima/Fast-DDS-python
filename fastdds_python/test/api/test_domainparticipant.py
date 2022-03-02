@@ -1305,6 +1305,7 @@ def test_get_instance_handle():
     assert(factory is not None)
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
 
     ih = participant.get_instance_handle()
     assert(ih is not None)

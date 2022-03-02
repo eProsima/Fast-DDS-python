@@ -471,6 +471,52 @@ def test_enable():
            factory.delete_participant(participant))
 
 
+def test_get_instance_handle():
+    """
+    This test checks:
+    - Publisher::get_instance_handle
+    - Publisher::guid
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+
+    ih = publisher.get_instance_handle()
+    assert(ih is not None)
+    assert(ih.isDefined())
+    guid = participant.guid()
+    assert(guid is not None)
+
+    assert(ih != fastdds.c_InstanceHandle_Unknown)
+    assert(guid != fastdds.c_Guid_Unknown)
+
+    assert(guid.guidPrefix.value[0] == ih.value[0])
+    assert(guid.guidPrefix.value[1] == ih.value[1])
+    assert(guid.guidPrefix.value[2] == ih.value[2])
+    assert(guid.guidPrefix.value[3] == ih.value[3])
+    assert(guid.guidPrefix.value[4] == ih.value[4])
+    assert(guid.guidPrefix.value[5] == ih.value[5])
+    assert(guid.guidPrefix.value[6] == ih.value[6])
+    assert(guid.guidPrefix.value[7] == ih.value[7])
+    assert(guid.guidPrefix.value[8] == ih.value[8])
+    assert(guid.guidPrefix.value[9] == ih.value[9])
+    assert(guid.guidPrefix.value[10] == ih.value[10])
+    assert(guid.guidPrefix.value[11] == ih.value[11])
+    assert(guid.entityId.value[0] == ih.value[12])
+    assert(guid.entityId.value[1] == ih.value[13])
+    assert(guid.entityId.value[2] == ih.value[14])
+    # assert(guid.entityId.value[3] == ih.value[15])
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_participant():
     """
     This test checks:
@@ -957,49 +1003,6 @@ def test_wait_for_acknowlegments():
 #
 #
 #    /**
-#     * This operation sets a default value of the DataWriter QoS policies which will be used for newly created
-#     * DataWriter entities in the case where the QoS policies are defaulted in the create_datawriter operation.
-#     *
-#     * This operation will check that the resulting policies are self consistent; if they are not, the operation
-#     * will have no effect and return false.
-#     *
-#     * The special value DATAWRITER_QOS_DEFAULT may be passed to this operation to indicate that the default QoS
-#     * should be reset back to the initial values the factory would use, that is the values that would be used
-#     * if the set_default_datawriter_qos operation had never been called.
-#     *
-#     * @param qos DataWriterQos to be set
-#     * @return RETCODE_INCONSISTENT_POLICY if the Qos is not self consistent and RETCODE_OK if the qos is changed correctly.
-#     */
-#    RTPS_DllAPI ReturnCode_t set_default_datawriter_qos(
-#            const DataWriterQos& qos);
-#
-#    /**
-#     * This operation returns the default value of the DataWriter QoS, that is, the QoS policies which will be used
-#     * for newly created DataWriter entities in the case where the QoS policies are defaulted in the
-#     * create_datawriter operation.
-#     *
-#     * The values retrieved by get_default_datawriter_qos will match the set of values specified on the last
-#     * successful call to set_default_datawriter_qos, or else, if the call was never made, the default values.
-#     *
-#     * @return Current default WriterQos
-#     */
-#    RTPS_DllAPI const DataWriterQos& get_default_datawriter_qos() const;
-#
-#    /**
-#     * This operation retrieves the default value of the DataWriter QoS, that is, the QoS policies which will be used
-#     * for newly created DataWriter entities in the case where the QoS policies are defaulted in the
-#     * create_datawriter operation.
-#     *
-#     * The values retrieved by get_default_datawriter_qos will match the set of values specified on the last
-#     * successful call to set_default_datawriter_qos, or else, if the call was never made, the default values.
-#     *
-#     * @param qos Reference to the current default WriterQos.
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_default_datawriter_qos(
-#            DataWriterQos& qos) const;
-#
-#    /**
 #     * @brief Copies TopicQos into the corresponding DataWriterQos
 #     *
 #     * @param[out] writer_qos
@@ -1020,13 +1023,6 @@ def test_wait_for_acknowlegments():
 #    RTPS_DllAPI ReturnCode_t get_datawriter_qos_from_profile(
 #            const std::string& profile_name,
 #            DataWriterQos& qos) const;
-#
-#    /**
-#     * Returns the Publisher's handle.
-#     *
-#     * @return InstanceHandle of this Publisher.
-#     */
-#    RTPS_DllAPI const InstanceHandle_t& get_instance_handle() const;
 #
 #    /**
 #     * Fills the given vector with all the datawriters of this publisher.
