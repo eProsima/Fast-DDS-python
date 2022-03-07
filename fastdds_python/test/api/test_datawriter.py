@@ -97,6 +97,80 @@ def test_get_key_value():
            factory.delete_participant(participant))
 
 
+def test_get_type():
+    """
+    This test checks:
+    - DataWriter::get_type
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    test_type_aux = datawriter.get_type()
+    assert(test_type == test_type_aux)
+    assert(test_type.get_type_name() == test_type_aux.get_type_name())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_topic():
+    """
+    This test checks:
+    - DataWriter::get_topic
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    topic_aux = datawriter.get_topic()
+    assert(topic == topic_aux)
+    assert(topic.get_type_name() == topic_aux.get_type_name())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_lookup_instance():
     """
     This test checks:
@@ -271,13 +345,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-
-#    /**
-#     * Get data type associated to the DataWriter
-#     *
-#     * @return Copy of the TypeSupport
-#     */
-#    RTPS_DllAPI TypeSupport get_type() const;
 #
 #    /**
 #     * Waits the current thread until all writers have received their acknowledgments.
@@ -340,13 +407,6 @@ def test_write():
 #     */
 #    RTPS_DllAPI ReturnCode_t get_qos(
 #            DataWriterQos& qos) const;
-#
-#    /**
-#     * Retrieves the topic for this DataWriter.
-#     *
-#     * @return Pointer to the associated Topic
-#     */
-#    RTPS_DllAPI Topic* get_topic() const;
 #
 #    /**
 #     * Retrieves the listener for this DataWriter.
