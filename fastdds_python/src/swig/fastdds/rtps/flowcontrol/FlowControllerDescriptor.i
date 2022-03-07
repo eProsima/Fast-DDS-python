@@ -16,4 +16,49 @@
 #include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.hpp"
 %}
 
+// Avoid memory leak because a const char* in our API.
+%nodefaultctor eprosima::fastdds::rtps::FlowControllerDescriptor;
+%{
+    struct _FlowControllerDescriptor : public eprosima::fastdds::rtps::FlowControllerDescriptor
+    {
+        std::string flow_name;
+    };
+%}
+%extend eprosima::fastdds::rtps::FlowControllerDescriptor
+{
+    FlowControllerDescriptor()
+    {
+        return new _FlowControllerDescriptor();
+    }
+
+    std::string name;
+}
+%ignore eprosima::fastdds::rtps::FlowControllerDescriptor::name;
+
+// In DomainParticipantQos is used the std::shared_ptr<FlowControllerDescriptor>
+// instead of this structure directly.
+%shared_ptr(eprosima::fastdds::rtps::FlowControllerDescriptor);
+
 %include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.hpp"
+
+// Avoid memory leak because a const char* in our API.
+%{
+    void eprosima_fastdds_rtps_FlowControllerDescriptor_name_set(
+            eprosima::fastdds::rtps::FlowControllerDescriptor* descriptor,
+            const std::string& name)
+    {
+        //TODO (richiware) Should launch exception
+        _FlowControllerDescriptor* desc = static_cast<_FlowControllerDescriptor*>(descriptor);
+        desc->flow_name = name;
+        desc->name = desc->flow_name.c_str();
+    }
+
+    std::string& eprosima_fastdds_rtps_FlowControllerDescriptor_name_get(
+                eprosima::fastdds::rtps::FlowControllerDescriptor* descriptor)
+    {
+        //TODO (richiware) Should launch exception
+        _FlowControllerDescriptor* desc = static_cast<_FlowControllerDescriptor*>(descriptor);
+        desc->flow_name = desc->name;
+        return desc->flow_name;
+    }
+%}

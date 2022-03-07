@@ -15,20 +15,23 @@
 // This class contains a 'const char*' member that may leak on destruction
 // However, converting it to a 'char*' does not
 // SWIG is very special)
-%typemap(out) char const *flow_controller_name = char *;
-%typemap(memberin) char const *flow_controller_name = char *;
-
 %{
 #include "fastdds/dds/core/policy/QosPolicies.hpp"
 %}
 
-// Flatten nested classes
-%feature("flatnested", "1");
+%ignore eprosima::fastdds::dds::WireProtocolConfigQos::throughput_controller;
 
+// TODO (richiware) review when api
 // SWIG does not support templates in the generated binding,
 // because not all output languages support them
 // We must explicitly declare the specializations of the templates
-%template(OctetResourceLimitedVector) eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>;
+%template(TransportDescriptorInterfaceShrPtr) std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface>;
+%template(TransportDescriptorInterfaceVector) std::vector<std::shared_ptr<eprosima::fastdds::rtps::TransportDescriptorInterface>>;
+// The 'enum' here is very important, or SWIG will create a faulty wrapper
+//    * Enums are mapped as integer constants
+//    * The template expects a class type
+//    * Trying to push a mapped enum value (integer) will result on an error because it is not the expected type
+%template(DataRepresentationIdVector) std::vector<enum eprosima::fastdds::dds::DataRepresentationId>;
 
 // The class PartitionQosPolicy::const_iterator does not have default constructor
 // This tells SWIG it must wrap the constructors or the compilation will fail
@@ -46,11 +49,89 @@
 %ignore eprosima::fastdds::dds::TypeObjectV1::TypeObjectV1(TypeObjectV1 &&);
 %ignore eprosima::fastdds::dds::xtypes::TypeInformation::TypeInformation(TypeInformation &&);
 
+namespace eprosima {
+namespace fastdds {
+namespace dds {
+    struct ParticipantResourceLimitsQos : public fastrtps::rtps::RTPSParticipantAllocationAttributes {};
+    struct PropertyPolicyQos : public fastrtps::rtps::PropertyPolicy {};
+}
+}
+}
+
+%inline %{
+class OctetResourceLimitedVectorStopIterator {};
+class OctetResourceLimitedVectorIterator {
+public:
+    OctetResourceLimitedVectorIterator(
+            eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator _cur,
+            eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator _end) : cur(_cur), end(_end) {}
+    OctetResourceLimitedVectorIterator* __iter__()
+    {
+        return this;
+    }
+    eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator cur;
+    eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator end;
+};
+%}
+
+// SWIG does not support templates in the generated binding,
+// because not all output languages support them
+// We must explicitly declare the specializations of the templates
+%template(OctetResourceLimitedVector) eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>;
+
 %include "fastdds/dds/core/policy/QosPolicies.hpp"
 
-// Deactivate class flattening
-%feature("flatnested", "0");
+%include "exception.i"
+%exception OctetResourceLimitedVectorIterator::__next__ {
+    try
+    {
+        $action // calls %extend function __next__() below
+    }
+    catch (OctetResourceLimitedVectorStopIterator)
+    {
+        PyErr_SetString(PyExc_StopIteration, "End of iterator");
+        return NULL;
+    }
+}
 
-// Undo the mapping for future classes
-%typemap(out) char const *flow_controller_name;
-%typemap(memberin) char const *flow_controller_name;
+%extend OctetResourceLimitedVectorIterator
+{
+    eprosima::fastrtps::rtps::octet __next__()
+    {
+        if ($self->cur != $self->end)
+        {
+            // dereference the iterator and return reference to the object,
+            // after that it increments the iterator
+            return *$self->cur++;
+        }
+        throw OctetResourceLimitedVectorStopIterator();
+    }
+}
+
+%extend eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet> {
+    OctetResourceLimitedVectorIterator __iter__()
+    {
+        // return a constructed Iterator object
+        return OctetResourceLimitedVectorIterator($self->begin(), $self->end());
+    }
+}
+
+// TODO (richiware) missing exceptions
+%extend eprosima::fastdds::dds::PartitionQosPolicy
+{
+    size_t __len__() const
+    {
+        return self->size();
+    }
+
+    std::string __getitem__(int i)
+    {
+        auto it = self->begin();
+        for (int count = 0; count < i; ++count)
+        {
+            it++;
+        }
+
+        return std::string((*it).name());
+    }
+};

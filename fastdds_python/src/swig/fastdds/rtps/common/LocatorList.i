@@ -16,4 +16,24 @@
 #include "fastdds/rtps/common/LocatorList.hpp"
 %}
 
+// Ignore deprecated methods
+%ignore eprosima::fastdds::rtps::LocatorList::contains;
+
+// Ignore overloaded constructor that have no effect on target language
+%ignore eprosima::fastdds::rtps::LocatorList::LocatorList(eprosima::fastdds::rtps::LocatorList&&);
+
 %include "fastdds/rtps/common/LocatorList.hpp"
+
+// TODO (richiware) missing exceptions
+%extend eprosima::fastdds::rtps::LocatorList
+{
+    size_t __len__() const
+    {
+        return self->size();
+    }
+
+    Locator __getitem__(int i)
+    {
+        return *(self->begin()+i);
+    }
+};

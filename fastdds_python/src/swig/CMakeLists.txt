@@ -18,8 +18,6 @@
 
 message(STATUS "Configuring FastDDS wrapper for Python...")
 
-find_package (PythonInterp REQUIRED)
-
 set(LIB_INSTALL_DIR lib/ CACHE PATH "Installation directory for libraries")
 
 set(${PROJECT_NAME}_MODULE
@@ -36,8 +34,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-INCLUDE_DIRECTORIES()
-
 option(BUILD_DOCUMENTATION "Use doxygen to create product documentation" OFF)
 if (BUILD_DOCUMENTATION)
     set(CMAKE_SWIG_FLAGS "-doxygen")
@@ -45,17 +41,17 @@ endif (BUILD_DOCUMENTATION)
 
 SWIG_ADD_LIBRARY(${PROJECT_NAME}
     TYPE SHARED
-    LANGUAGE python 
+    LANGUAGE python
     SOURCES ${${PROJECT_NAME}_FILES}
     )
 
 SWIG_LINK_LIBRARIES(${PROJECT_NAME}
-    ${PYTHON_LIBRARIES}
+    Python3::Module
     fastrtps
     )
 
 # Find the installation path
-execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}' ) )"
+execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}' ) )"
     OUTPUT_VARIABLE _ABS_PYTHON_MODULE_PATH
     OUTPUT_STRIP_TRAILING_WHITESPACE
     )

@@ -16,4 +16,12 @@
 #include "fastdds/rtps/attributes/ServerAttributes.h"
 %}
 
+// Ignore deprecated methods
+%ignore eprosima::fastdds::rtps::RemoteServerAttributes::GetEDPSubscriptionsWriter;
+%ignore eprosima::fastdds::rtps::RemoteServerAttributes::GetEDPSubscriptionsReader;
+%ignore eprosima::fastdds::rtps::RemoteServerAttributes::GetEDPPublicationsWriter;
+%ignore eprosima::fastdds::rtps::RemoteServerAttributes::GetEDPPublicationsReader;
+
+%template(RemoteServerAttributesList) std::list<eprosima::fastdds::rtps::RemoteServerAttributes>;
+
 %include "fastdds/rtps/attributes/ServerAttributes.h"

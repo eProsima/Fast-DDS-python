@@ -16,4 +16,6 @@
 #include "fastdds/dds/topic/qos/TopicQos.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::TopicQos::representation;
+
 %include "fastdds/dds/topic/qos/TopicQos.hpp"

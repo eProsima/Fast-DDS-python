@@ -16,4 +16,9 @@
 #include "fastdds/rtps/attributes/RTPSParticipantAttributes.h"
 %}
 
+// Ignore deprecated methods
+%ignore eprosima::fastrtps::rtps::DiscoverySettings::setStaticEndpointXMLFilename;
+%ignore eprosima::fastrtps::rtps::DiscoverySettings::getStaticEndpointXMLFilename;
+%ignore eprosima::fastrtps::rtps::RTPSParticipantAttributes;
+
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.h"

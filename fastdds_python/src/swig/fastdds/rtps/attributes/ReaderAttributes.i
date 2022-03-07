@@ -16,4 +16,6 @@
 #include "fastdds/rtps/attributes/ReaderAttributes.h"
 %}
 
+%ignore eprosima::fastrtps::rtps::ReaderAttributes;
+
 %include "fastdds/rtps/attributes/ReaderAttributes.h"
