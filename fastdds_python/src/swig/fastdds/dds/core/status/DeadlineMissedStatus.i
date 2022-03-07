@@ -17,3 +17,12 @@
 %}
 
 %include "fastdds/dds/core/status/DeadlineMissedStatus.hpp"
+
+namespace eprosima {
+namespace fastdds {
+namespace dds {
+    struct OfferedDeadlineMissedStatus : public  eprosima::fastdds::dds::DeadlineMissedStatus {};
+    struct RequestedDeadlineMissedStatus : public  eprosima::fastdds::dds::DeadlineMissedStatus {};
+}
+}
+}
