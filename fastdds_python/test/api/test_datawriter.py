@@ -4,9 +4,6 @@ import fastdds
 import test_complete
 
 
-#    RTPS_DllAPI ReturnCode_t get_key_value(
-#            void* key_holder,
-#            const InstanceHandle_t& handle);
 def test_get_key_value():
     """
     This test checks:
@@ -34,6 +31,44 @@ def test_get_key_value():
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.get_key_value(sample, ih))
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_lookup_instance():
+    """
+    This test checks:
+    - DataWriter::lookup_instance
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(3)
+    ih = datawriter.lookup_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -182,40 +217,6 @@ def test_write():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
-#
-#    /**
-#     * NOT YET IMPLEMENTED
-#     *
-#     * This operation can be used to retrieve the instance key that corresponds to an
-#     * @ref eprosima::fastdds::dds::Entity::instance_handle_ "instance_handle".
-#     * The operation will only fill the fields that form the key inside the key_holder instance.
-#     *
-#     * This operation may return BAD_PARAMETER if the InstanceHandle_t handle does not correspond to an existing
-#     * data-object known to the DataWriter. If the implementation is not able to check invalid handles then the result
-#     * in this situation is unspecified.
-#     *
-#     * @param[in,out] key_holder
-#     * @param[in] handle
-#     *
-#     * @return Any of the standard return codes.
-#     */
-#    RTPS_DllAPI ReturnCode_t get_key_value(
-#            void* key_holder,
-#            const InstanceHandle_t& handle);
-#
-#    /**
-#     * NOT YET IMPLEMENTED
-#     *
-#     * Takes as a parameter an instance and returns a handle that can be used in subsequent operations that accept an
-#     * instance handle as an argument. The instance parameter is only used for the purpose of examining the fields that
-#     * define the key.
-#     *
-#     * @param[in] instance Data pointer to the sample
-#     *
-#     * @return handle of the given instance
-#     */
-#    RTPS_DllAPI InstanceHandle_t lookup_instance(
-#            const void* instance) const;
 #
 #    /**
 #     * Returns the DataWriter's GUID
