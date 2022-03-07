@@ -503,6 +503,45 @@ def test_get_set_listener():
            factory.delete_participant(participant))
 
 
+def test_get_liveliness_lost_status():
+    """
+    This test checks:
+    - DataWriter::get_liveliness_lost_status
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    status = fastdds.LivelinessLostStatus()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.get_liveliness_lost_status(status))
+    assert(0 == status.total_count)
+    assert(0 == status.total_count_change)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_offered_deadline_missed_status():
     """
     This test checks:
@@ -917,15 +956,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#    /**
-#     * @brief Returns the liveliness lost status
-#     *
-#     * @param status Liveliness lost status struct
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_liveliness_lost_status(
-#            LivelinessLostStatus& status);
-#
 #    /**
 #     * @brief Getter for the Publisher that creates this DataWriter
 #     *
