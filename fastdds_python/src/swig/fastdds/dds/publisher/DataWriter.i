@@ -18,7 +18,6 @@
 
 
 // Ignore unimplemented method (the wrapper will try to use it)
-%ignore eprosima::fastdds::dds::DataWriter::dispose_w_timestamp;
 %ignore eprosima::fastdds::dds::DataWriter::write_w_timestamp(void*, const InstanceHandle_t&,
             const fastrtps::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp(void*,

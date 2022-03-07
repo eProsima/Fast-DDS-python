@@ -9,6 +9,68 @@ class DataWriterListener (fastdds.DataWriterListener):
         super().__init__()
 
 
+def test_dispose():
+    """
+    This test checks:
+    - DataWriter::dispose
+    - DataWriter::dispose_w_timestamp
+    - DataWriter::unregister_instance
+    - DataWriter::unregister_instance_w_timestamp
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    # Overlay 1
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(1)
+    ih = datawriter.register_instance(sample)
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    sample2 = test_complete.KeyedCompleteTestType()
+    sample2.id(2)
+    ih2 = datawriter.register_instance(sample2)
+    assert(fastdds.c_InstanceHandle_Unknown != ih2)
+    assert(ih2 != ih)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.dispose(sample, ih))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.dispose(sample2, ih2))
+
+    # Overlay 2
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(3)
+    now = datetime.datetime.now().time()
+    timestamp = fastdds.Time_t()
+    timestamp.seconds = now.second
+    ih = datawriter.register_instance_w_timestamp(sample, timestamp)
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datawriter.dispose_w_timestamp(sample, ih, timestamp))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_instance_handle():
     """
     This test checks:
@@ -855,81 +917,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#
-#    /**
-#     * Retrieves the listener for this DataWriter.
-#     *
-#     * @return Pointer to the DataWriterListener
-#     */
-#    RTPS_DllAPI const DataWriterListener* get_listener() const;
-#
-#    /**
-#     * Modifies the DataWriterListener, sets the mask to StatusMask::all()
-#     *
-#     * @param listener new value for the DataWriterListener
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t set_listener(
-#            DataWriterListener* listener);
-#
-#    /**
-#     * Modifies the DataWriterListener.
-#     *
-#     * @param listener new value for the DataWriterListener
-#     * @param mask StatusMask that holds statuses the listener responds to (default: all).
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t set_listener(
-#            DataWriterListener* listener,
-#            const StatusMask& mask);
-#
-#    /* TODO
-#       bool get_key_value(
-#            void* key_holder,
-#            const InstanceHandle_t& handle);
-#     */
-#
-#    /**
-#     * @brief This operation requests the middleware to delete the data (the actual deletion is postponed until there is no
-#     * more use for that data in the whole system). In general, applications are made aware of the deletion by means of
-#     * operations on the DataReader objects that already knew that instance. This operation does not modify the value of
-#     * the instance. The instance parameter is passed just for the purposes of identifying the instance.
-#     * When this operation is used, the Service will automatically supply the value of the source_timestamp that is made
-#     * available to DataReader objects by means of the source_timestamp attribute inside the SampleInfo. The constraints
-#     * on the values of the handle parameter and the corresponding error behavior are the same specified for the
-#     * unregister_instance operation.
-#     *
-#     * @param[in] data Sample used to deduce instance's key in case of `handle` parameter is HANDLE_NIL.
-#     * @param[in] handle InstanceHandle of the data
-#     * @return RETCODE_PRECONDITION_NOT_MET if the handle introduced does not match with the one associated to the data,
-#     * RETCODE_OK if the data is correctly sent and RETCODE_ERROR otherwise.
-#     */
-#    RTPS_DllAPI ReturnCode_t dispose(
-#            void* data,
-#            const InstanceHandle_t& handle);
-#
-#    /**
-#     * @brief This operation performs the same functions as @ref dispose except that the application provides the value
-#     * for the @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp" that is made available to
-#     * DataReader objects by means of the @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp"
-#     * attribute inside the SampleInfo.
-#     *
-#     * The constraints on the values of the @c handle parameter and the corresponding error behavior are the same
-#     * specified for the @ref dispose operation.
-#     *
-#     * This operation may return RETCODE_PRECONDITION_NOT_MET and RETCODE_BAD_PARAMETER under the same circumstances
-#     * described for the @ref dispose operation.
-#     *
-#     * This operation may return RETCODE_TIMEOUT and RETCODE_OUT_OF_RESOURCES under the same circumstances described
-#     * for the @ref write operation.
-#     *
-#     * @param data Pointer to the data.
-#     * @param handle InstanceHandle_t
-#     * @return RTPS_DllAPI
-#     */
-#    RTPS_DllAPI ReturnCode_t dispose_w_timestamp(
-#            void* data,
-#            const InstanceHandle_t& handle);
 #    /**
 #     * @brief Returns the liveliness lost status
 #     *
