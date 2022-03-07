@@ -1205,7 +1205,7 @@ def test_publisher_qos():
            autoenable_created_entities)
 
 
-def test_participant_qos():
+def test_domain_participant_qos():
     # DomainParticipantQos
     participant_qos = fastdds.DomainParticipantQos()
 
@@ -1768,3 +1768,18 @@ def test_participant_qos():
     assert(11 == default_participant_qos.wire_protocol().port.offsetd1)
     assert(21 == default_participant_qos.wire_protocol().port.offsetd2)
     assert(22 == default_participant_qos.wire_protocol().port.offsetd3)
+
+
+def test_domain_participant_factory_qos():
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    factory_qos = fastdds.DomainParticipantFactoryQos()
+
+    factory_qos.entity_factory().autoenable_created_entities = False
+    assert(not factory_qos.entity_factory().autoenable_created_entities)
+
+    factory.set_qos(factory_qos)
+
+    default_factory_qos = fastdds.DomainParticipantFactoryQos()
+    factory.get_qos(default_factory_qos)
+    assert(not default_factory_qos.entity_factory().
+           autoenable_created_entities)
