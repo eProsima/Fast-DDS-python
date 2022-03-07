@@ -1808,8 +1808,13 @@ def test_domain_participant_factory_qos():
     assert(not factory_qos.entity_factory().autoenable_created_entities)
 
     factory.set_qos(factory_qos)
-
     default_factory_qos = fastdds.DomainParticipantFactoryQos()
     factory.get_qos(default_factory_qos)
+    # Revert changes in default
+    factory_qos = fastdds.DomainParticipantFactoryQos()
+    factory.set_qos(factory_qos)
+
+
     assert(not default_factory_qos.entity_factory().
            autoenable_created_entities)
+    default_factory_qos = fastdds.DomainParticipantFactoryQos()

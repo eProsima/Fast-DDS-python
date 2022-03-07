@@ -4,11 +4,13 @@ import fastdds
 import test_complete
 
 
-def test_write():
+#    RTPS_DllAPI ReturnCode_t get_key_value(
+#            void* key_holder,
+#            const InstanceHandle_t& handle);
+def test_get_key_value():
     """
     This test checks:
-    - DataWriter::write
-    - DataWriter::write_w_timestamp
+    - DataWriter::get_key_value
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
@@ -17,8 +19,8 @@ def test_write():
     assert(participant is not None)
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
-    test_type = fastdds.TypeSupport(test_complete.
-            KeyedCompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
     topic = participant.create_topic(
@@ -28,43 +30,10 @@ def test_write():
             topic, fastdds.DATAWRITER_QOS_DEFAULT)
     assert(datawriter is not None)
 
-    # Overlay 1
     sample = test_complete.KeyedCompleteTestType()
-    assert(datawriter.write(sample))
-
-    # Overlay 2
-    sample = test_complete.KeyedCompleteTestType()
-    params = fastdds.WriteParams()
-    guid = fastdds.GUID_t()
-    guid.guidPrefix.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
-    guid.entityId.value = (13, 14, 15, 16)
-    sequence_number = fastdds.SequenceNumber_t()
-    sequence_number.high = 0
-    sequence_number.low = 1
-    params.related_sample_identity().writer_guid(guid)
-    params.related_sample_identity().sequence_number(sequence_number)
-    assert(datawriter.write(sample, params))
-
-    # Overlay 3
-    sample = test_complete.KeyedCompleteTestType()
-    sample.id(1)
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.write(sample, ih))
-    ih = fastdds.InstanceHandle_t()
-    ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
-           datawriter.write(sample, ih))
-
-    # Overlay 4
-    sample = test_complete.KeyedCompleteTestType()
-    sample.id(1)
-    ih = fastdds.InstanceHandle_t()
-    now = datetime.datetime.now().time()
-    timestamp = fastdds.Time_t()
-    timestamp.seconds = now.second
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           datawriter.write_w_timestamp(sample, ih, timestamp))
+           datawriter.get_key_value(sample, ih))
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -130,6 +99,79 @@ def test_register_instance():
     assert(fastdds.c_InstanceHandle_Unknown == ih)
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.unregister_instance_w_timestamp(sample, ih, timestamp))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_write():
+    """
+    This test checks:
+    - DataWriter::write
+    - DataWriter::write_w_timestamp
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(test_complete.
+            KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    # Overlay 1
+    sample = test_complete.KeyedCompleteTestType()
+    assert(datawriter.write(sample))
+
+    # Overlay 2
+    sample = test_complete.KeyedCompleteTestType()
+    params = fastdds.WriteParams()
+    guid = fastdds.GUID_t()
+    guid.guidPrefix.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+    guid.entityId.value = (13, 14, 15, 16)
+    sequence_number = fastdds.SequenceNumber_t()
+    sequence_number.high = 0
+    sequence_number.low = 1
+    params.related_sample_identity().writer_guid(guid)
+    params.related_sample_identity().sequence_number(sequence_number)
+    assert(datawriter.write(sample, params))
+
+    # Overlay 3
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(1)
+    ih = fastdds.InstanceHandle_t()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.write(sample, ih))
+    ih = fastdds.InstanceHandle_t()
+    ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
+    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+           datawriter.write(sample, ih))
+
+    # Overlay 4
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(1)
+    ih = fastdds.InstanceHandle_t()
+    now = datetime.datetime.now().time()
+    timestamp = fastdds.Time_t()
+    timestamp.seconds = now.second
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datawriter.write_w_timestamp(sample, ih, timestamp))
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
