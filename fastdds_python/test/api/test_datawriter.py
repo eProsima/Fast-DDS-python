@@ -8,6 +8,7 @@ def test_write():
     """
     This test checks:
     - DataWriter::write
+    - DataWriter::write_w_timestamp
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
@@ -16,7 +17,8 @@ def test_write():
     assert(participant is not None)
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(test_complete.
+            KeyedCompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
     topic = participant.create_topic(
@@ -47,18 +49,23 @@ def test_write():
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.write(sample, ih))
+    ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(datawriter.write(sample, ih))
+    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+           datawriter.write(sample, ih))
 
     # Overlay 4
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
-    ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
     now = datetime.datetime.now().time()
     timestamp = fastdds.Time_t()
     timestamp.seconds = now.second
-    assert(datawriter.write_w_timestamp(sample, ih, timestamp))
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datawriter.write_w_timestamp(sample, ih, timestamp))
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
@@ -68,106 +75,71 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#
-#    /**
-#     * NOT YET IMPLEMENTED
-#     *
-#     * @brief This operation performs the same function as write except that it also provides the value for the
-#     * @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp" that is made available to DataReader
-#     * objects by means of the @ref eprosima::fastdds::dds::SampleInfo::source_timestamp attribute "source_timestamp"
-#     * inside the SampleInfo.
-#     * The constraints on the values of the @c handle parameter and the corresponding error behavior are the same
-#     * specified for the @ref write operation. This operation may block and return RETCODE_TIMEOUT under the same
-#     * circumstances described for the @ref write operation.
-#     * This operation may return RETCODE_OUT_OF_RESOURCES, RETCODE_PRECONDITION_NOT_MET or RETCODE_BAD_PARAMETER under
-#     * the same circumstances described for the write operation.
-#     *
-#     * @param data Pointer to the data
-#     * @param handle InstanceHandle_t
-#     * @param timestamp Time_t used to set the source_timestamp.
-#     * @return Any of the standard return codes.
-#     */
-#    RTPS_DllAPI ReturnCode_t write_w_timestamp(
-#            void* data,
-#            const InstanceHandle_t& handle,
-#            const fastrtps::rtps::Time_t& timestamp);
-#
-#    /*!
-#     * @brief Informs that the application will be modifying a particular instance.
-#     * It gives an opportunity to the middleware to pre-configure itself to improve performance.
-#     *
-#     * @param[in] instance Sample used to get the instance's key.
-#     * @return Handle containing the instance's key.
-#     * This handle could be used in successive `write` or `dispose` operations.
-#     * In case of error, HANDLE_NIL will be returned.
-#     */
-#    RTPS_DllAPI InstanceHandle_t register_instance(
-#            void* instance);
-#
-#    /**
-#     * NOT YET IMPLEMENTED
-#     *
-#     * @brief This operation performs the same function as register_instance and can be used instead of
-#     * @ref register_instance in the cases where the application desires to specify the value for the
-#     * @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp".
-#     * The @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp" potentially affects the relative
-#     * order in which readers observe events from multiple writers. See the QoS policy
-#     * @ref eprosima::fastdds::dds::DataWriterQos::destination_order "DESTINATION_ORDER".
-#     *
-#     * This operation may block and return RETCODE_TIMEOUT under the same circumstances described for the @ref write
-#     * operation.
-#     *
-#     * This operation may return RETCODE_OUT_OF_RESOURCES under the same circumstances described for the
-#     * @ref write operation.
-#     *
-#     * @param instance  Sample used to get the instance's key.
-#     * @param timestamp Time_t used to set the source_timestamp.
-#     * @return Handle containing the instance's key.
-#     */
-#    RTPS_DllAPI InstanceHandle_t register_instance_w_timestamp(
-#            void* instance,
-#            const fastrtps::rtps::Time_t& timestamp);
-#
-#    /*!
-#     * @brief This operation reverses the action of `register_instance`.
-#     * It should only be called on an instance that is currently registered.
-#     * Informs the middleware that the DataWriter is not intending to modify any more of that data instance.
-#     * Also indicates that the middleware can locally remove all information regarding that instance.
-#     *
-#     * @param[in] instance Sample used to deduce instance's key in case of `handle` parameter is HANDLE_NIL.
-#     * @param[in] handle Instance's key to be unregistered.
-#     * @return Returns the operation's result.
-#     * If the operation finishes successfully, ReturnCode_t::RETCODE_OK is returned.
-#     */
-#    RTPS_DllAPI ReturnCode_t unregister_instance(
-#            void* instance,
-#            const InstanceHandle_t& handle);
-#
-#    /**
-#     * NOT YET IMPLEMENTED
-#     *
-#     * @brief This operation performs the same function as @ref unregister_instance and can be used instead of
-#     * @ref unregister_instance in the cases where the application desires to specify the value for the
-#     * @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp".
-#     * The @ref eprosima::fastdds::dds::SampleInfo::source_timestamp "source_timestamp" potentially affects the relative
-#     * order in which readers observe events from multiple writers. See the QoS policy
-#     * @ref eprosima::fastdds::dds::DataWriterQos::destination_order "DESTINATION_ORDER".
-#     *
-#     * The constraints on the values of the @c handle parameter and the corresponding error behavior are the same
-#     * specified for the @ref unregister_instance operation.
-#     *
-#     * This operation may block and return RETCODE_TIMEOUT under the same circumstances described for the write
-#     * operation
-#     *
-#     * @param instance  Sample used to deduce instance's key in case of `handle` parameter is HANDLE_NIL.
-#     * @param handle Instance's key to be unregistered.
-#     * @param timestamp Time_t used to set the source_timestamp.
-#     * @return Handle containing the instance's key.
-#     */
-#    RTPS_DllAPI ReturnCode_t unregister_instance_w_timestamp(
-#            void* instance,
-#            const InstanceHandle_t& handle,
-#            const fastrtps::rtps::Time_t& timestamp);
+
+
+def test_register_instance():
+    """
+    This test checks:
+    - DataWriter::register_instance
+    - DataWriter::register_instance_w_timestamp
+    - DataWriter::unregister_instance
+    - DataWriter::unregister_instance_w_timestamp
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    # Overlay 1
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(1)
+    ih = datawriter.register_instance(sample)
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    sample2 = test_complete.KeyedCompleteTestType()
+    sample2.id(2)
+    ih2 = datawriter.register_instance(sample2)
+    assert(fastdds.c_InstanceHandle_Unknown != ih2)
+    assert(ih2 != ih)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.unregister_instance(sample, ih))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.unregister_instance(sample2, ih2))
+    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+           datawriter.unregister_instance(sample, fastdds.c_InstanceHandle_Unknown))
+
+    # Overlay 2
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(3)
+    now = datetime.datetime.now().time()
+    timestamp = fastdds.Time_t()
+    timestamp.seconds = now.second
+    ih = datawriter.register_instance_w_timestamp(sample, timestamp)
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datawriter.unregister_instance_w_timestamp(sample, ih, timestamp))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
 #
 #    /**
 #     * NOT YET IMPLEMENTED
