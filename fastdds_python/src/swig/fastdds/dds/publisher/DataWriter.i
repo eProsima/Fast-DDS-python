@@ -19,6 +19,8 @@
 
 // Ignore unimplemented method (the wrapper will try to use it)
 %ignore eprosima::fastdds::dds::DataWriter::dispose_w_timestamp;
+%ignore eprosima::fastdds::dds::DataWriter::write_w_timestamp(void*, const InstanceHandle_t&,
+            const fastrtps::rtps::Time_t&);
 
 // Template for std::vector<DataWriter*>
 %template(DataWriterVector) std::vector<eprosima::fastdds::dds::DataWriter*>;

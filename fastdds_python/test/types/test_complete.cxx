@@ -4133,3 +4133,3407 @@ void CompleteTestType::serializeKey(
     (void) scdr;
                                                              
 }
+
+KeyedCompleteTestType::KeyedCompleteTestType()
+{
+    // m_id com.eprosima.idl.parser.typecode.PrimitiveTypeCode@1e4a7dd4
+    m_id = 0;
+    // m_char_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@4f51b3e0
+    m_char_field = 0;
+    // m_uint8_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@4b9e255
+    m_uint8_field = 0;
+    // m_int16_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@5e57643e
+    m_int16_field = 0;
+    // m_uint16_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@133e16fd
+    m_uint16_field = 0;
+    // m_int32_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@51b279c9
+    m_int32_field = 0;
+    // m_uint32_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@1ad282e0
+    m_uint32_field = 0;
+    // m_int64_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@7f416310
+    m_int64_field = 0;
+    // m_uint64_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@1cab0bfb
+    m_uint64_field = 0;
+    // m_float_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@5e955596
+    m_float_field = 0.0;
+    // m_double_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@50de0926
+    m_double_field = 0.0;
+    // m_bool_field com.eprosima.idl.parser.typecode.PrimitiveTypeCode@2473b9ce
+    m_bool_field = false;
+    // m_string_field com.eprosima.idl.parser.typecode.StringTypeCode@60438a68
+    m_string_field ="";
+    // m_enum_field com.eprosima.idl.parser.typecode.EnumTypeCode@3aeaafa6
+    m_enum_field = ::RED;
+    // m_enum2_field com.eprosima.idl.parser.typecode.EnumTypeCode@76a3e297
+    m_enum2_field = ::WOOD;
+    // m_struct_field com.eprosima.fastdds.idl.parser.typecode.StructTypeCode@fe18270
+
+    // m_array_char_field com.eprosima.idl.parser.typecode.ArrayTypeCode@140e5a13
+    memset(&m_array_char_field, 0, (max_array_size) * 1);
+    // m_array_uint8_field com.eprosima.idl.parser.typecode.ArrayTypeCode@3439f68d
+    memset(&m_array_uint8_field, 0, (max_array_size) * 1);
+    // m_array_int16_field com.eprosima.idl.parser.typecode.ArrayTypeCode@dbd940d
+    memset(&m_array_int16_field, 0, (max_array_size) * 2);
+    // m_array_uint16_field com.eprosima.idl.parser.typecode.ArrayTypeCode@71d15f18
+    memset(&m_array_uint16_field, 0, (max_array_size) * 2);
+    // m_array_int32_field com.eprosima.idl.parser.typecode.ArrayTypeCode@17695df3
+    memset(&m_array_int32_field, 0, (max_array_size) * 4);
+    // m_array_uint32_field com.eprosima.idl.parser.typecode.ArrayTypeCode@6c9f5c0d
+    memset(&m_array_uint32_field, 0, (max_array_size) * 4);
+    // m_array_int64_field com.eprosima.idl.parser.typecode.ArrayTypeCode@de3a06f
+    memset(&m_array_int64_field, 0, (max_array_size) * 8);
+    // m_array_uint64_field com.eprosima.idl.parser.typecode.ArrayTypeCode@76b10754
+    memset(&m_array_uint64_field, 0, (max_array_size) * 8);
+    // m_array_float_field com.eprosima.idl.parser.typecode.ArrayTypeCode@2bea5ab4
+    memset(&m_array_float_field, 0, (max_array_size) * 4);
+    // m_array_double_field com.eprosima.idl.parser.typecode.ArrayTypeCode@3d8314f0
+    memset(&m_array_double_field, 0, (max_array_size) * 8);
+    // m_array_bool_field com.eprosima.idl.parser.typecode.ArrayTypeCode@2df32bf7
+    memset(&m_array_bool_field, 0, (max_array_size) * 1);
+    // m_array_enum_field com.eprosima.idl.parser.typecode.ArrayTypeCode@530612ba
+    memset(&m_array_enum_field, 0, (max_array_size) * 4);
+    // m_array_enum2_field com.eprosima.idl.parser.typecode.ArrayTypeCode@2a40cd94
+    memset(&m_array_enum2_field, 0, (max_array_size) * 4);
+    // m_array_struct_field com.eprosima.idl.parser.typecode.ArrayTypeCode@f4168b8
+
+    // m_bounded_sequence_char_field com.eprosima.idl.parser.typecode.SequenceTypeCode@3bd94634
+
+    // m_bounded_sequence_uint8_field com.eprosima.idl.parser.typecode.SequenceTypeCode@58a90037
+
+    // m_bounded_sequence_int16_field com.eprosima.idl.parser.typecode.SequenceTypeCode@74294adb
+
+    // m_bounded_sequence_uint16_field com.eprosima.idl.parser.typecode.SequenceTypeCode@70a9f84e
+
+    // m_bounded_sequence_int32_field com.eprosima.idl.parser.typecode.SequenceTypeCode@130f889
+
+    // m_bounded_sequence_uint32_field com.eprosima.idl.parser.typecode.SequenceTypeCode@1188e820
+
+    // m_bounded_sequence_int64_field com.eprosima.idl.parser.typecode.SequenceTypeCode@2f490758
+
+    // m_bounded_sequence_uint64_field com.eprosima.idl.parser.typecode.SequenceTypeCode@101df177
+
+    // m_bounded_sequence_float_field com.eprosima.idl.parser.typecode.SequenceTypeCode@166fa74d
+
+    // m_bounded_sequence_double_field com.eprosima.idl.parser.typecode.SequenceTypeCode@40f08448
+
+    // m_bounded_sequence_bool_field com.eprosima.idl.parser.typecode.SequenceTypeCode@276438c9
+
+    // m_bounded_sequence_enum_field com.eprosima.idl.parser.typecode.SequenceTypeCode@588df31b
+
+    // m_bounded_sequence_enum2_field com.eprosima.idl.parser.typecode.SequenceTypeCode@33b37288
+
+    // m_bounded_sequence_struct_field com.eprosima.idl.parser.typecode.SequenceTypeCode@77a57272
+
+    // m_unbounded_sequence_char_field com.eprosima.idl.parser.typecode.SequenceTypeCode@7181ae3f
+
+    // m_unbounded_sequence_uint8_field com.eprosima.idl.parser.typecode.SequenceTypeCode@46238e3f
+
+    // m_unbounded_sequence_int16_field com.eprosima.idl.parser.typecode.SequenceTypeCode@6e2c9341
+
+    // m_unbounded_sequence_uint16_field com.eprosima.idl.parser.typecode.SequenceTypeCode@32464a14
+
+    // m_unbounded_sequence_int32_field com.eprosima.idl.parser.typecode.SequenceTypeCode@4e4aea35
+
+    // m_unbounded_sequence_uint32_field com.eprosima.idl.parser.typecode.SequenceTypeCode@1442d7b5
+
+    // m_unbounded_sequence_int64_field com.eprosima.idl.parser.typecode.SequenceTypeCode@1efee8e7
+
+    // m_unbounded_sequence_uint64_field com.eprosima.idl.parser.typecode.SequenceTypeCode@1ee807c6
+
+    // m_unbounded_sequence_float_field com.eprosima.idl.parser.typecode.SequenceTypeCode@76a4d6c
+
+    // m_unbounded_sequence_double_field com.eprosima.idl.parser.typecode.SequenceTypeCode@517cd4b
+
+    // m_unbounded_sequence_bool_field com.eprosima.idl.parser.typecode.SequenceTypeCode@6cc7b4de
+
+    // m_unbounded_sequence_enum_field com.eprosima.idl.parser.typecode.SequenceTypeCode@32cf48b7
+
+    // m_unbounded_sequence_enum2_field com.eprosima.idl.parser.typecode.SequenceTypeCode@679b62af
+
+    // m_unbounded_sequence_struct_field com.eprosima.idl.parser.typecode.SequenceTypeCode@5cdd8682
+
+
+}
+
+KeyedCompleteTestType::~KeyedCompleteTestType()
+{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+KeyedCompleteTestType::KeyedCompleteTestType(
+        const KeyedCompleteTestType& x)
+{
+    m_id = x.m_id;
+    m_char_field = x.m_char_field;
+    m_uint8_field = x.m_uint8_field;
+    m_int16_field = x.m_int16_field;
+    m_uint16_field = x.m_uint16_field;
+    m_int32_field = x.m_int32_field;
+    m_uint32_field = x.m_uint32_field;
+    m_int64_field = x.m_int64_field;
+    m_uint64_field = x.m_uint64_field;
+    m_float_field = x.m_float_field;
+    m_double_field = x.m_double_field;
+    m_bool_field = x.m_bool_field;
+    m_string_field = x.m_string_field;
+    m_enum_field = x.m_enum_field;
+    m_enum2_field = x.m_enum2_field;
+    m_struct_field = x.m_struct_field;
+    m_array_char_field = x.m_array_char_field;
+    m_array_uint8_field = x.m_array_uint8_field;
+    m_array_int16_field = x.m_array_int16_field;
+    m_array_uint16_field = x.m_array_uint16_field;
+    m_array_int32_field = x.m_array_int32_field;
+    m_array_uint32_field = x.m_array_uint32_field;
+    m_array_int64_field = x.m_array_int64_field;
+    m_array_uint64_field = x.m_array_uint64_field;
+    m_array_float_field = x.m_array_float_field;
+    m_array_double_field = x.m_array_double_field;
+    m_array_bool_field = x.m_array_bool_field;
+    m_array_enum_field = x.m_array_enum_field;
+    m_array_enum2_field = x.m_array_enum2_field;
+    m_array_struct_field = x.m_array_struct_field;
+    m_bounded_sequence_char_field = x.m_bounded_sequence_char_field;
+    m_bounded_sequence_uint8_field = x.m_bounded_sequence_uint8_field;
+    m_bounded_sequence_int16_field = x.m_bounded_sequence_int16_field;
+    m_bounded_sequence_uint16_field = x.m_bounded_sequence_uint16_field;
+    m_bounded_sequence_int32_field = x.m_bounded_sequence_int32_field;
+    m_bounded_sequence_uint32_field = x.m_bounded_sequence_uint32_field;
+    m_bounded_sequence_int64_field = x.m_bounded_sequence_int64_field;
+    m_bounded_sequence_uint64_field = x.m_bounded_sequence_uint64_field;
+    m_bounded_sequence_float_field = x.m_bounded_sequence_float_field;
+    m_bounded_sequence_double_field = x.m_bounded_sequence_double_field;
+    m_bounded_sequence_bool_field = x.m_bounded_sequence_bool_field;
+    m_bounded_sequence_enum_field = x.m_bounded_sequence_enum_field;
+    m_bounded_sequence_enum2_field = x.m_bounded_sequence_enum2_field;
+    m_bounded_sequence_struct_field = x.m_bounded_sequence_struct_field;
+    m_unbounded_sequence_char_field = x.m_unbounded_sequence_char_field;
+    m_unbounded_sequence_uint8_field = x.m_unbounded_sequence_uint8_field;
+    m_unbounded_sequence_int16_field = x.m_unbounded_sequence_int16_field;
+    m_unbounded_sequence_uint16_field = x.m_unbounded_sequence_uint16_field;
+    m_unbounded_sequence_int32_field = x.m_unbounded_sequence_int32_field;
+    m_unbounded_sequence_uint32_field = x.m_unbounded_sequence_uint32_field;
+    m_unbounded_sequence_int64_field = x.m_unbounded_sequence_int64_field;
+    m_unbounded_sequence_uint64_field = x.m_unbounded_sequence_uint64_field;
+    m_unbounded_sequence_float_field = x.m_unbounded_sequence_float_field;
+    m_unbounded_sequence_double_field = x.m_unbounded_sequence_double_field;
+    m_unbounded_sequence_bool_field = x.m_unbounded_sequence_bool_field;
+    m_unbounded_sequence_enum_field = x.m_unbounded_sequence_enum_field;
+    m_unbounded_sequence_enum2_field = x.m_unbounded_sequence_enum2_field;
+    m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
+}
+
+KeyedCompleteTestType::KeyedCompleteTestType(
+        KeyedCompleteTestType&& x)
+{
+    m_id = x.m_id;
+    m_char_field = x.m_char_field;
+    m_uint8_field = x.m_uint8_field;
+    m_int16_field = x.m_int16_field;
+    m_uint16_field = x.m_uint16_field;
+    m_int32_field = x.m_int32_field;
+    m_uint32_field = x.m_uint32_field;
+    m_int64_field = x.m_int64_field;
+    m_uint64_field = x.m_uint64_field;
+    m_float_field = x.m_float_field;
+    m_double_field = x.m_double_field;
+    m_bool_field = x.m_bool_field;
+    m_string_field = std::move(x.m_string_field);
+    m_enum_field = x.m_enum_field;
+    m_enum2_field = x.m_enum2_field;
+    m_struct_field = std::move(x.m_struct_field);
+    m_array_char_field = std::move(x.m_array_char_field);
+    m_array_uint8_field = std::move(x.m_array_uint8_field);
+    m_array_int16_field = std::move(x.m_array_int16_field);
+    m_array_uint16_field = std::move(x.m_array_uint16_field);
+    m_array_int32_field = std::move(x.m_array_int32_field);
+    m_array_uint32_field = std::move(x.m_array_uint32_field);
+    m_array_int64_field = std::move(x.m_array_int64_field);
+    m_array_uint64_field = std::move(x.m_array_uint64_field);
+    m_array_float_field = std::move(x.m_array_float_field);
+    m_array_double_field = std::move(x.m_array_double_field);
+    m_array_bool_field = std::move(x.m_array_bool_field);
+    m_array_enum_field = std::move(x.m_array_enum_field);
+    m_array_enum2_field = std::move(x.m_array_enum2_field);
+    m_array_struct_field = std::move(x.m_array_struct_field);
+    m_bounded_sequence_char_field = std::move(x.m_bounded_sequence_char_field);
+    m_bounded_sequence_uint8_field = std::move(x.m_bounded_sequence_uint8_field);
+    m_bounded_sequence_int16_field = std::move(x.m_bounded_sequence_int16_field);
+    m_bounded_sequence_uint16_field = std::move(x.m_bounded_sequence_uint16_field);
+    m_bounded_sequence_int32_field = std::move(x.m_bounded_sequence_int32_field);
+    m_bounded_sequence_uint32_field = std::move(x.m_bounded_sequence_uint32_field);
+    m_bounded_sequence_int64_field = std::move(x.m_bounded_sequence_int64_field);
+    m_bounded_sequence_uint64_field = std::move(x.m_bounded_sequence_uint64_field);
+    m_bounded_sequence_float_field = std::move(x.m_bounded_sequence_float_field);
+    m_bounded_sequence_double_field = std::move(x.m_bounded_sequence_double_field);
+    m_bounded_sequence_bool_field = std::move(x.m_bounded_sequence_bool_field);
+    m_bounded_sequence_enum_field = std::move(x.m_bounded_sequence_enum_field);
+    m_bounded_sequence_enum2_field = std::move(x.m_bounded_sequence_enum2_field);
+    m_bounded_sequence_struct_field = std::move(x.m_bounded_sequence_struct_field);
+    m_unbounded_sequence_char_field = std::move(x.m_unbounded_sequence_char_field);
+    m_unbounded_sequence_uint8_field = std::move(x.m_unbounded_sequence_uint8_field);
+    m_unbounded_sequence_int16_field = std::move(x.m_unbounded_sequence_int16_field);
+    m_unbounded_sequence_uint16_field = std::move(x.m_unbounded_sequence_uint16_field);
+    m_unbounded_sequence_int32_field = std::move(x.m_unbounded_sequence_int32_field);
+    m_unbounded_sequence_uint32_field = std::move(x.m_unbounded_sequence_uint32_field);
+    m_unbounded_sequence_int64_field = std::move(x.m_unbounded_sequence_int64_field);
+    m_unbounded_sequence_uint64_field = std::move(x.m_unbounded_sequence_uint64_field);
+    m_unbounded_sequence_float_field = std::move(x.m_unbounded_sequence_float_field);
+    m_unbounded_sequence_double_field = std::move(x.m_unbounded_sequence_double_field);
+    m_unbounded_sequence_bool_field = std::move(x.m_unbounded_sequence_bool_field);
+    m_unbounded_sequence_enum_field = std::move(x.m_unbounded_sequence_enum_field);
+    m_unbounded_sequence_enum2_field = std::move(x.m_unbounded_sequence_enum2_field);
+    m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
+}
+
+KeyedCompleteTestType& KeyedCompleteTestType::operator =(
+        const KeyedCompleteTestType& x)
+{
+
+    m_id = x.m_id;
+    m_char_field = x.m_char_field;
+    m_uint8_field = x.m_uint8_field;
+    m_int16_field = x.m_int16_field;
+    m_uint16_field = x.m_uint16_field;
+    m_int32_field = x.m_int32_field;
+    m_uint32_field = x.m_uint32_field;
+    m_int64_field = x.m_int64_field;
+    m_uint64_field = x.m_uint64_field;
+    m_float_field = x.m_float_field;
+    m_double_field = x.m_double_field;
+    m_bool_field = x.m_bool_field;
+    m_string_field = x.m_string_field;
+    m_enum_field = x.m_enum_field;
+    m_enum2_field = x.m_enum2_field;
+    m_struct_field = x.m_struct_field;
+    m_array_char_field = x.m_array_char_field;
+    m_array_uint8_field = x.m_array_uint8_field;
+    m_array_int16_field = x.m_array_int16_field;
+    m_array_uint16_field = x.m_array_uint16_field;
+    m_array_int32_field = x.m_array_int32_field;
+    m_array_uint32_field = x.m_array_uint32_field;
+    m_array_int64_field = x.m_array_int64_field;
+    m_array_uint64_field = x.m_array_uint64_field;
+    m_array_float_field = x.m_array_float_field;
+    m_array_double_field = x.m_array_double_field;
+    m_array_bool_field = x.m_array_bool_field;
+    m_array_enum_field = x.m_array_enum_field;
+    m_array_enum2_field = x.m_array_enum2_field;
+    m_array_struct_field = x.m_array_struct_field;
+    m_bounded_sequence_char_field = x.m_bounded_sequence_char_field;
+    m_bounded_sequence_uint8_field = x.m_bounded_sequence_uint8_field;
+    m_bounded_sequence_int16_field = x.m_bounded_sequence_int16_field;
+    m_bounded_sequence_uint16_field = x.m_bounded_sequence_uint16_field;
+    m_bounded_sequence_int32_field = x.m_bounded_sequence_int32_field;
+    m_bounded_sequence_uint32_field = x.m_bounded_sequence_uint32_field;
+    m_bounded_sequence_int64_field = x.m_bounded_sequence_int64_field;
+    m_bounded_sequence_uint64_field = x.m_bounded_sequence_uint64_field;
+    m_bounded_sequence_float_field = x.m_bounded_sequence_float_field;
+    m_bounded_sequence_double_field = x.m_bounded_sequence_double_field;
+    m_bounded_sequence_bool_field = x.m_bounded_sequence_bool_field;
+    m_bounded_sequence_enum_field = x.m_bounded_sequence_enum_field;
+    m_bounded_sequence_enum2_field = x.m_bounded_sequence_enum2_field;
+    m_bounded_sequence_struct_field = x.m_bounded_sequence_struct_field;
+    m_unbounded_sequence_char_field = x.m_unbounded_sequence_char_field;
+    m_unbounded_sequence_uint8_field = x.m_unbounded_sequence_uint8_field;
+    m_unbounded_sequence_int16_field = x.m_unbounded_sequence_int16_field;
+    m_unbounded_sequence_uint16_field = x.m_unbounded_sequence_uint16_field;
+    m_unbounded_sequence_int32_field = x.m_unbounded_sequence_int32_field;
+    m_unbounded_sequence_uint32_field = x.m_unbounded_sequence_uint32_field;
+    m_unbounded_sequence_int64_field = x.m_unbounded_sequence_int64_field;
+    m_unbounded_sequence_uint64_field = x.m_unbounded_sequence_uint64_field;
+    m_unbounded_sequence_float_field = x.m_unbounded_sequence_float_field;
+    m_unbounded_sequence_double_field = x.m_unbounded_sequence_double_field;
+    m_unbounded_sequence_bool_field = x.m_unbounded_sequence_bool_field;
+    m_unbounded_sequence_enum_field = x.m_unbounded_sequence_enum_field;
+    m_unbounded_sequence_enum2_field = x.m_unbounded_sequence_enum2_field;
+    m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
+
+    return *this;
+}
+
+KeyedCompleteTestType& KeyedCompleteTestType::operator =(
+        KeyedCompleteTestType&& x)
+{
+
+    m_id = x.m_id;
+    m_char_field = x.m_char_field;
+    m_uint8_field = x.m_uint8_field;
+    m_int16_field = x.m_int16_field;
+    m_uint16_field = x.m_uint16_field;
+    m_int32_field = x.m_int32_field;
+    m_uint32_field = x.m_uint32_field;
+    m_int64_field = x.m_int64_field;
+    m_uint64_field = x.m_uint64_field;
+    m_float_field = x.m_float_field;
+    m_double_field = x.m_double_field;
+    m_bool_field = x.m_bool_field;
+    m_string_field = std::move(x.m_string_field);
+    m_enum_field = x.m_enum_field;
+    m_enum2_field = x.m_enum2_field;
+    m_struct_field = std::move(x.m_struct_field);
+    m_array_char_field = std::move(x.m_array_char_field);
+    m_array_uint8_field = std::move(x.m_array_uint8_field);
+    m_array_int16_field = std::move(x.m_array_int16_field);
+    m_array_uint16_field = std::move(x.m_array_uint16_field);
+    m_array_int32_field = std::move(x.m_array_int32_field);
+    m_array_uint32_field = std::move(x.m_array_uint32_field);
+    m_array_int64_field = std::move(x.m_array_int64_field);
+    m_array_uint64_field = std::move(x.m_array_uint64_field);
+    m_array_float_field = std::move(x.m_array_float_field);
+    m_array_double_field = std::move(x.m_array_double_field);
+    m_array_bool_field = std::move(x.m_array_bool_field);
+    m_array_enum_field = std::move(x.m_array_enum_field);
+    m_array_enum2_field = std::move(x.m_array_enum2_field);
+    m_array_struct_field = std::move(x.m_array_struct_field);
+    m_bounded_sequence_char_field = std::move(x.m_bounded_sequence_char_field);
+    m_bounded_sequence_uint8_field = std::move(x.m_bounded_sequence_uint8_field);
+    m_bounded_sequence_int16_field = std::move(x.m_bounded_sequence_int16_field);
+    m_bounded_sequence_uint16_field = std::move(x.m_bounded_sequence_uint16_field);
+    m_bounded_sequence_int32_field = std::move(x.m_bounded_sequence_int32_field);
+    m_bounded_sequence_uint32_field = std::move(x.m_bounded_sequence_uint32_field);
+    m_bounded_sequence_int64_field = std::move(x.m_bounded_sequence_int64_field);
+    m_bounded_sequence_uint64_field = std::move(x.m_bounded_sequence_uint64_field);
+    m_bounded_sequence_float_field = std::move(x.m_bounded_sequence_float_field);
+    m_bounded_sequence_double_field = std::move(x.m_bounded_sequence_double_field);
+    m_bounded_sequence_bool_field = std::move(x.m_bounded_sequence_bool_field);
+    m_bounded_sequence_enum_field = std::move(x.m_bounded_sequence_enum_field);
+    m_bounded_sequence_enum2_field = std::move(x.m_bounded_sequence_enum2_field);
+    m_bounded_sequence_struct_field = std::move(x.m_bounded_sequence_struct_field);
+    m_unbounded_sequence_char_field = std::move(x.m_unbounded_sequence_char_field);
+    m_unbounded_sequence_uint8_field = std::move(x.m_unbounded_sequence_uint8_field);
+    m_unbounded_sequence_int16_field = std::move(x.m_unbounded_sequence_int16_field);
+    m_unbounded_sequence_uint16_field = std::move(x.m_unbounded_sequence_uint16_field);
+    m_unbounded_sequence_int32_field = std::move(x.m_unbounded_sequence_int32_field);
+    m_unbounded_sequence_uint32_field = std::move(x.m_unbounded_sequence_uint32_field);
+    m_unbounded_sequence_int64_field = std::move(x.m_unbounded_sequence_int64_field);
+    m_unbounded_sequence_uint64_field = std::move(x.m_unbounded_sequence_uint64_field);
+    m_unbounded_sequence_float_field = std::move(x.m_unbounded_sequence_float_field);
+    m_unbounded_sequence_double_field = std::move(x.m_unbounded_sequence_double_field);
+    m_unbounded_sequence_bool_field = std::move(x.m_unbounded_sequence_bool_field);
+    m_unbounded_sequence_enum_field = std::move(x.m_unbounded_sequence_enum_field);
+    m_unbounded_sequence_enum2_field = std::move(x.m_unbounded_sequence_enum2_field);
+    m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
+
+    return *this;
+}
+
+bool KeyedCompleteTestType::operator ==(
+        const KeyedCompleteTestType& x) const
+{
+
+    return (m_id == x.m_id && m_char_field == x.m_char_field && m_uint8_field == x.m_uint8_field && m_int16_field == x.m_int16_field && m_uint16_field == x.m_uint16_field && m_int32_field == x.m_int32_field && m_uint32_field == x.m_uint32_field && m_int64_field == x.m_int64_field && m_uint64_field == x.m_uint64_field && m_float_field == x.m_float_field && m_double_field == x.m_double_field && m_bool_field == x.m_bool_field && m_string_field == x.m_string_field && m_enum_field == x.m_enum_field && m_enum2_field == x.m_enum2_field && m_struct_field == x.m_struct_field && m_array_char_field == x.m_array_char_field && m_array_uint8_field == x.m_array_uint8_field && m_array_int16_field == x.m_array_int16_field && m_array_uint16_field == x.m_array_uint16_field && m_array_int32_field == x.m_array_int32_field && m_array_uint32_field == x.m_array_uint32_field && m_array_int64_field == x.m_array_int64_field && m_array_uint64_field == x.m_array_uint64_field && m_array_float_field == x.m_array_float_field && m_array_double_field == x.m_array_double_field && m_array_bool_field == x.m_array_bool_field && m_array_enum_field == x.m_array_enum_field && m_array_enum2_field == x.m_array_enum2_field && m_array_struct_field == x.m_array_struct_field && m_bounded_sequence_char_field == x.m_bounded_sequence_char_field && m_bounded_sequence_uint8_field == x.m_bounded_sequence_uint8_field && m_bounded_sequence_int16_field == x.m_bounded_sequence_int16_field && m_bounded_sequence_uint16_field == x.m_bounded_sequence_uint16_field && m_bounded_sequence_int32_field == x.m_bounded_sequence_int32_field && m_bounded_sequence_uint32_field == x.m_bounded_sequence_uint32_field && m_bounded_sequence_int64_field == x.m_bounded_sequence_int64_field && m_bounded_sequence_uint64_field == x.m_bounded_sequence_uint64_field && m_bounded_sequence_float_field == x.m_bounded_sequence_float_field && m_bounded_sequence_double_field == x.m_bounded_sequence_double_field && m_bounded_sequence_bool_field == x.m_bounded_sequence_bool_field && m_bounded_sequence_enum_field == x.m_bounded_sequence_enum_field && m_bounded_sequence_enum2_field == x.m_bounded_sequence_enum2_field && m_bounded_sequence_struct_field == x.m_bounded_sequence_struct_field && m_unbounded_sequence_char_field == x.m_unbounded_sequence_char_field && m_unbounded_sequence_uint8_field == x.m_unbounded_sequence_uint8_field && m_unbounded_sequence_int16_field == x.m_unbounded_sequence_int16_field && m_unbounded_sequence_uint16_field == x.m_unbounded_sequence_uint16_field && m_unbounded_sequence_int32_field == x.m_unbounded_sequence_int32_field && m_unbounded_sequence_uint32_field == x.m_unbounded_sequence_uint32_field && m_unbounded_sequence_int64_field == x.m_unbounded_sequence_int64_field && m_unbounded_sequence_uint64_field == x.m_unbounded_sequence_uint64_field && m_unbounded_sequence_float_field == x.m_unbounded_sequence_float_field && m_unbounded_sequence_double_field == x.m_unbounded_sequence_double_field && m_unbounded_sequence_bool_field == x.m_unbounded_sequence_bool_field && m_unbounded_sequence_enum_field == x.m_unbounded_sequence_enum_field && m_unbounded_sequence_enum2_field == x.m_unbounded_sequence_enum2_field && m_unbounded_sequence_struct_field == x.m_unbounded_sequence_struct_field);
+}
+
+bool KeyedCompleteTestType::operator !=(
+        const KeyedCompleteTestType& x) const
+{
+    return !(*this == x);
+}
+
+size_t KeyedCompleteTestType::getMaxCdrSerializedSize(
+        size_t current_alignment)
+{
+    size_t initial_alignment = current_alignment;
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4) + 255 + 1;
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += StructType::getMaxCdrSerializedSize(current_alignment);
+    current_alignment += ((max_array_size) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += ((max_array_size) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += ((max_array_size) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += ((max_array_size) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += ((max_array_size) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += ((max_array_size) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += ((max_array_size) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += ((max_array_size) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    for(size_t a = 0; a < (max_array_size); ++a)
+    {
+        current_alignment += StructType::getMaxCdrSerializedSize(current_alignment);}
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (max_seq_size * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    for(size_t a = 0; a < max_seq_size; ++a)
+    {
+        current_alignment += StructType::getMaxCdrSerializedSize(current_alignment);}
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    current_alignment += (100 * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    for(size_t a = 0; a < 100; ++a)
+    {
+        current_alignment += StructType::getMaxCdrSerializedSize(current_alignment);}
+
+
+    return current_alignment - initial_alignment;
+}
+
+size_t KeyedCompleteTestType::getCdrSerializedSize(
+        const KeyedCompleteTestType& data,
+        size_t current_alignment)
+{
+    (void)data;
+    size_t initial_alignment = current_alignment;
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4) + data.string_field().size() + 1;
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += StructType::getCdrSerializedSize(data.struct_field(), current_alignment);
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+    if ((max_array_size) > 0)
+    {
+        current_alignment += ((max_array_size) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+    for(size_t a = 0; a < data.array_struct_field().size(); ++a)
+    {
+            current_alignment += StructType::getCdrSerializedSize(data.array_struct_field().at(a), current_alignment);
+    }
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_char_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_char_field().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_uint8_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_uint8_field().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_int16_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_int16_field().size() * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_uint16_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_uint16_field().size() * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_int32_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_int32_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_uint32_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_uint32_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_int64_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_int64_field().size() * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_uint64_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_uint64_field().size() * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_float_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_float_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_double_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_double_field().size() * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_bool_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_bool_field().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_enum_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_enum_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.bounded_sequence_enum2_field().size() > 0)
+    {
+        current_alignment += (data.bounded_sequence_enum2_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    for(size_t a = 0; a < data.bounded_sequence_struct_field().size(); ++a)
+    {
+        current_alignment += StructType::getCdrSerializedSize(data.bounded_sequence_struct_field().at(a), current_alignment);}
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_char_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_char_field().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_uint8_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_uint8_field().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_int16_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_int16_field().size() * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_uint16_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_uint16_field().size() * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_int32_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_int32_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_uint32_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_uint32_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_int64_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_int64_field().size() * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_uint64_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_uint64_field().size() * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_float_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_float_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_double_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_double_field().size() * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_bool_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_bool_field().size() * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_enum_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_enum_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+    if (data.unbounded_sequence_enum2_field().size() > 0)
+    {
+        current_alignment += (data.unbounded_sequence_enum2_field().size() * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    }
+
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    for(size_t a = 0; a < data.unbounded_sequence_struct_field().size(); ++a)
+    {
+        current_alignment += StructType::getCdrSerializedSize(data.unbounded_sequence_struct_field().at(a), current_alignment);}
+
+
+    return current_alignment - initial_alignment;
+}
+
+void KeyedCompleteTestType::serialize(
+        eprosima::fastcdr::Cdr& scdr) const
+{
+
+    scdr << m_id;
+    scdr << m_char_field;
+    scdr << m_uint8_field;
+    scdr << m_int16_field;
+    scdr << m_uint16_field;
+    scdr << m_int32_field;
+    scdr << m_uint32_field;
+    scdr << m_int64_field;
+    scdr << m_uint64_field;
+    scdr << m_float_field;
+    scdr << m_double_field;
+    scdr << m_bool_field;
+    scdr << m_string_field;
+    scdr << (uint32_t)m_enum_field;
+    scdr << (uint32_t)m_enum2_field;
+    scdr << m_struct_field;
+    scdr << m_array_char_field;
+
+    scdr << m_array_uint8_field;
+
+    scdr << m_array_int16_field;
+
+    scdr << m_array_uint16_field;
+
+    scdr << m_array_int32_field;
+
+    scdr << m_array_uint32_field;
+
+    scdr << m_array_int64_field;
+
+    scdr << m_array_uint64_field;
+
+    scdr << m_array_float_field;
+
+    scdr << m_array_double_field;
+
+    scdr << m_array_bool_field;
+
+    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_array_enum_field.data()), m_array_enum_field.size());
+
+
+    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_array_enum2_field.data()), m_array_enum2_field.size());
+
+
+    scdr << m_array_struct_field;
+
+    scdr << m_bounded_sequence_char_field;
+    scdr << m_bounded_sequence_uint8_field;
+    scdr << m_bounded_sequence_int16_field;
+    scdr << m_bounded_sequence_uint16_field;
+    scdr << m_bounded_sequence_int32_field;
+    scdr << m_bounded_sequence_uint32_field;
+    scdr << m_bounded_sequence_int64_field;
+    scdr << m_bounded_sequence_uint64_field;
+    scdr << m_bounded_sequence_float_field;
+    scdr << m_bounded_sequence_double_field;
+    scdr << m_bounded_sequence_bool_field;
+    scdr << static_cast<uint32_t>(m_bounded_sequence_enum_field.size());
+    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_bounded_sequence_enum_field.data()), m_bounded_sequence_enum_field.size());
+
+    scdr << static_cast<uint32_t>(m_bounded_sequence_enum2_field.size());
+    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_bounded_sequence_enum2_field.data()), m_bounded_sequence_enum2_field.size());
+
+    scdr << m_bounded_sequence_struct_field;
+    scdr << m_unbounded_sequence_char_field;
+    scdr << m_unbounded_sequence_uint8_field;
+    scdr << m_unbounded_sequence_int16_field;
+    scdr << m_unbounded_sequence_uint16_field;
+    scdr << m_unbounded_sequence_int32_field;
+    scdr << m_unbounded_sequence_uint32_field;
+    scdr << m_unbounded_sequence_int64_field;
+    scdr << m_unbounded_sequence_uint64_field;
+    scdr << m_unbounded_sequence_float_field;
+    scdr << m_unbounded_sequence_double_field;
+    scdr << m_unbounded_sequence_bool_field;
+    scdr << static_cast<uint32_t>(m_unbounded_sequence_enum_field.size());
+    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_unbounded_sequence_enum_field.data()), m_unbounded_sequence_enum_field.size());
+
+    scdr << static_cast<uint32_t>(m_unbounded_sequence_enum2_field.size());
+    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_unbounded_sequence_enum2_field.data()), m_unbounded_sequence_enum2_field.size());
+
+    scdr << m_unbounded_sequence_struct_field;
+
+}
+
+void KeyedCompleteTestType::deserialize(
+        eprosima::fastcdr::Cdr& dcdr)
+{
+
+    dcdr >> m_id;
+    dcdr >> m_char_field;
+    dcdr >> m_uint8_field;
+    dcdr >> m_int16_field;
+    dcdr >> m_uint16_field;
+    dcdr >> m_int32_field;
+    dcdr >> m_uint32_field;
+    dcdr >> m_int64_field;
+    dcdr >> m_uint64_field;
+    dcdr >> m_float_field;
+    dcdr >> m_double_field;
+    dcdr >> m_bool_field;
+    dcdr >> m_string_field;
+    {
+        uint32_t enum_value = 0;
+        dcdr >> enum_value;
+        m_enum_field = (Color)enum_value;
+    }
+
+    {
+        uint32_t enum_value = 0;
+        dcdr >> enum_value;
+        m_enum2_field = (Material)enum_value;
+    }
+
+    dcdr >> m_struct_field;
+    dcdr >> m_array_char_field;
+
+    dcdr >> m_array_uint8_field;
+
+    dcdr >> m_array_int16_field;
+
+    dcdr >> m_array_uint16_field;
+
+    dcdr >> m_array_int32_field;
+
+    dcdr >> m_array_uint32_field;
+
+    dcdr >> m_array_int64_field;
+
+    dcdr >> m_array_uint64_field;
+
+    dcdr >> m_array_float_field;
+
+    dcdr >> m_array_double_field;
+
+    dcdr >> m_array_bool_field;
+
+    dcdr.deserializeArray(reinterpret_cast<uint32_t*>(m_array_enum_field.data()), m_array_enum_field.size());
+
+
+    dcdr.deserializeArray(reinterpret_cast<uint32_t*>(m_array_enum2_field.data()), m_array_enum2_field.size());
+
+
+    dcdr >> m_array_struct_field;
+
+    dcdr >> m_bounded_sequence_char_field;
+    dcdr >> m_bounded_sequence_uint8_field;
+    dcdr >> m_bounded_sequence_int16_field;
+    dcdr >> m_bounded_sequence_uint16_field;
+    dcdr >> m_bounded_sequence_int32_field;
+    dcdr >> m_bounded_sequence_uint32_field;
+    dcdr >> m_bounded_sequence_int64_field;
+    dcdr >> m_bounded_sequence_uint64_field;
+    dcdr >> m_bounded_sequence_float_field;
+    dcdr >> m_bounded_sequence_double_field;
+    dcdr >> m_bounded_sequence_bool_field;
+    {
+        uint32_t seq_length = 0;
+        dcdr >> seq_length;
+        m_bounded_sequence_enum_field.resize(seq_length);
+        dcdr.deserializeArray(reinterpret_cast<uint32_t*>(m_bounded_sequence_enum_field.data()), seq_length);
+    }
+
+    {
+        uint32_t seq_length = 0;
+        dcdr >> seq_length;
+        m_bounded_sequence_enum2_field.resize(seq_length);
+        dcdr.deserializeArray(reinterpret_cast<uint32_t*>(m_bounded_sequence_enum2_field.data()), seq_length);
+    }
+
+    dcdr >> m_bounded_sequence_struct_field;
+    dcdr >> m_unbounded_sequence_char_field;
+    dcdr >> m_unbounded_sequence_uint8_field;
+    dcdr >> m_unbounded_sequence_int16_field;
+    dcdr >> m_unbounded_sequence_uint16_field;
+    dcdr >> m_unbounded_sequence_int32_field;
+    dcdr >> m_unbounded_sequence_uint32_field;
+    dcdr >> m_unbounded_sequence_int64_field;
+    dcdr >> m_unbounded_sequence_uint64_field;
+    dcdr >> m_unbounded_sequence_float_field;
+    dcdr >> m_unbounded_sequence_double_field;
+    dcdr >> m_unbounded_sequence_bool_field;
+    {
+        uint32_t seq_length = 0;
+        dcdr >> seq_length;
+        m_unbounded_sequence_enum_field.resize(seq_length);
+        dcdr.deserializeArray(reinterpret_cast<uint32_t*>(m_unbounded_sequence_enum_field.data()), seq_length);
+    }
+
+    {
+        uint32_t seq_length = 0;
+        dcdr >> seq_length;
+        m_unbounded_sequence_enum2_field.resize(seq_length);
+        dcdr.deserializeArray(reinterpret_cast<uint32_t*>(m_unbounded_sequence_enum2_field.data()), seq_length);
+    }
+
+    dcdr >> m_unbounded_sequence_struct_field;
+}
+
+/*!
+ * @brief This function sets a value in member id
+ * @param _id New value for member id
+ */
+void KeyedCompleteTestType::id(
+        int32_t _id)
+{
+    m_id = _id;
+}
+
+/*!
+ * @brief This function returns the value of member id
+ * @return Value of member id
+ */
+int32_t KeyedCompleteTestType::id() const
+{
+    return m_id;
+}
+
+/*!
+ * @brief This function returns a reference to member id
+ * @return Reference to member id
+ */
+int32_t& KeyedCompleteTestType::id()
+{
+    return m_id;
+}
+
+/*!
+ * @brief This function sets a value in member char_field
+ * @param _char_field New value for member char_field
+ */
+void KeyedCompleteTestType::char_field(
+        char _char_field)
+{
+    m_char_field = _char_field;
+}
+
+/*!
+ * @brief This function returns the value of member char_field
+ * @return Value of member char_field
+ */
+char KeyedCompleteTestType::char_field() const
+{
+    return m_char_field;
+}
+
+/*!
+ * @brief This function returns a reference to member char_field
+ * @return Reference to member char_field
+ */
+char& KeyedCompleteTestType::char_field()
+{
+    return m_char_field;
+}
+
+/*!
+ * @brief This function sets a value in member uint8_field
+ * @param _uint8_field New value for member uint8_field
+ */
+void KeyedCompleteTestType::uint8_field(
+        uint8_t _uint8_field)
+{
+    m_uint8_field = _uint8_field;
+}
+
+/*!
+ * @brief This function returns the value of member uint8_field
+ * @return Value of member uint8_field
+ */
+uint8_t KeyedCompleteTestType::uint8_field() const
+{
+    return m_uint8_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint8_field
+ * @return Reference to member uint8_field
+ */
+uint8_t& KeyedCompleteTestType::uint8_field()
+{
+    return m_uint8_field;
+}
+
+/*!
+ * @brief This function sets a value in member int16_field
+ * @param _int16_field New value for member int16_field
+ */
+void KeyedCompleteTestType::int16_field(
+        int16_t _int16_field)
+{
+    m_int16_field = _int16_field;
+}
+
+/*!
+ * @brief This function returns the value of member int16_field
+ * @return Value of member int16_field
+ */
+int16_t KeyedCompleteTestType::int16_field() const
+{
+    return m_int16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int16_field
+ * @return Reference to member int16_field
+ */
+int16_t& KeyedCompleteTestType::int16_field()
+{
+    return m_int16_field;
+}
+
+/*!
+ * @brief This function sets a value in member uint16_field
+ * @param _uint16_field New value for member uint16_field
+ */
+void KeyedCompleteTestType::uint16_field(
+        uint16_t _uint16_field)
+{
+    m_uint16_field = _uint16_field;
+}
+
+/*!
+ * @brief This function returns the value of member uint16_field
+ * @return Value of member uint16_field
+ */
+uint16_t KeyedCompleteTestType::uint16_field() const
+{
+    return m_uint16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint16_field
+ * @return Reference to member uint16_field
+ */
+uint16_t& KeyedCompleteTestType::uint16_field()
+{
+    return m_uint16_field;
+}
+
+/*!
+ * @brief This function sets a value in member int32_field
+ * @param _int32_field New value for member int32_field
+ */
+void KeyedCompleteTestType::int32_field(
+        int32_t _int32_field)
+{
+    m_int32_field = _int32_field;
+}
+
+/*!
+ * @brief This function returns the value of member int32_field
+ * @return Value of member int32_field
+ */
+int32_t KeyedCompleteTestType::int32_field() const
+{
+    return m_int32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int32_field
+ * @return Reference to member int32_field
+ */
+int32_t& KeyedCompleteTestType::int32_field()
+{
+    return m_int32_field;
+}
+
+/*!
+ * @brief This function sets a value in member uint32_field
+ * @param _uint32_field New value for member uint32_field
+ */
+void KeyedCompleteTestType::uint32_field(
+        uint32_t _uint32_field)
+{
+    m_uint32_field = _uint32_field;
+}
+
+/*!
+ * @brief This function returns the value of member uint32_field
+ * @return Value of member uint32_field
+ */
+uint32_t KeyedCompleteTestType::uint32_field() const
+{
+    return m_uint32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint32_field
+ * @return Reference to member uint32_field
+ */
+uint32_t& KeyedCompleteTestType::uint32_field()
+{
+    return m_uint32_field;
+}
+
+/*!
+ * @brief This function sets a value in member int64_field
+ * @param _int64_field New value for member int64_field
+ */
+void KeyedCompleteTestType::int64_field(
+        int64_t _int64_field)
+{
+    m_int64_field = _int64_field;
+}
+
+/*!
+ * @brief This function returns the value of member int64_field
+ * @return Value of member int64_field
+ */
+int64_t KeyedCompleteTestType::int64_field() const
+{
+    return m_int64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int64_field
+ * @return Reference to member int64_field
+ */
+int64_t& KeyedCompleteTestType::int64_field()
+{
+    return m_int64_field;
+}
+
+/*!
+ * @brief This function sets a value in member uint64_field
+ * @param _uint64_field New value for member uint64_field
+ */
+void KeyedCompleteTestType::uint64_field(
+        uint64_t _uint64_field)
+{
+    m_uint64_field = _uint64_field;
+}
+
+/*!
+ * @brief This function returns the value of member uint64_field
+ * @return Value of member uint64_field
+ */
+uint64_t KeyedCompleteTestType::uint64_field() const
+{
+    return m_uint64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint64_field
+ * @return Reference to member uint64_field
+ */
+uint64_t& KeyedCompleteTestType::uint64_field()
+{
+    return m_uint64_field;
+}
+
+/*!
+ * @brief This function sets a value in member float_field
+ * @param _float_field New value for member float_field
+ */
+void KeyedCompleteTestType::float_field(
+        float _float_field)
+{
+    m_float_field = _float_field;
+}
+
+/*!
+ * @brief This function returns the value of member float_field
+ * @return Value of member float_field
+ */
+float KeyedCompleteTestType::float_field() const
+{
+    return m_float_field;
+}
+
+/*!
+ * @brief This function returns a reference to member float_field
+ * @return Reference to member float_field
+ */
+float& KeyedCompleteTestType::float_field()
+{
+    return m_float_field;
+}
+
+/*!
+ * @brief This function sets a value in member double_field
+ * @param _double_field New value for member double_field
+ */
+void KeyedCompleteTestType::double_field(
+        double _double_field)
+{
+    m_double_field = _double_field;
+}
+
+/*!
+ * @brief This function returns the value of member double_field
+ * @return Value of member double_field
+ */
+double KeyedCompleteTestType::double_field() const
+{
+    return m_double_field;
+}
+
+/*!
+ * @brief This function returns a reference to member double_field
+ * @return Reference to member double_field
+ */
+double& KeyedCompleteTestType::double_field()
+{
+    return m_double_field;
+}
+
+/*!
+ * @brief This function sets a value in member bool_field
+ * @param _bool_field New value for member bool_field
+ */
+void KeyedCompleteTestType::bool_field(
+        bool _bool_field)
+{
+    m_bool_field = _bool_field;
+}
+
+/*!
+ * @brief This function returns the value of member bool_field
+ * @return Value of member bool_field
+ */
+bool KeyedCompleteTestType::bool_field() const
+{
+    return m_bool_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bool_field
+ * @return Reference to member bool_field
+ */
+bool& KeyedCompleteTestType::bool_field()
+{
+    return m_bool_field;
+}
+
+/*!
+ * @brief This function copies the value in member string_field
+ * @param _string_field New value to be copied in member string_field
+ */
+void KeyedCompleteTestType::string_field(
+        const std::string& _string_field)
+{
+    m_string_field = _string_field;
+}
+
+/*!
+ * @brief This function moves the value in member string_field
+ * @param _string_field New value to be moved in member string_field
+ */
+void KeyedCompleteTestType::string_field(
+        std::string&& _string_field)
+{
+    m_string_field = std::move(_string_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member string_field
+ * @return Constant reference to member string_field
+ */
+const std::string& KeyedCompleteTestType::string_field() const
+{
+    return m_string_field;
+}
+
+/*!
+ * @brief This function returns a reference to member string_field
+ * @return Reference to member string_field
+ */
+std::string& KeyedCompleteTestType::string_field()
+{
+    return m_string_field;
+}
+/*!
+ * @brief This function sets a value in member enum_field
+ * @param _enum_field New value for member enum_field
+ */
+void KeyedCompleteTestType::enum_field(
+        Color _enum_field)
+{
+    m_enum_field = _enum_field;
+}
+
+/*!
+ * @brief This function returns the value of member enum_field
+ * @return Value of member enum_field
+ */
+Color KeyedCompleteTestType::enum_field() const
+{
+    return m_enum_field;
+}
+
+/*!
+ * @brief This function returns a reference to member enum_field
+ * @return Reference to member enum_field
+ */
+Color& KeyedCompleteTestType::enum_field()
+{
+    return m_enum_field;
+}
+
+/*!
+ * @brief This function sets a value in member enum2_field
+ * @param _enum2_field New value for member enum2_field
+ */
+void KeyedCompleteTestType::enum2_field(
+        Material _enum2_field)
+{
+    m_enum2_field = _enum2_field;
+}
+
+/*!
+ * @brief This function returns the value of member enum2_field
+ * @return Value of member enum2_field
+ */
+Material KeyedCompleteTestType::enum2_field() const
+{
+    return m_enum2_field;
+}
+
+/*!
+ * @brief This function returns a reference to member enum2_field
+ * @return Reference to member enum2_field
+ */
+Material& KeyedCompleteTestType::enum2_field()
+{
+    return m_enum2_field;
+}
+
+/*!
+ * @brief This function copies the value in member struct_field
+ * @param _struct_field New value to be copied in member struct_field
+ */
+void KeyedCompleteTestType::struct_field(
+        const StructType& _struct_field)
+{
+    m_struct_field = _struct_field;
+}
+
+/*!
+ * @brief This function moves the value in member struct_field
+ * @param _struct_field New value to be moved in member struct_field
+ */
+void KeyedCompleteTestType::struct_field(
+        StructType&& _struct_field)
+{
+    m_struct_field = std::move(_struct_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member struct_field
+ * @return Constant reference to member struct_field
+ */
+const StructType& KeyedCompleteTestType::struct_field() const
+{
+    return m_struct_field;
+}
+
+/*!
+ * @brief This function returns a reference to member struct_field
+ * @return Reference to member struct_field
+ */
+StructType& KeyedCompleteTestType::struct_field()
+{
+    return m_struct_field;
+}
+/*!
+ * @brief This function copies the value in member array_char_field
+ * @param _array_char_field New value to be copied in member array_char_field
+ */
+void KeyedCompleteTestType::array_char_field(
+        const std::array<char, max_array_size>& _array_char_field)
+{
+    m_array_char_field = _array_char_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_char_field
+ * @param _array_char_field New value to be moved in member array_char_field
+ */
+void KeyedCompleteTestType::array_char_field(
+        std::array<char, max_array_size>&& _array_char_field)
+{
+    m_array_char_field = std::move(_array_char_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_char_field
+ * @return Constant reference to member array_char_field
+ */
+const std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field() const
+{
+    return m_array_char_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_char_field
+ * @return Reference to member array_char_field
+ */
+std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field()
+{
+    return m_array_char_field;
+}
+/*!
+ * @brief This function copies the value in member array_uint8_field
+ * @param _array_uint8_field New value to be copied in member array_uint8_field
+ */
+void KeyedCompleteTestType::array_uint8_field(
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
+{
+    m_array_uint8_field = _array_uint8_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_uint8_field
+ * @param _array_uint8_field New value to be moved in member array_uint8_field
+ */
+void KeyedCompleteTestType::array_uint8_field(
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
+{
+    m_array_uint8_field = std::move(_array_uint8_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_uint8_field
+ * @return Constant reference to member array_uint8_field
+ */
+const std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field() const
+{
+    return m_array_uint8_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_uint8_field
+ * @return Reference to member array_uint8_field
+ */
+std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field()
+{
+    return m_array_uint8_field;
+}
+/*!
+ * @brief This function copies the value in member array_int16_field
+ * @param _array_int16_field New value to be copied in member array_int16_field
+ */
+void KeyedCompleteTestType::array_int16_field(
+        const std::array<int16_t, max_array_size>& _array_int16_field)
+{
+    m_array_int16_field = _array_int16_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_int16_field
+ * @param _array_int16_field New value to be moved in member array_int16_field
+ */
+void KeyedCompleteTestType::array_int16_field(
+        std::array<int16_t, max_array_size>&& _array_int16_field)
+{
+    m_array_int16_field = std::move(_array_int16_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_int16_field
+ * @return Constant reference to member array_int16_field
+ */
+const std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field() const
+{
+    return m_array_int16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_int16_field
+ * @return Reference to member array_int16_field
+ */
+std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field()
+{
+    return m_array_int16_field;
+}
+/*!
+ * @brief This function copies the value in member array_uint16_field
+ * @param _array_uint16_field New value to be copied in member array_uint16_field
+ */
+void KeyedCompleteTestType::array_uint16_field(
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
+{
+    m_array_uint16_field = _array_uint16_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_uint16_field
+ * @param _array_uint16_field New value to be moved in member array_uint16_field
+ */
+void KeyedCompleteTestType::array_uint16_field(
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
+{
+    m_array_uint16_field = std::move(_array_uint16_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_uint16_field
+ * @return Constant reference to member array_uint16_field
+ */
+const std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field() const
+{
+    return m_array_uint16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_uint16_field
+ * @return Reference to member array_uint16_field
+ */
+std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field()
+{
+    return m_array_uint16_field;
+}
+/*!
+ * @brief This function copies the value in member array_int32_field
+ * @param _array_int32_field New value to be copied in member array_int32_field
+ */
+void KeyedCompleteTestType::array_int32_field(
+        const std::array<int32_t, max_array_size>& _array_int32_field)
+{
+    m_array_int32_field = _array_int32_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_int32_field
+ * @param _array_int32_field New value to be moved in member array_int32_field
+ */
+void KeyedCompleteTestType::array_int32_field(
+        std::array<int32_t, max_array_size>&& _array_int32_field)
+{
+    m_array_int32_field = std::move(_array_int32_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_int32_field
+ * @return Constant reference to member array_int32_field
+ */
+const std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field() const
+{
+    return m_array_int32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_int32_field
+ * @return Reference to member array_int32_field
+ */
+std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field()
+{
+    return m_array_int32_field;
+}
+/*!
+ * @brief This function copies the value in member array_uint32_field
+ * @param _array_uint32_field New value to be copied in member array_uint32_field
+ */
+void KeyedCompleteTestType::array_uint32_field(
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
+{
+    m_array_uint32_field = _array_uint32_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_uint32_field
+ * @param _array_uint32_field New value to be moved in member array_uint32_field
+ */
+void KeyedCompleteTestType::array_uint32_field(
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
+{
+    m_array_uint32_field = std::move(_array_uint32_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_uint32_field
+ * @return Constant reference to member array_uint32_field
+ */
+const std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field() const
+{
+    return m_array_uint32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_uint32_field
+ * @return Reference to member array_uint32_field
+ */
+std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field()
+{
+    return m_array_uint32_field;
+}
+/*!
+ * @brief This function copies the value in member array_int64_field
+ * @param _array_int64_field New value to be copied in member array_int64_field
+ */
+void KeyedCompleteTestType::array_int64_field(
+        const std::array<int64_t, max_array_size>& _array_int64_field)
+{
+    m_array_int64_field = _array_int64_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_int64_field
+ * @param _array_int64_field New value to be moved in member array_int64_field
+ */
+void KeyedCompleteTestType::array_int64_field(
+        std::array<int64_t, max_array_size>&& _array_int64_field)
+{
+    m_array_int64_field = std::move(_array_int64_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_int64_field
+ * @return Constant reference to member array_int64_field
+ */
+const std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field() const
+{
+    return m_array_int64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_int64_field
+ * @return Reference to member array_int64_field
+ */
+std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field()
+{
+    return m_array_int64_field;
+}
+/*!
+ * @brief This function copies the value in member array_uint64_field
+ * @param _array_uint64_field New value to be copied in member array_uint64_field
+ */
+void KeyedCompleteTestType::array_uint64_field(
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
+{
+    m_array_uint64_field = _array_uint64_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_uint64_field
+ * @param _array_uint64_field New value to be moved in member array_uint64_field
+ */
+void KeyedCompleteTestType::array_uint64_field(
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
+{
+    m_array_uint64_field = std::move(_array_uint64_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_uint64_field
+ * @return Constant reference to member array_uint64_field
+ */
+const std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field() const
+{
+    return m_array_uint64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_uint64_field
+ * @return Reference to member array_uint64_field
+ */
+std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field()
+{
+    return m_array_uint64_field;
+}
+/*!
+ * @brief This function copies the value in member array_float_field
+ * @param _array_float_field New value to be copied in member array_float_field
+ */
+void KeyedCompleteTestType::array_float_field(
+        const std::array<float, max_array_size>& _array_float_field)
+{
+    m_array_float_field = _array_float_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_float_field
+ * @param _array_float_field New value to be moved in member array_float_field
+ */
+void KeyedCompleteTestType::array_float_field(
+        std::array<float, max_array_size>&& _array_float_field)
+{
+    m_array_float_field = std::move(_array_float_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_float_field
+ * @return Constant reference to member array_float_field
+ */
+const std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field() const
+{
+    return m_array_float_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_float_field
+ * @return Reference to member array_float_field
+ */
+std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field()
+{
+    return m_array_float_field;
+}
+/*!
+ * @brief This function copies the value in member array_double_field
+ * @param _array_double_field New value to be copied in member array_double_field
+ */
+void KeyedCompleteTestType::array_double_field(
+        const std::array<double, max_array_size>& _array_double_field)
+{
+    m_array_double_field = _array_double_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_double_field
+ * @param _array_double_field New value to be moved in member array_double_field
+ */
+void KeyedCompleteTestType::array_double_field(
+        std::array<double, max_array_size>&& _array_double_field)
+{
+    m_array_double_field = std::move(_array_double_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_double_field
+ * @return Constant reference to member array_double_field
+ */
+const std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field() const
+{
+    return m_array_double_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_double_field
+ * @return Reference to member array_double_field
+ */
+std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field()
+{
+    return m_array_double_field;
+}
+/*!
+ * @brief This function copies the value in member array_bool_field
+ * @param _array_bool_field New value to be copied in member array_bool_field
+ */
+void KeyedCompleteTestType::array_bool_field(
+        const std::array<bool, max_array_size>& _array_bool_field)
+{
+    m_array_bool_field = _array_bool_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_bool_field
+ * @param _array_bool_field New value to be moved in member array_bool_field
+ */
+void KeyedCompleteTestType::array_bool_field(
+        std::array<bool, max_array_size>&& _array_bool_field)
+{
+    m_array_bool_field = std::move(_array_bool_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_bool_field
+ * @return Constant reference to member array_bool_field
+ */
+const std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field() const
+{
+    return m_array_bool_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_bool_field
+ * @return Reference to member array_bool_field
+ */
+std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field()
+{
+    return m_array_bool_field;
+}
+/*!
+ * @brief This function copies the value in member array_enum_field
+ * @param _array_enum_field New value to be copied in member array_enum_field
+ */
+void KeyedCompleteTestType::array_enum_field(
+        const std::array<Color, max_array_size>& _array_enum_field)
+{
+    m_array_enum_field = _array_enum_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_enum_field
+ * @param _array_enum_field New value to be moved in member array_enum_field
+ */
+void KeyedCompleteTestType::array_enum_field(
+        std::array<Color, max_array_size>&& _array_enum_field)
+{
+    m_array_enum_field = std::move(_array_enum_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_enum_field
+ * @return Constant reference to member array_enum_field
+ */
+const std::array<Color, max_array_size>& KeyedCompleteTestType::array_enum_field() const
+{
+    return m_array_enum_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_enum_field
+ * @return Reference to member array_enum_field
+ */
+std::array<Color, max_array_size>& KeyedCompleteTestType::array_enum_field()
+{
+    return m_array_enum_field;
+}
+/*!
+ * @brief This function copies the value in member array_enum2_field
+ * @param _array_enum2_field New value to be copied in member array_enum2_field
+ */
+void KeyedCompleteTestType::array_enum2_field(
+        const std::array<Material, max_array_size>& _array_enum2_field)
+{
+    m_array_enum2_field = _array_enum2_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_enum2_field
+ * @param _array_enum2_field New value to be moved in member array_enum2_field
+ */
+void KeyedCompleteTestType::array_enum2_field(
+        std::array<Material, max_array_size>&& _array_enum2_field)
+{
+    m_array_enum2_field = std::move(_array_enum2_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_enum2_field
+ * @return Constant reference to member array_enum2_field
+ */
+const std::array<Material, max_array_size>& KeyedCompleteTestType::array_enum2_field() const
+{
+    return m_array_enum2_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_enum2_field
+ * @return Reference to member array_enum2_field
+ */
+std::array<Material, max_array_size>& KeyedCompleteTestType::array_enum2_field()
+{
+    return m_array_enum2_field;
+}
+/*!
+ * @brief This function copies the value in member array_struct_field
+ * @param _array_struct_field New value to be copied in member array_struct_field
+ */
+void KeyedCompleteTestType::array_struct_field(
+        const std::array<StructType, max_array_size>& _array_struct_field)
+{
+    m_array_struct_field = _array_struct_field;
+}
+
+/*!
+ * @brief This function moves the value in member array_struct_field
+ * @param _array_struct_field New value to be moved in member array_struct_field
+ */
+void KeyedCompleteTestType::array_struct_field(
+        std::array<StructType, max_array_size>&& _array_struct_field)
+{
+    m_array_struct_field = std::move(_array_struct_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member array_struct_field
+ * @return Constant reference to member array_struct_field
+ */
+const std::array<StructType, max_array_size>& KeyedCompleteTestType::array_struct_field() const
+{
+    return m_array_struct_field;
+}
+
+/*!
+ * @brief This function returns a reference to member array_struct_field
+ * @return Reference to member array_struct_field
+ */
+std::array<StructType, max_array_size>& KeyedCompleteTestType::array_struct_field()
+{
+    return m_array_struct_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_char_field
+ * @param _bounded_sequence_char_field New value to be copied in member bounded_sequence_char_field
+ */
+void KeyedCompleteTestType::bounded_sequence_char_field(
+        const std::vector<char>& _bounded_sequence_char_field)
+{
+    m_bounded_sequence_char_field = _bounded_sequence_char_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_char_field
+ * @param _bounded_sequence_char_field New value to be moved in member bounded_sequence_char_field
+ */
+void KeyedCompleteTestType::bounded_sequence_char_field(
+        std::vector<char>&& _bounded_sequence_char_field)
+{
+    m_bounded_sequence_char_field = std::move(_bounded_sequence_char_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_char_field
+ * @return Constant reference to member bounded_sequence_char_field
+ */
+const std::vector<char>& KeyedCompleteTestType::bounded_sequence_char_field() const
+{
+    return m_bounded_sequence_char_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_char_field
+ * @return Reference to member bounded_sequence_char_field
+ */
+std::vector<char>& KeyedCompleteTestType::bounded_sequence_char_field()
+{
+    return m_bounded_sequence_char_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_uint8_field
+ * @param _bounded_sequence_uint8_field New value to be copied in member bounded_sequence_uint8_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint8_field(
+        const std::vector<uint8_t>& _bounded_sequence_uint8_field)
+{
+    m_bounded_sequence_uint8_field = _bounded_sequence_uint8_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_uint8_field
+ * @param _bounded_sequence_uint8_field New value to be moved in member bounded_sequence_uint8_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint8_field(
+        std::vector<uint8_t>&& _bounded_sequence_uint8_field)
+{
+    m_bounded_sequence_uint8_field = std::move(_bounded_sequence_uint8_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_uint8_field
+ * @return Constant reference to member bounded_sequence_uint8_field
+ */
+const std::vector<uint8_t>& KeyedCompleteTestType::bounded_sequence_uint8_field() const
+{
+    return m_bounded_sequence_uint8_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_uint8_field
+ * @return Reference to member bounded_sequence_uint8_field
+ */
+std::vector<uint8_t>& KeyedCompleteTestType::bounded_sequence_uint8_field()
+{
+    return m_bounded_sequence_uint8_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_int16_field
+ * @param _bounded_sequence_int16_field New value to be copied in member bounded_sequence_int16_field
+ */
+void KeyedCompleteTestType::bounded_sequence_int16_field(
+        const std::vector<int16_t>& _bounded_sequence_int16_field)
+{
+    m_bounded_sequence_int16_field = _bounded_sequence_int16_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_int16_field
+ * @param _bounded_sequence_int16_field New value to be moved in member bounded_sequence_int16_field
+ */
+void KeyedCompleteTestType::bounded_sequence_int16_field(
+        std::vector<int16_t>&& _bounded_sequence_int16_field)
+{
+    m_bounded_sequence_int16_field = std::move(_bounded_sequence_int16_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_int16_field
+ * @return Constant reference to member bounded_sequence_int16_field
+ */
+const std::vector<int16_t>& KeyedCompleteTestType::bounded_sequence_int16_field() const
+{
+    return m_bounded_sequence_int16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_int16_field
+ * @return Reference to member bounded_sequence_int16_field
+ */
+std::vector<int16_t>& KeyedCompleteTestType::bounded_sequence_int16_field()
+{
+    return m_bounded_sequence_int16_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_uint16_field
+ * @param _bounded_sequence_uint16_field New value to be copied in member bounded_sequence_uint16_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint16_field(
+        const std::vector<uint16_t>& _bounded_sequence_uint16_field)
+{
+    m_bounded_sequence_uint16_field = _bounded_sequence_uint16_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_uint16_field
+ * @param _bounded_sequence_uint16_field New value to be moved in member bounded_sequence_uint16_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint16_field(
+        std::vector<uint16_t>&& _bounded_sequence_uint16_field)
+{
+    m_bounded_sequence_uint16_field = std::move(_bounded_sequence_uint16_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_uint16_field
+ * @return Constant reference to member bounded_sequence_uint16_field
+ */
+const std::vector<uint16_t>& KeyedCompleteTestType::bounded_sequence_uint16_field() const
+{
+    return m_bounded_sequence_uint16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_uint16_field
+ * @return Reference to member bounded_sequence_uint16_field
+ */
+std::vector<uint16_t>& KeyedCompleteTestType::bounded_sequence_uint16_field()
+{
+    return m_bounded_sequence_uint16_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_int32_field
+ * @param _bounded_sequence_int32_field New value to be copied in member bounded_sequence_int32_field
+ */
+void KeyedCompleteTestType::bounded_sequence_int32_field(
+        const std::vector<int32_t>& _bounded_sequence_int32_field)
+{
+    m_bounded_sequence_int32_field = _bounded_sequence_int32_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_int32_field
+ * @param _bounded_sequence_int32_field New value to be moved in member bounded_sequence_int32_field
+ */
+void KeyedCompleteTestType::bounded_sequence_int32_field(
+        std::vector<int32_t>&& _bounded_sequence_int32_field)
+{
+    m_bounded_sequence_int32_field = std::move(_bounded_sequence_int32_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_int32_field
+ * @return Constant reference to member bounded_sequence_int32_field
+ */
+const std::vector<int32_t>& KeyedCompleteTestType::bounded_sequence_int32_field() const
+{
+    return m_bounded_sequence_int32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_int32_field
+ * @return Reference to member bounded_sequence_int32_field
+ */
+std::vector<int32_t>& KeyedCompleteTestType::bounded_sequence_int32_field()
+{
+    return m_bounded_sequence_int32_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_uint32_field
+ * @param _bounded_sequence_uint32_field New value to be copied in member bounded_sequence_uint32_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint32_field(
+        const std::vector<uint32_t>& _bounded_sequence_uint32_field)
+{
+    m_bounded_sequence_uint32_field = _bounded_sequence_uint32_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_uint32_field
+ * @param _bounded_sequence_uint32_field New value to be moved in member bounded_sequence_uint32_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint32_field(
+        std::vector<uint32_t>&& _bounded_sequence_uint32_field)
+{
+    m_bounded_sequence_uint32_field = std::move(_bounded_sequence_uint32_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_uint32_field
+ * @return Constant reference to member bounded_sequence_uint32_field
+ */
+const std::vector<uint32_t>& KeyedCompleteTestType::bounded_sequence_uint32_field() const
+{
+    return m_bounded_sequence_uint32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_uint32_field
+ * @return Reference to member bounded_sequence_uint32_field
+ */
+std::vector<uint32_t>& KeyedCompleteTestType::bounded_sequence_uint32_field()
+{
+    return m_bounded_sequence_uint32_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_int64_field
+ * @param _bounded_sequence_int64_field New value to be copied in member bounded_sequence_int64_field
+ */
+void KeyedCompleteTestType::bounded_sequence_int64_field(
+        const std::vector<int64_t>& _bounded_sequence_int64_field)
+{
+    m_bounded_sequence_int64_field = _bounded_sequence_int64_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_int64_field
+ * @param _bounded_sequence_int64_field New value to be moved in member bounded_sequence_int64_field
+ */
+void KeyedCompleteTestType::bounded_sequence_int64_field(
+        std::vector<int64_t>&& _bounded_sequence_int64_field)
+{
+    m_bounded_sequence_int64_field = std::move(_bounded_sequence_int64_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_int64_field
+ * @return Constant reference to member bounded_sequence_int64_field
+ */
+const std::vector<int64_t>& KeyedCompleteTestType::bounded_sequence_int64_field() const
+{
+    return m_bounded_sequence_int64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_int64_field
+ * @return Reference to member bounded_sequence_int64_field
+ */
+std::vector<int64_t>& KeyedCompleteTestType::bounded_sequence_int64_field()
+{
+    return m_bounded_sequence_int64_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_uint64_field
+ * @param _bounded_sequence_uint64_field New value to be copied in member bounded_sequence_uint64_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint64_field(
+        const std::vector<uint64_t>& _bounded_sequence_uint64_field)
+{
+    m_bounded_sequence_uint64_field = _bounded_sequence_uint64_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_uint64_field
+ * @param _bounded_sequence_uint64_field New value to be moved in member bounded_sequence_uint64_field
+ */
+void KeyedCompleteTestType::bounded_sequence_uint64_field(
+        std::vector<uint64_t>&& _bounded_sequence_uint64_field)
+{
+    m_bounded_sequence_uint64_field = std::move(_bounded_sequence_uint64_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_uint64_field
+ * @return Constant reference to member bounded_sequence_uint64_field
+ */
+const std::vector<uint64_t>& KeyedCompleteTestType::bounded_sequence_uint64_field() const
+{
+    return m_bounded_sequence_uint64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_uint64_field
+ * @return Reference to member bounded_sequence_uint64_field
+ */
+std::vector<uint64_t>& KeyedCompleteTestType::bounded_sequence_uint64_field()
+{
+    return m_bounded_sequence_uint64_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_float_field
+ * @param _bounded_sequence_float_field New value to be copied in member bounded_sequence_float_field
+ */
+void KeyedCompleteTestType::bounded_sequence_float_field(
+        const std::vector<float>& _bounded_sequence_float_field)
+{
+    m_bounded_sequence_float_field = _bounded_sequence_float_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_float_field
+ * @param _bounded_sequence_float_field New value to be moved in member bounded_sequence_float_field
+ */
+void KeyedCompleteTestType::bounded_sequence_float_field(
+        std::vector<float>&& _bounded_sequence_float_field)
+{
+    m_bounded_sequence_float_field = std::move(_bounded_sequence_float_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_float_field
+ * @return Constant reference to member bounded_sequence_float_field
+ */
+const std::vector<float>& KeyedCompleteTestType::bounded_sequence_float_field() const
+{
+    return m_bounded_sequence_float_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_float_field
+ * @return Reference to member bounded_sequence_float_field
+ */
+std::vector<float>& KeyedCompleteTestType::bounded_sequence_float_field()
+{
+    return m_bounded_sequence_float_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_double_field
+ * @param _bounded_sequence_double_field New value to be copied in member bounded_sequence_double_field
+ */
+void KeyedCompleteTestType::bounded_sequence_double_field(
+        const std::vector<double>& _bounded_sequence_double_field)
+{
+    m_bounded_sequence_double_field = _bounded_sequence_double_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_double_field
+ * @param _bounded_sequence_double_field New value to be moved in member bounded_sequence_double_field
+ */
+void KeyedCompleteTestType::bounded_sequence_double_field(
+        std::vector<double>&& _bounded_sequence_double_field)
+{
+    m_bounded_sequence_double_field = std::move(_bounded_sequence_double_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_double_field
+ * @return Constant reference to member bounded_sequence_double_field
+ */
+const std::vector<double>& KeyedCompleteTestType::bounded_sequence_double_field() const
+{
+    return m_bounded_sequence_double_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_double_field
+ * @return Reference to member bounded_sequence_double_field
+ */
+std::vector<double>& KeyedCompleteTestType::bounded_sequence_double_field()
+{
+    return m_bounded_sequence_double_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_bool_field
+ * @param _bounded_sequence_bool_field New value to be copied in member bounded_sequence_bool_field
+ */
+void KeyedCompleteTestType::bounded_sequence_bool_field(
+        const std::vector<bool>& _bounded_sequence_bool_field)
+{
+    m_bounded_sequence_bool_field = _bounded_sequence_bool_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_bool_field
+ * @param _bounded_sequence_bool_field New value to be moved in member bounded_sequence_bool_field
+ */
+void KeyedCompleteTestType::bounded_sequence_bool_field(
+        std::vector<bool>&& _bounded_sequence_bool_field)
+{
+    m_bounded_sequence_bool_field = std::move(_bounded_sequence_bool_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_bool_field
+ * @return Constant reference to member bounded_sequence_bool_field
+ */
+const std::vector<bool>& KeyedCompleteTestType::bounded_sequence_bool_field() const
+{
+    return m_bounded_sequence_bool_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_bool_field
+ * @return Reference to member bounded_sequence_bool_field
+ */
+std::vector<bool>& KeyedCompleteTestType::bounded_sequence_bool_field()
+{
+    return m_bounded_sequence_bool_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_enum_field
+ * @param _bounded_sequence_enum_field New value to be copied in member bounded_sequence_enum_field
+ */
+void KeyedCompleteTestType::bounded_sequence_enum_field(
+        const std::vector<Color>& _bounded_sequence_enum_field)
+{
+    m_bounded_sequence_enum_field = _bounded_sequence_enum_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_enum_field
+ * @param _bounded_sequence_enum_field New value to be moved in member bounded_sequence_enum_field
+ */
+void KeyedCompleteTestType::bounded_sequence_enum_field(
+        std::vector<Color>&& _bounded_sequence_enum_field)
+{
+    m_bounded_sequence_enum_field = std::move(_bounded_sequence_enum_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_enum_field
+ * @return Constant reference to member bounded_sequence_enum_field
+ */
+const std::vector<Color>& KeyedCompleteTestType::bounded_sequence_enum_field() const
+{
+    return m_bounded_sequence_enum_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_enum_field
+ * @return Reference to member bounded_sequence_enum_field
+ */
+std::vector<Color>& KeyedCompleteTestType::bounded_sequence_enum_field()
+{
+    return m_bounded_sequence_enum_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_enum2_field
+ * @param _bounded_sequence_enum2_field New value to be copied in member bounded_sequence_enum2_field
+ */
+void KeyedCompleteTestType::bounded_sequence_enum2_field(
+        const std::vector<Material>& _bounded_sequence_enum2_field)
+{
+    m_bounded_sequence_enum2_field = _bounded_sequence_enum2_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_enum2_field
+ * @param _bounded_sequence_enum2_field New value to be moved in member bounded_sequence_enum2_field
+ */
+void KeyedCompleteTestType::bounded_sequence_enum2_field(
+        std::vector<Material>&& _bounded_sequence_enum2_field)
+{
+    m_bounded_sequence_enum2_field = std::move(_bounded_sequence_enum2_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_enum2_field
+ * @return Constant reference to member bounded_sequence_enum2_field
+ */
+const std::vector<Material>& KeyedCompleteTestType::bounded_sequence_enum2_field() const
+{
+    return m_bounded_sequence_enum2_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_enum2_field
+ * @return Reference to member bounded_sequence_enum2_field
+ */
+std::vector<Material>& KeyedCompleteTestType::bounded_sequence_enum2_field()
+{
+    return m_bounded_sequence_enum2_field;
+}
+/*!
+ * @brief This function copies the value in member bounded_sequence_struct_field
+ * @param _bounded_sequence_struct_field New value to be copied in member bounded_sequence_struct_field
+ */
+void KeyedCompleteTestType::bounded_sequence_struct_field(
+        const std::vector<StructType>& _bounded_sequence_struct_field)
+{
+    m_bounded_sequence_struct_field = _bounded_sequence_struct_field;
+}
+
+/*!
+ * @brief This function moves the value in member bounded_sequence_struct_field
+ * @param _bounded_sequence_struct_field New value to be moved in member bounded_sequence_struct_field
+ */
+void KeyedCompleteTestType::bounded_sequence_struct_field(
+        std::vector<StructType>&& _bounded_sequence_struct_field)
+{
+    m_bounded_sequence_struct_field = std::move(_bounded_sequence_struct_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bounded_sequence_struct_field
+ * @return Constant reference to member bounded_sequence_struct_field
+ */
+const std::vector<StructType>& KeyedCompleteTestType::bounded_sequence_struct_field() const
+{
+    return m_bounded_sequence_struct_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bounded_sequence_struct_field
+ * @return Reference to member bounded_sequence_struct_field
+ */
+std::vector<StructType>& KeyedCompleteTestType::bounded_sequence_struct_field()
+{
+    return m_bounded_sequence_struct_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_char_field
+ * @param _unbounded_sequence_char_field New value to be copied in member unbounded_sequence_char_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_char_field(
+        const std::vector<char>& _unbounded_sequence_char_field)
+{
+    m_unbounded_sequence_char_field = _unbounded_sequence_char_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_char_field
+ * @param _unbounded_sequence_char_field New value to be moved in member unbounded_sequence_char_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_char_field(
+        std::vector<char>&& _unbounded_sequence_char_field)
+{
+    m_unbounded_sequence_char_field = std::move(_unbounded_sequence_char_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_char_field
+ * @return Constant reference to member unbounded_sequence_char_field
+ */
+const std::vector<char>& KeyedCompleteTestType::unbounded_sequence_char_field() const
+{
+    return m_unbounded_sequence_char_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_char_field
+ * @return Reference to member unbounded_sequence_char_field
+ */
+std::vector<char>& KeyedCompleteTestType::unbounded_sequence_char_field()
+{
+    return m_unbounded_sequence_char_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_uint8_field
+ * @param _unbounded_sequence_uint8_field New value to be copied in member unbounded_sequence_uint8_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint8_field(
+        const std::vector<uint8_t>& _unbounded_sequence_uint8_field)
+{
+    m_unbounded_sequence_uint8_field = _unbounded_sequence_uint8_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_uint8_field
+ * @param _unbounded_sequence_uint8_field New value to be moved in member unbounded_sequence_uint8_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint8_field(
+        std::vector<uint8_t>&& _unbounded_sequence_uint8_field)
+{
+    m_unbounded_sequence_uint8_field = std::move(_unbounded_sequence_uint8_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_uint8_field
+ * @return Constant reference to member unbounded_sequence_uint8_field
+ */
+const std::vector<uint8_t>& KeyedCompleteTestType::unbounded_sequence_uint8_field() const
+{
+    return m_unbounded_sequence_uint8_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_uint8_field
+ * @return Reference to member unbounded_sequence_uint8_field
+ */
+std::vector<uint8_t>& KeyedCompleteTestType::unbounded_sequence_uint8_field()
+{
+    return m_unbounded_sequence_uint8_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_int16_field
+ * @param _unbounded_sequence_int16_field New value to be copied in member unbounded_sequence_int16_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_int16_field(
+        const std::vector<int16_t>& _unbounded_sequence_int16_field)
+{
+    m_unbounded_sequence_int16_field = _unbounded_sequence_int16_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_int16_field
+ * @param _unbounded_sequence_int16_field New value to be moved in member unbounded_sequence_int16_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_int16_field(
+        std::vector<int16_t>&& _unbounded_sequence_int16_field)
+{
+    m_unbounded_sequence_int16_field = std::move(_unbounded_sequence_int16_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_int16_field
+ * @return Constant reference to member unbounded_sequence_int16_field
+ */
+const std::vector<int16_t>& KeyedCompleteTestType::unbounded_sequence_int16_field() const
+{
+    return m_unbounded_sequence_int16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_int16_field
+ * @return Reference to member unbounded_sequence_int16_field
+ */
+std::vector<int16_t>& KeyedCompleteTestType::unbounded_sequence_int16_field()
+{
+    return m_unbounded_sequence_int16_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_uint16_field
+ * @param _unbounded_sequence_uint16_field New value to be copied in member unbounded_sequence_uint16_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint16_field(
+        const std::vector<uint16_t>& _unbounded_sequence_uint16_field)
+{
+    m_unbounded_sequence_uint16_field = _unbounded_sequence_uint16_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_uint16_field
+ * @param _unbounded_sequence_uint16_field New value to be moved in member unbounded_sequence_uint16_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint16_field(
+        std::vector<uint16_t>&& _unbounded_sequence_uint16_field)
+{
+    m_unbounded_sequence_uint16_field = std::move(_unbounded_sequence_uint16_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_uint16_field
+ * @return Constant reference to member unbounded_sequence_uint16_field
+ */
+const std::vector<uint16_t>& KeyedCompleteTestType::unbounded_sequence_uint16_field() const
+{
+    return m_unbounded_sequence_uint16_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_uint16_field
+ * @return Reference to member unbounded_sequence_uint16_field
+ */
+std::vector<uint16_t>& KeyedCompleteTestType::unbounded_sequence_uint16_field()
+{
+    return m_unbounded_sequence_uint16_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_int32_field
+ * @param _unbounded_sequence_int32_field New value to be copied in member unbounded_sequence_int32_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_int32_field(
+        const std::vector<int32_t>& _unbounded_sequence_int32_field)
+{
+    m_unbounded_sequence_int32_field = _unbounded_sequence_int32_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_int32_field
+ * @param _unbounded_sequence_int32_field New value to be moved in member unbounded_sequence_int32_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_int32_field(
+        std::vector<int32_t>&& _unbounded_sequence_int32_field)
+{
+    m_unbounded_sequence_int32_field = std::move(_unbounded_sequence_int32_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_int32_field
+ * @return Constant reference to member unbounded_sequence_int32_field
+ */
+const std::vector<int32_t>& KeyedCompleteTestType::unbounded_sequence_int32_field() const
+{
+    return m_unbounded_sequence_int32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_int32_field
+ * @return Reference to member unbounded_sequence_int32_field
+ */
+std::vector<int32_t>& KeyedCompleteTestType::unbounded_sequence_int32_field()
+{
+    return m_unbounded_sequence_int32_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_uint32_field
+ * @param _unbounded_sequence_uint32_field New value to be copied in member unbounded_sequence_uint32_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint32_field(
+        const std::vector<uint32_t>& _unbounded_sequence_uint32_field)
+{
+    m_unbounded_sequence_uint32_field = _unbounded_sequence_uint32_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_uint32_field
+ * @param _unbounded_sequence_uint32_field New value to be moved in member unbounded_sequence_uint32_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint32_field(
+        std::vector<uint32_t>&& _unbounded_sequence_uint32_field)
+{
+    m_unbounded_sequence_uint32_field = std::move(_unbounded_sequence_uint32_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_uint32_field
+ * @return Constant reference to member unbounded_sequence_uint32_field
+ */
+const std::vector<uint32_t>& KeyedCompleteTestType::unbounded_sequence_uint32_field() const
+{
+    return m_unbounded_sequence_uint32_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_uint32_field
+ * @return Reference to member unbounded_sequence_uint32_field
+ */
+std::vector<uint32_t>& KeyedCompleteTestType::unbounded_sequence_uint32_field()
+{
+    return m_unbounded_sequence_uint32_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_int64_field
+ * @param _unbounded_sequence_int64_field New value to be copied in member unbounded_sequence_int64_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_int64_field(
+        const std::vector<int64_t>& _unbounded_sequence_int64_field)
+{
+    m_unbounded_sequence_int64_field = _unbounded_sequence_int64_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_int64_field
+ * @param _unbounded_sequence_int64_field New value to be moved in member unbounded_sequence_int64_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_int64_field(
+        std::vector<int64_t>&& _unbounded_sequence_int64_field)
+{
+    m_unbounded_sequence_int64_field = std::move(_unbounded_sequence_int64_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_int64_field
+ * @return Constant reference to member unbounded_sequence_int64_field
+ */
+const std::vector<int64_t>& KeyedCompleteTestType::unbounded_sequence_int64_field() const
+{
+    return m_unbounded_sequence_int64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_int64_field
+ * @return Reference to member unbounded_sequence_int64_field
+ */
+std::vector<int64_t>& KeyedCompleteTestType::unbounded_sequence_int64_field()
+{
+    return m_unbounded_sequence_int64_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_uint64_field
+ * @param _unbounded_sequence_uint64_field New value to be copied in member unbounded_sequence_uint64_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint64_field(
+        const std::vector<uint64_t>& _unbounded_sequence_uint64_field)
+{
+    m_unbounded_sequence_uint64_field = _unbounded_sequence_uint64_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_uint64_field
+ * @param _unbounded_sequence_uint64_field New value to be moved in member unbounded_sequence_uint64_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_uint64_field(
+        std::vector<uint64_t>&& _unbounded_sequence_uint64_field)
+{
+    m_unbounded_sequence_uint64_field = std::move(_unbounded_sequence_uint64_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_uint64_field
+ * @return Constant reference to member unbounded_sequence_uint64_field
+ */
+const std::vector<uint64_t>& KeyedCompleteTestType::unbounded_sequence_uint64_field() const
+{
+    return m_unbounded_sequence_uint64_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_uint64_field
+ * @return Reference to member unbounded_sequence_uint64_field
+ */
+std::vector<uint64_t>& KeyedCompleteTestType::unbounded_sequence_uint64_field()
+{
+    return m_unbounded_sequence_uint64_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_float_field
+ * @param _unbounded_sequence_float_field New value to be copied in member unbounded_sequence_float_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_float_field(
+        const std::vector<float>& _unbounded_sequence_float_field)
+{
+    m_unbounded_sequence_float_field = _unbounded_sequence_float_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_float_field
+ * @param _unbounded_sequence_float_field New value to be moved in member unbounded_sequence_float_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_float_field(
+        std::vector<float>&& _unbounded_sequence_float_field)
+{
+    m_unbounded_sequence_float_field = std::move(_unbounded_sequence_float_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_float_field
+ * @return Constant reference to member unbounded_sequence_float_field
+ */
+const std::vector<float>& KeyedCompleteTestType::unbounded_sequence_float_field() const
+{
+    return m_unbounded_sequence_float_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_float_field
+ * @return Reference to member unbounded_sequence_float_field
+ */
+std::vector<float>& KeyedCompleteTestType::unbounded_sequence_float_field()
+{
+    return m_unbounded_sequence_float_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_double_field
+ * @param _unbounded_sequence_double_field New value to be copied in member unbounded_sequence_double_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_double_field(
+        const std::vector<double>& _unbounded_sequence_double_field)
+{
+    m_unbounded_sequence_double_field = _unbounded_sequence_double_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_double_field
+ * @param _unbounded_sequence_double_field New value to be moved in member unbounded_sequence_double_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_double_field(
+        std::vector<double>&& _unbounded_sequence_double_field)
+{
+    m_unbounded_sequence_double_field = std::move(_unbounded_sequence_double_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_double_field
+ * @return Constant reference to member unbounded_sequence_double_field
+ */
+const std::vector<double>& KeyedCompleteTestType::unbounded_sequence_double_field() const
+{
+    return m_unbounded_sequence_double_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_double_field
+ * @return Reference to member unbounded_sequence_double_field
+ */
+std::vector<double>& KeyedCompleteTestType::unbounded_sequence_double_field()
+{
+    return m_unbounded_sequence_double_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_bool_field
+ * @param _unbounded_sequence_bool_field New value to be copied in member unbounded_sequence_bool_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_bool_field(
+        const std::vector<bool>& _unbounded_sequence_bool_field)
+{
+    m_unbounded_sequence_bool_field = _unbounded_sequence_bool_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_bool_field
+ * @param _unbounded_sequence_bool_field New value to be moved in member unbounded_sequence_bool_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_bool_field(
+        std::vector<bool>&& _unbounded_sequence_bool_field)
+{
+    m_unbounded_sequence_bool_field = std::move(_unbounded_sequence_bool_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_bool_field
+ * @return Constant reference to member unbounded_sequence_bool_field
+ */
+const std::vector<bool>& KeyedCompleteTestType::unbounded_sequence_bool_field() const
+{
+    return m_unbounded_sequence_bool_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_bool_field
+ * @return Reference to member unbounded_sequence_bool_field
+ */
+std::vector<bool>& KeyedCompleteTestType::unbounded_sequence_bool_field()
+{
+    return m_unbounded_sequence_bool_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_enum_field
+ * @param _unbounded_sequence_enum_field New value to be copied in member unbounded_sequence_enum_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_enum_field(
+        const std::vector<Color>& _unbounded_sequence_enum_field)
+{
+    m_unbounded_sequence_enum_field = _unbounded_sequence_enum_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_enum_field
+ * @param _unbounded_sequence_enum_field New value to be moved in member unbounded_sequence_enum_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_enum_field(
+        std::vector<Color>&& _unbounded_sequence_enum_field)
+{
+    m_unbounded_sequence_enum_field = std::move(_unbounded_sequence_enum_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_enum_field
+ * @return Constant reference to member unbounded_sequence_enum_field
+ */
+const std::vector<Color>& KeyedCompleteTestType::unbounded_sequence_enum_field() const
+{
+    return m_unbounded_sequence_enum_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_enum_field
+ * @return Reference to member unbounded_sequence_enum_field
+ */
+std::vector<Color>& KeyedCompleteTestType::unbounded_sequence_enum_field()
+{
+    return m_unbounded_sequence_enum_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_enum2_field
+ * @param _unbounded_sequence_enum2_field New value to be copied in member unbounded_sequence_enum2_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_enum2_field(
+        const std::vector<Material>& _unbounded_sequence_enum2_field)
+{
+    m_unbounded_sequence_enum2_field = _unbounded_sequence_enum2_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_enum2_field
+ * @param _unbounded_sequence_enum2_field New value to be moved in member unbounded_sequence_enum2_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_enum2_field(
+        std::vector<Material>&& _unbounded_sequence_enum2_field)
+{
+    m_unbounded_sequence_enum2_field = std::move(_unbounded_sequence_enum2_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_enum2_field
+ * @return Constant reference to member unbounded_sequence_enum2_field
+ */
+const std::vector<Material>& KeyedCompleteTestType::unbounded_sequence_enum2_field() const
+{
+    return m_unbounded_sequence_enum2_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_enum2_field
+ * @return Reference to member unbounded_sequence_enum2_field
+ */
+std::vector<Material>& KeyedCompleteTestType::unbounded_sequence_enum2_field()
+{
+    return m_unbounded_sequence_enum2_field;
+}
+/*!
+ * @brief This function copies the value in member unbounded_sequence_struct_field
+ * @param _unbounded_sequence_struct_field New value to be copied in member unbounded_sequence_struct_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_struct_field(
+        const std::vector<StructType>& _unbounded_sequence_struct_field)
+{
+    m_unbounded_sequence_struct_field = _unbounded_sequence_struct_field;
+}
+
+/*!
+ * @brief This function moves the value in member unbounded_sequence_struct_field
+ * @param _unbounded_sequence_struct_field New value to be moved in member unbounded_sequence_struct_field
+ */
+void KeyedCompleteTestType::unbounded_sequence_struct_field(
+        std::vector<StructType>&& _unbounded_sequence_struct_field)
+{
+    m_unbounded_sequence_struct_field = std::move(_unbounded_sequence_struct_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member unbounded_sequence_struct_field
+ * @return Constant reference to member unbounded_sequence_struct_field
+ */
+const std::vector<StructType>& KeyedCompleteTestType::unbounded_sequence_struct_field() const
+{
+    return m_unbounded_sequence_struct_field;
+}
+
+/*!
+ * @brief This function returns a reference to member unbounded_sequence_struct_field
+ * @return Reference to member unbounded_sequence_struct_field
+ */
+std::vector<StructType>& KeyedCompleteTestType::unbounded_sequence_struct_field()
+{
+    return m_unbounded_sequence_struct_field;
+}
+
+size_t KeyedCompleteTestType::getKeyMaxCdrSerializedSize(
+        size_t current_alignment)
+{
+    size_t current_align = current_alignment;
+
+
+     current_align += 4 + eprosima::fastcdr::Cdr::alignment(current_align, 4);
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return current_align;
+}
+
+bool KeyedCompleteTestType::isKeyDefined()
+{
+    return true;
+}
+
+void KeyedCompleteTestType::serializeKey(
+        eprosima::fastcdr::Cdr& scdr) const
+{
+    (void) scdr;
+     scdr << m_id;
+                                                               
+}

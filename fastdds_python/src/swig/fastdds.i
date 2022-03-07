@@ -128,6 +128,9 @@ namespace builtin {
 %include "fastdds/rtps/attributes/ServerAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
+%include "fastdds/rtps/common/SequenceNumber.i"
+%include "fastdds/rtps/common/SampleIdentity.i"
+%include "fastdds/rtps/common/WriteParams.i"
 
 /*
 %include "fastdds/rtps/common/SerializedPayload.i"
@@ -141,10 +144,7 @@ namespace builtin {
 %include "fastdds/rtps/common/MatchingInfo.i"
 %include "fastdds/rtps/common/ChangeKind_t.i"
 %include "fastdds/rtps/common/LocatorsIterator.i"
-%include "fastdds/rtps/common/SampleIdentity.i"
-%include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/RemoteLocators.i"
-%include "fastdds/rtps/common/WriteParams.i"
 
 %include "fastrtps/rtps/common/LocatorListComparisons.i"
 %include "fastrtps/rtps/common/PortParameters.i"
