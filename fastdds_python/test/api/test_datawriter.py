@@ -4,6 +4,60 @@ import fastdds
 import test_complete
 
 
+def test_get_instance_handle():
+    """
+    This test checks:
+    - DataWriter::guid
+    - DataWriter::get_instance_handle
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+
+    guid = datawriter.guid()
+    assert(fastdds.c_Guid_Unknown != guid)
+    ih = datawriter.get_instance_handle()
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    assert(guid.guidPrefix.value[0] == ih.value[0])
+    assert(guid.guidPrefix.value[1] == ih.value[1])
+    assert(guid.guidPrefix.value[2] == ih.value[2])
+    assert(guid.guidPrefix.value[3] == ih.value[3])
+    assert(guid.guidPrefix.value[4] == ih.value[4])
+    assert(guid.guidPrefix.value[5] == ih.value[5])
+    assert(guid.guidPrefix.value[6] == ih.value[6])
+    assert(guid.guidPrefix.value[7] == ih.value[7])
+    assert(guid.guidPrefix.value[8] == ih.value[8])
+    assert(guid.guidPrefix.value[9] == ih.value[9])
+    assert(guid.guidPrefix.value[10] == ih.value[10])
+    assert(guid.guidPrefix.value[11] == ih.value[11])
+    assert(guid.entityId.value[0] == ih.value[12])
+    assert(guid.entityId.value[1] == ih.value[13])
+    assert(guid.entityId.value[2] == ih.value[14])
+    assert(guid.entityId.value[3] == ih.value[15])
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_key_value():
     """
     This test checks:
@@ -122,7 +176,8 @@ def test_register_instance():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.unregister_instance(sample2, ih2))
     assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
-           datawriter.unregister_instance(sample, fastdds.c_InstanceHandle_Unknown))
+           datawriter.unregister_instance(
+               sample, fastdds.c_InstanceHandle_Unknown))
 
     # Overlay 2
     sample = test_complete.KeyedCompleteTestType()
@@ -158,8 +213,8 @@ def test_write():
     assert(participant is not None)
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
-    test_type = fastdds.TypeSupport(test_complete.
-            KeyedCompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
     topic = participant.create_topic(
@@ -217,21 +272,6 @@ def test_write():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
-#
-#    /**
-#     * Returns the DataWriter's GUID
-#     *
-#     * @return Reference to the DataWriter GUID
-#     */
-#    RTPS_DllAPI const fastrtps::rtps::GUID_t& guid() const;
-#
-#    /**
-#     * Returns the DataWriter's InstanceHandle
-#     *
-#     * @return Copy of the DataWriter InstanceHandle
-#     */
-#    RTPS_DllAPI InstanceHandle_t get_instance_handle() const;
-#
 #    /**
 #     * Get data type associated to the DataWriter
 #     *
