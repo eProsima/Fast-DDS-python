@@ -274,6 +274,44 @@ def test_register_instance():
            factory.delete_participant(participant))
 
 
+def test_wait_for_acknowledgments():
+    """
+    This test checks:
+    - DataWriter::wait_for_acknowledgments
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    sample = test_complete.KeyedCompleteTestType()
+    assert(datawriter.write(sample))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.wait_for_acknowledgments(fastdds.Duration_t(1, 0)))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_write():
     """
     This test checks:
@@ -345,16 +383,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#
-#    /**
-#     * Waits the current thread until all writers have received their acknowledgments.
-#     *
-#     * @param max_wait Maximum blocking time for this operation
-#     * @return RETCODE_OK if the DataWriter receive the acknowledgments before the time expires and RETCODE_ERROR otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t wait_for_acknowledgments(
-#            const fastrtps::Duration_t& max_wait);
-#
 #    /**
 #     * @brief Returns the offered deadline missed status
 #     *
