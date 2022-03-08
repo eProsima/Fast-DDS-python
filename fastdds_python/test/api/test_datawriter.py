@@ -242,6 +242,45 @@ def test_get_key_value():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
+
+def test_get_sending_locators():
+    """
+    This test checks:
+    - DataWriter::get_sending_locators
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    locator_list = fastdds.LocatorList()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.get_sending_locators(locator_list))
+    assert(0 < locator_list.size())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_set_listener():
     """
     This test checks:
@@ -659,7 +698,7 @@ def test_matched_subscription_data():
            factory.delete_participant(participant))
 
 
-def test_matched_subscription_data():
+def test_matched_subscriptions():
     """
     This test checks:
     - DataWriter::get_matched_subscriptions
@@ -1159,58 +1198,3 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#
-#    /**
-#     * @brief Get a pointer to the internal pool where the user could directly write.
-#     *
-#     * This method can only be used on a DataWriter for a plain data type. It will provide the
-#     * user with a pointer to an internal buffer where the data type can be prepared for sending.
-#     *
-#     * When using NO_LOAN_INITIALIZATION on the initialization parameter, which is the default,
-#     * no assumptions should be made on the contents where the pointer points to, as it may be an
-#     * old pointer being reused. See @ref LoanInitializationKind for more details.
-#     *
-#     * Once the sample has been prepared, it can then be published by calling @ref write.
-#     * After a successful call to @ref write, the middleware takes ownership of the loaned pointer again,
-#     * and the user should not access that memory again.
-#     *
-#     * If, for whatever reason, the sample is not published, the loan can be returned by calling
-#     * @ref discard_loan.
-#     *
-#     * @param [out] sample          Pointer to the sample on the internal pool.
-#     * @param [in]  initialization  How to initialize the loaned sample.
-#     *
-#     * @return ReturnCode_t::RETCODE_ILLEGAL_OPERATION when the data type does not support loans.
-#     * @return ReturnCode_t::RETCODE_NOT_ENABLED if the writer has not been enabled.
-#     * @return ReturnCode_t::RETCODE_OUT_OF_RESOURCES if the pool has been exhausted.
-#     * @return ReturnCode_t::RETCODE_OK if a pointer to a sample is successfully obtained.
-#     */
-#    RTPS_DllAPI ReturnCode_t loan_sample(
-#            void*& sample,
-#            LoanInitializationKind initialization = LoanInitializationKind::NO_LOAN_INITIALIZATION);
-#
-#    /**
-#     * @brief Discards a loaned sample pointer.
-#     *
-#     * See the description on @ref loan_sample for how and when to call this method.
-#     *
-#     * @param [in,out] sample  Pointer to the previously loaned sample.
-#     *
-#     * @return ReturnCode_t::RETCODE_ILLEGAL_OPERATION when the data type does not support loans.
-#     * @return ReturnCode_t::RETCODE_NOT_ENABLED if the writer has not been enabled.
-#     * @return ReturnCode_t::RETCODE_BAD_PARAMETER if the pointer does not correspond to a loaned sample.
-#     * @return ReturnCode_t::RETCODE_OK if the loan is successfully discarded.
-#     */
-#    RTPS_DllAPI ReturnCode_t discard_loan(
-#            void*& sample);
-#
-#    /**
-#     * @brief Get the list of locators from which this DataWriter may send data.
-#     *
-#     * @param [out] locators  LocatorList where the list of locators will be stored.
-#     *
-#     * @return NOT_ENABLED if the reader has not been enabled.
-#     * @return OK if a list of locators is returned.
-#     */
-#    RTPS_DllAPI ReturnCode_t get_sending_locators(
-#            rtps::LocatorList& locators) const;
