@@ -17,13 +17,14 @@
 %}
 
 
-// Ignore unimplemented method (the wrapper will try to use it)
 %ignore eprosima::fastdds::dds::DataWriter::write_w_timestamp(void*, const InstanceHandle_t&,
             const fastrtps::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp(void*,
             const fastrtps::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp(void*, const InstanceHandle_t&,
             const fastrtps::rtps::Time_t&);
+%ignore eprosima::fastdds::dds::DataWriter::get_matched_subscriptions(
+            std::vector<InstanceHandle_t*>&) const;
 
 // Template for std::vector<DataWriter*>
 %template(DataWriterVector) std::vector<eprosima::fastdds::dds::DataWriter*>;

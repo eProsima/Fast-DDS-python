@@ -618,6 +618,47 @@ def test_matched_subscription_data():
            factory.delete_participant(participant))
 
 
+def test_matched_subscription_data():
+    """
+    This test checks:
+    - DataWriter::get_matched_subscriptions
+    """
+    """
+    This test checks:
+    - DataWriter::get_matched_subscription_data
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+
+    ihs = fastdds.InstanceHandleVector()
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datawriter.get_matched_subscriptions(ihs))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_offered_deadline_missed_status():
     """
     This test checks:
@@ -982,10 +1023,19 @@ def test_wait_for_acknowledgments():
             topic, fastdds.DATAWRITER_QOS_DEFAULT)
     assert(datawriter is not None)
 
+    # Overload 1
     sample = test_complete.KeyedCompleteTestType()
+    sample.id(3)
     assert(datawriter.write(sample))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.wait_for_acknowledgments(fastdds.Duration_t(1, 0)))
+
+    # Overload 2
+    ih = datawriter.register_instance(sample)
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.wait_for_acknowledgments(
+               sample, ih, fastdds.Duration_t(1, 0)))
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
@@ -1068,14 +1118,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#    /**
-#     * @brief Fills the given vector with the InstanceHandle_t of matched DataReaders
-#     *
-#     * @param[out] subscription_handles Vector where the InstanceHandle_t are returned
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_matched_subscriptions(
-#            std::vector<fastrtps::rtps::InstanceHandle_t*>& subscription_handles) const;
 #
 #    /**
 #     * @brief Clears the DataWriter history
@@ -1140,24 +1182,3 @@ def test_write():
 #     */
 #    RTPS_DllAPI ReturnCode_t get_sending_locators(
 #            rtps::LocatorList& locators) const;
-#
-#    /**
-#     * Block the current thread until the writer has received the acknowledgment corresponding to the given instance.
-#     * Operations performed on the same instance while the current thread is waiting will not be taken into
-#     * consideration, i.e. this method may return `RETCODE_OK` with those operations unacknowledged.
-#     *
-#     * @param instance Sample used to deduce instance's key in case of `handle` parameter is HANDLE_NIL.
-#     * @param handle Instance handle of the data.
-#     * @param max_wait Maximum blocking time for this operation.
-#     *
-#     * @return RETCODE_NOT_ENABLED if the writer has not been enabled.
-#     * @return RETCODE_BAD_PARAMETER if `instance` is not a valid pointer.
-#     * @return RETCODE_PRECONDITION_NOT_MET if the topic does not have a key, the key is unknown to the writer,
-#     *         or the key is not consistent with `handle`.
-#     * @return RETCODE_OK if the DataWriter received the acknowledgments before the time expired.
-#     * @return RETCODE_TIMEOUT otherwise.
-#     */
-#    RTPS_DllAPI ReturnCode_t wait_for_acknowledgments(
-#            void* instance,
-#            const InstanceHandle_t& handle,
-#            const fastrtps::Duration_t& max_wait);
