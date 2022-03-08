@@ -9,6 +9,44 @@ class DataWriterListener (fastdds.DataWriterListener):
         super().__init__()
 
 
+def test_assert_liveliness():
+    """
+    This test checks:
+    - DataWriter::assert_liveliness
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter_qos = fastdds.DataWriterQos()
+    datawriter_qos.liveliness().kind = \
+        fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS
+    datawriter = publisher.create_datawriter(topic, datawriter_qos)
+    assert(datawriter is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.assert_liveliness())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_dispose():
     """
     This test checks:
@@ -992,21 +1030,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#
-#    /**
-#     * @brief This operation manually asserts the liveliness of the DataWriter. This is used in combination with the
-#     * LivelinessQosPolicy to indicate to the Service that the entity remains active.
-#     * This operation need only be used if the LIVELINESS setting is either MANUAL_BY_PARTICIPANT or MANUAL_BY_TOPIC.
-#     * Otherwise, it has no effect.
-#     *
-#     * @note Writing data via the write operation on a DataWriter asserts liveliness on the DataWriter itself and its
-#     * DomainParticipant. Consequently the use of assert_liveliness is only needed if the application is not writing data
-#     * regularly.
-#     *
-#     * @return RETCODE_OK if asserted, RETCODE_ERROR otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t assert_liveliness();
-#
 #    /**
 #     * @brief Retrieves in a subscription associated with the DataWriter
 #     *
