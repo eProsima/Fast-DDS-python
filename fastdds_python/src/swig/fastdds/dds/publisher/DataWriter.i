@@ -26,7 +26,23 @@
 %ignore eprosima::fastdds::dds::DataWriter::get_matched_subscriptions(
             std::vector<InstanceHandle_t*>&) const;
 
+// Tell SWIG to convert parameter size_t* removed in an output parameter
+%apply size_t* OUTPUT { size_t* removed }
+// Ignore C++ clear_history because we need to overload it in Python.
+%extend eprosima::fastdds::dds::DataWriter
+{
+    // TODO Document with %feature("autodoc")
+    eprosima::fastrtps::types::ReturnCode_t clear_history(size_t* removed)
+    {
+        eprosima::fastrtps::types::ReturnCode_t ret = self->clear_history(removed);
+        return ret;
+    }
+}
+%ignore eprosima::fastdds::dds::DataWriter::clear_history(size_t*);
+
 // Template for std::vector<DataWriter*>
 %template(DataWriterVector) std::vector<eprosima::fastdds::dds::DataWriter*>;
 
 %include "fastdds/dds/publisher/DataWriter.hpp"
+
+%clear size_t* removed;

@@ -47,6 +47,47 @@ def test_assert_liveliness():
            factory.delete_participant(participant))
 
 
+def test_clear_history():
+    """
+    This test checks:
+    - DataWriter::clear_history
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datawriter_qos = fastdds.DataWriterQos()
+    datawriter_qos.history().kind = \
+        fastdds.KEEP_ALL_HISTORY_QOS
+    datawriter = publisher.create_datawriter(topic, datawriter_qos)
+    assert(datawriter is not None)
+
+    sample = test_complete.KeyedCompleteTestType()
+    sample.id(4)
+    assert(datawriter.write(sample))
+    assert([fastdds.ReturnCode_t.RETCODE_OK, 1] ==
+           datawriter.clear_history())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_dispose():
     """
     This test checks:
@@ -1118,15 +1159,6 @@ def test_write():
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
-#
-#    /**
-#     * @brief Clears the DataWriter history
-#     *
-#     * @param removed size_t pointer to return the size of the data removed
-#     * @return RETCODE_OK if the samples are removed and RETCODE_ERROR otherwise
-#     */
-#    RTPS_DllAPI ReturnCode_t clear_history(
-#            size_t* removed);
 #
 #    /**
 #     * @brief Get a pointer to the internal pool where the user could directly write.
