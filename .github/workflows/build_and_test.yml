@@ -22,7 +22,6 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y \
-            wget \
             python3 \
             python3-pip \
             libasio-dev \
@@ -38,8 +37,7 @@ jobs:
 
       - name: Fetch repositories
         run: |
-          wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/master/fastdds_python.repos
-          vcs import --skip-existing src < fastdds_python.repos
+          vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
           cd src/fastdds
           git checkout feature/good-datawriter-api
           cd ../../
