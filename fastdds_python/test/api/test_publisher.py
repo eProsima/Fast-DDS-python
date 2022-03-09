@@ -197,6 +197,7 @@ def test_deleted_contained_entities():
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_contained_entities())
+    assert(publisher.has_datawriters() is False)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))
