@@ -78,16 +78,6 @@ def test_wait_for_unread_message():
            factory.delete_participant(participant))
 
 #
-#    /**
-#     * @brief Method to block the current thread until an unread message is available.
-#     *
-#     * @param[in] max_wait Max blocking time for this operation.
-#     * @return RETCODE_OK if there is new unread message, ReturnCode_t::RETCODE_TIMEOUT if timeout
-#     */
-#    RTPS_DllAPI ReturnCode_t wait_for_historical_data(
-#            const fastrtps::Duration_t& max_wait) const;
-#
-#
 #    /** @name Read or take data methods.
 #     * Methods to read or take data from the History.
 #     */
