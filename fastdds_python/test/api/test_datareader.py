@@ -157,6 +157,346 @@ def test_get_key_value():
            factory.delete_participant(participant))
 
 
+def test_get_set_listener():
+    """
+    This test checks:
+    - DataReader::get_listener
+    - DataReader::set_listener
+    - DataReader::get_status_mask
+    - StatusMask::operator ==
+    - StatusMask::operator <<
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    # Overload 1
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(listener))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+
+    # Overload 2
+    # - StatusMask.none
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.none()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.none() == datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_none()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_none() == datareader.get_status_mask())
+    # - StatusMask.data_available
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.data_available()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.data_available() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_data_available()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_data_available() ==
+           datareader.get_status_mask())
+    # - StatusMask.data_on_readers
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.data_on_readers()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.data_on_readers() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_data_on_readers()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_data_on_readers() ==
+           datareader.get_status_mask())
+    # - StatusMask.inconsistent_topic
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.inconsistent_topic()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.inconsistent_topic() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_inconsistent_topic()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_inconsistent_topic() ==
+           datareader.get_status_mask())
+    # - StatusMask.liveliness_changed
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.liveliness_changed()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.liveliness_changed() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_liveliness_changed()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_liveliness_changed() ==
+           datareader.get_status_mask())
+    # - StatusMask.liveliness_lost
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.liveliness_lost()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.liveliness_lost() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_liveliness_lost()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_liveliness_lost() ==
+           datareader.get_status_mask())
+    # - StatusMask.offered_deadline_missed
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.offered_deadline_missed()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.offered_deadline_missed() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_offered_deadline_missed()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_offered_deadline_missed() ==
+           datareader.get_status_mask())
+    # - StatusMask.offered_incompatible_qos
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.offered_incompatible_qos()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.offered_incompatible_qos() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_offered_incompatible_qos()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_offered_incompatible_qos() ==
+           datareader.get_status_mask())
+    # - StatusMask.publication_matched
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.publication_matched()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.publication_matched() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_publication_matched()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_publication_matched() ==
+           datareader.get_status_mask())
+    # - StatusMask.requested_deadline_missed
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.requested_deadline_missed()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.requested_deadline_missed() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_requested_deadline_missed()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_requested_deadline_missed() ==
+           datareader.get_status_mask())
+    # - StatusMask.requested_incompatible_qos
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.requested_incompatible_qos()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.requested_incompatible_qos() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_requested_incompatible_qos()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_requested_incompatible_qos() ==
+           datareader.get_status_mask())
+    # - StatusMask.sample_lost
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.sample_lost()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.sample_lost() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_sample_lost()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_sample_lost() ==
+           datareader.get_status_mask())
+    # - StatusMask.sample_rejected
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.sample_rejected()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.sample_rejected() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_sample_rejected()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_sample_rejected() ==
+           datareader.get_status_mask())
+    # - StatusMask.subscription_matched
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.subscription_matched()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.subscription_matched() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_subscription_matched()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_subscription_matched() ==
+           datareader.get_status_mask())
+    # - StatusMask.all
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask.all()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.all() ==
+           datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener, fastdds.StatusMask_all()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_all() ==
+           datareader.get_status_mask())
+    # - Mix all  values of StatusMask
+    listener = DataReaderListener()
+    assert(listener is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(
+               listener,
+               fastdds.StatusMask.data_available() <<
+               fastdds.StatusMask.data_on_readers() <<
+               fastdds.StatusMask.inconsistent_topic() <<
+               fastdds.StatusMask.liveliness_changed() <<
+               fastdds.StatusMask.liveliness_lost() <<
+               fastdds.StatusMask.offered_deadline_missed() <<
+               fastdds.StatusMask.offered_incompatible_qos() <<
+               fastdds.StatusMask.publication_matched() <<
+               fastdds.StatusMask.requested_deadline_missed() <<
+               fastdds.StatusMask.requested_incompatible_qos() <<
+               fastdds.StatusMask.sample_lost() <<
+               fastdds.StatusMask.sample_rejected() <<
+               fastdds.StatusMask.subscription_matched()))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask.all() == datareader.get_status_mask())
+    listener = DataReaderListener()
+    assert(listener is not None)
+    m = fastdds.StatusMask_data_available() << \
+        fastdds.StatusMask_data_on_readers() << \
+        fastdds.StatusMask_inconsistent_topic() << \
+        fastdds.StatusMask_liveliness_changed() << \
+        fastdds.StatusMask_liveliness_lost() << \
+        fastdds.StatusMask_offered_deadline_missed() << \
+        fastdds.StatusMask_offered_incompatible_qos() << \
+        fastdds.StatusMask_publication_matched() << \
+        fastdds.StatusMask_requested_deadline_missed() << \
+        fastdds.StatusMask_requested_incompatible_qos() << \
+        fastdds.StatusMask_sample_lost() << \
+        fastdds.StatusMask_sample_rejected() << \
+        fastdds.StatusMask_subscription_matched()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.set_listener(listener, m))
+    assert(datareader.get_listener() == listener)
+    assert(fastdds.StatusMask_all() == datareader.get_status_mask())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_topicdescription():
     """
     This test checks:
@@ -1118,20 +1458,6 @@ def test_wait_for_unread_message():
 #            SampleInfoSeq& sample_infos);
 #
 #    /**
-#     * Getter for the data type.
-#     *
-#     * @return TypeSupport associated to the DataReader.
-#     */
-#    TypeSupport type();
-#
-#    /**
-#     * Get TopicDescription.
-#     *
-#     * @return TopicDescription pointer.
-#     */
-#    RTPS_DllAPI const TopicDescription* get_topicdescription() const;
-#
-#    /**
 #     * @brief Get the requested deadline missed status.
 #     *
 #     * @return The deadline missed status.
@@ -1149,67 +1475,6 @@ def test_wait_for_unread_message():
 #    RTPS_DllAPI ReturnCode_t get_requested_incompatible_qos_status(
 #            RequestedIncompatibleQosStatus& status);
 #
-#    /**
-#     * @brief Setter for the DataReaderQos.
-#     *
-#     * @param [in] qos new value for the DataReaderQos.
-#     *
-#     * @return RETCODE_IMMUTABLE_POLICY if any of the Qos cannot be changed, RETCODE_INCONSISTENT_POLICY if the Qos is
-#     *         not self consistent and RETCODE_OK if the qos is changed correctly.
-#     */
-#    RTPS_DllAPI ReturnCode_t set_qos(
-#            const DataReaderQos& qos);
-#
-#    /**
-#     * @brief Getter for the DataReaderQos.
-#     *
-#     * @return Pointer to the DataReaderQos.
-#     */
-#    RTPS_DllAPI const DataReaderQos& get_qos() const;
-#
-#    /**
-#     * @brief Getter for the DataReaderQos.
-#     *
-#     * @param [in] qos DataReaderQos where the qos is returned.
-#     *
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t get_qos(
-#            DataReaderQos& qos) const;
-#
-#    /**
-#     * Modifies the DataReaderListener, sets the mask to StatusMask::all().
-#     *
-#     * @param [in] listener new value for the DataReaderListener.
-#     *
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t set_listener(
-#            DataReaderListener* listener);
-#
-#    /**
-#     * Modifies the DataReaderListener.
-#     *
-#     * @param [in] listener new value for the DataReaderListener.
-#     * @param [in] mask StatusMask that holds statuses the listener responds to (default: all).
-#     *
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t set_listener(
-#            DataReaderListener* listener,
-#            const StatusMask& mask);
-#    /**
-#     * @brief Getter for the DataReaderListener
-#     *
-#     * @return Pointer to the DataReaderListener
-#     */
-#    RTPS_DllAPI const DataReaderListener* get_listener() const;
-#
-#    /* TODO
-#       RTPS_DllAPI bool get_key_value(
-#            void* data,
-#            const InstanceHandle_t& handle);
-#     */
 #
 #    /**
 #     * @brief Get the liveliness changed status.
