@@ -16,4 +16,6 @@
 #include "fastdds/dds/subscriber/SampleState.hpp"
 %}
 
+%template(SampleStateKindVector) std::vector<eprosima::fastdds::dds::SampleStateKind>;
+
 %include "fastdds/dds/subscriber/SampleState.hpp"

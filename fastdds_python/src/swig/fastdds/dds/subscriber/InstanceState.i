@@ -16,4 +16,6 @@
 #include "fastdds/dds/subscriber/InstanceState.hpp"
 %}
 
+%template(InstanceStateKindVector) std::vector<eprosima::fastdds::dds::InstanceStateKind>;
+
 %include "fastdds/dds/subscriber/InstanceState.hpp"

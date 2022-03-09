@@ -16,4 +16,6 @@
 #include "fastdds/dds/subscriber/ViewState.hpp"
 %}
 
+%template(ViewStateKindVector) std::vector<eprosima::fastdds::dds::ViewStateKind>;
+
 %include "fastdds/dds/subscriber/ViewState.hpp"
