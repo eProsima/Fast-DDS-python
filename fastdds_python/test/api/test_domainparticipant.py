@@ -431,6 +431,10 @@ def test_delete_contained_entities():
             "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
     assert(topic is not None)
 
+    # Cannot delete participant without deleting its contained entities
+    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+           factory.delete_participant(participant))
+
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_contained_entities())
 
