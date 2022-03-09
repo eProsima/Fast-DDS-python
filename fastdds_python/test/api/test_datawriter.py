@@ -1,3 +1,4 @@
+from audioop import ratecv
 import datetime
 
 import fastdds
@@ -94,7 +95,6 @@ def test_dispose():
     - DataWriter::dispose
     - DataWriter::dispose_w_timestamp
     - DataWriter::unregister_instance
-    - DataWriter::unregister_instance_w_timestamp
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
@@ -114,7 +114,7 @@ def test_dispose():
             topic, fastdds.DATAWRITER_QOS_DEFAULT)
     assert(datawriter is not None)
 
-    # Overlay 1
+    # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = datawriter.register_instance(sample)
@@ -129,7 +129,7 @@ def test_dispose():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.dispose(sample2, ih2))
 
-    # Overlay 2
+    # Overload 2
     sample = test_complete.KeyedCompleteTestType()
     sample.id(3)
     now = datetime.datetime.now().time()
@@ -177,22 +177,12 @@ def test_get_instance_handle():
     assert(fastdds.c_Guid_Unknown != guid)
     ih = datawriter.get_instance_handle()
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    assert(guid.guidPrefix.value[0] == ih.value[0])
-    assert(guid.guidPrefix.value[1] == ih.value[1])
-    assert(guid.guidPrefix.value[2] == ih.value[2])
-    assert(guid.guidPrefix.value[3] == ih.value[3])
-    assert(guid.guidPrefix.value[4] == ih.value[4])
-    assert(guid.guidPrefix.value[5] == ih.value[5])
-    assert(guid.guidPrefix.value[6] == ih.value[6])
-    assert(guid.guidPrefix.value[7] == ih.value[7])
-    assert(guid.guidPrefix.value[8] == ih.value[8])
-    assert(guid.guidPrefix.value[9] == ih.value[9])
-    assert(guid.guidPrefix.value[10] == ih.value[10])
-    assert(guid.guidPrefix.value[11] == ih.value[11])
-    assert(guid.entityId.value[0] == ih.value[12])
-    assert(guid.entityId.value[1] == ih.value[13])
-    assert(guid.entityId.value[2] == ih.value[14])
-    assert(guid.entityId.value[3] == ih.value[15])
+
+    for i in range(0, 12):
+        assert(guid.guidPrefix.value[i] == ih.value[i])
+
+    for i in range(0, 4):
+        assert(guid.entityId.value[i] == ih.value[12+i])
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
@@ -316,283 +306,54 @@ def test_get_set_listener():
     assert(datawriter.get_listener() == listener)
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
 
-    # Overload 2
-    # - StatusMask.none
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.none()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.none() == datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_none()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_none() == datawriter.get_status_mask())
-    # - StatusMask.data_available
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.data_available()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.data_available() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_data_available()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_data_available() ==
-           datawriter.get_status_mask())
-    # - StatusMask.data_on_readers
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.data_on_readers()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.data_on_readers() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_data_on_readers()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_data_on_readers() ==
-           datawriter.get_status_mask())
-    # - StatusMask.inconsistent_topic
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.inconsistent_topic()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.inconsistent_topic() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_inconsistent_topic()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_inconsistent_topic() ==
-           datawriter.get_status_mask())
-    # - StatusMask.liveliness_changed
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.liveliness_changed()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.liveliness_changed() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_liveliness_changed()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_liveliness_changed() ==
-           datawriter.get_status_mask())
-    # - StatusMask.liveliness_lost
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.liveliness_lost()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.liveliness_lost() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_liveliness_lost()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_liveliness_lost() ==
-           datawriter.get_status_mask())
-    # - StatusMask.offered_deadline_missed
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.offered_deadline_missed()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.offered_deadline_missed() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_offered_deadline_missed()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_offered_deadline_missed() ==
-           datawriter.get_status_mask())
-    # - StatusMask.offered_incompatible_qos
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.offered_incompatible_qos()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.offered_incompatible_qos() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_offered_incompatible_qos()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_offered_incompatible_qos() ==
-           datawriter.get_status_mask())
-    # - StatusMask.publication_matched
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.publication_matched()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.publication_matched() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_publication_matched()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_publication_matched() ==
-           datawriter.get_status_mask())
-    # - StatusMask.requested_deadline_missed
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.requested_deadline_missed()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.requested_deadline_missed() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_requested_deadline_missed()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_requested_deadline_missed() ==
-           datawriter.get_status_mask())
-    # - StatusMask.requested_incompatible_qos
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.requested_incompatible_qos()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.requested_incompatible_qos() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_requested_incompatible_qos()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_requested_incompatible_qos() ==
-           datawriter.get_status_mask())
-    # - StatusMask.sample_lost
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.sample_lost()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.sample_lost() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_sample_lost()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_sample_lost() ==
-           datawriter.get_status_mask())
-    # - StatusMask.sample_rejected
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.sample_rejected()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.sample_rejected() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_sample_rejected()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_sample_rejected() ==
-           datawriter.get_status_mask())
-    # - StatusMask.subscription_matched
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.subscription_matched()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.subscription_matched() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_subscription_matched()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_subscription_matched() ==
-           datawriter.get_status_mask())
-    # - StatusMask.all
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask.all()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.all() ==
-           datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener, fastdds.StatusMask_all()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_all() ==
-           datawriter.get_status_mask())
-    # - Mix all  values of StatusMask
-    listener = DataWriterListener()
-    assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(
-               listener,
-               fastdds.StatusMask.data_available() <<
-               fastdds.StatusMask.data_on_readers() <<
-               fastdds.StatusMask.inconsistent_topic() <<
-               fastdds.StatusMask.liveliness_changed() <<
-               fastdds.StatusMask.liveliness_lost() <<
-               fastdds.StatusMask.offered_deadline_missed() <<
-               fastdds.StatusMask.offered_incompatible_qos() <<
-               fastdds.StatusMask.publication_matched() <<
-               fastdds.StatusMask.requested_deadline_missed() <<
-               fastdds.StatusMask.requested_incompatible_qos() <<
-               fastdds.StatusMask.sample_lost() <<
-               fastdds.StatusMask.sample_rejected() <<
-               fastdds.StatusMask.subscription_matched()))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
-    listener = DataWriterListener()
-    assert(listener is not None)
+    def test(status_mask_1, status_mask_2):
+        """
+        Test the entity creation using the two types of StatusMasks.
+        """
+        listener = DataWriterListener()
+        assert(listener is not None)
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+              datawriter.set_listener(listener, status_mask_1))
+        assert(datawriter.get_listener() == listener)
+        assert(status_mask_1 == datawriter.get_status_mask())
+        listener = DataWriterListener()
+        assert(listener is not None)
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               datawriter.set_listener(listener, status_mask_2))
+        assert(datawriter.get_listener() == listener)
+        assert(status_mask_2 == datawriter.get_status_mask())
+
+    # Overload 2: Different status masks
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
+    test(fastdds.StatusMask.none(), fastdds.StatusMask_none())
+    test(fastdds.StatusMask.data_available(),
+         fastdds.StatusMask_data_available())
+    test(fastdds.StatusMask.data_on_readers(),
+         fastdds.StatusMask_data_on_readers())
+    test(fastdds.StatusMask.inconsistent_topic(),
+         fastdds.StatusMask_inconsistent_topic())
+    test(fastdds.StatusMask.liveliness_changed(),
+         fastdds.StatusMask_liveliness_changed())
+    test(fastdds.StatusMask.liveliness_lost(),
+         fastdds.StatusMask_liveliness_lost())
+    test(fastdds.StatusMask.offered_deadline_missed(),
+         fastdds.StatusMask_offered_deadline_missed())
+    test(fastdds.StatusMask.offered_incompatible_qos(),
+         fastdds.StatusMask_offered_incompatible_qos())
+    test(fastdds.StatusMask.publication_matched(),
+         fastdds.StatusMask_publication_matched())
+    test(fastdds.StatusMask.requested_deadline_missed(),
+         fastdds.StatusMask_requested_deadline_missed())
+    test(fastdds.StatusMask.requested_incompatible_qos(),
+         fastdds.StatusMask_requested_incompatible_qos())
+    test(fastdds.StatusMask.sample_lost(),
+         fastdds.StatusMask_sample_lost())
+    test(fastdds.StatusMask.sample_rejected(),
+         fastdds.StatusMask_sample_rejected())
+    test(fastdds.StatusMask.subscription_matched(),
+         fastdds.StatusMask_subscription_matched())
+
     m = fastdds.StatusMask_data_available() << \
         fastdds.StatusMask_data_on_readers() << \
         fastdds.StatusMask_inconsistent_topic() << \
@@ -606,10 +367,21 @@ def test_get_set_listener():
         fastdds.StatusMask_sample_lost() << \
         fastdds.StatusMask_sample_rejected() << \
         fastdds.StatusMask_subscription_matched()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           datawriter.set_listener(listener, m))
-    assert(datawriter.get_listener() == listener)
-    assert(fastdds.StatusMask_all() == datawriter.get_status_mask())
+
+    test(fastdds.StatusMask.data_available() <<
+         fastdds.StatusMask.data_on_readers() <<
+         fastdds.StatusMask.inconsistent_topic() <<
+         fastdds.StatusMask.liveliness_changed() <<
+         fastdds.StatusMask.liveliness_lost() <<
+         fastdds.StatusMask.offered_deadline_missed() <<
+         fastdds.StatusMask.offered_incompatible_qos() <<
+         fastdds.StatusMask.publication_matched() <<
+         fastdds.StatusMask.requested_deadline_missed() <<
+         fastdds.StatusMask.requested_incompatible_qos() <<
+         fastdds.StatusMask.sample_lost() <<
+         fastdds.StatusMask.sample_rejected() <<
+         fastdds.StatusMask.subscription_matched(),
+         m)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
@@ -1037,7 +809,7 @@ def test_register_instance():
             topic, fastdds.DATAWRITER_QOS_DEFAULT)
     assert(datawriter is not None)
 
-    # Overlay 1
+    # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = datawriter.register_instance(sample)
@@ -1055,7 +827,7 @@ def test_register_instance():
            datawriter.unregister_instance(
                sample, fastdds.c_InstanceHandle_Unknown))
 
-    # Overlay 2
+    # Overload 2
     sample = test_complete.KeyedCompleteTestType()
     sample.id(3)
     now = datetime.datetime.now().time()
@@ -1147,11 +919,11 @@ def test_write():
             topic, fastdds.DATAWRITER_QOS_DEFAULT)
     assert(datawriter is not None)
 
-    # Overlay 1
+    # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     assert(datawriter.write(sample))
 
-    # Overlay 2
+    # Overload 2
     sample = test_complete.KeyedCompleteTestType()
     params = fastdds.WriteParams()
     guid = fastdds.GUID_t()
@@ -1164,7 +936,7 @@ def test_write():
     params.related_sample_identity().sequence_number(sequence_number)
     assert(datawriter.write(sample, params))
 
-    # Overlay 3
+    # Overload 3
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
@@ -1175,7 +947,7 @@ def test_write():
     assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
            datawriter.write(sample, ih))
 
-    # Overlay 4
+    # Overload 4
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
