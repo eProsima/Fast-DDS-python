@@ -38,6 +38,8 @@ def test_contains_entity():
 
     assert(participant.contains_entity(publisher.get_instance_handle()))
 
+    assert(participant.contains_entity(fastdds.InstanceHandle_t()) is False)
+
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_publisher(publisher))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
