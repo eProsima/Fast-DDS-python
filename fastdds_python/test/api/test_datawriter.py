@@ -660,7 +660,7 @@ def test_get_liveliness_lost_status():
            factory.delete_participant(participant))
 
 
-def test_matched_subscription_data():
+def test_get_matched_subscription_data():
     """
     This test checks:
     - DataWriter::get_matched_subscription_data
