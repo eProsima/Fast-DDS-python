@@ -497,6 +497,8 @@ def test_find_topic():
     assert(topic_copy is None)  # Not implemented yet
     # assert(topic.get_type_name() == topic_copy.get_type_name())
     # assert(topic.get_name() == topic_copy.get_name())
+    # assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    #        participant.delete_topic(topic_copy))
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))
