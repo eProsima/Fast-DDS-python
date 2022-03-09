@@ -1350,7 +1350,7 @@ def test_get_set_listener():
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
     participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+            7, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
 
     # Overload 1

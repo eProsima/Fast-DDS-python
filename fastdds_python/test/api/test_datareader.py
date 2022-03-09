@@ -7,6 +7,105 @@ class DataReaderListener (fastdds.DataReaderListener):
         super().__init__()
 
 
+def test_read():
+    """
+    This test checks:
+    - DataReader::wait_for_historical_data
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    #data_seq = test_complete.CompleteTestTypeSeq()
+    #info_seq = fastdds.SampleInfoSeq()
+    #assert(fastdds.ReturnCode_t.RETCODE_NO_DATA == datareader.read(
+    #    data_seq, info_seq))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+#    RTPS_DllAPI ReturnCode_t read_next_sample(
+#            void* data,
+#            SampleInfo* info);
+def test_read_next_sample():
+    """
+    This test checks:
+    - DataReader::wait_for_historical_data
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader_qos = fastdds.DataReaderQos()
+    datareader_qos.durability().kind = fastdds.TRANSIENT_LOCAL_DURABILITY_QOS
+    datareader = subscriber.create_datareader(
+            topic, datareader_qos)
+    assert(datareader is not None)
+
+    data = test_complete.CompleteTestType()
+    info = fastdds.SampleInfo()
+    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA == datareader.read_next_sample(
+        data, info))
+
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+    sample = test_complete.CompleteTestType()
+    sample.int16_field(255)
+    assert(datawriter.write(sample))
+
+    assert(datareader.wait_for_unread_message(fastdds.Duration_t(5, 0)))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.read_next_sample(data, info))
+    assert(info.valid_data)
+    assert(sample.int16_field() == data.int16_field())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_wait_for_historical_data():
     """
     This test checks:
@@ -77,7 +176,6 @@ def test_wait_for_unread_message():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
-#
 #    /** @name Read or take data methods.
 #     * Methods to read or take data from the History.
 #     */
@@ -425,29 +523,6 @@ def test_wait_for_unread_message():
 #            int32_t max_samples = LENGTH_UNLIMITED,
 #            const InstanceHandle_t& previous_handle = HANDLE_NIL,
 #            ReadCondition* a_condition = nullptr);
-#
-#    /**
-#     * @brief This operation copies the next, non-previously accessed Data value from the DataReader; the operation
-#     * also copies the corresponding SampleInfo. The implied order among the samples stored in the DataReader is the
-#     * same as for the read operation.
-#     *
-#     * The read_next_sample operation is semantically equivalent to the read operation where the input Data sequence
-#     * has <tt> max_length = 1 </tt>, the <tt> sample_states = NOT_READ_SAMPLE_STATE </tt>,
-#     * the <tt> view_states = ANY_VIEW_STATE </tt>, and the <tt> instance_states = ANY_INSTANCE_STATE </tt>.
-#     *
-#     * The read_next_sample operation provides a simplified API to ‘read’ samples avoiding the need for the
-#     * application to manage sequences and specify states.
-#     *
-#     * If there is no unread data in the DataReader, the operation will return RETCODE_NO_DATA and nothing is copied
-#     *
-#     * @param [out] data Data pointer to store the sample
-#     * @param [out] info SampleInfo pointer to store the sample information
-#     *
-#     * @return Any of the standard return codes.
-#     */
-#    RTPS_DllAPI ReturnCode_t read_next_sample(
-#            void* data,
-#            SampleInfo* info);
 #
 #    /**
 #     * Access a collection of data samples from the DataReader.
