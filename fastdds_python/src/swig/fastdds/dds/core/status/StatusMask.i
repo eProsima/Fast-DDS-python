@@ -29,8 +29,6 @@
 {
     bool operator ==(const StatusMask& other_mask) const
     {
-        std::cout << "self = " << self->to_string() << std::endl;
-        std::cout << "other = " << other_mask.to_string() << std::endl;
         return *self == other_mask;
     }
 
