@@ -78,300 +78,56 @@ def test_create_and_delete_publisher():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
-    # Overload 3
-    # - StatusMask.none
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener, fastdds.StatusMask.none())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.none() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener, fastdds.StatusMask_none())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_none() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.data_available
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_available())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.data_available() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_data_available())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_data_available() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.data_on_readers
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_on_readers())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.data_on_readers() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_data_on_readers())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_data_on_readers() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.inconsistent_topic
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.inconsistent_topic())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.inconsistent_topic() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_inconsistent_topic())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_inconsistent_topic() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.liveliness_changed
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.liveliness_changed())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.liveliness_changed() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_liveliness_changed())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_liveliness_changed() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.liveliness_lost
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.liveliness_lost())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.liveliness_lost() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_liveliness_lost())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_liveliness_lost() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.offered_deadline_missed
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.offered_deadline_missed())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.offered_deadline_missed() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_offered_deadline_missed())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_offered_deadline_missed() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.offered_incompatible_qos
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.offered_incompatible_qos())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.offered_incompatible_qos() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_offered_incompatible_qos())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_offered_incompatible_qos() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.publication_matched
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.publication_matched())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.publication_matched() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_publication_matched())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_publication_matched() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.requested_deadline_missed
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.requested_deadline_missed())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.requested_deadline_missed() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_requested_deadline_missed())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_requested_deadline_missed() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.requested_incompatible_qos
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.requested_incompatible_qos())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.requested_incompatible_qos() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_requested_incompatible_qos())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_requested_incompatible_qos() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.sample_lost
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.sample_lost())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.sample_lost() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_sample_lost())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_sample_lost() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.sample_rejected
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.sample_rejected())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.sample_rejected() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_sample_rejected())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_sample_rejected() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.subscription_matched
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.subscription_matched())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.subscription_matched() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_subscription_matched())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_subscription_matched() ==
-           publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - StatusMask.all
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.all())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_all())
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask_all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    # - Mix all  values of StatusMask
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_available() <<
-            fastdds.StatusMask.data_on_readers() <<
-            fastdds.StatusMask.inconsistent_topic() <<
-            fastdds.StatusMask.liveliness_changed() <<
-            fastdds.StatusMask.liveliness_lost() <<
-            fastdds.StatusMask.offered_deadline_missed() <<
-            fastdds.StatusMask.offered_incompatible_qos() <<
-            fastdds.StatusMask.publication_matched() <<
-            fastdds.StatusMask.requested_deadline_missed() <<
-            fastdds.StatusMask.requested_incompatible_qos() <<
-            fastdds.StatusMask.sample_lost() <<
-            fastdds.StatusMask.sample_rejected() <<
-            fastdds.StatusMask.subscription_matched()
-            )
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
+    def test(status_mask_1, status_mask_2, listnr=None):
+        """
+        Test the entity creation using the two types of StatusMasks.
+        """
+        publisher = participant.create_publisher(
+            fastdds.PUBLISHER_QOS_DEFAULT, listnr, status_mask_1)
+        assert(publisher is not None)
+        assert(publisher.is_enabled())
+        assert(status_mask_1 == publisher.get_status_mask())
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               participant.delete_publisher(publisher))
+        publisher = participant.create_publisher(
+            fastdds.PUBLISHER_QOS_DEFAULT, listnr, status_mask_2)
+        assert(publisher is not None)
+        assert(publisher.is_enabled())
+        assert(status_mask_2 == publisher.get_status_mask())
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               participant.delete_publisher(publisher))
+
+    # Overload 3: Different status masks
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all(), None)
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all(), listener)
+    test(fastdds.StatusMask.none(), fastdds.StatusMask_none(), listener)
+    test(fastdds.StatusMask.data_available(),
+         fastdds.StatusMask_data_available(), listener)
+    test(fastdds.StatusMask.data_on_readers(),
+         fastdds.StatusMask_data_on_readers(), listener)
+    test(fastdds.StatusMask.inconsistent_topic(),
+         fastdds.StatusMask_inconsistent_topic(), listener)
+    test(fastdds.StatusMask.liveliness_changed(),
+         fastdds.StatusMask_liveliness_changed(), listener)
+    test(fastdds.StatusMask.liveliness_lost(),
+         fastdds.StatusMask_liveliness_lost(), listener)
+    test(fastdds.StatusMask.offered_deadline_missed(),
+         fastdds.StatusMask_offered_deadline_missed(), listener)
+    test(fastdds.StatusMask.offered_incompatible_qos(),
+         fastdds.StatusMask_offered_incompatible_qos(), listener)
+    test(fastdds.StatusMask.publication_matched(),
+         fastdds.StatusMask_publication_matched(), listener)
+    test(fastdds.StatusMask.requested_deadline_missed(),
+         fastdds.StatusMask_requested_deadline_missed(), listener)
+    test(fastdds.StatusMask.requested_incompatible_qos(),
+         fastdds.StatusMask_requested_incompatible_qos(), listener)
+    test(fastdds.StatusMask.sample_lost(),
+         fastdds.StatusMask_sample_lost(), listener)
+    test(fastdds.StatusMask.sample_rejected(),
+         fastdds.StatusMask_sample_rejected(), listener)
+    test(fastdds.StatusMask.subscription_matched(),
+         fastdds.StatusMask_subscription_matched(), listener)
+
     m = fastdds.StatusMask_data_available() << \
         fastdds.StatusMask_data_on_readers() << \
         fastdds.StatusMask_inconsistent_topic() << \
@@ -385,13 +141,22 @@ def test_create_and_delete_publisher():
         fastdds.StatusMask_sample_lost() << \
         fastdds.StatusMask_sample_rejected() << \
         fastdds.StatusMask_subscription_matched()
-    publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listener, m)
-    assert(publisher is not None)
-    assert(publisher.is_enabled())
-    assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
+
+    test(fastdds.StatusMask.data_available() <<
+         fastdds.StatusMask.data_on_readers() <<
+         fastdds.StatusMask.inconsistent_topic() <<
+         fastdds.StatusMask.liveliness_changed() <<
+         fastdds.StatusMask.liveliness_lost() <<
+         fastdds.StatusMask.offered_deadline_missed() <<
+         fastdds.StatusMask.offered_incompatible_qos() <<
+         fastdds.StatusMask.publication_matched() <<
+         fastdds.StatusMask.requested_deadline_missed() <<
+         fastdds.StatusMask.requested_incompatible_qos() <<
+         fastdds.StatusMask.sample_lost() <<
+         fastdds.StatusMask.sample_rejected() <<
+         fastdds.StatusMask.subscription_matched(),
+         m,
+         listener)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
@@ -431,306 +196,56 @@ def test_create_and_delete_subscriber():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
-    # Overload 3
-    # - StatusMask.none
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.none())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.none() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_none())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_none() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.data_available
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_available())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.data_available() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_data_available())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_data_available() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.data_on_readers
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_on_readers())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.data_on_readers() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_data_on_readers())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_data_on_readers() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.inconsistent_topic
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.inconsistent_topic())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.inconsistent_topic() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_inconsistent_topic())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_inconsistent_topic() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.liveliness_changed
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.liveliness_changed())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.liveliness_changed() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_liveliness_changed())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_liveliness_changed() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.liveliness_lost
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.liveliness_lost())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.liveliness_lost() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_liveliness_lost())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_liveliness_lost() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.offered_deadline_missed
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.offered_deadline_missed())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.offered_deadline_missed() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_offered_deadline_missed())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_offered_deadline_missed() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.offered_incompatible_qos
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.offered_incompatible_qos())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.offered_incompatible_qos() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_offered_incompatible_qos())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_offered_incompatible_qos() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.publication_matched
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.publication_matched())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.publication_matched() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_publication_matched())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_publication_matched() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.requested_deadline_missed
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.requested_deadline_missed())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.requested_deadline_missed() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_requested_deadline_missed())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_requested_deadline_missed() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.requested_incompatible_qos
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.requested_incompatible_qos())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.requested_incompatible_qos() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_requested_incompatible_qos())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_requested_incompatible_qos() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.sample_lost
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.sample_lost())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.sample_lost() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_sample_lost())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_sample_lost() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.sample_rejected
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.sample_rejected())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.sample_rejected() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_sample_rejected())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_sample_rejected() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.subscription_matched
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.subscription_matched())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.subscription_matched() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_subscription_matched())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_subscription_matched() ==
-           subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - StatusMask.all
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.all())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask_all())
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask_all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    # - Mix all  values of StatusMask
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_available() <<
-            fastdds.StatusMask.data_on_readers() <<
-            fastdds.StatusMask.inconsistent_topic() <<
-            fastdds.StatusMask.liveliness_changed() <<
-            fastdds.StatusMask.liveliness_lost() <<
-            fastdds.StatusMask.offered_deadline_missed() <<
-            fastdds.StatusMask.offered_incompatible_qos() <<
-            fastdds.StatusMask.publication_matched() <<
-            fastdds.StatusMask.requested_deadline_missed() <<
-            fastdds.StatusMask.requested_incompatible_qos() <<
-            fastdds.StatusMask.sample_lost() <<
-            fastdds.StatusMask.sample_rejected() <<
-            fastdds.StatusMask.subscription_matched()
-            )
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
+    def test(status_mask_1, status_mask_2, listnr=None):
+        """
+        Test the entity creation using the two types of StatusMasks.
+        """
+        subscriber = participant.create_subscriber(
+            fastdds.SUBSCRIBER_QOS_DEFAULT, listnr, status_mask_1)
+        assert(subscriber is not None)
+        assert(subscriber.is_enabled())
+        assert(status_mask_1 == subscriber.get_status_mask())
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               participant.delete_subscriber(subscriber))
+        subscriber = participant.create_subscriber(
+            fastdds.SUBSCRIBER_QOS_DEFAULT, listnr, status_mask_2)
+        assert(subscriber is not None)
+        assert(subscriber.is_enabled())
+        assert(status_mask_2 == subscriber.get_status_mask())
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               participant.delete_subscriber(subscriber))
+
+    # Overload 3: Different status masks
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all(), None)
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all(), listener)
+    test(fastdds.StatusMask.none(), fastdds.StatusMask_none(), listener)
+    test(fastdds.StatusMask.data_available(),
+         fastdds.StatusMask_data_available(), listener)
+    test(fastdds.StatusMask.data_on_readers(),
+         fastdds.StatusMask_data_on_readers(), listener)
+    test(fastdds.StatusMask.inconsistent_topic(),
+         fastdds.StatusMask_inconsistent_topic(), listener)
+    test(fastdds.StatusMask.liveliness_changed(),
+         fastdds.StatusMask_liveliness_changed(), listener)
+    test(fastdds.StatusMask.liveliness_lost(),
+         fastdds.StatusMask_liveliness_lost(), listener)
+    test(fastdds.StatusMask.offered_deadline_missed(),
+         fastdds.StatusMask_offered_deadline_missed(), listener)
+    test(fastdds.StatusMask.offered_incompatible_qos(),
+         fastdds.StatusMask_offered_incompatible_qos(), listener)
+    test(fastdds.StatusMask.publication_matched(),
+         fastdds.StatusMask_publication_matched(), listener)
+    test(fastdds.StatusMask.requested_deadline_missed(),
+         fastdds.StatusMask_requested_deadline_missed(), listener)
+    test(fastdds.StatusMask.requested_incompatible_qos(),
+         fastdds.StatusMask_requested_incompatible_qos(), listener)
+    test(fastdds.StatusMask.sample_lost(),
+         fastdds.StatusMask_sample_lost(), listener)
+    test(fastdds.StatusMask.sample_rejected(),
+         fastdds.StatusMask_sample_rejected(), listener)
+    test(fastdds.StatusMask.subscription_matched(),
+         fastdds.StatusMask_subscription_matched(), listener)
+
     m = fastdds.StatusMask_data_available() << \
         fastdds.StatusMask_data_on_readers() << \
         fastdds.StatusMask_inconsistent_topic() << \
@@ -744,13 +259,22 @@ def test_create_and_delete_subscriber():
         fastdds.StatusMask_sample_lost() << \
         fastdds.StatusMask_sample_rejected() << \
         fastdds.StatusMask_subscription_matched()
-    subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listener, m)
-    assert(subscriber is not None)
-    assert(subscriber.is_enabled())
-    assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
+
+    test(fastdds.StatusMask.data_available() <<
+         fastdds.StatusMask.data_on_readers() <<
+         fastdds.StatusMask.inconsistent_topic() <<
+         fastdds.StatusMask.liveliness_changed() <<
+         fastdds.StatusMask.liveliness_lost() <<
+         fastdds.StatusMask.offered_deadline_missed() <<
+         fastdds.StatusMask.offered_incompatible_qos() <<
+         fastdds.StatusMask.publication_matched() <<
+         fastdds.StatusMask.requested_deadline_missed() <<
+         fastdds.StatusMask.requested_incompatible_qos() <<
+         fastdds.StatusMask.sample_lost() <<
+         fastdds.StatusMask.sample_rejected() <<
+         fastdds.StatusMask.subscription_matched(),
+         m,
+         listener)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
@@ -801,331 +325,58 @@ def test_create_and_delete_topic():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))
 
-    # Overload 3
-    # - StatusMask.none
-    topic = participant.create_topic(
+    def test(status_mask_1, status_mask_2, listnr=None):
+        """
+        Test the entity creation using the two types of StatusMasks.
+        """
+        topic = participant.create_topic(
             "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener, fastdds.StatusMask.none())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.none() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
+            fastdds.TOPIC_QOS_DEFAULT, listnr, status_mask_1)
+        assert(topic is not None)
+        assert(topic.is_enabled())
+        assert(status_mask_1 == topic.get_status_mask())
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               participant.delete_topic(topic))
+        topic = participant.create_topic(
             "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener, fastdds.StatusMask_none())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_none() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.data_available
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_available())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.data_available() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_data_available())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_data_available() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.data_on_readers
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_on_readers())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.data_on_readers() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_data_on_readers())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_data_on_readers() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.inconsistent_topic
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.inconsistent_topic())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.inconsistent_topic() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_inconsistent_topic())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_inconsistent_topic() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.liveliness_changed
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.liveliness_changed())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.liveliness_changed() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_liveliness_changed())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_liveliness_changed() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.liveliness_lost
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.liveliness_lost())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.liveliness_lost() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_liveliness_lost())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_liveliness_lost() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.offered_deadline_missed
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.offered_deadline_missed())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.offered_deadline_missed() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_offered_deadline_missed())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_offered_deadline_missed() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.offered_incompatible_qos
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.offered_incompatible_qos())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.offered_incompatible_qos() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_offered_incompatible_qos())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_offered_incompatible_qos() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.publication_matched
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.publication_matched())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.publication_matched() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_publication_matched())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_publication_matched() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.requested_deadline_missed
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.requested_deadline_missed())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.requested_deadline_missed() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_requested_deadline_missed())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_requested_deadline_missed() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.requested_incompatible_qos
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.requested_incompatible_qos())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.requested_incompatible_qos() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_requested_incompatible_qos())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_requested_incompatible_qos() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.sample_lost
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.sample_lost())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.sample_lost() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_sample_lost())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_sample_lost() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.sample_rejected
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.sample_rejected())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.sample_rejected() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_sample_rejected())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_sample_rejected() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.subscription_matched
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.subscription_matched())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.subscription_matched() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_subscription_matched())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_subscription_matched() ==
-           topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - StatusMask.all
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.all())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.all() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask_all())
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask_all() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    # - Mix all  values of StatusMask
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener,
-            fastdds.StatusMask.data_available() <<
-            fastdds.StatusMask.data_on_readers() <<
-            fastdds.StatusMask.inconsistent_topic() <<
-            fastdds.StatusMask.liveliness_changed() <<
-            fastdds.StatusMask.liveliness_lost() <<
-            fastdds.StatusMask.offered_deadline_missed() <<
-            fastdds.StatusMask.offered_incompatible_qos() <<
-            fastdds.StatusMask.publication_matched() <<
-            fastdds.StatusMask.requested_deadline_missed() <<
-            fastdds.StatusMask.requested_incompatible_qos() <<
-            fastdds.StatusMask.sample_lost() <<
-            fastdds.StatusMask.sample_rejected() <<
-            fastdds.StatusMask.subscription_matched()
-            )
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.all() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
+            fastdds.TOPIC_QOS_DEFAULT, listnr, status_mask_2)
+        assert(topic is not None)
+        assert(topic.is_enabled())
+        assert(status_mask_2 == topic.get_status_mask())
+        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+               participant.delete_topic(topic))
+
+    # Overload 3: Different status masks
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all(), None)
+    test(fastdds.StatusMask.all(), fastdds.StatusMask_all(), listener)
+    test(fastdds.StatusMask.none(), fastdds.StatusMask_none(), listener)
+    test(fastdds.StatusMask.data_available(),
+         fastdds.StatusMask_data_available(), listener)
+    test(fastdds.StatusMask.data_on_readers(),
+         fastdds.StatusMask_data_on_readers(), listener)
+    test(fastdds.StatusMask.inconsistent_topic(),
+         fastdds.StatusMask_inconsistent_topic(), listener)
+    test(fastdds.StatusMask.liveliness_changed(),
+         fastdds.StatusMask_liveliness_changed(), listener)
+    test(fastdds.StatusMask.liveliness_lost(),
+         fastdds.StatusMask_liveliness_lost(), listener)
+    test(fastdds.StatusMask.offered_deadline_missed(),
+         fastdds.StatusMask_offered_deadline_missed(), listener)
+    test(fastdds.StatusMask.offered_incompatible_qos(),
+         fastdds.StatusMask_offered_incompatible_qos(), listener)
+    test(fastdds.StatusMask.publication_matched(),
+         fastdds.StatusMask_publication_matched(), listener)
+    test(fastdds.StatusMask.requested_deadline_missed(),
+         fastdds.StatusMask_requested_deadline_missed(), listener)
+    test(fastdds.StatusMask.requested_incompatible_qos(),
+         fastdds.StatusMask_requested_incompatible_qos(), listener)
+    test(fastdds.StatusMask.sample_lost(),
+         fastdds.StatusMask_sample_lost(), listener)
+    test(fastdds.StatusMask.sample_rejected(),
+         fastdds.StatusMask_sample_rejected(), listener)
+    test(fastdds.StatusMask.subscription_matched(),
+         fastdds.StatusMask_subscription_matched(), listener)
+
     m = fastdds.StatusMask_data_available() << \
         fastdds.StatusMask_data_on_readers() << \
         fastdds.StatusMask_inconsistent_topic() << \
@@ -1139,14 +390,22 @@ def test_create_and_delete_topic():
         fastdds.StatusMask_sample_lost() << \
         fastdds.StatusMask_sample_rejected() << \
         fastdds.StatusMask_subscription_matched()
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType",
-            fastdds.TOPIC_QOS_DEFAULT, listener, m)
-    assert(topic is not None)
-    assert(topic.is_enabled())
-    assert(fastdds.StatusMask.all() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
+
+    test(fastdds.StatusMask.data_available() <<
+         fastdds.StatusMask.data_on_readers() <<
+         fastdds.StatusMask.inconsistent_topic() <<
+         fastdds.StatusMask.liveliness_changed() <<
+         fastdds.StatusMask.liveliness_lost() <<
+         fastdds.StatusMask.offered_deadline_missed() <<
+         fastdds.StatusMask.offered_incompatible_qos() <<
+         fastdds.StatusMask.publication_matched() <<
+         fastdds.StatusMask.requested_deadline_missed() <<
+         fastdds.StatusMask.requested_incompatible_qos() <<
+         fastdds.StatusMask.sample_lost() <<
+         fastdds.StatusMask.sample_rejected() <<
+         fastdds.StatusMask.subscription_matched(),
+         m,
+         listener)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
