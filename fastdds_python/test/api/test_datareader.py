@@ -156,15 +156,44 @@ def test_get_key_value():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
-#
-#    /**
-#     * Get the number of samples pending to be read.
-#     * The number includes samples that may not yet be available to be read or taken by the user, due to samples
-#     * being received out of order.
-#     *
-#     * @return the number of samples on the reader history that have never been read.
-#     */
-#    RTPS_DllAPI uint64_t get_unread_count() const;
+
+def test_get_topicdescription():
+    """
+    This test checks:
+    - DataReader::get_topicdescription
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    topic_aux = datareader.get_topicdescription()
+    assert(topic.get_impl() == topic_aux.get_impl())
+    assert(topic.get_type_name() == topic_aux.get_type_name())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_unread_count():
     """
     This test checks:
@@ -406,6 +435,43 @@ def test_take_next_sample():
            participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_type():
+    """
+    This test checks:
+    - DataReader::type
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    test_type_aux = datareader.type()
+    assert(test_type == test_type_aux)
+    assert(test_type.get_type_name() == test_type_aux.get_type_name())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -1050,14 +1116,6 @@ def test_wait_for_unread_message():
 #    RTPS_DllAPI ReturnCode_t return_loan(
 #            LoanableCollection& data_values,
 #            SampleInfoSeq& sample_infos);
-#
-#
-#    /**
-#     * @brief Getter for the associated InstanceHandle.
-#     *
-#     * @return Copy of the InstanceHandle
-#     */
-#    RTPS_DllAPI InstanceHandle_t get_instance_handle() const;
 #
 #    /**
 #     * Getter for the data type.
