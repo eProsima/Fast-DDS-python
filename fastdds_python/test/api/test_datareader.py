@@ -577,7 +577,7 @@ def test_get_liveliness_changed_status():
            factory.delete_participant(participant))
 
 
-def test_matched_publication_data():
+def test_get_matched_publication_data():
     """
     This test checks:
     - DataWriter::get_matched_publication_data
@@ -969,6 +969,71 @@ def test_get_unread_count():
 
     assert(datareader.wait_for_unread_message(fastdds.Duration_t(5, 0)))
     assert(1 == datareader.get_unread_count())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+#
+#    /**
+#     * Checks whether the sample is still valid or is corrupted
+#     *
+#     * @param data Pointer to the sample data to check
+#     * @param info Pointer to the SampleInfo related to \c data
+#     * @return true if the sample is valid
+#     */
+#    RTPS_DllAPI bool is_sample_valid(
+#            const void* data,
+#            const SampleInfo* info) const;
+def test_is_sample_valid():
+    """
+    This test checks:
+    - DataReader::is_sample_valid
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader_qos = fastdds.DataReaderQos()
+    datareader_qos.durability().kind = fastdds.TRANSIENT_LOCAL_DURABILITY_QOS
+    datareader = subscriber.create_datareader(
+            topic, datareader_qos)
+    assert(datareader is not None)
+
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+    sample = test_complete.CompleteTestType()
+    sample.int16_field(255)
+    assert(datawriter.write(sample))
+
+    assert(datareader.wait_for_unread_message(fastdds.Duration_t(5, 0)))
+    data = test_complete.CompleteTestType()
+    info = fastdds.SampleInfo()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.read_next_sample(data, info))
+    assert(datareader.is_sample_valid(data, info))
+    assert(sample.int16_field() == data.int16_field())
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
@@ -1897,12 +1962,6 @@ def test_wait_for_unread_message():
 #            const ReadCondition* a_condition);
 #
 #    /**
-#     * @brief Getter for the Subscriber
-#     * @return Subscriber pointer
-#     */
-#    RTPS_DllAPI const Subscriber* get_subscriber() const;
-#
-#    /**
 #     * This operation deletes all the entities that were created by means of the “create” operations on the DataReader.
 #     * That is, it deletes all contained ReadCondition and QueryCondition objects.
 #     *
@@ -1912,14 +1971,3 @@ def test_wait_for_unread_message():
 #     * @return Any of the standard return codes.
 #     */
 #    RTPS_DllAPI ReturnCode_t delete_contained_entities();
-#
-#    /**
-#     * Checks whether the sample is still valid or is corrupted
-#     *
-#     * @param data Pointer to the sample data to check
-#     * @param info Pointer to the SampleInfo related to \c data
-#     * @return true if the sample is valid
-#     */
-#    RTPS_DllAPI bool is_sample_valid(
-#            const void* data,
-#            const SampleInfo* info) const;
