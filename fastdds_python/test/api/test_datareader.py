@@ -7,6 +7,63 @@ class DataReaderListener (fastdds.DataReaderListener):
         super().__init__()
 
 
+def test_get_first_untaken():
+    """
+    This test checks:
+    - DataReader::get_first_untaken_info
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader_qos = fastdds.DataReaderQos()
+    datareader_qos.durability().kind = fastdds.TRANSIENT_LOCAL_DURABILITY_QOS
+    datareader = subscriber.create_datareader(
+            topic, datareader_qos)
+    assert(datareader is not None)
+
+    info = fastdds.SampleInfo()
+    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+           datareader.get_first_untaken_info(info))
+
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+    assert(publisher is not None)
+    datawriter = publisher.create_datawriter(
+            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    assert(datawriter is not None)
+    sample = test_complete.CompleteTestType()
+    sample.int16_field(255)
+    assert(datawriter.write(sample))
+
+    assert(datareader.wait_for_unread_message(fastdds.Duration_t(5, 0)))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.get_first_untaken_info(info))
+    assert(info.valid_data)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_key_value():
     """
     This test checks:
@@ -878,28 +935,6 @@ def test_wait_for_unread_message():
 #    RTPS_DllAPI ReturnCode_t return_loan(
 #            LoanableCollection& data_values,
 #            SampleInfoSeq& sample_infos);
-#
-#    /**
-#     * Takes as a parameter an instance and returns a handle that can be used in subsequent operations that accept an
-#     * instance handle as an argument. The instance parameter is only used for the purpose of examining the fields that
-#     * define the key.
-#     *
-#     * @param [in] instance Data pointer to the sample
-#     *
-#     * @return handle of the given instance
-#     */
-#    RTPS_DllAPI InstanceHandle_t lookup_instance(
-#            const void* instance) const;
-#
-#    /**
-#     * @brief Returns information about the first untaken sample.
-#     *
-#     * @param [out] info Pointer to a SampleInfo_t structure to store first untaken sample information.
-#     *
-#     * @return RETCODE_OK if sample info was returned. RETCODE_NO_DATA if there is no sample to take.
-#     */
-#    RTPS_DllAPI ReturnCode_t get_first_untaken_info(
-#            SampleInfo* info);
 #
 #    /**
 #     * Get the number of samples pending to be read.
