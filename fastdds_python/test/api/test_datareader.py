@@ -858,6 +858,42 @@ def test_get_subscription_matched_status():
            factory.delete_participant(participant))
 
 
+def test_get_subscriber():
+    """
+    This test checks:
+    - DataReader::get_subscriber
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    sub = datareader.get_subscriber()
+    assert(sub == subscriber)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_topicdescription():
     """
     This test checks:
@@ -1887,15 +1923,3 @@ def test_wait_for_unread_message():
 #    RTPS_DllAPI bool is_sample_valid(
 #            const void* data,
 #            const SampleInfo* info) const;
-#
-#    /**
-#     * Get the list of locators on which this DataReader is listening.
-#     *
-#     * @param [out] locators  LocatorList where the list of locators will be stored.
-#     *
-#     * @return NOT_ENABLED if the reader has not been enabled.
-#     * @return OK if a list of locators is returned.
-#     */
-#    RTPS_DllAPI ReturnCode_t get_listening_locators(
-#            rtps::LocatorList& locators) const;
-#
