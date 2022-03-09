@@ -5,20 +5,71 @@ import test_complete
 class DataReaderListener (fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
+
+#
 #
 #    /**
-#     * @brief This operation creates a ReadCondition. The returned ReadCondition will be attached and belong to the
+#     * @brief This operation creates a QueryCondition. The returned QueryCondition will be attached and belong to the
 #     * DataReader.
 #     *
 #     * @param sample_states Vector of SampleStateKind
 #     * @param view_states Vector of ViewStateKind
 #     * @param instance_states Vector of InstanceStateKind
-#     * @return ReadCondition pointer
+#     * @param query_expression string containing query
+#     * @param query_parameters Vector of strings containing parameters of query expression
+#     * @return QueryCondition pointer
 #     */
-#    RTPS_DllAPI ReadCondition* create_readcondition(
+#    RTPS_DllAPI QueryCondition* create_querycondition(
 #            const std::vector<SampleStateKind>& sample_states,
 #            const std::vector<ViewStateKind>& view_states,
-#            const std::vector<InstanceStateKind>& instance_states);
+#            const std::vector<InstanceStateKind>& instance_states,
+#            const std::string& query_expression,
+#            const std::vector<std::string>& query_parameters);
+def create_querycondition():
+    """
+    This test checks:
+    - DataReader::create_querycondition
+    - DataReader::delete_contained_entities
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    sv = fastdds.SampleStateKindVector()
+    vv = fastdds.ViewStateKindVector()
+    iv = fastdds.InstanceStateKindVector()
+    qp = fastdds.StringVector()
+
+    querycondition = datareader.create_querycondition(
+               sv, vv, iv, "", qp)
+    assert(readcondition is None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK == 
+           datareader.delete_contained_entities())
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_create_readcondition():
     """
     This test checks:
@@ -1964,34 +2015,6 @@ def test_wait_for_unread_message():
 #    RTPS_DllAPI ReturnCode_t return_loan(
 #            LoanableCollection& data_values,
 #            SampleInfoSeq& sample_infos);
-#
-#
-#    /**
-#     * @brief This operation creates a QueryCondition. The returned QueryCondition will be attached and belong to the
-#     * DataReader.
-#     *
-#     * @param sample_states Vector of SampleStateKind
-#     * @param view_states Vector of ViewStateKind
-#     * @param instance_states Vector of InstanceStateKind
-#     * @param query_expression string containing query
-#     * @param query_parameters Vector of strings containing parameters of query expression
-#     * @return QueryCondition pointer
-#     */
-#    RTPS_DllAPI QueryCondition* create_querycondition(
-#            const std::vector<SampleStateKind>& sample_states,
-#            const std::vector<ViewStateKind>& view_states,
-#            const std::vector<InstanceStateKind>& instance_states,
-#            const std::string& query_expression,
-#            const std::vector<std::string>& query_parameters);
-#
-#    /**
-#     * @brief This operation deletes a ReadCondition attached to the DataReader.
-#     *
-#     * @param a_condition pointer to a ReadCondition belonging to the DataReader
-#     * @return RETCODE_OK
-#     */
-#    RTPS_DllAPI ReturnCode_t delete_readcondition(
-#            const ReadCondition* a_condition);
 #
 #    /**
 #     * This operation deletes all the entities that were created by means of the “create” operations on the DataReader.
