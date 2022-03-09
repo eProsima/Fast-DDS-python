@@ -7,6 +7,42 @@ class DataReaderListener (fastdds.DataReaderListener):
         super().__init__()
 
 
+def test_wait_for_historical_data():
+    """
+    This test checks:
+    - DataReader::wait_for_historical_data
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datareader.wait_for_historical_data(fastdds.Duration_t(0, 100)))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_wait_for_unread_message():
     """
     This test checks:
