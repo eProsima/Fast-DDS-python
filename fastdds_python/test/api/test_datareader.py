@@ -64,6 +64,60 @@ def test_get_first_untaken():
            factory.delete_participant(participant))
 
 
+def test_get_instance_handle():
+    """
+    This test checks:
+    - DataReader::guid
+    - DataReader::get_instance_handle
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+
+    guid = datareader.guid()
+    assert(fastdds.c_Guid_Unknown != guid)
+    ih = datareader.get_instance_handle()
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    assert(guid.guidPrefix.value[0] == ih.value[0])
+    assert(guid.guidPrefix.value[1] == ih.value[1])
+    assert(guid.guidPrefix.value[2] == ih.value[2])
+    assert(guid.guidPrefix.value[3] == ih.value[3])
+    assert(guid.guidPrefix.value[4] == ih.value[4])
+    assert(guid.guidPrefix.value[5] == ih.value[5])
+    assert(guid.guidPrefix.value[6] == ih.value[6])
+    assert(guid.guidPrefix.value[7] == ih.value[7])
+    assert(guid.guidPrefix.value[8] == ih.value[8])
+    assert(guid.guidPrefix.value[9] == ih.value[9])
+    assert(guid.guidPrefix.value[10] == ih.value[10])
+    assert(guid.guidPrefix.value[11] == ih.value[11])
+    assert(guid.entityId.value[0] == ih.value[12])
+    assert(guid.entityId.value[1] == ih.value[13])
+    assert(guid.entityId.value[2] == ih.value[14])
+    assert(guid.entityId.value[3] == ih.value[15])
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_get_key_value():
     """
     This test checks:
@@ -997,12 +1051,6 @@ def test_wait_for_unread_message():
 #            LoanableCollection& data_values,
 #            SampleInfoSeq& sample_infos);
 #
-#    /**
-#     * Get associated GUID.
-#     *
-#     * @return Associated GUID
-#     */
-#    RTPS_DllAPI const fastrtps::rtps::GUID_t& guid();
 #
 #    /**
 #     * @brief Getter for the associated InstanceHandle.
