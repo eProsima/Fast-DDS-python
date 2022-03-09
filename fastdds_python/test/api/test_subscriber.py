@@ -197,6 +197,8 @@ def test_deleted_contained_entities():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_contained_entities())
 
+    assert(subscriber.has_datareaders() is False)
+
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
