@@ -191,6 +191,10 @@ def test_deleted_contained_entities():
             topic, fastdds.DATAWRITER_QOS_DEFAULT)
     assert(datawriter is not None)
 
+    # Cannot delete publisher with datawriters
+    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+           participant.delete_publisher(publisher))
+
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_contained_entities())
 
