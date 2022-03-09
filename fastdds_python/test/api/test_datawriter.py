@@ -698,14 +698,10 @@ def test_get_matched_subscription_data():
            factory.delete_participant(participant))
 
 
-def test_matched_subscriptions():
+def test_get_matched_subscriptions():
     """
     This test checks:
     - DataWriter::get_matched_subscriptions
-    """
-    """
-    This test checks:
-    - DataWriter::get_matched_subscription_data
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
