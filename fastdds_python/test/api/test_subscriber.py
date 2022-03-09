@@ -295,22 +295,11 @@ def test_get_instance_handle():
     assert(ih != fastdds.c_InstanceHandle_Unknown)
     assert(guid != fastdds.c_Guid_Unknown)
 
-    assert(guid.guidPrefix.value[0] == ih.value[0])
-    assert(guid.guidPrefix.value[1] == ih.value[1])
-    assert(guid.guidPrefix.value[2] == ih.value[2])
-    assert(guid.guidPrefix.value[3] == ih.value[3])
-    assert(guid.guidPrefix.value[4] == ih.value[4])
-    assert(guid.guidPrefix.value[5] == ih.value[5])
-    assert(guid.guidPrefix.value[6] == ih.value[6])
-    assert(guid.guidPrefix.value[7] == ih.value[7])
-    assert(guid.guidPrefix.value[8] == ih.value[8])
-    assert(guid.guidPrefix.value[9] == ih.value[9])
-    assert(guid.guidPrefix.value[10] == ih.value[10])
-    assert(guid.guidPrefix.value[11] == ih.value[11])
-    # assert(guid.entityId.value[0] == ih.value[12])
-    # assert(guid.entityId.value[1] == ih.value[13])
-    # assert(guid.entityId.value[2] == ih.value[14])
-    # assert(guid.entityId.value[3] == ih.value[15])
+    for i in range(0, 12):
+        assert(guid.guidPrefix.value[i] == ih.value[i])
+
+    # for i in range(0, 4):
+    #     assert(guid.entityId.value[i] == ih.value[12+i])
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
