@@ -7,6 +7,45 @@ class DataReaderListener (fastdds.DataReaderListener):
         super().__init__()
 
 
+def test_get_key_value():
+    """
+    This test checks:
+    - DataReader::get_key_value
+    """
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(factory is not None)
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    assert(participant is not None)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+    assert(subscriber is not None)
+    test_type = fastdds.TypeSupport(
+            test_complete.KeyedCompleteTestTypePubSubType())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.register_type(test_type, test_type.get_type_name()))
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is not None)
+    datareader = subscriber.create_datareader(
+            topic, fastdds.DATAREADER_QOS_DEFAULT)
+    assert(datareader is not None)
+
+    sample = test_complete.KeyedCompleteTestType()
+    ih = fastdds.InstanceHandle_t()
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+           datareader.get_key_value(sample, ih))
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
 def test_read():
     """
     This test checks:
@@ -48,7 +87,7 @@ def test_read():
 def test_read_next_sample():
     """
     This test checks:
-    - DataReader::wait_for_historical_data
+    - DataReader::read_next_sample
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
@@ -107,7 +146,7 @@ def test_read_next_sample():
 def test_take_next_sample():
     """
     This test checks:
-    - DataReader::wait_for_historical_data
+    - DataReader::take_next_sample
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
@@ -762,30 +801,6 @@ def test_wait_for_unread_message():
 #            const InstanceHandle_t& previous_handle = HANDLE_NIL,
 #            ReadCondition* a_condition = nullptr);
 #
-#    /**
-#     * @brief This operation copies the next, non-previously accessed Data value from the DataReader and ‘removes’ it
-#     * from the DataReader so it is no longer accessible. The operation also copies the corresponding SampleInfo.
-#     *
-#     * This operation is analogous to @ref read_next_sample except for the fact that the sample is ‘removed’ from the
-#     * DataReader.
-#     *
-#     * This operation is semantically equivalent to the @ref take operation where the input sequence has
-#     * <tt> max_length = 1 </tt>, the <tt> sample_states = NOT_READ_SAMPLE_STATE </tt>, the
-#     * <tt> view_states = ANY_VIEW_STATE </tt>, and the <tt> instance_states = ANY_INSTANCE_STATE </tt>.
-#     *
-#     * This operation provides a simplified API to ’take’ samples avoiding the need for the application to manage
-#     * sequences and specify states.
-#     *
-#     * If there is no unread data in the DataReader, the operation will return RETCODE_NO_DATA and nothing is copied.
-#     *
-#     * @param [out] data Data pointer to store the sample
-#     * @param [out] info SampleInfo pointer to store the sample information
-#     *
-#     * @return Any of the standard return codes.
-#     */
-#    RTPS_DllAPI ReturnCode_t take_next_sample(
-#            void* data,
-#            SampleInfo* info);
 #
 #    ///@}
 #
@@ -825,25 +840,6 @@ def test_wait_for_unread_message():
 #    RTPS_DllAPI ReturnCode_t return_loan(
 #            LoanableCollection& data_values,
 #            SampleInfoSeq& sample_infos);
-#
-#    /**
-#     * NOT YET IMPLEMENTED
-#     *
-#     * This operation can be used to retrieve the instance key that corresponds to an @c instance_handle. The operation
-#     * will only fill the fields that form the key inside the key_holder instance.
-#     *
-#     * This operation may return BAD_PARAMETER if the InstanceHandle_t a_handle does not correspond to an existing
-#     * data-object known to the DataReader. If the implementation is not able to check invalid handles then the result
-#     * in this situation is unspecified.
-#     *
-#     * @param[in,out] key_holder
-#     * @param[in] handle
-#     *
-#     * @return Any of the standard return codes.
-#     */
-#    RTPS_DllAPI ReturnCode_t get_key_value(
-#            void* key_holder,
-#            const InstanceHandle_t& handle);
 #
 #    /**
 #     * Takes as a parameter an instance and returns a handle that can be used in subsequent operations that accept an
