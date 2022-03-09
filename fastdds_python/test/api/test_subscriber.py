@@ -190,6 +190,10 @@ def test_deleted_contained_entities():
             topic, fastdds.DATAREADER_QOS_DEFAULT)
     assert(datareader is not None)
 
+    # Cannot delete subscriber with datareaders
+    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+           participant.delete_subscriber(subscriber))
+
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_contained_entities())
 
