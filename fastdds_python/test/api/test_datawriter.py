@@ -1,4 +1,3 @@
-from audioop import ratecv
 import datetime
 
 import fastdds
