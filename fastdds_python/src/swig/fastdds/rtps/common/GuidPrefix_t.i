@@ -62,6 +62,9 @@ long hash(const eprosima::fastrtps::rtps::GuidPrefix_t& prefix)
     $result = python_tuple;
 }
 
+%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const GuidPrefix_t&);
+%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, GuidPrefix_t&);
+
 %include "fastdds/rtps/common/GuidPrefix_t.hpp"
 
 // Declare the comparison operators as internal to the class

@@ -20,7 +20,13 @@
 %ignore eprosima::fastdds::rtps::LocatorList::contains;
 
 // Ignore overloaded constructor that have no effect on target language
-%ignore eprosima::fastdds::rtps::LocatorList::LocatorList(eprosima::fastdds::rtps::LocatorList&&);
+%ignore eprosima::fastdds::rtps::LocatorList::LocatorList(LocatorList&&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const LocatorList&);
+%ignore eprosima::fastdds::rtps::operator >>(std::istream&, LocatorList&);
+
+// Compilation errors due to these functions
+%ignore eprosima::fastdds::rtps::Locators::operator ==(const LocatorsIterator& other) const;
+%ignore eprosima::fastdds::rtps::Locators::operator !=(const LocatorsIterator& other) const;
 
 %include "fastdds/rtps/common/LocatorList.hpp"
 

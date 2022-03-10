@@ -17,7 +17,38 @@
 %}
 
 
-// Ignore unimplemented method (the wrapper will try to use it)
-%ignore eprosima::fastdds::dds::DataWriter::dispose_w_timestamp;
+// Deprecated function are ignored
+%ignore eprosima::fastdds::dds::DataWriter::write_w_timestamp(void*, const InstanceHandle_t&,
+            const fastrtps::rtps::Time_t&);
+%ignore eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp(void*,
+            const fastrtps::rtps::Time_t&);
+%ignore eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp(void*, const InstanceHandle_t&,
+            const fastrtps::rtps::Time_t&);
+%ignore eprosima::fastdds::dds::DataWriter::get_matched_subscriptions(
+            std::vector<InstanceHandle_t*>&) const;
+
+// Unsupported function on Python are ignored
+%ignore loan_sample(void*&, LoanInitializationKind);
+%ignore discard_loan(void*&);
+
+
+// Tell SWIG to convert parameter size_t* removed in an output parameter
+%apply size_t* OUTPUT { size_t* removed }
+// Ignore C++ clear_history because we need to overload it in Python.
+%extend eprosima::fastdds::dds::DataWriter
+{
+    // TODO Document with %feature("autodoc")
+    eprosima::fastrtps::types::ReturnCode_t clear_history(size_t* removed)
+    {
+        eprosima::fastrtps::types::ReturnCode_t ret = self->clear_history(removed);
+        return ret;
+    }
+}
+%ignore eprosima::fastdds::dds::DataWriter::clear_history(size_t*);
+
+// Template for std::vector<DataWriter*>
+%template(DataWriterVector) std::vector<eprosima::fastdds::dds::DataWriter*>;
 
 %include "fastdds/dds/publisher/DataWriter.hpp"
+
+%clear size_t* removed;

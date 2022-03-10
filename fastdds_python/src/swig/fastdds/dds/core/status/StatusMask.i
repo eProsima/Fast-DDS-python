@@ -25,6 +25,22 @@
 #define size_t(n) n
 %warnfilter(401) eprosima::fastdds::dds::StatusMask;
 
+%extend eprosima::fastdds::dds::StatusMask
+{
+    bool operator ==(const StatusMask& other_mask) const
+    {
+        return *self == other_mask;
+    }
+
+    StatusMask operator <<(const StatusMask& mask)
+    {
+        eprosima::fastdds::dds::StatusMask result(*self << mask);
+        return result;
+    }
+}
+
+%ignore eprosima::fastdds::dds::StatusMask::operator <<(const StatusMask&);
+
 %include "fastdds/dds/core/status/StatusMask.hpp"
 
 #undef size_t(n)

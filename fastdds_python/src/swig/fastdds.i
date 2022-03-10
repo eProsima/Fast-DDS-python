@@ -56,15 +56,27 @@
 %include "std_vector.i"
 %include "typemaps.i"
 
+%{
+#include "fastrtps/config.h"
+
+bool has_statistics()
+{
+#ifdef FASTDDS_STATISTICS
+  return true;
+#else
+  return false;
+#endif
+}
+
+%}
+
+bool has_statistics();
+
 // Some operators are ignored, as there is no such thing in Python.
 // Trying to export them issues a warning
 %ignore *::operator=;
 %ignore *::operator++;
 %ignore *::operator!;
-%ignore *::operator==;
-%ignore *::operator!=;
-%ignore *::operator<<;
-%ignore *::operator>>;
 
 // This ensures that the returned string references can be used with the string API
 // Otherwise, they will be wrapped objects without API
@@ -82,6 +94,9 @@
 #define FASTRTPS_DEPRECATED(msg)
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 #define FASTDDS_TODO_BEFORE(major, minor, msg)
+
+// Defined template for std::vector<std::string>
+%template(StringVector) std::vector<std::string>;
 
 // Predeclaration of namespaces and/or classes not exported to the target language,
 // but that are part of the Fast DDS public API
@@ -116,6 +131,7 @@ namespace builtin {
 %include "fastdds/rtps/common/GuidPrefix_t.i"
 %include "fastdds/rtps/common/Guid.i"
 %include "fastdds/rtps/common/PortParameters.i"
+%include "fastdds/rtps/common/InstanceHandle.i"
 %include "fastrtps/types/TypesBase.i"
 %include "fastdds/rtps/resources/ResourceManagement.i"
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
@@ -128,6 +144,9 @@ namespace builtin {
 %include "fastdds/rtps/attributes/ServerAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
+%include "fastdds/rtps/common/SequenceNumber.i"
+%include "fastdds/rtps/common/SampleIdentity.i"
+%include "fastdds/rtps/common/WriteParams.i"
 
 /*
 %include "fastdds/rtps/common/SerializedPayload.i"
@@ -141,10 +160,7 @@ namespace builtin {
 %include "fastdds/rtps/common/MatchingInfo.i"
 %include "fastdds/rtps/common/ChangeKind_t.i"
 %include "fastdds/rtps/common/LocatorsIterator.i"
-%include "fastdds/rtps/common/SampleIdentity.i"
-%include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/RemoteLocators.i"
-%include "fastdds/rtps/common/WriteParams.i"
 
 %include "fastrtps/rtps/common/LocatorListComparisons.i"
 %include "fastrtps/rtps/common/PortParameters.i"
@@ -407,18 +423,20 @@ namespace builtin {
 %include "fastrtps/Domain.i"
 */
 
-%include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/common/InstanceHandle.i"
+%include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/core/policy/ParameterTypes.i"
 %include "fastdds/dds/core/policy/QosPolicies.i"
 %include "fastdds/dds/topic/IContentFilter.i"
 %include "fastdds/dds/topic/TopicDataType.i"
 %include "fastdds/dds/topic/IContentFilterFactory.i"
 %include "fastdds/dds/topic/TypeSupport.i"
+%include "fastdds/dds/builtin/topic/BuiltinTopicKey.i"
+%include "fastdds/dds/builtin/topic/ParticipantBuiltinTopicData.i"
+%include "fastdds/dds/builtin/topic/SubscriptionBuiltinTopicData.i"
+%include "fastdds/dds/builtin/topic/PublicationBuiltinTopicData.i"
 %include "fastdds/dds/core/condition/Condition.i"
-%include "fastdds/dds/core/condition/StatusCondition.i"
 %include "fastdds/dds/core/Entity.i"
-%include "fastdds/dds/core/condition/GuardCondition.i"
 %include "fastdds/dds/core/condition/WaitSet.i"
 %include "fastdds/dds/core/LoanableTypedCollection.i"
 %include "fastdds/dds/core/StackAllocatedSequence.i"

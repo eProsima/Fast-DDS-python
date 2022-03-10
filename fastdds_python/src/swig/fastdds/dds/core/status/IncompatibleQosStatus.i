@@ -16,4 +16,15 @@
 #include "fastdds/dds/core/status/IncompatibleQosStatus.hpp"
 %}
 
+%template(QosPolicyCountSeq) std::vector<eprosima::fastdds::dds::QosPolicyCount>;
+
 %include "fastdds/dds/core/status/IncompatibleQosStatus.hpp"
+
+namespace eprosima {
+namespace fastdds {
+namespace dds {
+    struct RequestedIncompatibleQosStatus : public IncompatibleQosStatus {};
+    struct OfferedIncompatibleQosStatus : public IncompatibleQosStatus {};
+}
+}
+}

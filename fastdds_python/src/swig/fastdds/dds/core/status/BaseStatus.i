@@ -17,3 +17,13 @@
 %}
 
 %include "fastdds/dds/core/status/BaseStatus.hpp"
+
+namespace eprosima {
+namespace fastdds {
+namespace dds {
+struct SampleLostStatus : public BaseStatus {};
+struct LivelinessLostStatus : public BaseStatus {};
+struct InconsistentTopicStatus : public BaseStatus {};
+}
+}
+}

@@ -30,12 +30,12 @@
 %ignore eprosima::fastrtps::rtps::operator+(const Time_t&, const Time_t&);
 %ignore eprosima::fastrtps::rtps::operator-(const Time_t&, const Time_t&);
 %ignore eprosima::fastrtps::rtps::operator<<(std::ostream&, const Time_t&);
-%ignore eprosima::fastrtps::rtps::operator>>(std::ostream&, const Time_t&);
+%ignore eprosima::fastrtps::rtps::operator>>(std::istream&, Time_t&);
 
 // Also ignore the insertion/exraction operator of the remaining Time_t,
 // as it makes no sense on the target language
 %ignore eprosima::fastrtps::operator<<(std::ostream&, const Time_t&);
-%ignore eprosima::fastrtps::operator>>(std::ostream&, const Time_t&);
+%ignore eprosima::fastrtps::operator>>(std::istream&, Time_t&);
 
 // Ignore the global comparison and arithmetic operators
 // and make them class-internal
@@ -93,3 +93,17 @@
     }
 }
 
+namespace eprosima {
+namespace fastrtps {
+
+struct Duration_t : public Time_t
+{
+    Duration_t();
+
+    Duration_t(
+            int32_t sec,
+            uint32_t nsec);
+};
+
+} // namespace fastrtps
+} // namespace eprosima
