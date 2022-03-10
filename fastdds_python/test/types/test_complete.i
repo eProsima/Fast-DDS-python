@@ -41,7 +41,13 @@
 
 %{
 #include "test_complete.h"
+
+#include <fastdds/dds/core/LoanableSequence.hpp>
 %}
+
+%import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
+%import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
+%import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
 
 
 
@@ -167,6 +173,21 @@
 %ignore StructType::enum2_field();
 %rename("%s") StructType::enum2_field() const;
 
+
+%template(_StructTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<StructType, std::true_type>;
+%template(StructTypeSeq) eprosima::fastdds::dds::LoanableSequence<StructType, std::true_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<StructType, std::true_type>
+{
+    size_t __len__() const
+    {
+        return self->length();
+    }
+
+    const StructType& __getitem__(size_t i) const
+    {
+        return (*self)[i];
+    }
+}
 
 
 
@@ -622,6 +643,21 @@
 %ignore CompleteTestType::unbounded_sequence_struct_field() const;
 %template(StructType_vector) std::vector<StructType>;
 
+
+%template(_CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<CompleteTestType, std::true_type>;
+%template(CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableSequence<CompleteTestType, std::true_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<CompleteTestType, std::true_type>
+{
+    size_t __len__() const
+    {
+        return self->length();
+    }
+
+    const CompleteTestType& __getitem__(size_t i) const
+    {
+        return (*self)[i];
+    }
+}
 
 ////////////////////////////////////////////////////////
 // Binding for class KeyedCompleteTestType
@@ -1083,6 +1119,21 @@
 %ignore KeyedCompleteTestType::unbounded_sequence_struct_field() const;
 %template(StructType_vector) std::vector<StructType>;
 
+
+%template(_KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<KeyedCompleteTestType, std::true_type>;
+%template(KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableSequence<KeyedCompleteTestType, std::true_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<KeyedCompleteTestType, std::true_type>
+{
+    size_t __len__() const
+    {
+        return self->length();
+    }
+
+    const KeyedCompleteTestType& __getitem__(size_t i) const
+    {
+        return (*self)[i];
+    }
+}
 
 
 // Include the class interfaces

@@ -22,28 +22,16 @@
 %module HelloWorld
 
 // SWIG helper modules
-%include "typemaps.i"
+%include "stdint.i"
 %include "std_string.i"
 %include "std_vector.i"
 %include "std_array.i"
 %include "std_map.i"
+%include "typemaps.i"
 
 // Assignemt operators are ignored, as there is no such thing in Python.
 // Trying to export them issues a warning
 %ignore *::operator=;
-
-// Definition of internal types
-
-typedef char int8_t;
-typedef short int16_t;
-typedef int int32_t;
-typedef long int64_t;
-
-typedef unsigned char uint8_t;
-typedef unsigned short uint16_t;
-typedef unsigned int uint32_t;
-typedef unsigned long uint64_t;
-
 
 // Macro declarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
@@ -53,7 +41,13 @@ typedef unsigned long uint64_t;
 
 %{
 #include "HelloWorld.h"
+
+#include <fastdds/dds/core/LoanableSequence.hpp>
 %}
+
+%import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
+%import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
+%import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
 
 ////////////////////////////////////////////////////////
 // Binding for class HelloWorld
@@ -81,6 +75,21 @@ typedef unsigned long uint64_t;
 %ignore HelloWorld::message();
 %rename("%s") HelloWorld::message() const;
 
+
+%template(_HelloWorldSeq) eprosima::fastdds::dds::LoanableTypedCollection<HelloWorld, std::true_type>;
+%template(HelloWorldSeq) eprosima::fastdds::dds::LoanableSequence<HelloWorld, std::true_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<HelloWorld, std::true_type>
+{
+    size_t __len__() const
+    {
+        return self->length();
+    }
+
+    const HelloWorld& __getitem__(size_t i) const
+    {
+        return (*self)[i];
+    }
+}
 
 
 // Include the class interfaces
