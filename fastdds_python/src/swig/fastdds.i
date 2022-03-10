@@ -56,6 +56,22 @@
 %include "std_vector.i"
 %include "typemaps.i"
 
+%{
+#include "fastrtps/config.h"
+
+bool has_statistics()
+{
+#ifdef FASTDDS_STATISTICS
+  return true;
+#else
+  return false;
+#endif
+}
+
+%}
+
+bool has_statistics();
+
 // Some operators are ignored, as there is no such thing in Python.
 // Trying to export them issues a warning
 %ignore *::operator=;

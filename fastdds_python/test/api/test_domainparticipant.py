@@ -730,6 +730,7 @@ def test_get_set_qos():
     participant = factory.create_participant(0, qos)
     assert(participant is not None)
 
+    assert(fastdds.ReturnCode_t.RETCODE_OK == participant.get_qos(qos))
     qos.user_data().push_back(1)
     qos.user_data().push_back(2)
     assert(2 == len(qos.user_data()))

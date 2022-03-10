@@ -184,23 +184,24 @@ def test_datareader_qos():
     assert(datareader_qos.expects_inline_qos())
 
     # .properties
+    properties = {}
     property = fastdds.Property()
     property.name('Property1')
     property.value('Value1')
     datareader_qos.properties().properties().push_back(property)
+    properties[property.name()] = [property.value(), False]
     property = fastdds.Property()
     property.name('Property2')
     property.value('Value2')
     datareader_qos.properties().properties().push_back(property)
-    count = 1
+    properties[property.name()] = [property.value(), False]
     for prop in datareader_qos.properties().properties():
-        if 1 == count:
-            assert('Property1' == prop.name())
-            assert('Value1' == prop.value())
-        else:
-            assert('Property2' == prop.name())
-            assert('Value2' == prop.value())
-        count += 1
+        for proper in properties:
+            if prop.name() == proper and prop.value() == properties[proper][0]:
+                properties[proper][1] = True
+
+    for prop in properties:
+        assert(properties[proper][1])
 
     # .endpoint
     datareader_qos.endpoint().user_defined_id = 1
@@ -1316,23 +1317,24 @@ def test_domain_participant_qos():
     assert("test name" == participant_qos.name())
 
     # .properties
+    properties = {}
     property = fastdds.Property()
     property.name('Property1')
     property.value('Value1')
     participant_qos.properties().properties().push_back(property)
+    properties[property.name()] = [property.value(), False]
     property = fastdds.Property()
     property.name('Property2')
     property.value('Value2')
     participant_qos.properties().properties().push_back(property)
-    count = 1
+    properties[property.name()] = [property.value(), False]
     for prop in participant_qos.properties().properties():
-        if 1 == count:
-            assert('Property1' == prop.name())
-            assert('Value1' == prop.value())
-        else:
-            assert('Property2' == prop.name())
-            assert('Value2' == prop.value())
-        count += 1
+        for proper in properties:
+            if prop.name() == proper and prop.value() == properties[proper][0]:
+                properties[proper][1] = True
+
+    for prop in properties:
+        assert(properties[proper][1])
 
     # .transports
     participant_qos.transport().listen_socket_buffer_size = 10000
@@ -1647,15 +1649,16 @@ def test_domain_participant_qos():
     assert("test name" == default_participant_qos.name())
 
     # .properties
-    count = 1
+    for prop in properties:
+        properties[proper][1] = False
+
     for prop in default_participant_qos.properties().properties():
-        if 1 == count:
-            assert('Property1' == prop.name())
-            assert('Value1' == prop.value())
-        else:
-            assert('Property2' == prop.name())
-            assert('Value2' == prop.value())
-        count += 1
+        for proper in properties:
+            if prop.name() == proper and prop.value() == properties[proper][0]:
+                properties[proper][1] = True
+
+    for prop in properties:
+        assert(properties[proper][1])
 
     # .transports
     assert(10000 == default_participant_qos.transport().
