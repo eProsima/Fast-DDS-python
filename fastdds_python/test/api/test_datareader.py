@@ -968,6 +968,8 @@ def test_read():
         data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
+    assert(0 == len(data_seq))
+    assert(0 == len(info_seq))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
@@ -984,6 +986,8 @@ def test_read():
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
     assert(1 == len(data_seq))
+    assert(1 == len(info_seq))
+    assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -1034,6 +1038,8 @@ def test_read_instance():
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
+    assert(0 == len(data_seq))
+    assert(0 == len(info_seq))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
@@ -1051,6 +1057,8 @@ def test_read_instance():
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
     assert(1 == len(data_seq))
+    assert(1 == len(info_seq))
+    assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -1101,6 +1109,8 @@ def test_read_next_instance():
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
+    assert(0 == len(data_seq))
+    assert(0 == len(info_seq))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
@@ -1117,6 +1127,8 @@ def test_read_next_instance():
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
     assert(1 == len(data_seq))
+    assert(1 == len(info_seq))
+    assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -1224,6 +1236,8 @@ def test_take():
         data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
+    assert(0 == len(data_seq))
+    assert(0 == len(info_seq))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
@@ -1240,6 +1254,8 @@ def test_take():
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
     assert(1 == len(data_seq))
+    assert(1 == len(info_seq))
+    assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -1290,6 +1306,8 @@ def test_take_instance():
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
+    assert(0 == len(data_seq))
+    assert(0 == len(info_seq))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
@@ -1307,6 +1325,8 @@ def test_take_instance():
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
     assert(1 == len(data_seq))
+    assert(1 == len(info_seq))
+    assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -1357,6 +1377,8 @@ def test_take_next_instance():
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
+    assert(0 == len(data_seq))
+    assert(0 == len(info_seq))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
@@ -1373,6 +1395,8 @@ def test_take_next_instance():
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
     assert(1 == len(data_seq))
+    assert(1 == len(info_seq))
+    assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))

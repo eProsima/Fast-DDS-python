@@ -19,5 +19,17 @@
 // Template for std::vector<DataReader*>
 %template(DataReaderVector) std::vector<eprosima::fastdds::dds::DataReader*>;
 %template(SampleInfoSeq) eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo>;
+%extend eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo>
+{
+    size_t __len__() const
+    {
+        return self->length();
+    }
+
+    const eprosima::fastdds::dds::SampleInfo& __getitem__(size_t i) const
+    {
+        return (*self)[i];
+    }
+}
 
 %include "fastdds/dds/subscriber/DataReader.hpp"
