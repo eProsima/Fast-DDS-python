@@ -82,7 +82,7 @@ def test_create_readcondition():
     readcondition = datareader.create_readcondition(
                sv, vv, iv)
     assert(readcondition is None)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED == 
+    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datareader.delete_readcondition(readcondition))
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -1290,7 +1290,7 @@ def test_take_next_sample():
 
     data = test_complete.CompleteTestType()
     info = fastdds.SampleInfo()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA == datareader.read_next_sample(
+    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA == datareader.take_next_sample(
         data, info))
 
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
