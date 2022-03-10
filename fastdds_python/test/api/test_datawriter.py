@@ -18,7 +18,7 @@ def test_assert_liveliness():
     factory = fastdds.DomainParticipantFactory.get_instance()
     assert(factory is not None)
     participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+            10, fastdds.PARTICIPANT_QOS_DEFAULT)
     assert(participant is not None)
     publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
     assert(publisher is not None)
