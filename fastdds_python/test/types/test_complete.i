@@ -174,9 +174,9 @@
 %rename("%s") StructType::enum2_field() const;
 
 
-%template(_StructTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<StructType, std::true_type>;
-%template(StructTypeSeq) eprosima::fastdds::dds::LoanableSequence<StructType, std::true_type>;
-%extend eprosima::fastdds::dds::LoanableSequence<StructType, std::true_type>
+%template(_StructTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<StructType, std::false_type>;
+%template(StructTypeSeq) eprosima::fastdds::dds::LoanableSequence<StructType, std::false_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<StructType, std::false_type>
 {
     size_t __len__() const
     {
@@ -644,9 +644,9 @@
 %template(StructType_vector) std::vector<StructType>;
 
 
-%template(_CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<CompleteTestType, std::true_type>;
-%template(CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableSequence<CompleteTestType, std::true_type>;
-%extend eprosima::fastdds::dds::LoanableSequence<CompleteTestType, std::true_type>
+%template(_CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<CompleteTestType, std::false_type>;
+%template(CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableSequence<CompleteTestType, std::false_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<CompleteTestType, std::false_type>
 {
     size_t __len__() const
     {
@@ -1120,9 +1120,9 @@
 %template(StructType_vector) std::vector<StructType>;
 
 
-%template(_KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<KeyedCompleteTestType, std::true_type>;
-%template(KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableSequence<KeyedCompleteTestType, std::true_type>;
-%extend eprosima::fastdds::dds::LoanableSequence<KeyedCompleteTestType, std::true_type>
+%template(_KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<KeyedCompleteTestType, std::false_type>;
+%template(KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableSequence<KeyedCompleteTestType, std::false_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<KeyedCompleteTestType, std::false_type>
 {
     size_t __len__() const
     {

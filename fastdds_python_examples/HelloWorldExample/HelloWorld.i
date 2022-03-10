@@ -76,9 +76,9 @@
 %rename("%s") HelloWorld::message() const;
 
 
-%template(_HelloWorldSeq) eprosima::fastdds::dds::LoanableTypedCollection<HelloWorld, std::true_type>;
-%template(HelloWorldSeq) eprosima::fastdds::dds::LoanableSequence<HelloWorld, std::true_type>;
-%extend eprosima::fastdds::dds::LoanableSequence<HelloWorld, std::true_type>
+%template(_HelloWorldSeq) eprosima::fastdds::dds::LoanableTypedCollection<HelloWorld, std::false_type>;
+%template(HelloWorldSeq) eprosima::fastdds::dds::LoanableSequence<HelloWorld, std::false_type>;
+%extend eprosima::fastdds::dds::LoanableSequence<HelloWorld, std::false_type>
 {
     size_t __len__() const
     {
