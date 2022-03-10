@@ -6,25 +6,7 @@ class DataReaderListener (fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
 
-#
-#
-#    /**
-#     * @brief This operation creates a QueryCondition. The returned QueryCondition will be attached and belong to the
-#     * DataReader.
-#     *
-#     * @param sample_states Vector of SampleStateKind
-#     * @param view_states Vector of ViewStateKind
-#     * @param instance_states Vector of InstanceStateKind
-#     * @param query_expression string containing query
-#     * @param query_parameters Vector of strings containing parameters of query expression
-#     * @return QueryCondition pointer
-#     */
-#    RTPS_DllAPI QueryCondition* create_querycondition(
-#            const std::vector<SampleStateKind>& sample_states,
-#            const std::vector<ViewStateKind>& view_states,
-#            const std::vector<InstanceStateKind>& instance_states,
-#            const std::string& query_expression,
-#            const std::vector<std::string>& query_parameters);
+
 def create_querycondition():
     """
     This test checks:
@@ -56,8 +38,8 @@ def create_querycondition():
 
     querycondition = datareader.create_querycondition(
                sv, vv, iv, "", qp)
-    assert(readcondition is None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK == 
+    assert(querycondition is None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.delete_contained_entities())
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
