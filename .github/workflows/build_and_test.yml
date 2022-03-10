@@ -38,9 +38,6 @@ jobs:
       - name: Fetch repositories
         run: |
           vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
-          cd src/fastdds
-          git checkout feature/good-datawriter-api
-          cd ../../
 
       - name: Build workspace
         run: colcon build --event-handlers=console_direct+
