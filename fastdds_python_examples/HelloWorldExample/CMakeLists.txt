@@ -87,7 +87,7 @@ if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
 endif()
 
 SWIG_LINK_LIBRARIES(${${PROJECT_NAME}_MODULE}
-    ${PYTHON_LIBRARIES}
+    Python3::Module
     fastrtps
     ${PROJECT_NAME}
     )
