@@ -20,9 +20,9 @@ from threading import Condition
 
 # until https://bugs.python.org/issue46276 is not fixed we can apply this
 # workaround on windows
-#if os.name == 'nt':
-#    import win32api
-#    win32api.LoadLibrary('HelloWorld')
+if os.name == 'nt':
+    import win32api
+    win32api.LoadLibrary('HelloWorld')
 
 import fastdds
 import HelloWorld
