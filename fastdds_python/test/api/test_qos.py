@@ -1,15 +1,15 @@
-import os
+#!/usr/bin/python3
 
 # until https://bugs.python.org/issue46276 is not fixed we can apply this
 # workaround on windows
+import os
 if os.name == 'nt':
     import win32api
     win32api.LoadLibrary('_fastdds_python.pyd')
+    win32api.LoadLibrary('_test_completeWrapper.pyd')
 
 import fastdds
-
 import inspect
-
 
 def test_datareader_qos():
     # DataReaderQos
