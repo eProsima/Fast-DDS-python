@@ -49,7 +49,9 @@ jobs:
             --packages-select fastdds_python \
             --event-handlers=console_direct+ \
             --return-code-on-test-failure \
-            --ctest-args --timeout 60
+            --ctest-args \
+              --output-on-failure \
+              --timeout 60
 
       - name: Upload Logs
         uses: actions/upload-artifact@v1
