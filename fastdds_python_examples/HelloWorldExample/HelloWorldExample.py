@@ -1,4 +1,5 @@
-# Copyright 2021 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+#!/usr/bin/env python3
+# # Copyright 2021 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,7 +37,7 @@ class ReaderListener(fastdds.DataReaderListener):
         info = fastdds.SampleInfo()
         data = HelloWorld.HelloWorld()
         reader.take_next_sample(data, info)
-    
+
         print("Received {message} : {index}".format(message=data.message(), index=data.index()))
 
     def on_subscription_matched(self, datareader, info) :
@@ -129,7 +130,7 @@ class Writer:
     self.writer_qos = fastdds.DataWriterQos()
     self.publisher.get_default_datawriter_qos(self.writer_qos)
     self.writer = self.publisher.create_datawriter(self.topic, self.writer_qos, self.listener)
-    
+
     self.index = 0
 
   def write(self):
