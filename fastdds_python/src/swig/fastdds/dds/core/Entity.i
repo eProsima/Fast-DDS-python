@@ -16,4 +16,9 @@
 #include "fastdds/dds/core/Entity.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::Entity::Entity;
+%ignore eprosima::fastdds::dds::Entity::~Entity;
+%ignore eprosima::fastdds::dds::DomainEntity::DomainEntity;
+%ignore eprosima::fastdds::dds::DomainEntity::~DomainEntity;
+
 %include "fastdds/dds/core/Entity.hpp"

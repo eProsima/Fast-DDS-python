@@ -16,4 +16,9 @@
 #include "fastdds/dds/topic/Topic.hpp"
 %}
 
+// Ignore get_inconsistent_topic_status which is not exported
+%ignore eprosima::fastdds::dds::Topic::get_inconsistent_topic_status;
+%ignore eprosima::fastdds::dds::Topic::Topic;
+%ignore eprosima::fastdds::dds::Topic::~Topic;
+
 %include "fastdds/dds/topic/Topic.hpp"

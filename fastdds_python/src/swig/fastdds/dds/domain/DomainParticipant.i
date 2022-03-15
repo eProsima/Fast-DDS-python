@@ -16,4 +16,8 @@
 #include "fastdds/dds/domain/DomainParticipant.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::DomainParticipant::has_active_entities;
+%ignore eprosima::fastdds::dds::DomainParticipant::DomainParticipant;
+%ignore eprosima::fastdds::dds::DomainParticipant::~DomainParticipant;
+
 %include "fastdds/dds/domain/DomainParticipant.hpp"

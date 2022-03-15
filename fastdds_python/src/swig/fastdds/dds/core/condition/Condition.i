@@ -18,6 +18,9 @@
 #include "fastdds/dds/core/condition/GuardCondition.hpp"
 %}
 
+// Ignore StatusCondition constructor
+%ignore eprosima::fastdds::dds::StatusCondition::StatusCondition;
+
 %exception eprosima::fastdds::dds::Condition::to_status_condition()
 {
     try

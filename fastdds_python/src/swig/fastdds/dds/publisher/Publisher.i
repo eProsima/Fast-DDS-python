@@ -16,4 +16,7 @@
 #include "fastdds/dds/publisher/Publisher.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::Publisher::Publisher;
+%ignore eprosima::fastdds::dds::Publisher::~Publisher;
+
 %include "fastdds/dds/publisher/Publisher.hpp"

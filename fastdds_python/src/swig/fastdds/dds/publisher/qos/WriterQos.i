@@ -16,4 +16,6 @@
 #include "fastdds/dds/publisher/qos/WriterQos.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::WriterQos::clear;
+
 %include "fastdds/dds/publisher/qos/WriterQos.hpp"
