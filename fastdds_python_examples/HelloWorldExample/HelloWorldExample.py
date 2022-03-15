@@ -1,4 +1,5 @@
-# Copyright 2021 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+#!/usr/bin/env python3
+# # Copyright 2021 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -131,7 +132,7 @@ class Writer:
     self.writer_qos = fastdds.DataWriterQos()
     self.publisher.get_default_datawriter_qos(self.writer_qos)
     self.writer = self.publisher.create_datawriter(self.topic, self.writer_qos, self.listener)
-    
+
     self.index = 0
 
   def write(self):
