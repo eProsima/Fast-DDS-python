@@ -16,6 +16,36 @@ class DataReaderListener (fastdds.DataReaderListener):
 
 
 @pytest.fixture
+def participant():
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    return factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+
+@pytest.fixture
+def subscriber(participant):
+    return participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+
+
+@pytest.fixture
+def test_type():
+    return fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+
+
+@pytest.fixture
+def test_keyed_type(test_type):
+    test_type.set(test_complete.KeyedCompleteTestTypePubSubType())
+
+
+@pytest.fixture
+def topic(participant, test_type):
+    participant.register_type(test_type, test_type.get_type_name())
+    return participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+@pytest.fixture
 def datareader_qos():
     return fastdds.DataReaderQos()
 
@@ -28,16 +58,7 @@ def transient_datareader_qos(datareader_qos):
 
 
 @pytest.fixture
-def complete_datareader(datareader_qos):
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    test_type = fastdds.TypeSupport(
-            test_complete.CompleteTestTypePubSubType())
-    participant.register_type(test_type, test_type.get_type_name())
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+def datareader(participant, topic, subscriber, datareader_qos):
     datareader = subscriber.create_datareader(topic, datareader_qos)
 
     yield datareader
@@ -48,88 +69,49 @@ def complete_datareader(datareader_qos):
            participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
+    factory = fastdds.DomainParticipantFactory.get_instance()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
 @pytest.fixture
-def keyedcomplete_datareader(datareader_qos):
+def writer_participant():
     factory = fastdds.DomainParticipantFactory.get_instance()
-    participant = factory.create_participant(
+    return factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    participant.register_type(test_type, test_type.get_type_name())
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    datareader = subscriber.create_datareader(topic, datareader_qos)
-
-    yield datareader
-
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
 
 @pytest.fixture
-def complete_datawriter():
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    test_type = fastdds.TypeSupport(
-            test_complete.CompleteTestTypePubSubType())
-    participant.register_type(test_type, test_type.get_type_name())
-    topic = participant.create_topic(
+def writer_topic(writer_participant, test_type):
+    writer_participant.register_type(test_type, test_type.get_type_name())
+    return writer_participant.create_topic(
             "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+@pytest.fixture
+def publisher(writer_participant):
+    return writer_participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+
+
+@pytest.fixture
+def datawriter(writer_participant, writer_topic, publisher):
     datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
+            writer_topic, fastdds.DATAWRITER_QOS_DEFAULT)
 
     yield datawriter
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
+           writer_participant.delete_topic(writer_topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
-
-
-@pytest.fixture
-def keyedcomplete_datawriter():
+           writer_participant.delete_publisher(publisher))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    participant.register_type(test_type, test_type.get_type_name())
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-
-    yield datawriter
-
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
+           factory.delete_participant(writer_participant))
 
 
-def test_create_querycondition(complete_datareader):
+def test_create_querycondition(datareader):
     """
     This test checks:
     - DataReader::create_querycondition
@@ -140,14 +122,14 @@ def test_create_querycondition(complete_datareader):
     iv = fastdds.InstanceStateKindVector()
     qp = fastdds.StringVector()
 
-    querycondition = complete_datareader.create_querycondition(
+    querycondition = datareader.create_querycondition(
                sv, vv, iv, "", qp)
     assert(querycondition is None)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.delete_contained_entities())
+           datareader.delete_contained_entities())
 
 
-def test_create_readcondition(complete_datareader):
+def test_create_readcondition(datareader):
     """
     This test checks:
     - DataReader::create_readcondition
@@ -156,47 +138,47 @@ def test_create_readcondition(complete_datareader):
     sv = fastdds.SampleStateKindVector()
     vv = fastdds.ViewStateKindVector()
     iv = fastdds.InstanceStateKindVector()
-    readcondition = complete_datareader.create_readcondition(
+    readcondition = datareader.create_readcondition(
                sv, vv, iv)
     assert(readcondition is None)
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           complete_datareader.delete_readcondition(readcondition))
+           datareader.delete_readcondition(readcondition))
 
 
-def test_get_first_untaken(transient_datareader_qos, complete_datareader,
-                           complete_datawriter):
+def test_get_first_untaken(transient_datareader_qos, datareader,
+                           datawriter):
     """
     This test checks:
     - DataReader::get_first_untaken_info
     """
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           complete_datareader.get_first_untaken_info(info))
-    qos = complete_datareader.get_qos()
+           datareader.get_first_untaken_info(info))
+    qos = datareader.get_qos()
     assert(fastdds.TRANSIENT_LOCAL_DURABILITY_QOS == qos.durability().kind)
-    qos = complete_datawriter.get_qos()
+    qos = datawriter.get_qos()
     assert(fastdds.TRANSIENT_LOCAL_DURABILITY_QOS == qos.durability().kind)
 
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.get_first_untaken_info(info))
+           datareader.get_first_untaken_info(info))
     assert(info.valid_data)
 
 
-def test_get_instance_handle(complete_datareader):
+def test_get_instance_handle(datareader):
     """
     This test checks:
     - DataReader::guid
     - DataReader::get_instance_handle
     """
-    guid = complete_datareader.guid()
+    guid = datareader.guid()
     assert(fastdds.c_Guid_Unknown != guid)
-    ih = complete_datareader.get_instance_handle()
+    ih = datareader.get_instance_handle()
     assert(fastdds.c_InstanceHandle_Unknown != ih)
 
     for i in range(0, 12):
@@ -206,7 +188,7 @@ def test_get_instance_handle(complete_datareader):
         assert(guid.entityId.value[i] == ih.value[12+i])
 
 
-def test_get_key_value(keyedcomplete_datareader):
+def test_get_key_value(test_keyed_type, datareader):
     """
     This test checks:
     - DataReader::get_key_value
@@ -215,11 +197,11 @@ def test_get_key_value(keyedcomplete_datareader):
     sample.id(255)
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           keyedcomplete_datareader.get_key_value(sample, ih))
+           datareader.get_key_value(sample, ih))
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
 
-def test_get_set_listener(complete_datareader):
+def test_get_set_listener(datareader):
     """
     This test checks:
     - DataReader::get_listener
@@ -232,10 +214,10 @@ def test_get_set_listener(complete_datareader):
     listener = DataReaderListener()
     assert(listener is not None)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.set_listener(listener))
-    assert(complete_datareader.get_listener() == listener)
+           datareader.set_listener(listener))
+    assert(datareader.get_listener() == listener)
     assert(fastdds.StatusMask.all() ==
-           complete_datareader.get_status_mask())
+           datareader.get_status_mask())
 
     def test(status_mask_1, status_mask_2):
         """
@@ -244,15 +226,15 @@ def test_get_set_listener(complete_datareader):
         listener = DataReaderListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
-               complete_datareader.set_listener(listener, status_mask_1))
-        assert(complete_datareader.get_listener() == listener)
-        assert(status_mask_1 == complete_datareader.get_status_mask())
+               datareader.set_listener(listener, status_mask_1))
+        assert(datareader.get_listener() == listener)
+        assert(status_mask_1 == datareader.get_status_mask())
         listener = DataReaderListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
-               complete_datareader.set_listener(listener, status_mask_2))
-        assert(complete_datareader.get_listener() == listener)
-        assert(status_mask_2 == complete_datareader.get_status_mask())
+               datareader.set_listener(listener, status_mask_2))
+        assert(datareader.get_listener() == listener)
+        assert(status_mask_2 == datareader.get_status_mask())
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
@@ -315,25 +297,25 @@ def test_get_set_listener(complete_datareader):
          m)
 
 
-def test_get_listening_locators(complete_datareader):
+def test_get_listening_locators(datareader):
     """
     This test checks:
     - DataReader::get_listening_locators
     """
     locator_list = fastdds.LocatorList()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.get_listening_locators(locator_list))
+           datareader.get_listening_locators(locator_list))
     assert(0 < locator_list.size())
 
 
-def test_get_liveliness_changed_status(complete_datareader):
+def test_get_liveliness_changed_status(datareader):
     """
     This test checks:
     - DataReader::get_liveliness_changed_status
     """
     status = fastdds.LivelinessChangedStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.get_liveliness_changed_status(status))
+           datareader.get_liveliness_changed_status(status))
     assert(0 == status.alive_count)
     assert(0 == status.alive_count_change)
     assert(0 == status.not_alive_count)
@@ -341,7 +323,7 @@ def test_get_liveliness_changed_status(complete_datareader):
     assert(fastdds.c_InstanceHandle_Unknown == status.last_publication_handle)
 
 
-def test_get_matched_publication_data(complete_datareader):
+def test_get_matched_publication_data(datareader):
     """
     This test checks:
     - DataWriter::get_matched_publication_data
@@ -349,40 +331,40 @@ def test_get_matched_publication_data(complete_datareader):
     pub_data = fastdds.PublicationBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           complete_datareader.get_matched_publication_data(pub_data, ih))
+           datareader.get_matched_publication_data(pub_data, ih))
 
 
-def test_get_matched_publications(complete_datareader):
+def test_get_matched_publications(datareader):
     """
     This test checks:
     - DataReader::get_matched_publications
     """
     ihs = fastdds.InstanceHandleVector()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           complete_datareader.get_matched_publications(ihs))
+           datareader.get_matched_publications(ihs))
 
 
-def test_get_requested_deadline_missed_status(complete_datareader):
+def test_get_requested_deadline_missed_status(datareader):
     """
     This test checks:
     - DataReader::get_requested_deadline_missed_status
     """
     status = fastdds.RequestedDeadlineMissedStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.get_requested_deadline_missed_status(status))
+           datareader.get_requested_deadline_missed_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
     assert(fastdds.c_InstanceHandle_Unknown == status.last_instance_handle)
 
 
-def test_get_requested_incompatible_qos_status(complete_datareader):
+def test_get_requested_incompatible_qos_status(datareader):
     """
     This test checks:
     - DataReader::get_requested_deadline_missed_status
     """
     status = fastdds.RequestedIncompatibleQosStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.get_requested_incompatible_qos_status(status))
+           datareader.get_requested_incompatible_qos_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
     assert(fastdds.INVALID_QOS_POLICY_ID == status.last_policy_id)
@@ -394,38 +376,38 @@ def test_get_requested_incompatible_qos_status(complete_datareader):
         id += 1
 
 
-def test_get_sample_lost_status(complete_datareader):
+def test_get_sample_lost_status(datareader):
     """
     This test checks:
     - DataReader::get_sample_lost_status
     """
     status = fastdds.SampleLostStatus()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           complete_datareader.get_sample_lost_status(status))
+           datareader.get_sample_lost_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
 
 
-def test_get_sample_rejected_status(complete_datareader):
+def test_get_sample_rejected_status(datareader):
     """
     This test checks:
     - DataReader::get_sample_rejected_status
     """
     status = fastdds.SampleRejectedStatus()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           complete_datareader.get_sample_rejected_status(status))
+           datareader.get_sample_rejected_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
 
 
-def test_get_subscription_matched_status(complete_datareader):
+def test_get_subscription_matched_status(datareader):
     """
     This test checks:
     - DataReader::get_subscription_matched_status
     """
     status = fastdds.SubscriptionMatchedStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.get_subscription_matched_status(status))
+           datareader.get_subscription_matched_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
     assert(0 == status.current_count)
@@ -506,56 +488,56 @@ def test_get_topicdescription():
            factory.delete_participant(participant))
 
 
-def test_get_unread_count(transient_datareader_qos, complete_datareader,
-                          complete_datawriter):
+def test_get_unread_count(transient_datareader_qos, datareader,
+                          datawriter):
     """
     This test checks:
     - DataReader::get_unread_count
     """
-    assert(0 == complete_datareader.get_unread_count())
+    assert(0 == datareader.get_unread_count())
 
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(1 == complete_datareader.get_unread_count())
+    assert(1 == datareader.get_unread_count())
 
 
-def test_is_sample_valid(transient_datareader_qos, complete_datareader,
-                         complete_datawriter):
+def test_is_sample_valid(transient_datareader_qos, datareader,
+                         datawriter):
     """
     This test checks:
     - DataReader::is_sample_valid
     """
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     data = test_complete.CompleteTestType()
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.read_next_sample(data, info))
-    assert(complete_datareader.is_sample_valid(data, info))
+           datareader.read_next_sample(data, info))
+    assert(datareader.is_sample_valid(data, info))
     assert(sample.int16_field() == data.int16_field())
 
 
-def test_lookup_instance(keyedcomplete_datareader):
+def test_lookup_instance(test_keyed_type, datareader):
     """
     This test checks:
     - DataReader::lookup_instance
     """
     sample = test_complete.KeyedCompleteTestType()
     sample.id(3)
-    ih = keyedcomplete_datareader.lookup_instance(sample)
+    ih = datareader.lookup_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
 
-def test_read(transient_datareader_qos, complete_datareader,
-              complete_datawriter):
+def test_read(transient_datareader_qos, datareader,
+              datawriter):
     """
     This test checks:
     - DataReader::read
@@ -564,7 +546,7 @@ def test_read(transient_datareader_qos, complete_datareader,
     data_seq = test_complete.CompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           complete_datareader.read(
+           datareader.read(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                 fastdds.ANY_INSTANCE_STATE))
@@ -573,11 +555,11 @@ def test_read(transient_datareader_qos, complete_datareader,
 
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK == complete_datareader.read(
+    assert(fastdds.ReturnCode_t.RETCODE_OK == datareader.read(
         data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
@@ -586,11 +568,11 @@ def test_read(transient_datareader_qos, complete_datareader,
     assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.return_loan(data_seq, info_seq))
+           datareader.return_loan(data_seq, info_seq))
 
 
-def test_read_instance(transient_datareader_qos, keyedcomplete_datareader,
-                       keyedcomplete_datawriter):
+def test_read_instance(transient_datareader_qos, test_keyed_type,
+                       datareader, datawriter):
     """
     This test checks:
     - DataReader::read_instance
@@ -600,7 +582,7 @@ def test_read_instance(transient_datareader_qos, keyedcomplete_datareader,
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
-           keyedcomplete_datareader.read_instance(
+           datareader.read_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
@@ -609,13 +591,13 @@ def test_read_instance(transient_datareader_qos, keyedcomplete_datareader,
 
     sample = test_complete.KeyedCompleteTestType()
     sample.id(255)
-    ih = keyedcomplete_datawriter.register_instance(sample)
-    assert(keyedcomplete_datawriter.write(sample, ih))
+    ih = datawriter.register_instance(sample)
+    assert(datawriter.write(sample, ih))
 
-    assert(keyedcomplete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.read_instance(
+           datareader.read_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                 fastdds.ANY_INSTANCE_STATE))
@@ -624,11 +606,11 @@ def test_read_instance(transient_datareader_qos, keyedcomplete_datareader,
     assert(info_seq[0].valid_data is True)
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.return_loan(data_seq, info_seq))
+           datareader.return_loan(data_seq, info_seq))
 
 
-def test_read_next_instance(transient_datareader_qos, keyedcomplete_datareader,
-                            keyedcomplete_datawriter):
+def test_read_next_instance(transient_datareader_qos, test_keyed_type,
+                            datareader, datawriter):
     """
     This test checks:
     - DataReader::read_next_instance
@@ -638,7 +620,7 @@ def test_read_next_instance(transient_datareader_qos, keyedcomplete_datareader,
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           keyedcomplete_datareader.read_next_instance(
+           datareader.read_next_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
@@ -647,12 +629,12 @@ def test_read_next_instance(transient_datareader_qos, keyedcomplete_datareader,
 
     sample = test_complete.KeyedCompleteTestType()
     sample.id(255)
-    assert(keyedcomplete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(keyedcomplete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.read_next_instance(
+           datareader.read_next_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                 fastdds.ANY_INSTANCE_STATE))
@@ -661,11 +643,11 @@ def test_read_next_instance(transient_datareader_qos, keyedcomplete_datareader,
     assert(info_seq[0].valid_data is True)
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.return_loan(data_seq, info_seq))
+           datareader.return_loan(data_seq, info_seq))
 
 
-def test_read_next_sample(transient_datareader_qos, complete_datareader,
-                          complete_datawriter):
+def test_read_next_sample(transient_datareader_qos, datareader,
+                          datawriter):
     """
     This test checks:
     - DataReader::read_next_sample
@@ -673,23 +655,23 @@ def test_read_next_sample(transient_datareader_qos, complete_datareader,
     data = test_complete.CompleteTestType()
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           complete_datareader.read_next_sample(
+           datareader.read_next_sample(
                 data, info))
 
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.read_next_sample(data, info))
+           datareader.read_next_sample(data, info))
     assert(info.valid_data)
     assert(sample.int16_field() == data.int16_field())
 
 
-def test_take(transient_datareader_qos, complete_datareader,
-              complete_datawriter):
+def test_take(transient_datareader_qos, datareader,
+              datawriter):
     """
     This test checks:
     - DataReader::take
@@ -698,7 +680,7 @@ def test_take(transient_datareader_qos, complete_datareader,
     data_seq = test_complete.CompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           complete_datareader.take(
+           datareader.take(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                 fastdds.ANY_INSTANCE_STATE))
@@ -707,11 +689,11 @@ def test_take(transient_datareader_qos, complete_datareader,
 
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK == complete_datareader.take(
+    assert(fastdds.ReturnCode_t.RETCODE_OK == datareader.take(
         data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
@@ -720,11 +702,11 @@ def test_take(transient_datareader_qos, complete_datareader,
     assert(info_seq[0].valid_data is True)
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.return_loan(data_seq, info_seq))
+           datareader.return_loan(data_seq, info_seq))
 
 
-def test_take_instance(transient_datareader_qos, keyedcomplete_datareader,
-                       keyedcomplete_datawriter):
+def test_take_instance(transient_datareader_qos, test_keyed_type,
+                       datareader, datawriter):
     """
     This test checks:
     - DataReader::take_instance
@@ -734,7 +716,7 @@ def test_take_instance(transient_datareader_qos, keyedcomplete_datareader,
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
-           keyedcomplete_datareader.take_instance(
+           datareader.take_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
@@ -743,13 +725,13 @@ def test_take_instance(transient_datareader_qos, keyedcomplete_datareader,
 
     sample = test_complete.KeyedCompleteTestType()
     sample.id(255)
-    ih = keyedcomplete_datawriter.register_instance(sample)
-    assert(keyedcomplete_datawriter.write(sample, ih))
+    ih = datawriter.register_instance(sample)
+    assert(datawriter.write(sample, ih))
 
-    assert(keyedcomplete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.take_instance(
+           datareader.take_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                 fastdds.ANY_INSTANCE_STATE))
@@ -758,11 +740,11 @@ def test_take_instance(transient_datareader_qos, keyedcomplete_datareader,
     assert(info_seq[0].valid_data is True)
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.return_loan(data_seq, info_seq))
+           datareader.return_loan(data_seq, info_seq))
 
 
-def test_take_next_instance(transient_datareader_qos, keyedcomplete_datareader,
-                            keyedcomplete_datawriter):
+def test_take_next_instance(transient_datareader_qos, test_keyed_type,
+                            datareader, datawriter):
     """
     This test checks:
     - DataReader::take_next_instance
@@ -772,7 +754,7 @@ def test_take_next_instance(transient_datareader_qos, keyedcomplete_datareader,
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           keyedcomplete_datareader.take_next_instance(
+           datareader.take_next_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                fastdds.ANY_INSTANCE_STATE))
@@ -781,12 +763,12 @@ def test_take_next_instance(transient_datareader_qos, keyedcomplete_datareader,
 
     sample = test_complete.KeyedCompleteTestType()
     sample.id(255)
-    assert(keyedcomplete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(keyedcomplete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.take_next_instance(
+           datareader.take_next_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
                 fastdds.ANY_INSTANCE_STATE))
@@ -795,11 +777,11 @@ def test_take_next_instance(transient_datareader_qos, keyedcomplete_datareader,
     assert(info_seq[0].valid_data is True)
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           keyedcomplete_datareader.return_loan(data_seq, info_seq))
+           datareader.return_loan(data_seq, info_seq))
 
 
-def test_take_next_sample(transient_datareader_qos, complete_datareader,
-                          complete_datawriter):
+def test_take_next_sample(transient_datareader_qos, datareader,
+                          datawriter):
     """
     This test checks:
     - DataReader::take_next_sample
@@ -807,17 +789,17 @@ def test_take_next_sample(transient_datareader_qos, complete_datareader,
     data = test_complete.CompleteTestType()
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
-           complete_datareader.take_next_sample(
+           datareader.take_next_sample(
                 data, info))
 
     sample = test_complete.CompleteTestType()
     sample.int16_field(255)
-    assert(complete_datawriter.write(sample))
+    assert(datawriter.write(sample))
 
-    assert(complete_datareader.wait_for_unread_message(
+    assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           complete_datareader.take_next_sample(data, info))
+           datareader.take_next_sample(data, info))
     assert(info.valid_data)
     assert(sample.int16_field() == data.int16_field())
 
@@ -859,19 +841,19 @@ def test_get_type():
            factory.delete_participant(participant))
 
 
-def test_wait_for_historical_data(complete_datareader):
+def test_wait_for_historical_data(datareader):
     """
     This test checks:
     - DataReader::wait_for_historical_data
     """
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           complete_datareader.wait_for_historical_data(
+           datareader.wait_for_historical_data(
                fastdds.Duration_t(0, 100)))
 
 
-def test_wait_for_unread_message(complete_datareader):
+def test_wait_for_unread_message(datareader):
     """
     This test checks:
     - DataReader::wait_for_unread_message
     """
-    assert(not complete_datareader.wait_for_unread_message(fastdds.Duration_t(0, 100)))
+    assert(not datareader.wait_for_unread_message(fastdds.Duration_t(0, 100)))

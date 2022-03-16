@@ -41,4 +41,11 @@
     {
         return new eprosima::fastdds::dds::TypeSupport(ptr);
     }
+
+    %apply SWIGTYPE *DISOWN { eprosima::fastdds::dds::TopicDataType* ptr };
+    void set(eprosima::fastdds::dds::TopicDataType* ptr)
+    {
+        self->reset(ptr);
+    }
+
 }
