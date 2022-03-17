@@ -188,6 +188,7 @@ def test_get_set_listener(datawriter):
            datawriter.set_listener(listener))
     assert(datawriter.get_listener() == listener)
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
+    datawriter.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -196,15 +197,17 @@ def test_get_set_listener(datawriter):
         listener = DataWriterListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
-              datawriter.set_listener(listener, status_mask_1))
+               datawriter.set_listener(listener, status_mask_1))
         assert(datawriter.get_listener() == listener)
         assert(status_mask_1 == datawriter.get_status_mask())
+        datawriter.set_listener(None)
         listener = DataWriterListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                datawriter.set_listener(listener, status_mask_2))
         assert(datawriter.get_listener() == listener)
         assert(status_mask_2 == datawriter.get_status_mask())
+        datawriter.set_listener(None)
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())

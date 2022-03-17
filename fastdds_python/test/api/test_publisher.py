@@ -295,6 +295,7 @@ def test_get_set_listener(publisher):
            publisher.set_listener(listener))
     assert(publisher.get_listener() == listener)
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
+    publisher.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -306,12 +307,14 @@ def test_get_set_listener(publisher):
                publisher.set_listener(listener, status_mask_1))
         assert(publisher.get_listener() == listener)
         assert(status_mask_1 == publisher.get_status_mask())
+        publisher.set_listener(None)
         listener = PublisherListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                publisher.set_listener(listener, status_mask_2))
         assert(publisher.get_listener() == listener)
         assert(status_mask_2 == publisher.get_status_mask())
+        publisher.set_listener(None)
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
