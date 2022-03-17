@@ -1,6 +1,7 @@
 import fastdds
 import pytest
 import test_complete
+import time
 
 
 class DomainParticipantListener (fastdds.DomainParticipantListener):
@@ -47,7 +48,12 @@ def testname_participant_qos(participant_qos):
 @pytest.fixture
 def participant(participant_qos):
     factory = fastdds.DomainParticipantFactory.get_instance()
-    return factory.create_participant(0, participant_qos)
+    participant = factory.create_participant(0, participant_qos)
+
+    yield participant
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
 
 
 def test_contains_entity(participant):
@@ -558,7 +564,6 @@ def test_get_set_listener(participant):
            participant.set_listener(listener))
     assert(participant.get_listener() == listener)
     assert(fastdds.StatusMask.all() == participant.get_status_mask())
-    participant.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -570,14 +575,12 @@ def test_get_set_listener(participant):
                participant.set_listener(listener, status_mask_1))
         assert(participant.get_listener() == listener)
         assert(status_mask_1 == participant.get_status_mask())
-        participant.set_listener(None)
         listener = DomainParticipantListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                participant.set_listener(listener, status_mask_2))
         assert(participant.get_listener() == listener)
         assert(status_mask_2 == participant.get_status_mask())
-        participant.set_listener(None)
 
     # Overload 3: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
@@ -736,3 +739,17 @@ def test_lookup_topicdescription(participant):
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))
+
+
+def test_listener_ownership(participant):
+    factory = fastdds.DomainParticipantFactory.get_instance()
+
+    def second_participant():
+        listener = DomainParticipantListener()
+        return factory.create_participant(0, fastdds.PARTICIPANT_QOS_DEFAULT,
+                                          listener, fastdds.StatusMask.all())
+
+    participant2 = second_participant()
+    time.sleep(1)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant2))

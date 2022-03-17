@@ -16,8 +16,77 @@
 #include "fastdds/dds/domain/DomainParticipant.hpp"
 %}
 
+%extend eprosima::fastdds::dds::DomainParticipant
+{
+    ReturnCode_t set_listener(
+            DomainParticipantListener* listener)
+    {
+        eprosima::fastdds::dds::DomainParticipantListener* old_listener =
+            const_cast<eprosima::fastdds::dds::DomainParticipantListener*>(self->get_listener());
+
+        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener);
+
+        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                Py_INCREF(director->swig_get_self());
+            }
+        }
+        if (nullptr != old_listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+            if (nullptr != director)
+            {
+                Py_DECREF(director->swig_get_self());
+            }
+        }
+        SWIG_PYTHON_THREAD_END_BLOCK;
+
+        return ret;
+    }
+
+    ReturnCode_t set_listener(
+            DomainParticipantListener* listener,
+            const StatusMask& mask)
+    {
+        eprosima::fastdds::dds::DomainParticipantListener* old_listener =
+            const_cast<eprosima::fastdds::dds::DomainParticipantListener*>(self->get_listener());
+
+        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener, mask);
+
+        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                Py_INCREF(director->swig_get_self());
+            }
+        }
+        if (nullptr != old_listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+            if (nullptr != director)
+            {
+                Py_DECREF(director->swig_get_self());
+            }
+        }
+        SWIG_PYTHON_THREAD_END_BLOCK;
+
+        return ret;
+    }
+}
+
 %ignore eprosima::fastdds::dds::DomainParticipant::has_active_entities;
 %ignore eprosima::fastdds::dds::DomainParticipant::DomainParticipant;
 %ignore eprosima::fastdds::dds::DomainParticipant::~DomainParticipant;
+%ignore eprosima::fastdds::dds::DomainParticipant::set_listener;
 
 %include "fastdds/dds/domain/DomainParticipant.hpp"
