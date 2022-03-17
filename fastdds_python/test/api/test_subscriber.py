@@ -1,4 +1,5 @@
 import fastdds
+import pytest
 import test_complete
 
 
@@ -12,31 +13,60 @@ class DataReaderListener (fastdds.DataReaderListener):
         super().__init__()
 
 
-def test_access():
+@pytest.fixture
+def participant_qos():
+    return fastdds.DomainParticipantQos()
+
+
+@pytest.fixture
+def not_autoenable_participant_qos(participant_qos):
+    participant_qos.entity_factory().autoenable_created_entities = False
+    return participant_qos
+
+
+@pytest.fixture
+def participant(participant_qos):
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    return factory.create_participant(0, participant_qos)
+
+
+@pytest.fixture
+def subscriber(participant, topic):
+    subscriber = participant.create_subscriber(
+            fastdds.SUBSCRIBER_QOS_DEFAULT)
+
+    yield subscriber
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+@pytest.fixture
+def topic(participant):
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    participant.register_type(test_type, test_type.get_type_name())
+    return participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+def test_access(subscriber):
     """
     This test checks:
     - ::resume_publications
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            subscriber.begin_access())
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            subscriber.end_access())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_create_and_delete_datareader():
+def test_create_and_delete_datareader(topic, subscriber):
     """
     This test checks:
     - Subscriber::create_datareader
@@ -45,20 +75,6 @@ def test_create_and_delete_datareader():
     - StatusMask::operator ==
     - StatusMask::operator <<
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    # Overload 1 - Success
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
     listener = DataReaderListener()
     assert(listener is not None)
 
@@ -160,32 +176,12 @@ def test_create_and_delete_datareader():
          m,
          listener)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_deleted_contained_entities():
+def test_deleted_contained_entities(participant, topic, subscriber):
     """
     This test checks:
     - Subscriber::delete_contained_entities
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
     datareader = subscriber.create_datareader(
             topic, fastdds.DATAREADER_QOS_DEFAULT)
     assert(datareader is not None)
@@ -199,59 +195,25 @@ def test_deleted_contained_entities():
 
     assert(subscriber.has_datareaders() is False)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_enable():
+def test_enable(not_autoenable_participant_qos, subscriber):
     """
     This test checks:
     - Subscriber::enable
     - Subscriber::is_enabled
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    qos = fastdds.DomainParticipantQos()
-    qos.entity_factory().autoenable_created_entities = False
-    participant = factory.create_participant(0, qos)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-
     assert(not subscriber.is_enabled())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.enable())
     assert(subscriber.is_enabled())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_datareaders():
+def test_get_datareaders(topic, subscriber):
     """
     This test checks:
     - Subscriber::get_datareaders
     - Subscriber::has_datareaders
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
     datareader = subscriber.create_datareader(
             topic, fastdds.DATAREADER_QOS_DEFAULT)
     assert(datareader is not None)
@@ -264,28 +226,14 @@ def test_get_datareaders():
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
 
-def test_get_instance_handle():
+def test_get_instance_handle(participant, subscriber):
     """
     This test checks:
     - Subscriber::get_instance_handle
     - Subscriber::guid
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-
     ih = subscriber.get_instance_handle()
     assert(ih is not None)
     assert(ih.isDefined())
@@ -298,53 +246,24 @@ def test_get_instance_handle():
     for i in range(0, 12):
         assert(guid.guidPrefix.value[i] == ih.value[i])
 
-    # for i in range(0, 4):
-    #     assert(guid.entityId.value[i] == ih.value[12+i])
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
-
-
-def test_get_participant():
+def test_get_participant(participant, subscriber):
     """
     This test checks:
     - Subscriber::get_participant
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-
     participant2 = subscriber.get_participant()
     assert(participant2 is not None)
     assert(participant == participant2)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_set_qos():
+def test_get_set_qos(subscriber):
     """
     This test checks:
     - Subscriber::get_qos
     - Subscriber::set_qos
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
     qos = fastdds.SubscriberQos()
-    subscriber = participant.create_subscriber(qos)
-    assert(subscriber is not None)
-
     qos.partition().push_back('PartitionTest')
     qos.partition().push_back('PartitionTest2')
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -354,17 +273,8 @@ def test_get_set_qos():
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.get_qos(qos2))
 
-    assert(2 == len(qos.partition()))
-    assert('PartitionTest' == qos.partition()[0])
-    assert('PartitionTest2' == qos.partition()[1])
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
-
-
-def test_get_set_listener():
+def test_get_set_listener(subscriber):
     """
     This test checks:
     - Publisher::get_listener
@@ -373,14 +283,6 @@ def test_get_set_listener():
     - StatusMask::operator ==
     - StatusMask::operator <<
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-
     # Overload 1
     listener = SubscriberListener()
     assert(listener is not None)
@@ -466,31 +368,12 @@ def test_get_set_listener():
          fastdds.StatusMask.subscription_matched(),
          m)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_lookup_datareader():
+def test_lookup_datareader(topic, subscriber):
     """
     This test checks:
     - subscriber::lookup_datareader
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    # Overload 1 - Success
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
     datareader = subscriber.create_datareader(
             topic, fastdds.DATAREADER_QOS_DEFAULT)
     assert(datareader is not None)
@@ -501,9 +384,3 @@ def test_lookup_datareader():
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
