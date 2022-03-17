@@ -82,11 +82,99 @@
 
         return ret;
     }
+
+    Publisher* create_publisher(
+            const PublisherQos& qos,
+            PublisherListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_publisher(qos, listener, mask);
+    }
+
+    ReturnCode_t delete_publisher(
+            const Publisher* publisher)
+    {
+        eprosima::fastdds::dds::PublisherListener* listener =
+            const_cast<eprosima::fastdds::dds::PublisherListener*>(publisher->get_listener());
+        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_publisher(publisher);
+
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_DECREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return ret;
+    }
+
+    Subscriber* create_subscriber(
+            const SubscriberQos& qos,
+            SubscriberListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_subscriber(qos, listener, mask);
+    }
+
+    ReturnCode_t delete_subscriber(
+            const Subscriber* subscriber)
+    {
+        eprosima::fastdds::dds::SubscriberListener* listener =
+            const_cast<eprosima::fastdds::dds::SubscriberListener*>(subscriber->get_listener());
+        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_subscriber(subscriber);
+
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_DECREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return ret;
+    }
 }
 
 %ignore eprosima::fastdds::dds::DomainParticipant::has_active_entities;
 %ignore eprosima::fastdds::dds::DomainParticipant::DomainParticipant;
 %ignore eprosima::fastdds::dds::DomainParticipant::~DomainParticipant;
 %ignore eprosima::fastdds::dds::DomainParticipant::set_listener;
+%ignore eprosima::fastdds::dds::DomainParticipant::create_publisher;
+%ignore eprosima::fastdds::dds::DomainParticipant::create_subscriber;
+%ignore eprosima::fastdds::dds::DomainParticipant::delete_publisher;
+%ignore eprosima::fastdds::dds::DomainParticipant::delete_subscriber;
 
 %include "fastdds/dds/domain/DomainParticipant.hpp"

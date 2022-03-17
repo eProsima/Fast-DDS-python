@@ -290,7 +290,6 @@ def test_get_set_listener(subscriber):
            subscriber.set_listener(listener))
     assert(subscriber.get_listener() == listener)
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    subscriber.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -302,14 +301,12 @@ def test_get_set_listener(subscriber):
                subscriber.set_listener(listener, status_mask_1))
         assert(subscriber.get_listener() == listener)
         assert(status_mask_1 == subscriber.get_status_mask())
-        subscriber.set_listener(None)
         listener = SubscriberListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                subscriber.set_listener(listener, status_mask_2))
         assert(subscriber.get_listener() == listener)
         assert(status_mask_2 == subscriber.get_status_mask())
-        subscriber.set_listener(None)
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
