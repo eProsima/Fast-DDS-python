@@ -211,6 +211,11 @@ def test_create_datawriter_with_profile(topic, publisher):
     listener = DataWriterListener()
     assert(listener is not None)
 
+    # Failure
+    datawriter = publisher.create_datawriter_with_profile(
+            topic, 'no_exits_profile')
+    assert(datawriter is None)
+
     # Overload 1
     datawriter = publisher.create_datawriter_with_profile(
             topic, 'test_datawriter_profile')

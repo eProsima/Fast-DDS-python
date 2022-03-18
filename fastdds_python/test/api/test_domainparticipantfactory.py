@@ -123,6 +123,14 @@ def test_create_participant_with_profile():
     """
     factory = fastdds.DomainParticipantFactory.get_instance()
 
+    # Failure
+    participant = factory.create_participant_with_profile(
+            'no_exits_profile')
+    assert(participant is None)
+    participant = factory.create_participant_with_profile(
+            0, 'no_exits_profile')
+    assert(participant is None)
+
     # Overload 1
     participant = factory.create_participant_with_profile(
             'test_participant_profile')

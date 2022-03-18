@@ -194,6 +194,11 @@ def test_create_publisher_with_profile(participant):
     listener = PublisherListener()
     assert(listener is not None)
 
+    # Failure
+    publisher = participant.create_publisher_with_profile(
+            'no_exits_profile')
+    assert(publisher is None)
+
     # Overload 1
     publisher = participant.create_publisher_with_profile(
             'test_publisher_profile')
@@ -422,6 +427,11 @@ def test_create_subscriber_with_profile(participant):
     """
     listener = SubscriberListener()
     assert(listener is not None)
+
+    # Failure
+    subscriber = participant.create_subscriber_with_profile(
+            'no_exits_profile')
+    assert(subscriber is None)
 
     # Overload 1
     subscriber = participant.create_subscriber_with_profile(

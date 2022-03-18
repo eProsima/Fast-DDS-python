@@ -35,5 +35,13 @@
                 </durability>
             </qos>
         </publisher>
+
+        <subscriber profile_name="test_datareader_profile">
+            <qos>
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
+            </qos>
+        </subscriber>
     </profiles>
 </dds>
