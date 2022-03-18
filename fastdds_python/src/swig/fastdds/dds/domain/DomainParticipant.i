@@ -286,5 +286,6 @@
 %ignore eprosima::fastdds::dds::DomainParticipant::create_subscriber;
 %ignore eprosima::fastdds::dds::DomainParticipant::delete_publisher;
 %ignore eprosima::fastdds::dds::DomainParticipant::delete_subscriber;
+%ignore eprosima::fastdds::dds::DomainParticipant::create_subscriber_with_profile;
 
 %include "fastdds/dds/domain/DomainParticipant.hpp"

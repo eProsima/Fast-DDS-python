@@ -27,5 +27,13 @@
                 </partition>
             </qos>
         </subscriber>
+
+        <publisher profile_name="test_datawriter_profile">
+            <qos>
+                <durability>
+                    <kind>VOLATILE</kind>
+                </durability>
+            </qos>
+        </publisher>
     </profiles>
 </dds>
