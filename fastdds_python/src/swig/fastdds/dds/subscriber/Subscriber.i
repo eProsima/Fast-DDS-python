@@ -82,10 +82,55 @@
 
         return ret;
     }
+
+    DataReader* create_datareader(
+            TopicDescription* topic,
+            const DataReaderQos& reader_qos,
+            DataReaderListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_datareader(topic, reader_qos, listener, mask);
+    }
+
+    ReturnCode_t delete_datareader(
+            const DataReader* reader)
+    {
+        eprosima::fastdds::dds::DataReaderListener* listener =
+            const_cast<eprosima::fastdds::dds::DataReaderListener*>(reader->get_listener());
+        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_datareader(reader);
+
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_DECREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return ret;
+    }
 }
 
 %ignore eprosima::fastdds::dds::Subscriber::Subscriber;
 %ignore eprosima::fastdds::dds::Subscriber::~Subscriber;
 %ignore eprosima::fastdds::dds::Subscriber::set_listener;
+%ignore eprosima::fastdds::dds::Subscriber::create_datareader;
+%ignore eprosima::fastdds::dds::Subscriber::delete_datareader;
 
 %include "fastdds/dds/subscriber/Subscriber.hpp"

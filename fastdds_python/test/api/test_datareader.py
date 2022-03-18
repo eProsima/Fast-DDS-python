@@ -8,6 +8,7 @@ if os.name == 'nt':
 import fastdds
 import pytest
 import test_complete
+import time
 
 
 class DataReaderListener (fastdds.DataReaderListener):
@@ -218,7 +219,6 @@ def test_get_set_listener(datareader):
     assert(datareader.get_listener() == listener)
     assert(fastdds.StatusMask.all() ==
            datareader.get_status_mask())
-    datareader.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -230,14 +230,12 @@ def test_get_set_listener(datareader):
                datareader.set_listener(listener, status_mask_1))
         assert(datareader.get_listener() == listener)
         assert(status_mask_1 == datareader.get_status_mask())
-        datareader.set_listener(None)
         listener = DataReaderListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                datareader.set_listener(listener, status_mask_2))
         assert(datareader.get_listener() == listener)
         assert(status_mask_2 == datareader.get_status_mask())
-        datareader.set_listener(None)
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
@@ -779,3 +777,35 @@ def test_wait_for_unread_message(datareader):
     - DataReader::wait_for_unread_message
     """
     assert(not datareader.wait_for_unread_message(fastdds.Duration_t(0, 100)))
+
+
+def test_listener_ownership(participant, writer_participant, topic,
+                            writer_topic, subscriber, publisher):
+
+    def create_datareader():
+        listener = DataReaderListener()
+        return subscriber.create_datareader(
+                topic, fastdds.DATAREADER_QOS_DEFAULT, listener)
+
+    datareader = create_datareader()
+    datawriter = publisher.create_datawriter(
+                writer_topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    time.sleep(1)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           writer_participant.delete_topic(writer_topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           writer_participant.delete_publisher(publisher))
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(writer_participant))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
