@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"  ?>
+<dds xmlns="http://www.eprosima.com/XMLSchemas/fastRTPS_Profiles">
+    <profiles>
+        <participant profile_name="test_participant_profile">
+            <domainId>3</domainId>
+            <rtps>
+                <name>test_name</name>
+            </rtps>
+        </participant>
+    </profiles>
+</dds>

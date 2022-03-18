@@ -741,7 +741,7 @@ def test_lookup_topicdescription(participant):
            participant.delete_topic(topic))
 
 
-def test_listener_ownership(participant):
+def test_listener_ownership():
     factory = fastdds.DomainParticipantFactory.get_instance()
 
     def second_participant():
@@ -750,6 +750,10 @@ def test_listener_ownership(participant):
                                           listener, fastdds.StatusMask.all())
 
     participant2 = second_participant()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
     time.sleep(1)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant2))
