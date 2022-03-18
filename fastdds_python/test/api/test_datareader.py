@@ -791,13 +791,13 @@ def test_listener_ownership(participant, writer_participant, topic,
     datawriter = publisher.create_datawriter(
                 writer_topic, fastdds.DATAWRITER_QOS_DEFAULT)
     time.sleep(1)
+    factory = fastdds.DomainParticipantFactory.get_instance()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            writer_participant.delete_topic(writer_topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            writer_participant.delete_publisher(publisher))
-    factory = fastdds.DomainParticipantFactory.get_instance()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(writer_participant))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -806,6 +806,5 @@ def test_listener_ownership(participant, writer_participant, topic,
            participant.delete_topic(topic))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
-    factory = fastdds.DomainParticipantFactory.get_instance()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            factory.delete_participant(participant))

@@ -43,7 +43,74 @@
         eprosima::fastrtps::types::ReturnCode_t ret = self->clear_history(removed);
         return ret;
     }
+
+    ReturnCode_t set_listener(
+            DataWriterListener* listener)
+    {
+        eprosima::fastdds::dds::DataWriterListener* old_listener =
+            const_cast<eprosima::fastdds::dds::DataWriterListener*>(self->get_listener());
+
+        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener);
+
+        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                Py_INCREF(director->swig_get_self());
+            }
+        }
+        if (nullptr != old_listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+            if (nullptr != director)
+            {
+                Py_DECREF(director->swig_get_self());
+            }
+        }
+        SWIG_PYTHON_THREAD_END_BLOCK;
+
+        return ret;
+    }
+
+    ReturnCode_t set_listener(
+            DataWriterListener* listener,
+            const StatusMask& mask)
+    {
+        eprosima::fastdds::dds::DataWriterListener* old_listener =
+            const_cast<eprosima::fastdds::dds::DataWriterListener*>(self->get_listener());
+
+        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener, mask);
+
+        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                Py_INCREF(director->swig_get_self());
+            }
+        }
+        if (nullptr != old_listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+            if (nullptr != director)
+            {
+                Py_DECREF(director->swig_get_self());
+            }
+        }
+        SWIG_PYTHON_THREAD_END_BLOCK;
+
+        return ret;
+    }
 }
+
+%ignore eprosima::fastdds::dds::DataWriter::set_listener;
 %ignore eprosima::fastdds::dds::DataWriter::clear_history(size_t*);
 
 // Template for std::vector<DataWriter*>
