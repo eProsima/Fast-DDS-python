@@ -36,14 +36,14 @@ def test_create_participant():
         Test the entity creation using the two types of StatusMasks.
         """
         participant = factory.create_participant(
-                0, fastdds.PARTICIPANT_QOS_DEFAULT, listener, status_mask_1)
+                0, fastdds.PARTICIPANT_QOS_DEFAULT, listnr, status_mask_1)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(status_mask_1 == participant.get_status_mask())
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                factory.delete_participant(participant))
         participant = factory.create_participant(
-                0, fastdds.PARTICIPANT_QOS_DEFAULT, listener, status_mask_2)
+                0, fastdds.PARTICIPANT_QOS_DEFAULT, listnr, status_mask_2)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(status_mask_1 == participant.get_status_mask())
@@ -173,7 +173,7 @@ def test_create_participant_with_profile():
         Test the entity creation using the two types of StatusMasks.
         """
         participant = factory.create_participant_with_profile(
-                'test_participant_profile', listener, status_mask_1)
+                'test_participant_profile', listnr, status_mask_1)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(3 == participant.get_domain_id())
@@ -183,7 +183,7 @@ def test_create_participant_with_profile():
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                factory.delete_participant(participant))
         participant = factory.create_participant_with_profile(
-                0, 'test_participant_profile', listener, status_mask_1)
+                0, 'test_participant_profile', listnr, status_mask_1)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(0 == participant.get_domain_id())
@@ -193,7 +193,7 @@ def test_create_participant_with_profile():
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                factory.delete_participant(participant))
         participant = factory.create_participant_with_profile(
-                'test_participant_profile', listener, status_mask_2)
+                'test_participant_profile', listnr, status_mask_2)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(3 == participant.get_domain_id())
@@ -203,7 +203,7 @@ def test_create_participant_with_profile():
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                factory.delete_participant(participant))
         participant = factory.create_participant_with_profile(
-                0, 'test_participant_profile', listener, status_mask_2)
+                0, 'test_participant_profile', listnr, status_mask_2)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(0 == participant.get_domain_id())

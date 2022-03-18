@@ -18,6 +18,12 @@
 
 %extend eprosima::fastdds::dds::DomainParticipant
 {
+    /**
+     * Modifies the DomainParticipantListener, sets the mask to StatusMask::all()
+     *
+     * @param listener new value for the DomainParticipantListener
+     * @return RETCODE_OK
+     */
     ReturnCode_t set_listener(
             DomainParticipantListener* listener)
     {
@@ -55,6 +61,13 @@
         return ret;
     }
 
+    /**
+     * Modifies the DomainParticipantListener.
+     *
+     * @param listener new value for the DomainParticipantListener
+     * @param mask StatusMask that holds statuses the listener responds to
+     * @return RETCODE_OK
+     */
     ReturnCode_t set_listener(
             DomainParticipantListener* listener,
             const StatusMask& mask)
@@ -93,6 +106,14 @@
         return ret;
     }
 
+    /**
+     * Create a Publisher in this Participant.
+     *
+     * @param qos QoS of the Publisher.
+     * @param listener Pointer to the listener (default: nullptr)
+     * @param mask StatusMask that holds statuses the listener responds to (default: all)
+     * @return Pointer to the created Publisher.
+     */
     Publisher* create_publisher(
             const PublisherQos& qos,
             PublisherListener* listener = nullptr,
@@ -113,6 +134,41 @@
         return self->create_publisher(qos, listener, mask);
     }
 
+    /**
+     * Create a Publisher in this Participant.
+     *
+     * @param profile_name Publisher profile name.
+     * @param listener Pointer to the listener (default: nullptr)
+     * @param mask StatusMask that holds statuses the listener responds to (default: all)
+     * @return Pointer to the created Publisher.
+     */
+    Publisher* create_publisher_with_profile(
+            const std::string& profile_name,
+            PublisherListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_publisher_with_profile(profile_name, listener, mask);
+    }
+
+    /**
+     * Deletes an existing Publisher.
+     *
+     * @param publisher to be deleted.
+     * @return RETCODE_PRECONDITION_NOT_MET if the publisher does not belong to this participant or if it has active DataWriters,
+     * RETCODE_OK if it is correctly deleted and RETCODE_ERROR otherwise.
+     */
     ReturnCode_t delete_publisher(
             const Publisher* publisher)
     {
@@ -135,6 +191,14 @@
         return ret;
     }
 
+    /**
+     * Create a Subscriber in this Participant.
+     *
+     * @param qos QoS of the Subscriber.
+     * @param listener Pointer to the listener (default: nullptr)
+     * @param mask StatusMask that holds statuses the listener responds to (default: all)
+     * @return Pointer to the created Subscriber.
+     */
     Subscriber* create_subscriber(
             const SubscriberQos& qos,
             SubscriberListener* listener = nullptr,
@@ -155,6 +219,41 @@
         return self->create_subscriber(qos, listener, mask);
     }
 
+    /**
+     * Create a Subscriber in this Participant.
+     *
+     * @param profile_name Subscriber profile name.
+     * @param listener Pointer to the listener (default: nullptr)
+     * @param mask StatusMask that holds statuses the listener responds to (default: all)
+     * @return Pointer to the created Subscriber.
+     */
+    RTPS_DllAPI Subscriber* create_subscriber_with_profile(
+            const std::string& profile_name,
+            SubscriberListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_subscriber_with_profile(profile_name, listener, mask);
+    }
+
+    /**
+     * Deletes an existing Subscriber.
+     *
+     * @param subscriber to be deleted.
+     * @return RETCODE_PRECONDITION_NOT_MET if the subscriber does not belong to this participant or if it has active DataReaders,
+     * RETCODE_OK if it is correctly deleted and RETCODE_ERROR otherwise.
+     */
     ReturnCode_t delete_subscriber(
             const Subscriber* subscriber)
     {
@@ -183,6 +282,7 @@
 %ignore eprosima::fastdds::dds::DomainParticipant::~DomainParticipant;
 %ignore eprosima::fastdds::dds::DomainParticipant::set_listener;
 %ignore eprosima::fastdds::dds::DomainParticipant::create_publisher;
+%ignore eprosima::fastdds::dds::DomainParticipant::create_publisher_with_profile;
 %ignore eprosima::fastdds::dds::DomainParticipant::create_subscriber;
 %ignore eprosima::fastdds::dds::DomainParticipant::delete_publisher;
 %ignore eprosima::fastdds::dds::DomainParticipant::delete_subscriber;

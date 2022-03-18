@@ -142,6 +142,7 @@
 }
 
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant;
+%ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile;
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::delete_participant;
 
 %include "fastdds/dds/domain/DomainParticipantFactory.hpp"

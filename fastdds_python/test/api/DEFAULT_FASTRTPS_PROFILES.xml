@@ -7,5 +7,25 @@
                 <name>test_name</name>
             </rtps>
         </participant>
+
+        <publisher profile_name="test_publisher_profile">
+            <qos>
+                <partition>
+                    <names>
+                        <name>partition_name_c</name>
+                    </names>
+                </partition>
+            </qos>
+        </publisher>
+
+        <subscriber profile_name="test_subscriber_profile">
+            <qos>
+                <partition>
+                    <names>
+                        <name>partition_name_b</name>
+                    </names>
+                </partition>
+            </qos>
+        </subscriber>
     </profiles>
 </dds>
