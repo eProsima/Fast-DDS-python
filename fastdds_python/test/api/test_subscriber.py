@@ -177,7 +177,7 @@ def test_create_and_delete_datareader(topic, subscriber):
          listener)
 
 
-def test_deleted_contained_entities(participant, topic, subscriber):
+def test_delete_contained_entities(participant, topic, subscriber):
     """
     This test checks:
     - Subscriber::delete_contained_entities

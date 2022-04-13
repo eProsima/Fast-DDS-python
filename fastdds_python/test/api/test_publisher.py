@@ -394,29 +394,16 @@ def test_lookup_datawriter(topic, publisher):
            publisher.delete_datawriter(datawriter))
 
 
-def test_suspend_publications():
+def test_suspend_publications(publisher):
     """
     This test checks:
     - Publisher::suspend_publications
     - Publisher::resume_publications
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            publisher.suspend_publications())
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            publisher.resume_publications())
-
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
 
 def test_wait_for_acknowlegments(publisher):
