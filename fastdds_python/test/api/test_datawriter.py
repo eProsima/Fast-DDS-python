@@ -1,6 +1,7 @@
 import datetime
 
 import fastdds
+import pytest
 import test_complete
 
 
@@ -9,110 +10,100 @@ class DataWriterListener (fastdds.DataWriterListener):
         super().__init__()
 
 
-def test_assert_liveliness():
+@pytest.fixture
+def participant():
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    return factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+
+@pytest.fixture
+def publisher(participant):
+    return participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+
+
+@pytest.fixture
+def test_type():
+    return fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+
+
+@pytest.fixture
+def test_keyed_type(test_type):
+    test_type.set(test_complete.KeyedCompleteTestTypePubSubType())
+
+
+@pytest.fixture
+def topic(participant, test_type):
+    participant.register_type(test_type, test_type.get_type_name())
+    return participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+@pytest.fixture
+def datawriter_qos():
+    return fastdds.DataWriterQos()
+
+
+@pytest.fixture
+def manual_liveliness_datawriter_qos(datawriter_qos):
+    datawriter_qos.liveliness().kind = \
+        fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS
+    return datawriter_qos
+
+
+@pytest.fixture
+def keep_all_datawriter_qos(datawriter_qos):
+    datawriter_qos.history().kind = \
+        fastdds.KEEP_ALL_HISTORY_QOS
+    return datawriter_qos
+
+
+@pytest.fixture
+def datawriter(participant, topic, publisher, datawriter_qos):
+    datawriter = publisher.create_datawriter(topic, datawriter_qos)
+
+    yield datawriter
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_assert_liveliness(manual_liveliness_datawriter_qos, datawriter):
     """
     This test checks:
     - DataWriter::assert_liveliness
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            10, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter_qos = fastdds.DataWriterQos()
-    datawriter_qos.liveliness().kind = \
-        fastdds.MANUAL_BY_PARTICIPANT_LIVELINESS_QOS
-    datawriter = publisher.create_datawriter(topic, datawriter_qos)
-    assert(datawriter is not None)
-
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.assert_liveliness())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_clear_history():
+def test_clear_history(keep_all_datawriter_qos, datawriter):
     """
     This test checks:
     - DataWriter::clear_history
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter_qos = fastdds.DataWriterQos()
-    datawriter_qos.history().kind = \
-        fastdds.KEEP_ALL_HISTORY_QOS
-    datawriter = publisher.create_datawriter(topic, datawriter_qos)
-    assert(datawriter is not None)
-
-    sample = test_complete.KeyedCompleteTestType()
-    sample.id(4)
+    sample = test_complete.CompleteTestType()
+    sample.int16_field(4)
     assert(datawriter.write(sample))
     assert([fastdds.ReturnCode_t.RETCODE_OK, 1] ==
            datawriter.clear_history())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_dispose():
+def test_dispose(test_keyed_type, datawriter):
     """
     This test checks:
     - DataWriter::dispose
     - DataWriter::dispose_w_timestamp
     - DataWriter::unregister_instance
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
@@ -139,39 +130,13 @@ def test_dispose():
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.dispose_w_timestamp(sample, ih, timestamp))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_instance_handle():
+def test_get_instance_handle(datawriter):
     """
     This test checks:
     - DataWriter::guid
     - DataWriter::get_instance_handle
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-
     guid = datawriter.guid()
     assert(fastdds.c_Guid_Unknown != guid)
     ih = datawriter.get_instance_handle()
@@ -183,94 +148,31 @@ def test_get_instance_handle():
     for i in range(0, 4):
         assert(guid.entityId.value[i] == ih.value[12+i])
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_key_value():
+def test_get_key_value(test_keyed_type, datawriter):
     """
     This test checks:
     - DataWriter::get_key_value
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     sample = test_complete.KeyedCompleteTestType()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.get_key_value(sample, ih))
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_sending_locators():
+def test_get_sending_locators(datawriter):
     """
     This test checks:
     - DataWriter::get_sending_locators
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     locator_list = fastdds.LocatorList()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_sending_locators(locator_list))
     assert(0 < locator_list.size())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_set_listener():
+def test_get_set_listener(datawriter):
     """
     This test checks:
     - DataWriter::get_listener
@@ -279,24 +181,6 @@ def test_get_set_listener():
     - StatusMask::operator ==
     - StatusMask::operator <<
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     # Overload 1
     listener = DataWriterListener()
     assert(listener is not None)
@@ -304,6 +188,7 @@ def test_get_set_listener():
            datawriter.set_listener(listener))
     assert(datawriter.get_listener() == listener)
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
+    datawriter.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -312,15 +197,17 @@ def test_get_set_listener():
         listener = DataWriterListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
-              datawriter.set_listener(listener, status_mask_1))
+               datawriter.set_listener(listener, status_mask_1))
         assert(datawriter.get_listener() == listener)
         assert(status_mask_1 == datawriter.get_status_mask())
+        datawriter.set_listener(None)
         listener = DataWriterListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                datawriter.set_listener(listener, status_mask_2))
         assert(datawriter.get_listener() == listener)
         assert(status_mask_2 == datawriter.get_status_mask())
+        datawriter.set_listener(None)
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
@@ -382,153 +269,45 @@ def test_get_set_listener():
          fastdds.StatusMask.subscription_matched(),
          m)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_liveliness_lost_status():
+def test_get_liveliness_lost_status(datawriter):
     """
     This test checks:
     - DataWriter::get_liveliness_lost_status
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     status = fastdds.LivelinessLostStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_liveliness_lost_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_matched_subscription_data():
+def test_get_matched_subscription_data(datawriter):
     """
     This test checks:
     - DataWriter::get_matched_subscription_data
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     sub_data = fastdds.SubscriptionBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.get_matched_subscription_data(sub_data, ih))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_matched_subscriptions():
+def test_get_matched_subscriptions(datawriter):
     """
     This test checks:
     - DataWriter::get_matched_subscriptions
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     ihs = fastdds.InstanceHandleVector()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.get_matched_subscriptions(ihs))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_offered_deadline_missed_status():
+def test_get_offered_deadline_missed_status(datawriter):
     """
     This test checks:
     - DataWriter::get_offered_deadline_missed_status
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     status = fastdds.OfferedDeadlineMissedStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_offered_deadline_missed_status(status))
@@ -536,39 +315,12 @@ def test_get_offered_deadline_missed_status():
     assert(0 == status.total_count_change)
     assert(fastdds.c_InstanceHandle_Unknown == status.last_instance_handle)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_offered_incompatible_qos_status():
+def test_get_offered_incompatible_qos_status(datawriter):
     """
     This test checks:
     - DataWriter::get_offered_deadline_missed_status
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     status = fastdds.OfferedIncompatibleQosStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_offered_incompatible_qos_status(status))
@@ -582,39 +334,12 @@ def test_get_offered_incompatible_qos_status():
         assert(id == policy.policy_id)
         id += 1
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_publication_matched_status():
+def test_get_publication_matched_status(datawriter):
     """
     This test checks:
     - DataWriter::get_publication_matched_status
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     status = fastdds.PublicationMatchedStatus()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_publication_matched_status(status))
@@ -624,165 +349,48 @@ def test_get_publication_matched_status():
     assert(0 == status.current_count_change)
     assert(fastdds.c_InstanceHandle_Unknown == status.last_subscription_handle)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_publisher():
+def test_get_publisher(publisher, datawriter):
     """
     This test checks:
     - DataWriter::get_publisher
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     pub = datawriter.get_publisher()
     assert(pub == publisher)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_type():
+def test_get_type(test_type, datawriter):
     """
     This test checks:
     - DataWriter::get_type
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     test_type_aux = datawriter.get_type()
     assert(test_type == test_type_aux)
     assert(test_type.get_type_name() == test_type_aux.get_type_name())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_get_topic():
+def test_get_topic(topic, datawriter):
     """
     This test checks:
     - DataWriter::get_topic
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     topic_aux = datawriter.get_topic()
     assert(topic == topic_aux)
     assert(topic.get_type_name() == topic_aux.get_type_name())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_lookup_instance():
+def test_lookup_instance(test_keyed_type, datawriter):
     """
     This test checks:
     - DataWriter::lookup_instance
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     sample = test_complete.KeyedCompleteTestType()
     sample.id(3)
     ih = datawriter.lookup_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_register_instance():
+def test_register_instance(test_keyed_type, datawriter):
     """
     This test checks:
     - DataWriter::register_instance
@@ -790,24 +398,6 @@ def test_register_instance():
     - DataWriter::unregister_instance
     - DataWriter::unregister_instance_w_timestamp
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
@@ -837,39 +427,12 @@ def test_register_instance():
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.unregister_instance_w_timestamp(sample, ih, timestamp))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_wait_for_acknowledgments():
+def test_wait_for_acknowledgments(test_keyed_type, datawriter):
     """
     This test checks:
     - DataWriter::wait_for_acknowledgments
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     sample.id(3)
@@ -884,40 +447,13 @@ def test_wait_for_acknowledgments():
            datawriter.wait_for_acknowledgments(
                sample, ih, fastdds.Duration_t(1, 0)))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
 
-
-def test_write():
+def test_write(test_keyed_type, datawriter):
     """
     This test checks:
     - DataWriter::write
     - DataWriter::write_w_timestamp
     """
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
-            0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    test_type = fastdds.TypeSupport(
-            test_complete.KeyedCompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT)
-    assert(datawriter is not None)
-
     # Overload 1
     sample = test_complete.KeyedCompleteTestType()
     assert(datawriter.write(sample))
@@ -956,12 +492,3 @@ def test_write():
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
            datawriter.write_w_timestamp(sample, ih, timestamp))
     assert(fastdds.c_InstanceHandle_Unknown == ih)
-
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))

@@ -1,32 +1,89 @@
 import fastdds
+import pytest
 import test_complete
 
 
-def test_waitset():
+@pytest.fixture
+def participant():
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(factory is not None)
-    participant = factory.create_participant(
+    return factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
-    assert(participant is not None)
-    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
-    assert(publisher is not None)
-    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
-    assert(subscriber is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.register_type(test_type, test_type.get_type_name()))
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is not None)
-    datawriter_qos = fastdds.DataWriterQos()
-    datawriter_qos.reliability().kind = fastdds.BEST_EFFORT_RELIABILITY_QOS
-    datawriter = publisher.create_datawriter(topic, datawriter_qos)
-    assert(datawriter is not None)
+
+
+@pytest.fixture
+def subscriber(participant):
+    return participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+
+
+@pytest.fixture
+def topic(participant):
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    participant.register_type(test_type, test_type.get_type_name())
+    return participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+@pytest.fixture
+def datareader(participant, topic, subscriber):
     datareader_qos = fastdds.DataReaderQos()
     datareader_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
     datareader = subscriber.create_datareader(topic, datareader_qos)
-    assert(datareader is not None)
 
+    yield datareader
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+@pytest.fixture
+def writer_participant():
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    return factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+
+@pytest.fixture
+def writer_topic(writer_participant):
+    test_type = fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+    writer_participant.register_type(test_type, test_type.get_type_name())
+    return writer_participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+@pytest.fixture
+def publisher(writer_participant):
+    return writer_participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+
+
+@pytest.fixture
+def datawriter(writer_participant, writer_topic, publisher):
+    datawriter_qos = fastdds.DataWriterQos()
+    datawriter_qos.reliability().kind = fastdds.BEST_EFFORT_RELIABILITY_QOS
+    datawriter = publisher.create_datawriter(writer_topic, datawriter_qos)
+
+    yield datawriter
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           writer_participant.delete_topic(writer_topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           writer_participant.delete_publisher(publisher))
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(writer_participant))
+
+
+def test_waitset(datareader, datawriter):
     status_cond = datareader.get_statuscondition()
     guard_cond = fastdds.GuardCondition()
     waitset = fastdds.WaitSet()
@@ -75,16 +132,3 @@ def test_waitset():
            waitset.detach_condition(status_cond))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            waitset.detach_condition(guard_cond))
-
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(participant))
