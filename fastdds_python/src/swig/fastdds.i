@@ -67,7 +67,6 @@ bool has_statistics()
   return false;
 #endif
 }
-
 %}
 
 bool has_statistics();

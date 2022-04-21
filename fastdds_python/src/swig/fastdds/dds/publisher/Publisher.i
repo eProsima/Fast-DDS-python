@@ -16,7 +16,131 @@
 #include "fastdds/dds/publisher/Publisher.hpp"
 %}
 
+%extend eprosima::fastdds::dds::Publisher
+{
+    ReturnCode_t set_listener(
+            PublisherListener* listener)
+    {
+        eprosima::fastdds::dds::PublisherListener* old_listener =
+            const_cast<eprosima::fastdds::dds::PublisherListener*>(self->get_listener());
+
+        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener);
+
+        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
+        {
+
+            SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+            if (nullptr != listener)
+            {
+                Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+                if (nullptr != director)
+                {
+                    Py_INCREF(director->swig_get_self());
+                }
+            }
+            if (nullptr != old_listener)
+            {
+                Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+                if (nullptr != director)
+                {
+                    Py_DECREF(director->swig_get_self());
+                }
+            }
+            SWIG_PYTHON_THREAD_END_BLOCK;
+
+        }
+
+        return ret;
+    }
+
+    ReturnCode_t set_listener(
+            PublisherListener* listener,
+            const StatusMask& mask)
+    {
+        eprosima::fastdds::dds::PublisherListener* old_listener =
+            const_cast<eprosima::fastdds::dds::PublisherListener*>(self->get_listener());
+
+        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener, mask);
+
+        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
+        {
+
+            SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+            if (nullptr != listener)
+            {
+                Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+                if (nullptr != director)
+                {
+                    Py_INCREF(director->swig_get_self());
+                }
+            }
+            if (nullptr != old_listener)
+            {
+                Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+                if (nullptr != director)
+                {
+                    Py_DECREF(director->swig_get_self());
+                }
+            }
+            SWIG_PYTHON_THREAD_END_BLOCK;
+
+        }
+
+        return ret;
+    }
+
+    DataWriter* create_datawriter(
+            Topic* topic,
+            const DataWriterQos& writer_qos,
+            DataWriterListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_datawriter(topic, writer_qos, listener, mask);
+    }
+
+    ReturnCode_t delete_datawriter(
+            const DataWriter* writer)
+    {
+        eprosima::fastdds::dds::DataWriterListener* listener =
+            const_cast<eprosima::fastdds::dds::DataWriterListener*>(writer->get_listener());
+        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_datawriter(writer);
+
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_DECREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return ret;
+    }
+}
+
 %ignore eprosima::fastdds::dds::Publisher::Publisher;
 %ignore eprosima::fastdds::dds::Publisher::~Publisher;
+%ignore eprosima::fastdds::dds::Publisher::set_listener;
+%ignore eprosima::fastdds::dds::Publisher::create_datawriter;
+%ignore eprosima::fastdds::dds::Publisher::delete_datawriter;
 
 %include "fastdds/dds/publisher/Publisher.hpp"

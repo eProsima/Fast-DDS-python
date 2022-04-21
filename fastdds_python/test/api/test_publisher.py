@@ -1,7 +1,7 @@
 import fastdds
 import pytest
 import test_complete
-
+import time
 
 class PublisherListener (fastdds.PublisherListener):
     def __init__(self):
@@ -54,6 +54,27 @@ def topic(participant):
     return participant.create_topic(
             "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
 
+@pytest.fixture
+def test_type():
+    return fastdds.TypeSupport(
+            test_complete.CompleteTestTypePubSubType())
+
+@pytest.fixture
+def reader_participant():
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    return factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+@pytest.fixture
+def reader_topic(reader_participant, test_type):
+    reader_participant.register_type(test_type, test_type.get_type_name())
+    return reader_participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+
+
+@pytest.fixture
+def subscriber(reader_participant):
+    return reader_participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
 
 def test_coherent_changes(publisher):
     """
@@ -295,7 +316,6 @@ def test_get_set_listener(publisher):
            publisher.set_listener(listener))
     assert(publisher.get_listener() == listener)
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    publisher.set_listener(None)
 
     def test(status_mask_1, status_mask_2):
         """
@@ -307,14 +327,12 @@ def test_get_set_listener(publisher):
                publisher.set_listener(listener, status_mask_1))
         assert(publisher.get_listener() == listener)
         assert(status_mask_1 == publisher.get_status_mask())
-        publisher.set_listener(None)
         listener = PublisherListener()
         assert(listener is not None)
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                publisher.set_listener(listener, status_mask_2))
         assert(publisher.get_listener() == listener)
         assert(status_mask_2 == publisher.get_status_mask())
-        publisher.set_listener(None)
 
     # Overload 2: Different status masks
     test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
@@ -414,3 +432,36 @@ def test_wait_for_acknowlegments(publisher):
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            publisher.wait_for_acknowledgments(fastdds.Duration_t(3, 0)))
     # TODO Test a timeout
+
+
+def test_listener_ownership(participant, reader_participant, topic,
+                            reader_topic, subscriber):
+
+    def create_publisher():
+        listener = PublisherListener()
+        return participant.create_publisher(
+                fastdds.PUBLISHER_QOS_DEFAULT, listener)
+
+    publisher = create_publisher()
+    datawriter = publisher.create_datawriter(
+                topic, fastdds.DATAWRITER_QOS_DEFAULT)
+    datareader = subscriber.create_datareader(
+                reader_topic, fastdds.DATAREADER_QOS_DEFAULT)
+    time.sleep(1)
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           reader_participant.delete_topic(reader_topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           reader_participant.delete_subscriber(subscriber))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(reader_participant))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           publisher.delete_datawriter(datawriter))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           factory.delete_participant(participant))

@@ -16,4 +16,58 @@
 #include "fastdds/dds/domain/DomainParticipantFactory.hpp"
 %}
 
+/*
+%extend eprosima::fastdds::dds::DomainParticipantFactory
+{
+}
+*/
+%extend eprosima::fastdds::dds::DomainParticipantFactory
+{
+    DomainParticipant* create_participant(
+            DomainId_t domain_id,
+            const DomainParticipantQos& qos,
+            DomainParticipantListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_participant(domain_id, qos, listener, mask);
+    }
+
+    ReturnCode_t delete_participant(
+            DomainParticipant* part)
+    {
+        eprosima::fastdds::dds::DomainParticipantListener* listener =
+            const_cast<eprosima::fastdds::dds::DomainParticipantListener*>(part->get_listener());
+        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_participant(part);
+
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_DECREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return ret;
+    }
+}
+
+%ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant;
+%ignore eprosima::fastdds::dds::DomainParticipantFactory::delete_participant;
+
 %include "fastdds/dds/domain/DomainParticipantFactory.hpp"
