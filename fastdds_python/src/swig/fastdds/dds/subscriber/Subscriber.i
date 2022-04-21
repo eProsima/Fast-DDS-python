@@ -18,6 +18,12 @@
 
 %extend eprosima::fastdds::dds::Subscriber
 {
+    /**
+     * Modifies the SubscriberListener, sets the mask to StatusMask::all()
+     *
+     * @param listener new value for SubscriberListener
+     * @return RETCODE_OK
+     */
     ReturnCode_t set_listener(
             SubscriberListener* listener)
     {
@@ -55,6 +61,13 @@
         return ret;
     }
 
+    /**
+     * Modifies the SubscriberListener.
+     *
+     * @param listener new value for the SubscriberListener
+     * @param mask StatusMask that holds statuses the listener responds to.
+     * @return RETCODE_OK
+     */
     ReturnCode_t set_listener(
             SubscriberListener* listener,
             const StatusMask& mask)
@@ -93,6 +106,15 @@
         return ret;
     }
 
+    /**
+     * This operation creates a DataReader. The returned DataReader will be attached and belong to the Subscriber.
+     *
+     * @param topic Topic the DataReader will be listening.
+     * @param reader_qos QoS of the DataReader.
+     * @param listener Pointer to the listener (default: nullptr)
+     * @param mask StatusMask that holds statuses the listener responds to (default: all).
+     * @return Pointer to the created DataReader. nullptr if failed.
+     */
     DataReader* create_datareader(
             TopicDescription* topic,
             const DataReaderQos& reader_qos,
@@ -114,6 +136,47 @@
         return self->create_datareader(topic, reader_qos, listener, mask);
     }
 
+    /**
+     * This operation creates a DataReader. The returned DataReader will be attached and belongs to the Subscriber.
+     *
+     * @param topic Topic the DataReader will be listening.
+     * @param profile_name DataReader profile name.
+     * @param listener Pointer to the listener (default: nullptr)
+     * @param mask StatusMask that holds statuses the listener responds to (default: all).
+     * @return Pointer to the created DataReader. nullptr if failed.
+     */
+    RTPS_DllAPI DataReader* create_datareader_with_profile(
+            TopicDescription* topic,
+            const std::string& profile_name,
+            DataReaderListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_datareader_with_profile(topic, profile_name, listener, mask);
+    }
+
+    /**
+     * This operation deletes a DataReader that belongs to the Subscriber.
+     *
+     * The delete_datareader operation must be called on the same Subscriber object used to create the DataReader.
+     * If delete_datareader is called on a different Subscriber, the operation will have no effect and it will
+     * return an error.
+     *
+     * @param reader DataReader to delete
+     * @return RETCODE_PRECONDITION_NOT_MET if the datareader does not belong to this subscriber, RETCODE_OK if it is correctly
+     * deleted and RETCODE_ERROR otherwise.
+     */
     ReturnCode_t delete_datareader(
             const DataReader* reader)
     {
@@ -141,6 +204,7 @@
 %ignore eprosima::fastdds::dds::Subscriber::~Subscriber;
 %ignore eprosima::fastdds::dds::Subscriber::set_listener;
 %ignore eprosima::fastdds::dds::Subscriber::create_datareader;
+%ignore eprosima::fastdds::dds::Subscriber::create_datareader_with_profile;
 %ignore eprosima::fastdds::dds::Subscriber::delete_datareader;
 
 %include "fastdds/dds/subscriber/Subscriber.hpp"
