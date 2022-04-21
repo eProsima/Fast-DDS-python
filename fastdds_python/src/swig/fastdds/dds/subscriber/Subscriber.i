@@ -204,6 +204,7 @@
 %ignore eprosima::fastdds::dds::Subscriber::~Subscriber;
 %ignore eprosima::fastdds::dds::Subscriber::set_listener;
 %ignore eprosima::fastdds::dds::Subscriber::create_datareader;
+%ignore eprosima::fastdds::dds::Subscriber::create_datareader_with_profile;
 %ignore eprosima::fastdds::dds::Subscriber::delete_datareader;
 
 %include "fastdds/dds/subscriber/Subscriber.hpp"
