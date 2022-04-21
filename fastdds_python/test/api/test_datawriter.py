@@ -96,24 +96,6 @@ def subscriber(reader_participant):
     return reader_participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
 
 
-@pytest.fixture
-def datareader(reader_participant, reader_topic, subscriber):
-    datareader = subscriber.create_datareader(
-            reader_topic, fastdds.DATAREADER_QOS_DEFAULT)
-
-    yield datareader
-
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           reader_participant.delete_topic(reader_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           reader_participant.delete_subscriber(subscriber))
-    factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
-           factory.delete_participant(reader_participant))
-
-
 def test_assert_liveliness(manual_liveliness_datawriter_qos, datawriter):
     """
     This test checks:

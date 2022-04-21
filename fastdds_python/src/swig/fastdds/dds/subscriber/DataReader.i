@@ -43,26 +43,31 @@
 
         eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener);
 
-        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-        if (nullptr != listener)
+        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
         {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
 
-            if (nullptr != director)
+            SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+            if (nullptr != listener)
             {
-                Py_INCREF(director->swig_get_self());
-            }
-        }
-        if (nullptr != old_listener)
-        {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+                Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
 
-            if (nullptr != director)
-            {
-                Py_DECREF(director->swig_get_self());
+                if (nullptr != director)
+                {
+                    Py_INCREF(director->swig_get_self());
+                }
             }
+            if (nullptr != old_listener)
+            {
+                Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+
+                if (nullptr != director)
+                {
+                    Py_DECREF(director->swig_get_self());
+                }
+            }
+            SWIG_PYTHON_THREAD_END_BLOCK;
+
         }
-        SWIG_PYTHON_THREAD_END_BLOCK;
 
         return ret;
     }
@@ -76,26 +81,31 @@
 
         eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener, mask);
 
-        SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-        if (nullptr != listener)
+        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
         {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
 
-            if (nullptr != director)
+            SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+            if (nullptr != listener)
             {
-                Py_INCREF(director->swig_get_self());
+                Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+    
+                if (nullptr != director)
+                {
+                    Py_INCREF(director->swig_get_self());
+                }
             }
-        }
-        if (nullptr != old_listener)
-        {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+            if (nullptr != old_listener)
+            {
+                Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
+    
+                if (nullptr != director)
+                {
+                    Py_DECREF(director->swig_get_self());
+                }
+            }
+            SWIG_PYTHON_THREAD_END_BLOCK;
 
-            if (nullptr != director)
-            {
-                Py_DECREF(director->swig_get_self());
-            }
         }
-        SWIG_PYTHON_THREAD_END_BLOCK;
 
         return ret;
     }
