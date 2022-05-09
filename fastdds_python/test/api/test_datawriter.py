@@ -178,17 +178,12 @@ def test_get_key_value(test_keyed_type, datawriter):
     sample = test_complete.KeyedCompleteTestType()
     sample.id(1)
     ih = datawriter.register_instance(sample)
-    wrong_ih = fastdds.InstanceHandle_t()
-    wrong_ih.value[0] = 27;
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    assert(wrong_ih != ih)
     
-    # Check wrong handles
+    # Check wrong handle
     test_sample = test_complete.KeyedCompleteTestType()
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(test_sample, fastdds.c_InstanceHandle_Unknown))
-    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
-           datawriter.get_key_value(test_sample, wrong_ih))
     
     # Check wrong sample
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
