@@ -174,12 +174,55 @@ def test_get_key_value(test_keyed_type, datawriter):
     This test checks:
     - DataWriter::get_key_value
     """
+    # Prepare test variables
     sample = test_complete.KeyedCompleteTestType()
-    ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
-           datawriter.get_key_value(sample, ih))
-    assert(fastdds.c_InstanceHandle_Unknown == ih)
-
+    sample.id(1)
+    ih = datawriter.register_instance(sample)
+    wrong_ih = fastdds.InstanceHandle_t()
+    wrong_ih.value[0] = 27;
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    assert(wrong_ih != ih)
+    
+    # Check wrong handles
+    test_sample = test_complete.KeyedCompleteTestType()
+    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+           datawriter.get_key_value(test_sample, fastdds.c_InstanceHandle_Unknown))
+    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+           datawriter.get_key_value(test_sample, wrong_ih))
+    
+    # Check wrong sample
+    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+           datawriter.get_key_value(None, ih))
+    
+    # Check correct case
+    test_sample = test_complete.KeyedCompleteTestType()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.get_key_value(test_sample, ih))
+    assert(test_sample.id() == sample.id());
+    
+    # Calling get_key_value on an unregistered instance should fail
+    test_sample = test_complete.KeyedCompleteTestType()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.unregister_instance(sample, ih))
+    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+           datawriter.get_key_value(test_sample, ih))
+    
+    # Calling get_key_value with a valid instance should work
+    test_sample = test_complete.KeyedCompleteTestType()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.write(sample, fastdds.c_InstanceHandle_Unknown))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.get_key_value(test_sample, ih))
+    assert(test_sample.id() == sample.id());
+    
+    # Calling get_key_value on a disposed instance should work
+    test_sample = test_complete.KeyedCompleteTestType()
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.dispose(sample, ih))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.get_key_value(test_sample, ih))
+    assert(test_sample.id() == sample.id());
+    
 
 def test_get_sending_locators(datawriter):
     """
