@@ -472,15 +472,33 @@ def test_is_sample_valid(transient_datareader_qos, datareader,
     assert(sample.int16_field() == data.int16_field())
 
 
-def test_lookup_instance(test_keyed_type, datareader):
+def test_lookup_instance(transient_datareader_qos, test_keyed_type, datareader,
+                         datawriter):
     """
     This test checks:
     - DataReader::lookup_instance
     """
+
+    # Test when parameter is None
+    ih = datareader.lookup_instance(None)
+    assert(fastdds.c_InstanceHandle_Unknown == ih)
+
+    # Test when instance is not registered
     sample = test_complete.KeyedCompleteTestType()
     sample.id(3)
     ih = datareader.lookup_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown == ih)
+
+    # Test when instance is registered
+    writer_ih = datawriter.register_instance(sample)
+    assert(fastdds.c_InstanceHandle_Unknown != writer_ih)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datawriter.write(sample, writer_ih))
+
+    assert(datareader.wait_for_unread_message(
+        fastdds.Duration_t(5, 0)))
+    ih = datareader.lookup_instance(sample)
+    assert(writer_ih == ih)
 
 
 def test_read(transient_datareader_qos, datareader,
