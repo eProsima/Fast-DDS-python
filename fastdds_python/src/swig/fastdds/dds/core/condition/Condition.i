@@ -20,6 +20,7 @@
 
 // Ignore StatusCondition constructor
 %ignore eprosima::fastdds::dds::StatusCondition::StatusCondition;
+%ignore eprosima::fastdds::dds::StatusCondition::~StatusCondition;
 
 %exception eprosima::fastdds::dds::Condition::to_status_condition()
 {
