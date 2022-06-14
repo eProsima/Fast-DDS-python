@@ -146,8 +146,8 @@ def test_dispose(test_keyed_type, datawriter):
     timestamp = fastdds.Time_t()
     timestamp.seconds = now.second
     ih = datawriter.register_instance_w_timestamp(sample, timestamp)
-    assert(fastdds.c_InstanceHandle_Unknown == ih)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.dispose_w_timestamp(sample, ih, timestamp))
 
 
@@ -478,8 +478,8 @@ def test_register_instance(test_keyed_type, datawriter):
     timestamp = fastdds.Time_t()
     timestamp.seconds = now.second
     ih = datawriter.register_instance_w_timestamp(sample, timestamp)
-    assert(fastdds.c_InstanceHandle_Unknown == ih)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.c_InstanceHandle_Unknown != ih)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.unregister_instance_w_timestamp(sample, ih, timestamp))
 
 
@@ -544,9 +544,8 @@ def test_write(test_keyed_type, datawriter):
     now = datetime.datetime.now().time()
     timestamp = fastdds.Time_t()
     timestamp.seconds = now.second
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.write_w_timestamp(sample, ih, timestamp))
-    assert(fastdds.c_InstanceHandle_Unknown == ih)
 
 
 def test_listener_ownership(participant, reader_participant, topic,

@@ -395,7 +395,7 @@ def test_get_sample_rejected_status(datareader):
     - DataReader::get_sample_rejected_status
     """
     status = fastdds.SampleRejectedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.get_sample_rejected_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
