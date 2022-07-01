@@ -118,9 +118,9 @@ def test_create_querycondition(datareader):
     - DataReader::create_querycondition
     - DataReader::delete_contained_entities
     """
-    sv = fastdds.SampleStateKindVector()
-    vv = fastdds.ViewStateKindVector()
-    iv = fastdds.InstanceStateKindVector()
+    sv = fastdds.ANY_SAMPLE_STATE
+    vv = fastdds.ANY_VIEW_STATE
+    iv = fastdds.ANY_INSTANCE_STATE
     qp = fastdds.StringVector()
 
     querycondition = datareader.create_querycondition(
@@ -136,9 +136,10 @@ def test_create_readcondition(datareader):
     - DataReader::create_readcondition
     - DataReader::delete_readcondition
     """
-    sv = fastdds.SampleStateKindVector()
-    vv = fastdds.ViewStateKindVector()
-    iv = fastdds.InstanceStateKindVector()
+    sv = fastdds.ANY_SAMPLE_STATE
+    vv = fastdds.ANY_VIEW_STATE
+    iv = fastdds.ANY_INSTANCE_STATE
+
     readcondition = datareader.create_readcondition(
                sv, vv, iv)
     assert(readcondition is None)
