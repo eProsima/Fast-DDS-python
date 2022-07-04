@@ -716,11 +716,10 @@ def test_find_topic(participant):
     assert(topic is not None)
 
     topic_copy = participant.find_topic("Complete", fastdds.Duration_t(1, 0))
-    assert(topic_copy is None)  # Not implemented yet
-    # assert(topic.get_type_name() == topic_copy.get_type_name())
-    # assert(topic.get_name() == topic_copy.get_name())
-    # assert(fastdds.ReturnCode_t.RETCODE_OK ==
-    #        participant.delete_topic(topic_copy))
+    assert(topic.get_type_name() == topic_copy.get_type_name())
+    assert(topic.get_name() == topic_copy.get_name())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           participant.delete_topic(topic_copy))
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))

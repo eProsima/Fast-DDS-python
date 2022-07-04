@@ -39,6 +39,8 @@ def subscriber(participant, topic):
     yield subscriber
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           subscriber.delete_contained_entities())
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.delete_topic(topic))
@@ -259,6 +261,7 @@ def test_create_datareader_with_profile(topic, subscriber):
                 topic, 'test_datareader_profile', listnr, status_mask_2)
         assert(datareader is not None)
         assert(datareader.is_enabled())
+        qos = datareader.get_qos()
         assert(fastdds.RELIABLE_RELIABILITY_QOS ==
                qos.reliability().kind)
         assert(status_mask_2 == datareader.get_status_mask())
