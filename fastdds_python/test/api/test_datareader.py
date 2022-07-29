@@ -142,8 +142,8 @@ def test_create_readcondition(datareader):
 
     readcondition = datareader.create_readcondition(
                sv, vv, iv)
-    assert(readcondition is None)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(readcondition is not None)
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.delete_readcondition(readcondition))
 
 
