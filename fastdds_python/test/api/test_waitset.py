@@ -1,3 +1,10 @@
+# until https://bugs.python.org/issue46276 is not fixed we can apply this
+# workaround on windows
+import os
+if os.name == 'nt':
+    import win32api
+    win32api.LoadLibrary('test_complete')
+
 import fastdds
 import pytest
 import test_complete
@@ -86,6 +93,12 @@ def datawriter(writer_participant, writer_topic, publisher):
 def test_waitset(datareader, datawriter):
     status_cond = datareader.get_statuscondition()
     guard_cond = fastdds.GuardCondition()
+    read_cond = datareader.create_readcondition(
+            fastdds.ANY_SAMPLE_STATE,
+            fastdds.ANY_VIEW_STATE,
+            fastdds.ANY_INSTANCE_STATE)
+    assert(read_cond is not None)
+
     waitset = fastdds.WaitSet()
     attached_conds = fastdds.ConditionSeq()
     conds = fastdds.ConditionSeq()
@@ -95,12 +108,15 @@ def test_waitset(datareader, datawriter):
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            waitset.attach_condition(guard_cond))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           waitset.attach_condition(read_cond))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            waitset.get_conditions(attached_conds))
-    assert(2 == len(attached_conds))
+    assert(3 == len(attached_conds))
     for c in attached_conds:
         if ('StatusCondition' == str(c)):
             try:
                 attached_status_cond = c.to_guard_condition()
+                attached_status_cond = c.to_read_condition()
                 assert(False)
             except TypeError:
                 pass
@@ -109,11 +125,21 @@ def test_waitset(datareader, datawriter):
         elif ('GuardCondition' == str(c)):
             try:
                 attached_guard_cond = c.to_status_condition()
+                attached_guard_cond = c.to_read_condition()
                 assert(False)
             except TypeError:
                 pass
             attached_guard_cond = c.to_guard_condition()
             assert(guard_cond == attached_guard_cond)
+        elif ('ReadCondition' == str(c)):
+            try:
+                attached_read_cond = c.to_status_condition()
+                attached_read_cond = c.to_guard_condition()
+                assert(False)
+            except TypeError:
+                pass
+            attached_read_cond = c.to_read_condition()
+            assert(read_cond == attached_read_cond)
 
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            waitset.wait(conds, fastdds.Duration_t(1, 0)))
@@ -132,3 +158,8 @@ def test_waitset(datareader, datawriter):
            waitset.detach_condition(status_cond))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            waitset.detach_condition(guard_cond))
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           waitset.detach_condition(read_cond))
+
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+           datareader.delete_readcondition(read_cond))

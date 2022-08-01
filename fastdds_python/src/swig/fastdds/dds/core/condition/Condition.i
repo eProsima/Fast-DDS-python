@@ -16,11 +16,15 @@
 #include "fastdds/dds/core/condition/Condition.hpp"
 #include "fastdds/dds/core/condition/StatusCondition.hpp"
 #include "fastdds/dds/core/condition/GuardCondition.hpp"
+#include "fastdds/dds/subscriber/ReadCondition.hpp"
 %}
 
 // Ignore StatusCondition constructor
 %ignore eprosima::fastdds::dds::StatusCondition::StatusCondition;
 %ignore eprosima::fastdds::dds::StatusCondition::~StatusCondition;
+// Ignore ReadCondition constructor
+%ignore eprosima::fastdds::dds::ReadCondition::ReadCondition;
+%ignore eprosima::fastdds::dds::ReadCondition::~ReadCondition;
 
 %exception eprosima::fastdds::dds::Condition::to_status_condition()
 {
@@ -46,6 +50,18 @@
     }
 }
 
+%exception eprosima::fastdds::dds::Condition::to_read_condition()
+{
+    try
+    {
+        $action
+    }
+    catch(std::bad_cast ex)
+    {
+        SWIG_exception(SWIG_TypeError, "Bad cast of Condition");
+    }
+}
+
 %extend eprosima::fastdds::dds::Condition
 {
     std::string __str__()
@@ -57,6 +73,10 @@
         else if (nullptr != dynamic_cast<eprosima::fastdds::dds::GuardCondition*>(self))
         {
             return "GuardCondition";
+        }
+        else if (nullptr != dynamic_cast<eprosima::fastdds::dds::ReadCondition*>(self))
+        {
+            return "ReadCondition";
         }
 
         return "None";
@@ -86,6 +106,19 @@
         }
 
         return guard_cond;
+    }
+
+    eprosima::fastdds::dds::ReadCondition* to_read_condition()
+    {
+        eprosima::fastdds::dds::ReadCondition* read_cond =
+            dynamic_cast<eprosima::fastdds::dds::ReadCondition*>(self);
+
+        if (nullptr == read_cond)
+        {
+            throw std::bad_cast();
+        }
+
+        return read_cond;
     }
 }
 
@@ -117,9 +150,27 @@
     }
 }
 
+%extend eprosima::fastdds::dds::ReadCondition
+{
+    std::string __str__()
+    {
+        return "ReadCondition";
+    }
+
+    bool __eq__(
+            const eprosima::fastdds::dds::ReadCondition* s1)
+    {
+        return s1 == self;
+    }
+}
+
 // Template for ConditionSeq
 %template(ConditionSeq) std::vector<eprosima::fastdds::dds::Condition*>;
 
 %include "fastdds/dds/core/condition/Condition.hpp"
 %include "fastdds/dds/core/condition/StatusCondition.hpp"
 %include "fastdds/dds/core/condition/GuardCondition.hpp"
+%include "fastdds/dds/subscriber/InstanceState.hpp"
+%include "fastdds/dds/subscriber/SampleState.hpp"
+%include "fastdds/dds/subscriber/ViewState.hpp"
+%include "fastdds/dds/subscriber/ReadCondition.hpp"
