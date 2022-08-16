@@ -114,30 +114,33 @@ def test_waitset(datareader, datawriter):
     assert(3 == len(attached_conds))
     for c in attached_conds:
         if ('StatusCondition' == str(c)):
-            try:
-                attached_status_cond = c.to_guard_condition()
-                attached_status_cond = c.to_read_condition()
-                assert(False)
-            except TypeError:
-                pass
+            for m in [c.to_guard_condition, c.to_read_condition]:
+                try:
+                    m()
+                    assert(False)
+                except TypeError:
+                    pass
+
             attached_status_cond = c.to_status_condition()
             assert(status_cond == attached_status_cond)
         elif ('GuardCondition' == str(c)):
-            try:
-                attached_guard_cond = c.to_status_condition()
-                attached_guard_cond = c.to_read_condition()
-                assert(False)
-            except TypeError:
-                pass
+            for m in [c.to_status_condition, c.to_read_condition]:
+                try:
+                    m()
+                    assert(False)
+                except TypeError:
+                    pass
+
             attached_guard_cond = c.to_guard_condition()
             assert(guard_cond == attached_guard_cond)
         elif ('ReadCondition' == str(c)):
-            try:
-                attached_read_cond = c.to_status_condition()
-                attached_read_cond = c.to_guard_condition()
-                assert(False)
-            except TypeError:
-                pass
+            for m in [c.to_status_condition, c.to_guard_condition]:
+                try:
+                    m()
+                    assert(False)
+                except TypeError:
+                    pass
+
             attached_read_cond = c.to_read_condition()
             assert(read_cond == attached_read_cond)
 
