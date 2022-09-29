@@ -93,7 +93,8 @@ bool StructTypePubSubType::deserialize(
         eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
         // Object that deserializes the data.
-        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN,
+                eprosima::fastcdr::Cdr::DDS_CDR);
 
         // Deserialize encapsulation.
         deser.read_encapsulation();
@@ -170,8 +171,6 @@ bool StructTypePubSubType::getKey(
     return true;
 }
 
-
-
 CompleteTestTypePubSubType::CompleteTestTypePubSubType()
 {
     setName("CompleteTestType");
@@ -235,7 +234,8 @@ bool CompleteTestTypePubSubType::deserialize(
         eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
         // Object that deserializes the data.
-        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN,
+                eprosima::fastcdr::Cdr::DDS_CDR);
 
         // Deserialize encapsulation.
         deser.read_encapsulation();
@@ -375,7 +375,8 @@ bool KeyedCompleteTestTypePubSubType::deserialize(
         eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
         // Object that deserializes the data.
-        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
+        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN,
+                eprosima::fastcdr::Cdr::DDS_CDR);
 
         // Deserialize encapsulation.
         deser.read_encapsulation();
@@ -451,4 +452,3 @@ bool KeyedCompleteTestTypePubSubType::getKey(
     }
     return true;
 }
-
