@@ -36,10 +36,10 @@ using namespace eprosima::fastcdr::exception;
 
 HelloWorld::HelloWorld()
 {
-    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@1f36e637
+    // m_index com.eprosima.idl.parser.typecode.PrimitiveTypeCode@627551fb
     m_index = 0;
-    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@578486a3
-    m_message ="";
+    // m_message com.eprosima.idl.parser.typecode.StringTypeCode@2758fe70
+    m_message = "";
 
 }
 
@@ -133,7 +133,7 @@ void HelloWorld::serialize(
 {
 
     scdr << m_index;
-    scdr << m_message;
+    scdr << m_message.c_str();
 
 }
 
@@ -232,5 +232,5 @@ void HelloWorld::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
     (void) scdr;
-      
+
 }
