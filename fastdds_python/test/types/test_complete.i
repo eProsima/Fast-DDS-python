@@ -321,104 +321,104 @@
 %ignore CompleteTestType::struct_field();
 %rename("%s") CompleteTestType::struct_field() const;
 
-%ignore CompleteTestType::array_char_field(std::array<char, max_array_size>&&);
+%ignore CompleteTestType::array_char_field(std::array<char, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_char_field() const;
-%template(char_max_array_size_array) std::array<char,max_array_size>;
-%ignore CompleteTestType::array_uint8_field(std::array<uint8_t, max_array_size>&&);
+%template(char_3_array) std::array<char,3>;
+%ignore CompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint8_field() const;
-%template(uint8_t_max_array_size_array) std::array<uint8_t,max_array_size>;
-%ignore CompleteTestType::array_int16_field(std::array<int16_t, max_array_size>&&);
+%template(uint8_t_3_array) std::array<uint8_t,3>;
+%ignore CompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int16_field() const;
-%template(int16_t_max_array_size_array) std::array<int16_t,max_array_size>;
-%ignore CompleteTestType::array_uint16_field(std::array<uint16_t, max_array_size>&&);
+%template(int16_t_3_array) std::array<int16_t,3>;
+%ignore CompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint16_field() const;
-%template(uint16_t_max_array_size_array) std::array<uint16_t,max_array_size>;
-%ignore CompleteTestType::array_int32_field(std::array<int32_t, max_array_size>&&);
+%template(uint16_t_3_array) std::array<uint16_t,3>;
+%ignore CompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int32_field() const;
-%template(int32_t_max_array_size_array) std::array<int32_t,max_array_size>;
-%ignore CompleteTestType::array_uint32_field(std::array<uint32_t, max_array_size>&&);
+%template(int32_t_3_array) std::array<int32_t,3>;
+%ignore CompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint32_field() const;
-%template(uint32_t_max_array_size_array) std::array<uint32_t,max_array_size>;
-%ignore CompleteTestType::array_int64_field(std::array<int64_t, max_array_size>&&);
+%template(uint32_t_3_array) std::array<uint32_t,3>;
+%ignore CompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int64_field() const;
-%template(int64_t_max_array_size_array) std::array<int64_t,max_array_size>;
-%ignore CompleteTestType::array_uint64_field(std::array<uint64_t, max_array_size>&&);
+%template(int64_t_3_array) std::array<int64_t,3>;
+%ignore CompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint64_field() const;
-%template(uint64_t_max_array_size_array) std::array<uint64_t,max_array_size>;
-%ignore CompleteTestType::array_float_field(std::array<float, max_array_size>&&);
+%template(uint64_t_3_array) std::array<uint64_t,3>;
+%ignore CompleteTestType::array_float_field(std::array<float, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_float_field() const;
-%template(float_max_array_size_array) std::array<float,max_array_size>;
-%ignore CompleteTestType::array_double_field(std::array<double, max_array_size>&&);
+%template(float_3_array) std::array<float,3>;
+%ignore CompleteTestType::array_double_field(std::array<double, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_double_field() const;
-%template(double_max_array_size_array) std::array<double,max_array_size>;
-%ignore CompleteTestType::array_bool_field(std::array<bool, max_array_size>&&);
+%template(double_3_array) std::array<double,3>;
+%ignore CompleteTestType::array_bool_field(std::array<bool, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_bool_field() const;
-%template(bool_max_array_size_array) std::array<bool,max_array_size>;
-%ignore CompleteTestType::array_enum_field(std::array<Color, max_array_size>&&);
+%template(bool_3_array) std::array<bool,3>;
+%ignore CompleteTestType::array_enum_field(std::array<Color, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum_field() const;
-%template(Color_max_array_size_array) std::array<Color,max_array_size>;
-%ignore CompleteTestType::array_enum2_field(std::array<Material, max_array_size>&&);
+%template(Color_3_array) std::array<Color,3>;
+%ignore CompleteTestType::array_enum2_field(std::array<Material, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum2_field() const;
-%template(Material_max_array_size_array) std::array<Material,max_array_size>;
-%ignore CompleteTestType::array_struct_field(std::array<StructType, max_array_size>&&);
+%template(Material_3_array) std::array<Material,3>;
+%ignore CompleteTestType::array_struct_field(std::array<StructType, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_struct_field() const;
-%template(StructType_max_array_size_array) std::array<StructType,max_array_size>;
+%template(StructType_3_array) std::array<StructType,3>;
 %ignore CompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -797,104 +797,104 @@
 %ignore KeyedCompleteTestType::struct_field();
 %rename("%s") KeyedCompleteTestType::struct_field() const;
 
-%ignore KeyedCompleteTestType::array_char_field(std::array<char, max_array_size>&&);
+%ignore KeyedCompleteTestType::array_char_field(std::array<char, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_char_field() const;
-%template(char_max_array_size_array) std::array<char,max_array_size>;
-%ignore KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, max_array_size>&&);
+%template(char_3_array) std::array<char,3>;
+%ignore KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint8_field() const;
-%template(uint8_t_max_array_size_array) std::array<uint8_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_int16_field(std::array<int16_t, max_array_size>&&);
+%template(uint8_t_3_array) std::array<uint8_t,3>;
+%ignore KeyedCompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int16_field() const;
-%template(int16_t_max_array_size_array) std::array<int16_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, max_array_size>&&);
+%template(int16_t_3_array) std::array<int16_t,3>;
+%ignore KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint16_field() const;
-%template(uint16_t_max_array_size_array) std::array<uint16_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_int32_field(std::array<int32_t, max_array_size>&&);
+%template(uint16_t_3_array) std::array<uint16_t,3>;
+%ignore KeyedCompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int32_field() const;
-%template(int32_t_max_array_size_array) std::array<int32_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, max_array_size>&&);
+%template(int32_t_3_array) std::array<int32_t,3>;
+%ignore KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint32_field() const;
-%template(uint32_t_max_array_size_array) std::array<uint32_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_int64_field(std::array<int64_t, max_array_size>&&);
+%template(uint32_t_3_array) std::array<uint32_t,3>;
+%ignore KeyedCompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int64_field() const;
-%template(int64_t_max_array_size_array) std::array<int64_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, max_array_size>&&);
+%template(int64_t_3_array) std::array<int64_t,3>;
+%ignore KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint64_field() const;
-%template(uint64_t_max_array_size_array) std::array<uint64_t,max_array_size>;
-%ignore KeyedCompleteTestType::array_float_field(std::array<float, max_array_size>&&);
+%template(uint64_t_3_array) std::array<uint64_t,3>;
+%ignore KeyedCompleteTestType::array_float_field(std::array<float, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_float_field() const;
-%template(float_max_array_size_array) std::array<float,max_array_size>;
-%ignore KeyedCompleteTestType::array_double_field(std::array<double, max_array_size>&&);
+%template(float_3_array) std::array<float,3>;
+%ignore KeyedCompleteTestType::array_double_field(std::array<double, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_double_field() const;
-%template(double_max_array_size_array) std::array<double,max_array_size>;
-%ignore KeyedCompleteTestType::array_bool_field(std::array<bool, max_array_size>&&);
+%template(double_3_array) std::array<double,3>;
+%ignore KeyedCompleteTestType::array_bool_field(std::array<bool, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_bool_field() const;
-%template(bool_max_array_size_array) std::array<bool,max_array_size>;
-%ignore KeyedCompleteTestType::array_enum_field(std::array<Color, max_array_size>&&);
+%template(bool_3_array) std::array<bool,3>;
+%ignore KeyedCompleteTestType::array_enum_field(std::array<Color, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum_field() const;
-%template(Color_max_array_size_array) std::array<Color,max_array_size>;
-%ignore KeyedCompleteTestType::array_enum2_field(std::array<Material, max_array_size>&&);
+%template(Color_3_array) std::array<Color,3>;
+%ignore KeyedCompleteTestType::array_enum2_field(std::array<Material, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum2_field() const;
-%template(Material_max_array_size_array) std::array<Material,max_array_size>;
-%ignore KeyedCompleteTestType::array_struct_field(std::array<StructType, max_array_size>&&);
+%template(Material_3_array) std::array<Material,3>;
+%ignore KeyedCompleteTestType::array_struct_field(std::array<StructType, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_struct_field() const;
-%template(StructType_max_array_size_array) std::array<StructType,max_array_size>;
+%template(StructType_3_array) std::array<StructType,3>;
 %ignore KeyedCompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python

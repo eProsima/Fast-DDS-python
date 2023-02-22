@@ -1,8 +1,5 @@
 
-# Using minimum CMake version 3.13 to prevent issues with the SWIG include
-# directories propagation happening with CMake 3.12 and prior
-
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.16.3)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -67,9 +64,6 @@ set(${PROJECT_NAME}_MODULE_FILES
     ${PROJECT_NAME}.i
     )
 
-set(${PROJECT_NAME}_SCRIPT HelloWorldExample.py)
-set(PACKAGE_NAME fastdds_python_examples)
-
 SET_SOURCE_FILES_PROPERTIES(
     ${${PROJECT_NAME}_MODULE_FILES}
     PROPERTIES CPLUSPLUS ON
@@ -116,4 +110,4 @@ install(TARGETS ${PROJECT_NAME}
 install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
 install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})
-install(PROGRAMS ${${PROJECT_NAME}_SCRIPT} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/${PACKAGE_NAME}/${PROJECT_NAME})
+
