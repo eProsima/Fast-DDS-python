@@ -34,11 +34,11 @@ using namespace eprosima::fastcdr::exception;
 
 #include <utility>
 
-#define CompleteTestType_max_cdr_typesize 41220ULL;
+#define CompleteTestType_max_cdr_typesize 41232ULL;
 #define StructType_max_cdr_typesize 320ULL;
 
 
-#define KeyedCompleteTestType_max_cdr_typesize 41228ULL;
+#define KeyedCompleteTestType_max_cdr_typesize 41240ULL;
 #define CompleteTestType_max_key_cdr_typesize 0ULL;
 #define StructType_max_key_cdr_typesize 0ULL;
 
@@ -723,21 +723,6 @@ void StructType::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
     (void) scdr;
-    scdr << m_char_field;
-     scdr << m_uint8_field;
-     scdr << m_int16_field;
-     scdr << m_uint16_field;
-     scdr << m_int32_field;
-     scdr << m_uint32_field;
-     scdr << m_int64_field;
-     scdr << m_uint64_field;
-     scdr << m_float_field;
-     scdr << m_double_field;
-     scdr << m_bool_field;
-     scdr << m_string_field.c_str();
-     scdr << (uint32_t)m_enum_field;
-     scdr << (uint32_t)m_enum2_field;
-     
 }
 
 
@@ -3779,88 +3764,6 @@ void CompleteTestType::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
     (void) scdr;
-    scdr << m_char_field;
-     scdr << m_uint8_field;
-     scdr << m_int16_field;
-     scdr << m_uint16_field;
-     scdr << m_int32_field;
-     scdr << m_uint32_field;
-     scdr << m_int64_field;
-     scdr << m_uint64_field;
-     scdr << m_float_field;
-     scdr << m_double_field;
-     scdr << m_bool_field;
-     scdr << m_string_field.c_str();
-     scdr << (uint32_t)m_enum_field;
-     scdr << (uint32_t)m_enum2_field;
-     scdr << m_struct_field;
-     scdr << m_array_char_field;
-
-     scdr << m_array_uint8_field;
-
-     scdr << m_array_int16_field;
-
-     scdr << m_array_uint16_field;
-
-     scdr << m_array_int32_field;
-
-     scdr << m_array_uint32_field;
-
-     scdr << m_array_int64_field;
-
-     scdr << m_array_uint64_field;
-
-     scdr << m_array_float_field;
-
-     scdr << m_array_double_field;
-
-     scdr << m_array_bool_field;
-
-     scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_array_enum_field.data()), m_array_enum_field.size());
-
-
-     scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_array_enum2_field.data()), m_array_enum2_field.size());
-
-
-     scdr << m_array_struct_field;
-
-     scdr << m_bounded_sequence_char_field;
-     scdr << m_bounded_sequence_uint8_field;
-     scdr << m_bounded_sequence_int16_field;
-     scdr << m_bounded_sequence_uint16_field;
-     scdr << m_bounded_sequence_int32_field;
-     scdr << m_bounded_sequence_uint32_field;
-     scdr << m_bounded_sequence_int64_field;
-     scdr << m_bounded_sequence_uint64_field;
-     scdr << m_bounded_sequence_float_field;
-     scdr << m_bounded_sequence_double_field;
-     scdr << m_bounded_sequence_bool_field;
-     scdr << static_cast<uint32_t>(m_bounded_sequence_enum_field.size());
-    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_bounded_sequence_enum_field.data()), m_bounded_sequence_enum_field.size());
-
-     scdr << static_cast<uint32_t>(m_bounded_sequence_enum2_field.size());
-    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_bounded_sequence_enum2_field.data()), m_bounded_sequence_enum2_field.size());
-
-     scdr << m_bounded_sequence_struct_field;
-     scdr << m_unbounded_sequence_char_field;
-     scdr << m_unbounded_sequence_uint8_field;
-     scdr << m_unbounded_sequence_int16_field;
-     scdr << m_unbounded_sequence_uint16_field;
-     scdr << m_unbounded_sequence_int32_field;
-     scdr << m_unbounded_sequence_uint32_field;
-     scdr << m_unbounded_sequence_int64_field;
-     scdr << m_unbounded_sequence_uint64_field;
-     scdr << m_unbounded_sequence_float_field;
-     scdr << m_unbounded_sequence_double_field;
-     scdr << m_unbounded_sequence_bool_field;
-     scdr << static_cast<uint32_t>(m_unbounded_sequence_enum_field.size());
-    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_unbounded_sequence_enum_field.data()), m_unbounded_sequence_enum_field.size());
-
-     scdr << static_cast<uint32_t>(m_unbounded_sequence_enum2_field.size());
-    scdr.serializeArray(reinterpret_cast<const uint32_t*>(m_unbounded_sequence_enum2_field.data()), m_unbounded_sequence_enum2_field.size());
-
-     scdr << m_unbounded_sequence_struct_field;
-     
 }
 
 KeyedCompleteTestType::KeyedCompleteTestType()
@@ -6940,6 +6843,63 @@ void KeyedCompleteTestType::serializeKey(
         eprosima::fastcdr::Cdr& scdr) const
 {
     (void) scdr;
-      scdr << m_id;
-                                                                
+   scdr << m_id;
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
 }
