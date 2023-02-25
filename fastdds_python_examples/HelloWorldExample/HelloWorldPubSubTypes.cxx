@@ -91,8 +91,7 @@ bool HelloWorldPubSubType::deserialize(
         eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->length);
 
         // Object that deserializes the data.
-        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN,
-                eprosima::fastcdr::Cdr::DDS_CDR);
+        eprosima::fastcdr::Cdr deser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
 
         // Deserialize encapsulation.
         deser.read_encapsulation();
@@ -168,3 +167,4 @@ bool HelloWorldPubSubType::getKey(
     }
     return true;
 }
+
