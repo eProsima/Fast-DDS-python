@@ -929,9 +929,8 @@ def test_ignore_participant(participant):
     """
     ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.ignore_participant(ih))
-
 
 def test_ignore_publication(participant):
     """
