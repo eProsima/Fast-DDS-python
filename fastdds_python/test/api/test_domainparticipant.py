@@ -1,6 +1,5 @@
 import fastdds
 import pytest
-import test_complete
 import time
 
 
@@ -23,6 +22,13 @@ class TopicListener (fastdds.TopicListener):
     def __init__(self):
         super().__init__()
 
+@pytest.fixture(params=['no_module', 'module'], autouse=True)
+def data_type(request):
+    if request.param == 'no_module':
+        pytest.dds_type = __import__("test_complete")
+    else:
+        pytest.dds_type = __import__("eprosima.test.test_modules",
+                                    fromlist=[None])
 
 @pytest.fixture
 def not_autoenable_factory():
@@ -557,7 +563,8 @@ def test_create_and_delete_topic(participant):
             "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
     assert(topic is None)
 
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(
+        pytest.dds_type.CompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 
@@ -670,7 +677,7 @@ def test_delete_contained_entities(participant):
     subscriber = participant.create_subscriber(
             fastdds.SUBSCRIBER_QOS_DEFAULT)
     assert(subscriber is not None)
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
     topic = participant.create_topic(
@@ -707,7 +714,7 @@ def test_find_topic(participant):
     This test checks:
     - DomainParticipant::find_topic
     """
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 
@@ -970,7 +977,7 @@ def test_lookup_topicdescription(participant):
     This test checks:
     - DomainParticipant::lookup_topicdescription
     """
-    test_type = fastdds.TypeSupport(test_complete.CompleteTestTypePubSubType())
+    test_type = fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 

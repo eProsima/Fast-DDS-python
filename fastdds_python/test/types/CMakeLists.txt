@@ -131,3 +131,110 @@ install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/)
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
 install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/)
 
+###############################################################################
+# Library for types defined in test_modules IDL
+###############################################################################
+
+message(STATUS "Configuring python wrapper for types in test_modules...")
+
+###############################################################################
+# Type library on C++
+
+project(test_modules)
+
+find_package(fastcdr REQUIRED)
+find_package(fastrtps REQUIRED)
+
+
+set(${PROJECT_NAME}_FILES
+    test_modules.cxx
+    test_modulesPubSubTypes.cxx
+    )
+
+include_directories()
+
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+#Create library for C++ types
+add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
+if(WIN32)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
+endif(WIN32)
+target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps)
+
+###############################################################################
+# Python bindings for type
+
+find_package(SWIG REQUIRED)
+include(${SWIG_USE_FILE})
+set(CMAKE_SWIG_FLAGS "")
+
+find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+set(PYTHON_INCLUDE_PATH ${Python3_INCLUDE_DIRS})
+set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
+set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
+
+include_directories(${PYTHON_INCLUDE_PATH})
+
+set(${PROJECT_NAME}_MODULE
+    test_modulesWrapper
+    )
+
+set(${PROJECT_NAME}_MODULE_FILES
+    ${PROJECT_NAME}.i
+    )
+
+SET_SOURCE_FILES_PROPERTIES(
+    ${${PROJECT_NAME}_MODULE_FILES}
+    PROPERTIES CPLUSPLUS ON
+    USE_TARGET_INCLUDE_DIRECTORIES TRUE
+    )
+
+include_directories(
+    ${PROJECT_SOURCE_DIR}
+    )
+
+set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test")
+
+SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
+    TYPE SHARED
+    LANGUAGE python
+    SOURCES ${${PROJECT_NAME}_MODULE_FILES})
+
+if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
+endif()
+
+target_link_libraries(${${PROJECT_NAME}_MODULE}
+    Python3::Module
+    fastrtps
+    ${PROJECT_NAME}
+    )
+
+set_target_properties(${${PROJECT_NAME}_MODULE}
+    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test"
+    )
+
+
+# Find the installation path
+execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
+    OUTPUT_VARIABLE _ABS_PYTHON_MODULE_PATH
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+
+get_filename_component (_ABS_PYTHON_MODULE_PATH ${_ABS_PYTHON_MODULE_PATH} ABSOLUTE)
+file (RELATIVE_PATH _REL_PYTHON_MODULE_PATH ${CMAKE_INSTALL_PREFIX} ${_ABS_PYTHON_MODULE_PATH})
+SET (PYTHON_MODULE_PATH
+    ${_REL_PYTHON_MODULE_PATH}
+    )
+
+# Install
+install(TARGETS ${PROJECT_NAME}
+    RUNTIME DESTINATION bin/
+    LIBRARY DESTINATION lib/
+    ARCHIVE DESTINATION lib/
+    )
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/eprosima/test)
+get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/eprosima/test)
+

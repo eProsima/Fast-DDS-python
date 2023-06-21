@@ -4,10 +4,10 @@ import os
 if os.name == 'nt':
     import win32api
     win32api.LoadLibrary('test_complete')
+    win32api.LoadLibrary('eprosima/test/test_modules')
 
 import fastdds
 import pytest
-import test_complete
 import time
 
 
@@ -15,13 +15,19 @@ class DataReaderListener (fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
 
+@pytest.fixture(params=['no_module', 'module'], autouse=True)
+def data_type(request):
+    if request.param == 'no_module':
+        pytest.dds_type = __import__("test_complete")
+    else:
+        pytest.dds_type = __import__("eprosima.test.test_modules",
+                                    fromlist=[None])
 
 @pytest.fixture
 def participant():
     factory = fastdds.DomainParticipantFactory.get_instance()
     return factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
-
 
 @pytest.fixture
 def subscriber(participant):
@@ -30,13 +36,12 @@ def subscriber(participant):
 
 @pytest.fixture
 def test_type():
-    return fastdds.TypeSupport(
-            test_complete.CompleteTestTypePubSubType())
+    return fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
 
 
 @pytest.fixture
 def test_keyed_type(test_type):
-    test_type.set(test_complete.KeyedCompleteTestTypePubSubType())
+    test_type.set(pytest.dds_type.KeyedCompleteTestTypePubSubType())
 
 
 @pytest.fixture
@@ -161,7 +166,7 @@ def test_get_first_untaken(transient_datareader_qos, datareader,
     qos = datawriter.get_qos()
     assert(fastdds.TRANSIENT_LOCAL_DURABILITY_QOS == qos.durability().kind)
 
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 
@@ -195,7 +200,7 @@ def test_get_key_value(test_keyed_type, datareader):
     This test checks:
     - DataReader::get_key_value
     """
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(255)
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
@@ -444,7 +449,7 @@ def test_get_unread_count(transient_datareader_qos, datareader,
     """
     assert(0 == datareader.get_unread_count())
 
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 
@@ -459,13 +464,13 @@ def test_is_sample_valid(transient_datareader_qos, datareader,
     This test checks:
     - DataReader::is_sample_valid
     """
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    data = test_complete.CompleteTestType()
+    data = pytest.dds_type.CompleteTestType()
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.read_next_sample(data, info))
@@ -485,7 +490,7 @@ def test_lookup_instance(transient_datareader_qos, test_keyed_type, datareader,
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
     # Test when instance is not registered
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
     ih = datareader.lookup_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown == ih)
@@ -509,7 +514,7 @@ def test_read(transient_datareader_qos, datareader,
     - DataReader::read
     - DataReader::return_loan
     """
-    data_seq = test_complete.CompleteTestTypeSeq()
+    data_seq = pytest.dds_type.CompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
            datareader.read(
@@ -519,7 +524,7 @@ def test_read(transient_datareader_qos, datareader,
     assert(0 == len(data_seq))
     assert(0 == len(info_seq))
 
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 
@@ -544,7 +549,7 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     - DataReader::read_instance
     - DataReader::return_loan
     """
-    data_seq = test_complete.KeyedCompleteTestTypeSeq()
+    data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
@@ -555,7 +560,7 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(data_seq))
     assert(0 == len(info_seq))
 
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(255)
     ih = datawriter.register_instance(sample)
     assert(datawriter.write(sample, ih))
@@ -582,7 +587,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     - DataReader::read_next_instance
     - DataReader::return_loan
     """
-    data_seq = test_complete.KeyedCompleteTestTypeSeq()
+    data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
@@ -593,7 +598,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(data_seq))
     assert(0 == len(info_seq))
 
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(255)
     assert(datawriter.write(sample))
 
@@ -618,13 +623,13 @@ def test_read_next_sample(transient_datareader_qos, datareader,
     This test checks:
     - DataReader::read_next_sample
     """
-    data = test_complete.CompleteTestType()
+    data = pytest.dds_type.CompleteTestType()
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
            datareader.read_next_sample(
                 data, info))
 
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 
@@ -643,7 +648,7 @@ def test_take(transient_datareader_qos, datareader,
     - DataReader::take
     - DataReader::return_loan
     """
-    data_seq = test_complete.CompleteTestTypeSeq()
+    data_seq = pytest.dds_type.CompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
            datareader.take(
@@ -653,7 +658,7 @@ def test_take(transient_datareader_qos, datareader,
     assert(0 == len(data_seq))
     assert(0 == len(info_seq))
 
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 
@@ -678,7 +683,7 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     - DataReader::take_instance
     - DataReader::return_loan
     """
-    data_seq = test_complete.KeyedCompleteTestTypeSeq()
+    data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
@@ -689,7 +694,7 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(data_seq))
     assert(0 == len(info_seq))
 
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(255)
     ih = datawriter.register_instance(sample)
     assert(datawriter.write(sample, ih))
@@ -716,7 +721,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     - DataReader::take_next_instance
     - DataReader::return_loan
     """
-    data_seq = test_complete.KeyedCompleteTestTypeSeq()
+    data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
@@ -727,7 +732,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(data_seq))
     assert(0 == len(info_seq))
 
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(255)
     assert(datawriter.write(sample))
 
@@ -752,13 +757,13 @@ def test_take_next_sample(transient_datareader_qos, datareader,
     This test checks:
     - DataReader::take_next_sample
     """
-    data = test_complete.CompleteTestType()
+    data = pytest.dds_type.CompleteTestType()
     info = fastdds.SampleInfo()
     assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
            datareader.take_next_sample(
                 data, info))
 
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
     assert(datawriter.write(sample))
 

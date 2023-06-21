@@ -2,7 +2,6 @@ import datetime
 
 import fastdds
 import pytest
-import test_complete
 import time
 
 
@@ -10,6 +9,13 @@ class DataWriterListener (fastdds.DataWriterListener):
     def __init__(self):
         super().__init__()
 
+@pytest.fixture(params=['no_module', 'module'], autouse=True)
+def data_type(request):
+    if request.param == 'no_module':
+        pytest.dds_type = __import__("test_complete")
+    else:
+        pytest.dds_type = __import__("eprosima.test.test_modules",
+                                    fromlist=[None])
 
 @pytest.fixture
 def participant():
@@ -26,12 +32,12 @@ def publisher(participant):
 @pytest.fixture
 def test_type():
     return fastdds.TypeSupport(
-            test_complete.CompleteTestTypePubSubType())
+            pytest.dds_type.CompleteTestTypePubSubType())
 
 
 @pytest.fixture
 def test_keyed_type(test_type):
-    test_type.set(test_complete.KeyedCompleteTestTypePubSubType())
+    test_type.set(pytest.dds_type.KeyedCompleteTestTypePubSubType())
 
 
 @pytest.fixture
@@ -110,7 +116,7 @@ def test_clear_history(keep_all_datawriter_qos, datawriter):
     This test checks:
     - DataWriter::clear_history
     """
-    sample = test_complete.CompleteTestType()
+    sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(4)
     assert(datawriter.write(sample))
     assert([fastdds.ReturnCode_t.RETCODE_OK, 1] ==
@@ -125,11 +131,11 @@ def test_dispose(test_keyed_type, datawriter):
     - DataWriter::unregister_instance
     """
     # Overload 1
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(1)
     ih = datawriter.register_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    sample2 = test_complete.KeyedCompleteTestType()
+    sample2 = pytest.dds_type.KeyedCompleteTestType()
     sample2.id(2)
     ih2 = datawriter.register_instance(sample2)
     assert(fastdds.c_InstanceHandle_Unknown != ih2)
@@ -140,7 +146,7 @@ def test_dispose(test_keyed_type, datawriter):
            datawriter.dispose(sample2, ih2))
 
     # Overload 2
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
     now = datetime.datetime.now().time()
     timestamp = fastdds.Time_t()
@@ -175,49 +181,49 @@ def test_get_key_value(test_keyed_type, datawriter):
     - DataWriter::get_key_value
     """
     # Prepare test variables
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(1)
     ih = datawriter.register_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    
+
     # Check wrong handle
-    test_sample = test_complete.KeyedCompleteTestType()
+    test_sample = pytest.dds_type.KeyedCompleteTestType()
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(test_sample, fastdds.c_InstanceHandle_Unknown))
-    
+
     # Check wrong sample
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(None, ih))
-    
+
     # Check correct case
-    test_sample = test_complete.KeyedCompleteTestType()
+    test_sample = pytest.dds_type.KeyedCompleteTestType()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_key_value(test_sample, ih))
     assert(test_sample.id() == sample.id());
-    
+
     # Calling get_key_value on an unregistered instance should fail
-    test_sample = test_complete.KeyedCompleteTestType()
+    test_sample = pytest.dds_type.KeyedCompleteTestType()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.unregister_instance(sample, ih))
     assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(test_sample, ih))
-    
+
     # Calling get_key_value with a valid instance should work
-    test_sample = test_complete.KeyedCompleteTestType()
+    test_sample = pytest.dds_type.KeyedCompleteTestType()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.write(sample, fastdds.c_InstanceHandle_Unknown))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_key_value(test_sample, ih))
     assert(test_sample.id() == sample.id());
-    
+
     # Calling get_key_value on a disposed instance should work
-    test_sample = test_complete.KeyedCompleteTestType()
+    test_sample = pytest.dds_type.KeyedCompleteTestType()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.dispose(sample, ih))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_key_value(test_sample, ih))
     assert(test_sample.id() == sample.id());
-    
+
 
 def test_get_sending_locators(datawriter):
     """
@@ -439,7 +445,7 @@ def test_lookup_instance(test_keyed_type, datawriter):
     This test checks:
     - DataWriter::lookup_instance
     """
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
     ih = datawriter.lookup_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown == ih)
@@ -454,11 +460,11 @@ def test_register_instance(test_keyed_type, datawriter):
     - DataWriter::unregister_instance_w_timestamp
     """
     # Overload 1
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(1)
     ih = datawriter.register_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    sample2 = test_complete.KeyedCompleteTestType()
+    sample2 = pytest.dds_type.KeyedCompleteTestType()
     sample2.id(2)
     ih2 = datawriter.register_instance(sample2)
     assert(fastdds.c_InstanceHandle_Unknown != ih2)
@@ -472,7 +478,7 @@ def test_register_instance(test_keyed_type, datawriter):
                sample, fastdds.c_InstanceHandle_Unknown))
 
     # Overload 2
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
     now = datetime.datetime.now().time()
     timestamp = fastdds.Time_t()
@@ -489,7 +495,7 @@ def test_wait_for_acknowledgments(test_keyed_type, datawriter):
     - DataWriter::wait_for_acknowledgments
     """
     # Overload 1
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
     assert(datawriter.write(sample))
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -510,11 +516,11 @@ def test_write(test_keyed_type, datawriter):
     - DataWriter::write_w_timestamp
     """
     # Overload 1
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     assert(datawriter.write(sample))
 
     # Overload 2
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     params = fastdds.WriteParams()
     guid = fastdds.GUID_t()
     guid.guidPrefix.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
@@ -527,7 +533,7 @@ def test_write(test_keyed_type, datawriter):
     assert(datawriter.write(sample, params))
 
     # Overload 3
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
@@ -538,7 +544,7 @@ def test_write(test_keyed_type, datawriter):
            datawriter.write(sample, ih))
 
     # Overload 4
-    sample = test_complete.KeyedCompleteTestType()
+    sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
     now = datetime.datetime.now().time()
@@ -546,7 +552,6 @@ def test_write(test_keyed_type, datawriter):
     timestamp.seconds = now.second
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.write_w_timestamp(sample, ih, timestamp))
-
 
 def test_listener_ownership(participant, reader_participant, topic,
                             reader_topic, subscriber, publisher):
