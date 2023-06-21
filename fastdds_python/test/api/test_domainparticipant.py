@@ -558,19 +558,21 @@ def test_create_and_delete_topic(participant):
     listener = TopicListener()
     assert(listener is not None)
 
-    # Overload 1 - Failing (because the type is not registered yet)
-    topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
-    assert(topic is None)
-
     test_type = fastdds.TypeSupport(
         pytest.dds_type.CompleteTestTypePubSubType())
+
+    # Overload 1 - Failing (because the type is not registered yet)
+    topic = participant.create_topic(
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
+    assert(topic is None)
+
+    # Now register the type
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 
     # Overload 1 - Success
     topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
     assert(topic is not None)
     assert(topic.is_enabled())
     assert(fastdds.StatusMask.all() == topic.get_status_mask())
@@ -579,7 +581,7 @@ def test_create_and_delete_topic(participant):
 
     # Overload 2
     topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT,
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT,
             listener)
     assert(topic is not None)
     assert(topic.is_enabled())
@@ -592,7 +594,7 @@ def test_create_and_delete_topic(participant):
         Test the entity creation using the two types of StatusMasks.
         """
         topic = participant.create_topic(
-            "Complete", "CompleteTestType",
+            "Complete", test_type.get_type_name(),
             fastdds.TOPIC_QOS_DEFAULT, listnr, status_mask_1)
         assert(topic is not None)
         assert(topic.is_enabled())
@@ -600,7 +602,7 @@ def test_create_and_delete_topic(participant):
         assert(fastdds.ReturnCode_t.RETCODE_OK ==
                participant.delete_topic(topic))
         topic = participant.create_topic(
-            "Complete", "CompleteTestType",
+            "Complete", test_type.get_type_name(),
             fastdds.TOPIC_QOS_DEFAULT, listnr, status_mask_2)
         assert(topic is not None)
         assert(topic.is_enabled())
@@ -681,7 +683,7 @@ def test_delete_contained_entities(participant):
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
     topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
     assert(topic is not None)
 
     # Cannot delete participant without deleting its contained entities
@@ -719,7 +721,7 @@ def test_find_topic(participant):
            participant.register_type(test_type, test_type.get_type_name()))
 
     topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
     assert(topic is not None)
 
     topic_copy = participant.find_topic("Complete", fastdds.Duration_t(1, 0))
@@ -982,7 +984,7 @@ def test_lookup_topicdescription(participant):
            participant.register_type(test_type, test_type.get_type_name()))
 
     topic = participant.create_topic(
-            "Complete", "CompleteTestType", fastdds.TOPIC_QOS_DEFAULT)
+            "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
     assert(topic is not None)
 
     topic_desc = participant.lookup_topicdescription("Complete")
