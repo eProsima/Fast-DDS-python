@@ -4,6 +4,7 @@ import os
 if os.name == 'nt':
     import win32api
     win32api.LoadLibrary('test_complete')
+    win32api.LoadLibrary('eprosima/test/test_modules')
 
 import fastdds
 import pytest
