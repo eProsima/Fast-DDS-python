@@ -22,6 +22,11 @@
 #ifndef _FAST_DDS_GENERATED_TEST_COMPLETE_H_
 #define _FAST_DDS_GENERATED_TEST_COMPLETE_H_
 
+#include "test_included_modules.h"
+
+#include <fastrtps/utils/fixed_size_string.hpp>
+
+#include <stdint.h>
 #include <array>
 #include <bitset>
 #include <cstdint>
@@ -437,6 +442,89 @@ public:
      */
     eProsima_user_DllExport Material& enum2_field();
 
+    /*!
+     * @brief This function copies the value in member included_module_struct
+     * @param _included_module_struct New value to be copied in member included_module_struct
+     */
+    eProsima_user_DllExport void included_module_struct(
+            const eprosima::test2::StructType2& _included_module_struct);
+
+    /*!
+     * @brief This function moves the value in member included_module_struct
+     * @param _included_module_struct New value to be moved in member included_module_struct
+     */
+    eProsima_user_DllExport void included_module_struct(
+            eprosima::test2::StructType2&& _included_module_struct);
+
+    /*!
+     * @brief This function returns a constant reference to member included_module_struct
+     * @return Constant reference to member included_module_struct
+     */
+    eProsima_user_DllExport const eprosima::test2::StructType2& included_module_struct() const;
+
+    /*!
+     * @brief This function returns a reference to member included_module_struct
+     * @return Reference to member included_module_struct
+     */
+    eProsima_user_DllExport eprosima::test2::StructType2& included_module_struct();
+
+    /*!
+    * @brief This function returns the maximum serialized size of an object
+    * depending on the buffer alignment.
+    * @param current_alignment Buffer alignment.
+    * @return Maximum serialized size.
+    */
+    eProsima_user_DllExport static size_t getMaxCdrSerializedSize(
+            size_t current_alignment = 0);
+
+    /*!
+     * @brief This function returns the serialized size of a data depending on the buffer alignment.
+     * @param data Data which is calculated its serialized size.
+     * @param current_alignment Buffer alignment.
+     * @return Serialized size.
+     */
+    eProsima_user_DllExport static size_t getCdrSerializedSize(
+            const StructType& data,
+            size_t current_alignment = 0);
+
+
+    /*!
+     * @brief This function serializes an object using CDR serialization.
+     * @param cdr CDR serialization object.
+     */
+    eProsima_user_DllExport void serialize(
+            eprosima::fastcdr::Cdr& cdr) const;
+
+    /*!
+     * @brief This function deserializes an object using CDR serialization.
+     * @param cdr CDR serialization object.
+     */
+    eProsima_user_DllExport void deserialize(
+            eprosima::fastcdr::Cdr& cdr);
+
+
+
+    /*!
+     * @brief This function returns the maximum serialized size of the Key of an object
+     * depending on the buffer alignment.
+     * @param current_alignment Buffer alignment.
+     * @return Maximum serialized size.
+     */
+    eProsima_user_DllExport static size_t getKeyMaxCdrSerializedSize(
+            size_t current_alignment = 0);
+
+    /*!
+     * @brief This function tells you if the Key has been defined for this type
+     */
+    eProsima_user_DllExport static bool isKeyDefined();
+
+    /*!
+     * @brief This function serializes the key members of an object using CDR serialization.
+     * @param cdr CDR serialization object.
+     */
+    eProsima_user_DllExport void serializeKey(
+            eprosima::fastcdr::Cdr& cdr) const;
+
 private:
 
     char m_char_field{0};
@@ -451,8 +539,9 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
-    Color m_enum_field{::RED};
-    Material m_enum2_field{::WOOD};
+    Color m_enum_field;
+    Material m_enum2_field;
+    eprosima::test2::StructType2 m_included_module_struct;
 
 };
 const uint32_t max_array_size = 3;

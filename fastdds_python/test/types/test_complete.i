@@ -38,6 +38,7 @@
 #define RTPS_DllAPI
 #define eProsima_user_DllExport
 
+%include "test_included_modules.i"
 
 %{
 #include "test_complete.h"
@@ -183,6 +184,14 @@
 // We ignore them to prevent this
 %ignore StructType::enum2_field();
 %rename("%s") StructType::enum2_field() const;
+
+%ignore StructType::included_module_struct(eprosima::test2::StructType2&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore StructType::included_module_struct();
+%rename("%s") StructType::included_module_struct() const;
 
 
 

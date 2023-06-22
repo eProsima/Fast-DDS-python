@@ -35,26 +35,77 @@ using namespace eprosima::fastcdr::exception;
 
 #include <utility>
 
-#define CompleteTestType_max_cdr_typesize 40760ULL;
-#define StructType_max_cdr_typesize 320ULL;
+#define CompleteTestType_max_cdr_typesize 75640ULL;
+
+#define StructType_max_cdr_typesize 640ULL;
+#define eprosima_test2_StructType2_max_cdr_typesize 320ULL;
 
 
-#define KeyedCompleteTestType_max_cdr_typesize 40768ULL;
+#define KeyedCompleteTestType_max_cdr_typesize 75648ULL;
+
 #define CompleteTestType_max_key_cdr_typesize 0ULL;
+
 #define StructType_max_key_cdr_typesize 0ULL;
+#define eprosima_test2_StructType2_max_key_cdr_typesize 0ULL;
 
 
 #define KeyedCompleteTestType_max_key_cdr_typesize 4ULL;
 
 
 
+
 StructType::StructType()
 {
+    // char m_char_field
+    m_char_field = 0;
+    // octet m_uint8_field
+    m_uint8_field = 0;
+    // short m_int16_field
+    m_int16_field = 0;
+    // unsigned short m_uint16_field
+    m_uint16_field = 0;
+    // long m_int32_field
+    m_int32_field = 0;
+    // unsigned long m_uint32_field
+    m_uint32_field = 0;
+    // long long m_int64_field
+    m_int64_field = 0;
+    // unsigned long long m_uint64_field
+    m_uint64_field = 0;
+    // float m_float_field
+    m_float_field = 0.0;
+    // double m_double_field
+    m_double_field = 0.0;
+    // boolean m_bool_field
+    m_bool_field = false;
+    // string m_string_field
+    m_string_field ="";
+    // Color m_enum_field
+    m_enum_field = ::RED;
+    // Material m_enum2_field
+    m_enum2_field = ::WOOD;
+    // eprosima::test2::StructType2 m_included_module_struct
+
 
 }
 
 StructType::~StructType()
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 StructType::StructType(
@@ -74,6 +125,7 @@ StructType::StructType(
     m_string_field = x.m_string_field;
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
+    m_included_module_struct = x.m_included_module_struct;
 }
 
 StructType::StructType(
@@ -93,6 +145,7 @@ StructType::StructType(
     m_string_field = std::move(x.m_string_field);
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
+    m_included_module_struct = std::move(x.m_included_module_struct);
 }
 
 StructType& StructType::operator =(
@@ -113,6 +166,7 @@ StructType& StructType::operator =(
     m_string_field = x.m_string_field;
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
+    m_included_module_struct = x.m_included_module_struct;
 
     return *this;
 }
@@ -135,6 +189,7 @@ StructType& StructType::operator =(
     m_string_field = std::move(x.m_string_field);
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
+    m_included_module_struct = std::move(x.m_included_module_struct);
 
     return *this;
 }
@@ -142,26 +197,128 @@ StructType& StructType::operator =(
 bool StructType::operator ==(
         const StructType& x) const
 {
-    return (m_char_field == x.m_char_field &&
-           m_uint8_field == x.m_uint8_field &&
-           m_int16_field == x.m_int16_field &&
-           m_uint16_field == x.m_uint16_field &&
-           m_int32_field == x.m_int32_field &&
-           m_uint32_field == x.m_uint32_field &&
-           m_int64_field == x.m_int64_field &&
-           m_uint64_field == x.m_uint64_field &&
-           m_float_field == x.m_float_field &&
-           m_double_field == x.m_double_field &&
-           m_bool_field == x.m_bool_field &&
-           m_string_field == x.m_string_field &&
-           m_enum_field == x.m_enum_field &&
-           m_enum2_field == x.m_enum2_field);
+
+    return (m_char_field == x.m_char_field && m_uint8_field == x.m_uint8_field && m_int16_field == x.m_int16_field && m_uint16_field == x.m_uint16_field && m_int32_field == x.m_int32_field && m_uint32_field == x.m_uint32_field && m_int64_field == x.m_int64_field && m_uint64_field == x.m_uint64_field && m_float_field == x.m_float_field && m_double_field == x.m_double_field && m_bool_field == x.m_bool_field && m_string_field == x.m_string_field && m_enum_field == x.m_enum_field && m_enum2_field == x.m_enum2_field && m_included_module_struct == x.m_included_module_struct);
 }
 
 bool StructType::operator !=(
         const StructType& x) const
 {
     return !(*this == x);
+}
+
+size_t StructType::getMaxCdrSerializedSize(
+        size_t current_alignment)
+{
+    static_cast<void>(current_alignment);
+    return StructType_max_cdr_typesize;
+}
+
+size_t StructType::getCdrSerializedSize(
+        const StructType& data,
+        size_t current_alignment)
+{
+    (void)data;
+    size_t initial_alignment = current_alignment;
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4) + data.string_field().size() + 1;
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += eprosima::test2::StructType2::getCdrSerializedSize(data.included_module_struct(), current_alignment);
+
+    return current_alignment - initial_alignment;
+}
+
+void StructType::serialize(
+        eprosima::fastcdr::Cdr& scdr) const
+{
+
+    scdr << m_char_field;
+    scdr << m_uint8_field;
+    scdr << m_int16_field;
+    scdr << m_uint16_field;
+    scdr << m_int32_field;
+    scdr << m_uint32_field;
+    scdr << m_int64_field;
+    scdr << m_uint64_field;
+    scdr << m_float_field;
+    scdr << m_double_field;
+    scdr << m_bool_field;
+    scdr << m_string_field.c_str();
+    scdr << (uint32_t)m_enum_field;
+    scdr << (uint32_t)m_enum2_field;
+    scdr << m_included_module_struct;
+
+}
+
+void StructType::deserialize(
+        eprosima::fastcdr::Cdr& dcdr)
+{
+
+    dcdr >> m_char_field;
+    dcdr >> m_uint8_field;
+    dcdr >> m_int16_field;
+    dcdr >> m_uint16_field;
+    dcdr >> m_int32_field;
+    dcdr >> m_uint32_field;
+    dcdr >> m_int64_field;
+    dcdr >> m_uint64_field;
+    dcdr >> m_float_field;
+    dcdr >> m_double_field;
+    dcdr >> m_bool_field;
+    dcdr >> m_string_field;
+    {
+        uint32_t enum_value = 0;
+        dcdr >> enum_value;
+        m_enum_field = (Color)enum_value;
+    }
+
+    {
+        uint32_t enum_value = 0;
+        dcdr >> enum_value;
+        m_enum2_field = (Material)enum_value;
+    }
+
+    dcdr >> m_included_module_struct;
 }
 
 /*!
@@ -579,6 +736,43 @@ Material& StructType::enum2_field()
     return m_enum2_field;
 }
 
+/*!
+ * @brief This function copies the value in member included_module_struct
+ * @param _included_module_struct New value to be copied in member included_module_struct
+ */
+void StructType::included_module_struct(
+        const eprosima::test2::StructType2& _included_module_struct)
+{
+    m_included_module_struct = _included_module_struct;
+}
+
+/*!
+ * @brief This function moves the value in member included_module_struct
+ * @param _included_module_struct New value to be moved in member included_module_struct
+ */
+void StructType::included_module_struct(
+        eprosima::test2::StructType2&& _included_module_struct)
+{
+    m_included_module_struct = std::move(_included_module_struct);
+}
+
+/*!
+ * @brief This function returns a constant reference to member included_module_struct
+ * @return Constant reference to member included_module_struct
+ */
+const eprosima::test2::StructType2& StructType::included_module_struct() const
+{
+    return m_included_module_struct;
+}
+
+/*!
+ * @brief This function returns a reference to member included_module_struct
+ * @return Reference to member included_module_struct
+ */
+eprosima::test2::StructType2& StructType::included_module_struct()
+{
+    return m_included_module_struct;
+}
 
 
 

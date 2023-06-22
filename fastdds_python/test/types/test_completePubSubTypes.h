@@ -31,6 +31,7 @@
 
 #include "test_complete.h"
 
+#include "test_included_modulesPubSubTypes.h"
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 2)
 #error \
