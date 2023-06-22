@@ -1569,6 +1569,31 @@ public:
 
 
     /*!
+     * @brief This function copies the value in member bounded_sequence_bool_field
+     * @param _bounded_sequence_bool_field New value to be copied in member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void bounded_sequence_bool_field(
+            const std::vector<bool>& _bounded_sequence_bool_field);
+
+    /*!
+     * @brief This function moves the value in member bounded_sequence_bool_field
+     * @param _bounded_sequence_bool_field New value to be moved in member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void bounded_sequence_bool_field(
+            std::vector<bool>&& _bounded_sequence_bool_field);
+
+    /*!
+     * @brief This function returns a constant reference to member bounded_sequence_bool_field
+     * @return Constant reference to member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport const std::vector<bool>& bounded_sequence_bool_field() const;
+
+    /*!
+     * @brief This function returns a reference to member bounded_sequence_bool_field
+     * @return Reference to member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport std::vector<bool>& bounded_sequence_bool_field();
+    /*!
      * @brief This function copies the value in member bounded_sequence_enum_field
      * @param _bounded_sequence_enum_field New value to be copied in member bounded_sequence_enum_field
      */
@@ -1920,6 +1945,31 @@ public:
 
 
     /*!
+     * @brief This function copies the value in member unbounded_sequence_bool_field
+     * @param _unbounded_sequence_bool_field New value to be copied in member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void unbounded_sequence_bool_field(
+            const std::vector<bool>& _unbounded_sequence_bool_field);
+
+    /*!
+     * @brief This function moves the value in member unbounded_sequence_bool_field
+     * @param _unbounded_sequence_bool_field New value to be moved in member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void unbounded_sequence_bool_field(
+            std::vector<bool>&& _unbounded_sequence_bool_field);
+
+    /*!
+     * @brief This function returns a constant reference to member unbounded_sequence_bool_field
+     * @return Constant reference to member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport const std::vector<bool>& unbounded_sequence_bool_field() const;
+
+    /*!
+     * @brief This function returns a reference to member unbounded_sequence_bool_field
+     * @return Reference to member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport std::vector<bool>& unbounded_sequence_bool_field();
+    /*!
      * @brief This function copies the value in member unbounded_sequence_enum_field
      * @param _unbounded_sequence_enum_field New value to be copied in member unbounded_sequence_enum_field
      */
@@ -2040,6 +2090,7 @@ private:
     std::vector<uint64_t> m_bounded_sequence_uint64_field;
     std::vector<float> m_bounded_sequence_float_field;
     std::vector<double> m_bounded_sequence_double_field;
+    std::vector<bool> m_bounded_sequence_bool_field;
     std::vector<Color> m_bounded_sequence_enum_field;
     std::vector<Material> m_bounded_sequence_enum2_field;
     std::vector<StructType> m_bounded_sequence_struct_field;
@@ -2053,6 +2104,7 @@ private:
     std::vector<uint64_t> m_unbounded_sequence_uint64_field;
     std::vector<float> m_unbounded_sequence_float_field;
     std::vector<double> m_unbounded_sequence_double_field;
+    std::vector<bool> m_unbounded_sequence_bool_field;
     std::vector<Color> m_unbounded_sequence_enum_field;
     std::vector<Material> m_unbounded_sequence_enum2_field;
     std::vector<StructType> m_unbounded_sequence_struct_field;
@@ -3101,6 +3153,31 @@ public:
 
 
     /*!
+     * @brief This function copies the value in member bounded_sequence_bool_field
+     * @param _bounded_sequence_bool_field New value to be copied in member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void bounded_sequence_bool_field(
+            const std::vector<bool>& _bounded_sequence_bool_field);
+
+    /*!
+     * @brief This function moves the value in member bounded_sequence_bool_field
+     * @param _bounded_sequence_bool_field New value to be moved in member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void bounded_sequence_bool_field(
+            std::vector<bool>&& _bounded_sequence_bool_field);
+
+    /*!
+     * @brief This function returns a constant reference to member bounded_sequence_bool_field
+     * @return Constant reference to member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport const std::vector<bool>& bounded_sequence_bool_field() const;
+
+    /*!
+     * @brief This function returns a reference to member bounded_sequence_bool_field
+     * @return Reference to member bounded_sequence_bool_field
+     */
+    eProsima_user_DllExport std::vector<bool>& bounded_sequence_bool_field();
+    /*!
      * @brief This function copies the value in member bounded_sequence_enum_field
      * @param _bounded_sequence_enum_field New value to be copied in member bounded_sequence_enum_field
      */
@@ -3452,6 +3529,31 @@ public:
 
 
     /*!
+     * @brief This function copies the value in member unbounded_sequence_bool_field
+     * @param _unbounded_sequence_bool_field New value to be copied in member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void unbounded_sequence_bool_field(
+            const std::vector<bool>& _unbounded_sequence_bool_field);
+
+    /*!
+     * @brief This function moves the value in member unbounded_sequence_bool_field
+     * @param _unbounded_sequence_bool_field New value to be moved in member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport void unbounded_sequence_bool_field(
+            std::vector<bool>&& _unbounded_sequence_bool_field);
+
+    /*!
+     * @brief This function returns a constant reference to member unbounded_sequence_bool_field
+     * @return Constant reference to member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport const std::vector<bool>& unbounded_sequence_bool_field() const;
+
+    /*!
+     * @brief This function returns a reference to member unbounded_sequence_bool_field
+     * @return Reference to member unbounded_sequence_bool_field
+     */
+    eProsima_user_DllExport std::vector<bool>& unbounded_sequence_bool_field();
+    /*!
      * @brief This function copies the value in member unbounded_sequence_enum_field
      * @param _unbounded_sequence_enum_field New value to be copied in member unbounded_sequence_enum_field
      */
@@ -3573,6 +3675,7 @@ private:
     std::vector<uint64_t> m_bounded_sequence_uint64_field;
     std::vector<float> m_bounded_sequence_float_field;
     std::vector<double> m_bounded_sequence_double_field;
+    std::vector<bool> m_bounded_sequence_bool_field;
     std::vector<Color> m_bounded_sequence_enum_field;
     std::vector<Material> m_bounded_sequence_enum2_field;
     std::vector<StructType> m_bounded_sequence_struct_field;
@@ -3586,6 +3689,7 @@ private:
     std::vector<uint64_t> m_unbounded_sequence_uint64_field;
     std::vector<float> m_unbounded_sequence_float_field;
     std::vector<double> m_unbounded_sequence_double_field;
+    std::vector<bool> m_unbounded_sequence_bool_field;
     std::vector<Color> m_unbounded_sequence_enum_field;
     std::vector<Material> m_unbounded_sequence_enum2_field;
     std::vector<StructType> m_unbounded_sequence_struct_field;

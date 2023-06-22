@@ -91,7 +91,7 @@ struct CompleteTestType
     sequence<float, max_seq_size>              bounded_sequence_float_field;
     sequence<double, max_seq_size>             bounded_sequence_double_field;
     //sequence<long double, max_seq_size>        bounded_sequence_long_double_field;
-    //sequence<boolean, max_seq_size>            bounded_sequence_bool_field;
+    sequence<boolean, max_seq_size>            bounded_sequence_bool_field;
     //sequence<string, max_seq_size>             bounded_sequence_string_field;
     sequence<Color, max_seq_size>              bounded_sequence_enum_field;
     sequence<Material, max_seq_size>           bounded_sequence_enum2_field;
@@ -109,7 +109,7 @@ struct CompleteTestType
     sequence<float>              unbounded_sequence_float_field;
     sequence<double>             unbounded_sequence_double_field;
     //sequence<long double>        unbounded_sequence_long_double_field;
-    //sequence<boolean>            unbounded_sequence_bool_field;
+    sequence<boolean>            unbounded_sequence_bool_field;
     //sequence<string>             unbounded_sequence_string_field;
     sequence<Color>              unbounded_sequence_enum_field;
     sequence<Material>           unbounded_sequence_enum2_field;
@@ -169,7 +169,7 @@ struct KeyedCompleteTestType
     sequence<float, max_seq_size>              bounded_sequence_float_field;
     sequence<double, max_seq_size>             bounded_sequence_double_field;
     //sequence<long double, max_seq_size>        bounded_sequence_long_double_field;
-    //sequence<boolean, max_seq_size>            bounded_sequence_bool_field;
+    sequence<boolean, max_seq_size>            bounded_sequence_bool_field;
     //sequence<string, max_seq_size>             bounded_sequence_string_field;
     sequence<Color, max_seq_size>              bounded_sequence_enum_field;
     sequence<Material, max_seq_size>           bounded_sequence_enum2_field;
@@ -187,7 +187,7 @@ struct KeyedCompleteTestType
     sequence<float>              unbounded_sequence_float_field;
     sequence<double>             unbounded_sequence_double_field;
     //sequence<long double>        unbounded_sequence_long_double_field;
-    //sequence<boolean>            unbounded_sequence_bool_field;
+    sequence<boolean>            unbounded_sequence_bool_field;
     //sequence<string>             unbounded_sequence_string_field;
     sequence<Color>              unbounded_sequence_enum_field;
     sequence<Material>           unbounded_sequence_enum2_field;

@@ -651,6 +651,14 @@
     }
 }%template(double_vector) std::vector<double>;
 
+%ignore eprosima::test::CompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::bounded_sequence_bool_field() const;
+%template(bool_vector) std::vector<bool>;
+
 %ignore eprosima::test::CompleteTestType::bounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -826,6 +834,14 @@
         return self->data();
     }
 }%template(double_vector) std::vector<double>;
+
+%ignore eprosima::test::CompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::unbounded_sequence_bool_field() const;
+%template(bool_vector) std::vector<bool>;
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
@@ -1347,6 +1363,14 @@
     }
 }%template(double_vector) std::vector<double>;
 
+%ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field() const;
+%template(bool_vector) std::vector<bool>;
+
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1522,6 +1546,14 @@
         return self->data();
     }
 }%template(double_vector) std::vector<double>;
+
+%ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field() const;
+%template(bool_vector) std::vector<bool>;
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
