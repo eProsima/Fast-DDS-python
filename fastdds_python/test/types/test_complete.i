@@ -328,6 +328,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_char_field() const;
 %template(char_3_array) std::array<char,3>;
+%extend std::array<char, 3>
+{
+    const char* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -335,6 +342,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint8_field() const;
 %template(uint8_t_3_array) std::array<uint8_t,3>;
+%extend std::array<uint8_t, 3>
+{
+    const uint8_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -342,6 +356,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int16_field() const;
 %template(int16_t_3_array) std::array<int16_t,3>;
+%extend std::array<int16_t, 3>
+{
+    const int16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -349,6 +370,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint16_field() const;
 %template(uint16_t_3_array) std::array<uint16_t,3>;
+%extend std::array<uint16_t, 3>
+{
+    const uint16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -356,6 +384,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int32_field() const;
 %template(int32_t_3_array) std::array<int32_t,3>;
+%extend std::array<int32_t, 3>
+{
+    const int32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -363,6 +398,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint32_field() const;
 %template(uint32_t_3_array) std::array<uint32_t,3>;
+%extend std::array<uint32_t, 3>
+{
+    const uint32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -370,6 +412,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int64_field() const;
 %template(int64_t_3_array) std::array<int64_t,3>;
+%extend std::array<int64_t, 3>
+{
+    const int64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -377,6 +426,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint64_field() const;
 %template(uint64_t_3_array) std::array<uint64_t,3>;
+%extend std::array<uint64_t, 3>
+{
+    const uint64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_float_field(std::array<float, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -384,6 +440,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_float_field() const;
 %template(float_3_array) std::array<float,3>;
+%extend std::array<float, 3>
+{
+    const float* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_double_field(std::array<double, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -391,6 +454,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_double_field() const;
 %template(double_3_array) std::array<double,3>;
+%extend std::array<double, 3>
+{
+    const double* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_bool_field(std::array<bool, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -398,6 +468,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_bool_field() const;
 %template(bool_3_array) std::array<bool,3>;
+%extend std::array<bool, 3>
+{
+    const bool* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_enum_field(std::array<Color, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -405,6 +482,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum_field() const;
 %template(Color_3_array) std::array<Color,3>;
+%extend std::array<Color, 3>
+{
+    const Color* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_enum2_field(std::array<Material, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -412,6 +496,13 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum2_field() const;
 %template(Material_3_array) std::array<Material,3>;
+%extend std::array<Material, 3>
+{
+    const Material* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore CompleteTestType::array_struct_field(std::array<StructType, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -419,13 +510,20 @@
 // We ignore them to prevent this
 %ignore CompleteTestType::array_struct_field() const;
 %template(StructType_3_array) std::array<StructType,3>;
+
 %ignore CompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_char_field() const;
-%template(char_vector) std::vector<char>;
+%extend std::vector<char>
+{
+    const char* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(char_vector) std::vector<char>;
 
 %ignore CompleteTestType::bounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -433,7 +531,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_uint8_field() const;
-%template(uint8_t_vector) std::vector<uint8_t>;
+%extend std::vector<uint8_t>
+{
+    const uint8_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint8_t_vector) std::vector<uint8_t>;
 
 %ignore CompleteTestType::bounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -441,7 +545,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_int16_field() const;
-%template(int16_t_vector) std::vector<int16_t>;
+%extend std::vector<int16_t>
+{
+    const int16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int16_t_vector) std::vector<int16_t>;
 
 %ignore CompleteTestType::bounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -449,7 +559,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_uint16_field() const;
-%template(uint16_t_vector) std::vector<uint16_t>;
+%extend std::vector<uint16_t>
+{
+    const uint16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint16_t_vector) std::vector<uint16_t>;
 
 %ignore CompleteTestType::bounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -457,7 +573,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_int32_field() const;
-%template(int32_t_vector) std::vector<int32_t>;
+%extend std::vector<int32_t>
+{
+    const int32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int32_t_vector) std::vector<int32_t>;
 
 %ignore CompleteTestType::bounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -465,7 +587,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_uint32_field() const;
-%template(uint32_t_vector) std::vector<uint32_t>;
+%extend std::vector<uint32_t>
+{
+    const uint32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint32_t_vector) std::vector<uint32_t>;
 
 %ignore CompleteTestType::bounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -473,7 +601,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_int64_field() const;
-%template(int64_t_vector) std::vector<int64_t>;
+%extend std::vector<int64_t>
+{
+    const int64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int64_t_vector) std::vector<int64_t>;
 
 %ignore CompleteTestType::bounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -481,7 +615,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_uint64_field() const;
-%template(uint64_t_vector) std::vector<uint64_t>;
+%extend std::vector<uint64_t>
+{
+    const uint64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint64_t_vector) std::vector<uint64_t>;
 
 %ignore CompleteTestType::bounded_sequence_float_field(std::vector<float>&&);
 
@@ -489,7 +629,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_float_field() const;
-%template(float_vector) std::vector<float>;
+%extend std::vector<float>
+{
+    const float* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(float_vector) std::vector<float>;
 
 %ignore CompleteTestType::bounded_sequence_double_field(std::vector<double>&&);
 
@@ -497,7 +643,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_double_field() const;
-%template(double_vector) std::vector<double>;
+%extend std::vector<double>
+{
+    const double* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(double_vector) std::vector<double>;
 
 %ignore CompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -513,7 +665,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_enum_field() const;
-%template(Color_vector) std::vector<Color>;
+%extend std::vector<Color>
+{
+    const Color* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Color_vector) std::vector<Color>;
 
 %ignore CompleteTestType::bounded_sequence_enum2_field(std::vector<Material>&&);
 
@@ -521,7 +679,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_enum2_field() const;
-%template(Material_vector) std::vector<Material>;
+%extend std::vector<Material>
+{
+    const Material* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Material_vector) std::vector<Material>;
 
 %ignore CompleteTestType::bounded_sequence_struct_field(std::vector<StructType>&&);
 
@@ -537,7 +701,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_char_field() const;
-%template(char_vector) std::vector<char>;
+%extend std::vector<char>
+{
+    const char* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(char_vector) std::vector<char>;
 
 %ignore CompleteTestType::unbounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -545,7 +715,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_uint8_field() const;
-%template(uint8_t_vector) std::vector<uint8_t>;
+%extend std::vector<uint8_t>
+{
+    const uint8_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint8_t_vector) std::vector<uint8_t>;
 
 %ignore CompleteTestType::unbounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -553,7 +729,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_int16_field() const;
-%template(int16_t_vector) std::vector<int16_t>;
+%extend std::vector<int16_t>
+{
+    const int16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int16_t_vector) std::vector<int16_t>;
 
 %ignore CompleteTestType::unbounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -561,7 +743,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_uint16_field() const;
-%template(uint16_t_vector) std::vector<uint16_t>;
+%extend std::vector<uint16_t>
+{
+    const uint16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint16_t_vector) std::vector<uint16_t>;
 
 %ignore CompleteTestType::unbounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -569,7 +757,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_int32_field() const;
-%template(int32_t_vector) std::vector<int32_t>;
+%extend std::vector<int32_t>
+{
+    const int32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int32_t_vector) std::vector<int32_t>;
 
 %ignore CompleteTestType::unbounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -577,7 +771,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_uint32_field() const;
-%template(uint32_t_vector) std::vector<uint32_t>;
+%extend std::vector<uint32_t>
+{
+    const uint32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint32_t_vector) std::vector<uint32_t>;
 
 %ignore CompleteTestType::unbounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -585,7 +785,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_int64_field() const;
-%template(int64_t_vector) std::vector<int64_t>;
+%extend std::vector<int64_t>
+{
+    const int64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int64_t_vector) std::vector<int64_t>;
 
 %ignore CompleteTestType::unbounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -593,7 +799,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_uint64_field() const;
-%template(uint64_t_vector) std::vector<uint64_t>;
+%extend std::vector<uint64_t>
+{
+    const uint64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint64_t_vector) std::vector<uint64_t>;
 
 %ignore CompleteTestType::unbounded_sequence_float_field(std::vector<float>&&);
 
@@ -601,7 +813,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_float_field() const;
-%template(float_vector) std::vector<float>;
+%extend std::vector<float>
+{
+    const float* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(float_vector) std::vector<float>;
 
 %ignore CompleteTestType::unbounded_sequence_double_field(std::vector<double>&&);
 
@@ -609,7 +827,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_double_field() const;
-%template(double_vector) std::vector<double>;
+%extend std::vector<double>
+{
+    const double* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(double_vector) std::vector<double>;
 
 %ignore CompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -625,7 +849,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_enum_field() const;
-%template(Color_vector) std::vector<Color>;
+%extend std::vector<Color>
+{
+    const Color* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Color_vector) std::vector<Color>;
 
 %ignore CompleteTestType::unbounded_sequence_enum2_field(std::vector<Material>&&);
 
@@ -633,7 +863,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_enum2_field() const;
-%template(Material_vector) std::vector<Material>;
+%extend std::vector<Material>
+{
+    const Material* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Material_vector) std::vector<Material>;
 
 %ignore CompleteTestType::unbounded_sequence_struct_field(std::vector<StructType>&&);
 
@@ -804,6 +1040,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_char_field() const;
 %template(char_3_array) std::array<char,3>;
+%extend std::array<char, 3>
+{
+    const char* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -811,6 +1054,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint8_field() const;
 %template(uint8_t_3_array) std::array<uint8_t,3>;
+%extend std::array<uint8_t, 3>
+{
+    const uint8_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -818,6 +1068,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int16_field() const;
 %template(int16_t_3_array) std::array<int16_t,3>;
+%extend std::array<int16_t, 3>
+{
+    const int16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -825,6 +1082,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint16_field() const;
 %template(uint16_t_3_array) std::array<uint16_t,3>;
+%extend std::array<uint16_t, 3>
+{
+    const uint16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -832,6 +1096,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int32_field() const;
 %template(int32_t_3_array) std::array<int32_t,3>;
+%extend std::array<int32_t, 3>
+{
+    const int32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -839,6 +1110,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint32_field() const;
 %template(uint32_t_3_array) std::array<uint32_t,3>;
+%extend std::array<uint32_t, 3>
+{
+    const uint32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -846,6 +1124,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int64_field() const;
 %template(int64_t_3_array) std::array<int64_t,3>;
+%extend std::array<int64_t, 3>
+{
+    const int64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -853,6 +1138,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint64_field() const;
 %template(uint64_t_3_array) std::array<uint64_t,3>;
+%extend std::array<uint64_t, 3>
+{
+    const uint64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_float_field(std::array<float, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -860,6 +1152,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_float_field() const;
 %template(float_3_array) std::array<float,3>;
+%extend std::array<float, 3>
+{
+    const float* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_double_field(std::array<double, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -867,6 +1166,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_double_field() const;
 %template(double_3_array) std::array<double,3>;
+%extend std::array<double, 3>
+{
+    const double* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_bool_field(std::array<bool, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -874,6 +1180,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_bool_field() const;
 %template(bool_3_array) std::array<bool,3>;
+%extend std::array<bool, 3>
+{
+    const bool* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_enum_field(std::array<Color, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -881,6 +1194,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum_field() const;
 %template(Color_3_array) std::array<Color,3>;
+%extend std::array<Color, 3>
+{
+    const Color* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_enum2_field(std::array<Material, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -888,6 +1208,13 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum2_field() const;
 %template(Material_3_array) std::array<Material,3>;
+%extend std::array<Material, 3>
+{
+    const Material* get_buffer() const
+    {
+        return self->data();
+    }
+}
 %ignore KeyedCompleteTestType::array_struct_field(std::array<StructType, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -895,13 +1222,20 @@
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_struct_field() const;
 %template(StructType_3_array) std::array<StructType,3>;
+
 %ignore KeyedCompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_char_field() const;
-%template(char_vector) std::vector<char>;
+%extend std::vector<char>
+{
+    const char* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(char_vector) std::vector<char>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -909,7 +1243,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_uint8_field() const;
-%template(uint8_t_vector) std::vector<uint8_t>;
+%extend std::vector<uint8_t>
+{
+    const uint8_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint8_t_vector) std::vector<uint8_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -917,7 +1257,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_int16_field() const;
-%template(int16_t_vector) std::vector<int16_t>;
+%extend std::vector<int16_t>
+{
+    const int16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int16_t_vector) std::vector<int16_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -925,7 +1271,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_uint16_field() const;
-%template(uint16_t_vector) std::vector<uint16_t>;
+%extend std::vector<uint16_t>
+{
+    const uint16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint16_t_vector) std::vector<uint16_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -933,7 +1285,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_int32_field() const;
-%template(int32_t_vector) std::vector<int32_t>;
+%extend std::vector<int32_t>
+{
+    const int32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int32_t_vector) std::vector<int32_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -941,7 +1299,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_uint32_field() const;
-%template(uint32_t_vector) std::vector<uint32_t>;
+%extend std::vector<uint32_t>
+{
+    const uint32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint32_t_vector) std::vector<uint32_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -949,7 +1313,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_int64_field() const;
-%template(int64_t_vector) std::vector<int64_t>;
+%extend std::vector<int64_t>
+{
+    const int64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int64_t_vector) std::vector<int64_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -957,7 +1327,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_uint64_field() const;
-%template(uint64_t_vector) std::vector<uint64_t>;
+%extend std::vector<uint64_t>
+{
+    const uint64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint64_t_vector) std::vector<uint64_t>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_float_field(std::vector<float>&&);
 
@@ -965,7 +1341,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_float_field() const;
-%template(float_vector) std::vector<float>;
+%extend std::vector<float>
+{
+    const float* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(float_vector) std::vector<float>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_double_field(std::vector<double>&&);
 
@@ -973,7 +1355,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_double_field() const;
-%template(double_vector) std::vector<double>;
+%extend std::vector<double>
+{
+    const double* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(double_vector) std::vector<double>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -989,7 +1377,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_enum_field() const;
-%template(Color_vector) std::vector<Color>;
+%extend std::vector<Color>
+{
+    const Color* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Color_vector) std::vector<Color>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_enum2_field(std::vector<Material>&&);
 
@@ -997,7 +1391,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_enum2_field() const;
-%template(Material_vector) std::vector<Material>;
+%extend std::vector<Material>
+{
+    const Material* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Material_vector) std::vector<Material>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_struct_field(std::vector<StructType>&&);
 
@@ -1013,7 +1413,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_char_field() const;
-%template(char_vector) std::vector<char>;
+%extend std::vector<char>
+{
+    const char* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(char_vector) std::vector<char>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -1021,7 +1427,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_uint8_field() const;
-%template(uint8_t_vector) std::vector<uint8_t>;
+%extend std::vector<uint8_t>
+{
+    const uint8_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint8_t_vector) std::vector<uint8_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -1029,7 +1441,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_int16_field() const;
-%template(int16_t_vector) std::vector<int16_t>;
+%extend std::vector<int16_t>
+{
+    const int16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int16_t_vector) std::vector<int16_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -1037,7 +1455,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_uint16_field() const;
-%template(uint16_t_vector) std::vector<uint16_t>;
+%extend std::vector<uint16_t>
+{
+    const uint16_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint16_t_vector) std::vector<uint16_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -1045,7 +1469,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_int32_field() const;
-%template(int32_t_vector) std::vector<int32_t>;
+%extend std::vector<int32_t>
+{
+    const int32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int32_t_vector) std::vector<int32_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -1053,7 +1483,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_uint32_field() const;
-%template(uint32_t_vector) std::vector<uint32_t>;
+%extend std::vector<uint32_t>
+{
+    const uint32_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint32_t_vector) std::vector<uint32_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -1061,7 +1497,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_int64_field() const;
-%template(int64_t_vector) std::vector<int64_t>;
+%extend std::vector<int64_t>
+{
+    const int64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(int64_t_vector) std::vector<int64_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -1069,7 +1511,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_uint64_field() const;
-%template(uint64_t_vector) std::vector<uint64_t>;
+%extend std::vector<uint64_t>
+{
+    const uint64_t* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(uint64_t_vector) std::vector<uint64_t>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_float_field(std::vector<float>&&);
 
@@ -1077,7 +1525,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_float_field() const;
-%template(float_vector) std::vector<float>;
+%extend std::vector<float>
+{
+    const float* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(float_vector) std::vector<float>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_double_field(std::vector<double>&&);
 
@@ -1085,7 +1539,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_double_field() const;
-%template(double_vector) std::vector<double>;
+%extend std::vector<double>
+{
+    const double* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(double_vector) std::vector<double>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -1101,7 +1561,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_enum_field() const;
-%template(Color_vector) std::vector<Color>;
+%extend std::vector<Color>
+{
+    const Color* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Color_vector) std::vector<Color>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_enum2_field(std::vector<Material>&&);
 
@@ -1109,7 +1575,13 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_enum2_field() const;
-%template(Material_vector) std::vector<Material>;
+%extend std::vector<Material>
+{
+    const Material* get_buffer() const
+    {
+        return self->data();
+    }
+}%template(Material_vector) std::vector<Material>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_struct_field(std::vector<StructType>&&);
 
@@ -1141,3 +1613,4 @@
 
 // Include the corresponding TopicDataType
 %include "test_completePubSubTypes.i"
+

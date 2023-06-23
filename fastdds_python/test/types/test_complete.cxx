@@ -727,6 +727,7 @@ void StructType::serializeKey(
 
 
 
+
 CompleteTestType::CompleteTestType()
 {
     // char m_char_field
@@ -3726,6 +3727,7 @@ void CompleteTestType::serializeKey(
 {
     (void) scdr;
 }
+
 
 KeyedCompleteTestType::KeyedCompleteTestType()
 {
@@ -6825,3 +6827,4 @@ void KeyedCompleteTestType::serializeKey(
  
   
 }
+

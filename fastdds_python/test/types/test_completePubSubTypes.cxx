@@ -62,15 +62,15 @@ bool StructTypePubSubType::serialize(
     // Object that serializes the data.
     eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
     payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-    // Serialize encapsulation
-    ser.serialize_encapsulation();
 
     try
     {
+        // Serialize encapsulation
+        ser.serialize_encapsulation();
         // Serialize the object.
         p_type->serialize(ser);
     }
-    catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+    catch (eprosima::fastcdr::exception::Exception& /*exception*/)
     {
         return false;
     }
@@ -86,7 +86,7 @@ bool StructTypePubSubType::deserialize(
 {
     try
     {
-        //Convert DATA to pointer of your type
+        // Convert DATA to pointer of your type
         StructType* p_type = static_cast<StructType*>(data);
 
         // Object that manages the raw buffer.
@@ -102,7 +102,7 @@ bool StructTypePubSubType::deserialize(
         // Deserialize the object.
         p_type->deserialize(deser);
     }
-    catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+    catch (eprosima::fastcdr::exception::Exception& /*exception*/)
     {
         return false;
     }
@@ -204,15 +204,15 @@ bool CompleteTestTypePubSubType::serialize(
     // Object that serializes the data.
     eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
     payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-    // Serialize encapsulation
-    ser.serialize_encapsulation();
 
     try
     {
+        // Serialize encapsulation
+        ser.serialize_encapsulation();
         // Serialize the object.
         p_type->serialize(ser);
     }
-    catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+    catch (eprosima::fastcdr::exception::Exception& /*exception*/)
     {
         return false;
     }
@@ -228,7 +228,7 @@ bool CompleteTestTypePubSubType::deserialize(
 {
     try
     {
-        //Convert DATA to pointer of your type
+        // Convert DATA to pointer of your type
         CompleteTestType* p_type = static_cast<CompleteTestType*>(data);
 
         // Object that manages the raw buffer.
@@ -244,7 +244,7 @@ bool CompleteTestTypePubSubType::deserialize(
         // Deserialize the object.
         p_type->deserialize(deser);
     }
-    catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+    catch (eprosima::fastcdr::exception::Exception& /*exception*/)
     {
         return false;
     }
@@ -344,15 +344,15 @@ bool KeyedCompleteTestTypePubSubType::serialize(
     // Object that serializes the data.
     eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::DEFAULT_ENDIAN, eprosima::fastcdr::Cdr::DDS_CDR);
     payload->encapsulation = ser.endianness() == eprosima::fastcdr::Cdr::BIG_ENDIANNESS ? CDR_BE : CDR_LE;
-    // Serialize encapsulation
-    ser.serialize_encapsulation();
 
     try
     {
+        // Serialize encapsulation
+        ser.serialize_encapsulation();
         // Serialize the object.
         p_type->serialize(ser);
     }
-    catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+    catch (eprosima::fastcdr::exception::Exception& /*exception*/)
     {
         return false;
     }
@@ -368,7 +368,7 @@ bool KeyedCompleteTestTypePubSubType::deserialize(
 {
     try
     {
-        //Convert DATA to pointer of your type
+        // Convert DATA to pointer of your type
         KeyedCompleteTestType* p_type = static_cast<KeyedCompleteTestType*>(data);
 
         // Object that manages the raw buffer.
@@ -384,7 +384,7 @@ bool KeyedCompleteTestTypePubSubType::deserialize(
         // Deserialize the object.
         p_type->deserialize(deser);
     }
-    catch (eprosima::fastcdr::exception::NotEnoughMemoryException& /*exception*/)
+    catch (eprosima::fastcdr::exception::Exception& /*exception*/)
     {
         return false;
     }

@@ -31,7 +31,6 @@
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 1)
 #error \
-
     Generated test_complete is not compatible with current installed Fast DDS. Please, regenerate it with fastddsgen.
 #endif  // GEN_API_VER
 
@@ -40,7 +39,7 @@
 
 /*!
  * @brief This class represents the TopicDataType of the type StructType defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 class StructTypePubSubType : public eprosima::fastdds::dds::TopicDataType
 {
@@ -108,7 +107,7 @@ public:
 
 /*!
  * @brief This class represents the TopicDataType of the type CompleteTestType defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 class CompleteTestTypePubSubType : public eprosima::fastdds::dds::TopicDataType
 {
@@ -174,7 +173,7 @@ public:
 
 /*!
  * @brief This class represents the TopicDataType of the type KeyedCompleteTestType defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 class KeyedCompleteTestTypePubSubType : public eprosima::fastdds::dds::TopicDataType
 {
@@ -239,3 +238,4 @@ public:
 };
 
 #endif // _FAST_DDS_GENERATED_TEST_COMPLETE_PUBSUBTYPES_H_
+

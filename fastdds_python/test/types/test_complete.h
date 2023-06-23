@@ -44,16 +44,16 @@
 
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
-#if defined(test_complete_SOURCE)
-#define test_complete_DllAPI __declspec( dllexport )
+#if defined(TEST_COMPLETE_SOURCE)
+#define TEST_COMPLETE_DllAPI __declspec( dllexport )
 #else
-#define test_complete_DllAPI __declspec( dllimport )
-#endif // test_complete_SOURCE
+#define TEST_COMPLETE_DllAPI __declspec( dllimport )
+#endif // TEST_COMPLETE_SOURCE
 #else
-#define test_complete_DllAPI
+#define TEST_COMPLETE_DllAPI
 #endif  // EPROSIMA_USER_DLL_EXPORT
 #else
-#define test_complete_DllAPI
+#define TEST_COMPLETE_DllAPI
 #endif // _WIN32
 
 namespace eprosima {
@@ -65,7 +65,7 @@ class Cdr;
 
 /*!
  * @brief This class represents the enumeration Color defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 enum Color : uint32_t
 {
@@ -77,7 +77,7 @@ enum Color : uint32_t
 };
 /*!
  * @brief This class represents the enumeration Material defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 enum Material : uint32_t
 {
@@ -89,7 +89,7 @@ enum Material : uint32_t
 };
 /*!
  * @brief This class represents the structure StructType defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 class StructType
 {
@@ -499,7 +499,7 @@ const uint32_t max_array_size = 3;
 const uint32_t max_seq_size = 5;
 /*!
  * @brief This class represents the structure CompleteTestType defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 class CompleteTestType
 {
@@ -2025,7 +2025,7 @@ private:
 };
 /*!
  * @brief This class represents the structure KeyedCompleteTestType defined by the user in the IDL file.
- * @ingroup TEST_COMPLETE
+ * @ingroup test_complete
  */
 class KeyedCompleteTestType
 {
@@ -3571,3 +3571,4 @@ private:
 };
 
 #endif // _FAST_DDS_GENERATED_TEST_COMPLETE_H_
+
