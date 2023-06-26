@@ -34,11 +34,11 @@ using namespace eprosima::fastcdr::exception;
 
 #include <utility>
 
-#define CompleteTestType_max_cdr_typesize 41232ULL;
+#define CompleteTestType_max_cdr_typesize 40872ULL;
 #define StructType_max_cdr_typesize 320ULL;
 
 
-#define KeyedCompleteTestType_max_cdr_typesize 41240ULL;
+#define KeyedCompleteTestType_max_cdr_typesize 40880ULL;
 #define CompleteTestType_max_key_cdr_typesize 0ULL;
 #define StructType_max_key_cdr_typesize 0ULL;
 
@@ -727,6 +727,7 @@ void StructType::serializeKey(
 
 
 
+
 CompleteTestType::CompleteTestType()
 {
     // char m_char_field
@@ -1231,7 +1232,6 @@ size_t CompleteTestType::getCdrSerializedSize(
 
 
     current_alignment += StructType::getCdrSerializedSize(data.struct_field(), current_alignment);
-
     current_alignment += ((3) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
     current_alignment += ((3) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
@@ -1257,6 +1257,7 @@ size_t CompleteTestType::getCdrSerializedSize(
     current_alignment += ((3) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
     current_alignment += ((3) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
 
     for(size_t a = 0; a < data.array_struct_field().size(); ++a)
     {
@@ -3727,6 +3728,7 @@ void CompleteTestType::serializeKey(
     (void) scdr;
 }
 
+
 KeyedCompleteTestType::KeyedCompleteTestType()
 {
     // long m_id
@@ -4241,7 +4243,6 @@ size_t KeyedCompleteTestType::getCdrSerializedSize(
 
 
     current_alignment += StructType::getCdrSerializedSize(data.struct_field(), current_alignment);
-
     current_alignment += ((3) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
     current_alignment += ((3) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
@@ -4267,6 +4268,7 @@ size_t KeyedCompleteTestType::getCdrSerializedSize(
     current_alignment += ((3) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
     current_alignment += ((3) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
 
     for(size_t a = 0; a < data.array_struct_field().size(); ++a)
     {
@@ -6825,3 +6827,4 @@ void KeyedCompleteTestType::serializeKey(
  
   
 }
+
