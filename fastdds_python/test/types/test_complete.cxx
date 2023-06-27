@@ -129,7 +129,7 @@ StructType::StructType(
 }
 
 StructType::StructType(
-        StructType&& x) noexcept
+        StructType&& x) noexcept 
 {
     m_char_field = x.m_char_field;
     m_uint8_field = x.m_uint8_field;
@@ -1019,7 +1019,7 @@ CompleteTestType::CompleteTestType(
 }
 
 CompleteTestType::CompleteTestType(
-        CompleteTestType&& x) noexcept
+        CompleteTestType&& x) noexcept 
 {
     m_char_field = x.m_char_field;
     m_uint8_field = x.m_uint8_field;
@@ -4100,7 +4100,7 @@ KeyedCompleteTestType::KeyedCompleteTestType(
 }
 
 KeyedCompleteTestType::KeyedCompleteTestType(
-        KeyedCompleteTestType&& x) noexcept
+        KeyedCompleteTestType&& x) noexcept 
 {
     m_id = x.m_id;
     m_char_field = x.m_char_field;
@@ -6988,63 +6988,63 @@ void KeyedCompleteTestType::serializeKey(
 {
     (void) scdr;
    scdr << m_id;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
 }
 

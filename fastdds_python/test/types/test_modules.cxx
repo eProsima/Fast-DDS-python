@@ -727,6 +727,7 @@ void eprosima::test::StructType::serializeKey(
 
 
 
+
 eprosima::test::CompleteTestType::CompleteTestType()
 {
     // char m_char_field
@@ -3726,6 +3727,7 @@ void eprosima::test::CompleteTestType::serializeKey(
 {
     (void) scdr;
 }
+
 
 eprosima::test::KeyedCompleteTestType::KeyedCompleteTestType()
 {
@@ -6825,5 +6827,6 @@ void eprosima::test::KeyedCompleteTestType::serializeKey(
  
   
 }
+
 
 

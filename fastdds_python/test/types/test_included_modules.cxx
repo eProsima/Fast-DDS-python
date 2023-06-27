@@ -722,3 +722,4 @@ void eprosima::test2::StructType2::serializeKey(
 }
 
 
+
