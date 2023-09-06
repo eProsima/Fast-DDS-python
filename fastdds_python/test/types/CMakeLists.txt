@@ -74,6 +74,8 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
     )
 
+set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
+
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
     LANGUAGE python
@@ -83,11 +85,16 @@ if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
 
-SWIG_LINK_LIBRARIES(${${PROJECT_NAME}_MODULE}
+target_link_libraries(${${PROJECT_NAME}_MODULE}
     Python3::Module
     fastrtps
     ${PROJECT_NAME}
     )
+
+set_target_properties(${${PROJECT_NAME}_MODULE}
+    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
+    )
+
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -107,7 +114,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib/
     ARCHIVE DESTINATION lib/
     )
-install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/)
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/)
 
