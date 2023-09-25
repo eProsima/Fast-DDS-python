@@ -185,6 +185,7 @@
 %ignore StructType::enum2_field();
 %rename("%s") StructType::enum2_field() const;
 
+
 %ignore StructType::included_module_struct(eprosima::test2::StructType2&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -746,7 +747,9 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::bounded_sequence_bool_field() const;
-%template(bool_vector) std::vector<bool>;
+%template(
+bool_vector
+) std::vector<bool>;
 
 %ignore CompleteTestType::bounded_sequence_enum_field(std::vector<Color>&&);
 
@@ -980,7 +983,9 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::unbounded_sequence_bool_field() const;
-%template(bool_vector) std::vector<bool>;
+%template(
+bool_vector
+) std::vector<bool>;
 
 %ignore CompleteTestType::unbounded_sequence_enum_field(std::vector<Color>&&);
 
@@ -1587,7 +1592,9 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::bounded_sequence_bool_field() const;
-%template(bool_vector) std::vector<bool>;
+%template(
+bool_vector
+) std::vector<bool>;
 
 %ignore KeyedCompleteTestType::bounded_sequence_enum_field(std::vector<Color>&&);
 
@@ -1821,7 +1828,9 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::unbounded_sequence_bool_field() const;
-%template(bool_vector) std::vector<bool>;
+%template(
+bool_vector
+) std::vector<bool>;
 
 %ignore KeyedCompleteTestType::unbounded_sequence_enum_field(std::vector<Color>&&);
 
