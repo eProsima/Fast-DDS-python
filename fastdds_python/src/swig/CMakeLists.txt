@@ -39,7 +39,7 @@ if (BUILD_DOCUMENTATION)
     set(CMAKE_SWIG_FLAGS "-doxygen")
 endif (BUILD_DOCUMENTATION)
 
-SWIG_ADD_LIBRARY(${PROJECT_NAME}
+swig_add_library(${PROJECT_NAME}
     TYPE SHARED
     LANGUAGE python
     SOURCES ${${PROJECT_NAME}_FILES}
@@ -49,7 +49,11 @@ if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${PROJECT_NAME} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
 
-SWIG_LINK_LIBRARIES(${PROJECT_NAME}
+if(MSVC OR MSVC_IDE)
+    target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+endif()
+
+target_link_libraries(${PROJECT_NAME}
     Python3::Module
     fastcdr
     fastrtps
