@@ -39,8 +39,8 @@ jobs:
           'cmake_minimum_required(VERSION 3.5)' + $cr  +
           'project(dummy VERSION 1.0.0 LANGUAGES CXX)' + $cr +
           'find_package (Python3 COMPONENTS Interpreter Development REQUIRED)' + $cr +
-          'message(STATUS "cmake detected python=>>>>>${Python3_EXECUTABLE}<<<<<<")' | 
-          Out-File CMakeLists.txt 
+          'message(STATUS "cmake detected python=>>>>>${Python3_EXECUTABLE}<<<<<<")' |
+          Out-File CMakeLists.txt
           (cmake .) *>&1 | % {
             if($_ -Match "cmake detected python=>>>>>(?<exec>.*)<<<<<<")
             {
@@ -59,6 +59,18 @@ jobs:
         run: |
           vcs import src --skip-existing --input src/fastdds_python/fastdds_python.repos
 
+      - name: Get minimum supported version of CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: 3.22.6
+      - name: Use cmake
+        run: cmake --version
+
+      - name: Setup ccache
+        uses: Chocobo1/setup-ccache-action@v1
+        with:
+          windows_compile_environment: msvc
+
       - name: Build workspace
         shell: pwsh
         run: |
@@ -67,14 +79,15 @@ jobs:
           Import-Module $modulepath
           Enter-VsDevShell -SetDefaultWindowTitle -InstallPath $installpath `
                            -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
-          $cargs = @("--event-handlers=console_direct+", `
-                     "--metas", "./src/fastdds_python/.github/workflows/test.meta")
-          colcon build --executor parallel $cargs 
+          colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
+              --metas ./src/fastdds_python/.github/workflows/test.meta `
+              --cmake-args -DCMAKE_C_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}" `
+                           -DCMAKE_CXX_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}"
 
       - name: Run tests
         shell: pwsh
         run: |
-          colcon test --packages-select fastdds_python --event-handlers=console_direct+ `
+          colcon test --packages-select fastdds_python --event-handlers console_direct+ desktop_notification- `
                       --return-code-on-test-failure --ctest-args --timeout 60
 
       - name: Upload Logs
@@ -111,9 +124,20 @@ jobs:
         run: |
           vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
 
+      - name: Get minimum supported version of CMake
+        uses: lukka/get-cmake@latest
+        with:
+          cmakeVersion: 3.22.6
+      - name: Use cmake
+        run: cmake --version
+
+      - name: Setup ccache
+        uses: Chocobo1/setup-ccache-action@v1
+
       - name: Build workspace
         run: >
-          colcon build --event-handlers=console_direct+ --metas ./src/fastdds_python/.github/workflows/test.meta
+          colcon build --event-handlers=console_direct+ --metas ./src/fastdds_python/.github/workflows/test.meta \
+            --cmake-args -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
       - name: Run tests
         run: |
