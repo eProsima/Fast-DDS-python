@@ -51,6 +51,7 @@ endif()
 
 SWIG_LINK_LIBRARIES(${PROJECT_NAME}
     Python3::Module
+    fastcdr
     fastrtps
     )
 
