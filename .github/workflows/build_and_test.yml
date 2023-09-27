@@ -26,6 +26,10 @@ jobs:
           "System32;SysWoW64" -split ";" | Join-Path -Path $env:windir -ChildPath {$_} `
           | ls -Include libssl-*.dll | rm
 
+      - name: install swig
+        shell: pwsh
+        run: choco install swig --allow-downgrade --version=4.0.2.04082020
+
       - name: Install python build dependencies
         shell: pwsh
         run: >
