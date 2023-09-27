@@ -66,7 +66,7 @@ jobs:
           $modulepath = "$installpath\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
           Import-Module $modulepath
           Enter-VsDevShell -SetDefaultWindowTitle -InstallPath $installpath `
-                           -DevCmdArguments '/arch=x64 /host_arch=x64';
+                           -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
           $cargs = @("--event-handlers=console_direct+", `
                      "--metas", "./src/fastdds_python/.github/workflows/test.meta")
           colcon build --executor parallel $cargs 
