@@ -1,11 +1,17 @@
 {
     "names":
     {
-        "fastrtps" :
+        "fastrtps":
         {
             "cmake-args": [
                 "-DTHIRDPARTY=ON",
                 "-DSECURITY=ON",
+            ]
+        },
+        "fastdds_python":
+        {
+            "cmake-args": [
+                "-DBUILD_TESTING=ON"
             ]
         }
     }

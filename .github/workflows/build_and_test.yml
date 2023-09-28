@@ -86,8 +86,7 @@ jobs:
           colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
               --metas ./src/fastdds_python/.github/workflows/test.meta `
               --cmake-args -DCMAKE_C_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}" `
-                           -DCMAKE_CXX_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}" `
-                           -DBUILD_TESTING=ON
+                           -DCMAKE_CXX_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}"
 
       - name: Run tests
         shell: pwsh
@@ -146,8 +145,7 @@ jobs:
             --metas ./src/fastdds_python/.github/workflows/test.meta \
             --cmake-args \
               -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-              -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
-              -DBUILD_TESTING=ON
+              -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
       - name: Run tests
         run: |
