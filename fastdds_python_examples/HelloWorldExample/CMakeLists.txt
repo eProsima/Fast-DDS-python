@@ -1,5 +1,18 @@
+# Copyright 2022 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.22)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -22,8 +35,8 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 
 project(HelloWorld)
 
-find_package(fastcdr REQUIRED)
-find_package(fastrtps REQUIRED)
+find_package(fastcdr 2 REQUIRED)
+find_package(fastrtps 2.12 REQUIRED)
 
 
 set(${PROJECT_NAME}_FILES
@@ -74,6 +87,8 @@ include_directories(
     ${PROJECT_SOURCE_DIR}
     )
 
+set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
+
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
     LANGUAGE python
@@ -83,11 +98,16 @@ if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
 
-SWIG_LINK_LIBRARIES(${${PROJECT_NAME}_MODULE}
+target_link_libraries(${${PROJECT_NAME}_MODULE}
     Python3::Module
     fastrtps
     ${PROJECT_NAME}
     )
+
+set_target_properties(${${PROJECT_NAME}_MODULE}
+    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
+    )
+
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -107,7 +127,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib/
     ARCHIVE DESTINATION lib/
     )
-install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/)
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/)
 

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.22)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -36,7 +36,8 @@ set(CMAKE_SWIG_FLAGS "")
 
 find_package (Python3 COMPONENTS Interpreter Development REQUIRED)
 
-find_package(fastrtps REQUIRED)
+find_package(fastcdr 2 REQUIRED)
+find_package(fastrtps 2.12 REQUIRED)
 
 ###############################################################################
 # Project subdirectories
