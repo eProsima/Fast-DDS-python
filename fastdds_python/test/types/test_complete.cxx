@@ -613,6 +613,7 @@ eprosima::test2::StructType2& StructType::included_module_struct()
 
 
 
+
 CompleteTestType::CompleteTestType()
 {
 
