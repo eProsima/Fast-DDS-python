@@ -222,3 +222,4 @@ void serialize_key(
 } // namespace eprosima
 
 #endif // _FAST_DDS_GENERATED_EPROSIMA_TEST2_TEST_INCLUDED_MODULESCDRAUX_IPP_
+
