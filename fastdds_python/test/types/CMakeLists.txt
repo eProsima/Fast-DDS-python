@@ -254,7 +254,7 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
-target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps)
+target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps  test_included_modules)
 
 ###############################################################################
 # Python bindings for type
