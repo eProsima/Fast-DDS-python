@@ -26,7 +26,11 @@ jobs:
           "System32;SysWoW64" -split ";" | Join-Path -Path $env:windir -ChildPath {$_} `
           | ls -Include libssl-*.dll | rm
 
-      - name: install swig
+      - name: Install ninja
+        shell: pwsh
+        run: choco install ninja
+
+      - name: Install swig
         shell: pwsh
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
 
@@ -34,6 +38,7 @@ jobs:
         shell: pwsh
         run: >
           pip install -U colcon-common-extensions colcon-mixin vcstool;
+          colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml; colcon mixin update default
 
       - name: Install python tests dependencies
         shell: pwsh
@@ -67,13 +72,19 @@ jobs:
         uses: lukka/get-cmake@latest
         with:
           cmakeVersion: 3.22.6
+
       - name: Use cmake
         run: cmake --version
 
       - name: Install ccache
+        shell: pwsh
         run: |
-          powershell -File "src/fastdds_python/.github/ci/ccache.ps1"
-          Set-Item -Force -Path "env:PATH" -Value "$pwdpath\.github\ccache;$env:PATH"
+          pwsh -File "src\fastdds_python\.github\ci\ccache.ps1"
+          $ccache_dir = $pwd.PATH
+          $ccache_dir = "$ccache_dir\.github\ccache"
+          echo "$ccache_dir" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          Set-Item -Force -Path "env:PATH" -Value "$ccache_dir;$env:PATH"
+          ccache --version
 
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
@@ -92,8 +103,7 @@ jobs:
                            -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
           colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
               --metas ./src/fastdds_python/.github/workflows/test.meta `
-              --cmake-args -DCMAKE_C_COMPILER_LAUNCHER=ccache
-                           -DCMAKE_CXX_COMPILER_LAUNCHE=ccache
+              --mixin rel-with-deb-info ccache ninja
 
       - name: Run tests
         shell: pwsh
@@ -131,6 +141,8 @@ jobs:
             vcstool \
             colcon-common-extensions
 
+          colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml; colcon mixin update default
+
       - name: Fetch repositories
         run: |
           vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
@@ -150,9 +162,7 @@ jobs:
           colcon build \
             --event-handlers=console_direct+ \
             --metas ./src/fastdds_python/.github/workflows/test.meta \
-            --cmake-args \
-              -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-              -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+            --mixin rel-with-deb-info ccache
 
       - name: Run tests
         run: |
