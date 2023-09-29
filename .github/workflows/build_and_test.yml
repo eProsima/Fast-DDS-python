@@ -70,9 +70,16 @@ jobs:
       - name: Use cmake
         run: cmake --version
 
+      - name: ccache install
+        run: |
+          powershell -File "src/fastdds_python/.github/ci/ccache.ps1"
+          Set-Item -Force -Path "env:PATH" -Value "$pwdpath\.github\ccache;$env:PATH"
+
       - name: Setup ccache
         uses: Chocobo1/setup-ccache-action@v1
         with:
+          prepend_symlinks_to_path: false
+          install_ccache: false
           windows_compile_environment: msvc
 
       - name: Build workspace
