@@ -7,6 +7,7 @@ $tarball = "$filename.zip"
 
 $outdir = $pwd.Path
 $outdir = "$outdir\.github"
+mkdir $outdir
 $ProgressPreference = 'SilentlyContinue'
 Invoke-WebRequest -Uri "https://github.com/ccache/ccache/releases/download/$tag/$tarball" -OutFile "$outdir\$tarball"
 
