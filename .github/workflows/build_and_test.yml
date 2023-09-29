@@ -70,7 +70,7 @@ jobs:
       - name: Use cmake
         run: cmake --version
 
-      - name: ccache install
+      - name: Install ccache
         run: |
           powershell -File "src/fastdds_python/.github/ci/ccache.ps1"
           Set-Item -Force -Path "env:PATH" -Value "$pwdpath\.github\ccache;$env:PATH"
@@ -92,8 +92,8 @@ jobs:
                            -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
           colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
               --metas ./src/fastdds_python/.github/workflows/test.meta `
-              --cmake-args "-DCMAKE_C_COMPILER_LAUNCHER=${{ env.ccache_symlinks_path }}" `
-                           "-DCMAKE_CXX_COMPILER_LAUNCHER=${{ env.ccache_symlinks_path }}"
+              --cmake-args -DCMAKE_C_COMPILER_LAUNCHER=ccache
+                           -DCMAKE_CXX_COMPILER_LAUNCHE=ccache
 
       - name: Run tests
         shell: pwsh
