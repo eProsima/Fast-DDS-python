@@ -1,3 +1,5 @@
+#include "test_included_modules.idl"
+
 enum Color
 {
     RED,
@@ -16,24 +18,24 @@ enum Material
     STONE
 };
 
-@nested
 struct StructType
 {
-    char               char_field;
-    octet              uint8_field;
-    short              int16_field;
-    unsigned short     uint16_field;
-    long               int32_field;
-    unsigned long      uint32_field;
-    long long          int64_field;
-    unsigned long long uint64_field;
-    float              float_field;
-    double             double_field;
-    //long double        long_double_field;
-    boolean            bool_field;
-    string             string_field;
-    Color              enum_field;
-    Material           enum2_field;
+    char                         char_field;
+    octet                        uint8_field;
+    short                        int16_field;
+    unsigned short               uint16_field;
+    long                         int32_field;
+    unsigned long                uint32_field;
+    long long                    int64_field;
+    unsigned long long           uint64_field;
+    float                        float_field;
+    double                       double_field;
+    //long double                  long_double_field;
+    boolean                      bool_field;
+    string                       string_field;
+    Color                        enum_field;
+    Material                     enum2_field;
+    eprosima::test2::StructType2 included_module_struct;
 };
 
 const unsigned long max_array_size = 3;

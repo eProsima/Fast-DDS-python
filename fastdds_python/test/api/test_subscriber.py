@@ -1,6 +1,5 @@
 import fastdds
 import pytest
-import test_complete
 import time
 
 
@@ -13,6 +12,13 @@ class DataReaderListener (fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
 
+@pytest.fixture(params=['no_module', 'module'], autouse=True)
+def data_type(request):
+    if request.param == 'no_module':
+        pytest.dds_type = __import__("test_complete")
+    else:
+        pytest.dds_type = __import__("eprosima.test.test_modules",
+                                    fromlist=[None])
 
 @pytest.fixture
 def participant_qos():
@@ -52,7 +58,7 @@ def subscriber(participant, topic):
 @pytest.fixture
 def topic(participant):
     test_type = fastdds.TypeSupport(
-            test_complete.CompleteTestTypePubSubType())
+            pytest.dds_type.CompleteTestTypePubSubType())
     participant.register_type(test_type, test_type.get_type_name())
     return participant.create_topic(
             "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
@@ -60,7 +66,7 @@ def topic(participant):
 @pytest.fixture
 def test_type():
     return fastdds.TypeSupport(
-            test_complete.CompleteTestTypePubSubType())
+            pytest.dds_type.CompleteTestTypePubSubType())
 
 @pytest.fixture
 def writer_participant():

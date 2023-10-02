@@ -1,0 +1,42 @@
+module eprosima
+{
+    module test2
+    {
+        enum Color2
+        {
+            RED2,
+            GREEN2,
+            BLUE2,
+            YELLOW2,
+            MAGENTA2
+        };
+
+        enum Material2
+        {
+            WOOD2,
+            PLASTIC2,
+            METAL2,
+            CONCRETE2,
+            STONE2
+        };
+
+        struct StructType2
+        {
+            char                             char_field;
+            octet                            uint8_field;
+            short                            int16_field;
+            unsigned short                   uint16_field;
+            long                             int32_field;
+            unsigned long                    uint32_field;
+            long long                        int64_field;
+            unsigned long long               uint64_field;
+            float                            float_field;
+            double                           double_field;
+            //long double                      long_double_field;
+            boolean                          bool_field;
+            string                           string_field;
+            Color2                           enum_field;
+            Material2                        enum2_field;
+        };
+    };
+};

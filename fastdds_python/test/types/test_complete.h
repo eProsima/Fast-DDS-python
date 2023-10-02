@@ -32,6 +32,7 @@
 #include <fastcdr/cdr/fixed_size_string.hpp>
 #include <fastcdr/xcdr/optional.hpp>
 
+#include "test_included_modules.h"
 
 
 #if defined(_WIN32)
@@ -437,6 +438,33 @@ public:
      */
     eProsima_user_DllExport Material& enum2_field();
 
+
+    /*!
+     * @brief This function copies the value in member included_module_struct
+     * @param _included_module_struct New value to be copied in member included_module_struct
+     */
+    eProsima_user_DllExport void included_module_struct(
+            const eprosima::test2::StructType2& _included_module_struct);
+
+    /*!
+     * @brief This function moves the value in member included_module_struct
+     * @param _included_module_struct New value to be moved in member included_module_struct
+     */
+    eProsima_user_DllExport void included_module_struct(
+            eprosima::test2::StructType2&& _included_module_struct);
+
+    /*!
+     * @brief This function returns a constant reference to member included_module_struct
+     * @return Constant reference to member included_module_struct
+     */
+    eProsima_user_DllExport const eprosima::test2::StructType2& included_module_struct() const;
+
+    /*!
+     * @brief This function returns a reference to member included_module_struct
+     * @return Reference to member included_module_struct
+     */
+    eProsima_user_DllExport eprosima::test2::StructType2& included_module_struct();
+
 private:
 
     char m_char_field{0};
@@ -453,6 +481,7 @@ private:
     std::string m_string_field;
     Color m_enum_field{::RED};
     Material m_enum2_field{::WOOD};
+    eprosima::test2::StructType2 m_included_module_struct;
 
 };
 const uint32_t max_array_size = 3;

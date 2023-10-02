@@ -140,8 +140,12 @@ jobs:
 
       - name: Build workspace
         run: >
-          colcon build --event-handlers=console_direct+ --metas ./src/fastdds_python/.github/workflows/test.meta \
-            --cmake-args -DCMAKE_C_COMPILER_LAUNCHER=ccache -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+          colcon build \
+            --event-handlers=console_direct+ \
+            --metas ./src/fastdds_python/.github/workflows/test.meta \
+            --cmake-args \
+              -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+              -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
 
       - name: Run tests
         run: |

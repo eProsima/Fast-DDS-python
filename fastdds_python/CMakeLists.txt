@@ -26,6 +26,12 @@ endif()
 
 project(fastdds_python VERSION 1.2.2)
 
+# Set BUILD_TESTING to OFF by default.
+if(NOT BUILD_TESTING)
+    message(STATUS "Tests not compiled by default")
+    set(BUILD_TESTING OFF CACHE BOOL "Enable testing" FORCE)
+endif()
+
 ###############################################################################
 # Dependencies
 ###############################################################################
@@ -50,4 +56,7 @@ add_subdirectory(src/swig)
 ###############################################################################
 enable_testing()
 include(CTest)
-add_subdirectory(test)
+
+if (BUILD_TESTING)
+  add_subdirectory(test)
+endif()
