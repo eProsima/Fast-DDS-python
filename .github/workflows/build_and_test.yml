@@ -138,9 +138,9 @@ jobs:
       - name: Install python dependencies
         run: |
           sudo pip3 install -U \
-            vcstool \
-            colcon-common-extensions
-
+            colcon-common-extensions \
+            colcon-mixin \
+            vcstool
           colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml; colcon mixin update default
 
       - name: Fetch repositories
