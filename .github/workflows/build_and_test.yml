@@ -27,8 +27,15 @@ jobs:
           | ls -Include libssl-*.dll | rm
 
       - name: Install ninja
+        if: github.event.schedule == ''
         shell: pwsh
         run: choco install ninja
+
+      - name: Setting ninja
+        id: ninja
+        if: github.event.schedule == ''
+        shell: pwsh
+        run: echo "cmake_generator=ninja" >> $Env:GITHUB_OUTPUT
 
       - name: Install swig
         shell: pwsh
@@ -36,7 +43,7 @@ jobs:
 
       - name: Install python build dependencies
         shell: pwsh
-        run: >
+        run: |
           pip install -U colcon-common-extensions colcon-mixin vcstool;
           colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml; colcon mixin update default
 
@@ -59,7 +66,7 @@ jobs:
           }
           & $python_exec -m pip install -U pytest pywin32
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: src/fastdds_python
 
@@ -103,7 +110,7 @@ jobs:
                            -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
           colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
               --metas ./src/fastdds_python/.github/workflows/test.meta `
-              --mixin rel-with-deb-info ccache ninja
+              --mixin rel-with-deb-info ccache ${{ steps.ninja.outputs.cmake_generator }}
 
       - name: Run tests
         shell: pwsh
@@ -122,7 +129,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           path: src/fastdds_python
 
