@@ -641,6 +641,21 @@ CompleteTestType::CompleteTestType(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = x.m_struct_field;
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = x.m_string_opt_field;
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = x.m_struct_opt_field;
     m_array_char_field = x.m_array_char_field;
     m_array_uint8_field = x.m_array_uint8_field;
     m_array_int16_field = x.m_array_int16_field;
@@ -703,6 +718,21 @@ CompleteTestType::CompleteTestType(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = std::move(x.m_struct_field);
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = std::move(x.m_string_opt_field);
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = std::move(x.m_struct_opt_field);
     m_array_char_field = std::move(x.m_array_char_field);
     m_array_uint8_field = std::move(x.m_array_uint8_field);
     m_array_int16_field = std::move(x.m_array_int16_field);
@@ -766,6 +796,21 @@ CompleteTestType& CompleteTestType::operator =(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = x.m_struct_field;
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = x.m_string_opt_field;
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = x.m_struct_opt_field;
     m_array_char_field = x.m_array_char_field;
     m_array_uint8_field = x.m_array_uint8_field;
     m_array_int16_field = x.m_array_int16_field;
@@ -831,6 +876,21 @@ CompleteTestType& CompleteTestType::operator =(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = std::move(x.m_struct_field);
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = std::move(x.m_string_opt_field);
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = std::move(x.m_struct_opt_field);
     m_array_char_field = std::move(x.m_array_char_field);
     m_array_uint8_field = std::move(x.m_array_uint8_field);
     m_array_int16_field = std::move(x.m_array_int16_field);
@@ -895,6 +955,21 @@ bool CompleteTestType::operator ==(
            m_enum_field == x.m_enum_field &&
            m_enum2_field == x.m_enum2_field &&
            m_struct_field == x.m_struct_field &&
+           m_char_opt_field == x.m_char_opt_field &&
+           m_uint8_opt_field == x.m_uint8_opt_field &&
+           m_int16_opt_field == x.m_int16_opt_field &&
+           m_uint16_opt_field == x.m_uint16_opt_field &&
+           m_int32_opt_field == x.m_int32_opt_field &&
+           m_uint32_opt_field == x.m_uint32_opt_field &&
+           m_int64_opt_field == x.m_int64_opt_field &&
+           m_uint64_opt_field == x.m_uint64_opt_field &&
+           m_float_opt_field == x.m_float_opt_field &&
+           m_double_opt_field == x.m_double_opt_field &&
+           m_bool_opt_field == x.m_bool_opt_field &&
+           m_string_opt_field == x.m_string_opt_field &&
+           m_enum_opt_field == x.m_enum_opt_field &&
+           m_enum2_opt_field == x.m_enum2_opt_field &&
+           m_struct_opt_field == x.m_struct_opt_field &&
            m_array_char_field == x.m_array_char_field &&
            m_array_uint8_field == x.m_array_uint8_field &&
            m_array_int16_field == x.m_array_int16_field &&
@@ -1397,6 +1472,591 @@ const StructType& CompleteTestType::struct_field() const
 StructType& CompleteTestType::struct_field()
 {
     return m_struct_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member char_opt_field
+ * @param _char_opt_field New value to be copied in member char_opt_field
+ */
+void CompleteTestType::char_opt_field(
+        const eprosima::fastcdr::optional<char>& _char_opt_field)
+{
+    m_char_opt_field = _char_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member char_opt_field
+ * @param _char_opt_field New value to be moved in member char_opt_field
+ */
+void CompleteTestType::char_opt_field(
+        eprosima::fastcdr::optional<char>&& _char_opt_field)
+{
+    m_char_opt_field = std::move(_char_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member char_opt_field
+ * @return Constant reference to member char_opt_field
+ */
+const eprosima::fastcdr::optional<char>& CompleteTestType::char_opt_field() const
+{
+    return m_char_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member char_opt_field
+ * @return Reference to member char_opt_field
+ */
+eprosima::fastcdr::optional<char>& CompleteTestType::char_opt_field()
+{
+    return m_char_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint8_opt_field
+ * @param _uint8_opt_field New value to be copied in member uint8_opt_field
+ */
+void CompleteTestType::uint8_opt_field(
+        const eprosima::fastcdr::optional<uint8_t>& _uint8_opt_field)
+{
+    m_uint8_opt_field = _uint8_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint8_opt_field
+ * @param _uint8_opt_field New value to be moved in member uint8_opt_field
+ */
+void CompleteTestType::uint8_opt_field(
+        eprosima::fastcdr::optional<uint8_t>&& _uint8_opt_field)
+{
+    m_uint8_opt_field = std::move(_uint8_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint8_opt_field
+ * @return Constant reference to member uint8_opt_field
+ */
+const eprosima::fastcdr::optional<uint8_t>& CompleteTestType::uint8_opt_field() const
+{
+    return m_uint8_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint8_opt_field
+ * @return Reference to member uint8_opt_field
+ */
+eprosima::fastcdr::optional<uint8_t>& CompleteTestType::uint8_opt_field()
+{
+    return m_uint8_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member int16_opt_field
+ * @param _int16_opt_field New value to be copied in member int16_opt_field
+ */
+void CompleteTestType::int16_opt_field(
+        const eprosima::fastcdr::optional<int16_t>& _int16_opt_field)
+{
+    m_int16_opt_field = _int16_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member int16_opt_field
+ * @param _int16_opt_field New value to be moved in member int16_opt_field
+ */
+void CompleteTestType::int16_opt_field(
+        eprosima::fastcdr::optional<int16_t>&& _int16_opt_field)
+{
+    m_int16_opt_field = std::move(_int16_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member int16_opt_field
+ * @return Constant reference to member int16_opt_field
+ */
+const eprosima::fastcdr::optional<int16_t>& CompleteTestType::int16_opt_field() const
+{
+    return m_int16_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int16_opt_field
+ * @return Reference to member int16_opt_field
+ */
+eprosima::fastcdr::optional<int16_t>& CompleteTestType::int16_opt_field()
+{
+    return m_int16_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint16_opt_field
+ * @param _uint16_opt_field New value to be copied in member uint16_opt_field
+ */
+void CompleteTestType::uint16_opt_field(
+        const eprosima::fastcdr::optional<uint16_t>& _uint16_opt_field)
+{
+    m_uint16_opt_field = _uint16_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint16_opt_field
+ * @param _uint16_opt_field New value to be moved in member uint16_opt_field
+ */
+void CompleteTestType::uint16_opt_field(
+        eprosima::fastcdr::optional<uint16_t>&& _uint16_opt_field)
+{
+    m_uint16_opt_field = std::move(_uint16_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint16_opt_field
+ * @return Constant reference to member uint16_opt_field
+ */
+const eprosima::fastcdr::optional<uint16_t>& CompleteTestType::uint16_opt_field() const
+{
+    return m_uint16_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint16_opt_field
+ * @return Reference to member uint16_opt_field
+ */
+eprosima::fastcdr::optional<uint16_t>& CompleteTestType::uint16_opt_field()
+{
+    return m_uint16_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member int32_opt_field
+ * @param _int32_opt_field New value to be copied in member int32_opt_field
+ */
+void CompleteTestType::int32_opt_field(
+        const eprosima::fastcdr::optional<int32_t>& _int32_opt_field)
+{
+    m_int32_opt_field = _int32_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member int32_opt_field
+ * @param _int32_opt_field New value to be moved in member int32_opt_field
+ */
+void CompleteTestType::int32_opt_field(
+        eprosima::fastcdr::optional<int32_t>&& _int32_opt_field)
+{
+    m_int32_opt_field = std::move(_int32_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member int32_opt_field
+ * @return Constant reference to member int32_opt_field
+ */
+const eprosima::fastcdr::optional<int32_t>& CompleteTestType::int32_opt_field() const
+{
+    return m_int32_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int32_opt_field
+ * @return Reference to member int32_opt_field
+ */
+eprosima::fastcdr::optional<int32_t>& CompleteTestType::int32_opt_field()
+{
+    return m_int32_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint32_opt_field
+ * @param _uint32_opt_field New value to be copied in member uint32_opt_field
+ */
+void CompleteTestType::uint32_opt_field(
+        const eprosima::fastcdr::optional<uint32_t>& _uint32_opt_field)
+{
+    m_uint32_opt_field = _uint32_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint32_opt_field
+ * @param _uint32_opt_field New value to be moved in member uint32_opt_field
+ */
+void CompleteTestType::uint32_opt_field(
+        eprosima::fastcdr::optional<uint32_t>&& _uint32_opt_field)
+{
+    m_uint32_opt_field = std::move(_uint32_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint32_opt_field
+ * @return Constant reference to member uint32_opt_field
+ */
+const eprosima::fastcdr::optional<uint32_t>& CompleteTestType::uint32_opt_field() const
+{
+    return m_uint32_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint32_opt_field
+ * @return Reference to member uint32_opt_field
+ */
+eprosima::fastcdr::optional<uint32_t>& CompleteTestType::uint32_opt_field()
+{
+    return m_uint32_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member int64_opt_field
+ * @param _int64_opt_field New value to be copied in member int64_opt_field
+ */
+void CompleteTestType::int64_opt_field(
+        const eprosima::fastcdr::optional<int64_t>& _int64_opt_field)
+{
+    m_int64_opt_field = _int64_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member int64_opt_field
+ * @param _int64_opt_field New value to be moved in member int64_opt_field
+ */
+void CompleteTestType::int64_opt_field(
+        eprosima::fastcdr::optional<int64_t>&& _int64_opt_field)
+{
+    m_int64_opt_field = std::move(_int64_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member int64_opt_field
+ * @return Constant reference to member int64_opt_field
+ */
+const eprosima::fastcdr::optional<int64_t>& CompleteTestType::int64_opt_field() const
+{
+    return m_int64_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int64_opt_field
+ * @return Reference to member int64_opt_field
+ */
+eprosima::fastcdr::optional<int64_t>& CompleteTestType::int64_opt_field()
+{
+    return m_int64_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint64_opt_field
+ * @param _uint64_opt_field New value to be copied in member uint64_opt_field
+ */
+void CompleteTestType::uint64_opt_field(
+        const eprosima::fastcdr::optional<uint64_t>& _uint64_opt_field)
+{
+    m_uint64_opt_field = _uint64_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint64_opt_field
+ * @param _uint64_opt_field New value to be moved in member uint64_opt_field
+ */
+void CompleteTestType::uint64_opt_field(
+        eprosima::fastcdr::optional<uint64_t>&& _uint64_opt_field)
+{
+    m_uint64_opt_field = std::move(_uint64_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint64_opt_field
+ * @return Constant reference to member uint64_opt_field
+ */
+const eprosima::fastcdr::optional<uint64_t>& CompleteTestType::uint64_opt_field() const
+{
+    return m_uint64_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint64_opt_field
+ * @return Reference to member uint64_opt_field
+ */
+eprosima::fastcdr::optional<uint64_t>& CompleteTestType::uint64_opt_field()
+{
+    return m_uint64_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member float_opt_field
+ * @param _float_opt_field New value to be copied in member float_opt_field
+ */
+void CompleteTestType::float_opt_field(
+        const eprosima::fastcdr::optional<float>& _float_opt_field)
+{
+    m_float_opt_field = _float_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member float_opt_field
+ * @param _float_opt_field New value to be moved in member float_opt_field
+ */
+void CompleteTestType::float_opt_field(
+        eprosima::fastcdr::optional<float>&& _float_opt_field)
+{
+    m_float_opt_field = std::move(_float_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member float_opt_field
+ * @return Constant reference to member float_opt_field
+ */
+const eprosima::fastcdr::optional<float>& CompleteTestType::float_opt_field() const
+{
+    return m_float_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member float_opt_field
+ * @return Reference to member float_opt_field
+ */
+eprosima::fastcdr::optional<float>& CompleteTestType::float_opt_field()
+{
+    return m_float_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member double_opt_field
+ * @param _double_opt_field New value to be copied in member double_opt_field
+ */
+void CompleteTestType::double_opt_field(
+        const eprosima::fastcdr::optional<double>& _double_opt_field)
+{
+    m_double_opt_field = _double_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member double_opt_field
+ * @param _double_opt_field New value to be moved in member double_opt_field
+ */
+void CompleteTestType::double_opt_field(
+        eprosima::fastcdr::optional<double>&& _double_opt_field)
+{
+    m_double_opt_field = std::move(_double_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member double_opt_field
+ * @return Constant reference to member double_opt_field
+ */
+const eprosima::fastcdr::optional<double>& CompleteTestType::double_opt_field() const
+{
+    return m_double_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member double_opt_field
+ * @return Reference to member double_opt_field
+ */
+eprosima::fastcdr::optional<double>& CompleteTestType::double_opt_field()
+{
+    return m_double_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member bool_opt_field
+ * @param _bool_opt_field New value to be copied in member bool_opt_field
+ */
+void CompleteTestType::bool_opt_field(
+        const eprosima::fastcdr::optional<bool>& _bool_opt_field)
+{
+    m_bool_opt_field = _bool_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member bool_opt_field
+ * @param _bool_opt_field New value to be moved in member bool_opt_field
+ */
+void CompleteTestType::bool_opt_field(
+        eprosima::fastcdr::optional<bool>&& _bool_opt_field)
+{
+    m_bool_opt_field = std::move(_bool_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bool_opt_field
+ * @return Constant reference to member bool_opt_field
+ */
+const eprosima::fastcdr::optional<bool>& CompleteTestType::bool_opt_field() const
+{
+    return m_bool_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bool_opt_field
+ * @return Reference to member bool_opt_field
+ */
+eprosima::fastcdr::optional<bool>& CompleteTestType::bool_opt_field()
+{
+    return m_bool_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member string_opt_field
+ * @param _string_opt_field New value to be copied in member string_opt_field
+ */
+void CompleteTestType::string_opt_field(
+        const eprosima::fastcdr::optional<std::string>& _string_opt_field)
+{
+    m_string_opt_field = _string_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member string_opt_field
+ * @param _string_opt_field New value to be moved in member string_opt_field
+ */
+void CompleteTestType::string_opt_field(
+        eprosima::fastcdr::optional<std::string>&& _string_opt_field)
+{
+    m_string_opt_field = std::move(_string_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member string_opt_field
+ * @return Constant reference to member string_opt_field
+ */
+const eprosima::fastcdr::optional<std::string>& CompleteTestType::string_opt_field() const
+{
+    return m_string_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member string_opt_field
+ * @return Reference to member string_opt_field
+ */
+eprosima::fastcdr::optional<std::string>& CompleteTestType::string_opt_field()
+{
+    return m_string_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member enum_opt_field
+ * @param _enum_opt_field New value to be copied in member enum_opt_field
+ */
+void CompleteTestType::enum_opt_field(
+        const eprosima::fastcdr::optional<Color>& _enum_opt_field)
+{
+    m_enum_opt_field = _enum_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member enum_opt_field
+ * @param _enum_opt_field New value to be moved in member enum_opt_field
+ */
+void CompleteTestType::enum_opt_field(
+        eprosima::fastcdr::optional<Color>&& _enum_opt_field)
+{
+    m_enum_opt_field = std::move(_enum_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member enum_opt_field
+ * @return Constant reference to member enum_opt_field
+ */
+const eprosima::fastcdr::optional<Color>& CompleteTestType::enum_opt_field() const
+{
+    return m_enum_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member enum_opt_field
+ * @return Reference to member enum_opt_field
+ */
+eprosima::fastcdr::optional<Color>& CompleteTestType::enum_opt_field()
+{
+    return m_enum_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member enum2_opt_field
+ * @param _enum2_opt_field New value to be copied in member enum2_opt_field
+ */
+void CompleteTestType::enum2_opt_field(
+        const eprosima::fastcdr::optional<Material>& _enum2_opt_field)
+{
+    m_enum2_opt_field = _enum2_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member enum2_opt_field
+ * @param _enum2_opt_field New value to be moved in member enum2_opt_field
+ */
+void CompleteTestType::enum2_opt_field(
+        eprosima::fastcdr::optional<Material>&& _enum2_opt_field)
+{
+    m_enum2_opt_field = std::move(_enum2_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member enum2_opt_field
+ * @return Constant reference to member enum2_opt_field
+ */
+const eprosima::fastcdr::optional<Material>& CompleteTestType::enum2_opt_field() const
+{
+    return m_enum2_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member enum2_opt_field
+ * @return Reference to member enum2_opt_field
+ */
+eprosima::fastcdr::optional<Material>& CompleteTestType::enum2_opt_field()
+{
+    return m_enum2_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member struct_opt_field
+ * @param _struct_opt_field New value to be copied in member struct_opt_field
+ */
+void CompleteTestType::struct_opt_field(
+        const eprosima::fastcdr::optional<StructType>& _struct_opt_field)
+{
+    m_struct_opt_field = _struct_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member struct_opt_field
+ * @param _struct_opt_field New value to be moved in member struct_opt_field
+ */
+void CompleteTestType::struct_opt_field(
+        eprosima::fastcdr::optional<StructType>&& _struct_opt_field)
+{
+    m_struct_opt_field = std::move(_struct_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member struct_opt_field
+ * @return Constant reference to member struct_opt_field
+ */
+const eprosima::fastcdr::optional<StructType>& CompleteTestType::struct_opt_field() const
+{
+    return m_struct_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member struct_opt_field
+ * @return Reference to member struct_opt_field
+ */
+eprosima::fastcdr::optional<StructType>& CompleteTestType::struct_opt_field()
+{
+    return m_struct_opt_field;
 }
 
 
@@ -3066,6 +3726,21 @@ KeyedCompleteTestType::KeyedCompleteTestType(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = x.m_struct_field;
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = x.m_string_opt_field;
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = x.m_struct_opt_field;
     m_array_char_field = x.m_array_char_field;
     m_array_uint8_field = x.m_array_uint8_field;
     m_array_int16_field = x.m_array_int16_field;
@@ -3129,6 +3804,21 @@ KeyedCompleteTestType::KeyedCompleteTestType(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = std::move(x.m_struct_field);
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = std::move(x.m_string_opt_field);
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = std::move(x.m_struct_opt_field);
     m_array_char_field = std::move(x.m_array_char_field);
     m_array_uint8_field = std::move(x.m_array_uint8_field);
     m_array_int16_field = std::move(x.m_array_int16_field);
@@ -3193,6 +3883,21 @@ KeyedCompleteTestType& KeyedCompleteTestType::operator =(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = x.m_struct_field;
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = x.m_string_opt_field;
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = x.m_struct_opt_field;
     m_array_char_field = x.m_array_char_field;
     m_array_uint8_field = x.m_array_uint8_field;
     m_array_int16_field = x.m_array_int16_field;
@@ -3259,6 +3964,21 @@ KeyedCompleteTestType& KeyedCompleteTestType::operator =(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_struct_field = std::move(x.m_struct_field);
+    m_char_opt_field = x.m_char_opt_field;
+    m_uint8_opt_field = x.m_uint8_opt_field;
+    m_int16_opt_field = x.m_int16_opt_field;
+    m_uint16_opt_field = x.m_uint16_opt_field;
+    m_int32_opt_field = x.m_int32_opt_field;
+    m_uint32_opt_field = x.m_uint32_opt_field;
+    m_int64_opt_field = x.m_int64_opt_field;
+    m_uint64_opt_field = x.m_uint64_opt_field;
+    m_float_opt_field = x.m_float_opt_field;
+    m_double_opt_field = x.m_double_opt_field;
+    m_bool_opt_field = x.m_bool_opt_field;
+    m_string_opt_field = std::move(x.m_string_opt_field);
+    m_enum_opt_field = x.m_enum_opt_field;
+    m_enum2_opt_field = x.m_enum2_opt_field;
+    m_struct_opt_field = std::move(x.m_struct_opt_field);
     m_array_char_field = std::move(x.m_array_char_field);
     m_array_uint8_field = std::move(x.m_array_uint8_field);
     m_array_int16_field = std::move(x.m_array_int16_field);
@@ -3324,6 +4044,21 @@ bool KeyedCompleteTestType::operator ==(
            m_enum_field == x.m_enum_field &&
            m_enum2_field == x.m_enum2_field &&
            m_struct_field == x.m_struct_field &&
+           m_char_opt_field == x.m_char_opt_field &&
+           m_uint8_opt_field == x.m_uint8_opt_field &&
+           m_int16_opt_field == x.m_int16_opt_field &&
+           m_uint16_opt_field == x.m_uint16_opt_field &&
+           m_int32_opt_field == x.m_int32_opt_field &&
+           m_uint32_opt_field == x.m_uint32_opt_field &&
+           m_int64_opt_field == x.m_int64_opt_field &&
+           m_uint64_opt_field == x.m_uint64_opt_field &&
+           m_float_opt_field == x.m_float_opt_field &&
+           m_double_opt_field == x.m_double_opt_field &&
+           m_bool_opt_field == x.m_bool_opt_field &&
+           m_string_opt_field == x.m_string_opt_field &&
+           m_enum_opt_field == x.m_enum_opt_field &&
+           m_enum2_opt_field == x.m_enum2_opt_field &&
+           m_struct_opt_field == x.m_struct_opt_field &&
            m_array_char_field == x.m_array_char_field &&
            m_array_uint8_field == x.m_array_uint8_field &&
            m_array_int16_field == x.m_array_int16_field &&
@@ -3855,6 +4590,591 @@ const StructType& KeyedCompleteTestType::struct_field() const
 StructType& KeyedCompleteTestType::struct_field()
 {
     return m_struct_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member char_opt_field
+ * @param _char_opt_field New value to be copied in member char_opt_field
+ */
+void KeyedCompleteTestType::char_opt_field(
+        const eprosima::fastcdr::optional<char>& _char_opt_field)
+{
+    m_char_opt_field = _char_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member char_opt_field
+ * @param _char_opt_field New value to be moved in member char_opt_field
+ */
+void KeyedCompleteTestType::char_opt_field(
+        eprosima::fastcdr::optional<char>&& _char_opt_field)
+{
+    m_char_opt_field = std::move(_char_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member char_opt_field
+ * @return Constant reference to member char_opt_field
+ */
+const eprosima::fastcdr::optional<char>& KeyedCompleteTestType::char_opt_field() const
+{
+    return m_char_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member char_opt_field
+ * @return Reference to member char_opt_field
+ */
+eprosima::fastcdr::optional<char>& KeyedCompleteTestType::char_opt_field()
+{
+    return m_char_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint8_opt_field
+ * @param _uint8_opt_field New value to be copied in member uint8_opt_field
+ */
+void KeyedCompleteTestType::uint8_opt_field(
+        const eprosima::fastcdr::optional<uint8_t>& _uint8_opt_field)
+{
+    m_uint8_opt_field = _uint8_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint8_opt_field
+ * @param _uint8_opt_field New value to be moved in member uint8_opt_field
+ */
+void KeyedCompleteTestType::uint8_opt_field(
+        eprosima::fastcdr::optional<uint8_t>&& _uint8_opt_field)
+{
+    m_uint8_opt_field = std::move(_uint8_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint8_opt_field
+ * @return Constant reference to member uint8_opt_field
+ */
+const eprosima::fastcdr::optional<uint8_t>& KeyedCompleteTestType::uint8_opt_field() const
+{
+    return m_uint8_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint8_opt_field
+ * @return Reference to member uint8_opt_field
+ */
+eprosima::fastcdr::optional<uint8_t>& KeyedCompleteTestType::uint8_opt_field()
+{
+    return m_uint8_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member int16_opt_field
+ * @param _int16_opt_field New value to be copied in member int16_opt_field
+ */
+void KeyedCompleteTestType::int16_opt_field(
+        const eprosima::fastcdr::optional<int16_t>& _int16_opt_field)
+{
+    m_int16_opt_field = _int16_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member int16_opt_field
+ * @param _int16_opt_field New value to be moved in member int16_opt_field
+ */
+void KeyedCompleteTestType::int16_opt_field(
+        eprosima::fastcdr::optional<int16_t>&& _int16_opt_field)
+{
+    m_int16_opt_field = std::move(_int16_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member int16_opt_field
+ * @return Constant reference to member int16_opt_field
+ */
+const eprosima::fastcdr::optional<int16_t>& KeyedCompleteTestType::int16_opt_field() const
+{
+    return m_int16_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int16_opt_field
+ * @return Reference to member int16_opt_field
+ */
+eprosima::fastcdr::optional<int16_t>& KeyedCompleteTestType::int16_opt_field()
+{
+    return m_int16_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint16_opt_field
+ * @param _uint16_opt_field New value to be copied in member uint16_opt_field
+ */
+void KeyedCompleteTestType::uint16_opt_field(
+        const eprosima::fastcdr::optional<uint16_t>& _uint16_opt_field)
+{
+    m_uint16_opt_field = _uint16_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint16_opt_field
+ * @param _uint16_opt_field New value to be moved in member uint16_opt_field
+ */
+void KeyedCompleteTestType::uint16_opt_field(
+        eprosima::fastcdr::optional<uint16_t>&& _uint16_opt_field)
+{
+    m_uint16_opt_field = std::move(_uint16_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint16_opt_field
+ * @return Constant reference to member uint16_opt_field
+ */
+const eprosima::fastcdr::optional<uint16_t>& KeyedCompleteTestType::uint16_opt_field() const
+{
+    return m_uint16_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint16_opt_field
+ * @return Reference to member uint16_opt_field
+ */
+eprosima::fastcdr::optional<uint16_t>& KeyedCompleteTestType::uint16_opt_field()
+{
+    return m_uint16_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member int32_opt_field
+ * @param _int32_opt_field New value to be copied in member int32_opt_field
+ */
+void KeyedCompleteTestType::int32_opt_field(
+        const eprosima::fastcdr::optional<int32_t>& _int32_opt_field)
+{
+    m_int32_opt_field = _int32_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member int32_opt_field
+ * @param _int32_opt_field New value to be moved in member int32_opt_field
+ */
+void KeyedCompleteTestType::int32_opt_field(
+        eprosima::fastcdr::optional<int32_t>&& _int32_opt_field)
+{
+    m_int32_opt_field = std::move(_int32_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member int32_opt_field
+ * @return Constant reference to member int32_opt_field
+ */
+const eprosima::fastcdr::optional<int32_t>& KeyedCompleteTestType::int32_opt_field() const
+{
+    return m_int32_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int32_opt_field
+ * @return Reference to member int32_opt_field
+ */
+eprosima::fastcdr::optional<int32_t>& KeyedCompleteTestType::int32_opt_field()
+{
+    return m_int32_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint32_opt_field
+ * @param _uint32_opt_field New value to be copied in member uint32_opt_field
+ */
+void KeyedCompleteTestType::uint32_opt_field(
+        const eprosima::fastcdr::optional<uint32_t>& _uint32_opt_field)
+{
+    m_uint32_opt_field = _uint32_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint32_opt_field
+ * @param _uint32_opt_field New value to be moved in member uint32_opt_field
+ */
+void KeyedCompleteTestType::uint32_opt_field(
+        eprosima::fastcdr::optional<uint32_t>&& _uint32_opt_field)
+{
+    m_uint32_opt_field = std::move(_uint32_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint32_opt_field
+ * @return Constant reference to member uint32_opt_field
+ */
+const eprosima::fastcdr::optional<uint32_t>& KeyedCompleteTestType::uint32_opt_field() const
+{
+    return m_uint32_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint32_opt_field
+ * @return Reference to member uint32_opt_field
+ */
+eprosima::fastcdr::optional<uint32_t>& KeyedCompleteTestType::uint32_opt_field()
+{
+    return m_uint32_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member int64_opt_field
+ * @param _int64_opt_field New value to be copied in member int64_opt_field
+ */
+void KeyedCompleteTestType::int64_opt_field(
+        const eprosima::fastcdr::optional<int64_t>& _int64_opt_field)
+{
+    m_int64_opt_field = _int64_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member int64_opt_field
+ * @param _int64_opt_field New value to be moved in member int64_opt_field
+ */
+void KeyedCompleteTestType::int64_opt_field(
+        eprosima::fastcdr::optional<int64_t>&& _int64_opt_field)
+{
+    m_int64_opt_field = std::move(_int64_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member int64_opt_field
+ * @return Constant reference to member int64_opt_field
+ */
+const eprosima::fastcdr::optional<int64_t>& KeyedCompleteTestType::int64_opt_field() const
+{
+    return m_int64_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member int64_opt_field
+ * @return Reference to member int64_opt_field
+ */
+eprosima::fastcdr::optional<int64_t>& KeyedCompleteTestType::int64_opt_field()
+{
+    return m_int64_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member uint64_opt_field
+ * @param _uint64_opt_field New value to be copied in member uint64_opt_field
+ */
+void KeyedCompleteTestType::uint64_opt_field(
+        const eprosima::fastcdr::optional<uint64_t>& _uint64_opt_field)
+{
+    m_uint64_opt_field = _uint64_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member uint64_opt_field
+ * @param _uint64_opt_field New value to be moved in member uint64_opt_field
+ */
+void KeyedCompleteTestType::uint64_opt_field(
+        eprosima::fastcdr::optional<uint64_t>&& _uint64_opt_field)
+{
+    m_uint64_opt_field = std::move(_uint64_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member uint64_opt_field
+ * @return Constant reference to member uint64_opt_field
+ */
+const eprosima::fastcdr::optional<uint64_t>& KeyedCompleteTestType::uint64_opt_field() const
+{
+    return m_uint64_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member uint64_opt_field
+ * @return Reference to member uint64_opt_field
+ */
+eprosima::fastcdr::optional<uint64_t>& KeyedCompleteTestType::uint64_opt_field()
+{
+    return m_uint64_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member float_opt_field
+ * @param _float_opt_field New value to be copied in member float_opt_field
+ */
+void KeyedCompleteTestType::float_opt_field(
+        const eprosima::fastcdr::optional<float>& _float_opt_field)
+{
+    m_float_opt_field = _float_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member float_opt_field
+ * @param _float_opt_field New value to be moved in member float_opt_field
+ */
+void KeyedCompleteTestType::float_opt_field(
+        eprosima::fastcdr::optional<float>&& _float_opt_field)
+{
+    m_float_opt_field = std::move(_float_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member float_opt_field
+ * @return Constant reference to member float_opt_field
+ */
+const eprosima::fastcdr::optional<float>& KeyedCompleteTestType::float_opt_field() const
+{
+    return m_float_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member float_opt_field
+ * @return Reference to member float_opt_field
+ */
+eprosima::fastcdr::optional<float>& KeyedCompleteTestType::float_opt_field()
+{
+    return m_float_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member double_opt_field
+ * @param _double_opt_field New value to be copied in member double_opt_field
+ */
+void KeyedCompleteTestType::double_opt_field(
+        const eprosima::fastcdr::optional<double>& _double_opt_field)
+{
+    m_double_opt_field = _double_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member double_opt_field
+ * @param _double_opt_field New value to be moved in member double_opt_field
+ */
+void KeyedCompleteTestType::double_opt_field(
+        eprosima::fastcdr::optional<double>&& _double_opt_field)
+{
+    m_double_opt_field = std::move(_double_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member double_opt_field
+ * @return Constant reference to member double_opt_field
+ */
+const eprosima::fastcdr::optional<double>& KeyedCompleteTestType::double_opt_field() const
+{
+    return m_double_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member double_opt_field
+ * @return Reference to member double_opt_field
+ */
+eprosima::fastcdr::optional<double>& KeyedCompleteTestType::double_opt_field()
+{
+    return m_double_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member bool_opt_field
+ * @param _bool_opt_field New value to be copied in member bool_opt_field
+ */
+void KeyedCompleteTestType::bool_opt_field(
+        const eprosima::fastcdr::optional<bool>& _bool_opt_field)
+{
+    m_bool_opt_field = _bool_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member bool_opt_field
+ * @param _bool_opt_field New value to be moved in member bool_opt_field
+ */
+void KeyedCompleteTestType::bool_opt_field(
+        eprosima::fastcdr::optional<bool>&& _bool_opt_field)
+{
+    m_bool_opt_field = std::move(_bool_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member bool_opt_field
+ * @return Constant reference to member bool_opt_field
+ */
+const eprosima::fastcdr::optional<bool>& KeyedCompleteTestType::bool_opt_field() const
+{
+    return m_bool_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member bool_opt_field
+ * @return Reference to member bool_opt_field
+ */
+eprosima::fastcdr::optional<bool>& KeyedCompleteTestType::bool_opt_field()
+{
+    return m_bool_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member string_opt_field
+ * @param _string_opt_field New value to be copied in member string_opt_field
+ */
+void KeyedCompleteTestType::string_opt_field(
+        const eprosima::fastcdr::optional<std::string>& _string_opt_field)
+{
+    m_string_opt_field = _string_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member string_opt_field
+ * @param _string_opt_field New value to be moved in member string_opt_field
+ */
+void KeyedCompleteTestType::string_opt_field(
+        eprosima::fastcdr::optional<std::string>&& _string_opt_field)
+{
+    m_string_opt_field = std::move(_string_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member string_opt_field
+ * @return Constant reference to member string_opt_field
+ */
+const eprosima::fastcdr::optional<std::string>& KeyedCompleteTestType::string_opt_field() const
+{
+    return m_string_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member string_opt_field
+ * @return Reference to member string_opt_field
+ */
+eprosima::fastcdr::optional<std::string>& KeyedCompleteTestType::string_opt_field()
+{
+    return m_string_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member enum_opt_field
+ * @param _enum_opt_field New value to be copied in member enum_opt_field
+ */
+void KeyedCompleteTestType::enum_opt_field(
+        const eprosima::fastcdr::optional<Color>& _enum_opt_field)
+{
+    m_enum_opt_field = _enum_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member enum_opt_field
+ * @param _enum_opt_field New value to be moved in member enum_opt_field
+ */
+void KeyedCompleteTestType::enum_opt_field(
+        eprosima::fastcdr::optional<Color>&& _enum_opt_field)
+{
+    m_enum_opt_field = std::move(_enum_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member enum_opt_field
+ * @return Constant reference to member enum_opt_field
+ */
+const eprosima::fastcdr::optional<Color>& KeyedCompleteTestType::enum_opt_field() const
+{
+    return m_enum_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member enum_opt_field
+ * @return Reference to member enum_opt_field
+ */
+eprosima::fastcdr::optional<Color>& KeyedCompleteTestType::enum_opt_field()
+{
+    return m_enum_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member enum2_opt_field
+ * @param _enum2_opt_field New value to be copied in member enum2_opt_field
+ */
+void KeyedCompleteTestType::enum2_opt_field(
+        const eprosima::fastcdr::optional<Material>& _enum2_opt_field)
+{
+    m_enum2_opt_field = _enum2_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member enum2_opt_field
+ * @param _enum2_opt_field New value to be moved in member enum2_opt_field
+ */
+void KeyedCompleteTestType::enum2_opt_field(
+        eprosima::fastcdr::optional<Material>&& _enum2_opt_field)
+{
+    m_enum2_opt_field = std::move(_enum2_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member enum2_opt_field
+ * @return Constant reference to member enum2_opt_field
+ */
+const eprosima::fastcdr::optional<Material>& KeyedCompleteTestType::enum2_opt_field() const
+{
+    return m_enum2_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member enum2_opt_field
+ * @return Reference to member enum2_opt_field
+ */
+eprosima::fastcdr::optional<Material>& KeyedCompleteTestType::enum2_opt_field()
+{
+    return m_enum2_opt_field;
+}
+
+
+/*!
+ * @brief This function copies the value in member struct_opt_field
+ * @param _struct_opt_field New value to be copied in member struct_opt_field
+ */
+void KeyedCompleteTestType::struct_opt_field(
+        const eprosima::fastcdr::optional<StructType>& _struct_opt_field)
+{
+    m_struct_opt_field = _struct_opt_field;
+}
+
+/*!
+ * @brief This function moves the value in member struct_opt_field
+ * @param _struct_opt_field New value to be moved in member struct_opt_field
+ */
+void KeyedCompleteTestType::struct_opt_field(
+        eprosima::fastcdr::optional<StructType>&& _struct_opt_field)
+{
+    m_struct_opt_field = std::move(_struct_opt_field);
+}
+
+/*!
+ * @brief This function returns a constant reference to member struct_opt_field
+ * @return Constant reference to member struct_opt_field
+ */
+const eprosima::fastcdr::optional<StructType>& KeyedCompleteTestType::struct_opt_field() const
+{
+    return m_struct_opt_field;
+}
+
+/*!
+ * @brief This function returns a reference to member struct_opt_field
+ * @return Reference to member struct_opt_field
+ */
+eprosima::fastcdr::optional<StructType>& KeyedCompleteTestType::struct_opt_field()
+{
+    return m_struct_opt_field;
 }
 
 

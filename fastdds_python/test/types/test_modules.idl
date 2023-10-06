@@ -62,6 +62,24 @@ module eprosima
             Material           enum2_field;
             StructType         struct_field;
 
+            // Optional fields
+            @optional char               char_opt_field;
+            @optional octet              uint8_opt_field;
+            @optional short              int16_opt_field;
+            @optional unsigned short     uint16_opt_field;
+            @optional long               int32_opt_field;
+            @optional unsigned long      uint32_opt_field;
+            @optional long long          int64_opt_field;
+            @optional unsigned long long uint64_opt_field;
+            @optional float              float_opt_field;
+            @optional double             double_opt_field;
+            //@optional long double        long_double_opt_field;
+            @optional boolean            bool_opt_field;
+            @optional string             string_opt_field;
+            @optional Color              enum_opt_field;
+            @optional Material           enum2_opt_field;
+            @optional StructType         struct_opt_field;
+
             // Array fields
             char               array_char_field[max_array_size];
             octet              array_uint8_field[max_array_size];
@@ -139,6 +157,24 @@ module eprosima
             Color              enum_field;
             Material           enum2_field;
             StructType         struct_field;
+
+            // Optional fields
+            @optional char               char_opt_field;
+            @optional octet              uint8_opt_field;
+            @optional short              int16_opt_field;
+            @optional unsigned short     uint16_opt_field;
+            @optional long               int32_opt_field;
+            @optional unsigned long      uint32_opt_field;
+            @optional long long          int64_opt_field;
+            @optional unsigned long long uint64_opt_field;
+            @optional float              float_opt_field;
+            @optional double             double_opt_field;
+            //@optional long double        long_double_opt_field;
+            @optional boolean            bool_opt_field;
+            @optional string             string_opt_field;
+            @optional Color              enum_opt_field;
+            @optional Material           enum2_opt_field;
+            @optional StructType         struct_opt_field;
 
             // Array fields
             char               array_char_field[max_array_size];

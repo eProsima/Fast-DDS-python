@@ -861,6 +861,411 @@ public:
 
 
     /*!
+     * @brief This function copies the value in member char_opt_field
+     * @param _char_opt_field New value to be copied in member char_opt_field
+     */
+    eProsima_user_DllExport void char_opt_field(
+            const eprosima::fastcdr::optional<char>& _char_opt_field);
+
+    /*!
+     * @brief This function moves the value in member char_opt_field
+     * @param _char_opt_field New value to be moved in member char_opt_field
+     */
+    eProsima_user_DllExport void char_opt_field(
+            eprosima::fastcdr::optional<char>&& _char_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member char_opt_field
+     * @return Constant reference to member char_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<char>& char_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member char_opt_field
+     * @return Reference to member char_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<char>& char_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint8_opt_field
+     * @param _uint8_opt_field New value to be copied in member uint8_opt_field
+     */
+    eProsima_user_DllExport void uint8_opt_field(
+            const eprosima::fastcdr::optional<uint8_t>& _uint8_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint8_opt_field
+     * @param _uint8_opt_field New value to be moved in member uint8_opt_field
+     */
+    eProsima_user_DllExport void uint8_opt_field(
+            eprosima::fastcdr::optional<uint8_t>&& _uint8_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint8_opt_field
+     * @return Constant reference to member uint8_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint8_t>& uint8_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint8_opt_field
+     * @return Reference to member uint8_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint8_t>& uint8_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member int16_opt_field
+     * @param _int16_opt_field New value to be copied in member int16_opt_field
+     */
+    eProsima_user_DllExport void int16_opt_field(
+            const eprosima::fastcdr::optional<int16_t>& _int16_opt_field);
+
+    /*!
+     * @brief This function moves the value in member int16_opt_field
+     * @param _int16_opt_field New value to be moved in member int16_opt_field
+     */
+    eProsima_user_DllExport void int16_opt_field(
+            eprosima::fastcdr::optional<int16_t>&& _int16_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member int16_opt_field
+     * @return Constant reference to member int16_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<int16_t>& int16_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member int16_opt_field
+     * @return Reference to member int16_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<int16_t>& int16_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint16_opt_field
+     * @param _uint16_opt_field New value to be copied in member uint16_opt_field
+     */
+    eProsima_user_DllExport void uint16_opt_field(
+            const eprosima::fastcdr::optional<uint16_t>& _uint16_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint16_opt_field
+     * @param _uint16_opt_field New value to be moved in member uint16_opt_field
+     */
+    eProsima_user_DllExport void uint16_opt_field(
+            eprosima::fastcdr::optional<uint16_t>&& _uint16_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint16_opt_field
+     * @return Constant reference to member uint16_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint16_t>& uint16_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint16_opt_field
+     * @return Reference to member uint16_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint16_t>& uint16_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member int32_opt_field
+     * @param _int32_opt_field New value to be copied in member int32_opt_field
+     */
+    eProsima_user_DllExport void int32_opt_field(
+            const eprosima::fastcdr::optional<int32_t>& _int32_opt_field);
+
+    /*!
+     * @brief This function moves the value in member int32_opt_field
+     * @param _int32_opt_field New value to be moved in member int32_opt_field
+     */
+    eProsima_user_DllExport void int32_opt_field(
+            eprosima::fastcdr::optional<int32_t>&& _int32_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member int32_opt_field
+     * @return Constant reference to member int32_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<int32_t>& int32_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member int32_opt_field
+     * @return Reference to member int32_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<int32_t>& int32_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint32_opt_field
+     * @param _uint32_opt_field New value to be copied in member uint32_opt_field
+     */
+    eProsima_user_DllExport void uint32_opt_field(
+            const eprosima::fastcdr::optional<uint32_t>& _uint32_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint32_opt_field
+     * @param _uint32_opt_field New value to be moved in member uint32_opt_field
+     */
+    eProsima_user_DllExport void uint32_opt_field(
+            eprosima::fastcdr::optional<uint32_t>&& _uint32_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint32_opt_field
+     * @return Constant reference to member uint32_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint32_t>& uint32_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint32_opt_field
+     * @return Reference to member uint32_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint32_t>& uint32_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member int64_opt_field
+     * @param _int64_opt_field New value to be copied in member int64_opt_field
+     */
+    eProsima_user_DllExport void int64_opt_field(
+            const eprosima::fastcdr::optional<int64_t>& _int64_opt_field);
+
+    /*!
+     * @brief This function moves the value in member int64_opt_field
+     * @param _int64_opt_field New value to be moved in member int64_opt_field
+     */
+    eProsima_user_DllExport void int64_opt_field(
+            eprosima::fastcdr::optional<int64_t>&& _int64_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member int64_opt_field
+     * @return Constant reference to member int64_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<int64_t>& int64_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member int64_opt_field
+     * @return Reference to member int64_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<int64_t>& int64_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint64_opt_field
+     * @param _uint64_opt_field New value to be copied in member uint64_opt_field
+     */
+    eProsima_user_DllExport void uint64_opt_field(
+            const eprosima::fastcdr::optional<uint64_t>& _uint64_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint64_opt_field
+     * @param _uint64_opt_field New value to be moved in member uint64_opt_field
+     */
+    eProsima_user_DllExport void uint64_opt_field(
+            eprosima::fastcdr::optional<uint64_t>&& _uint64_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint64_opt_field
+     * @return Constant reference to member uint64_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint64_t>& uint64_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint64_opt_field
+     * @return Reference to member uint64_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint64_t>& uint64_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member float_opt_field
+     * @param _float_opt_field New value to be copied in member float_opt_field
+     */
+    eProsima_user_DllExport void float_opt_field(
+            const eprosima::fastcdr::optional<float>& _float_opt_field);
+
+    /*!
+     * @brief This function moves the value in member float_opt_field
+     * @param _float_opt_field New value to be moved in member float_opt_field
+     */
+    eProsima_user_DllExport void float_opt_field(
+            eprosima::fastcdr::optional<float>&& _float_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member float_opt_field
+     * @return Constant reference to member float_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<float>& float_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member float_opt_field
+     * @return Reference to member float_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<float>& float_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member double_opt_field
+     * @param _double_opt_field New value to be copied in member double_opt_field
+     */
+    eProsima_user_DllExport void double_opt_field(
+            const eprosima::fastcdr::optional<double>& _double_opt_field);
+
+    /*!
+     * @brief This function moves the value in member double_opt_field
+     * @param _double_opt_field New value to be moved in member double_opt_field
+     */
+    eProsima_user_DllExport void double_opt_field(
+            eprosima::fastcdr::optional<double>&& _double_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member double_opt_field
+     * @return Constant reference to member double_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<double>& double_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member double_opt_field
+     * @return Reference to member double_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<double>& double_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member bool_opt_field
+     * @param _bool_opt_field New value to be copied in member bool_opt_field
+     */
+    eProsima_user_DllExport void bool_opt_field(
+            const eprosima::fastcdr::optional<bool>& _bool_opt_field);
+
+    /*!
+     * @brief This function moves the value in member bool_opt_field
+     * @param _bool_opt_field New value to be moved in member bool_opt_field
+     */
+    eProsima_user_DllExport void bool_opt_field(
+            eprosima::fastcdr::optional<bool>&& _bool_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member bool_opt_field
+     * @return Constant reference to member bool_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<bool>& bool_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member bool_opt_field
+     * @return Reference to member bool_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<bool>& bool_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member string_opt_field
+     * @param _string_opt_field New value to be copied in member string_opt_field
+     */
+    eProsima_user_DllExport void string_opt_field(
+            const eprosima::fastcdr::optional<std::string>& _string_opt_field);
+
+    /*!
+     * @brief This function moves the value in member string_opt_field
+     * @param _string_opt_field New value to be moved in member string_opt_field
+     */
+    eProsima_user_DllExport void string_opt_field(
+            eprosima::fastcdr::optional<std::string>&& _string_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member string_opt_field
+     * @return Constant reference to member string_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<std::string>& string_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member string_opt_field
+     * @return Reference to member string_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<std::string>& string_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member enum_opt_field
+     * @param _enum_opt_field New value to be copied in member enum_opt_field
+     */
+    eProsima_user_DllExport void enum_opt_field(
+            const eprosima::fastcdr::optional<Color>& _enum_opt_field);
+
+    /*!
+     * @brief This function moves the value in member enum_opt_field
+     * @param _enum_opt_field New value to be moved in member enum_opt_field
+     */
+    eProsima_user_DllExport void enum_opt_field(
+            eprosima::fastcdr::optional<Color>&& _enum_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member enum_opt_field
+     * @return Constant reference to member enum_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<Color>& enum_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member enum_opt_field
+     * @return Reference to member enum_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<Color>& enum_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member enum2_opt_field
+     * @param _enum2_opt_field New value to be copied in member enum2_opt_field
+     */
+    eProsima_user_DllExport void enum2_opt_field(
+            const eprosima::fastcdr::optional<Material>& _enum2_opt_field);
+
+    /*!
+     * @brief This function moves the value in member enum2_opt_field
+     * @param _enum2_opt_field New value to be moved in member enum2_opt_field
+     */
+    eProsima_user_DllExport void enum2_opt_field(
+            eprosima::fastcdr::optional<Material>&& _enum2_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member enum2_opt_field
+     * @return Constant reference to member enum2_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<Material>& enum2_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member enum2_opt_field
+     * @return Reference to member enum2_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<Material>& enum2_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member struct_opt_field
+     * @param _struct_opt_field New value to be copied in member struct_opt_field
+     */
+    eProsima_user_DllExport void struct_opt_field(
+            const eprosima::fastcdr::optional<StructType>& _struct_opt_field);
+
+    /*!
+     * @brief This function moves the value in member struct_opt_field
+     * @param _struct_opt_field New value to be moved in member struct_opt_field
+     */
+    eProsima_user_DllExport void struct_opt_field(
+            eprosima::fastcdr::optional<StructType>&& _struct_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member struct_opt_field
+     * @return Constant reference to member struct_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<StructType>& struct_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member struct_opt_field
+     * @return Reference to member struct_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<StructType>& struct_opt_field();
+
+
+    /*!
      * @brief This function copies the value in member array_char_field
      * @param _array_char_field New value to be copied in member array_char_field
      */
@@ -2010,6 +2415,21 @@ private:
     Color m_enum_field{::RED};
     Material m_enum2_field{::WOOD};
     StructType m_struct_field;
+    eprosima::fastcdr::optional<char> m_char_opt_field;
+    eprosima::fastcdr::optional<uint8_t> m_uint8_opt_field;
+    eprosima::fastcdr::optional<int16_t> m_int16_opt_field;
+    eprosima::fastcdr::optional<uint16_t> m_uint16_opt_field;
+    eprosima::fastcdr::optional<int32_t> m_int32_opt_field;
+    eprosima::fastcdr::optional<uint32_t> m_uint32_opt_field;
+    eprosima::fastcdr::optional<int64_t> m_int64_opt_field;
+    eprosima::fastcdr::optional<uint64_t> m_uint64_opt_field;
+    eprosima::fastcdr::optional<float> m_float_opt_field;
+    eprosima::fastcdr::optional<double> m_double_opt_field;
+    eprosima::fastcdr::optional<bool> m_bool_opt_field;
+    eprosima::fastcdr::optional<std::string> m_string_opt_field;
+    eprosima::fastcdr::optional<Color> m_enum_opt_field;
+    eprosima::fastcdr::optional<Material> m_enum2_opt_field;
+    eprosima::fastcdr::optional<StructType> m_struct_opt_field;
     std::array<char, 3> m_array_char_field{0};
     std::array<uint8_t, 3> m_array_uint8_field{0};
     std::array<int16_t, 3> m_array_int16_field{0};
@@ -2446,6 +2866,411 @@ public:
      * @return Reference to member struct_field
      */
     eProsima_user_DllExport StructType& struct_field();
+
+
+    /*!
+     * @brief This function copies the value in member char_opt_field
+     * @param _char_opt_field New value to be copied in member char_opt_field
+     */
+    eProsima_user_DllExport void char_opt_field(
+            const eprosima::fastcdr::optional<char>& _char_opt_field);
+
+    /*!
+     * @brief This function moves the value in member char_opt_field
+     * @param _char_opt_field New value to be moved in member char_opt_field
+     */
+    eProsima_user_DllExport void char_opt_field(
+            eprosima::fastcdr::optional<char>&& _char_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member char_opt_field
+     * @return Constant reference to member char_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<char>& char_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member char_opt_field
+     * @return Reference to member char_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<char>& char_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint8_opt_field
+     * @param _uint8_opt_field New value to be copied in member uint8_opt_field
+     */
+    eProsima_user_DllExport void uint8_opt_field(
+            const eprosima::fastcdr::optional<uint8_t>& _uint8_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint8_opt_field
+     * @param _uint8_opt_field New value to be moved in member uint8_opt_field
+     */
+    eProsima_user_DllExport void uint8_opt_field(
+            eprosima::fastcdr::optional<uint8_t>&& _uint8_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint8_opt_field
+     * @return Constant reference to member uint8_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint8_t>& uint8_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint8_opt_field
+     * @return Reference to member uint8_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint8_t>& uint8_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member int16_opt_field
+     * @param _int16_opt_field New value to be copied in member int16_opt_field
+     */
+    eProsima_user_DllExport void int16_opt_field(
+            const eprosima::fastcdr::optional<int16_t>& _int16_opt_field);
+
+    /*!
+     * @brief This function moves the value in member int16_opt_field
+     * @param _int16_opt_field New value to be moved in member int16_opt_field
+     */
+    eProsima_user_DllExport void int16_opt_field(
+            eprosima::fastcdr::optional<int16_t>&& _int16_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member int16_opt_field
+     * @return Constant reference to member int16_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<int16_t>& int16_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member int16_opt_field
+     * @return Reference to member int16_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<int16_t>& int16_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint16_opt_field
+     * @param _uint16_opt_field New value to be copied in member uint16_opt_field
+     */
+    eProsima_user_DllExport void uint16_opt_field(
+            const eprosima::fastcdr::optional<uint16_t>& _uint16_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint16_opt_field
+     * @param _uint16_opt_field New value to be moved in member uint16_opt_field
+     */
+    eProsima_user_DllExport void uint16_opt_field(
+            eprosima::fastcdr::optional<uint16_t>&& _uint16_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint16_opt_field
+     * @return Constant reference to member uint16_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint16_t>& uint16_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint16_opt_field
+     * @return Reference to member uint16_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint16_t>& uint16_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member int32_opt_field
+     * @param _int32_opt_field New value to be copied in member int32_opt_field
+     */
+    eProsima_user_DllExport void int32_opt_field(
+            const eprosima::fastcdr::optional<int32_t>& _int32_opt_field);
+
+    /*!
+     * @brief This function moves the value in member int32_opt_field
+     * @param _int32_opt_field New value to be moved in member int32_opt_field
+     */
+    eProsima_user_DllExport void int32_opt_field(
+            eprosima::fastcdr::optional<int32_t>&& _int32_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member int32_opt_field
+     * @return Constant reference to member int32_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<int32_t>& int32_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member int32_opt_field
+     * @return Reference to member int32_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<int32_t>& int32_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint32_opt_field
+     * @param _uint32_opt_field New value to be copied in member uint32_opt_field
+     */
+    eProsima_user_DllExport void uint32_opt_field(
+            const eprosima::fastcdr::optional<uint32_t>& _uint32_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint32_opt_field
+     * @param _uint32_opt_field New value to be moved in member uint32_opt_field
+     */
+    eProsima_user_DllExport void uint32_opt_field(
+            eprosima::fastcdr::optional<uint32_t>&& _uint32_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint32_opt_field
+     * @return Constant reference to member uint32_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint32_t>& uint32_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint32_opt_field
+     * @return Reference to member uint32_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint32_t>& uint32_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member int64_opt_field
+     * @param _int64_opt_field New value to be copied in member int64_opt_field
+     */
+    eProsima_user_DllExport void int64_opt_field(
+            const eprosima::fastcdr::optional<int64_t>& _int64_opt_field);
+
+    /*!
+     * @brief This function moves the value in member int64_opt_field
+     * @param _int64_opt_field New value to be moved in member int64_opt_field
+     */
+    eProsima_user_DllExport void int64_opt_field(
+            eprosima::fastcdr::optional<int64_t>&& _int64_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member int64_opt_field
+     * @return Constant reference to member int64_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<int64_t>& int64_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member int64_opt_field
+     * @return Reference to member int64_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<int64_t>& int64_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member uint64_opt_field
+     * @param _uint64_opt_field New value to be copied in member uint64_opt_field
+     */
+    eProsima_user_DllExport void uint64_opt_field(
+            const eprosima::fastcdr::optional<uint64_t>& _uint64_opt_field);
+
+    /*!
+     * @brief This function moves the value in member uint64_opt_field
+     * @param _uint64_opt_field New value to be moved in member uint64_opt_field
+     */
+    eProsima_user_DllExport void uint64_opt_field(
+            eprosima::fastcdr::optional<uint64_t>&& _uint64_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member uint64_opt_field
+     * @return Constant reference to member uint64_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<uint64_t>& uint64_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member uint64_opt_field
+     * @return Reference to member uint64_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<uint64_t>& uint64_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member float_opt_field
+     * @param _float_opt_field New value to be copied in member float_opt_field
+     */
+    eProsima_user_DllExport void float_opt_field(
+            const eprosima::fastcdr::optional<float>& _float_opt_field);
+
+    /*!
+     * @brief This function moves the value in member float_opt_field
+     * @param _float_opt_field New value to be moved in member float_opt_field
+     */
+    eProsima_user_DllExport void float_opt_field(
+            eprosima::fastcdr::optional<float>&& _float_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member float_opt_field
+     * @return Constant reference to member float_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<float>& float_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member float_opt_field
+     * @return Reference to member float_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<float>& float_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member double_opt_field
+     * @param _double_opt_field New value to be copied in member double_opt_field
+     */
+    eProsima_user_DllExport void double_opt_field(
+            const eprosima::fastcdr::optional<double>& _double_opt_field);
+
+    /*!
+     * @brief This function moves the value in member double_opt_field
+     * @param _double_opt_field New value to be moved in member double_opt_field
+     */
+    eProsima_user_DllExport void double_opt_field(
+            eprosima::fastcdr::optional<double>&& _double_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member double_opt_field
+     * @return Constant reference to member double_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<double>& double_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member double_opt_field
+     * @return Reference to member double_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<double>& double_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member bool_opt_field
+     * @param _bool_opt_field New value to be copied in member bool_opt_field
+     */
+    eProsima_user_DllExport void bool_opt_field(
+            const eprosima::fastcdr::optional<bool>& _bool_opt_field);
+
+    /*!
+     * @brief This function moves the value in member bool_opt_field
+     * @param _bool_opt_field New value to be moved in member bool_opt_field
+     */
+    eProsima_user_DllExport void bool_opt_field(
+            eprosima::fastcdr::optional<bool>&& _bool_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member bool_opt_field
+     * @return Constant reference to member bool_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<bool>& bool_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member bool_opt_field
+     * @return Reference to member bool_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<bool>& bool_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member string_opt_field
+     * @param _string_opt_field New value to be copied in member string_opt_field
+     */
+    eProsima_user_DllExport void string_opt_field(
+            const eprosima::fastcdr::optional<std::string>& _string_opt_field);
+
+    /*!
+     * @brief This function moves the value in member string_opt_field
+     * @param _string_opt_field New value to be moved in member string_opt_field
+     */
+    eProsima_user_DllExport void string_opt_field(
+            eprosima::fastcdr::optional<std::string>&& _string_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member string_opt_field
+     * @return Constant reference to member string_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<std::string>& string_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member string_opt_field
+     * @return Reference to member string_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<std::string>& string_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member enum_opt_field
+     * @param _enum_opt_field New value to be copied in member enum_opt_field
+     */
+    eProsima_user_DllExport void enum_opt_field(
+            const eprosima::fastcdr::optional<Color>& _enum_opt_field);
+
+    /*!
+     * @brief This function moves the value in member enum_opt_field
+     * @param _enum_opt_field New value to be moved in member enum_opt_field
+     */
+    eProsima_user_DllExport void enum_opt_field(
+            eprosima::fastcdr::optional<Color>&& _enum_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member enum_opt_field
+     * @return Constant reference to member enum_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<Color>& enum_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member enum_opt_field
+     * @return Reference to member enum_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<Color>& enum_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member enum2_opt_field
+     * @param _enum2_opt_field New value to be copied in member enum2_opt_field
+     */
+    eProsima_user_DllExport void enum2_opt_field(
+            const eprosima::fastcdr::optional<Material>& _enum2_opt_field);
+
+    /*!
+     * @brief This function moves the value in member enum2_opt_field
+     * @param _enum2_opt_field New value to be moved in member enum2_opt_field
+     */
+    eProsima_user_DllExport void enum2_opt_field(
+            eprosima::fastcdr::optional<Material>&& _enum2_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member enum2_opt_field
+     * @return Constant reference to member enum2_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<Material>& enum2_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member enum2_opt_field
+     * @return Reference to member enum2_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<Material>& enum2_opt_field();
+
+
+    /*!
+     * @brief This function copies the value in member struct_opt_field
+     * @param _struct_opt_field New value to be copied in member struct_opt_field
+     */
+    eProsima_user_DllExport void struct_opt_field(
+            const eprosima::fastcdr::optional<StructType>& _struct_opt_field);
+
+    /*!
+     * @brief This function moves the value in member struct_opt_field
+     * @param _struct_opt_field New value to be moved in member struct_opt_field
+     */
+    eProsima_user_DllExport void struct_opt_field(
+            eprosima::fastcdr::optional<StructType>&& _struct_opt_field);
+
+    /*!
+     * @brief This function returns a constant reference to member struct_opt_field
+     * @return Constant reference to member struct_opt_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::optional<StructType>& struct_opt_field() const;
+
+    /*!
+     * @brief This function returns a reference to member struct_opt_field
+     * @return Reference to member struct_opt_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::optional<StructType>& struct_opt_field();
 
 
     /*!
@@ -3599,6 +4424,21 @@ private:
     Color m_enum_field{::RED};
     Material m_enum2_field{::WOOD};
     StructType m_struct_field;
+    eprosima::fastcdr::optional<char> m_char_opt_field;
+    eprosima::fastcdr::optional<uint8_t> m_uint8_opt_field;
+    eprosima::fastcdr::optional<int16_t> m_int16_opt_field;
+    eprosima::fastcdr::optional<uint16_t> m_uint16_opt_field;
+    eprosima::fastcdr::optional<int32_t> m_int32_opt_field;
+    eprosima::fastcdr::optional<uint32_t> m_uint32_opt_field;
+    eprosima::fastcdr::optional<int64_t> m_int64_opt_field;
+    eprosima::fastcdr::optional<uint64_t> m_uint64_opt_field;
+    eprosima::fastcdr::optional<float> m_float_opt_field;
+    eprosima::fastcdr::optional<double> m_double_opt_field;
+    eprosima::fastcdr::optional<bool> m_bool_opt_field;
+    eprosima::fastcdr::optional<std::string> m_string_opt_field;
+    eprosima::fastcdr::optional<Color> m_enum_opt_field;
+    eprosima::fastcdr::optional<Material> m_enum2_opt_field;
+    eprosima::fastcdr::optional<StructType> m_struct_opt_field;
     std::array<char, 3> m_array_char_field{0};
     std::array<uint8_t, 3> m_array_uint8_field{0};
     std::array<int16_t, 3> m_array_int16_field{0};

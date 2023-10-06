@@ -45,10 +45,25 @@
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
 
+%import(module="fastdds") "fastcdr/xcdr/optional.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
 
+%define %traits_penumn(Type...)
+  %fragment(SWIG_Traits_frag(Type),"header",
+        fragment="StdTraits") {
+namespace swig {
+  template <> struct traits< Type > {
+    typedef value_category category;
+    static const char* type_name() { return  #Type; }
+  };
+}
+}
+%enddef
+
+%traits_penumn(enum eprosima::test::Color);
+%traits_penumn(enum eprosima::test::Material);
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::StructType
 ////////////////////////////////////////////////////////
@@ -68,6 +83,7 @@
 %rename("%s") eprosima::test::StructType::char_field() const;
 
 
+
 %ignore eprosima::test::StructType::uint8_field(uint8_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -75,6 +91,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::StructType::uint8_field();
 %rename("%s") eprosima::test::StructType::uint8_field() const;
+
 
 
 %ignore eprosima::test::StructType::int16_field(int16_t&&);
@@ -86,6 +103,7 @@
 %rename("%s") eprosima::test::StructType::int16_field() const;
 
 
+
 %ignore eprosima::test::StructType::uint16_field(uint16_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -93,6 +111,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::StructType::uint16_field();
 %rename("%s") eprosima::test::StructType::uint16_field() const;
+
 
 
 %ignore eprosima::test::StructType::int32_field(int32_t&&);
@@ -104,6 +123,7 @@
 %rename("%s") eprosima::test::StructType::int32_field() const;
 
 
+
 %ignore eprosima::test::StructType::uint32_field(uint32_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -111,6 +131,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::StructType::uint32_field();
 %rename("%s") eprosima::test::StructType::uint32_field() const;
+
 
 
 %ignore eprosima::test::StructType::int64_field(int64_t&&);
@@ -122,6 +143,7 @@
 %rename("%s") eprosima::test::StructType::int64_field() const;
 
 
+
 %ignore eprosima::test::StructType::uint64_field(uint64_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -129,6 +151,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::StructType::uint64_field();
 %rename("%s") eprosima::test::StructType::uint64_field() const;
+
 
 
 %ignore eprosima::test::StructType::float_field(float&&);
@@ -140,6 +163,7 @@
 %rename("%s") eprosima::test::StructType::float_field() const;
 
 
+
 %ignore eprosima::test::StructType::double_field(double&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -147,6 +171,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::StructType::double_field();
 %rename("%s") eprosima::test::StructType::double_field() const;
+
 
 
 %ignore eprosima::test::StructType::bool_field(bool&&);
@@ -158,6 +183,7 @@
 %rename("%s") eprosima::test::StructType::bool_field() const;
 
 
+
 %ignore eprosima::test::StructType::string_field(std::string&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -167,6 +193,7 @@
 %rename("%s") eprosima::test::StructType::string_field() const;
 
 
+
 %ignore eprosima::test::StructType::enum_field(eprosima::test::Color&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -174,6 +201,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::StructType::enum_field();
 %rename("%s") eprosima::test::StructType::enum_field() const;
+
 
 
 %ignore eprosima::test::StructType::enum2_field(eprosima::test::Material&&);
@@ -222,6 +250,7 @@
 %rename("%s") eprosima::test::CompleteTestType::char_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::uint8_field(uint8_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -229,6 +258,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::uint8_field();
 %rename("%s") eprosima::test::CompleteTestType::uint8_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::int16_field(int16_t&&);
@@ -240,6 +270,7 @@
 %rename("%s") eprosima::test::CompleteTestType::int16_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::uint16_field(uint16_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -247,6 +278,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::uint16_field();
 %rename("%s") eprosima::test::CompleteTestType::uint16_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::int32_field(int32_t&&);
@@ -258,6 +290,7 @@
 %rename("%s") eprosima::test::CompleteTestType::int32_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::uint32_field(uint32_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -265,6 +298,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::uint32_field();
 %rename("%s") eprosima::test::CompleteTestType::uint32_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::int64_field(int64_t&&);
@@ -276,6 +310,7 @@
 %rename("%s") eprosima::test::CompleteTestType::int64_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::uint64_field(uint64_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -283,6 +318,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::uint64_field();
 %rename("%s") eprosima::test::CompleteTestType::uint64_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::float_field(float&&);
@@ -294,6 +330,7 @@
 %rename("%s") eprosima::test::CompleteTestType::float_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::double_field(double&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -301,6 +338,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::double_field();
 %rename("%s") eprosima::test::CompleteTestType::double_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::bool_field(bool&&);
@@ -312,6 +350,7 @@
 %rename("%s") eprosima::test::CompleteTestType::bool_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::string_field(std::string&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -319,6 +358,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::string_field();
 %rename("%s") eprosima::test::CompleteTestType::string_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::enum_field(eprosima::test::Color&&);
@@ -330,6 +370,7 @@
 %rename("%s") eprosima::test::CompleteTestType::enum_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::enum2_field(eprosima::test::Material&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -339,6 +380,7 @@
 %rename("%s") eprosima::test::CompleteTestType::enum2_field() const;
 
 
+
 %ignore eprosima::test::CompleteTestType::struct_field(eprosima::test::StructType&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -346,6 +388,352 @@
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::struct_field();
 %rename("%s") eprosima::test::CompleteTestType::struct_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(charOpt) eprosima::fastcdr::optional<char>;
+%extend eprosima::fastcdr::optional<char> {
+  char get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const char& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::char_opt_field(char&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::char_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::char_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint8_tOpt) eprosima::fastcdr::optional<uint8_t>;
+%extend eprosima::fastcdr::optional<uint8_t> {
+  uint8_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint8_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::uint8_opt_field(uint8_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::uint8_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::uint8_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(int16_tOpt) eprosima::fastcdr::optional<int16_t>;
+%extend eprosima::fastcdr::optional<int16_t> {
+  int16_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const int16_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::int16_opt_field(int16_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::int16_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::int16_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint16_tOpt) eprosima::fastcdr::optional<uint16_t>;
+%extend eprosima::fastcdr::optional<uint16_t> {
+  uint16_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint16_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::uint16_opt_field(uint16_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::uint16_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::uint16_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(int32_tOpt) eprosima::fastcdr::optional<int32_t>;
+%extend eprosima::fastcdr::optional<int32_t> {
+  int32_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const int32_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::int32_opt_field(int32_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::int32_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::int32_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint32_tOpt) eprosima::fastcdr::optional<uint32_t>;
+%extend eprosima::fastcdr::optional<uint32_t> {
+  uint32_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint32_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::uint32_opt_field(uint32_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::uint32_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::uint32_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(int64_tOpt) eprosima::fastcdr::optional<int64_t>;
+%extend eprosima::fastcdr::optional<int64_t> {
+  int64_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const int64_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::int64_opt_field(int64_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::int64_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::int64_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint64_tOpt) eprosima::fastcdr::optional<uint64_t>;
+%extend eprosima::fastcdr::optional<uint64_t> {
+  uint64_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint64_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::uint64_opt_field(uint64_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::uint64_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::uint64_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(floatOpt) eprosima::fastcdr::optional<float>;
+%extend eprosima::fastcdr::optional<float> {
+  float get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const float& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::float_opt_field(float&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::float_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::float_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(doubleOpt) eprosima::fastcdr::optional<double>;
+%extend eprosima::fastcdr::optional<double> {
+  double get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const double& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::double_opt_field(double&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::double_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::double_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(boolOpt) eprosima::fastcdr::optional<bool>;
+%extend eprosima::fastcdr::optional<bool> {
+  bool get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const bool& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::bool_opt_field(bool&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::bool_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::bool_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(stringOpt) eprosima::fastcdr::optional<std::string>;
+%extend eprosima::fastcdr::optional<std::string> {
+  std::string get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const std::string& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::string_opt_field(std::string&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::string_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::string_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(ColorOpt) eprosima::fastcdr::optional<eprosima::test::Color>;
+%extend eprosima::fastcdr::optional<eprosima::test::Color> {
+  eprosima::test::Color get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const eprosima::test::Color& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::enum_opt_field(eprosima::test::Color&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::enum_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::enum_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(MaterialOpt) eprosima::fastcdr::optional<eprosima::test::Material>;
+%extend eprosima::fastcdr::optional<eprosima::test::Material> {
+  eprosima::test::Material get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const eprosima::test::Material& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::enum2_opt_field(eprosima::test::Material&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::enum2_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::enum2_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(StructTypeOpt) eprosima::fastcdr::optional<eprosima::test::StructType>;
+%extend eprosima::fastcdr::optional<eprosima::test::StructType> {
+  eprosima::test::StructType get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const eprosima::test::StructType& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::CompleteTestType::struct_opt_field(eprosima::test::StructType&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::struct_opt_field();
+%rename("%s") eprosima::test::CompleteTestType::struct_opt_field() const;
+
 
 
 %ignore eprosima::test::CompleteTestType::array_char_field(std::array<char, 3>&&);
@@ -363,6 +751,7 @@
     }
 }
 
+
 %ignore eprosima::test::CompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -377,6 +766,7 @@
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
 
@@ -393,6 +783,7 @@
     }
 }
 
+
 %ignore eprosima::test::CompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -407,6 +798,7 @@
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
 
@@ -423,6 +815,7 @@
     }
 }
 
+
 %ignore eprosima::test::CompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -437,6 +830,7 @@
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
 
@@ -453,6 +847,7 @@
     }
 }
 
+
 %ignore eprosima::test::CompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -467,6 +862,7 @@
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_float_field(std::array<float, 3>&&);
 
@@ -483,6 +879,7 @@
     }
 }
 
+
 %ignore eprosima::test::CompleteTestType::array_double_field(std::array<double, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -497,6 +894,7 @@
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_bool_field(std::array<bool, 3>&&);
 
@@ -513,20 +911,22 @@
     }
 }
 
+
 %ignore eprosima::test::CompleteTestType::array_enum_field(std::array<eprosima::test::Color, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::array_enum_field() const;
-%template(eprosima_test_Color_3_array) std::array<eprosima::test::Color,3>;
-%extend std::array<eprosima::test::Color, 3>
+%template(Color_3_array) std::array<enum eprosima::test::Color,3>;
+%extend std::array<enum eprosima::test::Color, 3>
 {
-    const eprosima::test::Color* get_buffer() const
+    const enum eprosima::test::Color* get_buffer() const
     {
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_enum2_field(std::array<eprosima::test::Material, 3>&&);
 
@@ -534,14 +934,15 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::array_enum2_field() const;
-%template(eprosima_test_Material_3_array) std::array<eprosima::test::Material,3>;
-%extend std::array<eprosima::test::Material, 3>
+%template(Material_3_array) std::array<enum eprosima::test::Material,3>;
+%extend std::array<enum eprosima::test::Material, 3>
 {
-    const eprosima::test::Material* get_buffer() const
+    const enum eprosima::test::Material* get_buffer() const
     {
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::CompleteTestType::array_struct_field(std::array<eprosima::test::StructType, 3>&&);
 
@@ -549,7 +950,8 @@
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::array_struct_field() const;
-%template(eprosima_test_StructType_3_array) std::array<eprosima::test::StructType,3>;
+%template(StructType_3_array) std::array<eprosima::test::StructType,3>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
 
@@ -565,9 +967,8 @@
     }
 }
 
-%template(
-char_vector
-) std::vector<char>;
+%template(char_vector) std::vector<char>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -583,9 +984,8 @@ char_vector
     }
 }
 
-%template(
-uint8_t_vector
-) std::vector<uint8_t>;
+%template(uint8_t_vector) std::vector<uint8_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -601,9 +1001,8 @@ uint8_t_vector
     }
 }
 
-%template(
-int16_t_vector
-) std::vector<int16_t>;
+%template(int16_t_vector) std::vector<int16_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -619,9 +1018,8 @@ int16_t_vector
     }
 }
 
-%template(
-uint16_t_vector
-) std::vector<uint16_t>;
+%template(uint16_t_vector) std::vector<uint16_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -637,9 +1035,8 @@ uint16_t_vector
     }
 }
 
-%template(
-int32_t_vector
-) std::vector<int32_t>;
+%template(int32_t_vector) std::vector<int32_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -655,9 +1052,8 @@ int32_t_vector
     }
 }
 
-%template(
-uint32_t_vector
-) std::vector<uint32_t>;
+%template(uint32_t_vector) std::vector<uint32_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -673,9 +1069,8 @@ uint32_t_vector
     }
 }
 
-%template(
-int64_t_vector
-) std::vector<int64_t>;
+%template(int64_t_vector) std::vector<int64_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -691,9 +1086,8 @@ int64_t_vector
     }
 }
 
-%template(
-uint64_t_vector
-) std::vector<uint64_t>;
+%template(uint64_t_vector) std::vector<uint64_t>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_float_field(std::vector<float>&&);
 
@@ -709,9 +1103,8 @@ uint64_t_vector
     }
 }
 
-%template(
-float_vector
-) std::vector<float>;
+%template(float_vector) std::vector<float>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_double_field(std::vector<double>&&);
 
@@ -727,9 +1120,8 @@ float_vector
     }
 }
 
-%template(
-double_vector
-) std::vector<double>;
+%template(double_vector) std::vector<double>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -737,9 +1129,8 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::bounded_sequence_bool_field() const;
-%template(
-bool_vector
-) std::vector<bool>;
+%template(bool_vector) std::vector<bool>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
@@ -755,9 +1146,8 @@ bool_vector
     }
 }
 
-%template(
-eprosima_test_Color_vector
-) std::vector<eprosima::test::Color>;
+%template(Color_vector) std::vector<enum eprosima::test::Color>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
@@ -773,9 +1163,8 @@ eprosima_test_Color_vector
     }
 }
 
-%template(
-eprosima_test_Material_vector
-) std::vector<eprosima::test::Material>;
+%template(Material_vector) std::vector<enum eprosima::test::Material>;
+
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
 
@@ -783,9 +1172,8 @@ eprosima_test_Material_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::bounded_sequence_struct_field() const;
-%template(
-eprosima_test_StructType_vector
-) std::vector<eprosima::test::StructType>;
+%template(StructType_vector) std::vector<eprosima::test::StructType>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_char_field(std::vector<char>&&);
 
@@ -801,9 +1189,8 @@ eprosima_test_StructType_vector
     }
 }
 
-%template(
-char_vector
-) std::vector<char>;
+%template(char_vector) std::vector<char>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -819,9 +1206,8 @@ char_vector
     }
 }
 
-%template(
-uint8_t_vector
-) std::vector<uint8_t>;
+%template(uint8_t_vector) std::vector<uint8_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -837,9 +1223,8 @@ uint8_t_vector
     }
 }
 
-%template(
-int16_t_vector
-) std::vector<int16_t>;
+%template(int16_t_vector) std::vector<int16_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -855,9 +1240,8 @@ int16_t_vector
     }
 }
 
-%template(
-uint16_t_vector
-) std::vector<uint16_t>;
+%template(uint16_t_vector) std::vector<uint16_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -873,9 +1257,8 @@ uint16_t_vector
     }
 }
 
-%template(
-int32_t_vector
-) std::vector<int32_t>;
+%template(int32_t_vector) std::vector<int32_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -891,9 +1274,8 @@ int32_t_vector
     }
 }
 
-%template(
-uint32_t_vector
-) std::vector<uint32_t>;
+%template(uint32_t_vector) std::vector<uint32_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -909,9 +1291,8 @@ uint32_t_vector
     }
 }
 
-%template(
-int64_t_vector
-) std::vector<int64_t>;
+%template(int64_t_vector) std::vector<int64_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -927,9 +1308,8 @@ int64_t_vector
     }
 }
 
-%template(
-uint64_t_vector
-) std::vector<uint64_t>;
+%template(uint64_t_vector) std::vector<uint64_t>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_float_field(std::vector<float>&&);
 
@@ -945,9 +1325,8 @@ uint64_t_vector
     }
 }
 
-%template(
-float_vector
-) std::vector<float>;
+%template(float_vector) std::vector<float>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_double_field(std::vector<double>&&);
 
@@ -963,9 +1342,8 @@ float_vector
     }
 }
 
-%template(
-double_vector
-) std::vector<double>;
+%template(double_vector) std::vector<double>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -973,9 +1351,8 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_bool_field() const;
-%template(
-bool_vector
-) std::vector<bool>;
+%template(bool_vector) std::vector<bool>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
@@ -991,9 +1368,8 @@ bool_vector
     }
 }
 
-%template(
-eprosima_test_Color_vector
-) std::vector<eprosima::test::Color>;
+%template(Color_vector) std::vector<enum eprosima::test::Color>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
@@ -1009,9 +1385,8 @@ eprosima_test_Color_vector
     }
 }
 
-%template(
-eprosima_test_Material_vector
-) std::vector<eprosima::test::Material>;
+%template(Material_vector) std::vector<enum eprosima::test::Material>;
+
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
 
@@ -1019,9 +1394,7 @@ eprosima_test_Material_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_struct_field() const;
-%template(
-eprosima_test_StructType_vector
-) std::vector<eprosima::test::StructType>;
+%template(StructType_vector) std::vector<eprosima::test::StructType>;
 
 
 %template(_CompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<eprosima::test::CompleteTestType, std::false_type>;
@@ -1058,6 +1431,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::id() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::char_field(char&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1065,6 +1439,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::char_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::char_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::uint8_field(uint8_t&&);
@@ -1076,6 +1451,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::uint8_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::int16_field(int16_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1083,6 +1459,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::int16_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::int16_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::uint16_field(uint16_t&&);
@@ -1094,6 +1471,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::uint16_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::int32_field(int32_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1101,6 +1479,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::int32_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::int32_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::uint32_field(uint32_t&&);
@@ -1112,6 +1491,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::uint32_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::int64_field(int64_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1119,6 +1499,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::int64_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::int64_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::uint64_field(uint64_t&&);
@@ -1130,6 +1511,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::uint64_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::float_field(float&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1137,6 +1519,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::float_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::float_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::double_field(double&&);
@@ -1148,6 +1531,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::double_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::bool_field(bool&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1155,6 +1539,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::bool_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::bool_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::string_field(std::string&&);
@@ -1166,6 +1551,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::string_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::enum_field(eprosima::test::Color&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1173,6 +1559,7 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::enum_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::enum_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::enum2_field(eprosima::test::Material&&);
@@ -1184,6 +1571,7 @@ eprosima_test_StructType_vector
 %rename("%s") eprosima::test::KeyedCompleteTestType::enum2_field() const;
 
 
+
 %ignore eprosima::test::KeyedCompleteTestType::struct_field(eprosima::test::StructType&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1191,6 +1579,352 @@ eprosima_test_StructType_vector
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::struct_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::struct_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(charOpt) eprosima::fastcdr::optional<char>;
+%extend eprosima::fastcdr::optional<char> {
+  char get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const char& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::char_opt_field(char&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::char_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::char_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint8_tOpt) eprosima::fastcdr::optional<uint8_t>;
+%extend eprosima::fastcdr::optional<uint8_t> {
+  uint8_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint8_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::uint8_opt_field(uint8_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::uint8_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::uint8_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(int16_tOpt) eprosima::fastcdr::optional<int16_t>;
+%extend eprosima::fastcdr::optional<int16_t> {
+  int16_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const int16_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::int16_opt_field(int16_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::int16_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::int16_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint16_tOpt) eprosima::fastcdr::optional<uint16_t>;
+%extend eprosima::fastcdr::optional<uint16_t> {
+  uint16_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint16_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::uint16_opt_field(uint16_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::uint16_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::uint16_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(int32_tOpt) eprosima::fastcdr::optional<int32_t>;
+%extend eprosima::fastcdr::optional<int32_t> {
+  int32_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const int32_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::int32_opt_field(int32_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::int32_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::int32_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint32_tOpt) eprosima::fastcdr::optional<uint32_t>;
+%extend eprosima::fastcdr::optional<uint32_t> {
+  uint32_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint32_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::uint32_opt_field(uint32_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::uint32_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::uint32_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(int64_tOpt) eprosima::fastcdr::optional<int64_t>;
+%extend eprosima::fastcdr::optional<int64_t> {
+  int64_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const int64_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::int64_opt_field(int64_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::int64_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::int64_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(uint64_tOpt) eprosima::fastcdr::optional<uint64_t>;
+%extend eprosima::fastcdr::optional<uint64_t> {
+  uint64_t get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const uint64_t& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::uint64_opt_field(uint64_t&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::uint64_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::uint64_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(floatOpt) eprosima::fastcdr::optional<float>;
+%extend eprosima::fastcdr::optional<float> {
+  float get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const float& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::float_opt_field(float&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::float_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::float_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(doubleOpt) eprosima::fastcdr::optional<double>;
+%extend eprosima::fastcdr::optional<double> {
+  double get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const double& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::double_opt_field(double&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::double_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::double_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(boolOpt) eprosima::fastcdr::optional<bool>;
+%extend eprosima::fastcdr::optional<bool> {
+  bool get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const bool& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::bool_opt_field(bool&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::bool_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::bool_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(stringOpt) eprosima::fastcdr::optional<std::string>;
+%extend eprosima::fastcdr::optional<std::string> {
+  std::string get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const std::string& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::string_opt_field(std::string&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::string_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::string_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(ColorOpt) eprosima::fastcdr::optional<eprosima::test::Color>;
+%extend eprosima::fastcdr::optional<eprosima::test::Color> {
+  eprosima::test::Color get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const eprosima::test::Color& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::enum_opt_field(eprosima::test::Color&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::enum_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::enum_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(MaterialOpt) eprosima::fastcdr::optional<eprosima::test::Material>;
+%extend eprosima::fastcdr::optional<eprosima::test::Material> {
+  eprosima::test::Material get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const eprosima::test::Material& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::enum2_opt_field(eprosima::test::Material&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::enum2_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::enum2_opt_field() const;
+
+
+
+%ignore eprosima::fastcdr::optional::value;
+%ignore eprosima::fastcdr::optional::reset;
+%template(StructTypeOpt) eprosima::fastcdr::optional<eprosima::test::StructType>;
+%extend eprosima::fastcdr::optional<eprosima::test::StructType> {
+  eprosima::test::StructType get_value() const {
+      return $self->value();
+  }
+
+  void set_value(const eprosima::test::StructType& value) {
+      *$self = value;
+  }
+}
+
+%ignore eprosima::test::KeyedCompleteTestType::struct_opt_field(eprosima::test::StructType&&);
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::struct_opt_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::struct_opt_field() const;
+
 
 
 %ignore eprosima::test::KeyedCompleteTestType::array_char_field(std::array<char, 3>&&);
@@ -1208,6 +1942,7 @@ eprosima_test_StructType_vector
     }
 }
 
+
 %ignore eprosima::test::KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1222,6 +1957,7 @@ eprosima_test_StructType_vector
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
 
@@ -1238,6 +1974,7 @@ eprosima_test_StructType_vector
     }
 }
 
+
 %ignore eprosima::test::KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1252,6 +1989,7 @@ eprosima_test_StructType_vector
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
 
@@ -1268,6 +2006,7 @@ eprosima_test_StructType_vector
     }
 }
 
+
 %ignore eprosima::test::KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1282,6 +2021,7 @@ eprosima_test_StructType_vector
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
 
@@ -1298,6 +2038,7 @@ eprosima_test_StructType_vector
     }
 }
 
+
 %ignore eprosima::test::KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1312,6 +2053,7 @@ eprosima_test_StructType_vector
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_float_field(std::array<float, 3>&&);
 
@@ -1328,6 +2070,7 @@ eprosima_test_StructType_vector
     }
 }
 
+
 %ignore eprosima::test::KeyedCompleteTestType::array_double_field(std::array<double, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -1342,6 +2085,7 @@ eprosima_test_StructType_vector
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_bool_field(std::array<bool, 3>&&);
 
@@ -1358,20 +2102,22 @@ eprosima_test_StructType_vector
     }
 }
 
+
 %ignore eprosima::test::KeyedCompleteTestType::array_enum_field(std::array<eprosima::test::Color, 3>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::array_enum_field() const;
-%template(eprosima_test_Color_3_array) std::array<eprosima::test::Color,3>;
-%extend std::array<eprosima::test::Color, 3>
+%template(Color_3_array) std::array<enum eprosima::test::Color,3>;
+%extend std::array<enum eprosima::test::Color, 3>
 {
-    const eprosima::test::Color* get_buffer() const
+    const enum eprosima::test::Color* get_buffer() const
     {
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_enum2_field(std::array<eprosima::test::Material, 3>&&);
 
@@ -1379,14 +2125,15 @@ eprosima_test_StructType_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::array_enum2_field() const;
-%template(eprosima_test_Material_3_array) std::array<eprosima::test::Material,3>;
-%extend std::array<eprosima::test::Material, 3>
+%template(Material_3_array) std::array<enum eprosima::test::Material,3>;
+%extend std::array<enum eprosima::test::Material, 3>
 {
-    const eprosima::test::Material* get_buffer() const
+    const enum eprosima::test::Material* get_buffer() const
     {
         return self->data();
     }
 }
+
 
 %ignore eprosima::test::KeyedCompleteTestType::array_struct_field(std::array<eprosima::test::StructType, 3>&&);
 
@@ -1394,7 +2141,8 @@ eprosima_test_StructType_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::array_struct_field() const;
-%template(eprosima_test_StructType_3_array) std::array<eprosima::test::StructType,3>;
+%template(StructType_3_array) std::array<eprosima::test::StructType,3>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
 
@@ -1410,9 +2158,8 @@ eprosima_test_StructType_vector
     }
 }
 
-%template(
-char_vector
-) std::vector<char>;
+%template(char_vector) std::vector<char>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -1428,9 +2175,8 @@ char_vector
     }
 }
 
-%template(
-uint8_t_vector
-) std::vector<uint8_t>;
+%template(uint8_t_vector) std::vector<uint8_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -1446,9 +2192,8 @@ uint8_t_vector
     }
 }
 
-%template(
-int16_t_vector
-) std::vector<int16_t>;
+%template(int16_t_vector) std::vector<int16_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -1464,9 +2209,8 @@ int16_t_vector
     }
 }
 
-%template(
-uint16_t_vector
-) std::vector<uint16_t>;
+%template(uint16_t_vector) std::vector<uint16_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -1482,9 +2226,8 @@ uint16_t_vector
     }
 }
 
-%template(
-int32_t_vector
-) std::vector<int32_t>;
+%template(int32_t_vector) std::vector<int32_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -1500,9 +2243,8 @@ int32_t_vector
     }
 }
 
-%template(
-uint32_t_vector
-) std::vector<uint32_t>;
+%template(uint32_t_vector) std::vector<uint32_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -1518,9 +2260,8 @@ uint32_t_vector
     }
 }
 
-%template(
-int64_t_vector
-) std::vector<int64_t>;
+%template(int64_t_vector) std::vector<int64_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -1536,9 +2277,8 @@ int64_t_vector
     }
 }
 
-%template(
-uint64_t_vector
-) std::vector<uint64_t>;
+%template(uint64_t_vector) std::vector<uint64_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field(std::vector<float>&&);
 
@@ -1554,9 +2294,8 @@ uint64_t_vector
     }
 }
 
-%template(
-float_vector
-) std::vector<float>;
+%template(float_vector) std::vector<float>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field(std::vector<double>&&);
 
@@ -1572,9 +2311,8 @@ float_vector
     }
 }
 
-%template(
-double_vector
-) std::vector<double>;
+%template(double_vector) std::vector<double>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -1582,9 +2320,8 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field() const;
-%template(
-bool_vector
-) std::vector<bool>;
+%template(bool_vector) std::vector<bool>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
@@ -1600,9 +2337,8 @@ bool_vector
     }
 }
 
-%template(
-eprosima_test_Color_vector
-) std::vector<eprosima::test::Color>;
+%template(Color_vector) std::vector<enum eprosima::test::Color>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
@@ -1618,9 +2354,8 @@ eprosima_test_Color_vector
     }
 }
 
-%template(
-eprosima_test_Material_vector
-) std::vector<eprosima::test::Material>;
+%template(Material_vector) std::vector<enum eprosima::test::Material>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
 
@@ -1628,9 +2363,8 @@ eprosima_test_Material_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field() const;
-%template(
-eprosima_test_StructType_vector
-) std::vector<eprosima::test::StructType>;
+%template(StructType_vector) std::vector<eprosima::test::StructType>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field(std::vector<char>&&);
 
@@ -1646,9 +2380,8 @@ eprosima_test_StructType_vector
     }
 }
 
-%template(
-char_vector
-) std::vector<char>;
+%template(char_vector) std::vector<char>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
@@ -1664,9 +2397,8 @@ char_vector
     }
 }
 
-%template(
-uint8_t_vector
-) std::vector<uint8_t>;
+%template(uint8_t_vector) std::vector<uint8_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field(std::vector<int16_t>&&);
 
@@ -1682,9 +2414,8 @@ uint8_t_vector
     }
 }
 
-%template(
-int16_t_vector
-) std::vector<int16_t>;
+%template(int16_t_vector) std::vector<int16_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
@@ -1700,9 +2431,8 @@ int16_t_vector
     }
 }
 
-%template(
-uint16_t_vector
-) std::vector<uint16_t>;
+%template(uint16_t_vector) std::vector<uint16_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field(std::vector<int32_t>&&);
 
@@ -1718,9 +2448,8 @@ uint16_t_vector
     }
 }
 
-%template(
-int32_t_vector
-) std::vector<int32_t>;
+%template(int32_t_vector) std::vector<int32_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
@@ -1736,9 +2465,8 @@ int32_t_vector
     }
 }
 
-%template(
-uint32_t_vector
-) std::vector<uint32_t>;
+%template(uint32_t_vector) std::vector<uint32_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field(std::vector<int64_t>&&);
 
@@ -1754,9 +2482,8 @@ uint32_t_vector
     }
 }
 
-%template(
-int64_t_vector
-) std::vector<int64_t>;
+%template(int64_t_vector) std::vector<int64_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
@@ -1772,9 +2499,8 @@ int64_t_vector
     }
 }
 
-%template(
-uint64_t_vector
-) std::vector<uint64_t>;
+%template(uint64_t_vector) std::vector<uint64_t>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field(std::vector<float>&&);
 
@@ -1790,9 +2516,8 @@ uint64_t_vector
     }
 }
 
-%template(
-float_vector
-) std::vector<float>;
+%template(float_vector) std::vector<float>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field(std::vector<double>&&);
 
@@ -1808,9 +2533,8 @@ float_vector
     }
 }
 
-%template(
-double_vector
-) std::vector<double>;
+%template(double_vector) std::vector<double>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
 
@@ -1818,9 +2542,8 @@ double_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field() const;
-%template(
-bool_vector
-) std::vector<bool>;
+%template(bool_vector) std::vector<bool>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
 
@@ -1836,9 +2559,8 @@ bool_vector
     }
 }
 
-%template(
-eprosima_test_Color_vector
-) std::vector<eprosima::test::Color>;
+%template(Color_vector) std::vector<enum eprosima::test::Color>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
@@ -1854,9 +2576,8 @@ eprosima_test_Color_vector
     }
 }
 
-%template(
-eprosima_test_Material_vector
-) std::vector<eprosima::test::Material>;
+%template(Material_vector) std::vector<enum eprosima::test::Material>;
+
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
 
@@ -1864,9 +2585,7 @@ eprosima_test_Material_vector
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field() const;
-%template(
-eprosima_test_StructType_vector
-) std::vector<eprosima::test::StructType>;
+%template(StructType_vector) std::vector<eprosima::test::StructType>;
 
 
 %template(_KeyedCompleteTestTypeSeq) eprosima::fastdds::dds::LoanableTypedCollection<eprosima::test::KeyedCompleteTestType, std::false_type>;

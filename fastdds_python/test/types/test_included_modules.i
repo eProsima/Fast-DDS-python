@@ -45,10 +45,25 @@
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
 
+%import(module="fastdds") "fastcdr/xcdr/optional.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
 
+%define %traits_penumn(Type...)
+  %fragment(SWIG_Traits_frag(Type),"header",
+        fragment="StdTraits") {
+namespace swig {
+  template <> struct traits< Type > {
+    typedef value_category category;
+    static const char* type_name() { return  #Type; }
+  };
+}
+}
+%enddef
+
+%traits_penumn(enum eprosima::test2::Color2);
+%traits_penumn(enum eprosima::test2::Material2);
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test2::StructType2
 ////////////////////////////////////////////////////////
@@ -68,6 +83,7 @@
 %rename("%s") eprosima::test2::StructType2::char_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::uint8_field(uint8_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -75,6 +91,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test2::StructType2::uint8_field();
 %rename("%s") eprosima::test2::StructType2::uint8_field() const;
+
 
 
 %ignore eprosima::test2::StructType2::int16_field(int16_t&&);
@@ -86,6 +103,7 @@
 %rename("%s") eprosima::test2::StructType2::int16_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::uint16_field(uint16_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -93,6 +111,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test2::StructType2::uint16_field();
 %rename("%s") eprosima::test2::StructType2::uint16_field() const;
+
 
 
 %ignore eprosima::test2::StructType2::int32_field(int32_t&&);
@@ -104,6 +123,7 @@
 %rename("%s") eprosima::test2::StructType2::int32_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::uint32_field(uint32_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -111,6 +131,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test2::StructType2::uint32_field();
 %rename("%s") eprosima::test2::StructType2::uint32_field() const;
+
 
 
 %ignore eprosima::test2::StructType2::int64_field(int64_t&&);
@@ -122,6 +143,7 @@
 %rename("%s") eprosima::test2::StructType2::int64_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::uint64_field(uint64_t&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -129,6 +151,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test2::StructType2::uint64_field();
 %rename("%s") eprosima::test2::StructType2::uint64_field() const;
+
 
 
 %ignore eprosima::test2::StructType2::float_field(float&&);
@@ -140,6 +163,7 @@
 %rename("%s") eprosima::test2::StructType2::float_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::double_field(double&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -147,6 +171,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test2::StructType2::double_field();
 %rename("%s") eprosima::test2::StructType2::double_field() const;
+
 
 
 %ignore eprosima::test2::StructType2::bool_field(bool&&);
@@ -158,6 +183,7 @@
 %rename("%s") eprosima::test2::StructType2::bool_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::string_field(std::string&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -167,6 +193,7 @@
 %rename("%s") eprosima::test2::StructType2::string_field() const;
 
 
+
 %ignore eprosima::test2::StructType2::enum_field(eprosima::test2::Color2&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
@@ -174,6 +201,7 @@
 // We ignore them to prevent this
 %ignore eprosima::test2::StructType2::enum_field();
 %rename("%s") eprosima::test2::StructType2::enum_field() const;
+
 
 
 %ignore eprosima::test2::StructType2::enum2_field(eprosima::test2::Material2&&);
