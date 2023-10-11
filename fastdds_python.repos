@@ -2,7 +2,7 @@ repositories:
     foonathan_memory_vendor:
         type: git
         url: https://github.com/eProsima/foonathan_memory_vendor.git
-        version: master
+        version: v1.3.1
     fastcdr:
         type: git
         url: https://github.com/eProsima/Fast-CDR.git
@@ -10,17 +10,16 @@ repositories:
     fastdds:
         type: git
         url: https://github.com/eProsima/Fast-DDS.git
-        version: master
+        version: 2.11.x
     fastdds_python:
         type: git
         url: https://github.com/eProsima/Fast-DDS-python.git
-        version: main
+        version: 2.1.x
     fastddsgen:
         type: git
         url: https://github.com/eProsima/Fast-DDS-Gen.git
-        version: master
+        version: v2.5.1
     fastddsgen/thirdparty/idl-parser:
         type: git
         url: https://github.com/eProsima/IDL-Parser.git
-        version: master
-
+        version: v1.6.0
