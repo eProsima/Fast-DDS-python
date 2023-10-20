@@ -537,6 +537,8 @@ def test_read(transient_datareader_qos, datareader,
     assert(1 == len(data_seq))
     assert(1 == len(info_seq))
     assert(info_seq[0].valid_data is True)
+    assert(0 < info_seq[0].source_timestamp.to_ns())
+    assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -575,6 +577,8 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     assert(1 == len(data_seq))
     assert(1 == len(info_seq))
     assert(info_seq[0].valid_data is True)
+    assert(0 < info_seq[0].source_timestamp.to_ns())
+    assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -612,6 +616,8 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     assert(1 == len(data_seq))
     assert(1 == len(info_seq))
     assert(info_seq[0].valid_data is True)
+    assert(0 < info_seq[0].source_timestamp.to_ns())
+    assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -638,6 +644,8 @@ def test_read_next_sample(transient_datareader_qos, datareader,
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.read_next_sample(data, info))
     assert(info.valid_data)
+    assert(0 < info.source_timestamp.to_ns())
+    assert(0 < info.reception_timestamp.to_ns())
     assert(sample.int16_field() == data.int16_field())
 
 
@@ -671,6 +679,8 @@ def test_take(transient_datareader_qos, datareader,
     assert(1 == len(data_seq))
     assert(1 == len(info_seq))
     assert(info_seq[0].valid_data is True)
+    assert(0 < info_seq[0].source_timestamp.to_ns())
+    assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample.int16_field() == data_seq[0].int16_field())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -709,6 +719,8 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     assert(1 == len(data_seq))
     assert(1 == len(info_seq))
     assert(info_seq[0].valid_data is True)
+    assert(0 < info_seq[0].source_timestamp.to_ns())
+    assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -746,6 +758,8 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     assert(1 == len(data_seq))
     assert(1 == len(info_seq))
     assert(info_seq[0].valid_data is True)
+    assert(0 < info_seq[0].source_timestamp.to_ns())
+    assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample.id() == data_seq[0].id())
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
@@ -772,6 +786,8 @@ def test_take_next_sample(transient_datareader_qos, datareader,
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.take_next_sample(data, info))
     assert(info.valid_data)
+    assert(0 < info.source_timestamp.to_ns())
+    assert(0 < info.reception_timestamp.to_ns())
     assert(sample.int16_field() == data.int16_field())
 
 
