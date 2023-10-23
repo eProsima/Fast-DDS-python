@@ -25,15 +25,15 @@ jobs:
         shell: pwsh
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
 
-      - uses: eProsima/eProsima-CI/external/setup-python@feature/ccache
+      - uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@feature/ccache
+      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
         with:
           packages: pytest pywin32 vcstool
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@feature/ccache
+      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
       - uses: eProsima/eProsima-CI/external/checkout@v0
         with:
@@ -44,7 +44,7 @@ jobs:
         run: |
           vcs import src --skip-existing --input src/fastdds_python/fastdds_python.repos
 
-      - uses: eProsima/eProsima-CI/external/get-cmake@feature/ccache
+      - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: 3.22.6
 
@@ -56,7 +56,7 @@ jobs:
           echo "cmake_generator=ninja" >> $Env:GITHUB_OUTPUT
 
       - name: Setup ccache
-        uses: eProsima/eProsima-CI/external/setup-ccache-action@feature/ccache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
         with:
           install_ccache: false
           windows_compile_environment: msvc
@@ -103,18 +103,18 @@ jobs:
         with:
           packages: vcstool
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@feature/ccache
+      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
       - name: Fetch repositories
         run: |
           vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
 
-      - uses: eProsima/eProsima-CI/external/get-cmake@feature/ccache
+      - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: 3.22.6
 
       - name: Setup ccache
-        uses: eProsima/eProsima-CI/external/setup-ccache-action@feature/ccache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
 
       - name: Build workspace
         run: |
