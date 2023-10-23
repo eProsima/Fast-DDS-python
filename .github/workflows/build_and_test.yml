@@ -19,42 +19,23 @@ jobs:
 
     steps:
 
-      - name: install OpenSSL
-        shell: pwsh
-        run: |
-          choco install openssl -yr --no-progress
-          "System32;SysWoW64" -split ";" | Join-Path -Path $env:windir -ChildPath {$_} `
-          | ls -Include libssl-*.dll | rm
+      - uses: eProsima/eProsima-CI/windows/install_openssl@v0
 
-      - name: install swig
+      - name: Install swig
         shell: pwsh
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
 
-      - name: Install python build dependencies
-        shell: pwsh
-        run: >
-          pip install -U colcon-common-extensions colcon-mixin vcstool;
+      - uses: eProsima/eProsima-CI/external/setup-python@v0
+        with:
+          python-version: '3.11'
 
-      - name: Install python tests dependencies
-        shell: pwsh
-        run: |
-          cd  (ni -Type Directory -Path "$Env:TMP\$(New-Guid)")
-          $cr = "`n"
-          'cmake_minimum_required(VERSION 3.5)' + $cr  +
-          'project(dummy VERSION 1.0.0 LANGUAGES CXX)' + $cr +
-          'find_package (Python3 COMPONENTS Interpreter Development REQUIRED)' + $cr +
-          'message(STATUS "cmake detected python=>>>>>${Python3_EXECUTABLE}<<<<<<")' |
-          Out-File CMakeLists.txt
-          (cmake .) *>&1 | % {
-            if($_ -Match "cmake detected python=>>>>>(?<exec>.*)<<<<<<")
-            {
-               $python_exec = $Matches.exec
-               return
-            }
-          }
-          & $python_exec -m pip install -U pytest pywin32
+      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
+        with:
+          packages: pytest pywin32 vcstool
 
-      - uses: actions/checkout@v2
+      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
+
+      - uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           path: src/fastdds_python
 
@@ -63,16 +44,21 @@ jobs:
         run: |
           vcs import src --skip-existing --input src/fastdds_python/fastdds_python.repos
 
-      - name: Get minimum supported version of CMake
-        uses: lukka/get-cmake@latest
+      - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: 3.22.6
-      - name: Use cmake
-        run: cmake --version
+
+      - name: Setting ninja
+        id: ninja
+        if: github.event.schedule == ''
+        shell: pwsh
+        run: |
+          echo "cmake_generator=ninja" >> $Env:GITHUB_OUTPUT
 
       - name: Setup ccache
-        uses: Chocobo1/setup-ccache-action@v1
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
         with:
+          install_ccache: false
           windows_compile_environment: msvc
 
       - name: Build workspace
@@ -83,10 +69,10 @@ jobs:
           Import-Module $modulepath
           Enter-VsDevShell -SetDefaultWindowTitle -InstallPath $installpath `
                            -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
+          cmake --version
           colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
               --metas ./src/fastdds_python/.github/workflows/test.meta `
-              --cmake-args -DCMAKE_C_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}" `
-                           -DCMAKE_CXX_COMPILER_LAUNCHER="${{ env.ccache_symlinks_path }}"
+              --mixin rel-with-deb-info ccache ${{ steps.ninja.outputs.cmake_generator }}
 
       - name: Run tests
         shell: pwsh
@@ -105,47 +91,38 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           path: src/fastdds_python
 
-      - name: Install apt dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y \
-            python3 \
-            python3-pip \
-            swig \
-            libpython3-dev
+      - uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
+        with:
+          packages: libpython3-dev swig
 
-      - name: Install python dependencies
-        run: |
-          sudo pip3 install -U \
-            vcstool \
-            colcon-common-extensions
+      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
+        with:
+          packages: vcstool
+
+      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
       - name: Fetch repositories
         run: |
           vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
 
-      - name: Get minimum supported version of CMake
-        uses: lukka/get-cmake@latest
+      - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: 3.22.6
-      - name: Use cmake
-        run: cmake --version
 
       - name: Setup ccache
-        uses: Chocobo1/setup-ccache-action@v1
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
 
       - name: Build workspace
-        run: >
+        run: |
+          cmake --version
           colcon build \
             --event-handlers=console_direct+ \
             --metas ./src/fastdds_python/.github/workflows/test.meta \
-            --cmake-args \
-              -DCMAKE_C_COMPILER_LAUNCHER=ccache \
-              -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+            --mixin rel-with-deb-info ccache
 
       - name: Run tests
         run: |
