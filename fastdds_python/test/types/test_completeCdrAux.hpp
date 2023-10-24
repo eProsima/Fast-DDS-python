@@ -24,7 +24,7 @@
 
 #include "test_complete.h"
 
-constexpr uint32_t CompleteTestType_max_cdr_typesize {77504UL};
+constexpr uint32_t CompleteTestType_max_cdr_typesize {78608UL};
 constexpr uint32_t CompleteTestType_max_key_cdr_typesize {0UL};
 
 
@@ -34,7 +34,7 @@ constexpr uint32_t StructType_max_key_cdr_typesize {0UL};
 
 
 
-constexpr uint32_t KeyedCompleteTestType_max_cdr_typesize {77504UL};
+constexpr uint32_t KeyedCompleteTestType_max_cdr_typesize {78608UL};
 constexpr uint32_t KeyedCompleteTestType_max_key_cdr_typesize {4UL};
 
 

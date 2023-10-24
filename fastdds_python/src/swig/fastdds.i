@@ -119,6 +119,8 @@ namespace builtin {
 // Failing to do so will issue a warning, but will not stop the compilation.
 // However, the resulting derived class will **not** be considered as inheriting from the base class
 
+%include "fastcdr/xcdr/optional.i"
+
 %include "fastdds/rtps/common/VendorId_t.i"
 %include "fastdds/rtps/common/Types.i"
 %include "fastdds/rtps/common/Time_t.i"
@@ -492,5 +494,3 @@ namespace builtin {
 %include "fastdds/dds/log/StdoutConsumer.i"
 %include "fastdds/dds/log/Colors.i"
 */
-
-

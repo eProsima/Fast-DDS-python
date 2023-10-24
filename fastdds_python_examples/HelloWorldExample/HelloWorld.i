@@ -45,9 +45,22 @@
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
 
+%import(module="fastdds") "fastcdr/xcdr/optional.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
+
+%define %traits_penumn(Type...)
+  %fragment(SWIG_Traits_frag(Type),"header",
+        fragment="StdTraits") {
+namespace swig {
+  template <> struct traits< Type > {
+    typedef value_category category;
+    static const char* type_name() { return  #Type; }
+  };
+}
+}
+%enddef
 
 ////////////////////////////////////////////////////////
 // Binding for class HelloWorld
@@ -66,6 +79,7 @@
 // We ignore them to prevent this
 %ignore HelloWorld::index();
 %rename("%s") HelloWorld::index() const;
+
 
 
 %ignore HelloWorld::message(std::string&&);

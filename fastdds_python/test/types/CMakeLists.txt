@@ -31,8 +31,6 @@ set(${PROJECT_NAME}_FILES
     test_included_modulesPubSubTypes.cxx
     )
 
-include_directories()
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
@@ -40,7 +38,15 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
-target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${PROJECT_SOURCE_DIR}
+    )
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+    fastcdr
+    fastrtps
+    )
 
 ###############################################################################
 # Python bindings for type
@@ -70,10 +76,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-include_directories(
-    ${PROJECT_SOURCE_DIR}
-    )
-
 set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test2")
 
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
@@ -81,6 +83,7 @@ SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     LANGUAGE python
     SOURCES ${${PROJECT_NAME}_MODULE_FILES})
 
+set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY CXX_STANDARD 11)
 if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
@@ -138,8 +141,6 @@ set(${PROJECT_NAME}_FILES
     test_modulesPubSubTypes.cxx
     )
 
-include_directories()
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
@@ -147,7 +148,15 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
-target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${PROJECT_SOURCE_DIR}
+    )
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+    fastcdr
+    fastrtps
+    )
 
 ###############################################################################
 # Python bindings for type
@@ -177,10 +186,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-include_directories(
-    ${PROJECT_SOURCE_DIR}
-    )
-
 set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test")
 
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
@@ -188,6 +193,7 @@ SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     LANGUAGE python
     SOURCES ${${PROJECT_NAME}_MODULE_FILES})
 
+set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY CXX_STANDARD 11)
 if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
@@ -245,8 +251,6 @@ set(${PROJECT_NAME}_FILES
     test_completePubSubTypes.cxx
     )
 
-include_directories()
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
@@ -254,7 +258,16 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
-target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps  test_included_modules)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${PROJECT_SOURCE_DIR}
+    )
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+    fastcdr
+    fastrtps
+    test_included_modules
+    )
 
 ###############################################################################
 # Python bindings for type
@@ -284,10 +297,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-include_directories(
-    ${PROJECT_SOURCE_DIR}
-    )
-
 set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
 
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
@@ -295,6 +304,7 @@ SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     LANGUAGE python
     SOURCES ${${PROJECT_NAME}_MODULE_FILES})
 
+set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY CXX_STANDARD 11)
 if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
@@ -303,7 +313,6 @@ target_link_libraries(${${PROJECT_NAME}_MODULE}
     Python3::Module
     fastrtps
     ${PROJECT_NAME}
-    test_included_modules
     )
 
 set_target_properties(${${PROJECT_NAME}_MODULE}
