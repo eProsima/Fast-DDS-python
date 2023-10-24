@@ -1,18 +1,5 @@
-# Copyright 2022 Proyectos y Sistemas de Mantenimiento SL (eProsima).
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
 
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.16.3)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -35,16 +22,14 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 
 project(HelloWorld)
 
-find_package(fastcdr 2 REQUIRED)
-find_package(fastrtps 2.12 REQUIRED)
+find_package(fastcdr REQUIRED)
+find_package(fastrtps REQUIRED)
 
 
 set(${PROJECT_NAME}_FILES
     HelloWorld.cxx
     HelloWorldPubSubTypes.cxx
     )
-
-include_directories()
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -53,7 +38,15 @@ add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
-target_link_libraries(${PROJECT_NAME} PUBLIC fastcdr fastrtps)
+set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+target_include_directories(${PROJECT_NAME} PUBLIC
+    ${PROJECT_SOURCE_DIR}
+    )
+target_link_libraries(${PROJECT_NAME}
+    PUBLIC
+    fastcdr
+    fastrtps
+    )
 
 ###############################################################################
 # Python bindings for type
@@ -83,10 +76,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-include_directories(
-    ${PROJECT_SOURCE_DIR}
-    )
-
 set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
 
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
@@ -94,6 +83,7 @@ SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     LANGUAGE python
     SOURCES ${${PROJECT_NAME}_MODULE_FILES})
 
+set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY CXX_STANDARD 11)
 if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
