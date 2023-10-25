@@ -45,7 +45,10 @@
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
 
+%include <fastcdr/config.h>
+#if FASTCDR_VERSION_MAJOR > 1
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
+#endif
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -61,6 +64,8 @@ namespace swig {
 }
 }
 %enddef
+
+
 
 ////////////////////////////////////////////////////////
 // Binding for class HelloWorld

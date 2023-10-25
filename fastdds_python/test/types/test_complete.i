@@ -46,7 +46,10 @@
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
 
+%include <fastcdr/config.h>
+#if FASTCDR_VERSION_MAJOR > 1
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
+#endif
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -65,6 +68,8 @@ namespace swig {
 
 %traits_penumn(enum Color);
 %traits_penumn(enum Material);
+
+
 ////////////////////////////////////////////////////////
 // Binding for class StructType
 ////////////////////////////////////////////////////////
@@ -239,6 +244,12 @@ namespace swig {
         return (*self)[i];
     }
 }
+
+
+
+
+
+
 
 
 
@@ -747,14 +758,14 @@ namespace swig {
 
 
 
-%ignore CompleteTestType::array_char_field(std::array<char, 3>&&);
+%ignore CompleteTestType::array_char_field(std::array<char, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_char_field() const;
-%template(char_3_array) std::array<char,3>;
-%extend std::array<char, 3>
+%template(char_3_array) std::array<char,max_array_size>;
+%extend std::array<char, max_array_size>
 {
     const char* get_buffer() const
     {
@@ -763,14 +774,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
+%ignore CompleteTestType::array_uint8_field(std::array<uint8_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint8_field() const;
-%template(uint8_t_3_array) std::array<uint8_t,3>;
-%extend std::array<uint8_t, 3>
+%template(uint8_t_3_array) std::array<uint8_t,max_array_size>;
+%extend std::array<uint8_t, max_array_size>
 {
     const uint8_t* get_buffer() const
     {
@@ -779,14 +790,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
+%ignore CompleteTestType::array_int16_field(std::array<int16_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int16_field() const;
-%template(int16_t_3_array) std::array<int16_t,3>;
-%extend std::array<int16_t, 3>
+%template(int16_t_3_array) std::array<int16_t,max_array_size>;
+%extend std::array<int16_t, max_array_size>
 {
     const int16_t* get_buffer() const
     {
@@ -795,14 +806,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
+%ignore CompleteTestType::array_uint16_field(std::array<uint16_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint16_field() const;
-%template(uint16_t_3_array) std::array<uint16_t,3>;
-%extend std::array<uint16_t, 3>
+%template(uint16_t_3_array) std::array<uint16_t,max_array_size>;
+%extend std::array<uint16_t, max_array_size>
 {
     const uint16_t* get_buffer() const
     {
@@ -811,14 +822,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
+%ignore CompleteTestType::array_int32_field(std::array<int32_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int32_field() const;
-%template(int32_t_3_array) std::array<int32_t,3>;
-%extend std::array<int32_t, 3>
+%template(int32_t_3_array) std::array<int32_t,max_array_size>;
+%extend std::array<int32_t, max_array_size>
 {
     const int32_t* get_buffer() const
     {
@@ -827,14 +838,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
+%ignore CompleteTestType::array_uint32_field(std::array<uint32_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint32_field() const;
-%template(uint32_t_3_array) std::array<uint32_t,3>;
-%extend std::array<uint32_t, 3>
+%template(uint32_t_3_array) std::array<uint32_t,max_array_size>;
+%extend std::array<uint32_t, max_array_size>
 {
     const uint32_t* get_buffer() const
     {
@@ -843,14 +854,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
+%ignore CompleteTestType::array_int64_field(std::array<int64_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int64_field() const;
-%template(int64_t_3_array) std::array<int64_t,3>;
-%extend std::array<int64_t, 3>
+%template(int64_t_3_array) std::array<int64_t,max_array_size>;
+%extend std::array<int64_t, max_array_size>
 {
     const int64_t* get_buffer() const
     {
@@ -859,14 +870,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
+%ignore CompleteTestType::array_uint64_field(std::array<uint64_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint64_field() const;
-%template(uint64_t_3_array) std::array<uint64_t,3>;
-%extend std::array<uint64_t, 3>
+%template(uint64_t_3_array) std::array<uint64_t,max_array_size>;
+%extend std::array<uint64_t, max_array_size>
 {
     const uint64_t* get_buffer() const
     {
@@ -875,14 +886,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_float_field(std::array<float, 3>&&);
+%ignore CompleteTestType::array_float_field(std::array<float, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_float_field() const;
-%template(float_3_array) std::array<float,3>;
-%extend std::array<float, 3>
+%template(float_3_array) std::array<float,max_array_size>;
+%extend std::array<float, max_array_size>
 {
     const float* get_buffer() const
     {
@@ -891,14 +902,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_double_field(std::array<double, 3>&&);
+%ignore CompleteTestType::array_double_field(std::array<double, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_double_field() const;
-%template(double_3_array) std::array<double,3>;
-%extend std::array<double, 3>
+%template(double_3_array) std::array<double,max_array_size>;
+%extend std::array<double, max_array_size>
 {
     const double* get_buffer() const
     {
@@ -907,14 +918,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_bool_field(std::array<bool, 3>&&);
+%ignore CompleteTestType::array_bool_field(std::array<bool, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_bool_field() const;
-%template(bool_3_array) std::array<bool,3>;
-%extend std::array<bool, 3>
+%template(bool_3_array) std::array<bool,max_array_size>;
+%extend std::array<bool, max_array_size>
 {
     const bool* get_buffer() const
     {
@@ -923,14 +934,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_enum_field(std::array<Color, 3>&&);
+%ignore CompleteTestType::array_enum_field(std::array<Color, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum_field() const;
-%template(Color_3_array) std::array<enum Color,3>;
-%extend std::array<enum Color, 3>
+%template(Color_3_array) std::array<enum Color,max_array_size>;
+%extend std::array<enum Color, max_array_size>
 {
     const enum Color* get_buffer() const
     {
@@ -939,14 +950,14 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_enum2_field(std::array<Material, 3>&&);
+%ignore CompleteTestType::array_enum2_field(std::array<Material, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum2_field() const;
-%template(Material_3_array) std::array<enum Material,3>;
-%extend std::array<enum Material, 3>
+%template(Material_3_array) std::array<enum Material,max_array_size>;
+%extend std::array<enum Material, max_array_size>
 {
     const enum Material* get_buffer() const
     {
@@ -955,13 +966,13 @@ namespace swig {
 }
 
 
-%ignore CompleteTestType::array_struct_field(std::array<StructType, 3>&&);
+%ignore CompleteTestType::array_struct_field(std::array<StructType, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_struct_field() const;
-%template(StructType_3_array) std::array<StructType,3>;
+%template(StructType_3_array) std::array<StructType,max_array_size>;
 
 
 %ignore CompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
@@ -1422,6 +1433,10 @@ namespace swig {
         return (*self)[i];
     }
 }
+
+
+
+
 
 ////////////////////////////////////////////////////////
 // Binding for class KeyedCompleteTestType
@@ -1938,14 +1953,14 @@ namespace swig {
 
 
 
-%ignore KeyedCompleteTestType::array_char_field(std::array<char, 3>&&);
+%ignore KeyedCompleteTestType::array_char_field(std::array<char, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_char_field() const;
-%template(char_3_array) std::array<char,3>;
-%extend std::array<char, 3>
+%template(char_3_array) std::array<char,max_array_size>;
+%extend std::array<char, max_array_size>
 {
     const char* get_buffer() const
     {
@@ -1954,14 +1969,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
+%ignore KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint8_field() const;
-%template(uint8_t_3_array) std::array<uint8_t,3>;
-%extend std::array<uint8_t, 3>
+%template(uint8_t_3_array) std::array<uint8_t,max_array_size>;
+%extend std::array<uint8_t, max_array_size>
 {
     const uint8_t* get_buffer() const
     {
@@ -1970,14 +1985,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
+%ignore KeyedCompleteTestType::array_int16_field(std::array<int16_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int16_field() const;
-%template(int16_t_3_array) std::array<int16_t,3>;
-%extend std::array<int16_t, 3>
+%template(int16_t_3_array) std::array<int16_t,max_array_size>;
+%extend std::array<int16_t, max_array_size>
 {
     const int16_t* get_buffer() const
     {
@@ -1986,14 +2001,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
+%ignore KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint16_field() const;
-%template(uint16_t_3_array) std::array<uint16_t,3>;
-%extend std::array<uint16_t, 3>
+%template(uint16_t_3_array) std::array<uint16_t,max_array_size>;
+%extend std::array<uint16_t, max_array_size>
 {
     const uint16_t* get_buffer() const
     {
@@ -2002,14 +2017,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
+%ignore KeyedCompleteTestType::array_int32_field(std::array<int32_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int32_field() const;
-%template(int32_t_3_array) std::array<int32_t,3>;
-%extend std::array<int32_t, 3>
+%template(int32_t_3_array) std::array<int32_t,max_array_size>;
+%extend std::array<int32_t, max_array_size>
 {
     const int32_t* get_buffer() const
     {
@@ -2018,14 +2033,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
+%ignore KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint32_field() const;
-%template(uint32_t_3_array) std::array<uint32_t,3>;
-%extend std::array<uint32_t, 3>
+%template(uint32_t_3_array) std::array<uint32_t,max_array_size>;
+%extend std::array<uint32_t, max_array_size>
 {
     const uint32_t* get_buffer() const
     {
@@ -2034,14 +2049,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
+%ignore KeyedCompleteTestType::array_int64_field(std::array<int64_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int64_field() const;
-%template(int64_t_3_array) std::array<int64_t,3>;
-%extend std::array<int64_t, 3>
+%template(int64_t_3_array) std::array<int64_t,max_array_size>;
+%extend std::array<int64_t, max_array_size>
 {
     const int64_t* get_buffer() const
     {
@@ -2050,14 +2065,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
+%ignore KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint64_field() const;
-%template(uint64_t_3_array) std::array<uint64_t,3>;
-%extend std::array<uint64_t, 3>
+%template(uint64_t_3_array) std::array<uint64_t,max_array_size>;
+%extend std::array<uint64_t, max_array_size>
 {
     const uint64_t* get_buffer() const
     {
@@ -2066,14 +2081,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_float_field(std::array<float, 3>&&);
+%ignore KeyedCompleteTestType::array_float_field(std::array<float, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_float_field() const;
-%template(float_3_array) std::array<float,3>;
-%extend std::array<float, 3>
+%template(float_3_array) std::array<float,max_array_size>;
+%extend std::array<float, max_array_size>
 {
     const float* get_buffer() const
     {
@@ -2082,14 +2097,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_double_field(std::array<double, 3>&&);
+%ignore KeyedCompleteTestType::array_double_field(std::array<double, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_double_field() const;
-%template(double_3_array) std::array<double,3>;
-%extend std::array<double, 3>
+%template(double_3_array) std::array<double,max_array_size>;
+%extend std::array<double, max_array_size>
 {
     const double* get_buffer() const
     {
@@ -2098,14 +2113,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_bool_field(std::array<bool, 3>&&);
+%ignore KeyedCompleteTestType::array_bool_field(std::array<bool, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_bool_field() const;
-%template(bool_3_array) std::array<bool,3>;
-%extend std::array<bool, 3>
+%template(bool_3_array) std::array<bool,max_array_size>;
+%extend std::array<bool, max_array_size>
 {
     const bool* get_buffer() const
     {
@@ -2114,14 +2129,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_enum_field(std::array<Color, 3>&&);
+%ignore KeyedCompleteTestType::array_enum_field(std::array<Color, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum_field() const;
-%template(Color_3_array) std::array<enum Color,3>;
-%extend std::array<enum Color, 3>
+%template(Color_3_array) std::array<enum Color,max_array_size>;
+%extend std::array<enum Color, max_array_size>
 {
     const enum Color* get_buffer() const
     {
@@ -2130,14 +2145,14 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_enum2_field(std::array<Material, 3>&&);
+%ignore KeyedCompleteTestType::array_enum2_field(std::array<Material, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum2_field() const;
-%template(Material_3_array) std::array<enum Material,3>;
-%extend std::array<enum Material, 3>
+%template(Material_3_array) std::array<enum Material,max_array_size>;
+%extend std::array<enum Material, max_array_size>
 {
     const enum Material* get_buffer() const
     {
@@ -2146,13 +2161,13 @@ namespace swig {
 }
 
 
-%ignore KeyedCompleteTestType::array_struct_field(std::array<StructType, 3>&&);
+%ignore KeyedCompleteTestType::array_struct_field(std::array<StructType, max_array_size>&&);
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_struct_field() const;
-%template(StructType_3_array) std::array<StructType,3>;
+%template(StructType_3_array) std::array<StructType,max_array_size>;
 
 
 %ignore KeyedCompleteTestType::bounded_sequence_char_field(std::vector<char>&&);

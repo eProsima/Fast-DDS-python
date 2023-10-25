@@ -42,6 +42,8 @@ namespace eprosima
     namespace test
     {
 
+
+
         /*!
          * @brief This class represents the TopicDataType of the type StructType defined by the user in the IDL file.
          * @ingroup test_modules
@@ -132,6 +134,12 @@ namespace eprosima
 
 
 
+
+
+
+
+
+
         /*!
          * @brief This class represents the TopicDataType of the type CompleteTestType defined by the user in the IDL file.
          * @ingroup test_modules
@@ -219,6 +227,10 @@ namespace eprosima
             unsigned char* m_keyBuffer;
 
         };
+
+
+
+
 
         /*!
          * @brief This class represents the TopicDataType of the type KeyedCompleteTestType defined by the user in the IDL file.

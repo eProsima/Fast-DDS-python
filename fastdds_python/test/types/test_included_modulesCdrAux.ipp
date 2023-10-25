@@ -34,12 +34,16 @@ using namespace eprosima::fastcdr::exception;
 namespace eprosima {
 namespace fastcdr {
 
+
+
 template<>
 eProsima_user_DllExport size_t calculate_serialized_size(
         eprosima::fastcdr::CdrSizeCalculator& calculator,
         const eprosima::test2::StructType2& data,
         size_t& current_alignment)
 {
+    using namespace eprosima::test2;
+
     static_cast<void>(data);
 
     eprosima::fastcdr::EncodingAlgorithmFlag previous_encoding = calculator.get_encoding();
@@ -103,6 +107,8 @@ eProsima_user_DllExport void serialize(
         eprosima::fastcdr::Cdr& scdr,
         const eprosima::test2::StructType2& data)
 {
+    using namespace eprosima::test2;
+
     eprosima::fastcdr::Cdr::state current_state(scdr);
     scdr.begin_serialize_type(current_state,
             eprosima::fastcdr::CdrVersion::XCDRv2 == scdr.get_cdr_version() ?
@@ -125,7 +131,6 @@ eProsima_user_DllExport void serialize(
         << eprosima::fastcdr::MemberId(12) << data.enum_field()
         << eprosima::fastcdr::MemberId(13) << data.enum2_field()
 ;
-
     scdr.end_serialize_type(current_state);
 }
 
@@ -134,6 +139,8 @@ eProsima_user_DllExport void deserialize(
         eprosima::fastcdr::Cdr& cdr,
         eprosima::test2::StructType2& data)
 {
+    using namespace eprosima::test2;
+
     cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
             eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
             eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR,
@@ -210,6 +217,8 @@ void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
         const eprosima::test2::StructType2& data)
 {
+    using namespace eprosima::test2;
+
     static_cast<void>(scdr);
     static_cast<void>(data);
 }

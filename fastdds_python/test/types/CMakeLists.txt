@@ -25,16 +25,14 @@ project(test_included_modules)
 find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
-
-set(${PROJECT_NAME}_FILES
-    test_included_modules.cxx
-    test_included_modulesPubSubTypes.cxx
-    )
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
-add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
+add_library(${PROJECT_NAME} SHARED
+        test_included_modules.cxx
+        test_included_modulesv1.cxx
+        test_included_modulesPubSubTypes.cxx
+        )
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
@@ -135,16 +133,14 @@ project(test_modules)
 find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
-
-set(${PROJECT_NAME}_FILES
-    test_modules.cxx
-    test_modulesPubSubTypes.cxx
-    )
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
-add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
+add_library(${PROJECT_NAME} SHARED
+        test_modules.cxx
+        test_modulesv1.cxx
+        test_modulesPubSubTypes.cxx
+        )
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)
@@ -245,16 +241,14 @@ project(test_complete)
 find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
-
-set(${PROJECT_NAME}_FILES
-    test_complete.cxx
-    test_completePubSubTypes.cxx
-    )
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
-add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
+add_library(${PROJECT_NAME} SHARED
+        test_complete.cxx
+        test_completev1.cxx
+        test_completePubSubTypes.cxx
+        )
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)

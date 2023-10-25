@@ -42,6 +42,8 @@ namespace eprosima
     namespace test2
     {
 
+
+
         /*!
          * @brief This class represents the TopicDataType of the type StructType2 defined by the user in the IDL file.
          * @ingroup test_included_modules

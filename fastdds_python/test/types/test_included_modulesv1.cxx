@@ -28,7 +28,7 @@ char dummy;
 
 #include "test_included_modules.h"
 
-#if FASTCDR_VERSION_MAJOR > 1
+#if FASTCDR_VERSION_MAJOR == 1
 
 #include <fastcdr/Cdr.h>
 
@@ -37,6 +37,54 @@ char dummy;
 using namespace eprosima::fastcdr::exception;
 
 #include <utility>
+
+namespace helper { namespace internal {
+
+enum class Size {
+    UInt8,
+    UInt16,
+    UInt32,
+    UInt64,
+};
+
+constexpr Size get_size(int s) {
+    return (s <= 8 ) ? Size::UInt8:
+           (s <= 16) ? Size::UInt16:
+           (s <= 32) ? Size::UInt32: Size::UInt64;
+}
+
+template<Size s>
+struct FindTypeH;
+
+template<>
+struct FindTypeH<Size::UInt8> {
+    using type = std::uint8_t;
+};
+
+template<>
+struct FindTypeH<Size::UInt16> {
+    using type = std::uint16_t;
+};
+
+template<>
+struct FindTypeH<Size::UInt32> {
+    using type = std::uint32_t;
+};
+
+template<>
+struct FindTypeH<Size::UInt64> {
+    using type = std::uint64_t;
+};
+}
+
+template<int S>
+struct FindType {
+    using type = typename internal::FindTypeH<internal::get_size(S)>::type;
+};
+}
+
+#define eprosima_test2_StructType2_max_cdr_typesize 328ULL;
+
 
 
 namespace eprosima {
@@ -47,6 +95,35 @@ namespace test2 {
 
 StructType2::StructType2()
 {
+    // char m_char_field
+    m_char_field = 0;
+    // octet m_uint8_field
+    m_uint8_field = 0;
+    // short m_int16_field
+    m_int16_field = 0;
+    // unsigned short m_uint16_field
+    m_uint16_field = 0;
+    // long m_int32_field
+    m_int32_field = 0;
+    // unsigned long m_uint32_field
+    m_uint32_field = 0;
+    // long long m_int64_field
+    m_int64_field = 0;
+    // unsigned long long m_uint64_field
+    m_uint64_field = 0;
+    // float m_float_field
+    m_float_field = 0.0;
+    // double m_double_field
+    m_double_field = 0.0;
+    // boolean m_bool_field
+    m_bool_field = false;
+    // /type_d() m_string_field
+
+    // eprosima::test2::Color2 m_enum_field
+    m_enum_field = eprosima::test2::RED2;
+    // eprosima::test2::Material2 m_enum2_field
+    m_enum2_field = eprosima::test2::WOOD2;
+
 }
 
 StructType2::~StructType2()
@@ -57,79 +134,185 @@ StructType2::StructType2(
         const StructType2& x)
 {
     m_char_field = x.m_char_field;
+
+
     m_uint8_field = x.m_uint8_field;
+
+
     m_int16_field = x.m_int16_field;
+
+
     m_uint16_field = x.m_uint16_field;
+
+
     m_int32_field = x.m_int32_field;
+
+
     m_uint32_field = x.m_uint32_field;
+
+
     m_int64_field = x.m_int64_field;
+
+
     m_uint64_field = x.m_uint64_field;
+
+
     m_float_field = x.m_float_field;
+
+
     m_double_field = x.m_double_field;
+
+
     m_bool_field = x.m_bool_field;
+
+
     m_string_field = x.m_string_field;
+
+
     m_enum_field = x.m_enum_field;
+
+
     m_enum2_field = x.m_enum2_field;
+
 }
 
 StructType2::StructType2(
         StructType2&& x) noexcept
 {
     m_char_field = x.m_char_field;
+
+
     m_uint8_field = x.m_uint8_field;
+
+
     m_int16_field = x.m_int16_field;
+
+
     m_uint16_field = x.m_uint16_field;
+
+
     m_int32_field = x.m_int32_field;
+
+
     m_uint32_field = x.m_uint32_field;
+
+
     m_int64_field = x.m_int64_field;
+
+
     m_uint64_field = x.m_uint64_field;
+
+
     m_float_field = x.m_float_field;
+
+
     m_double_field = x.m_double_field;
+
+
     m_bool_field = x.m_bool_field;
+
+
     m_string_field = std::move(x.m_string_field);
+
+
     m_enum_field = x.m_enum_field;
+
+
     m_enum2_field = x.m_enum2_field;
+
 }
 
 StructType2& StructType2::operator =(
         const StructType2& x)
 {
-
     m_char_field = x.m_char_field;
+
+
     m_uint8_field = x.m_uint8_field;
+
+
     m_int16_field = x.m_int16_field;
+
+
     m_uint16_field = x.m_uint16_field;
+
+
     m_int32_field = x.m_int32_field;
+
+
     m_uint32_field = x.m_uint32_field;
+
+
     m_int64_field = x.m_int64_field;
+
+
     m_uint64_field = x.m_uint64_field;
+
+
     m_float_field = x.m_float_field;
+
+
     m_double_field = x.m_double_field;
+
+
     m_bool_field = x.m_bool_field;
+
+
     m_string_field = x.m_string_field;
+
+
     m_enum_field = x.m_enum_field;
+
+
     m_enum2_field = x.m_enum2_field;
+
     return *this;
 }
 
 StructType2& StructType2::operator =(
         StructType2&& x) noexcept
 {
-
     m_char_field = x.m_char_field;
+
+
     m_uint8_field = x.m_uint8_field;
+
+
     m_int16_field = x.m_int16_field;
+
+
     m_uint16_field = x.m_uint16_field;
+
+
     m_int32_field = x.m_int32_field;
+
+
     m_uint32_field = x.m_uint32_field;
+
+
     m_int64_field = x.m_int64_field;
+
+
     m_uint64_field = x.m_uint64_field;
+
+
     m_float_field = x.m_float_field;
+
+
     m_double_field = x.m_double_field;
+
+
     m_bool_field = x.m_bool_field;
+
+
     m_string_field = std::move(x.m_string_field);
+
+
     m_enum_field = x.m_enum_field;
+
+
     m_enum2_field = x.m_enum2_field;
+
     return *this;
 }
 
@@ -156,6 +339,179 @@ bool StructType2::operator !=(
         const StructType2& x) const
 {
     return !(*this == x);
+}
+
+size_t StructType2::getMaxCdrSerializedSize(
+        size_t current_alignment)
+{
+    static_cast<void>(current_alignment);
+    return eprosima_test2_StructType2_max_cdr_typesize;
+}
+
+size_t StructType2::getCdrSerializedSize(
+        const StructType2& data,
+        size_t current_alignment)
+{
+    (void)data;
+    size_t initial_alignment = current_alignment;
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 2 + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 8 + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+
+
+    current_alignment += 1 + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4) + data.string_field().size() + 1;
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    current_alignment += 4 + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+
+
+    return current_alignment - initial_alignment;
+}
+
+
+void StructType2::serialize(
+        eprosima::fastcdr::Cdr& scdr) const
+{
+    scdr << m_char_field;
+
+    scdr << m_uint8_field;
+
+    scdr << m_int16_field;
+
+    scdr << m_uint16_field;
+
+    scdr << m_int32_field;
+
+    scdr << m_uint32_field;
+
+    scdr << m_int64_field;
+
+    scdr << m_uint64_field;
+
+    scdr << m_float_field;
+
+    scdr << m_double_field;
+
+    scdr << m_bool_field;
+
+    scdr << m_string_field.c_str();
+
+    scdr << (uint32_t)m_enum_field;
+
+    scdr << (uint32_t)m_enum2_field;
+
+}
+
+void StructType2::deserialize(
+        eprosima::fastcdr::Cdr& dcdr)
+{
+    dcdr >> m_char_field;
+
+
+
+    dcdr >> m_uint8_field;
+
+
+
+    dcdr >> m_int16_field;
+
+
+
+    dcdr >> m_uint16_field;
+
+
+
+    dcdr >> m_int32_field;
+
+
+
+    dcdr >> m_uint32_field;
+
+
+
+    dcdr >> m_int64_field;
+
+
+
+    dcdr >> m_uint64_field;
+
+
+
+    dcdr >> m_float_field;
+
+
+
+    dcdr >> m_double_field;
+
+
+
+    dcdr >> m_bool_field;
+
+
+
+    dcdr >> m_string_field;
+
+
+
+    {
+        uint32_t enum_value = 0;
+        dcdr >> enum_value;
+        m_enum_field = (eprosima::test2::Color2)enum_value;
+    }
+
+
+
+    {
+        uint32_t enum_value = 0;
+        dcdr >> enum_value;
+        m_enum2_field = (eprosima::test2::Material2)enum_value;
+    }
+
+
+}
+
+
+bool StructType2::isKeyDefined()
+{
+    return false;
+}
+
+void StructType2::serializeKey(
+        eprosima::fastcdr::Cdr& scdr) const
+{
+    (void) scdr;
 }
 
 /*!
@@ -576,11 +932,10 @@ eprosima::test2::Material2& StructType2::enum2_field()
 
 
 
+
 } // namespace test2
 
 
 } // namespace eprosima
-// Include auxiliary functions like for serializing/deserializing.
-#include "test_included_modulesCdrAux.ipp"
 
-#endif // FASTCDR_VERSION_MAJOR > 1
+#endif // FASTCDR_VERSION_MAJOR == 1
