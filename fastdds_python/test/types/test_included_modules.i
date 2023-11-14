@@ -81,6 +81,7 @@ namespace swig {
 // Avoid a warning ignoring all but one
 %ignore eprosima::test2::StructType2::char_field(char&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -90,6 +91,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::uint8_field(uint8_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -101,6 +103,7 @@ namespace swig {
 
 %ignore eprosima::test2::StructType2::int16_field(int16_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -110,6 +113,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::uint16_field(uint16_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -121,6 +125,7 @@ namespace swig {
 
 %ignore eprosima::test2::StructType2::int32_field(int32_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -130,6 +135,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::uint32_field(uint32_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -141,6 +147,7 @@ namespace swig {
 
 %ignore eprosima::test2::StructType2::int64_field(int64_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -150,6 +157,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::uint64_field(uint64_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -161,6 +169,7 @@ namespace swig {
 
 %ignore eprosima::test2::StructType2::float_field(float&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -170,6 +179,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::double_field(double&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -181,6 +191,7 @@ namespace swig {
 
 %ignore eprosima::test2::StructType2::bool_field(bool&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -190,6 +201,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::string_field(std::string&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -201,6 +213,7 @@ namespace swig {
 
 %ignore eprosima::test2::StructType2::enum_field(eprosima::test2::Color2&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -210,6 +223,7 @@ namespace swig {
 
 
 %ignore eprosima::test2::StructType2::enum2_field(eprosima::test2::Material2&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
