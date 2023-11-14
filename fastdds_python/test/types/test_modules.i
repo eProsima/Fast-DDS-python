@@ -2842,6 +2842,7 @@ namespace swig {
 
 // Include the class interfaces
 %include "test_modules.h"
+%include "test_modulesv1.h"
 
 // Include the corresponding TopicDataType
 %include "test_modulesPubSubTypes.i"
