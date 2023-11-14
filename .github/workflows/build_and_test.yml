@@ -37,6 +37,13 @@ jobs:
 
       - uses: eProsima/eProsima-CI/windows/install_openssl@v0
 
+      - name: Install Asio and TinyXML2
+        shell: pwsh
+        run: |
+          Invoke-WebRequest -Uri https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg -OutFile "$pwdpath/choco_packages/asio.1.12.1.nupkg"
+          Invoke-WebRequest -Uri https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg -OutFile "$pwdpath/choco_packages/tinyxml2.6.0.0.nupkg"
+          choco install -y -s "$pwdpath/choco_packages" asio tinyxml2
+
       - name: Install swig
         shell: pwsh
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
@@ -116,7 +123,7 @@ jobs:
 
       - uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libpython3-dev swig
+          packages: libasio-dev libtinyxml2-dev libpython3-dev swig
 
       - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
