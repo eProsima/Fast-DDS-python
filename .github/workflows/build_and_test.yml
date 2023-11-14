@@ -2,6 +2,19 @@ name: test
 
 on:
   workflow_dispatch:
+    inputs:
+      foonathan_memory_vendor_branch:
+        description: 'foonathan_memory_vendor branch to be used'
+        required: false
+        default: 'master'
+      fastcdr_versions:
+        description: 'Fast-CDR branches to be used'
+        required: false
+        default: '["1.1.x", "master"]'
+      fastdds_branch:
+        description: 'Fast-DDS branch to be used'
+        required: false
+        default: 'master'
   pull_request:
   push:
     branches:
@@ -12,6 +25,9 @@ on:
 jobs:
   windows-build-test:
     runs-on: windows-2019
+    strategy:
+      matrix:
+        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
 
     env:
       CXXFLAGS: /MP
@@ -31,7 +47,7 @@ jobs:
 
       - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
         with:
-          packages: pytest pywin32 vcstool
+          packages: pytest pywin32
 
       - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
@@ -39,10 +55,11 @@ jobs:
         with:
           path: src/fastdds_python
 
-      - name: Fetch repositories
-        shell: pwsh
-        run: |
-          vcs import src --skip-existing --input src/fastdds_python/fastdds_python.repos
+      - uses: ./src/fastdds_python/.github/actions/fetch-fastdds_python-repos
+        with:
+          foonathan-memory-vendor-branch: ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
+          fastcdr-branch: ${{ matrix.fastcdr_version }}
+          fastdds-branch: ${{ github.event.inputs.fastdds_branch || 'master' }}
 
       - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
@@ -89,6 +106,9 @@ jobs:
 
   ubuntu-build-test:
     runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
 
     steps:
       - uses: eProsima/eProsima-CI/external/checkout@v0
@@ -99,15 +119,13 @@ jobs:
         with:
           packages: libpython3-dev swig
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
-        with:
-          packages: vcstool
-
       - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
-      - name: Fetch repositories
-        run: |
-          vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
+      - uses: ./src/fastdds_python/.github/actions/fetch-fastdds_python-repos
+        with:
+          foonathan-memory-vendor-branch: ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
+          fastcdr-branch: ${{ matrix.fastcdr_version }}
+          fastdds-branch: ${{ github.event.inputs.fastdds_branch || 'master' }}
 
       - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
