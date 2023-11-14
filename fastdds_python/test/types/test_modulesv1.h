@@ -1214,26 +1214,26 @@ namespace eprosima {
              * @param _array_char_field New value to be copied in member array_char_field
              */
             eProsima_user_DllExport void array_char_field(
-                    const std::array<char, eprosima::test::max_array_size>& _array_char_field);
+                    const std::array<char, max_array_size>& _array_char_field);
 
             /*!
              * @brief This function moves the value in member array_char_field
              * @param _array_char_field New value to be moved in member array_char_field
              */
             eProsima_user_DllExport void array_char_field(
-                    std::array<char, eprosima::test::max_array_size>&& _array_char_field);
+                    std::array<char, max_array_size>&& _array_char_field);
 
             /*!
              * @brief This function returns a constant reference to member array_char_field
              * @return Constant reference to member array_char_field
              */
-            eProsima_user_DllExport const std::array<char, eprosima::test::max_array_size>& array_char_field() const;
+            eProsima_user_DllExport const std::array<char, max_array_size>& array_char_field() const;
 
             /*!
              * @brief This function returns a reference to member array_char_field
              * @return Reference to member array_char_field
              */
-            eProsima_user_DllExport std::array<char, eprosima::test::max_array_size>& array_char_field();
+            eProsima_user_DllExport std::array<char, max_array_size>& array_char_field();
 
 
             /*!
@@ -1241,26 +1241,26 @@ namespace eprosima {
              * @param _array_uint8_field New value to be copied in member array_uint8_field
              */
             eProsima_user_DllExport void array_uint8_field(
-                    const std::array<uint8_t, eprosima::test::max_array_size>& _array_uint8_field);
+                    const std::array<uint8_t, max_array_size>& _array_uint8_field);
 
             /*!
              * @brief This function moves the value in member array_uint8_field
              * @param _array_uint8_field New value to be moved in member array_uint8_field
              */
             eProsima_user_DllExport void array_uint8_field(
-                    std::array<uint8_t, eprosima::test::max_array_size>&& _array_uint8_field);
+                    std::array<uint8_t, max_array_size>&& _array_uint8_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint8_field
              * @return Constant reference to member array_uint8_field
              */
-            eProsima_user_DllExport const std::array<uint8_t, eprosima::test::max_array_size>& array_uint8_field() const;
+            eProsima_user_DllExport const std::array<uint8_t, max_array_size>& array_uint8_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint8_field
              * @return Reference to member array_uint8_field
              */
-            eProsima_user_DllExport std::array<uint8_t, eprosima::test::max_array_size>& array_uint8_field();
+            eProsima_user_DllExport std::array<uint8_t, max_array_size>& array_uint8_field();
 
 
             /*!
@@ -1268,26 +1268,26 @@ namespace eprosima {
              * @param _array_int16_field New value to be copied in member array_int16_field
              */
             eProsima_user_DllExport void array_int16_field(
-                    const std::array<int16_t, eprosima::test::max_array_size>& _array_int16_field);
+                    const std::array<int16_t, max_array_size>& _array_int16_field);
 
             /*!
              * @brief This function moves the value in member array_int16_field
              * @param _array_int16_field New value to be moved in member array_int16_field
              */
             eProsima_user_DllExport void array_int16_field(
-                    std::array<int16_t, eprosima::test::max_array_size>&& _array_int16_field);
+                    std::array<int16_t, max_array_size>&& _array_int16_field);
 
             /*!
              * @brief This function returns a constant reference to member array_int16_field
              * @return Constant reference to member array_int16_field
              */
-            eProsima_user_DllExport const std::array<int16_t, eprosima::test::max_array_size>& array_int16_field() const;
+            eProsima_user_DllExport const std::array<int16_t, max_array_size>& array_int16_field() const;
 
             /*!
              * @brief This function returns a reference to member array_int16_field
              * @return Reference to member array_int16_field
              */
-            eProsima_user_DllExport std::array<int16_t, eprosima::test::max_array_size>& array_int16_field();
+            eProsima_user_DllExport std::array<int16_t, max_array_size>& array_int16_field();
 
 
             /*!
@@ -1295,26 +1295,26 @@ namespace eprosima {
              * @param _array_uint16_field New value to be copied in member array_uint16_field
              */
             eProsima_user_DllExport void array_uint16_field(
-                    const std::array<uint16_t, eprosima::test::max_array_size>& _array_uint16_field);
+                    const std::array<uint16_t, max_array_size>& _array_uint16_field);
 
             /*!
              * @brief This function moves the value in member array_uint16_field
              * @param _array_uint16_field New value to be moved in member array_uint16_field
              */
             eProsima_user_DllExport void array_uint16_field(
-                    std::array<uint16_t, eprosima::test::max_array_size>&& _array_uint16_field);
+                    std::array<uint16_t, max_array_size>&& _array_uint16_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint16_field
              * @return Constant reference to member array_uint16_field
              */
-            eProsima_user_DllExport const std::array<uint16_t, eprosima::test::max_array_size>& array_uint16_field() const;
+            eProsima_user_DllExport const std::array<uint16_t, max_array_size>& array_uint16_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint16_field
              * @return Reference to member array_uint16_field
              */
-            eProsima_user_DllExport std::array<uint16_t, eprosima::test::max_array_size>& array_uint16_field();
+            eProsima_user_DllExport std::array<uint16_t, max_array_size>& array_uint16_field();
 
 
             /*!
@@ -1322,26 +1322,26 @@ namespace eprosima {
              * @param _array_int32_field New value to be copied in member array_int32_field
              */
             eProsima_user_DllExport void array_int32_field(
-                    const std::array<int32_t, eprosima::test::max_array_size>& _array_int32_field);
+                    const std::array<int32_t, max_array_size>& _array_int32_field);
 
             /*!
              * @brief This function moves the value in member array_int32_field
              * @param _array_int32_field New value to be moved in member array_int32_field
              */
             eProsima_user_DllExport void array_int32_field(
-                    std::array<int32_t, eprosima::test::max_array_size>&& _array_int32_field);
+                    std::array<int32_t, max_array_size>&& _array_int32_field);
 
             /*!
              * @brief This function returns a constant reference to member array_int32_field
              * @return Constant reference to member array_int32_field
              */
-            eProsima_user_DllExport const std::array<int32_t, eprosima::test::max_array_size>& array_int32_field() const;
+            eProsima_user_DllExport const std::array<int32_t, max_array_size>& array_int32_field() const;
 
             /*!
              * @brief This function returns a reference to member array_int32_field
              * @return Reference to member array_int32_field
              */
-            eProsima_user_DllExport std::array<int32_t, eprosima::test::max_array_size>& array_int32_field();
+            eProsima_user_DllExport std::array<int32_t, max_array_size>& array_int32_field();
 
 
             /*!
@@ -1349,26 +1349,26 @@ namespace eprosima {
              * @param _array_uint32_field New value to be copied in member array_uint32_field
              */
             eProsima_user_DllExport void array_uint32_field(
-                    const std::array<uint32_t, eprosima::test::max_array_size>& _array_uint32_field);
+                    const std::array<uint32_t, max_array_size>& _array_uint32_field);
 
             /*!
              * @brief This function moves the value in member array_uint32_field
              * @param _array_uint32_field New value to be moved in member array_uint32_field
              */
             eProsima_user_DllExport void array_uint32_field(
-                    std::array<uint32_t, eprosima::test::max_array_size>&& _array_uint32_field);
+                    std::array<uint32_t, max_array_size>&& _array_uint32_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint32_field
              * @return Constant reference to member array_uint32_field
              */
-            eProsima_user_DllExport const std::array<uint32_t, eprosima::test::max_array_size>& array_uint32_field() const;
+            eProsima_user_DllExport const std::array<uint32_t, max_array_size>& array_uint32_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint32_field
              * @return Reference to member array_uint32_field
              */
-            eProsima_user_DllExport std::array<uint32_t, eprosima::test::max_array_size>& array_uint32_field();
+            eProsima_user_DllExport std::array<uint32_t, max_array_size>& array_uint32_field();
 
 
             /*!
@@ -1376,26 +1376,26 @@ namespace eprosima {
              * @param _array_int64_field New value to be copied in member array_int64_field
              */
             eProsima_user_DllExport void array_int64_field(
-                    const std::array<int64_t, eprosima::test::max_array_size>& _array_int64_field);
+                    const std::array<int64_t, max_array_size>& _array_int64_field);
 
             /*!
              * @brief This function moves the value in member array_int64_field
              * @param _array_int64_field New value to be moved in member array_int64_field
              */
             eProsima_user_DllExport void array_int64_field(
-                    std::array<int64_t, eprosima::test::max_array_size>&& _array_int64_field);
+                    std::array<int64_t, max_array_size>&& _array_int64_field);
 
             /*!
              * @brief This function returns a constant reference to member array_int64_field
              * @return Constant reference to member array_int64_field
              */
-            eProsima_user_DllExport const std::array<int64_t, eprosima::test::max_array_size>& array_int64_field() const;
+            eProsima_user_DllExport const std::array<int64_t, max_array_size>& array_int64_field() const;
 
             /*!
              * @brief This function returns a reference to member array_int64_field
              * @return Reference to member array_int64_field
              */
-            eProsima_user_DllExport std::array<int64_t, eprosima::test::max_array_size>& array_int64_field();
+            eProsima_user_DllExport std::array<int64_t, max_array_size>& array_int64_field();
 
 
             /*!
@@ -1403,26 +1403,26 @@ namespace eprosima {
              * @param _array_uint64_field New value to be copied in member array_uint64_field
              */
             eProsima_user_DllExport void array_uint64_field(
-                    const std::array<uint64_t, eprosima::test::max_array_size>& _array_uint64_field);
+                    const std::array<uint64_t, max_array_size>& _array_uint64_field);
 
             /*!
              * @brief This function moves the value in member array_uint64_field
              * @param _array_uint64_field New value to be moved in member array_uint64_field
              */
             eProsima_user_DllExport void array_uint64_field(
-                    std::array<uint64_t, eprosima::test::max_array_size>&& _array_uint64_field);
+                    std::array<uint64_t, max_array_size>&& _array_uint64_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint64_field
              * @return Constant reference to member array_uint64_field
              */
-            eProsima_user_DllExport const std::array<uint64_t, eprosima::test::max_array_size>& array_uint64_field() const;
+            eProsima_user_DllExport const std::array<uint64_t, max_array_size>& array_uint64_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint64_field
              * @return Reference to member array_uint64_field
              */
-            eProsima_user_DllExport std::array<uint64_t, eprosima::test::max_array_size>& array_uint64_field();
+            eProsima_user_DllExport std::array<uint64_t, max_array_size>& array_uint64_field();
 
 
             /*!
@@ -1430,26 +1430,26 @@ namespace eprosima {
              * @param _array_float_field New value to be copied in member array_float_field
              */
             eProsima_user_DllExport void array_float_field(
-                    const std::array<float, eprosima::test::max_array_size>& _array_float_field);
+                    const std::array<float, max_array_size>& _array_float_field);
 
             /*!
              * @brief This function moves the value in member array_float_field
              * @param _array_float_field New value to be moved in member array_float_field
              */
             eProsima_user_DllExport void array_float_field(
-                    std::array<float, eprosima::test::max_array_size>&& _array_float_field);
+                    std::array<float, max_array_size>&& _array_float_field);
 
             /*!
              * @brief This function returns a constant reference to member array_float_field
              * @return Constant reference to member array_float_field
              */
-            eProsima_user_DllExport const std::array<float, eprosima::test::max_array_size>& array_float_field() const;
+            eProsima_user_DllExport const std::array<float, max_array_size>& array_float_field() const;
 
             /*!
              * @brief This function returns a reference to member array_float_field
              * @return Reference to member array_float_field
              */
-            eProsima_user_DllExport std::array<float, eprosima::test::max_array_size>& array_float_field();
+            eProsima_user_DllExport std::array<float, max_array_size>& array_float_field();
 
 
             /*!
@@ -1457,26 +1457,26 @@ namespace eprosima {
              * @param _array_double_field New value to be copied in member array_double_field
              */
             eProsima_user_DllExport void array_double_field(
-                    const std::array<double, eprosima::test::max_array_size>& _array_double_field);
+                    const std::array<double, max_array_size>& _array_double_field);
 
             /*!
              * @brief This function moves the value in member array_double_field
              * @param _array_double_field New value to be moved in member array_double_field
              */
             eProsima_user_DllExport void array_double_field(
-                    std::array<double, eprosima::test::max_array_size>&& _array_double_field);
+                    std::array<double, max_array_size>&& _array_double_field);
 
             /*!
              * @brief This function returns a constant reference to member array_double_field
              * @return Constant reference to member array_double_field
              */
-            eProsima_user_DllExport const std::array<double, eprosima::test::max_array_size>& array_double_field() const;
+            eProsima_user_DllExport const std::array<double, max_array_size>& array_double_field() const;
 
             /*!
              * @brief This function returns a reference to member array_double_field
              * @return Reference to member array_double_field
              */
-            eProsima_user_DllExport std::array<double, eprosima::test::max_array_size>& array_double_field();
+            eProsima_user_DllExport std::array<double, max_array_size>& array_double_field();
 
 
             /*!
@@ -1484,26 +1484,26 @@ namespace eprosima {
              * @param _array_bool_field New value to be copied in member array_bool_field
              */
             eProsima_user_DllExport void array_bool_field(
-                    const std::array<bool, eprosima::test::max_array_size>& _array_bool_field);
+                    const std::array<bool, max_array_size>& _array_bool_field);
 
             /*!
              * @brief This function moves the value in member array_bool_field
              * @param _array_bool_field New value to be moved in member array_bool_field
              */
             eProsima_user_DllExport void array_bool_field(
-                    std::array<bool, eprosima::test::max_array_size>&& _array_bool_field);
+                    std::array<bool, max_array_size>&& _array_bool_field);
 
             /*!
              * @brief This function returns a constant reference to member array_bool_field
              * @return Constant reference to member array_bool_field
              */
-            eProsima_user_DllExport const std::array<bool, eprosima::test::max_array_size>& array_bool_field() const;
+            eProsima_user_DllExport const std::array<bool, max_array_size>& array_bool_field() const;
 
             /*!
              * @brief This function returns a reference to member array_bool_field
              * @return Reference to member array_bool_field
              */
-            eProsima_user_DllExport std::array<bool, eprosima::test::max_array_size>& array_bool_field();
+            eProsima_user_DllExport std::array<bool, max_array_size>& array_bool_field();
 
 
             /*!
@@ -1511,26 +1511,26 @@ namespace eprosima {
              * @param _array_enum_field New value to be copied in member array_enum_field
              */
             eProsima_user_DllExport void array_enum_field(
-                    const std::array<eprosima::test::Color, eprosima::test::max_array_size>& _array_enum_field);
+                    const std::array<eprosima::test::Color, max_array_size>& _array_enum_field);
 
             /*!
              * @brief This function moves the value in member array_enum_field
              * @param _array_enum_field New value to be moved in member array_enum_field
              */
             eProsima_user_DllExport void array_enum_field(
-                    std::array<eprosima::test::Color, eprosima::test::max_array_size>&& _array_enum_field);
+                    std::array<eprosima::test::Color, max_array_size>&& _array_enum_field);
 
             /*!
              * @brief This function returns a constant reference to member array_enum_field
              * @return Constant reference to member array_enum_field
              */
-            eProsima_user_DllExport const std::array<eprosima::test::Color, eprosima::test::max_array_size>& array_enum_field() const;
+            eProsima_user_DllExport const std::array<eprosima::test::Color, max_array_size>& array_enum_field() const;
 
             /*!
              * @brief This function returns a reference to member array_enum_field
              * @return Reference to member array_enum_field
              */
-            eProsima_user_DllExport std::array<eprosima::test::Color, eprosima::test::max_array_size>& array_enum_field();
+            eProsima_user_DllExport std::array<eprosima::test::Color, max_array_size>& array_enum_field();
 
 
             /*!
@@ -1538,26 +1538,26 @@ namespace eprosima {
              * @param _array_enum2_field New value to be copied in member array_enum2_field
              */
             eProsima_user_DllExport void array_enum2_field(
-                    const std::array<eprosima::test::Material, eprosima::test::max_array_size>& _array_enum2_field);
+                    const std::array<eprosima::test::Material, max_array_size>& _array_enum2_field);
 
             /*!
              * @brief This function moves the value in member array_enum2_field
              * @param _array_enum2_field New value to be moved in member array_enum2_field
              */
             eProsima_user_DllExport void array_enum2_field(
-                    std::array<eprosima::test::Material, eprosima::test::max_array_size>&& _array_enum2_field);
+                    std::array<eprosima::test::Material, max_array_size>&& _array_enum2_field);
 
             /*!
              * @brief This function returns a constant reference to member array_enum2_field
              * @return Constant reference to member array_enum2_field
              */
-            eProsima_user_DllExport const std::array<eprosima::test::Material, eprosima::test::max_array_size>& array_enum2_field() const;
+            eProsima_user_DllExport const std::array<eprosima::test::Material, max_array_size>& array_enum2_field() const;
 
             /*!
              * @brief This function returns a reference to member array_enum2_field
              * @return Reference to member array_enum2_field
              */
-            eProsima_user_DllExport std::array<eprosima::test::Material, eprosima::test::max_array_size>& array_enum2_field();
+            eProsima_user_DllExport std::array<eprosima::test::Material, max_array_size>& array_enum2_field();
 
 
             /*!
@@ -1565,26 +1565,26 @@ namespace eprosima {
              * @param _array_struct_field New value to be copied in member array_struct_field
              */
             eProsima_user_DllExport void array_struct_field(
-                    const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& _array_struct_field);
+                    const std::array<eprosima::test::StructType, max_array_size>& _array_struct_field);
 
             /*!
              * @brief This function moves the value in member array_struct_field
              * @param _array_struct_field New value to be moved in member array_struct_field
              */
             eProsima_user_DllExport void array_struct_field(
-                    std::array<eprosima::test::StructType, eprosima::test::max_array_size>&& _array_struct_field);
+                    std::array<eprosima::test::StructType, max_array_size>&& _array_struct_field);
 
             /*!
              * @brief This function returns a constant reference to member array_struct_field
              * @return Constant reference to member array_struct_field
              */
-            eProsima_user_DllExport const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& array_struct_field() const;
+            eProsima_user_DllExport const std::array<eprosima::test::StructType, max_array_size>& array_struct_field() const;
 
             /*!
              * @brief This function returns a reference to member array_struct_field
              * @return Reference to member array_struct_field
              */
-            eProsima_user_DllExport std::array<eprosima::test::StructType, eprosima::test::max_array_size>& array_struct_field();
+            eProsima_user_DllExport std::array<eprosima::test::StructType, max_array_size>& array_struct_field();
 
 
             /*!
@@ -2426,20 +2426,20 @@ namespace eprosima {
             eprosima::test::Color m_enum_opt_field;
             eprosima::test::Material m_enum2_opt_field;
             eprosima::test::StructType m_struct_opt_field;
-            std::array<char, eprosima::test::max_array_size> m_array_char_field;
-            std::array<uint8_t, eprosima::test::max_array_size> m_array_uint8_field;
-            std::array<int16_t, eprosima::test::max_array_size> m_array_int16_field;
-            std::array<uint16_t, eprosima::test::max_array_size> m_array_uint16_field;
-            std::array<int32_t, eprosima::test::max_array_size> m_array_int32_field;
-            std::array<uint32_t, eprosima::test::max_array_size> m_array_uint32_field;
-            std::array<int64_t, eprosima::test::max_array_size> m_array_int64_field;
-            std::array<uint64_t, eprosima::test::max_array_size> m_array_uint64_field;
-            std::array<float, eprosima::test::max_array_size> m_array_float_field;
-            std::array<double, eprosima::test::max_array_size> m_array_double_field;
-            std::array<bool, eprosima::test::max_array_size> m_array_bool_field;
-            std::array<eprosima::test::Color, eprosima::test::max_array_size> m_array_enum_field;
-            std::array<eprosima::test::Material, eprosima::test::max_array_size> m_array_enum2_field;
-            std::array<eprosima::test::StructType, eprosima::test::max_array_size> m_array_struct_field;
+            std::array<char, max_array_size> m_array_char_field;
+            std::array<uint8_t, max_array_size> m_array_uint8_field;
+            std::array<int16_t, max_array_size> m_array_int16_field;
+            std::array<uint16_t, max_array_size> m_array_uint16_field;
+            std::array<int32_t, max_array_size> m_array_int32_field;
+            std::array<uint32_t, max_array_size> m_array_uint32_field;
+            std::array<int64_t, max_array_size> m_array_int64_field;
+            std::array<uint64_t, max_array_size> m_array_uint64_field;
+            std::array<float, max_array_size> m_array_float_field;
+            std::array<double, max_array_size> m_array_double_field;
+            std::array<bool, max_array_size> m_array_bool_field;
+            std::array<eprosima::test::Color, max_array_size> m_array_enum_field;
+            std::array<eprosima::test::Material, max_array_size> m_array_enum2_field;
+            std::array<eprosima::test::StructType, max_array_size> m_array_struct_field;
             std::vector<char> m_bounded_sequence_char_field;
             std::vector<uint8_t> m_bounded_sequence_uint8_field;
             std::vector<int16_t> m_bounded_sequence_int16_field;
@@ -3188,26 +3188,26 @@ namespace eprosima {
              * @param _array_char_field New value to be copied in member array_char_field
              */
             eProsima_user_DllExport void array_char_field(
-                    const std::array<char, eprosima::test::max_array_size>& _array_char_field);
+                    const std::array<char, max_array_size>& _array_char_field);
 
             /*!
              * @brief This function moves the value in member array_char_field
              * @param _array_char_field New value to be moved in member array_char_field
              */
             eProsima_user_DllExport void array_char_field(
-                    std::array<char, eprosima::test::max_array_size>&& _array_char_field);
+                    std::array<char, max_array_size>&& _array_char_field);
 
             /*!
              * @brief This function returns a constant reference to member array_char_field
              * @return Constant reference to member array_char_field
              */
-            eProsima_user_DllExport const std::array<char, eprosima::test::max_array_size>& array_char_field() const;
+            eProsima_user_DllExport const std::array<char, max_array_size>& array_char_field() const;
 
             /*!
              * @brief This function returns a reference to member array_char_field
              * @return Reference to member array_char_field
              */
-            eProsima_user_DllExport std::array<char, eprosima::test::max_array_size>& array_char_field();
+            eProsima_user_DllExport std::array<char, max_array_size>& array_char_field();
 
 
             /*!
@@ -3215,26 +3215,26 @@ namespace eprosima {
              * @param _array_uint8_field New value to be copied in member array_uint8_field
              */
             eProsima_user_DllExport void array_uint8_field(
-                    const std::array<uint8_t, eprosima::test::max_array_size>& _array_uint8_field);
+                    const std::array<uint8_t, max_array_size>& _array_uint8_field);
 
             /*!
              * @brief This function moves the value in member array_uint8_field
              * @param _array_uint8_field New value to be moved in member array_uint8_field
              */
             eProsima_user_DllExport void array_uint8_field(
-                    std::array<uint8_t, eprosima::test::max_array_size>&& _array_uint8_field);
+                    std::array<uint8_t, max_array_size>&& _array_uint8_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint8_field
              * @return Constant reference to member array_uint8_field
              */
-            eProsima_user_DllExport const std::array<uint8_t, eprosima::test::max_array_size>& array_uint8_field() const;
+            eProsima_user_DllExport const std::array<uint8_t, max_array_size>& array_uint8_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint8_field
              * @return Reference to member array_uint8_field
              */
-            eProsima_user_DllExport std::array<uint8_t, eprosima::test::max_array_size>& array_uint8_field();
+            eProsima_user_DllExport std::array<uint8_t, max_array_size>& array_uint8_field();
 
 
             /*!
@@ -3242,26 +3242,26 @@ namespace eprosima {
              * @param _array_int16_field New value to be copied in member array_int16_field
              */
             eProsima_user_DllExport void array_int16_field(
-                    const std::array<int16_t, eprosima::test::max_array_size>& _array_int16_field);
+                    const std::array<int16_t, max_array_size>& _array_int16_field);
 
             /*!
              * @brief This function moves the value in member array_int16_field
              * @param _array_int16_field New value to be moved in member array_int16_field
              */
             eProsima_user_DllExport void array_int16_field(
-                    std::array<int16_t, eprosima::test::max_array_size>&& _array_int16_field);
+                    std::array<int16_t, max_array_size>&& _array_int16_field);
 
             /*!
              * @brief This function returns a constant reference to member array_int16_field
              * @return Constant reference to member array_int16_field
              */
-            eProsima_user_DllExport const std::array<int16_t, eprosima::test::max_array_size>& array_int16_field() const;
+            eProsima_user_DllExport const std::array<int16_t, max_array_size>& array_int16_field() const;
 
             /*!
              * @brief This function returns a reference to member array_int16_field
              * @return Reference to member array_int16_field
              */
-            eProsima_user_DllExport std::array<int16_t, eprosima::test::max_array_size>& array_int16_field();
+            eProsima_user_DllExport std::array<int16_t, max_array_size>& array_int16_field();
 
 
             /*!
@@ -3269,26 +3269,26 @@ namespace eprosima {
              * @param _array_uint16_field New value to be copied in member array_uint16_field
              */
             eProsima_user_DllExport void array_uint16_field(
-                    const std::array<uint16_t, eprosima::test::max_array_size>& _array_uint16_field);
+                    const std::array<uint16_t, max_array_size>& _array_uint16_field);
 
             /*!
              * @brief This function moves the value in member array_uint16_field
              * @param _array_uint16_field New value to be moved in member array_uint16_field
              */
             eProsima_user_DllExport void array_uint16_field(
-                    std::array<uint16_t, eprosima::test::max_array_size>&& _array_uint16_field);
+                    std::array<uint16_t, max_array_size>&& _array_uint16_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint16_field
              * @return Constant reference to member array_uint16_field
              */
-            eProsima_user_DllExport const std::array<uint16_t, eprosima::test::max_array_size>& array_uint16_field() const;
+            eProsima_user_DllExport const std::array<uint16_t, max_array_size>& array_uint16_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint16_field
              * @return Reference to member array_uint16_field
              */
-            eProsima_user_DllExport std::array<uint16_t, eprosima::test::max_array_size>& array_uint16_field();
+            eProsima_user_DllExport std::array<uint16_t, max_array_size>& array_uint16_field();
 
 
             /*!
@@ -3296,26 +3296,26 @@ namespace eprosima {
              * @param _array_int32_field New value to be copied in member array_int32_field
              */
             eProsima_user_DllExport void array_int32_field(
-                    const std::array<int32_t, eprosima::test::max_array_size>& _array_int32_field);
+                    const std::array<int32_t, max_array_size>& _array_int32_field);
 
             /*!
              * @brief This function moves the value in member array_int32_field
              * @param _array_int32_field New value to be moved in member array_int32_field
              */
             eProsima_user_DllExport void array_int32_field(
-                    std::array<int32_t, eprosima::test::max_array_size>&& _array_int32_field);
+                    std::array<int32_t, max_array_size>&& _array_int32_field);
 
             /*!
              * @brief This function returns a constant reference to member array_int32_field
              * @return Constant reference to member array_int32_field
              */
-            eProsima_user_DllExport const std::array<int32_t, eprosima::test::max_array_size>& array_int32_field() const;
+            eProsima_user_DllExport const std::array<int32_t, max_array_size>& array_int32_field() const;
 
             /*!
              * @brief This function returns a reference to member array_int32_field
              * @return Reference to member array_int32_field
              */
-            eProsima_user_DllExport std::array<int32_t, eprosima::test::max_array_size>& array_int32_field();
+            eProsima_user_DllExport std::array<int32_t, max_array_size>& array_int32_field();
 
 
             /*!
@@ -3323,26 +3323,26 @@ namespace eprosima {
              * @param _array_uint32_field New value to be copied in member array_uint32_field
              */
             eProsima_user_DllExport void array_uint32_field(
-                    const std::array<uint32_t, eprosima::test::max_array_size>& _array_uint32_field);
+                    const std::array<uint32_t, max_array_size>& _array_uint32_field);
 
             /*!
              * @brief This function moves the value in member array_uint32_field
              * @param _array_uint32_field New value to be moved in member array_uint32_field
              */
             eProsima_user_DllExport void array_uint32_field(
-                    std::array<uint32_t, eprosima::test::max_array_size>&& _array_uint32_field);
+                    std::array<uint32_t, max_array_size>&& _array_uint32_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint32_field
              * @return Constant reference to member array_uint32_field
              */
-            eProsima_user_DllExport const std::array<uint32_t, eprosima::test::max_array_size>& array_uint32_field() const;
+            eProsima_user_DllExport const std::array<uint32_t, max_array_size>& array_uint32_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint32_field
              * @return Reference to member array_uint32_field
              */
-            eProsima_user_DllExport std::array<uint32_t, eprosima::test::max_array_size>& array_uint32_field();
+            eProsima_user_DllExport std::array<uint32_t, max_array_size>& array_uint32_field();
 
 
             /*!
@@ -3350,26 +3350,26 @@ namespace eprosima {
              * @param _array_int64_field New value to be copied in member array_int64_field
              */
             eProsima_user_DllExport void array_int64_field(
-                    const std::array<int64_t, eprosima::test::max_array_size>& _array_int64_field);
+                    const std::array<int64_t, max_array_size>& _array_int64_field);
 
             /*!
              * @brief This function moves the value in member array_int64_field
              * @param _array_int64_field New value to be moved in member array_int64_field
              */
             eProsima_user_DllExport void array_int64_field(
-                    std::array<int64_t, eprosima::test::max_array_size>&& _array_int64_field);
+                    std::array<int64_t, max_array_size>&& _array_int64_field);
 
             /*!
              * @brief This function returns a constant reference to member array_int64_field
              * @return Constant reference to member array_int64_field
              */
-            eProsima_user_DllExport const std::array<int64_t, eprosima::test::max_array_size>& array_int64_field() const;
+            eProsima_user_DllExport const std::array<int64_t, max_array_size>& array_int64_field() const;
 
             /*!
              * @brief This function returns a reference to member array_int64_field
              * @return Reference to member array_int64_field
              */
-            eProsima_user_DllExport std::array<int64_t, eprosima::test::max_array_size>& array_int64_field();
+            eProsima_user_DllExport std::array<int64_t, max_array_size>& array_int64_field();
 
 
             /*!
@@ -3377,26 +3377,26 @@ namespace eprosima {
              * @param _array_uint64_field New value to be copied in member array_uint64_field
              */
             eProsima_user_DllExport void array_uint64_field(
-                    const std::array<uint64_t, eprosima::test::max_array_size>& _array_uint64_field);
+                    const std::array<uint64_t, max_array_size>& _array_uint64_field);
 
             /*!
              * @brief This function moves the value in member array_uint64_field
              * @param _array_uint64_field New value to be moved in member array_uint64_field
              */
             eProsima_user_DllExport void array_uint64_field(
-                    std::array<uint64_t, eprosima::test::max_array_size>&& _array_uint64_field);
+                    std::array<uint64_t, max_array_size>&& _array_uint64_field);
 
             /*!
              * @brief This function returns a constant reference to member array_uint64_field
              * @return Constant reference to member array_uint64_field
              */
-            eProsima_user_DllExport const std::array<uint64_t, eprosima::test::max_array_size>& array_uint64_field() const;
+            eProsima_user_DllExport const std::array<uint64_t, max_array_size>& array_uint64_field() const;
 
             /*!
              * @brief This function returns a reference to member array_uint64_field
              * @return Reference to member array_uint64_field
              */
-            eProsima_user_DllExport std::array<uint64_t, eprosima::test::max_array_size>& array_uint64_field();
+            eProsima_user_DllExport std::array<uint64_t, max_array_size>& array_uint64_field();
 
 
             /*!
@@ -3404,26 +3404,26 @@ namespace eprosima {
              * @param _array_float_field New value to be copied in member array_float_field
              */
             eProsima_user_DllExport void array_float_field(
-                    const std::array<float, eprosima::test::max_array_size>& _array_float_field);
+                    const std::array<float, max_array_size>& _array_float_field);
 
             /*!
              * @brief This function moves the value in member array_float_field
              * @param _array_float_field New value to be moved in member array_float_field
              */
             eProsima_user_DllExport void array_float_field(
-                    std::array<float, eprosima::test::max_array_size>&& _array_float_field);
+                    std::array<float, max_array_size>&& _array_float_field);
 
             /*!
              * @brief This function returns a constant reference to member array_float_field
              * @return Constant reference to member array_float_field
              */
-            eProsima_user_DllExport const std::array<float, eprosima::test::max_array_size>& array_float_field() const;
+            eProsima_user_DllExport const std::array<float, max_array_size>& array_float_field() const;
 
             /*!
              * @brief This function returns a reference to member array_float_field
              * @return Reference to member array_float_field
              */
-            eProsima_user_DllExport std::array<float, eprosima::test::max_array_size>& array_float_field();
+            eProsima_user_DllExport std::array<float, max_array_size>& array_float_field();
 
 
             /*!
@@ -3431,26 +3431,26 @@ namespace eprosima {
              * @param _array_double_field New value to be copied in member array_double_field
              */
             eProsima_user_DllExport void array_double_field(
-                    const std::array<double, eprosima::test::max_array_size>& _array_double_field);
+                    const std::array<double, max_array_size>& _array_double_field);
 
             /*!
              * @brief This function moves the value in member array_double_field
              * @param _array_double_field New value to be moved in member array_double_field
              */
             eProsima_user_DllExport void array_double_field(
-                    std::array<double, eprosima::test::max_array_size>&& _array_double_field);
+                    std::array<double, max_array_size>&& _array_double_field);
 
             /*!
              * @brief This function returns a constant reference to member array_double_field
              * @return Constant reference to member array_double_field
              */
-            eProsima_user_DllExport const std::array<double, eprosima::test::max_array_size>& array_double_field() const;
+            eProsima_user_DllExport const std::array<double, max_array_size>& array_double_field() const;
 
             /*!
              * @brief This function returns a reference to member array_double_field
              * @return Reference to member array_double_field
              */
-            eProsima_user_DllExport std::array<double, eprosima::test::max_array_size>& array_double_field();
+            eProsima_user_DllExport std::array<double, max_array_size>& array_double_field();
 
 
             /*!
@@ -3458,26 +3458,26 @@ namespace eprosima {
              * @param _array_bool_field New value to be copied in member array_bool_field
              */
             eProsima_user_DllExport void array_bool_field(
-                    const std::array<bool, eprosima::test::max_array_size>& _array_bool_field);
+                    const std::array<bool, max_array_size>& _array_bool_field);
 
             /*!
              * @brief This function moves the value in member array_bool_field
              * @param _array_bool_field New value to be moved in member array_bool_field
              */
             eProsima_user_DllExport void array_bool_field(
-                    std::array<bool, eprosima::test::max_array_size>&& _array_bool_field);
+                    std::array<bool, max_array_size>&& _array_bool_field);
 
             /*!
              * @brief This function returns a constant reference to member array_bool_field
              * @return Constant reference to member array_bool_field
              */
-            eProsima_user_DllExport const std::array<bool, eprosima::test::max_array_size>& array_bool_field() const;
+            eProsima_user_DllExport const std::array<bool, max_array_size>& array_bool_field() const;
 
             /*!
              * @brief This function returns a reference to member array_bool_field
              * @return Reference to member array_bool_field
              */
-            eProsima_user_DllExport std::array<bool, eprosima::test::max_array_size>& array_bool_field();
+            eProsima_user_DllExport std::array<bool, max_array_size>& array_bool_field();
 
 
             /*!
@@ -3485,26 +3485,26 @@ namespace eprosima {
              * @param _array_enum_field New value to be copied in member array_enum_field
              */
             eProsima_user_DllExport void array_enum_field(
-                    const std::array<eprosima::test::Color, eprosima::test::max_array_size>& _array_enum_field);
+                    const std::array<eprosima::test::Color, max_array_size>& _array_enum_field);
 
             /*!
              * @brief This function moves the value in member array_enum_field
              * @param _array_enum_field New value to be moved in member array_enum_field
              */
             eProsima_user_DllExport void array_enum_field(
-                    std::array<eprosima::test::Color, eprosima::test::max_array_size>&& _array_enum_field);
+                    std::array<eprosima::test::Color, max_array_size>&& _array_enum_field);
 
             /*!
              * @brief This function returns a constant reference to member array_enum_field
              * @return Constant reference to member array_enum_field
              */
-            eProsima_user_DllExport const std::array<eprosima::test::Color, eprosima::test::max_array_size>& array_enum_field() const;
+            eProsima_user_DllExport const std::array<eprosima::test::Color, max_array_size>& array_enum_field() const;
 
             /*!
              * @brief This function returns a reference to member array_enum_field
              * @return Reference to member array_enum_field
              */
-            eProsima_user_DllExport std::array<eprosima::test::Color, eprosima::test::max_array_size>& array_enum_field();
+            eProsima_user_DllExport std::array<eprosima::test::Color, max_array_size>& array_enum_field();
 
 
             /*!
@@ -3512,26 +3512,26 @@ namespace eprosima {
              * @param _array_enum2_field New value to be copied in member array_enum2_field
              */
             eProsima_user_DllExport void array_enum2_field(
-                    const std::array<eprosima::test::Material, eprosima::test::max_array_size>& _array_enum2_field);
+                    const std::array<eprosima::test::Material, max_array_size>& _array_enum2_field);
 
             /*!
              * @brief This function moves the value in member array_enum2_field
              * @param _array_enum2_field New value to be moved in member array_enum2_field
              */
             eProsima_user_DllExport void array_enum2_field(
-                    std::array<eprosima::test::Material, eprosima::test::max_array_size>&& _array_enum2_field);
+                    std::array<eprosima::test::Material, max_array_size>&& _array_enum2_field);
 
             /*!
              * @brief This function returns a constant reference to member array_enum2_field
              * @return Constant reference to member array_enum2_field
              */
-            eProsima_user_DllExport const std::array<eprosima::test::Material, eprosima::test::max_array_size>& array_enum2_field() const;
+            eProsima_user_DllExport const std::array<eprosima::test::Material, max_array_size>& array_enum2_field() const;
 
             /*!
              * @brief This function returns a reference to member array_enum2_field
              * @return Reference to member array_enum2_field
              */
-            eProsima_user_DllExport std::array<eprosima::test::Material, eprosima::test::max_array_size>& array_enum2_field();
+            eProsima_user_DllExport std::array<eprosima::test::Material, max_array_size>& array_enum2_field();
 
 
             /*!
@@ -3539,26 +3539,26 @@ namespace eprosima {
              * @param _array_struct_field New value to be copied in member array_struct_field
              */
             eProsima_user_DllExport void array_struct_field(
-                    const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& _array_struct_field);
+                    const std::array<eprosima::test::StructType, max_array_size>& _array_struct_field);
 
             /*!
              * @brief This function moves the value in member array_struct_field
              * @param _array_struct_field New value to be moved in member array_struct_field
              */
             eProsima_user_DllExport void array_struct_field(
-                    std::array<eprosima::test::StructType, eprosima::test::max_array_size>&& _array_struct_field);
+                    std::array<eprosima::test::StructType, max_array_size>&& _array_struct_field);
 
             /*!
              * @brief This function returns a constant reference to member array_struct_field
              * @return Constant reference to member array_struct_field
              */
-            eProsima_user_DllExport const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& array_struct_field() const;
+            eProsima_user_DllExport const std::array<eprosima::test::StructType, max_array_size>& array_struct_field() const;
 
             /*!
              * @brief This function returns a reference to member array_struct_field
              * @return Reference to member array_struct_field
              */
-            eProsima_user_DllExport std::array<eprosima::test::StructType, eprosima::test::max_array_size>& array_struct_field();
+            eProsima_user_DllExport std::array<eprosima::test::StructType, max_array_size>& array_struct_field();
 
 
             /*!
@@ -4401,20 +4401,20 @@ namespace eprosima {
             eprosima::test::Color m_enum_opt_field;
             eprosima::test::Material m_enum2_opt_field;
             eprosima::test::StructType m_struct_opt_field;
-            std::array<char, eprosima::test::max_array_size> m_array_char_field;
-            std::array<uint8_t, eprosima::test::max_array_size> m_array_uint8_field;
-            std::array<int16_t, eprosima::test::max_array_size> m_array_int16_field;
-            std::array<uint16_t, eprosima::test::max_array_size> m_array_uint16_field;
-            std::array<int32_t, eprosima::test::max_array_size> m_array_int32_field;
-            std::array<uint32_t, eprosima::test::max_array_size> m_array_uint32_field;
-            std::array<int64_t, eprosima::test::max_array_size> m_array_int64_field;
-            std::array<uint64_t, eprosima::test::max_array_size> m_array_uint64_field;
-            std::array<float, eprosima::test::max_array_size> m_array_float_field;
-            std::array<double, eprosima::test::max_array_size> m_array_double_field;
-            std::array<bool, eprosima::test::max_array_size> m_array_bool_field;
-            std::array<eprosima::test::Color, eprosima::test::max_array_size> m_array_enum_field;
-            std::array<eprosima::test::Material, eprosima::test::max_array_size> m_array_enum2_field;
-            std::array<eprosima::test::StructType, eprosima::test::max_array_size> m_array_struct_field;
+            std::array<char, max_array_size> m_array_char_field;
+            std::array<uint8_t, max_array_size> m_array_uint8_field;
+            std::array<int16_t, max_array_size> m_array_int16_field;
+            std::array<uint16_t, max_array_size> m_array_uint16_field;
+            std::array<int32_t, max_array_size> m_array_int32_field;
+            std::array<uint32_t, max_array_size> m_array_uint32_field;
+            std::array<int64_t, max_array_size> m_array_int64_field;
+            std::array<uint64_t, max_array_size> m_array_uint64_field;
+            std::array<float, max_array_size> m_array_float_field;
+            std::array<double, max_array_size> m_array_double_field;
+            std::array<bool, max_array_size> m_array_bool_field;
+            std::array<eprosima::test::Color, max_array_size> m_array_enum_field;
+            std::array<eprosima::test::Material, max_array_size> m_array_enum2_field;
+            std::array<eprosima::test::StructType, max_array_size> m_array_struct_field;
             std::vector<char> m_bounded_sequence_char_field;
             std::vector<uint8_t> m_bounded_sequence_uint8_field;
             std::vector<int16_t> m_bounded_sequence_int16_field;

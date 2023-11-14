@@ -10,10 +10,13 @@ import fastdds
 import pytest
 import time
 
-
 class DataReaderListener (fastdds.DataReaderListener):
     def __init__(self):
         super().__init__()
+
+@pytest.fixture
+def cdr_version(request):
+    return request.config.getoption('--cdr')
 
 @pytest.fixture(params=['no_module', 'module'], autouse=True)
 def data_type(request):
@@ -117,7 +120,8 @@ def datawriter(writer_participant, writer_topic, publisher):
            factory.delete_participant(writer_participant))
 
 
-def fill_keyed_complete_test_type(data):
+# This function should be used in a test which uses 'cdr_version' fixture
+def fill_keyed_complete_test_type(data, cdr_version):
     # Auxiliary StructTypes
     struct_type1 = pytest.dds_type.StructType()
     struct_type1.char_field('\x01')
@@ -190,19 +194,34 @@ def fill_keyed_complete_test_type(data):
     data.struct_field().string_field("Test string")
     data.struct_field().enum_field(pytest.dds_type.MAGENTA)
     data.struct_field().enum2_field(pytest.dds_type.METAL)
-    data.char_opt_field().set_value('\x01')
-    data.uint8_opt_field().set_value(254)
-    data.int16_opt_field().set_value(-10)
-    data.uint16_opt_field().set_value(10)
-    data.int32_opt_field().set_value(-1000)
-    data.uint32_opt_field().set_value(1000)
-    data.int64_opt_field().set_value(-36000)
-    data.uint64_opt_field().set_value(36000)
-    data.float_opt_field().set_value(1.0)
-    data.double_opt_field().set_value(1202.5)
-    data.bool_opt_field().set_value(True)
-    data.string_opt_field().set_value("Test string")
-    data.enum_opt_field().set_value(pytest.dds_type.MAGENTA)
+    if (cdr_version == 'v1'):
+        data.char_opt_field('\x01')
+        data.uint8_opt_field(254)
+        data.int16_opt_field(-10)
+        data.uint16_opt_field(10)
+        data.int32_opt_field(-1000)
+        data.uint32_opt_field(1000)
+        data.int64_opt_field(-36000)
+        data.uint64_opt_field(36000)
+        data.float_opt_field(1.0)
+        data.double_opt_field(1202.5)
+        data.bool_opt_field(True)
+        data.string_opt_field("Test string")
+        data.enum_opt_field(pytest.dds_type.MAGENTA)
+    else:
+        data.char_opt_field().set_value('\x01')
+        data.uint8_opt_field().set_value(254)
+        data.int16_opt_field().set_value(-10)
+        data.uint16_opt_field().set_value(10)
+        data.int32_opt_field().set_value(-1000)
+        data.uint32_opt_field().set_value(1000)
+        data.int64_opt_field().set_value(-36000)
+        data.uint64_opt_field().set_value(36000)
+        data.float_opt_field().set_value(1.0)
+        data.double_opt_field().set_value(1202.5)
+        data.bool_opt_field().set_value(True)
+        data.string_opt_field().set_value("Test string")
+        data.enum_opt_field().set_value(pytest.dds_type.MAGENTA)
     struct_field = pytest.dds_type.StructType()
     struct_field.char_field('\x01')
     struct_field.uint8_field(254)
@@ -218,7 +237,10 @@ def fill_keyed_complete_test_type(data):
     struct_field.string_field("Test string")
     struct_field.enum_field(pytest.dds_type.MAGENTA)
     struct_field.enum2_field(pytest.dds_type.METAL)
-    data.struct_opt_field().set_value(struct_field)
+    if (cdr_version == 'v1'):
+        data.struct_opt_field(struct_field)
+    else:
+        data.struct_opt_field().set_value(struct_field)
     data.array_char_field(['\x01', '\x02', '\x03'])
     data.array_uint8_field([254, 255, 1])
     data.array_int16_field([-10, 10, -20])
@@ -269,7 +291,8 @@ def fill_keyed_complete_test_type(data):
     data.unbounded_sequence_struct_field([struct_type1, struct_type2, struct_type3])
 
 
-def check_keyed_complete_test_type(data):
+# This function should be used in a test which uses 'cdr_version' fixture
+def check_keyed_complete_test_type(data, cdr_version):
     assert(data.char_field() == '\x01')
     assert(data.uint8_field() == 254)
     assert(data.int16_field() == -10)
@@ -298,34 +321,49 @@ def check_keyed_complete_test_type(data):
     assert(data.struct_field().string_field() == "Test string")
     assert(data.struct_field().enum_field() == pytest.dds_type.MAGENTA)
     assert(data.struct_field().enum2_field() == pytest.dds_type.METAL)
-    assert(data.char_opt_field().has_value())
-    assert(data.char_opt_field().get_value() == '\x01')
-    assert(data.uint8_opt_field().has_value())
-    assert(data.uint8_opt_field().get_value() == 254)
-    assert(data.int16_opt_field().has_value())
-    assert(data.int16_opt_field().get_value() == -10)
-    assert(data.uint16_opt_field().has_value())
-    assert(data.uint16_opt_field().get_value() == 10)
-    assert(data.int32_opt_field().has_value())
-    assert(data.int32_opt_field().get_value() == -1000)
-    assert(data.uint32_opt_field().has_value())
-    assert(data.uint32_opt_field().get_value() == 1000)
-    assert(data.int64_opt_field().has_value())
-    assert(data.int64_opt_field().get_value() == -36000)
-    assert(data.uint64_opt_field().has_value())
-    assert(data.uint64_opt_field().get_value() == 36000)
-    assert(data.float_opt_field().has_value())
-    assert(data.float_opt_field().get_value() == 1.0)
-    assert(data.double_opt_field().has_value())
-    assert(data.double_opt_field().get_value() == 1202.5)
-    assert(data.bool_opt_field().has_value())
-    assert(data.bool_opt_field().get_value() == True)
-    assert(data.string_opt_field().has_value())
-    assert(data.string_opt_field().get_value() == "Test string")
-    assert(data.enum_opt_field().has_value())
-    assert(data.enum_opt_field().get_value() == pytest.dds_type.MAGENTA)
-    assert(not data.enum2_opt_field().has_value())
-    assert(data.struct_opt_field().has_value())
+    if cdr_version == 'v1':
+        assert(data.char_opt_field() == '\x01')
+        assert(data.uint8_opt_field() == 254)
+        assert(data.int16_opt_field() == -10)
+        assert(data.uint16_opt_field() == 10)
+        assert(data.int32_opt_field() == -1000)
+        assert(data.uint32_opt_field() == 1000)
+        assert(data.int64_opt_field() == -36000)
+        assert(data.uint64_opt_field() == 36000)
+        assert(data.float_opt_field() == 1.0)
+        assert(data.double_opt_field() == 1202.5)
+        assert(data.bool_opt_field() == True)
+        assert(data.string_opt_field() == "Test string")
+        assert(data.enum_opt_field() == pytest.dds_type.MAGENTA)
+    else:
+        assert(data.char_opt_field().has_value())
+        assert(data.char_opt_field().get_value() == '\x01')
+        assert(data.uint8_opt_field().has_value())
+        assert(data.uint8_opt_field().get_value() == 254)
+        assert(data.int16_opt_field().has_value())
+        assert(data.int16_opt_field().get_value() == -10)
+        assert(data.uint16_opt_field().has_value())
+        assert(data.uint16_opt_field().get_value() == 10)
+        assert(data.int32_opt_field().has_value())
+        assert(data.int32_opt_field().get_value() == -1000)
+        assert(data.uint32_opt_field().has_value())
+        assert(data.uint32_opt_field().get_value() == 1000)
+        assert(data.int64_opt_field().has_value())
+        assert(data.int64_opt_field().get_value() == -36000)
+        assert(data.uint64_opt_field().has_value())
+        assert(data.uint64_opt_field().get_value() == 36000)
+        assert(data.float_opt_field().has_value())
+        assert(data.float_opt_field().get_value() == 1.0)
+        assert(data.double_opt_field().has_value())
+        assert(data.double_opt_field().get_value() == 1202.5)
+        assert(data.bool_opt_field().has_value())
+        assert(data.bool_opt_field().get_value() == True)
+        assert(data.string_opt_field().has_value())
+        assert(data.string_opt_field().get_value() == "Test string")
+        assert(data.enum_opt_field().has_value())
+        assert(data.enum_opt_field().get_value() == pytest.dds_type.MAGENTA)
+        assert(not data.enum2_opt_field().has_value())
+        assert(data.struct_opt_field().has_value())
     assert(data.struct_opt_field().char_field() == '\x01')
     assert(data.struct_opt_field().uint8_field() == 254)
     assert(data.struct_opt_field().int16_field() == -10)
@@ -995,7 +1033,7 @@ def test_lookup_instance(transient_datareader_qos, test_keyed_type, datareader,
 
 
 def test_read(transient_datareader_qos, datareader,
-              datawriter):
+              datawriter, cdr_version):
     """
     This test checks:
     - DataReader::read
@@ -1012,7 +1050,7 @@ def test_read(transient_datareader_qos, datareader,
     assert(0 == len(info_seq))
 
     sample = pytest.dds_type.CompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
@@ -1027,13 +1065,13 @@ def test_read(transient_datareader_qos, datareader,
     assert(0 < info_seq[0].source_timestamp.to_ns())
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
-    check_keyed_complete_test_type(data_seq[0])
+    check_keyed_complete_test_type(data_seq[0], cdr_version)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
 def test_read_instance(transient_datareader_qos, test_keyed_type,
-                       datareader, datawriter):
+                       datareader, datawriter, cdr_version):
     """
     This test checks:
     - DataReader::read_instance
@@ -1051,7 +1089,7 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(info_seq))
 
     sample = pytest.dds_type.KeyedCompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     ih = datawriter.register_instance(sample)
     assert(datawriter.write(sample, ih))
 
@@ -1068,13 +1106,13 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].source_timestamp.to_ns())
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
-    check_keyed_complete_test_type(data_seq[0])
+    check_keyed_complete_test_type(data_seq[0], cdr_version)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
 def test_read_next_instance(transient_datareader_qos, test_keyed_type,
-                            datareader, datawriter):
+                            datareader, datawriter, cdr_version):
     """
     This test checks:
     - DataReader::read_next_instance
@@ -1092,7 +1130,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(info_seq))
 
     sample = pytest.dds_type.KeyedCompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
@@ -1108,13 +1146,13 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].source_timestamp.to_ns())
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
-    check_keyed_complete_test_type(data_seq[0])
+    check_keyed_complete_test_type(data_seq[0], cdr_version)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
 def test_read_next_sample(transient_datareader_qos, datareader,
-                          datawriter):
+                          datawriter, cdr_version):
     """
     This test checks:
     - DataReader::read_next_sample
@@ -1126,7 +1164,7 @@ def test_read_next_sample(transient_datareader_qos, datareader,
                 data, info))
 
     sample = pytest.dds_type.CompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
@@ -1137,11 +1175,11 @@ def test_read_next_sample(transient_datareader_qos, datareader,
     assert(0 < info.source_timestamp.to_ns())
     assert(0 < info.reception_timestamp.to_ns())
     assert(sample == data)
-    check_keyed_complete_test_type(data)
+    check_keyed_complete_test_type(data, cdr_version)
 
 
 def test_take(transient_datareader_qos, datareader,
-              datawriter):
+              datawriter, cdr_version):
     """
     This test checks:
     - DataReader::take
@@ -1158,7 +1196,7 @@ def test_take(transient_datareader_qos, datareader,
     assert(0 == len(info_seq))
 
     sample = pytest.dds_type.CompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
@@ -1173,13 +1211,13 @@ def test_take(transient_datareader_qos, datareader,
     assert(0 < info_seq[0].source_timestamp.to_ns())
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
-    check_keyed_complete_test_type(data_seq[0])
+    check_keyed_complete_test_type(data_seq[0], cdr_version)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
 def test_take_instance(transient_datareader_qos, test_keyed_type,
-                       datareader, datawriter):
+                       datareader, datawriter, cdr_version):
     """
     This test checks:
     - DataReader::take_instance
@@ -1197,7 +1235,7 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(info_seq))
 
     sample = pytest.dds_type.KeyedCompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     ih = datawriter.register_instance(sample)
     assert(datawriter.write(sample, ih))
 
@@ -1214,13 +1252,13 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].source_timestamp.to_ns())
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
-    check_keyed_complete_test_type(data_seq[0])
+    check_keyed_complete_test_type(data_seq[0], cdr_version)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
 def test_take_next_instance(transient_datareader_qos, test_keyed_type,
-                            datareader, datawriter):
+                            datareader, datawriter, cdr_version):
     """
     This test checks:
     - DataReader::take_next_instance
@@ -1238,7 +1276,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 == len(info_seq))
 
     sample = pytest.dds_type.KeyedCompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
@@ -1254,13 +1292,13 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].source_timestamp.to_ns())
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
-    check_keyed_complete_test_type(data_seq[0])
+    check_keyed_complete_test_type(data_seq[0], cdr_version)
     assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
 def test_take_next_sample(transient_datareader_qos, datareader,
-                          datawriter):
+                          datawriter, cdr_version):
     """
     This test checks:
     - DataReader::take_next_sample
@@ -1272,7 +1310,7 @@ def test_take_next_sample(transient_datareader_qos, datareader,
                 data, info))
 
     sample = pytest.dds_type.CompleteTestType()
-    fill_keyed_complete_test_type(sample)
+    fill_keyed_complete_test_type(sample, cdr_version)
     assert(datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
@@ -1283,7 +1321,7 @@ def test_take_next_sample(transient_datareader_qos, datareader,
     assert(0 < info.source_timestamp.to_ns())
     assert(0 < info.reception_timestamp.to_ns())
     assert(sample == data)
-    check_keyed_complete_test_type(data)
+    check_keyed_complete_test_type(data, cdr_version)
 
 
 def test_get_type(test_type, datareader):

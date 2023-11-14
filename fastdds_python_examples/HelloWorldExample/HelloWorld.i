@@ -79,6 +79,7 @@ namespace swig {
 // Avoid a warning ignoring all but one
 %ignore HelloWorld::index(uint32_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -88,6 +89,7 @@ namespace swig {
 
 
 %ignore HelloWorld::message(std::string&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -115,6 +117,7 @@ namespace swig {
 
 // Include the class interfaces
 %include "HelloWorld.h"
+%include "HelloWorldv1.h"
 
 // Include the corresponding TopicDataType
 %include "HelloWorldPubSubTypes.i"

@@ -1002,60 +1002,60 @@ CompleteTestType::CompleteTestType()
     // eprosima::test::StructType m_struct_opt_field
 
     // char m_array_char_field
-    memset(&m_array_char_field, 0, ((eprosima::test::max_array_size)) * 1);
+    memset(&m_array_char_field, 0, ((max_array_size)) * 1);
     // octet m_array_uint8_field
-    memset(&m_array_uint8_field, 0, ((eprosima::test::max_array_size)) * 1);
+    memset(&m_array_uint8_field, 0, ((max_array_size)) * 1);
     // short m_array_int16_field
-    memset(&m_array_int16_field, 0, ((eprosima::test::max_array_size)) * 2);
+    memset(&m_array_int16_field, 0, ((max_array_size)) * 2);
     // unsigned short m_array_uint16_field
-    memset(&m_array_uint16_field, 0, ((eprosima::test::max_array_size)) * 2);
+    memset(&m_array_uint16_field, 0, ((max_array_size)) * 2);
     // long m_array_int32_field
-    memset(&m_array_int32_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_int32_field, 0, ((max_array_size)) * 4);
     // unsigned long m_array_uint32_field
-    memset(&m_array_uint32_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_uint32_field, 0, ((max_array_size)) * 4);
     // long long m_array_int64_field
-    memset(&m_array_int64_field, 0, ((eprosima::test::max_array_size)) * 8);
+    memset(&m_array_int64_field, 0, ((max_array_size)) * 8);
     // unsigned long long m_array_uint64_field
-    memset(&m_array_uint64_field, 0, ((eprosima::test::max_array_size)) * 8);
+    memset(&m_array_uint64_field, 0, ((max_array_size)) * 8);
     // float m_array_float_field
-    memset(&m_array_float_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_float_field, 0, ((max_array_size)) * 4);
     // double m_array_double_field
-    memset(&m_array_double_field, 0, ((eprosima::test::max_array_size)) * 8);
+    memset(&m_array_double_field, 0, ((max_array_size)) * 8);
     // boolean m_array_bool_field
-    memset(&m_array_bool_field, 0, ((eprosima::test::max_array_size)) * 1);
+    memset(&m_array_bool_field, 0, ((max_array_size)) * 1);
     // eprosima::test::Color m_array_enum_field
-    memset(&m_array_enum_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_enum_field, 0, ((max_array_size)) * 4);
     // eprosima::test::Material m_array_enum2_field
-    memset(&m_array_enum2_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_enum2_field, 0, ((max_array_size)) * 4);
     // eprosima::test::StructType m_array_struct_field
 
-    // sequence<char, eprosima::test::max_seq_size> m_bounded_sequence_char_field
+    // sequence<char, max_seq_size> m_bounded_sequence_char_field
 
-    // sequence<octet, eprosima::test::max_seq_size> m_bounded_sequence_uint8_field
+    // sequence<octet, max_seq_size> m_bounded_sequence_uint8_field
 
-    // sequence<short, eprosima::test::max_seq_size> m_bounded_sequence_int16_field
+    // sequence<short, max_seq_size> m_bounded_sequence_int16_field
 
-    // sequence<unsigned short, eprosima::test::max_seq_size> m_bounded_sequence_uint16_field
+    // sequence<unsigned short, max_seq_size> m_bounded_sequence_uint16_field
 
-    // sequence<long, eprosima::test::max_seq_size> m_bounded_sequence_int32_field
+    // sequence<long, max_seq_size> m_bounded_sequence_int32_field
 
-    // sequence<unsigned long, eprosima::test::max_seq_size> m_bounded_sequence_uint32_field
+    // sequence<unsigned long, max_seq_size> m_bounded_sequence_uint32_field
 
-    // sequence<long long, eprosima::test::max_seq_size> m_bounded_sequence_int64_field
+    // sequence<long long, max_seq_size> m_bounded_sequence_int64_field
 
-    // sequence<unsigned long long, eprosima::test::max_seq_size> m_bounded_sequence_uint64_field
+    // sequence<unsigned long long, max_seq_size> m_bounded_sequence_uint64_field
 
-    // sequence<float, eprosima::test::max_seq_size> m_bounded_sequence_float_field
+    // sequence<float, max_seq_size> m_bounded_sequence_float_field
 
-    // sequence<double, eprosima::test::max_seq_size> m_bounded_sequence_double_field
+    // sequence<double, max_seq_size> m_bounded_sequence_double_field
 
-    // sequence<boolean, eprosima::test::max_seq_size> m_bounded_sequence_bool_field
+    // sequence<boolean, max_seq_size> m_bounded_sequence_bool_field
 
-    // sequence<eprosima::test::Color, eprosima::test::max_seq_size> m_bounded_sequence_enum_field
+    // sequence<eprosima::test::Color, max_seq_size> m_bounded_sequence_enum_field
 
-    // sequence<eprosima::test::Material, eprosima::test::max_seq_size> m_bounded_sequence_enum2_field
+    // sequence<eprosima::test::Material, max_seq_size> m_bounded_sequence_enum2_field
 
-    // sequence<eprosima::test::StructType, eprosima::test::max_seq_size> m_bounded_sequence_struct_field
+    // sequence<eprosima::test::StructType, max_seq_size> m_bounded_sequence_struct_field
 
     // sequence<char> m_unbounded_sequence_char_field
 
@@ -2161,55 +2161,55 @@ size_t CompleteTestType::getCdrSerializedSize(
     current_alignment += eprosima::test::StructType::getCdrSerializedSize(data.struct_opt_field(), current_alignment);
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += (((max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += (((max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    current_alignment += (((max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    current_alignment += (((max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    current_alignment += (((max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    current_alignment += (((max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    current_alignment += (((max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += (((max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
@@ -3956,7 +3956,7 @@ eprosima::test::StructType& CompleteTestType::struct_opt_field()
  * @param _array_char_field New value to be copied in member array_char_field
  */
 void CompleteTestType::array_char_field(
-        const std::array<char, eprosima::test::max_array_size>& _array_char_field)
+        const std::array<char, max_array_size>& _array_char_field)
 {
     m_array_char_field = _array_char_field;
 }
@@ -3966,7 +3966,7 @@ void CompleteTestType::array_char_field(
  * @param _array_char_field New value to be moved in member array_char_field
  */
 void CompleteTestType::array_char_field(
-        std::array<char, eprosima::test::max_array_size>&& _array_char_field)
+        std::array<char, max_array_size>&& _array_char_field)
 {
     m_array_char_field = std::move(_array_char_field);
 }
@@ -3975,7 +3975,7 @@ void CompleteTestType::array_char_field(
  * @brief This function returns a constant reference to member array_char_field
  * @return Constant reference to member array_char_field
  */
-const std::array<char, eprosima::test::max_array_size>& CompleteTestType::array_char_field() const
+const std::array<char, max_array_size>& CompleteTestType::array_char_field() const
 {
     return m_array_char_field;
 }
@@ -3984,7 +3984,7 @@ const std::array<char, eprosima::test::max_array_size>& CompleteTestType::array_
  * @brief This function returns a reference to member array_char_field
  * @return Reference to member array_char_field
  */
-std::array<char, eprosima::test::max_array_size>& CompleteTestType::array_char_field()
+std::array<char, max_array_size>& CompleteTestType::array_char_field()
 {
     return m_array_char_field;
 }
@@ -3995,7 +3995,7 @@ std::array<char, eprosima::test::max_array_size>& CompleteTestType::array_char_f
  * @param _array_uint8_field New value to be copied in member array_uint8_field
  */
 void CompleteTestType::array_uint8_field(
-        const std::array<uint8_t, eprosima::test::max_array_size>& _array_uint8_field)
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
 {
     m_array_uint8_field = _array_uint8_field;
 }
@@ -4005,7 +4005,7 @@ void CompleteTestType::array_uint8_field(
  * @param _array_uint8_field New value to be moved in member array_uint8_field
  */
 void CompleteTestType::array_uint8_field(
-        std::array<uint8_t, eprosima::test::max_array_size>&& _array_uint8_field)
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
 {
     m_array_uint8_field = std::move(_array_uint8_field);
 }
@@ -4014,7 +4014,7 @@ void CompleteTestType::array_uint8_field(
  * @brief This function returns a constant reference to member array_uint8_field
  * @return Constant reference to member array_uint8_field
  */
-const std::array<uint8_t, eprosima::test::max_array_size>& CompleteTestType::array_uint8_field() const
+const std::array<uint8_t, max_array_size>& CompleteTestType::array_uint8_field() const
 {
     return m_array_uint8_field;
 }
@@ -4023,7 +4023,7 @@ const std::array<uint8_t, eprosima::test::max_array_size>& CompleteTestType::arr
  * @brief This function returns a reference to member array_uint8_field
  * @return Reference to member array_uint8_field
  */
-std::array<uint8_t, eprosima::test::max_array_size>& CompleteTestType::array_uint8_field()
+std::array<uint8_t, max_array_size>& CompleteTestType::array_uint8_field()
 {
     return m_array_uint8_field;
 }
@@ -4034,7 +4034,7 @@ std::array<uint8_t, eprosima::test::max_array_size>& CompleteTestType::array_uin
  * @param _array_int16_field New value to be copied in member array_int16_field
  */
 void CompleteTestType::array_int16_field(
-        const std::array<int16_t, eprosima::test::max_array_size>& _array_int16_field)
+        const std::array<int16_t, max_array_size>& _array_int16_field)
 {
     m_array_int16_field = _array_int16_field;
 }
@@ -4044,7 +4044,7 @@ void CompleteTestType::array_int16_field(
  * @param _array_int16_field New value to be moved in member array_int16_field
  */
 void CompleteTestType::array_int16_field(
-        std::array<int16_t, eprosima::test::max_array_size>&& _array_int16_field)
+        std::array<int16_t, max_array_size>&& _array_int16_field)
 {
     m_array_int16_field = std::move(_array_int16_field);
 }
@@ -4053,7 +4053,7 @@ void CompleteTestType::array_int16_field(
  * @brief This function returns a constant reference to member array_int16_field
  * @return Constant reference to member array_int16_field
  */
-const std::array<int16_t, eprosima::test::max_array_size>& CompleteTestType::array_int16_field() const
+const std::array<int16_t, max_array_size>& CompleteTestType::array_int16_field() const
 {
     return m_array_int16_field;
 }
@@ -4062,7 +4062,7 @@ const std::array<int16_t, eprosima::test::max_array_size>& CompleteTestType::arr
  * @brief This function returns a reference to member array_int16_field
  * @return Reference to member array_int16_field
  */
-std::array<int16_t, eprosima::test::max_array_size>& CompleteTestType::array_int16_field()
+std::array<int16_t, max_array_size>& CompleteTestType::array_int16_field()
 {
     return m_array_int16_field;
 }
@@ -4073,7 +4073,7 @@ std::array<int16_t, eprosima::test::max_array_size>& CompleteTestType::array_int
  * @param _array_uint16_field New value to be copied in member array_uint16_field
  */
 void CompleteTestType::array_uint16_field(
-        const std::array<uint16_t, eprosima::test::max_array_size>& _array_uint16_field)
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
 {
     m_array_uint16_field = _array_uint16_field;
 }
@@ -4083,7 +4083,7 @@ void CompleteTestType::array_uint16_field(
  * @param _array_uint16_field New value to be moved in member array_uint16_field
  */
 void CompleteTestType::array_uint16_field(
-        std::array<uint16_t, eprosima::test::max_array_size>&& _array_uint16_field)
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
 {
     m_array_uint16_field = std::move(_array_uint16_field);
 }
@@ -4092,7 +4092,7 @@ void CompleteTestType::array_uint16_field(
  * @brief This function returns a constant reference to member array_uint16_field
  * @return Constant reference to member array_uint16_field
  */
-const std::array<uint16_t, eprosima::test::max_array_size>& CompleteTestType::array_uint16_field() const
+const std::array<uint16_t, max_array_size>& CompleteTestType::array_uint16_field() const
 {
     return m_array_uint16_field;
 }
@@ -4101,7 +4101,7 @@ const std::array<uint16_t, eprosima::test::max_array_size>& CompleteTestType::ar
  * @brief This function returns a reference to member array_uint16_field
  * @return Reference to member array_uint16_field
  */
-std::array<uint16_t, eprosima::test::max_array_size>& CompleteTestType::array_uint16_field()
+std::array<uint16_t, max_array_size>& CompleteTestType::array_uint16_field()
 {
     return m_array_uint16_field;
 }
@@ -4112,7 +4112,7 @@ std::array<uint16_t, eprosima::test::max_array_size>& CompleteTestType::array_ui
  * @param _array_int32_field New value to be copied in member array_int32_field
  */
 void CompleteTestType::array_int32_field(
-        const std::array<int32_t, eprosima::test::max_array_size>& _array_int32_field)
+        const std::array<int32_t, max_array_size>& _array_int32_field)
 {
     m_array_int32_field = _array_int32_field;
 }
@@ -4122,7 +4122,7 @@ void CompleteTestType::array_int32_field(
  * @param _array_int32_field New value to be moved in member array_int32_field
  */
 void CompleteTestType::array_int32_field(
-        std::array<int32_t, eprosima::test::max_array_size>&& _array_int32_field)
+        std::array<int32_t, max_array_size>&& _array_int32_field)
 {
     m_array_int32_field = std::move(_array_int32_field);
 }
@@ -4131,7 +4131,7 @@ void CompleteTestType::array_int32_field(
  * @brief This function returns a constant reference to member array_int32_field
  * @return Constant reference to member array_int32_field
  */
-const std::array<int32_t, eprosima::test::max_array_size>& CompleteTestType::array_int32_field() const
+const std::array<int32_t, max_array_size>& CompleteTestType::array_int32_field() const
 {
     return m_array_int32_field;
 }
@@ -4140,7 +4140,7 @@ const std::array<int32_t, eprosima::test::max_array_size>& CompleteTestType::arr
  * @brief This function returns a reference to member array_int32_field
  * @return Reference to member array_int32_field
  */
-std::array<int32_t, eprosima::test::max_array_size>& CompleteTestType::array_int32_field()
+std::array<int32_t, max_array_size>& CompleteTestType::array_int32_field()
 {
     return m_array_int32_field;
 }
@@ -4151,7 +4151,7 @@ std::array<int32_t, eprosima::test::max_array_size>& CompleteTestType::array_int
  * @param _array_uint32_field New value to be copied in member array_uint32_field
  */
 void CompleteTestType::array_uint32_field(
-        const std::array<uint32_t, eprosima::test::max_array_size>& _array_uint32_field)
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
 {
     m_array_uint32_field = _array_uint32_field;
 }
@@ -4161,7 +4161,7 @@ void CompleteTestType::array_uint32_field(
  * @param _array_uint32_field New value to be moved in member array_uint32_field
  */
 void CompleteTestType::array_uint32_field(
-        std::array<uint32_t, eprosima::test::max_array_size>&& _array_uint32_field)
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
 {
     m_array_uint32_field = std::move(_array_uint32_field);
 }
@@ -4170,7 +4170,7 @@ void CompleteTestType::array_uint32_field(
  * @brief This function returns a constant reference to member array_uint32_field
  * @return Constant reference to member array_uint32_field
  */
-const std::array<uint32_t, eprosima::test::max_array_size>& CompleteTestType::array_uint32_field() const
+const std::array<uint32_t, max_array_size>& CompleteTestType::array_uint32_field() const
 {
     return m_array_uint32_field;
 }
@@ -4179,7 +4179,7 @@ const std::array<uint32_t, eprosima::test::max_array_size>& CompleteTestType::ar
  * @brief This function returns a reference to member array_uint32_field
  * @return Reference to member array_uint32_field
  */
-std::array<uint32_t, eprosima::test::max_array_size>& CompleteTestType::array_uint32_field()
+std::array<uint32_t, max_array_size>& CompleteTestType::array_uint32_field()
 {
     return m_array_uint32_field;
 }
@@ -4190,7 +4190,7 @@ std::array<uint32_t, eprosima::test::max_array_size>& CompleteTestType::array_ui
  * @param _array_int64_field New value to be copied in member array_int64_field
  */
 void CompleteTestType::array_int64_field(
-        const std::array<int64_t, eprosima::test::max_array_size>& _array_int64_field)
+        const std::array<int64_t, max_array_size>& _array_int64_field)
 {
     m_array_int64_field = _array_int64_field;
 }
@@ -4200,7 +4200,7 @@ void CompleteTestType::array_int64_field(
  * @param _array_int64_field New value to be moved in member array_int64_field
  */
 void CompleteTestType::array_int64_field(
-        std::array<int64_t, eprosima::test::max_array_size>&& _array_int64_field)
+        std::array<int64_t, max_array_size>&& _array_int64_field)
 {
     m_array_int64_field = std::move(_array_int64_field);
 }
@@ -4209,7 +4209,7 @@ void CompleteTestType::array_int64_field(
  * @brief This function returns a constant reference to member array_int64_field
  * @return Constant reference to member array_int64_field
  */
-const std::array<int64_t, eprosima::test::max_array_size>& CompleteTestType::array_int64_field() const
+const std::array<int64_t, max_array_size>& CompleteTestType::array_int64_field() const
 {
     return m_array_int64_field;
 }
@@ -4218,7 +4218,7 @@ const std::array<int64_t, eprosima::test::max_array_size>& CompleteTestType::arr
  * @brief This function returns a reference to member array_int64_field
  * @return Reference to member array_int64_field
  */
-std::array<int64_t, eprosima::test::max_array_size>& CompleteTestType::array_int64_field()
+std::array<int64_t, max_array_size>& CompleteTestType::array_int64_field()
 {
     return m_array_int64_field;
 }
@@ -4229,7 +4229,7 @@ std::array<int64_t, eprosima::test::max_array_size>& CompleteTestType::array_int
  * @param _array_uint64_field New value to be copied in member array_uint64_field
  */
 void CompleteTestType::array_uint64_field(
-        const std::array<uint64_t, eprosima::test::max_array_size>& _array_uint64_field)
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
 {
     m_array_uint64_field = _array_uint64_field;
 }
@@ -4239,7 +4239,7 @@ void CompleteTestType::array_uint64_field(
  * @param _array_uint64_field New value to be moved in member array_uint64_field
  */
 void CompleteTestType::array_uint64_field(
-        std::array<uint64_t, eprosima::test::max_array_size>&& _array_uint64_field)
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
 {
     m_array_uint64_field = std::move(_array_uint64_field);
 }
@@ -4248,7 +4248,7 @@ void CompleteTestType::array_uint64_field(
  * @brief This function returns a constant reference to member array_uint64_field
  * @return Constant reference to member array_uint64_field
  */
-const std::array<uint64_t, eprosima::test::max_array_size>& CompleteTestType::array_uint64_field() const
+const std::array<uint64_t, max_array_size>& CompleteTestType::array_uint64_field() const
 {
     return m_array_uint64_field;
 }
@@ -4257,7 +4257,7 @@ const std::array<uint64_t, eprosima::test::max_array_size>& CompleteTestType::ar
  * @brief This function returns a reference to member array_uint64_field
  * @return Reference to member array_uint64_field
  */
-std::array<uint64_t, eprosima::test::max_array_size>& CompleteTestType::array_uint64_field()
+std::array<uint64_t, max_array_size>& CompleteTestType::array_uint64_field()
 {
     return m_array_uint64_field;
 }
@@ -4268,7 +4268,7 @@ std::array<uint64_t, eprosima::test::max_array_size>& CompleteTestType::array_ui
  * @param _array_float_field New value to be copied in member array_float_field
  */
 void CompleteTestType::array_float_field(
-        const std::array<float, eprosima::test::max_array_size>& _array_float_field)
+        const std::array<float, max_array_size>& _array_float_field)
 {
     m_array_float_field = _array_float_field;
 }
@@ -4278,7 +4278,7 @@ void CompleteTestType::array_float_field(
  * @param _array_float_field New value to be moved in member array_float_field
  */
 void CompleteTestType::array_float_field(
-        std::array<float, eprosima::test::max_array_size>&& _array_float_field)
+        std::array<float, max_array_size>&& _array_float_field)
 {
     m_array_float_field = std::move(_array_float_field);
 }
@@ -4287,7 +4287,7 @@ void CompleteTestType::array_float_field(
  * @brief This function returns a constant reference to member array_float_field
  * @return Constant reference to member array_float_field
  */
-const std::array<float, eprosima::test::max_array_size>& CompleteTestType::array_float_field() const
+const std::array<float, max_array_size>& CompleteTestType::array_float_field() const
 {
     return m_array_float_field;
 }
@@ -4296,7 +4296,7 @@ const std::array<float, eprosima::test::max_array_size>& CompleteTestType::array
  * @brief This function returns a reference to member array_float_field
  * @return Reference to member array_float_field
  */
-std::array<float, eprosima::test::max_array_size>& CompleteTestType::array_float_field()
+std::array<float, max_array_size>& CompleteTestType::array_float_field()
 {
     return m_array_float_field;
 }
@@ -4307,7 +4307,7 @@ std::array<float, eprosima::test::max_array_size>& CompleteTestType::array_float
  * @param _array_double_field New value to be copied in member array_double_field
  */
 void CompleteTestType::array_double_field(
-        const std::array<double, eprosima::test::max_array_size>& _array_double_field)
+        const std::array<double, max_array_size>& _array_double_field)
 {
     m_array_double_field = _array_double_field;
 }
@@ -4317,7 +4317,7 @@ void CompleteTestType::array_double_field(
  * @param _array_double_field New value to be moved in member array_double_field
  */
 void CompleteTestType::array_double_field(
-        std::array<double, eprosima::test::max_array_size>&& _array_double_field)
+        std::array<double, max_array_size>&& _array_double_field)
 {
     m_array_double_field = std::move(_array_double_field);
 }
@@ -4326,7 +4326,7 @@ void CompleteTestType::array_double_field(
  * @brief This function returns a constant reference to member array_double_field
  * @return Constant reference to member array_double_field
  */
-const std::array<double, eprosima::test::max_array_size>& CompleteTestType::array_double_field() const
+const std::array<double, max_array_size>& CompleteTestType::array_double_field() const
 {
     return m_array_double_field;
 }
@@ -4335,7 +4335,7 @@ const std::array<double, eprosima::test::max_array_size>& CompleteTestType::arra
  * @brief This function returns a reference to member array_double_field
  * @return Reference to member array_double_field
  */
-std::array<double, eprosima::test::max_array_size>& CompleteTestType::array_double_field()
+std::array<double, max_array_size>& CompleteTestType::array_double_field()
 {
     return m_array_double_field;
 }
@@ -4346,7 +4346,7 @@ std::array<double, eprosima::test::max_array_size>& CompleteTestType::array_doub
  * @param _array_bool_field New value to be copied in member array_bool_field
  */
 void CompleteTestType::array_bool_field(
-        const std::array<bool, eprosima::test::max_array_size>& _array_bool_field)
+        const std::array<bool, max_array_size>& _array_bool_field)
 {
     m_array_bool_field = _array_bool_field;
 }
@@ -4356,7 +4356,7 @@ void CompleteTestType::array_bool_field(
  * @param _array_bool_field New value to be moved in member array_bool_field
  */
 void CompleteTestType::array_bool_field(
-        std::array<bool, eprosima::test::max_array_size>&& _array_bool_field)
+        std::array<bool, max_array_size>&& _array_bool_field)
 {
     m_array_bool_field = std::move(_array_bool_field);
 }
@@ -4365,7 +4365,7 @@ void CompleteTestType::array_bool_field(
  * @brief This function returns a constant reference to member array_bool_field
  * @return Constant reference to member array_bool_field
  */
-const std::array<bool, eprosima::test::max_array_size>& CompleteTestType::array_bool_field() const
+const std::array<bool, max_array_size>& CompleteTestType::array_bool_field() const
 {
     return m_array_bool_field;
 }
@@ -4374,7 +4374,7 @@ const std::array<bool, eprosima::test::max_array_size>& CompleteTestType::array_
  * @brief This function returns a reference to member array_bool_field
  * @return Reference to member array_bool_field
  */
-std::array<bool, eprosima::test::max_array_size>& CompleteTestType::array_bool_field()
+std::array<bool, max_array_size>& CompleteTestType::array_bool_field()
 {
     return m_array_bool_field;
 }
@@ -4385,7 +4385,7 @@ std::array<bool, eprosima::test::max_array_size>& CompleteTestType::array_bool_f
  * @param _array_enum_field New value to be copied in member array_enum_field
  */
 void CompleteTestType::array_enum_field(
-        const std::array<eprosima::test::Color, eprosima::test::max_array_size>& _array_enum_field)
+        const std::array<eprosima::test::Color, max_array_size>& _array_enum_field)
 {
     m_array_enum_field = _array_enum_field;
 }
@@ -4395,7 +4395,7 @@ void CompleteTestType::array_enum_field(
  * @param _array_enum_field New value to be moved in member array_enum_field
  */
 void CompleteTestType::array_enum_field(
-        std::array<eprosima::test::Color, eprosima::test::max_array_size>&& _array_enum_field)
+        std::array<eprosima::test::Color, max_array_size>&& _array_enum_field)
 {
     m_array_enum_field = std::move(_array_enum_field);
 }
@@ -4404,7 +4404,7 @@ void CompleteTestType::array_enum_field(
  * @brief This function returns a constant reference to member array_enum_field
  * @return Constant reference to member array_enum_field
  */
-const std::array<eprosima::test::Color, eprosima::test::max_array_size>& CompleteTestType::array_enum_field() const
+const std::array<eprosima::test::Color, max_array_size>& CompleteTestType::array_enum_field() const
 {
     return m_array_enum_field;
 }
@@ -4413,7 +4413,7 @@ const std::array<eprosima::test::Color, eprosima::test::max_array_size>& Complet
  * @brief This function returns a reference to member array_enum_field
  * @return Reference to member array_enum_field
  */
-std::array<eprosima::test::Color, eprosima::test::max_array_size>& CompleteTestType::array_enum_field()
+std::array<eprosima::test::Color, max_array_size>& CompleteTestType::array_enum_field()
 {
     return m_array_enum_field;
 }
@@ -4424,7 +4424,7 @@ std::array<eprosima::test::Color, eprosima::test::max_array_size>& CompleteTestT
  * @param _array_enum2_field New value to be copied in member array_enum2_field
  */
 void CompleteTestType::array_enum2_field(
-        const std::array<eprosima::test::Material, eprosima::test::max_array_size>& _array_enum2_field)
+        const std::array<eprosima::test::Material, max_array_size>& _array_enum2_field)
 {
     m_array_enum2_field = _array_enum2_field;
 }
@@ -4434,7 +4434,7 @@ void CompleteTestType::array_enum2_field(
  * @param _array_enum2_field New value to be moved in member array_enum2_field
  */
 void CompleteTestType::array_enum2_field(
-        std::array<eprosima::test::Material, eprosima::test::max_array_size>&& _array_enum2_field)
+        std::array<eprosima::test::Material, max_array_size>&& _array_enum2_field)
 {
     m_array_enum2_field = std::move(_array_enum2_field);
 }
@@ -4443,7 +4443,7 @@ void CompleteTestType::array_enum2_field(
  * @brief This function returns a constant reference to member array_enum2_field
  * @return Constant reference to member array_enum2_field
  */
-const std::array<eprosima::test::Material, eprosima::test::max_array_size>& CompleteTestType::array_enum2_field() const
+const std::array<eprosima::test::Material, max_array_size>& CompleteTestType::array_enum2_field() const
 {
     return m_array_enum2_field;
 }
@@ -4452,7 +4452,7 @@ const std::array<eprosima::test::Material, eprosima::test::max_array_size>& Comp
  * @brief This function returns a reference to member array_enum2_field
  * @return Reference to member array_enum2_field
  */
-std::array<eprosima::test::Material, eprosima::test::max_array_size>& CompleteTestType::array_enum2_field()
+std::array<eprosima::test::Material, max_array_size>& CompleteTestType::array_enum2_field()
 {
     return m_array_enum2_field;
 }
@@ -4463,7 +4463,7 @@ std::array<eprosima::test::Material, eprosima::test::max_array_size>& CompleteTe
  * @param _array_struct_field New value to be copied in member array_struct_field
  */
 void CompleteTestType::array_struct_field(
-        const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& _array_struct_field)
+        const std::array<eprosima::test::StructType, max_array_size>& _array_struct_field)
 {
     m_array_struct_field = _array_struct_field;
 }
@@ -4473,7 +4473,7 @@ void CompleteTestType::array_struct_field(
  * @param _array_struct_field New value to be moved in member array_struct_field
  */
 void CompleteTestType::array_struct_field(
-        std::array<eprosima::test::StructType, eprosima::test::max_array_size>&& _array_struct_field)
+        std::array<eprosima::test::StructType, max_array_size>&& _array_struct_field)
 {
     m_array_struct_field = std::move(_array_struct_field);
 }
@@ -4482,7 +4482,7 @@ void CompleteTestType::array_struct_field(
  * @brief This function returns a constant reference to member array_struct_field
  * @return Constant reference to member array_struct_field
  */
-const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& CompleteTestType::array_struct_field() const
+const std::array<eprosima::test::StructType, max_array_size>& CompleteTestType::array_struct_field() const
 {
     return m_array_struct_field;
 }
@@ -4491,7 +4491,7 @@ const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& Co
  * @brief This function returns a reference to member array_struct_field
  * @return Reference to member array_struct_field
  */
-std::array<eprosima::test::StructType, eprosima::test::max_array_size>& CompleteTestType::array_struct_field()
+std::array<eprosima::test::StructType, max_array_size>& CompleteTestType::array_struct_field()
 {
     return m_array_struct_field;
 }
@@ -5659,60 +5659,60 @@ KeyedCompleteTestType::KeyedCompleteTestType()
     // eprosima::test::StructType m_struct_opt_field
 
     // char m_array_char_field
-    memset(&m_array_char_field, 0, ((eprosima::test::max_array_size)) * 1);
+    memset(&m_array_char_field, 0, ((max_array_size)) * 1);
     // octet m_array_uint8_field
-    memset(&m_array_uint8_field, 0, ((eprosima::test::max_array_size)) * 1);
+    memset(&m_array_uint8_field, 0, ((max_array_size)) * 1);
     // short m_array_int16_field
-    memset(&m_array_int16_field, 0, ((eprosima::test::max_array_size)) * 2);
+    memset(&m_array_int16_field, 0, ((max_array_size)) * 2);
     // unsigned short m_array_uint16_field
-    memset(&m_array_uint16_field, 0, ((eprosima::test::max_array_size)) * 2);
+    memset(&m_array_uint16_field, 0, ((max_array_size)) * 2);
     // long m_array_int32_field
-    memset(&m_array_int32_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_int32_field, 0, ((max_array_size)) * 4);
     // unsigned long m_array_uint32_field
-    memset(&m_array_uint32_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_uint32_field, 0, ((max_array_size)) * 4);
     // long long m_array_int64_field
-    memset(&m_array_int64_field, 0, ((eprosima::test::max_array_size)) * 8);
+    memset(&m_array_int64_field, 0, ((max_array_size)) * 8);
     // unsigned long long m_array_uint64_field
-    memset(&m_array_uint64_field, 0, ((eprosima::test::max_array_size)) * 8);
+    memset(&m_array_uint64_field, 0, ((max_array_size)) * 8);
     // float m_array_float_field
-    memset(&m_array_float_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_float_field, 0, ((max_array_size)) * 4);
     // double m_array_double_field
-    memset(&m_array_double_field, 0, ((eprosima::test::max_array_size)) * 8);
+    memset(&m_array_double_field, 0, ((max_array_size)) * 8);
     // boolean m_array_bool_field
-    memset(&m_array_bool_field, 0, ((eprosima::test::max_array_size)) * 1);
+    memset(&m_array_bool_field, 0, ((max_array_size)) * 1);
     // eprosima::test::Color m_array_enum_field
-    memset(&m_array_enum_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_enum_field, 0, ((max_array_size)) * 4);
     // eprosima::test::Material m_array_enum2_field
-    memset(&m_array_enum2_field, 0, ((eprosima::test::max_array_size)) * 4);
+    memset(&m_array_enum2_field, 0, ((max_array_size)) * 4);
     // eprosima::test::StructType m_array_struct_field
 
-    // sequence<char, eprosima::test::max_seq_size> m_bounded_sequence_char_field
+    // sequence<char, max_seq_size> m_bounded_sequence_char_field
 
-    // sequence<octet, eprosima::test::max_seq_size> m_bounded_sequence_uint8_field
+    // sequence<octet, max_seq_size> m_bounded_sequence_uint8_field
 
-    // sequence<short, eprosima::test::max_seq_size> m_bounded_sequence_int16_field
+    // sequence<short, max_seq_size> m_bounded_sequence_int16_field
 
-    // sequence<unsigned short, eprosima::test::max_seq_size> m_bounded_sequence_uint16_field
+    // sequence<unsigned short, max_seq_size> m_bounded_sequence_uint16_field
 
-    // sequence<long, eprosima::test::max_seq_size> m_bounded_sequence_int32_field
+    // sequence<long, max_seq_size> m_bounded_sequence_int32_field
 
-    // sequence<unsigned long, eprosima::test::max_seq_size> m_bounded_sequence_uint32_field
+    // sequence<unsigned long, max_seq_size> m_bounded_sequence_uint32_field
 
-    // sequence<long long, eprosima::test::max_seq_size> m_bounded_sequence_int64_field
+    // sequence<long long, max_seq_size> m_bounded_sequence_int64_field
 
-    // sequence<unsigned long long, eprosima::test::max_seq_size> m_bounded_sequence_uint64_field
+    // sequence<unsigned long long, max_seq_size> m_bounded_sequence_uint64_field
 
-    // sequence<float, eprosima::test::max_seq_size> m_bounded_sequence_float_field
+    // sequence<float, max_seq_size> m_bounded_sequence_float_field
 
-    // sequence<double, eprosima::test::max_seq_size> m_bounded_sequence_double_field
+    // sequence<double, max_seq_size> m_bounded_sequence_double_field
 
-    // sequence<boolean, eprosima::test::max_seq_size> m_bounded_sequence_bool_field
+    // sequence<boolean, max_seq_size> m_bounded_sequence_bool_field
 
-    // sequence<eprosima::test::Color, eprosima::test::max_seq_size> m_bounded_sequence_enum_field
+    // sequence<eprosima::test::Color, max_seq_size> m_bounded_sequence_enum_field
 
-    // sequence<eprosima::test::Material, eprosima::test::max_seq_size> m_bounded_sequence_enum2_field
+    // sequence<eprosima::test::Material, max_seq_size> m_bounded_sequence_enum2_field
 
-    // sequence<eprosima::test::StructType, eprosima::test::max_seq_size> m_bounded_sequence_struct_field
+    // sequence<eprosima::test::StructType, max_seq_size> m_bounded_sequence_struct_field
 
     // sequence<char> m_unbounded_sequence_char_field
 
@@ -6834,55 +6834,55 @@ size_t KeyedCompleteTestType::getCdrSerializedSize(
     current_alignment += eprosima::test::StructType::getCdrSerializedSize(data.struct_opt_field(), current_alignment);
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += (((max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += (((max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    current_alignment += (((max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
+    current_alignment += (((max_array_size)) * 2) + eprosima::fastcdr::Cdr::alignment(current_alignment, 2);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    current_alignment += (((max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    current_alignment += (((max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
+    current_alignment += (((max_array_size)) * 8) + eprosima::fastcdr::Cdr::alignment(current_alignment, 8);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
+    current_alignment += (((max_array_size)) * 1) + eprosima::fastcdr::Cdr::alignment(current_alignment, 1);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
-    current_alignment += (((eprosima::test::max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
+    current_alignment += (((max_array_size)) * 4) + eprosima::fastcdr::Cdr::alignment(current_alignment, 4);
 
 
 
@@ -8739,7 +8739,7 @@ eprosima::test::StructType& KeyedCompleteTestType::struct_opt_field()
  * @param _array_char_field New value to be copied in member array_char_field
  */
 void KeyedCompleteTestType::array_char_field(
-        const std::array<char, eprosima::test::max_array_size>& _array_char_field)
+        const std::array<char, max_array_size>& _array_char_field)
 {
     m_array_char_field = _array_char_field;
 }
@@ -8749,7 +8749,7 @@ void KeyedCompleteTestType::array_char_field(
  * @param _array_char_field New value to be moved in member array_char_field
  */
 void KeyedCompleteTestType::array_char_field(
-        std::array<char, eprosima::test::max_array_size>&& _array_char_field)
+        std::array<char, max_array_size>&& _array_char_field)
 {
     m_array_char_field = std::move(_array_char_field);
 }
@@ -8758,7 +8758,7 @@ void KeyedCompleteTestType::array_char_field(
  * @brief This function returns a constant reference to member array_char_field
  * @return Constant reference to member array_char_field
  */
-const std::array<char, eprosima::test::max_array_size>& KeyedCompleteTestType::array_char_field() const
+const std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field() const
 {
     return m_array_char_field;
 }
@@ -8767,7 +8767,7 @@ const std::array<char, eprosima::test::max_array_size>& KeyedCompleteTestType::a
  * @brief This function returns a reference to member array_char_field
  * @return Reference to member array_char_field
  */
-std::array<char, eprosima::test::max_array_size>& KeyedCompleteTestType::array_char_field()
+std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field()
 {
     return m_array_char_field;
 }
@@ -8778,7 +8778,7 @@ std::array<char, eprosima::test::max_array_size>& KeyedCompleteTestType::array_c
  * @param _array_uint8_field New value to be copied in member array_uint8_field
  */
 void KeyedCompleteTestType::array_uint8_field(
-        const std::array<uint8_t, eprosima::test::max_array_size>& _array_uint8_field)
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
 {
     m_array_uint8_field = _array_uint8_field;
 }
@@ -8788,7 +8788,7 @@ void KeyedCompleteTestType::array_uint8_field(
  * @param _array_uint8_field New value to be moved in member array_uint8_field
  */
 void KeyedCompleteTestType::array_uint8_field(
-        std::array<uint8_t, eprosima::test::max_array_size>&& _array_uint8_field)
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
 {
     m_array_uint8_field = std::move(_array_uint8_field);
 }
@@ -8797,7 +8797,7 @@ void KeyedCompleteTestType::array_uint8_field(
  * @brief This function returns a constant reference to member array_uint8_field
  * @return Constant reference to member array_uint8_field
  */
-const std::array<uint8_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint8_field() const
+const std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field() const
 {
     return m_array_uint8_field;
 }
@@ -8806,7 +8806,7 @@ const std::array<uint8_t, eprosima::test::max_array_size>& KeyedCompleteTestType
  * @brief This function returns a reference to member array_uint8_field
  * @return Reference to member array_uint8_field
  */
-std::array<uint8_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint8_field()
+std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field()
 {
     return m_array_uint8_field;
 }
@@ -8817,7 +8817,7 @@ std::array<uint8_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arra
  * @param _array_int16_field New value to be copied in member array_int16_field
  */
 void KeyedCompleteTestType::array_int16_field(
-        const std::array<int16_t, eprosima::test::max_array_size>& _array_int16_field)
+        const std::array<int16_t, max_array_size>& _array_int16_field)
 {
     m_array_int16_field = _array_int16_field;
 }
@@ -8827,7 +8827,7 @@ void KeyedCompleteTestType::array_int16_field(
  * @param _array_int16_field New value to be moved in member array_int16_field
  */
 void KeyedCompleteTestType::array_int16_field(
-        std::array<int16_t, eprosima::test::max_array_size>&& _array_int16_field)
+        std::array<int16_t, max_array_size>&& _array_int16_field)
 {
     m_array_int16_field = std::move(_array_int16_field);
 }
@@ -8836,7 +8836,7 @@ void KeyedCompleteTestType::array_int16_field(
  * @brief This function returns a constant reference to member array_int16_field
  * @return Constant reference to member array_int16_field
  */
-const std::array<int16_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_int16_field() const
+const std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field() const
 {
     return m_array_int16_field;
 }
@@ -8845,7 +8845,7 @@ const std::array<int16_t, eprosima::test::max_array_size>& KeyedCompleteTestType
  * @brief This function returns a reference to member array_int16_field
  * @return Reference to member array_int16_field
  */
-std::array<int16_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_int16_field()
+std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field()
 {
     return m_array_int16_field;
 }
@@ -8856,7 +8856,7 @@ std::array<int16_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arra
  * @param _array_uint16_field New value to be copied in member array_uint16_field
  */
 void KeyedCompleteTestType::array_uint16_field(
-        const std::array<uint16_t, eprosima::test::max_array_size>& _array_uint16_field)
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
 {
     m_array_uint16_field = _array_uint16_field;
 }
@@ -8866,7 +8866,7 @@ void KeyedCompleteTestType::array_uint16_field(
  * @param _array_uint16_field New value to be moved in member array_uint16_field
  */
 void KeyedCompleteTestType::array_uint16_field(
-        std::array<uint16_t, eprosima::test::max_array_size>&& _array_uint16_field)
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
 {
     m_array_uint16_field = std::move(_array_uint16_field);
 }
@@ -8875,7 +8875,7 @@ void KeyedCompleteTestType::array_uint16_field(
  * @brief This function returns a constant reference to member array_uint16_field
  * @return Constant reference to member array_uint16_field
  */
-const std::array<uint16_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint16_field() const
+const std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field() const
 {
     return m_array_uint16_field;
 }
@@ -8884,7 +8884,7 @@ const std::array<uint16_t, eprosima::test::max_array_size>& KeyedCompleteTestTyp
  * @brief This function returns a reference to member array_uint16_field
  * @return Reference to member array_uint16_field
  */
-std::array<uint16_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint16_field()
+std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field()
 {
     return m_array_uint16_field;
 }
@@ -8895,7 +8895,7 @@ std::array<uint16_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arr
  * @param _array_int32_field New value to be copied in member array_int32_field
  */
 void KeyedCompleteTestType::array_int32_field(
-        const std::array<int32_t, eprosima::test::max_array_size>& _array_int32_field)
+        const std::array<int32_t, max_array_size>& _array_int32_field)
 {
     m_array_int32_field = _array_int32_field;
 }
@@ -8905,7 +8905,7 @@ void KeyedCompleteTestType::array_int32_field(
  * @param _array_int32_field New value to be moved in member array_int32_field
  */
 void KeyedCompleteTestType::array_int32_field(
-        std::array<int32_t, eprosima::test::max_array_size>&& _array_int32_field)
+        std::array<int32_t, max_array_size>&& _array_int32_field)
 {
     m_array_int32_field = std::move(_array_int32_field);
 }
@@ -8914,7 +8914,7 @@ void KeyedCompleteTestType::array_int32_field(
  * @brief This function returns a constant reference to member array_int32_field
  * @return Constant reference to member array_int32_field
  */
-const std::array<int32_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_int32_field() const
+const std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field() const
 {
     return m_array_int32_field;
 }
@@ -8923,7 +8923,7 @@ const std::array<int32_t, eprosima::test::max_array_size>& KeyedCompleteTestType
  * @brief This function returns a reference to member array_int32_field
  * @return Reference to member array_int32_field
  */
-std::array<int32_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_int32_field()
+std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field()
 {
     return m_array_int32_field;
 }
@@ -8934,7 +8934,7 @@ std::array<int32_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arra
  * @param _array_uint32_field New value to be copied in member array_uint32_field
  */
 void KeyedCompleteTestType::array_uint32_field(
-        const std::array<uint32_t, eprosima::test::max_array_size>& _array_uint32_field)
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
 {
     m_array_uint32_field = _array_uint32_field;
 }
@@ -8944,7 +8944,7 @@ void KeyedCompleteTestType::array_uint32_field(
  * @param _array_uint32_field New value to be moved in member array_uint32_field
  */
 void KeyedCompleteTestType::array_uint32_field(
-        std::array<uint32_t, eprosima::test::max_array_size>&& _array_uint32_field)
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
 {
     m_array_uint32_field = std::move(_array_uint32_field);
 }
@@ -8953,7 +8953,7 @@ void KeyedCompleteTestType::array_uint32_field(
  * @brief This function returns a constant reference to member array_uint32_field
  * @return Constant reference to member array_uint32_field
  */
-const std::array<uint32_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint32_field() const
+const std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field() const
 {
     return m_array_uint32_field;
 }
@@ -8962,7 +8962,7 @@ const std::array<uint32_t, eprosima::test::max_array_size>& KeyedCompleteTestTyp
  * @brief This function returns a reference to member array_uint32_field
  * @return Reference to member array_uint32_field
  */
-std::array<uint32_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint32_field()
+std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field()
 {
     return m_array_uint32_field;
 }
@@ -8973,7 +8973,7 @@ std::array<uint32_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arr
  * @param _array_int64_field New value to be copied in member array_int64_field
  */
 void KeyedCompleteTestType::array_int64_field(
-        const std::array<int64_t, eprosima::test::max_array_size>& _array_int64_field)
+        const std::array<int64_t, max_array_size>& _array_int64_field)
 {
     m_array_int64_field = _array_int64_field;
 }
@@ -8983,7 +8983,7 @@ void KeyedCompleteTestType::array_int64_field(
  * @param _array_int64_field New value to be moved in member array_int64_field
  */
 void KeyedCompleteTestType::array_int64_field(
-        std::array<int64_t, eprosima::test::max_array_size>&& _array_int64_field)
+        std::array<int64_t, max_array_size>&& _array_int64_field)
 {
     m_array_int64_field = std::move(_array_int64_field);
 }
@@ -8992,7 +8992,7 @@ void KeyedCompleteTestType::array_int64_field(
  * @brief This function returns a constant reference to member array_int64_field
  * @return Constant reference to member array_int64_field
  */
-const std::array<int64_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_int64_field() const
+const std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field() const
 {
     return m_array_int64_field;
 }
@@ -9001,7 +9001,7 @@ const std::array<int64_t, eprosima::test::max_array_size>& KeyedCompleteTestType
  * @brief This function returns a reference to member array_int64_field
  * @return Reference to member array_int64_field
  */
-std::array<int64_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_int64_field()
+std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field()
 {
     return m_array_int64_field;
 }
@@ -9012,7 +9012,7 @@ std::array<int64_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arra
  * @param _array_uint64_field New value to be copied in member array_uint64_field
  */
 void KeyedCompleteTestType::array_uint64_field(
-        const std::array<uint64_t, eprosima::test::max_array_size>& _array_uint64_field)
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
 {
     m_array_uint64_field = _array_uint64_field;
 }
@@ -9022,7 +9022,7 @@ void KeyedCompleteTestType::array_uint64_field(
  * @param _array_uint64_field New value to be moved in member array_uint64_field
  */
 void KeyedCompleteTestType::array_uint64_field(
-        std::array<uint64_t, eprosima::test::max_array_size>&& _array_uint64_field)
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
 {
     m_array_uint64_field = std::move(_array_uint64_field);
 }
@@ -9031,7 +9031,7 @@ void KeyedCompleteTestType::array_uint64_field(
  * @brief This function returns a constant reference to member array_uint64_field
  * @return Constant reference to member array_uint64_field
  */
-const std::array<uint64_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint64_field() const
+const std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field() const
 {
     return m_array_uint64_field;
 }
@@ -9040,7 +9040,7 @@ const std::array<uint64_t, eprosima::test::max_array_size>& KeyedCompleteTestTyp
  * @brief This function returns a reference to member array_uint64_field
  * @return Reference to member array_uint64_field
  */
-std::array<uint64_t, eprosima::test::max_array_size>& KeyedCompleteTestType::array_uint64_field()
+std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field()
 {
     return m_array_uint64_field;
 }
@@ -9051,7 +9051,7 @@ std::array<uint64_t, eprosima::test::max_array_size>& KeyedCompleteTestType::arr
  * @param _array_float_field New value to be copied in member array_float_field
  */
 void KeyedCompleteTestType::array_float_field(
-        const std::array<float, eprosima::test::max_array_size>& _array_float_field)
+        const std::array<float, max_array_size>& _array_float_field)
 {
     m_array_float_field = _array_float_field;
 }
@@ -9061,7 +9061,7 @@ void KeyedCompleteTestType::array_float_field(
  * @param _array_float_field New value to be moved in member array_float_field
  */
 void KeyedCompleteTestType::array_float_field(
-        std::array<float, eprosima::test::max_array_size>&& _array_float_field)
+        std::array<float, max_array_size>&& _array_float_field)
 {
     m_array_float_field = std::move(_array_float_field);
 }
@@ -9070,7 +9070,7 @@ void KeyedCompleteTestType::array_float_field(
  * @brief This function returns a constant reference to member array_float_field
  * @return Constant reference to member array_float_field
  */
-const std::array<float, eprosima::test::max_array_size>& KeyedCompleteTestType::array_float_field() const
+const std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field() const
 {
     return m_array_float_field;
 }
@@ -9079,7 +9079,7 @@ const std::array<float, eprosima::test::max_array_size>& KeyedCompleteTestType::
  * @brief This function returns a reference to member array_float_field
  * @return Reference to member array_float_field
  */
-std::array<float, eprosima::test::max_array_size>& KeyedCompleteTestType::array_float_field()
+std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field()
 {
     return m_array_float_field;
 }
@@ -9090,7 +9090,7 @@ std::array<float, eprosima::test::max_array_size>& KeyedCompleteTestType::array_
  * @param _array_double_field New value to be copied in member array_double_field
  */
 void KeyedCompleteTestType::array_double_field(
-        const std::array<double, eprosima::test::max_array_size>& _array_double_field)
+        const std::array<double, max_array_size>& _array_double_field)
 {
     m_array_double_field = _array_double_field;
 }
@@ -9100,7 +9100,7 @@ void KeyedCompleteTestType::array_double_field(
  * @param _array_double_field New value to be moved in member array_double_field
  */
 void KeyedCompleteTestType::array_double_field(
-        std::array<double, eprosima::test::max_array_size>&& _array_double_field)
+        std::array<double, max_array_size>&& _array_double_field)
 {
     m_array_double_field = std::move(_array_double_field);
 }
@@ -9109,7 +9109,7 @@ void KeyedCompleteTestType::array_double_field(
  * @brief This function returns a constant reference to member array_double_field
  * @return Constant reference to member array_double_field
  */
-const std::array<double, eprosima::test::max_array_size>& KeyedCompleteTestType::array_double_field() const
+const std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field() const
 {
     return m_array_double_field;
 }
@@ -9118,7 +9118,7 @@ const std::array<double, eprosima::test::max_array_size>& KeyedCompleteTestType:
  * @brief This function returns a reference to member array_double_field
  * @return Reference to member array_double_field
  */
-std::array<double, eprosima::test::max_array_size>& KeyedCompleteTestType::array_double_field()
+std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field()
 {
     return m_array_double_field;
 }
@@ -9129,7 +9129,7 @@ std::array<double, eprosima::test::max_array_size>& KeyedCompleteTestType::array
  * @param _array_bool_field New value to be copied in member array_bool_field
  */
 void KeyedCompleteTestType::array_bool_field(
-        const std::array<bool, eprosima::test::max_array_size>& _array_bool_field)
+        const std::array<bool, max_array_size>& _array_bool_field)
 {
     m_array_bool_field = _array_bool_field;
 }
@@ -9139,7 +9139,7 @@ void KeyedCompleteTestType::array_bool_field(
  * @param _array_bool_field New value to be moved in member array_bool_field
  */
 void KeyedCompleteTestType::array_bool_field(
-        std::array<bool, eprosima::test::max_array_size>&& _array_bool_field)
+        std::array<bool, max_array_size>&& _array_bool_field)
 {
     m_array_bool_field = std::move(_array_bool_field);
 }
@@ -9148,7 +9148,7 @@ void KeyedCompleteTestType::array_bool_field(
  * @brief This function returns a constant reference to member array_bool_field
  * @return Constant reference to member array_bool_field
  */
-const std::array<bool, eprosima::test::max_array_size>& KeyedCompleteTestType::array_bool_field() const
+const std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field() const
 {
     return m_array_bool_field;
 }
@@ -9157,7 +9157,7 @@ const std::array<bool, eprosima::test::max_array_size>& KeyedCompleteTestType::a
  * @brief This function returns a reference to member array_bool_field
  * @return Reference to member array_bool_field
  */
-std::array<bool, eprosima::test::max_array_size>& KeyedCompleteTestType::array_bool_field()
+std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field()
 {
     return m_array_bool_field;
 }
@@ -9168,7 +9168,7 @@ std::array<bool, eprosima::test::max_array_size>& KeyedCompleteTestType::array_b
  * @param _array_enum_field New value to be copied in member array_enum_field
  */
 void KeyedCompleteTestType::array_enum_field(
-        const std::array<eprosima::test::Color, eprosima::test::max_array_size>& _array_enum_field)
+        const std::array<eprosima::test::Color, max_array_size>& _array_enum_field)
 {
     m_array_enum_field = _array_enum_field;
 }
@@ -9178,7 +9178,7 @@ void KeyedCompleteTestType::array_enum_field(
  * @param _array_enum_field New value to be moved in member array_enum_field
  */
 void KeyedCompleteTestType::array_enum_field(
-        std::array<eprosima::test::Color, eprosima::test::max_array_size>&& _array_enum_field)
+        std::array<eprosima::test::Color, max_array_size>&& _array_enum_field)
 {
     m_array_enum_field = std::move(_array_enum_field);
 }
@@ -9187,7 +9187,7 @@ void KeyedCompleteTestType::array_enum_field(
  * @brief This function returns a constant reference to member array_enum_field
  * @return Constant reference to member array_enum_field
  */
-const std::array<eprosima::test::Color, eprosima::test::max_array_size>& KeyedCompleteTestType::array_enum_field() const
+const std::array<eprosima::test::Color, max_array_size>& KeyedCompleteTestType::array_enum_field() const
 {
     return m_array_enum_field;
 }
@@ -9196,7 +9196,7 @@ const std::array<eprosima::test::Color, eprosima::test::max_array_size>& KeyedCo
  * @brief This function returns a reference to member array_enum_field
  * @return Reference to member array_enum_field
  */
-std::array<eprosima::test::Color, eprosima::test::max_array_size>& KeyedCompleteTestType::array_enum_field()
+std::array<eprosima::test::Color, max_array_size>& KeyedCompleteTestType::array_enum_field()
 {
     return m_array_enum_field;
 }
@@ -9207,7 +9207,7 @@ std::array<eprosima::test::Color, eprosima::test::max_array_size>& KeyedComplete
  * @param _array_enum2_field New value to be copied in member array_enum2_field
  */
 void KeyedCompleteTestType::array_enum2_field(
-        const std::array<eprosima::test::Material, eprosima::test::max_array_size>& _array_enum2_field)
+        const std::array<eprosima::test::Material, max_array_size>& _array_enum2_field)
 {
     m_array_enum2_field = _array_enum2_field;
 }
@@ -9217,7 +9217,7 @@ void KeyedCompleteTestType::array_enum2_field(
  * @param _array_enum2_field New value to be moved in member array_enum2_field
  */
 void KeyedCompleteTestType::array_enum2_field(
-        std::array<eprosima::test::Material, eprosima::test::max_array_size>&& _array_enum2_field)
+        std::array<eprosima::test::Material, max_array_size>&& _array_enum2_field)
 {
     m_array_enum2_field = std::move(_array_enum2_field);
 }
@@ -9226,7 +9226,7 @@ void KeyedCompleteTestType::array_enum2_field(
  * @brief This function returns a constant reference to member array_enum2_field
  * @return Constant reference to member array_enum2_field
  */
-const std::array<eprosima::test::Material, eprosima::test::max_array_size>& KeyedCompleteTestType::array_enum2_field() const
+const std::array<eprosima::test::Material, max_array_size>& KeyedCompleteTestType::array_enum2_field() const
 {
     return m_array_enum2_field;
 }
@@ -9235,7 +9235,7 @@ const std::array<eprosima::test::Material, eprosima::test::max_array_size>& Keye
  * @brief This function returns a reference to member array_enum2_field
  * @return Reference to member array_enum2_field
  */
-std::array<eprosima::test::Material, eprosima::test::max_array_size>& KeyedCompleteTestType::array_enum2_field()
+std::array<eprosima::test::Material, max_array_size>& KeyedCompleteTestType::array_enum2_field()
 {
     return m_array_enum2_field;
 }
@@ -9246,7 +9246,7 @@ std::array<eprosima::test::Material, eprosima::test::max_array_size>& KeyedCompl
  * @param _array_struct_field New value to be copied in member array_struct_field
  */
 void KeyedCompleteTestType::array_struct_field(
-        const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& _array_struct_field)
+        const std::array<eprosima::test::StructType, max_array_size>& _array_struct_field)
 {
     m_array_struct_field = _array_struct_field;
 }
@@ -9256,7 +9256,7 @@ void KeyedCompleteTestType::array_struct_field(
  * @param _array_struct_field New value to be moved in member array_struct_field
  */
 void KeyedCompleteTestType::array_struct_field(
-        std::array<eprosima::test::StructType, eprosima::test::max_array_size>&& _array_struct_field)
+        std::array<eprosima::test::StructType, max_array_size>&& _array_struct_field)
 {
     m_array_struct_field = std::move(_array_struct_field);
 }
@@ -9265,7 +9265,7 @@ void KeyedCompleteTestType::array_struct_field(
  * @brief This function returns a constant reference to member array_struct_field
  * @return Constant reference to member array_struct_field
  */
-const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& KeyedCompleteTestType::array_struct_field() const
+const std::array<eprosima::test::StructType, max_array_size>& KeyedCompleteTestType::array_struct_field() const
 {
     return m_array_struct_field;
 }
@@ -9274,7 +9274,7 @@ const std::array<eprosima::test::StructType, eprosima::test::max_array_size>& Ke
  * @brief This function returns a reference to member array_struct_field
  * @return Reference to member array_struct_field
  */
-std::array<eprosima::test::StructType, eprosima::test::max_array_size>& KeyedCompleteTestType::array_struct_field()
+std::array<eprosima::test::StructType, max_array_size>& KeyedCompleteTestType::array_struct_field()
 {
     return m_array_struct_field;
 }

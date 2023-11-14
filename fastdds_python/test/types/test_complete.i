@@ -840,8 +840,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_char_field() const;
-%template(char_3_array) std::array<char,max_array_size>;
-%extend std::array<char, max_array_size>
+%template(char_3_array) std::array<char,3>;
+%extend std::array<char, 3>
 {
     const char* get_buffer() const
     {
@@ -857,8 +857,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint8_field() const;
-%template(uint8_t_3_array) std::array<uint8_t,max_array_size>;
-%extend std::array<uint8_t, max_array_size>
+%template(uint8_t_3_array) std::array<uint8_t,3>;
+%extend std::array<uint8_t, 3>
 {
     const uint8_t* get_buffer() const
     {
@@ -874,8 +874,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int16_field() const;
-%template(int16_t_3_array) std::array<int16_t,max_array_size>;
-%extend std::array<int16_t, max_array_size>
+%template(int16_t_3_array) std::array<int16_t,3>;
+%extend std::array<int16_t, 3>
 {
     const int16_t* get_buffer() const
     {
@@ -891,8 +891,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint16_field() const;
-%template(uint16_t_3_array) std::array<uint16_t,max_array_size>;
-%extend std::array<uint16_t, max_array_size>
+%template(uint16_t_3_array) std::array<uint16_t,3>;
+%extend std::array<uint16_t, 3>
 {
     const uint16_t* get_buffer() const
     {
@@ -908,8 +908,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int32_field() const;
-%template(int32_t_3_array) std::array<int32_t,max_array_size>;
-%extend std::array<int32_t, max_array_size>
+%template(int32_t_3_array) std::array<int32_t,3>;
+%extend std::array<int32_t, 3>
 {
     const int32_t* get_buffer() const
     {
@@ -925,8 +925,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint32_field() const;
-%template(uint32_t_3_array) std::array<uint32_t,max_array_size>;
-%extend std::array<uint32_t, max_array_size>
+%template(uint32_t_3_array) std::array<uint32_t,3>;
+%extend std::array<uint32_t, 3>
 {
     const uint32_t* get_buffer() const
     {
@@ -942,8 +942,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_int64_field() const;
-%template(int64_t_3_array) std::array<int64_t,max_array_size>;
-%extend std::array<int64_t, max_array_size>
+%template(int64_t_3_array) std::array<int64_t,3>;
+%extend std::array<int64_t, 3>
 {
     const int64_t* get_buffer() const
     {
@@ -959,8 +959,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_uint64_field() const;
-%template(uint64_t_3_array) std::array<uint64_t,max_array_size>;
-%extend std::array<uint64_t, max_array_size>
+%template(uint64_t_3_array) std::array<uint64_t,3>;
+%extend std::array<uint64_t, 3>
 {
     const uint64_t* get_buffer() const
     {
@@ -976,8 +976,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_float_field() const;
-%template(float_3_array) std::array<float,max_array_size>;
-%extend std::array<float, max_array_size>
+%template(float_3_array) std::array<float,3>;
+%extend std::array<float, 3>
 {
     const float* get_buffer() const
     {
@@ -993,8 +993,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_double_field() const;
-%template(double_3_array) std::array<double,max_array_size>;
-%extend std::array<double, max_array_size>
+%template(double_3_array) std::array<double,3>;
+%extend std::array<double, 3>
 {
     const double* get_buffer() const
     {
@@ -1010,8 +1010,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_bool_field() const;
-%template(bool_3_array) std::array<bool,max_array_size>;
-%extend std::array<bool, max_array_size>
+%template(bool_3_array) std::array<bool,3>;
+%extend std::array<bool, 3>
 {
     const bool* get_buffer() const
     {
@@ -1027,8 +1027,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum_field() const;
-%template(Color_3_array) std::array<enum Color,max_array_size>;
-%extend std::array<enum Color, max_array_size>
+%template(Color_3_array) std::array<enum Color,3>;
+%extend std::array<enum Color, 3>
 {
     const enum Color* get_buffer() const
     {
@@ -1044,8 +1044,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_enum2_field() const;
-%template(Material_3_array) std::array<enum Material,max_array_size>;
-%extend std::array<enum Material, max_array_size>
+%template(Material_3_array) std::array<enum Material,3>;
+%extend std::array<enum Material, 3>
 {
     const enum Material* get_buffer() const
     {
@@ -1061,7 +1061,7 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore CompleteTestType::array_struct_field() const;
-%template(StructType_3_array) std::array<StructType,max_array_size>;
+%template(StructType_3_array) std::array<StructType,3>;
 
 
 %ignore CompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
@@ -2138,8 +2138,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_char_field() const;
-%template(char_3_array) std::array<char,max_array_size>;
-%extend std::array<char, max_array_size>
+%template(char_3_array) std::array<char,3>;
+%extend std::array<char, 3>
 {
     const char* get_buffer() const
     {
@@ -2155,8 +2155,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint8_field() const;
-%template(uint8_t_3_array) std::array<uint8_t,max_array_size>;
-%extend std::array<uint8_t, max_array_size>
+%template(uint8_t_3_array) std::array<uint8_t,3>;
+%extend std::array<uint8_t, 3>
 {
     const uint8_t* get_buffer() const
     {
@@ -2172,8 +2172,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int16_field() const;
-%template(int16_t_3_array) std::array<int16_t,max_array_size>;
-%extend std::array<int16_t, max_array_size>
+%template(int16_t_3_array) std::array<int16_t,3>;
+%extend std::array<int16_t, 3>
 {
     const int16_t* get_buffer() const
     {
@@ -2189,8 +2189,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint16_field() const;
-%template(uint16_t_3_array) std::array<uint16_t,max_array_size>;
-%extend std::array<uint16_t, max_array_size>
+%template(uint16_t_3_array) std::array<uint16_t,3>;
+%extend std::array<uint16_t, 3>
 {
     const uint16_t* get_buffer() const
     {
@@ -2206,8 +2206,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int32_field() const;
-%template(int32_t_3_array) std::array<int32_t,max_array_size>;
-%extend std::array<int32_t, max_array_size>
+%template(int32_t_3_array) std::array<int32_t,3>;
+%extend std::array<int32_t, 3>
 {
     const int32_t* get_buffer() const
     {
@@ -2223,8 +2223,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint32_field() const;
-%template(uint32_t_3_array) std::array<uint32_t,max_array_size>;
-%extend std::array<uint32_t, max_array_size>
+%template(uint32_t_3_array) std::array<uint32_t,3>;
+%extend std::array<uint32_t, 3>
 {
     const uint32_t* get_buffer() const
     {
@@ -2240,8 +2240,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_int64_field() const;
-%template(int64_t_3_array) std::array<int64_t,max_array_size>;
-%extend std::array<int64_t, max_array_size>
+%template(int64_t_3_array) std::array<int64_t,3>;
+%extend std::array<int64_t, 3>
 {
     const int64_t* get_buffer() const
     {
@@ -2257,8 +2257,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_uint64_field() const;
-%template(uint64_t_3_array) std::array<uint64_t,max_array_size>;
-%extend std::array<uint64_t, max_array_size>
+%template(uint64_t_3_array) std::array<uint64_t,3>;
+%extend std::array<uint64_t, 3>
 {
     const uint64_t* get_buffer() const
     {
@@ -2274,8 +2274,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_float_field() const;
-%template(float_3_array) std::array<float,max_array_size>;
-%extend std::array<float, max_array_size>
+%template(float_3_array) std::array<float,3>;
+%extend std::array<float, 3>
 {
     const float* get_buffer() const
     {
@@ -2291,8 +2291,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_double_field() const;
-%template(double_3_array) std::array<double,max_array_size>;
-%extend std::array<double, max_array_size>
+%template(double_3_array) std::array<double,3>;
+%extend std::array<double, 3>
 {
     const double* get_buffer() const
     {
@@ -2308,8 +2308,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_bool_field() const;
-%template(bool_3_array) std::array<bool,max_array_size>;
-%extend std::array<bool, max_array_size>
+%template(bool_3_array) std::array<bool,3>;
+%extend std::array<bool, 3>
 {
     const bool* get_buffer() const
     {
@@ -2325,8 +2325,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum_field() const;
-%template(Color_3_array) std::array<enum Color,max_array_size>;
-%extend std::array<enum Color, max_array_size>
+%template(Color_3_array) std::array<enum Color,3>;
+%extend std::array<enum Color, 3>
 {
     const enum Color* get_buffer() const
     {
@@ -2342,8 +2342,8 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_enum2_field() const;
-%template(Material_3_array) std::array<enum Material,max_array_size>;
-%extend std::array<enum Material, max_array_size>
+%template(Material_3_array) std::array<enum Material,3>;
+%extend std::array<enum Material, 3>
 {
     const enum Material* get_buffer() const
     {
@@ -2359,7 +2359,7 @@ namespace swig {
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::array_struct_field() const;
-%template(StructType_3_array) std::array<StructType,max_array_size>;
+%template(StructType_3_array) std::array<StructType,3>;
 
 
 %ignore KeyedCompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
