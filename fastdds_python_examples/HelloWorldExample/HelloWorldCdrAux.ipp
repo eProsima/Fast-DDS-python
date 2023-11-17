@@ -34,6 +34,8 @@ using namespace eprosima::fastcdr::exception;
 namespace eprosima {
 namespace fastcdr {
 
+
+
 template<>
 eProsima_user_DllExport size_t calculate_serialized_size(
         eprosima::fastcdr::CdrSizeCalculator& calculator,
@@ -77,7 +79,6 @@ eProsima_user_DllExport void serialize(
         << eprosima::fastcdr::MemberId(0) << data.index()
         << eprosima::fastcdr::MemberId(1) << data.message()
 ;
-
     scdr.end_serialize_type(current_state);
 }
 

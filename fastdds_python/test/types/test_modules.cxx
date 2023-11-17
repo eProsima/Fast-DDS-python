@@ -27,6 +27,9 @@ char dummy;
 #endif  // _WIN32
 
 #include "test_modules.h"
+
+#if FASTCDR_VERSION_MAJOR > 1
+
 #include <fastcdr/Cdr.h>
 
 
@@ -36,16 +39,21 @@ using namespace eprosima::fastcdr::exception;
 #include <utility>
 
 
-eprosima::test::StructType::StructType()
-{
+namespace eprosima {
 
+namespace test {
+
+
+
+StructType::StructType()
+{
 }
 
-eprosima::test::StructType::~StructType()
+StructType::~StructType()
 {
 }
 
-eprosima::test::StructType::StructType(
+StructType::StructType(
         const StructType& x)
 {
     m_char_field = x.m_char_field;
@@ -64,7 +72,7 @@ eprosima::test::StructType::StructType(
     m_enum2_field = x.m_enum2_field;
 }
 
-eprosima::test::StructType::StructType(
+StructType::StructType(
         StructType&& x) noexcept
 {
     m_char_field = x.m_char_field;
@@ -83,7 +91,7 @@ eprosima::test::StructType::StructType(
     m_enum2_field = x.m_enum2_field;
 }
 
-eprosima::test::StructType& eprosima::test::StructType::operator =(
+StructType& StructType::operator =(
         const StructType& x)
 {
 
@@ -101,11 +109,10 @@ eprosima::test::StructType& eprosima::test::StructType::operator =(
     m_string_field = x.m_string_field;
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
-
     return *this;
 }
 
-eprosima::test::StructType& eprosima::test::StructType::operator =(
+StructType& StructType::operator =(
         StructType&& x) noexcept
 {
 
@@ -123,11 +130,10 @@ eprosima::test::StructType& eprosima::test::StructType::operator =(
     m_string_field = std::move(x.m_string_field);
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
-
     return *this;
 }
 
-bool eprosima::test::StructType::operator ==(
+bool StructType::operator ==(
         const StructType& x) const
 {
     return (m_char_field == x.m_char_field &&
@@ -146,7 +152,7 @@ bool eprosima::test::StructType::operator ==(
            m_enum2_field == x.m_enum2_field);
 }
 
-bool eprosima::test::StructType::operator !=(
+bool StructType::operator !=(
         const StructType& x) const
 {
     return !(*this == x);
@@ -156,7 +162,7 @@ bool eprosima::test::StructType::operator !=(
  * @brief This function sets a value in member char_field
  * @param _char_field New value for member char_field
  */
-void eprosima::test::StructType::char_field(
+void StructType::char_field(
         char _char_field)
 {
     m_char_field = _char_field;
@@ -166,7 +172,7 @@ void eprosima::test::StructType::char_field(
  * @brief This function returns the value of member char_field
  * @return Value of member char_field
  */
-char eprosima::test::StructType::char_field() const
+char StructType::char_field() const
 {
     return m_char_field;
 }
@@ -175,7 +181,7 @@ char eprosima::test::StructType::char_field() const
  * @brief This function returns a reference to member char_field
  * @return Reference to member char_field
  */
-char& eprosima::test::StructType::char_field()
+char& StructType::char_field()
 {
     return m_char_field;
 }
@@ -185,7 +191,7 @@ char& eprosima::test::StructType::char_field()
  * @brief This function sets a value in member uint8_field
  * @param _uint8_field New value for member uint8_field
  */
-void eprosima::test::StructType::uint8_field(
+void StructType::uint8_field(
         uint8_t _uint8_field)
 {
     m_uint8_field = _uint8_field;
@@ -195,7 +201,7 @@ void eprosima::test::StructType::uint8_field(
  * @brief This function returns the value of member uint8_field
  * @return Value of member uint8_field
  */
-uint8_t eprosima::test::StructType::uint8_field() const
+uint8_t StructType::uint8_field() const
 {
     return m_uint8_field;
 }
@@ -204,7 +210,7 @@ uint8_t eprosima::test::StructType::uint8_field() const
  * @brief This function returns a reference to member uint8_field
  * @return Reference to member uint8_field
  */
-uint8_t& eprosima::test::StructType::uint8_field()
+uint8_t& StructType::uint8_field()
 {
     return m_uint8_field;
 }
@@ -214,7 +220,7 @@ uint8_t& eprosima::test::StructType::uint8_field()
  * @brief This function sets a value in member int16_field
  * @param _int16_field New value for member int16_field
  */
-void eprosima::test::StructType::int16_field(
+void StructType::int16_field(
         int16_t _int16_field)
 {
     m_int16_field = _int16_field;
@@ -224,7 +230,7 @@ void eprosima::test::StructType::int16_field(
  * @brief This function returns the value of member int16_field
  * @return Value of member int16_field
  */
-int16_t eprosima::test::StructType::int16_field() const
+int16_t StructType::int16_field() const
 {
     return m_int16_field;
 }
@@ -233,7 +239,7 @@ int16_t eprosima::test::StructType::int16_field() const
  * @brief This function returns a reference to member int16_field
  * @return Reference to member int16_field
  */
-int16_t& eprosima::test::StructType::int16_field()
+int16_t& StructType::int16_field()
 {
     return m_int16_field;
 }
@@ -243,7 +249,7 @@ int16_t& eprosima::test::StructType::int16_field()
  * @brief This function sets a value in member uint16_field
  * @param _uint16_field New value for member uint16_field
  */
-void eprosima::test::StructType::uint16_field(
+void StructType::uint16_field(
         uint16_t _uint16_field)
 {
     m_uint16_field = _uint16_field;
@@ -253,7 +259,7 @@ void eprosima::test::StructType::uint16_field(
  * @brief This function returns the value of member uint16_field
  * @return Value of member uint16_field
  */
-uint16_t eprosima::test::StructType::uint16_field() const
+uint16_t StructType::uint16_field() const
 {
     return m_uint16_field;
 }
@@ -262,7 +268,7 @@ uint16_t eprosima::test::StructType::uint16_field() const
  * @brief This function returns a reference to member uint16_field
  * @return Reference to member uint16_field
  */
-uint16_t& eprosima::test::StructType::uint16_field()
+uint16_t& StructType::uint16_field()
 {
     return m_uint16_field;
 }
@@ -272,7 +278,7 @@ uint16_t& eprosima::test::StructType::uint16_field()
  * @brief This function sets a value in member int32_field
  * @param _int32_field New value for member int32_field
  */
-void eprosima::test::StructType::int32_field(
+void StructType::int32_field(
         int32_t _int32_field)
 {
     m_int32_field = _int32_field;
@@ -282,7 +288,7 @@ void eprosima::test::StructType::int32_field(
  * @brief This function returns the value of member int32_field
  * @return Value of member int32_field
  */
-int32_t eprosima::test::StructType::int32_field() const
+int32_t StructType::int32_field() const
 {
     return m_int32_field;
 }
@@ -291,7 +297,7 @@ int32_t eprosima::test::StructType::int32_field() const
  * @brief This function returns a reference to member int32_field
  * @return Reference to member int32_field
  */
-int32_t& eprosima::test::StructType::int32_field()
+int32_t& StructType::int32_field()
 {
     return m_int32_field;
 }
@@ -301,7 +307,7 @@ int32_t& eprosima::test::StructType::int32_field()
  * @brief This function sets a value in member uint32_field
  * @param _uint32_field New value for member uint32_field
  */
-void eprosima::test::StructType::uint32_field(
+void StructType::uint32_field(
         uint32_t _uint32_field)
 {
     m_uint32_field = _uint32_field;
@@ -311,7 +317,7 @@ void eprosima::test::StructType::uint32_field(
  * @brief This function returns the value of member uint32_field
  * @return Value of member uint32_field
  */
-uint32_t eprosima::test::StructType::uint32_field() const
+uint32_t StructType::uint32_field() const
 {
     return m_uint32_field;
 }
@@ -320,7 +326,7 @@ uint32_t eprosima::test::StructType::uint32_field() const
  * @brief This function returns a reference to member uint32_field
  * @return Reference to member uint32_field
  */
-uint32_t& eprosima::test::StructType::uint32_field()
+uint32_t& StructType::uint32_field()
 {
     return m_uint32_field;
 }
@@ -330,7 +336,7 @@ uint32_t& eprosima::test::StructType::uint32_field()
  * @brief This function sets a value in member int64_field
  * @param _int64_field New value for member int64_field
  */
-void eprosima::test::StructType::int64_field(
+void StructType::int64_field(
         int64_t _int64_field)
 {
     m_int64_field = _int64_field;
@@ -340,7 +346,7 @@ void eprosima::test::StructType::int64_field(
  * @brief This function returns the value of member int64_field
  * @return Value of member int64_field
  */
-int64_t eprosima::test::StructType::int64_field() const
+int64_t StructType::int64_field() const
 {
     return m_int64_field;
 }
@@ -349,7 +355,7 @@ int64_t eprosima::test::StructType::int64_field() const
  * @brief This function returns a reference to member int64_field
  * @return Reference to member int64_field
  */
-int64_t& eprosima::test::StructType::int64_field()
+int64_t& StructType::int64_field()
 {
     return m_int64_field;
 }
@@ -359,7 +365,7 @@ int64_t& eprosima::test::StructType::int64_field()
  * @brief This function sets a value in member uint64_field
  * @param _uint64_field New value for member uint64_field
  */
-void eprosima::test::StructType::uint64_field(
+void StructType::uint64_field(
         uint64_t _uint64_field)
 {
     m_uint64_field = _uint64_field;
@@ -369,7 +375,7 @@ void eprosima::test::StructType::uint64_field(
  * @brief This function returns the value of member uint64_field
  * @return Value of member uint64_field
  */
-uint64_t eprosima::test::StructType::uint64_field() const
+uint64_t StructType::uint64_field() const
 {
     return m_uint64_field;
 }
@@ -378,7 +384,7 @@ uint64_t eprosima::test::StructType::uint64_field() const
  * @brief This function returns a reference to member uint64_field
  * @return Reference to member uint64_field
  */
-uint64_t& eprosima::test::StructType::uint64_field()
+uint64_t& StructType::uint64_field()
 {
     return m_uint64_field;
 }
@@ -388,7 +394,7 @@ uint64_t& eprosima::test::StructType::uint64_field()
  * @brief This function sets a value in member float_field
  * @param _float_field New value for member float_field
  */
-void eprosima::test::StructType::float_field(
+void StructType::float_field(
         float _float_field)
 {
     m_float_field = _float_field;
@@ -398,7 +404,7 @@ void eprosima::test::StructType::float_field(
  * @brief This function returns the value of member float_field
  * @return Value of member float_field
  */
-float eprosima::test::StructType::float_field() const
+float StructType::float_field() const
 {
     return m_float_field;
 }
@@ -407,7 +413,7 @@ float eprosima::test::StructType::float_field() const
  * @brief This function returns a reference to member float_field
  * @return Reference to member float_field
  */
-float& eprosima::test::StructType::float_field()
+float& StructType::float_field()
 {
     return m_float_field;
 }
@@ -417,7 +423,7 @@ float& eprosima::test::StructType::float_field()
  * @brief This function sets a value in member double_field
  * @param _double_field New value for member double_field
  */
-void eprosima::test::StructType::double_field(
+void StructType::double_field(
         double _double_field)
 {
     m_double_field = _double_field;
@@ -427,7 +433,7 @@ void eprosima::test::StructType::double_field(
  * @brief This function returns the value of member double_field
  * @return Value of member double_field
  */
-double eprosima::test::StructType::double_field() const
+double StructType::double_field() const
 {
     return m_double_field;
 }
@@ -436,7 +442,7 @@ double eprosima::test::StructType::double_field() const
  * @brief This function returns a reference to member double_field
  * @return Reference to member double_field
  */
-double& eprosima::test::StructType::double_field()
+double& StructType::double_field()
 {
     return m_double_field;
 }
@@ -446,7 +452,7 @@ double& eprosima::test::StructType::double_field()
  * @brief This function sets a value in member bool_field
  * @param _bool_field New value for member bool_field
  */
-void eprosima::test::StructType::bool_field(
+void StructType::bool_field(
         bool _bool_field)
 {
     m_bool_field = _bool_field;
@@ -456,7 +462,7 @@ void eprosima::test::StructType::bool_field(
  * @brief This function returns the value of member bool_field
  * @return Value of member bool_field
  */
-bool eprosima::test::StructType::bool_field() const
+bool StructType::bool_field() const
 {
     return m_bool_field;
 }
@@ -465,7 +471,7 @@ bool eprosima::test::StructType::bool_field() const
  * @brief This function returns a reference to member bool_field
  * @return Reference to member bool_field
  */
-bool& eprosima::test::StructType::bool_field()
+bool& StructType::bool_field()
 {
     return m_bool_field;
 }
@@ -475,7 +481,7 @@ bool& eprosima::test::StructType::bool_field()
  * @brief This function copies the value in member string_field
  * @param _string_field New value to be copied in member string_field
  */
-void eprosima::test::StructType::string_field(
+void StructType::string_field(
         const std::string& _string_field)
 {
     m_string_field = _string_field;
@@ -485,7 +491,7 @@ void eprosima::test::StructType::string_field(
  * @brief This function moves the value in member string_field
  * @param _string_field New value to be moved in member string_field
  */
-void eprosima::test::StructType::string_field(
+void StructType::string_field(
         std::string&& _string_field)
 {
     m_string_field = std::move(_string_field);
@@ -495,7 +501,7 @@ void eprosima::test::StructType::string_field(
  * @brief This function returns a constant reference to member string_field
  * @return Constant reference to member string_field
  */
-const std::string& eprosima::test::StructType::string_field() const
+const std::string& StructType::string_field() const
 {
     return m_string_field;
 }
@@ -504,7 +510,7 @@ const std::string& eprosima::test::StructType::string_field() const
  * @brief This function returns a reference to member string_field
  * @return Reference to member string_field
  */
-std::string& eprosima::test::StructType::string_field()
+std::string& StructType::string_field()
 {
     return m_string_field;
 }
@@ -514,7 +520,7 @@ std::string& eprosima::test::StructType::string_field()
  * @brief This function sets a value in member enum_field
  * @param _enum_field New value for member enum_field
  */
-void eprosima::test::StructType::enum_field(
+void StructType::enum_field(
         eprosima::test::Color _enum_field)
 {
     m_enum_field = _enum_field;
@@ -524,7 +530,7 @@ void eprosima::test::StructType::enum_field(
  * @brief This function returns the value of member enum_field
  * @return Value of member enum_field
  */
-eprosima::test::Color eprosima::test::StructType::enum_field() const
+eprosima::test::Color StructType::enum_field() const
 {
     return m_enum_field;
 }
@@ -533,7 +539,7 @@ eprosima::test::Color eprosima::test::StructType::enum_field() const
  * @brief This function returns a reference to member enum_field
  * @return Reference to member enum_field
  */
-eprosima::test::Color& eprosima::test::StructType::enum_field()
+eprosima::test::Color& StructType::enum_field()
 {
     return m_enum_field;
 }
@@ -543,7 +549,7 @@ eprosima::test::Color& eprosima::test::StructType::enum_field()
  * @brief This function sets a value in member enum2_field
  * @param _enum2_field New value for member enum2_field
  */
-void eprosima::test::StructType::enum2_field(
+void StructType::enum2_field(
         eprosima::test::Material _enum2_field)
 {
     m_enum2_field = _enum2_field;
@@ -553,7 +559,7 @@ void eprosima::test::StructType::enum2_field(
  * @brief This function returns the value of member enum2_field
  * @return Value of member enum2_field
  */
-eprosima::test::Material eprosima::test::StructType::enum2_field() const
+eprosima::test::Material StructType::enum2_field() const
 {
     return m_enum2_field;
 }
@@ -562,7 +568,7 @@ eprosima::test::Material eprosima::test::StructType::enum2_field() const
  * @brief This function returns a reference to member enum2_field
  * @return Reference to member enum2_field
  */
-eprosima::test::Material& eprosima::test::StructType::enum2_field()
+eprosima::test::Material& StructType::enum2_field()
 {
     return m_enum2_field;
 }
@@ -570,16 +576,19 @@ eprosima::test::Material& eprosima::test::StructType::enum2_field()
 
 
 
-eprosima::test::CompleteTestType::CompleteTestType()
-{
 
+
+
+
+CompleteTestType::CompleteTestType()
+{
 }
 
-eprosima::test::CompleteTestType::~CompleteTestType()
+CompleteTestType::~CompleteTestType()
 {
 }
 
-eprosima::test::CompleteTestType::CompleteTestType(
+CompleteTestType::CompleteTestType(
         const CompleteTestType& x)
 {
     m_char_field = x.m_char_field;
@@ -656,7 +665,7 @@ eprosima::test::CompleteTestType::CompleteTestType(
     m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
 }
 
-eprosima::test::CompleteTestType::CompleteTestType(
+CompleteTestType::CompleteTestType(
         CompleteTestType&& x) noexcept
 {
     m_char_field = x.m_char_field;
@@ -733,7 +742,7 @@ eprosima::test::CompleteTestType::CompleteTestType(
     m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
 }
 
-eprosima::test::CompleteTestType& eprosima::test::CompleteTestType::operator =(
+CompleteTestType& CompleteTestType::operator =(
         const CompleteTestType& x)
 {
 
@@ -809,11 +818,10 @@ eprosima::test::CompleteTestType& eprosima::test::CompleteTestType::operator =(
     m_unbounded_sequence_enum_field = x.m_unbounded_sequence_enum_field;
     m_unbounded_sequence_enum2_field = x.m_unbounded_sequence_enum2_field;
     m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
-
     return *this;
 }
 
-eprosima::test::CompleteTestType& eprosima::test::CompleteTestType::operator =(
+CompleteTestType& CompleteTestType::operator =(
         CompleteTestType&& x) noexcept
 {
 
@@ -889,11 +897,10 @@ eprosima::test::CompleteTestType& eprosima::test::CompleteTestType::operator =(
     m_unbounded_sequence_enum_field = std::move(x.m_unbounded_sequence_enum_field);
     m_unbounded_sequence_enum2_field = std::move(x.m_unbounded_sequence_enum2_field);
     m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
-
     return *this;
 }
 
-bool eprosima::test::CompleteTestType::operator ==(
+bool CompleteTestType::operator ==(
         const CompleteTestType& x) const
 {
     return (m_char_field == x.m_char_field &&
@@ -970,7 +977,7 @@ bool eprosima::test::CompleteTestType::operator ==(
            m_unbounded_sequence_struct_field == x.m_unbounded_sequence_struct_field);
 }
 
-bool eprosima::test::CompleteTestType::operator !=(
+bool CompleteTestType::operator !=(
         const CompleteTestType& x) const
 {
     return !(*this == x);
@@ -980,7 +987,7 @@ bool eprosima::test::CompleteTestType::operator !=(
  * @brief This function sets a value in member char_field
  * @param _char_field New value for member char_field
  */
-void eprosima::test::CompleteTestType::char_field(
+void CompleteTestType::char_field(
         char _char_field)
 {
     m_char_field = _char_field;
@@ -990,7 +997,7 @@ void eprosima::test::CompleteTestType::char_field(
  * @brief This function returns the value of member char_field
  * @return Value of member char_field
  */
-char eprosima::test::CompleteTestType::char_field() const
+char CompleteTestType::char_field() const
 {
     return m_char_field;
 }
@@ -999,7 +1006,7 @@ char eprosima::test::CompleteTestType::char_field() const
  * @brief This function returns a reference to member char_field
  * @return Reference to member char_field
  */
-char& eprosima::test::CompleteTestType::char_field()
+char& CompleteTestType::char_field()
 {
     return m_char_field;
 }
@@ -1009,7 +1016,7 @@ char& eprosima::test::CompleteTestType::char_field()
  * @brief This function sets a value in member uint8_field
  * @param _uint8_field New value for member uint8_field
  */
-void eprosima::test::CompleteTestType::uint8_field(
+void CompleteTestType::uint8_field(
         uint8_t _uint8_field)
 {
     m_uint8_field = _uint8_field;
@@ -1019,7 +1026,7 @@ void eprosima::test::CompleteTestType::uint8_field(
  * @brief This function returns the value of member uint8_field
  * @return Value of member uint8_field
  */
-uint8_t eprosima::test::CompleteTestType::uint8_field() const
+uint8_t CompleteTestType::uint8_field() const
 {
     return m_uint8_field;
 }
@@ -1028,7 +1035,7 @@ uint8_t eprosima::test::CompleteTestType::uint8_field() const
  * @brief This function returns a reference to member uint8_field
  * @return Reference to member uint8_field
  */
-uint8_t& eprosima::test::CompleteTestType::uint8_field()
+uint8_t& CompleteTestType::uint8_field()
 {
     return m_uint8_field;
 }
@@ -1038,7 +1045,7 @@ uint8_t& eprosima::test::CompleteTestType::uint8_field()
  * @brief This function sets a value in member int16_field
  * @param _int16_field New value for member int16_field
  */
-void eprosima::test::CompleteTestType::int16_field(
+void CompleteTestType::int16_field(
         int16_t _int16_field)
 {
     m_int16_field = _int16_field;
@@ -1048,7 +1055,7 @@ void eprosima::test::CompleteTestType::int16_field(
  * @brief This function returns the value of member int16_field
  * @return Value of member int16_field
  */
-int16_t eprosima::test::CompleteTestType::int16_field() const
+int16_t CompleteTestType::int16_field() const
 {
     return m_int16_field;
 }
@@ -1057,7 +1064,7 @@ int16_t eprosima::test::CompleteTestType::int16_field() const
  * @brief This function returns a reference to member int16_field
  * @return Reference to member int16_field
  */
-int16_t& eprosima::test::CompleteTestType::int16_field()
+int16_t& CompleteTestType::int16_field()
 {
     return m_int16_field;
 }
@@ -1067,7 +1074,7 @@ int16_t& eprosima::test::CompleteTestType::int16_field()
  * @brief This function sets a value in member uint16_field
  * @param _uint16_field New value for member uint16_field
  */
-void eprosima::test::CompleteTestType::uint16_field(
+void CompleteTestType::uint16_field(
         uint16_t _uint16_field)
 {
     m_uint16_field = _uint16_field;
@@ -1077,7 +1084,7 @@ void eprosima::test::CompleteTestType::uint16_field(
  * @brief This function returns the value of member uint16_field
  * @return Value of member uint16_field
  */
-uint16_t eprosima::test::CompleteTestType::uint16_field() const
+uint16_t CompleteTestType::uint16_field() const
 {
     return m_uint16_field;
 }
@@ -1086,7 +1093,7 @@ uint16_t eprosima::test::CompleteTestType::uint16_field() const
  * @brief This function returns a reference to member uint16_field
  * @return Reference to member uint16_field
  */
-uint16_t& eprosima::test::CompleteTestType::uint16_field()
+uint16_t& CompleteTestType::uint16_field()
 {
     return m_uint16_field;
 }
@@ -1096,7 +1103,7 @@ uint16_t& eprosima::test::CompleteTestType::uint16_field()
  * @brief This function sets a value in member int32_field
  * @param _int32_field New value for member int32_field
  */
-void eprosima::test::CompleteTestType::int32_field(
+void CompleteTestType::int32_field(
         int32_t _int32_field)
 {
     m_int32_field = _int32_field;
@@ -1106,7 +1113,7 @@ void eprosima::test::CompleteTestType::int32_field(
  * @brief This function returns the value of member int32_field
  * @return Value of member int32_field
  */
-int32_t eprosima::test::CompleteTestType::int32_field() const
+int32_t CompleteTestType::int32_field() const
 {
     return m_int32_field;
 }
@@ -1115,7 +1122,7 @@ int32_t eprosima::test::CompleteTestType::int32_field() const
  * @brief This function returns a reference to member int32_field
  * @return Reference to member int32_field
  */
-int32_t& eprosima::test::CompleteTestType::int32_field()
+int32_t& CompleteTestType::int32_field()
 {
     return m_int32_field;
 }
@@ -1125,7 +1132,7 @@ int32_t& eprosima::test::CompleteTestType::int32_field()
  * @brief This function sets a value in member uint32_field
  * @param _uint32_field New value for member uint32_field
  */
-void eprosima::test::CompleteTestType::uint32_field(
+void CompleteTestType::uint32_field(
         uint32_t _uint32_field)
 {
     m_uint32_field = _uint32_field;
@@ -1135,7 +1142,7 @@ void eprosima::test::CompleteTestType::uint32_field(
  * @brief This function returns the value of member uint32_field
  * @return Value of member uint32_field
  */
-uint32_t eprosima::test::CompleteTestType::uint32_field() const
+uint32_t CompleteTestType::uint32_field() const
 {
     return m_uint32_field;
 }
@@ -1144,7 +1151,7 @@ uint32_t eprosima::test::CompleteTestType::uint32_field() const
  * @brief This function returns a reference to member uint32_field
  * @return Reference to member uint32_field
  */
-uint32_t& eprosima::test::CompleteTestType::uint32_field()
+uint32_t& CompleteTestType::uint32_field()
 {
     return m_uint32_field;
 }
@@ -1154,7 +1161,7 @@ uint32_t& eprosima::test::CompleteTestType::uint32_field()
  * @brief This function sets a value in member int64_field
  * @param _int64_field New value for member int64_field
  */
-void eprosima::test::CompleteTestType::int64_field(
+void CompleteTestType::int64_field(
         int64_t _int64_field)
 {
     m_int64_field = _int64_field;
@@ -1164,7 +1171,7 @@ void eprosima::test::CompleteTestType::int64_field(
  * @brief This function returns the value of member int64_field
  * @return Value of member int64_field
  */
-int64_t eprosima::test::CompleteTestType::int64_field() const
+int64_t CompleteTestType::int64_field() const
 {
     return m_int64_field;
 }
@@ -1173,7 +1180,7 @@ int64_t eprosima::test::CompleteTestType::int64_field() const
  * @brief This function returns a reference to member int64_field
  * @return Reference to member int64_field
  */
-int64_t& eprosima::test::CompleteTestType::int64_field()
+int64_t& CompleteTestType::int64_field()
 {
     return m_int64_field;
 }
@@ -1183,7 +1190,7 @@ int64_t& eprosima::test::CompleteTestType::int64_field()
  * @brief This function sets a value in member uint64_field
  * @param _uint64_field New value for member uint64_field
  */
-void eprosima::test::CompleteTestType::uint64_field(
+void CompleteTestType::uint64_field(
         uint64_t _uint64_field)
 {
     m_uint64_field = _uint64_field;
@@ -1193,7 +1200,7 @@ void eprosima::test::CompleteTestType::uint64_field(
  * @brief This function returns the value of member uint64_field
  * @return Value of member uint64_field
  */
-uint64_t eprosima::test::CompleteTestType::uint64_field() const
+uint64_t CompleteTestType::uint64_field() const
 {
     return m_uint64_field;
 }
@@ -1202,7 +1209,7 @@ uint64_t eprosima::test::CompleteTestType::uint64_field() const
  * @brief This function returns a reference to member uint64_field
  * @return Reference to member uint64_field
  */
-uint64_t& eprosima::test::CompleteTestType::uint64_field()
+uint64_t& CompleteTestType::uint64_field()
 {
     return m_uint64_field;
 }
@@ -1212,7 +1219,7 @@ uint64_t& eprosima::test::CompleteTestType::uint64_field()
  * @brief This function sets a value in member float_field
  * @param _float_field New value for member float_field
  */
-void eprosima::test::CompleteTestType::float_field(
+void CompleteTestType::float_field(
         float _float_field)
 {
     m_float_field = _float_field;
@@ -1222,7 +1229,7 @@ void eprosima::test::CompleteTestType::float_field(
  * @brief This function returns the value of member float_field
  * @return Value of member float_field
  */
-float eprosima::test::CompleteTestType::float_field() const
+float CompleteTestType::float_field() const
 {
     return m_float_field;
 }
@@ -1231,7 +1238,7 @@ float eprosima::test::CompleteTestType::float_field() const
  * @brief This function returns a reference to member float_field
  * @return Reference to member float_field
  */
-float& eprosima::test::CompleteTestType::float_field()
+float& CompleteTestType::float_field()
 {
     return m_float_field;
 }
@@ -1241,7 +1248,7 @@ float& eprosima::test::CompleteTestType::float_field()
  * @brief This function sets a value in member double_field
  * @param _double_field New value for member double_field
  */
-void eprosima::test::CompleteTestType::double_field(
+void CompleteTestType::double_field(
         double _double_field)
 {
     m_double_field = _double_field;
@@ -1251,7 +1258,7 @@ void eprosima::test::CompleteTestType::double_field(
  * @brief This function returns the value of member double_field
  * @return Value of member double_field
  */
-double eprosima::test::CompleteTestType::double_field() const
+double CompleteTestType::double_field() const
 {
     return m_double_field;
 }
@@ -1260,7 +1267,7 @@ double eprosima::test::CompleteTestType::double_field() const
  * @brief This function returns a reference to member double_field
  * @return Reference to member double_field
  */
-double& eprosima::test::CompleteTestType::double_field()
+double& CompleteTestType::double_field()
 {
     return m_double_field;
 }
@@ -1270,7 +1277,7 @@ double& eprosima::test::CompleteTestType::double_field()
  * @brief This function sets a value in member bool_field
  * @param _bool_field New value for member bool_field
  */
-void eprosima::test::CompleteTestType::bool_field(
+void CompleteTestType::bool_field(
         bool _bool_field)
 {
     m_bool_field = _bool_field;
@@ -1280,7 +1287,7 @@ void eprosima::test::CompleteTestType::bool_field(
  * @brief This function returns the value of member bool_field
  * @return Value of member bool_field
  */
-bool eprosima::test::CompleteTestType::bool_field() const
+bool CompleteTestType::bool_field() const
 {
     return m_bool_field;
 }
@@ -1289,7 +1296,7 @@ bool eprosima::test::CompleteTestType::bool_field() const
  * @brief This function returns a reference to member bool_field
  * @return Reference to member bool_field
  */
-bool& eprosima::test::CompleteTestType::bool_field()
+bool& CompleteTestType::bool_field()
 {
     return m_bool_field;
 }
@@ -1299,7 +1306,7 @@ bool& eprosima::test::CompleteTestType::bool_field()
  * @brief This function copies the value in member string_field
  * @param _string_field New value to be copied in member string_field
  */
-void eprosima::test::CompleteTestType::string_field(
+void CompleteTestType::string_field(
         const std::string& _string_field)
 {
     m_string_field = _string_field;
@@ -1309,7 +1316,7 @@ void eprosima::test::CompleteTestType::string_field(
  * @brief This function moves the value in member string_field
  * @param _string_field New value to be moved in member string_field
  */
-void eprosima::test::CompleteTestType::string_field(
+void CompleteTestType::string_field(
         std::string&& _string_field)
 {
     m_string_field = std::move(_string_field);
@@ -1319,7 +1326,7 @@ void eprosima::test::CompleteTestType::string_field(
  * @brief This function returns a constant reference to member string_field
  * @return Constant reference to member string_field
  */
-const std::string& eprosima::test::CompleteTestType::string_field() const
+const std::string& CompleteTestType::string_field() const
 {
     return m_string_field;
 }
@@ -1328,7 +1335,7 @@ const std::string& eprosima::test::CompleteTestType::string_field() const
  * @brief This function returns a reference to member string_field
  * @return Reference to member string_field
  */
-std::string& eprosima::test::CompleteTestType::string_field()
+std::string& CompleteTestType::string_field()
 {
     return m_string_field;
 }
@@ -1338,7 +1345,7 @@ std::string& eprosima::test::CompleteTestType::string_field()
  * @brief This function sets a value in member enum_field
  * @param _enum_field New value for member enum_field
  */
-void eprosima::test::CompleteTestType::enum_field(
+void CompleteTestType::enum_field(
         eprosima::test::Color _enum_field)
 {
     m_enum_field = _enum_field;
@@ -1348,7 +1355,7 @@ void eprosima::test::CompleteTestType::enum_field(
  * @brief This function returns the value of member enum_field
  * @return Value of member enum_field
  */
-eprosima::test::Color eprosima::test::CompleteTestType::enum_field() const
+eprosima::test::Color CompleteTestType::enum_field() const
 {
     return m_enum_field;
 }
@@ -1357,7 +1364,7 @@ eprosima::test::Color eprosima::test::CompleteTestType::enum_field() const
  * @brief This function returns a reference to member enum_field
  * @return Reference to member enum_field
  */
-eprosima::test::Color& eprosima::test::CompleteTestType::enum_field()
+eprosima::test::Color& CompleteTestType::enum_field()
 {
     return m_enum_field;
 }
@@ -1367,7 +1374,7 @@ eprosima::test::Color& eprosima::test::CompleteTestType::enum_field()
  * @brief This function sets a value in member enum2_field
  * @param _enum2_field New value for member enum2_field
  */
-void eprosima::test::CompleteTestType::enum2_field(
+void CompleteTestType::enum2_field(
         eprosima::test::Material _enum2_field)
 {
     m_enum2_field = _enum2_field;
@@ -1377,7 +1384,7 @@ void eprosima::test::CompleteTestType::enum2_field(
  * @brief This function returns the value of member enum2_field
  * @return Value of member enum2_field
  */
-eprosima::test::Material eprosima::test::CompleteTestType::enum2_field() const
+eprosima::test::Material CompleteTestType::enum2_field() const
 {
     return m_enum2_field;
 }
@@ -1386,7 +1393,7 @@ eprosima::test::Material eprosima::test::CompleteTestType::enum2_field() const
  * @brief This function returns a reference to member enum2_field
  * @return Reference to member enum2_field
  */
-eprosima::test::Material& eprosima::test::CompleteTestType::enum2_field()
+eprosima::test::Material& CompleteTestType::enum2_field()
 {
     return m_enum2_field;
 }
@@ -1396,7 +1403,7 @@ eprosima::test::Material& eprosima::test::CompleteTestType::enum2_field()
  * @brief This function copies the value in member struct_field
  * @param _struct_field New value to be copied in member struct_field
  */
-void eprosima::test::CompleteTestType::struct_field(
+void CompleteTestType::struct_field(
         const eprosima::test::StructType& _struct_field)
 {
     m_struct_field = _struct_field;
@@ -1406,7 +1413,7 @@ void eprosima::test::CompleteTestType::struct_field(
  * @brief This function moves the value in member struct_field
  * @param _struct_field New value to be moved in member struct_field
  */
-void eprosima::test::CompleteTestType::struct_field(
+void CompleteTestType::struct_field(
         eprosima::test::StructType&& _struct_field)
 {
     m_struct_field = std::move(_struct_field);
@@ -1416,7 +1423,7 @@ void eprosima::test::CompleteTestType::struct_field(
  * @brief This function returns a constant reference to member struct_field
  * @return Constant reference to member struct_field
  */
-const eprosima::test::StructType& eprosima::test::CompleteTestType::struct_field() const
+const eprosima::test::StructType& CompleteTestType::struct_field() const
 {
     return m_struct_field;
 }
@@ -1425,7 +1432,7 @@ const eprosima::test::StructType& eprosima::test::CompleteTestType::struct_field
  * @brief This function returns a reference to member struct_field
  * @return Reference to member struct_field
  */
-eprosima::test::StructType& eprosima::test::CompleteTestType::struct_field()
+eprosima::test::StructType& CompleteTestType::struct_field()
 {
     return m_struct_field;
 }
@@ -1435,7 +1442,7 @@ eprosima::test::StructType& eprosima::test::CompleteTestType::struct_field()
  * @brief This function copies the value in member char_opt_field
  * @param _char_opt_field New value to be copied in member char_opt_field
  */
-void eprosima::test::CompleteTestType::char_opt_field(
+void CompleteTestType::char_opt_field(
         const eprosima::fastcdr::optional<char>& _char_opt_field)
 {
     m_char_opt_field = _char_opt_field;
@@ -1445,7 +1452,7 @@ void eprosima::test::CompleteTestType::char_opt_field(
  * @brief This function moves the value in member char_opt_field
  * @param _char_opt_field New value to be moved in member char_opt_field
  */
-void eprosima::test::CompleteTestType::char_opt_field(
+void CompleteTestType::char_opt_field(
         eprosima::fastcdr::optional<char>&& _char_opt_field)
 {
     m_char_opt_field = std::move(_char_opt_field);
@@ -1455,7 +1462,7 @@ void eprosima::test::CompleteTestType::char_opt_field(
  * @brief This function returns a constant reference to member char_opt_field
  * @return Constant reference to member char_opt_field
  */
-const eprosima::fastcdr::optional<char>& eprosima::test::CompleteTestType::char_opt_field() const
+const eprosima::fastcdr::optional<char>& CompleteTestType::char_opt_field() const
 {
     return m_char_opt_field;
 }
@@ -1464,7 +1471,7 @@ const eprosima::fastcdr::optional<char>& eprosima::test::CompleteTestType::char_
  * @brief This function returns a reference to member char_opt_field
  * @return Reference to member char_opt_field
  */
-eprosima::fastcdr::optional<char>& eprosima::test::CompleteTestType::char_opt_field()
+eprosima::fastcdr::optional<char>& CompleteTestType::char_opt_field()
 {
     return m_char_opt_field;
 }
@@ -1474,7 +1481,7 @@ eprosima::fastcdr::optional<char>& eprosima::test::CompleteTestType::char_opt_fi
  * @brief This function copies the value in member uint8_opt_field
  * @param _uint8_opt_field New value to be copied in member uint8_opt_field
  */
-void eprosima::test::CompleteTestType::uint8_opt_field(
+void CompleteTestType::uint8_opt_field(
         const eprosima::fastcdr::optional<uint8_t>& _uint8_opt_field)
 {
     m_uint8_opt_field = _uint8_opt_field;
@@ -1484,7 +1491,7 @@ void eprosima::test::CompleteTestType::uint8_opt_field(
  * @brief This function moves the value in member uint8_opt_field
  * @param _uint8_opt_field New value to be moved in member uint8_opt_field
  */
-void eprosima::test::CompleteTestType::uint8_opt_field(
+void CompleteTestType::uint8_opt_field(
         eprosima::fastcdr::optional<uint8_t>&& _uint8_opt_field)
 {
     m_uint8_opt_field = std::move(_uint8_opt_field);
@@ -1494,7 +1501,7 @@ void eprosima::test::CompleteTestType::uint8_opt_field(
  * @brief This function returns a constant reference to member uint8_opt_field
  * @return Constant reference to member uint8_opt_field
  */
-const eprosima::fastcdr::optional<uint8_t>& eprosima::test::CompleteTestType::uint8_opt_field() const
+const eprosima::fastcdr::optional<uint8_t>& CompleteTestType::uint8_opt_field() const
 {
     return m_uint8_opt_field;
 }
@@ -1503,7 +1510,7 @@ const eprosima::fastcdr::optional<uint8_t>& eprosima::test::CompleteTestType::ui
  * @brief This function returns a reference to member uint8_opt_field
  * @return Reference to member uint8_opt_field
  */
-eprosima::fastcdr::optional<uint8_t>& eprosima::test::CompleteTestType::uint8_opt_field()
+eprosima::fastcdr::optional<uint8_t>& CompleteTestType::uint8_opt_field()
 {
     return m_uint8_opt_field;
 }
@@ -1513,7 +1520,7 @@ eprosima::fastcdr::optional<uint8_t>& eprosima::test::CompleteTestType::uint8_op
  * @brief This function copies the value in member int16_opt_field
  * @param _int16_opt_field New value to be copied in member int16_opt_field
  */
-void eprosima::test::CompleteTestType::int16_opt_field(
+void CompleteTestType::int16_opt_field(
         const eprosima::fastcdr::optional<int16_t>& _int16_opt_field)
 {
     m_int16_opt_field = _int16_opt_field;
@@ -1523,7 +1530,7 @@ void eprosima::test::CompleteTestType::int16_opt_field(
  * @brief This function moves the value in member int16_opt_field
  * @param _int16_opt_field New value to be moved in member int16_opt_field
  */
-void eprosima::test::CompleteTestType::int16_opt_field(
+void CompleteTestType::int16_opt_field(
         eprosima::fastcdr::optional<int16_t>&& _int16_opt_field)
 {
     m_int16_opt_field = std::move(_int16_opt_field);
@@ -1533,7 +1540,7 @@ void eprosima::test::CompleteTestType::int16_opt_field(
  * @brief This function returns a constant reference to member int16_opt_field
  * @return Constant reference to member int16_opt_field
  */
-const eprosima::fastcdr::optional<int16_t>& eprosima::test::CompleteTestType::int16_opt_field() const
+const eprosima::fastcdr::optional<int16_t>& CompleteTestType::int16_opt_field() const
 {
     return m_int16_opt_field;
 }
@@ -1542,7 +1549,7 @@ const eprosima::fastcdr::optional<int16_t>& eprosima::test::CompleteTestType::in
  * @brief This function returns a reference to member int16_opt_field
  * @return Reference to member int16_opt_field
  */
-eprosima::fastcdr::optional<int16_t>& eprosima::test::CompleteTestType::int16_opt_field()
+eprosima::fastcdr::optional<int16_t>& CompleteTestType::int16_opt_field()
 {
     return m_int16_opt_field;
 }
@@ -1552,7 +1559,7 @@ eprosima::fastcdr::optional<int16_t>& eprosima::test::CompleteTestType::int16_op
  * @brief This function copies the value in member uint16_opt_field
  * @param _uint16_opt_field New value to be copied in member uint16_opt_field
  */
-void eprosima::test::CompleteTestType::uint16_opt_field(
+void CompleteTestType::uint16_opt_field(
         const eprosima::fastcdr::optional<uint16_t>& _uint16_opt_field)
 {
     m_uint16_opt_field = _uint16_opt_field;
@@ -1562,7 +1569,7 @@ void eprosima::test::CompleteTestType::uint16_opt_field(
  * @brief This function moves the value in member uint16_opt_field
  * @param _uint16_opt_field New value to be moved in member uint16_opt_field
  */
-void eprosima::test::CompleteTestType::uint16_opt_field(
+void CompleteTestType::uint16_opt_field(
         eprosima::fastcdr::optional<uint16_t>&& _uint16_opt_field)
 {
     m_uint16_opt_field = std::move(_uint16_opt_field);
@@ -1572,7 +1579,7 @@ void eprosima::test::CompleteTestType::uint16_opt_field(
  * @brief This function returns a constant reference to member uint16_opt_field
  * @return Constant reference to member uint16_opt_field
  */
-const eprosima::fastcdr::optional<uint16_t>& eprosima::test::CompleteTestType::uint16_opt_field() const
+const eprosima::fastcdr::optional<uint16_t>& CompleteTestType::uint16_opt_field() const
 {
     return m_uint16_opt_field;
 }
@@ -1581,7 +1588,7 @@ const eprosima::fastcdr::optional<uint16_t>& eprosima::test::CompleteTestType::u
  * @brief This function returns a reference to member uint16_opt_field
  * @return Reference to member uint16_opt_field
  */
-eprosima::fastcdr::optional<uint16_t>& eprosima::test::CompleteTestType::uint16_opt_field()
+eprosima::fastcdr::optional<uint16_t>& CompleteTestType::uint16_opt_field()
 {
     return m_uint16_opt_field;
 }
@@ -1591,7 +1598,7 @@ eprosima::fastcdr::optional<uint16_t>& eprosima::test::CompleteTestType::uint16_
  * @brief This function copies the value in member int32_opt_field
  * @param _int32_opt_field New value to be copied in member int32_opt_field
  */
-void eprosima::test::CompleteTestType::int32_opt_field(
+void CompleteTestType::int32_opt_field(
         const eprosima::fastcdr::optional<int32_t>& _int32_opt_field)
 {
     m_int32_opt_field = _int32_opt_field;
@@ -1601,7 +1608,7 @@ void eprosima::test::CompleteTestType::int32_opt_field(
  * @brief This function moves the value in member int32_opt_field
  * @param _int32_opt_field New value to be moved in member int32_opt_field
  */
-void eprosima::test::CompleteTestType::int32_opt_field(
+void CompleteTestType::int32_opt_field(
         eprosima::fastcdr::optional<int32_t>&& _int32_opt_field)
 {
     m_int32_opt_field = std::move(_int32_opt_field);
@@ -1611,7 +1618,7 @@ void eprosima::test::CompleteTestType::int32_opt_field(
  * @brief This function returns a constant reference to member int32_opt_field
  * @return Constant reference to member int32_opt_field
  */
-const eprosima::fastcdr::optional<int32_t>& eprosima::test::CompleteTestType::int32_opt_field() const
+const eprosima::fastcdr::optional<int32_t>& CompleteTestType::int32_opt_field() const
 {
     return m_int32_opt_field;
 }
@@ -1620,7 +1627,7 @@ const eprosima::fastcdr::optional<int32_t>& eprosima::test::CompleteTestType::in
  * @brief This function returns a reference to member int32_opt_field
  * @return Reference to member int32_opt_field
  */
-eprosima::fastcdr::optional<int32_t>& eprosima::test::CompleteTestType::int32_opt_field()
+eprosima::fastcdr::optional<int32_t>& CompleteTestType::int32_opt_field()
 {
     return m_int32_opt_field;
 }
@@ -1630,7 +1637,7 @@ eprosima::fastcdr::optional<int32_t>& eprosima::test::CompleteTestType::int32_op
  * @brief This function copies the value in member uint32_opt_field
  * @param _uint32_opt_field New value to be copied in member uint32_opt_field
  */
-void eprosima::test::CompleteTestType::uint32_opt_field(
+void CompleteTestType::uint32_opt_field(
         const eprosima::fastcdr::optional<uint32_t>& _uint32_opt_field)
 {
     m_uint32_opt_field = _uint32_opt_field;
@@ -1640,7 +1647,7 @@ void eprosima::test::CompleteTestType::uint32_opt_field(
  * @brief This function moves the value in member uint32_opt_field
  * @param _uint32_opt_field New value to be moved in member uint32_opt_field
  */
-void eprosima::test::CompleteTestType::uint32_opt_field(
+void CompleteTestType::uint32_opt_field(
         eprosima::fastcdr::optional<uint32_t>&& _uint32_opt_field)
 {
     m_uint32_opt_field = std::move(_uint32_opt_field);
@@ -1650,7 +1657,7 @@ void eprosima::test::CompleteTestType::uint32_opt_field(
  * @brief This function returns a constant reference to member uint32_opt_field
  * @return Constant reference to member uint32_opt_field
  */
-const eprosima::fastcdr::optional<uint32_t>& eprosima::test::CompleteTestType::uint32_opt_field() const
+const eprosima::fastcdr::optional<uint32_t>& CompleteTestType::uint32_opt_field() const
 {
     return m_uint32_opt_field;
 }
@@ -1659,7 +1666,7 @@ const eprosima::fastcdr::optional<uint32_t>& eprosima::test::CompleteTestType::u
  * @brief This function returns a reference to member uint32_opt_field
  * @return Reference to member uint32_opt_field
  */
-eprosima::fastcdr::optional<uint32_t>& eprosima::test::CompleteTestType::uint32_opt_field()
+eprosima::fastcdr::optional<uint32_t>& CompleteTestType::uint32_opt_field()
 {
     return m_uint32_opt_field;
 }
@@ -1669,7 +1676,7 @@ eprosima::fastcdr::optional<uint32_t>& eprosima::test::CompleteTestType::uint32_
  * @brief This function copies the value in member int64_opt_field
  * @param _int64_opt_field New value to be copied in member int64_opt_field
  */
-void eprosima::test::CompleteTestType::int64_opt_field(
+void CompleteTestType::int64_opt_field(
         const eprosima::fastcdr::optional<int64_t>& _int64_opt_field)
 {
     m_int64_opt_field = _int64_opt_field;
@@ -1679,7 +1686,7 @@ void eprosima::test::CompleteTestType::int64_opt_field(
  * @brief This function moves the value in member int64_opt_field
  * @param _int64_opt_field New value to be moved in member int64_opt_field
  */
-void eprosima::test::CompleteTestType::int64_opt_field(
+void CompleteTestType::int64_opt_field(
         eprosima::fastcdr::optional<int64_t>&& _int64_opt_field)
 {
     m_int64_opt_field = std::move(_int64_opt_field);
@@ -1689,7 +1696,7 @@ void eprosima::test::CompleteTestType::int64_opt_field(
  * @brief This function returns a constant reference to member int64_opt_field
  * @return Constant reference to member int64_opt_field
  */
-const eprosima::fastcdr::optional<int64_t>& eprosima::test::CompleteTestType::int64_opt_field() const
+const eprosima::fastcdr::optional<int64_t>& CompleteTestType::int64_opt_field() const
 {
     return m_int64_opt_field;
 }
@@ -1698,7 +1705,7 @@ const eprosima::fastcdr::optional<int64_t>& eprosima::test::CompleteTestType::in
  * @brief This function returns a reference to member int64_opt_field
  * @return Reference to member int64_opt_field
  */
-eprosima::fastcdr::optional<int64_t>& eprosima::test::CompleteTestType::int64_opt_field()
+eprosima::fastcdr::optional<int64_t>& CompleteTestType::int64_opt_field()
 {
     return m_int64_opt_field;
 }
@@ -1708,7 +1715,7 @@ eprosima::fastcdr::optional<int64_t>& eprosima::test::CompleteTestType::int64_op
  * @brief This function copies the value in member uint64_opt_field
  * @param _uint64_opt_field New value to be copied in member uint64_opt_field
  */
-void eprosima::test::CompleteTestType::uint64_opt_field(
+void CompleteTestType::uint64_opt_field(
         const eprosima::fastcdr::optional<uint64_t>& _uint64_opt_field)
 {
     m_uint64_opt_field = _uint64_opt_field;
@@ -1718,7 +1725,7 @@ void eprosima::test::CompleteTestType::uint64_opt_field(
  * @brief This function moves the value in member uint64_opt_field
  * @param _uint64_opt_field New value to be moved in member uint64_opt_field
  */
-void eprosima::test::CompleteTestType::uint64_opt_field(
+void CompleteTestType::uint64_opt_field(
         eprosima::fastcdr::optional<uint64_t>&& _uint64_opt_field)
 {
     m_uint64_opt_field = std::move(_uint64_opt_field);
@@ -1728,7 +1735,7 @@ void eprosima::test::CompleteTestType::uint64_opt_field(
  * @brief This function returns a constant reference to member uint64_opt_field
  * @return Constant reference to member uint64_opt_field
  */
-const eprosima::fastcdr::optional<uint64_t>& eprosima::test::CompleteTestType::uint64_opt_field() const
+const eprosima::fastcdr::optional<uint64_t>& CompleteTestType::uint64_opt_field() const
 {
     return m_uint64_opt_field;
 }
@@ -1737,7 +1744,7 @@ const eprosima::fastcdr::optional<uint64_t>& eprosima::test::CompleteTestType::u
  * @brief This function returns a reference to member uint64_opt_field
  * @return Reference to member uint64_opt_field
  */
-eprosima::fastcdr::optional<uint64_t>& eprosima::test::CompleteTestType::uint64_opt_field()
+eprosima::fastcdr::optional<uint64_t>& CompleteTestType::uint64_opt_field()
 {
     return m_uint64_opt_field;
 }
@@ -1747,7 +1754,7 @@ eprosima::fastcdr::optional<uint64_t>& eprosima::test::CompleteTestType::uint64_
  * @brief This function copies the value in member float_opt_field
  * @param _float_opt_field New value to be copied in member float_opt_field
  */
-void eprosima::test::CompleteTestType::float_opt_field(
+void CompleteTestType::float_opt_field(
         const eprosima::fastcdr::optional<float>& _float_opt_field)
 {
     m_float_opt_field = _float_opt_field;
@@ -1757,7 +1764,7 @@ void eprosima::test::CompleteTestType::float_opt_field(
  * @brief This function moves the value in member float_opt_field
  * @param _float_opt_field New value to be moved in member float_opt_field
  */
-void eprosima::test::CompleteTestType::float_opt_field(
+void CompleteTestType::float_opt_field(
         eprosima::fastcdr::optional<float>&& _float_opt_field)
 {
     m_float_opt_field = std::move(_float_opt_field);
@@ -1767,7 +1774,7 @@ void eprosima::test::CompleteTestType::float_opt_field(
  * @brief This function returns a constant reference to member float_opt_field
  * @return Constant reference to member float_opt_field
  */
-const eprosima::fastcdr::optional<float>& eprosima::test::CompleteTestType::float_opt_field() const
+const eprosima::fastcdr::optional<float>& CompleteTestType::float_opt_field() const
 {
     return m_float_opt_field;
 }
@@ -1776,7 +1783,7 @@ const eprosima::fastcdr::optional<float>& eprosima::test::CompleteTestType::floa
  * @brief This function returns a reference to member float_opt_field
  * @return Reference to member float_opt_field
  */
-eprosima::fastcdr::optional<float>& eprosima::test::CompleteTestType::float_opt_field()
+eprosima::fastcdr::optional<float>& CompleteTestType::float_opt_field()
 {
     return m_float_opt_field;
 }
@@ -1786,7 +1793,7 @@ eprosima::fastcdr::optional<float>& eprosima::test::CompleteTestType::float_opt_
  * @brief This function copies the value in member double_opt_field
  * @param _double_opt_field New value to be copied in member double_opt_field
  */
-void eprosima::test::CompleteTestType::double_opt_field(
+void CompleteTestType::double_opt_field(
         const eprosima::fastcdr::optional<double>& _double_opt_field)
 {
     m_double_opt_field = _double_opt_field;
@@ -1796,7 +1803,7 @@ void eprosima::test::CompleteTestType::double_opt_field(
  * @brief This function moves the value in member double_opt_field
  * @param _double_opt_field New value to be moved in member double_opt_field
  */
-void eprosima::test::CompleteTestType::double_opt_field(
+void CompleteTestType::double_opt_field(
         eprosima::fastcdr::optional<double>&& _double_opt_field)
 {
     m_double_opt_field = std::move(_double_opt_field);
@@ -1806,7 +1813,7 @@ void eprosima::test::CompleteTestType::double_opt_field(
  * @brief This function returns a constant reference to member double_opt_field
  * @return Constant reference to member double_opt_field
  */
-const eprosima::fastcdr::optional<double>& eprosima::test::CompleteTestType::double_opt_field() const
+const eprosima::fastcdr::optional<double>& CompleteTestType::double_opt_field() const
 {
     return m_double_opt_field;
 }
@@ -1815,7 +1822,7 @@ const eprosima::fastcdr::optional<double>& eprosima::test::CompleteTestType::dou
  * @brief This function returns a reference to member double_opt_field
  * @return Reference to member double_opt_field
  */
-eprosima::fastcdr::optional<double>& eprosima::test::CompleteTestType::double_opt_field()
+eprosima::fastcdr::optional<double>& CompleteTestType::double_opt_field()
 {
     return m_double_opt_field;
 }
@@ -1825,7 +1832,7 @@ eprosima::fastcdr::optional<double>& eprosima::test::CompleteTestType::double_op
  * @brief This function copies the value in member bool_opt_field
  * @param _bool_opt_field New value to be copied in member bool_opt_field
  */
-void eprosima::test::CompleteTestType::bool_opt_field(
+void CompleteTestType::bool_opt_field(
         const eprosima::fastcdr::optional<bool>& _bool_opt_field)
 {
     m_bool_opt_field = _bool_opt_field;
@@ -1835,7 +1842,7 @@ void eprosima::test::CompleteTestType::bool_opt_field(
  * @brief This function moves the value in member bool_opt_field
  * @param _bool_opt_field New value to be moved in member bool_opt_field
  */
-void eprosima::test::CompleteTestType::bool_opt_field(
+void CompleteTestType::bool_opt_field(
         eprosima::fastcdr::optional<bool>&& _bool_opt_field)
 {
     m_bool_opt_field = std::move(_bool_opt_field);
@@ -1845,7 +1852,7 @@ void eprosima::test::CompleteTestType::bool_opt_field(
  * @brief This function returns a constant reference to member bool_opt_field
  * @return Constant reference to member bool_opt_field
  */
-const eprosima::fastcdr::optional<bool>& eprosima::test::CompleteTestType::bool_opt_field() const
+const eprosima::fastcdr::optional<bool>& CompleteTestType::bool_opt_field() const
 {
     return m_bool_opt_field;
 }
@@ -1854,7 +1861,7 @@ const eprosima::fastcdr::optional<bool>& eprosima::test::CompleteTestType::bool_
  * @brief This function returns a reference to member bool_opt_field
  * @return Reference to member bool_opt_field
  */
-eprosima::fastcdr::optional<bool>& eprosima::test::CompleteTestType::bool_opt_field()
+eprosima::fastcdr::optional<bool>& CompleteTestType::bool_opt_field()
 {
     return m_bool_opt_field;
 }
@@ -1864,7 +1871,7 @@ eprosima::fastcdr::optional<bool>& eprosima::test::CompleteTestType::bool_opt_fi
  * @brief This function copies the value in member string_opt_field
  * @param _string_opt_field New value to be copied in member string_opt_field
  */
-void eprosima::test::CompleteTestType::string_opt_field(
+void CompleteTestType::string_opt_field(
         const eprosima::fastcdr::optional<std::string>& _string_opt_field)
 {
     m_string_opt_field = _string_opt_field;
@@ -1874,7 +1881,7 @@ void eprosima::test::CompleteTestType::string_opt_field(
  * @brief This function moves the value in member string_opt_field
  * @param _string_opt_field New value to be moved in member string_opt_field
  */
-void eprosima::test::CompleteTestType::string_opt_field(
+void CompleteTestType::string_opt_field(
         eprosima::fastcdr::optional<std::string>&& _string_opt_field)
 {
     m_string_opt_field = std::move(_string_opt_field);
@@ -1884,7 +1891,7 @@ void eprosima::test::CompleteTestType::string_opt_field(
  * @brief This function returns a constant reference to member string_opt_field
  * @return Constant reference to member string_opt_field
  */
-const eprosima::fastcdr::optional<std::string>& eprosima::test::CompleteTestType::string_opt_field() const
+const eprosima::fastcdr::optional<std::string>& CompleteTestType::string_opt_field() const
 {
     return m_string_opt_field;
 }
@@ -1893,7 +1900,7 @@ const eprosima::fastcdr::optional<std::string>& eprosima::test::CompleteTestType
  * @brief This function returns a reference to member string_opt_field
  * @return Reference to member string_opt_field
  */
-eprosima::fastcdr::optional<std::string>& eprosima::test::CompleteTestType::string_opt_field()
+eprosima::fastcdr::optional<std::string>& CompleteTestType::string_opt_field()
 {
     return m_string_opt_field;
 }
@@ -1903,7 +1910,7 @@ eprosima::fastcdr::optional<std::string>& eprosima::test::CompleteTestType::stri
  * @brief This function copies the value in member enum_opt_field
  * @param _enum_opt_field New value to be copied in member enum_opt_field
  */
-void eprosima::test::CompleteTestType::enum_opt_field(
+void CompleteTestType::enum_opt_field(
         const eprosima::fastcdr::optional<eprosima::test::Color>& _enum_opt_field)
 {
     m_enum_opt_field = _enum_opt_field;
@@ -1913,7 +1920,7 @@ void eprosima::test::CompleteTestType::enum_opt_field(
  * @brief This function moves the value in member enum_opt_field
  * @param _enum_opt_field New value to be moved in member enum_opt_field
  */
-void eprosima::test::CompleteTestType::enum_opt_field(
+void CompleteTestType::enum_opt_field(
         eprosima::fastcdr::optional<eprosima::test::Color>&& _enum_opt_field)
 {
     m_enum_opt_field = std::move(_enum_opt_field);
@@ -1923,7 +1930,7 @@ void eprosima::test::CompleteTestType::enum_opt_field(
  * @brief This function returns a constant reference to member enum_opt_field
  * @return Constant reference to member enum_opt_field
  */
-const eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::CompleteTestType::enum_opt_field() const
+const eprosima::fastcdr::optional<eprosima::test::Color>& CompleteTestType::enum_opt_field() const
 {
     return m_enum_opt_field;
 }
@@ -1932,7 +1939,7 @@ const eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::Comple
  * @brief This function returns a reference to member enum_opt_field
  * @return Reference to member enum_opt_field
  */
-eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::CompleteTestType::enum_opt_field()
+eprosima::fastcdr::optional<eprosima::test::Color>& CompleteTestType::enum_opt_field()
 {
     return m_enum_opt_field;
 }
@@ -1942,7 +1949,7 @@ eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::CompleteTest
  * @brief This function copies the value in member enum2_opt_field
  * @param _enum2_opt_field New value to be copied in member enum2_opt_field
  */
-void eprosima::test::CompleteTestType::enum2_opt_field(
+void CompleteTestType::enum2_opt_field(
         const eprosima::fastcdr::optional<eprosima::test::Material>& _enum2_opt_field)
 {
     m_enum2_opt_field = _enum2_opt_field;
@@ -1952,7 +1959,7 @@ void eprosima::test::CompleteTestType::enum2_opt_field(
  * @brief This function moves the value in member enum2_opt_field
  * @param _enum2_opt_field New value to be moved in member enum2_opt_field
  */
-void eprosima::test::CompleteTestType::enum2_opt_field(
+void CompleteTestType::enum2_opt_field(
         eprosima::fastcdr::optional<eprosima::test::Material>&& _enum2_opt_field)
 {
     m_enum2_opt_field = std::move(_enum2_opt_field);
@@ -1962,7 +1969,7 @@ void eprosima::test::CompleteTestType::enum2_opt_field(
  * @brief This function returns a constant reference to member enum2_opt_field
  * @return Constant reference to member enum2_opt_field
  */
-const eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::CompleteTestType::enum2_opt_field() const
+const eprosima::fastcdr::optional<eprosima::test::Material>& CompleteTestType::enum2_opt_field() const
 {
     return m_enum2_opt_field;
 }
@@ -1971,7 +1978,7 @@ const eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::Com
  * @brief This function returns a reference to member enum2_opt_field
  * @return Reference to member enum2_opt_field
  */
-eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::CompleteTestType::enum2_opt_field()
+eprosima::fastcdr::optional<eprosima::test::Material>& CompleteTestType::enum2_opt_field()
 {
     return m_enum2_opt_field;
 }
@@ -1981,7 +1988,7 @@ eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::CompleteT
  * @brief This function copies the value in member struct_opt_field
  * @param _struct_opt_field New value to be copied in member struct_opt_field
  */
-void eprosima::test::CompleteTestType::struct_opt_field(
+void CompleteTestType::struct_opt_field(
         const eprosima::fastcdr::optional<eprosima::test::StructType>& _struct_opt_field)
 {
     m_struct_opt_field = _struct_opt_field;
@@ -1991,7 +1998,7 @@ void eprosima::test::CompleteTestType::struct_opt_field(
  * @brief This function moves the value in member struct_opt_field
  * @param _struct_opt_field New value to be moved in member struct_opt_field
  */
-void eprosima::test::CompleteTestType::struct_opt_field(
+void CompleteTestType::struct_opt_field(
         eprosima::fastcdr::optional<eprosima::test::StructType>&& _struct_opt_field)
 {
     m_struct_opt_field = std::move(_struct_opt_field);
@@ -2001,7 +2008,7 @@ void eprosima::test::CompleteTestType::struct_opt_field(
  * @brief This function returns a constant reference to member struct_opt_field
  * @return Constant reference to member struct_opt_field
  */
-const eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::CompleteTestType::struct_opt_field() const
+const eprosima::fastcdr::optional<eprosima::test::StructType>& CompleteTestType::struct_opt_field() const
 {
     return m_struct_opt_field;
 }
@@ -2010,7 +2017,7 @@ const eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::C
  * @brief This function returns a reference to member struct_opt_field
  * @return Reference to member struct_opt_field
  */
-eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::CompleteTestType::struct_opt_field()
+eprosima::fastcdr::optional<eprosima::test::StructType>& CompleteTestType::struct_opt_field()
 {
     return m_struct_opt_field;
 }
@@ -2020,8 +2027,8 @@ eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::Complet
  * @brief This function copies the value in member array_char_field
  * @param _array_char_field New value to be copied in member array_char_field
  */
-void eprosima::test::CompleteTestType::array_char_field(
-        const std::array<char, 3>& _array_char_field)
+void CompleteTestType::array_char_field(
+        const std::array<char, max_array_size>& _array_char_field)
 {
     m_array_char_field = _array_char_field;
 }
@@ -2030,8 +2037,8 @@ void eprosima::test::CompleteTestType::array_char_field(
  * @brief This function moves the value in member array_char_field
  * @param _array_char_field New value to be moved in member array_char_field
  */
-void eprosima::test::CompleteTestType::array_char_field(
-        std::array<char, 3>&& _array_char_field)
+void CompleteTestType::array_char_field(
+        std::array<char, max_array_size>&& _array_char_field)
 {
     m_array_char_field = std::move(_array_char_field);
 }
@@ -2040,7 +2047,7 @@ void eprosima::test::CompleteTestType::array_char_field(
  * @brief This function returns a constant reference to member array_char_field
  * @return Constant reference to member array_char_field
  */
-const std::array<char, 3>& eprosima::test::CompleteTestType::array_char_field() const
+const std::array<char, max_array_size>& CompleteTestType::array_char_field() const
 {
     return m_array_char_field;
 }
@@ -2049,7 +2056,7 @@ const std::array<char, 3>& eprosima::test::CompleteTestType::array_char_field() 
  * @brief This function returns a reference to member array_char_field
  * @return Reference to member array_char_field
  */
-std::array<char, 3>& eprosima::test::CompleteTestType::array_char_field()
+std::array<char, max_array_size>& CompleteTestType::array_char_field()
 {
     return m_array_char_field;
 }
@@ -2059,8 +2066,8 @@ std::array<char, 3>& eprosima::test::CompleteTestType::array_char_field()
  * @brief This function copies the value in member array_uint8_field
  * @param _array_uint8_field New value to be copied in member array_uint8_field
  */
-void eprosima::test::CompleteTestType::array_uint8_field(
-        const std::array<uint8_t, 3>& _array_uint8_field)
+void CompleteTestType::array_uint8_field(
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
 {
     m_array_uint8_field = _array_uint8_field;
 }
@@ -2069,8 +2076,8 @@ void eprosima::test::CompleteTestType::array_uint8_field(
  * @brief This function moves the value in member array_uint8_field
  * @param _array_uint8_field New value to be moved in member array_uint8_field
  */
-void eprosima::test::CompleteTestType::array_uint8_field(
-        std::array<uint8_t, 3>&& _array_uint8_field)
+void CompleteTestType::array_uint8_field(
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
 {
     m_array_uint8_field = std::move(_array_uint8_field);
 }
@@ -2079,7 +2086,7 @@ void eprosima::test::CompleteTestType::array_uint8_field(
  * @brief This function returns a constant reference to member array_uint8_field
  * @return Constant reference to member array_uint8_field
  */
-const std::array<uint8_t, 3>& eprosima::test::CompleteTestType::array_uint8_field() const
+const std::array<uint8_t, max_array_size>& CompleteTestType::array_uint8_field() const
 {
     return m_array_uint8_field;
 }
@@ -2088,7 +2095,7 @@ const std::array<uint8_t, 3>& eprosima::test::CompleteTestType::array_uint8_fiel
  * @brief This function returns a reference to member array_uint8_field
  * @return Reference to member array_uint8_field
  */
-std::array<uint8_t, 3>& eprosima::test::CompleteTestType::array_uint8_field()
+std::array<uint8_t, max_array_size>& CompleteTestType::array_uint8_field()
 {
     return m_array_uint8_field;
 }
@@ -2098,8 +2105,8 @@ std::array<uint8_t, 3>& eprosima::test::CompleteTestType::array_uint8_field()
  * @brief This function copies the value in member array_int16_field
  * @param _array_int16_field New value to be copied in member array_int16_field
  */
-void eprosima::test::CompleteTestType::array_int16_field(
-        const std::array<int16_t, 3>& _array_int16_field)
+void CompleteTestType::array_int16_field(
+        const std::array<int16_t, max_array_size>& _array_int16_field)
 {
     m_array_int16_field = _array_int16_field;
 }
@@ -2108,8 +2115,8 @@ void eprosima::test::CompleteTestType::array_int16_field(
  * @brief This function moves the value in member array_int16_field
  * @param _array_int16_field New value to be moved in member array_int16_field
  */
-void eprosima::test::CompleteTestType::array_int16_field(
-        std::array<int16_t, 3>&& _array_int16_field)
+void CompleteTestType::array_int16_field(
+        std::array<int16_t, max_array_size>&& _array_int16_field)
 {
     m_array_int16_field = std::move(_array_int16_field);
 }
@@ -2118,7 +2125,7 @@ void eprosima::test::CompleteTestType::array_int16_field(
  * @brief This function returns a constant reference to member array_int16_field
  * @return Constant reference to member array_int16_field
  */
-const std::array<int16_t, 3>& eprosima::test::CompleteTestType::array_int16_field() const
+const std::array<int16_t, max_array_size>& CompleteTestType::array_int16_field() const
 {
     return m_array_int16_field;
 }
@@ -2127,7 +2134,7 @@ const std::array<int16_t, 3>& eprosima::test::CompleteTestType::array_int16_fiel
  * @brief This function returns a reference to member array_int16_field
  * @return Reference to member array_int16_field
  */
-std::array<int16_t, 3>& eprosima::test::CompleteTestType::array_int16_field()
+std::array<int16_t, max_array_size>& CompleteTestType::array_int16_field()
 {
     return m_array_int16_field;
 }
@@ -2137,8 +2144,8 @@ std::array<int16_t, 3>& eprosima::test::CompleteTestType::array_int16_field()
  * @brief This function copies the value in member array_uint16_field
  * @param _array_uint16_field New value to be copied in member array_uint16_field
  */
-void eprosima::test::CompleteTestType::array_uint16_field(
-        const std::array<uint16_t, 3>& _array_uint16_field)
+void CompleteTestType::array_uint16_field(
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
 {
     m_array_uint16_field = _array_uint16_field;
 }
@@ -2147,8 +2154,8 @@ void eprosima::test::CompleteTestType::array_uint16_field(
  * @brief This function moves the value in member array_uint16_field
  * @param _array_uint16_field New value to be moved in member array_uint16_field
  */
-void eprosima::test::CompleteTestType::array_uint16_field(
-        std::array<uint16_t, 3>&& _array_uint16_field)
+void CompleteTestType::array_uint16_field(
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
 {
     m_array_uint16_field = std::move(_array_uint16_field);
 }
@@ -2157,7 +2164,7 @@ void eprosima::test::CompleteTestType::array_uint16_field(
  * @brief This function returns a constant reference to member array_uint16_field
  * @return Constant reference to member array_uint16_field
  */
-const std::array<uint16_t, 3>& eprosima::test::CompleteTestType::array_uint16_field() const
+const std::array<uint16_t, max_array_size>& CompleteTestType::array_uint16_field() const
 {
     return m_array_uint16_field;
 }
@@ -2166,7 +2173,7 @@ const std::array<uint16_t, 3>& eprosima::test::CompleteTestType::array_uint16_fi
  * @brief This function returns a reference to member array_uint16_field
  * @return Reference to member array_uint16_field
  */
-std::array<uint16_t, 3>& eprosima::test::CompleteTestType::array_uint16_field()
+std::array<uint16_t, max_array_size>& CompleteTestType::array_uint16_field()
 {
     return m_array_uint16_field;
 }
@@ -2176,8 +2183,8 @@ std::array<uint16_t, 3>& eprosima::test::CompleteTestType::array_uint16_field()
  * @brief This function copies the value in member array_int32_field
  * @param _array_int32_field New value to be copied in member array_int32_field
  */
-void eprosima::test::CompleteTestType::array_int32_field(
-        const std::array<int32_t, 3>& _array_int32_field)
+void CompleteTestType::array_int32_field(
+        const std::array<int32_t, max_array_size>& _array_int32_field)
 {
     m_array_int32_field = _array_int32_field;
 }
@@ -2186,8 +2193,8 @@ void eprosima::test::CompleteTestType::array_int32_field(
  * @brief This function moves the value in member array_int32_field
  * @param _array_int32_field New value to be moved in member array_int32_field
  */
-void eprosima::test::CompleteTestType::array_int32_field(
-        std::array<int32_t, 3>&& _array_int32_field)
+void CompleteTestType::array_int32_field(
+        std::array<int32_t, max_array_size>&& _array_int32_field)
 {
     m_array_int32_field = std::move(_array_int32_field);
 }
@@ -2196,7 +2203,7 @@ void eprosima::test::CompleteTestType::array_int32_field(
  * @brief This function returns a constant reference to member array_int32_field
  * @return Constant reference to member array_int32_field
  */
-const std::array<int32_t, 3>& eprosima::test::CompleteTestType::array_int32_field() const
+const std::array<int32_t, max_array_size>& CompleteTestType::array_int32_field() const
 {
     return m_array_int32_field;
 }
@@ -2205,7 +2212,7 @@ const std::array<int32_t, 3>& eprosima::test::CompleteTestType::array_int32_fiel
  * @brief This function returns a reference to member array_int32_field
  * @return Reference to member array_int32_field
  */
-std::array<int32_t, 3>& eprosima::test::CompleteTestType::array_int32_field()
+std::array<int32_t, max_array_size>& CompleteTestType::array_int32_field()
 {
     return m_array_int32_field;
 }
@@ -2215,8 +2222,8 @@ std::array<int32_t, 3>& eprosima::test::CompleteTestType::array_int32_field()
  * @brief This function copies the value in member array_uint32_field
  * @param _array_uint32_field New value to be copied in member array_uint32_field
  */
-void eprosima::test::CompleteTestType::array_uint32_field(
-        const std::array<uint32_t, 3>& _array_uint32_field)
+void CompleteTestType::array_uint32_field(
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
 {
     m_array_uint32_field = _array_uint32_field;
 }
@@ -2225,8 +2232,8 @@ void eprosima::test::CompleteTestType::array_uint32_field(
  * @brief This function moves the value in member array_uint32_field
  * @param _array_uint32_field New value to be moved in member array_uint32_field
  */
-void eprosima::test::CompleteTestType::array_uint32_field(
-        std::array<uint32_t, 3>&& _array_uint32_field)
+void CompleteTestType::array_uint32_field(
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
 {
     m_array_uint32_field = std::move(_array_uint32_field);
 }
@@ -2235,7 +2242,7 @@ void eprosima::test::CompleteTestType::array_uint32_field(
  * @brief This function returns a constant reference to member array_uint32_field
  * @return Constant reference to member array_uint32_field
  */
-const std::array<uint32_t, 3>& eprosima::test::CompleteTestType::array_uint32_field() const
+const std::array<uint32_t, max_array_size>& CompleteTestType::array_uint32_field() const
 {
     return m_array_uint32_field;
 }
@@ -2244,7 +2251,7 @@ const std::array<uint32_t, 3>& eprosima::test::CompleteTestType::array_uint32_fi
  * @brief This function returns a reference to member array_uint32_field
  * @return Reference to member array_uint32_field
  */
-std::array<uint32_t, 3>& eprosima::test::CompleteTestType::array_uint32_field()
+std::array<uint32_t, max_array_size>& CompleteTestType::array_uint32_field()
 {
     return m_array_uint32_field;
 }
@@ -2254,8 +2261,8 @@ std::array<uint32_t, 3>& eprosima::test::CompleteTestType::array_uint32_field()
  * @brief This function copies the value in member array_int64_field
  * @param _array_int64_field New value to be copied in member array_int64_field
  */
-void eprosima::test::CompleteTestType::array_int64_field(
-        const std::array<int64_t, 3>& _array_int64_field)
+void CompleteTestType::array_int64_field(
+        const std::array<int64_t, max_array_size>& _array_int64_field)
 {
     m_array_int64_field = _array_int64_field;
 }
@@ -2264,8 +2271,8 @@ void eprosima::test::CompleteTestType::array_int64_field(
  * @brief This function moves the value in member array_int64_field
  * @param _array_int64_field New value to be moved in member array_int64_field
  */
-void eprosima::test::CompleteTestType::array_int64_field(
-        std::array<int64_t, 3>&& _array_int64_field)
+void CompleteTestType::array_int64_field(
+        std::array<int64_t, max_array_size>&& _array_int64_field)
 {
     m_array_int64_field = std::move(_array_int64_field);
 }
@@ -2274,7 +2281,7 @@ void eprosima::test::CompleteTestType::array_int64_field(
  * @brief This function returns a constant reference to member array_int64_field
  * @return Constant reference to member array_int64_field
  */
-const std::array<int64_t, 3>& eprosima::test::CompleteTestType::array_int64_field() const
+const std::array<int64_t, max_array_size>& CompleteTestType::array_int64_field() const
 {
     return m_array_int64_field;
 }
@@ -2283,7 +2290,7 @@ const std::array<int64_t, 3>& eprosima::test::CompleteTestType::array_int64_fiel
  * @brief This function returns a reference to member array_int64_field
  * @return Reference to member array_int64_field
  */
-std::array<int64_t, 3>& eprosima::test::CompleteTestType::array_int64_field()
+std::array<int64_t, max_array_size>& CompleteTestType::array_int64_field()
 {
     return m_array_int64_field;
 }
@@ -2293,8 +2300,8 @@ std::array<int64_t, 3>& eprosima::test::CompleteTestType::array_int64_field()
  * @brief This function copies the value in member array_uint64_field
  * @param _array_uint64_field New value to be copied in member array_uint64_field
  */
-void eprosima::test::CompleteTestType::array_uint64_field(
-        const std::array<uint64_t, 3>& _array_uint64_field)
+void CompleteTestType::array_uint64_field(
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
 {
     m_array_uint64_field = _array_uint64_field;
 }
@@ -2303,8 +2310,8 @@ void eprosima::test::CompleteTestType::array_uint64_field(
  * @brief This function moves the value in member array_uint64_field
  * @param _array_uint64_field New value to be moved in member array_uint64_field
  */
-void eprosima::test::CompleteTestType::array_uint64_field(
-        std::array<uint64_t, 3>&& _array_uint64_field)
+void CompleteTestType::array_uint64_field(
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
 {
     m_array_uint64_field = std::move(_array_uint64_field);
 }
@@ -2313,7 +2320,7 @@ void eprosima::test::CompleteTestType::array_uint64_field(
  * @brief This function returns a constant reference to member array_uint64_field
  * @return Constant reference to member array_uint64_field
  */
-const std::array<uint64_t, 3>& eprosima::test::CompleteTestType::array_uint64_field() const
+const std::array<uint64_t, max_array_size>& CompleteTestType::array_uint64_field() const
 {
     return m_array_uint64_field;
 }
@@ -2322,7 +2329,7 @@ const std::array<uint64_t, 3>& eprosima::test::CompleteTestType::array_uint64_fi
  * @brief This function returns a reference to member array_uint64_field
  * @return Reference to member array_uint64_field
  */
-std::array<uint64_t, 3>& eprosima::test::CompleteTestType::array_uint64_field()
+std::array<uint64_t, max_array_size>& CompleteTestType::array_uint64_field()
 {
     return m_array_uint64_field;
 }
@@ -2332,8 +2339,8 @@ std::array<uint64_t, 3>& eprosima::test::CompleteTestType::array_uint64_field()
  * @brief This function copies the value in member array_float_field
  * @param _array_float_field New value to be copied in member array_float_field
  */
-void eprosima::test::CompleteTestType::array_float_field(
-        const std::array<float, 3>& _array_float_field)
+void CompleteTestType::array_float_field(
+        const std::array<float, max_array_size>& _array_float_field)
 {
     m_array_float_field = _array_float_field;
 }
@@ -2342,8 +2349,8 @@ void eprosima::test::CompleteTestType::array_float_field(
  * @brief This function moves the value in member array_float_field
  * @param _array_float_field New value to be moved in member array_float_field
  */
-void eprosima::test::CompleteTestType::array_float_field(
-        std::array<float, 3>&& _array_float_field)
+void CompleteTestType::array_float_field(
+        std::array<float, max_array_size>&& _array_float_field)
 {
     m_array_float_field = std::move(_array_float_field);
 }
@@ -2352,7 +2359,7 @@ void eprosima::test::CompleteTestType::array_float_field(
  * @brief This function returns a constant reference to member array_float_field
  * @return Constant reference to member array_float_field
  */
-const std::array<float, 3>& eprosima::test::CompleteTestType::array_float_field() const
+const std::array<float, max_array_size>& CompleteTestType::array_float_field() const
 {
     return m_array_float_field;
 }
@@ -2361,7 +2368,7 @@ const std::array<float, 3>& eprosima::test::CompleteTestType::array_float_field(
  * @brief This function returns a reference to member array_float_field
  * @return Reference to member array_float_field
  */
-std::array<float, 3>& eprosima::test::CompleteTestType::array_float_field()
+std::array<float, max_array_size>& CompleteTestType::array_float_field()
 {
     return m_array_float_field;
 }
@@ -2371,8 +2378,8 @@ std::array<float, 3>& eprosima::test::CompleteTestType::array_float_field()
  * @brief This function copies the value in member array_double_field
  * @param _array_double_field New value to be copied in member array_double_field
  */
-void eprosima::test::CompleteTestType::array_double_field(
-        const std::array<double, 3>& _array_double_field)
+void CompleteTestType::array_double_field(
+        const std::array<double, max_array_size>& _array_double_field)
 {
     m_array_double_field = _array_double_field;
 }
@@ -2381,8 +2388,8 @@ void eprosima::test::CompleteTestType::array_double_field(
  * @brief This function moves the value in member array_double_field
  * @param _array_double_field New value to be moved in member array_double_field
  */
-void eprosima::test::CompleteTestType::array_double_field(
-        std::array<double, 3>&& _array_double_field)
+void CompleteTestType::array_double_field(
+        std::array<double, max_array_size>&& _array_double_field)
 {
     m_array_double_field = std::move(_array_double_field);
 }
@@ -2391,7 +2398,7 @@ void eprosima::test::CompleteTestType::array_double_field(
  * @brief This function returns a constant reference to member array_double_field
  * @return Constant reference to member array_double_field
  */
-const std::array<double, 3>& eprosima::test::CompleteTestType::array_double_field() const
+const std::array<double, max_array_size>& CompleteTestType::array_double_field() const
 {
     return m_array_double_field;
 }
@@ -2400,7 +2407,7 @@ const std::array<double, 3>& eprosima::test::CompleteTestType::array_double_fiel
  * @brief This function returns a reference to member array_double_field
  * @return Reference to member array_double_field
  */
-std::array<double, 3>& eprosima::test::CompleteTestType::array_double_field()
+std::array<double, max_array_size>& CompleteTestType::array_double_field()
 {
     return m_array_double_field;
 }
@@ -2410,8 +2417,8 @@ std::array<double, 3>& eprosima::test::CompleteTestType::array_double_field()
  * @brief This function copies the value in member array_bool_field
  * @param _array_bool_field New value to be copied in member array_bool_field
  */
-void eprosima::test::CompleteTestType::array_bool_field(
-        const std::array<bool, 3>& _array_bool_field)
+void CompleteTestType::array_bool_field(
+        const std::array<bool, max_array_size>& _array_bool_field)
 {
     m_array_bool_field = _array_bool_field;
 }
@@ -2420,8 +2427,8 @@ void eprosima::test::CompleteTestType::array_bool_field(
  * @brief This function moves the value in member array_bool_field
  * @param _array_bool_field New value to be moved in member array_bool_field
  */
-void eprosima::test::CompleteTestType::array_bool_field(
-        std::array<bool, 3>&& _array_bool_field)
+void CompleteTestType::array_bool_field(
+        std::array<bool, max_array_size>&& _array_bool_field)
 {
     m_array_bool_field = std::move(_array_bool_field);
 }
@@ -2430,7 +2437,7 @@ void eprosima::test::CompleteTestType::array_bool_field(
  * @brief This function returns a constant reference to member array_bool_field
  * @return Constant reference to member array_bool_field
  */
-const std::array<bool, 3>& eprosima::test::CompleteTestType::array_bool_field() const
+const std::array<bool, max_array_size>& CompleteTestType::array_bool_field() const
 {
     return m_array_bool_field;
 }
@@ -2439,7 +2446,7 @@ const std::array<bool, 3>& eprosima::test::CompleteTestType::array_bool_field() 
  * @brief This function returns a reference to member array_bool_field
  * @return Reference to member array_bool_field
  */
-std::array<bool, 3>& eprosima::test::CompleteTestType::array_bool_field()
+std::array<bool, max_array_size>& CompleteTestType::array_bool_field()
 {
     return m_array_bool_field;
 }
@@ -2449,8 +2456,8 @@ std::array<bool, 3>& eprosima::test::CompleteTestType::array_bool_field()
  * @brief This function copies the value in member array_enum_field
  * @param _array_enum_field New value to be copied in member array_enum_field
  */
-void eprosima::test::CompleteTestType::array_enum_field(
-        const std::array<eprosima::test::Color, 3>& _array_enum_field)
+void CompleteTestType::array_enum_field(
+        const std::array<eprosima::test::Color, max_array_size>& _array_enum_field)
 {
     m_array_enum_field = _array_enum_field;
 }
@@ -2459,8 +2466,8 @@ void eprosima::test::CompleteTestType::array_enum_field(
  * @brief This function moves the value in member array_enum_field
  * @param _array_enum_field New value to be moved in member array_enum_field
  */
-void eprosima::test::CompleteTestType::array_enum_field(
-        std::array<eprosima::test::Color, 3>&& _array_enum_field)
+void CompleteTestType::array_enum_field(
+        std::array<eprosima::test::Color, max_array_size>&& _array_enum_field)
 {
     m_array_enum_field = std::move(_array_enum_field);
 }
@@ -2469,7 +2476,7 @@ void eprosima::test::CompleteTestType::array_enum_field(
  * @brief This function returns a constant reference to member array_enum_field
  * @return Constant reference to member array_enum_field
  */
-const std::array<eprosima::test::Color, 3>& eprosima::test::CompleteTestType::array_enum_field() const
+const std::array<eprosima::test::Color, max_array_size>& CompleteTestType::array_enum_field() const
 {
     return m_array_enum_field;
 }
@@ -2478,7 +2485,7 @@ const std::array<eprosima::test::Color, 3>& eprosima::test::CompleteTestType::ar
  * @brief This function returns a reference to member array_enum_field
  * @return Reference to member array_enum_field
  */
-std::array<eprosima::test::Color, 3>& eprosima::test::CompleteTestType::array_enum_field()
+std::array<eprosima::test::Color, max_array_size>& CompleteTestType::array_enum_field()
 {
     return m_array_enum_field;
 }
@@ -2488,8 +2495,8 @@ std::array<eprosima::test::Color, 3>& eprosima::test::CompleteTestType::array_en
  * @brief This function copies the value in member array_enum2_field
  * @param _array_enum2_field New value to be copied in member array_enum2_field
  */
-void eprosima::test::CompleteTestType::array_enum2_field(
-        const std::array<eprosima::test::Material, 3>& _array_enum2_field)
+void CompleteTestType::array_enum2_field(
+        const std::array<eprosima::test::Material, max_array_size>& _array_enum2_field)
 {
     m_array_enum2_field = _array_enum2_field;
 }
@@ -2498,8 +2505,8 @@ void eprosima::test::CompleteTestType::array_enum2_field(
  * @brief This function moves the value in member array_enum2_field
  * @param _array_enum2_field New value to be moved in member array_enum2_field
  */
-void eprosima::test::CompleteTestType::array_enum2_field(
-        std::array<eprosima::test::Material, 3>&& _array_enum2_field)
+void CompleteTestType::array_enum2_field(
+        std::array<eprosima::test::Material, max_array_size>&& _array_enum2_field)
 {
     m_array_enum2_field = std::move(_array_enum2_field);
 }
@@ -2508,7 +2515,7 @@ void eprosima::test::CompleteTestType::array_enum2_field(
  * @brief This function returns a constant reference to member array_enum2_field
  * @return Constant reference to member array_enum2_field
  */
-const std::array<eprosima::test::Material, 3>& eprosima::test::CompleteTestType::array_enum2_field() const
+const std::array<eprosima::test::Material, max_array_size>& CompleteTestType::array_enum2_field() const
 {
     return m_array_enum2_field;
 }
@@ -2517,7 +2524,7 @@ const std::array<eprosima::test::Material, 3>& eprosima::test::CompleteTestType:
  * @brief This function returns a reference to member array_enum2_field
  * @return Reference to member array_enum2_field
  */
-std::array<eprosima::test::Material, 3>& eprosima::test::CompleteTestType::array_enum2_field()
+std::array<eprosima::test::Material, max_array_size>& CompleteTestType::array_enum2_field()
 {
     return m_array_enum2_field;
 }
@@ -2527,8 +2534,8 @@ std::array<eprosima::test::Material, 3>& eprosima::test::CompleteTestType::array
  * @brief This function copies the value in member array_struct_field
  * @param _array_struct_field New value to be copied in member array_struct_field
  */
-void eprosima::test::CompleteTestType::array_struct_field(
-        const std::array<eprosima::test::StructType, 3>& _array_struct_field)
+void CompleteTestType::array_struct_field(
+        const std::array<eprosima::test::StructType, max_array_size>& _array_struct_field)
 {
     m_array_struct_field = _array_struct_field;
 }
@@ -2537,8 +2544,8 @@ void eprosima::test::CompleteTestType::array_struct_field(
  * @brief This function moves the value in member array_struct_field
  * @param _array_struct_field New value to be moved in member array_struct_field
  */
-void eprosima::test::CompleteTestType::array_struct_field(
-        std::array<eprosima::test::StructType, 3>&& _array_struct_field)
+void CompleteTestType::array_struct_field(
+        std::array<eprosima::test::StructType, max_array_size>&& _array_struct_field)
 {
     m_array_struct_field = std::move(_array_struct_field);
 }
@@ -2547,7 +2554,7 @@ void eprosima::test::CompleteTestType::array_struct_field(
  * @brief This function returns a constant reference to member array_struct_field
  * @return Constant reference to member array_struct_field
  */
-const std::array<eprosima::test::StructType, 3>& eprosima::test::CompleteTestType::array_struct_field() const
+const std::array<eprosima::test::StructType, max_array_size>& CompleteTestType::array_struct_field() const
 {
     return m_array_struct_field;
 }
@@ -2556,7 +2563,7 @@ const std::array<eprosima::test::StructType, 3>& eprosima::test::CompleteTestTyp
  * @brief This function returns a reference to member array_struct_field
  * @return Reference to member array_struct_field
  */
-std::array<eprosima::test::StructType, 3>& eprosima::test::CompleteTestType::array_struct_field()
+std::array<eprosima::test::StructType, max_array_size>& CompleteTestType::array_struct_field()
 {
     return m_array_struct_field;
 }
@@ -2566,7 +2573,7 @@ std::array<eprosima::test::StructType, 3>& eprosima::test::CompleteTestType::arr
  * @brief This function copies the value in member bounded_sequence_char_field
  * @param _bounded_sequence_char_field New value to be copied in member bounded_sequence_char_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_char_field(
+void CompleteTestType::bounded_sequence_char_field(
         const std::vector<char>& _bounded_sequence_char_field)
 {
     m_bounded_sequence_char_field = _bounded_sequence_char_field;
@@ -2576,7 +2583,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_char_field(
  * @brief This function moves the value in member bounded_sequence_char_field
  * @param _bounded_sequence_char_field New value to be moved in member bounded_sequence_char_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_char_field(
+void CompleteTestType::bounded_sequence_char_field(
         std::vector<char>&& _bounded_sequence_char_field)
 {
     m_bounded_sequence_char_field = std::move(_bounded_sequence_char_field);
@@ -2586,7 +2593,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_char_field(
  * @brief This function returns a constant reference to member bounded_sequence_char_field
  * @return Constant reference to member bounded_sequence_char_field
  */
-const std::vector<char>& eprosima::test::CompleteTestType::bounded_sequence_char_field() const
+const std::vector<char>& CompleteTestType::bounded_sequence_char_field() const
 {
     return m_bounded_sequence_char_field;
 }
@@ -2595,7 +2602,7 @@ const std::vector<char>& eprosima::test::CompleteTestType::bounded_sequence_char
  * @brief This function returns a reference to member bounded_sequence_char_field
  * @return Reference to member bounded_sequence_char_field
  */
-std::vector<char>& eprosima::test::CompleteTestType::bounded_sequence_char_field()
+std::vector<char>& CompleteTestType::bounded_sequence_char_field()
 {
     return m_bounded_sequence_char_field;
 }
@@ -2605,7 +2612,7 @@ std::vector<char>& eprosima::test::CompleteTestType::bounded_sequence_char_field
  * @brief This function copies the value in member bounded_sequence_uint8_field
  * @param _bounded_sequence_uint8_field New value to be copied in member bounded_sequence_uint8_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint8_field(
+void CompleteTestType::bounded_sequence_uint8_field(
         const std::vector<uint8_t>& _bounded_sequence_uint8_field)
 {
     m_bounded_sequence_uint8_field = _bounded_sequence_uint8_field;
@@ -2615,7 +2622,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint8_field(
  * @brief This function moves the value in member bounded_sequence_uint8_field
  * @param _bounded_sequence_uint8_field New value to be moved in member bounded_sequence_uint8_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint8_field(
+void CompleteTestType::bounded_sequence_uint8_field(
         std::vector<uint8_t>&& _bounded_sequence_uint8_field)
 {
     m_bounded_sequence_uint8_field = std::move(_bounded_sequence_uint8_field);
@@ -2625,7 +2632,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint8_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint8_field
  * @return Constant reference to member bounded_sequence_uint8_field
  */
-const std::vector<uint8_t>& eprosima::test::CompleteTestType::bounded_sequence_uint8_field() const
+const std::vector<uint8_t>& CompleteTestType::bounded_sequence_uint8_field() const
 {
     return m_bounded_sequence_uint8_field;
 }
@@ -2634,7 +2641,7 @@ const std::vector<uint8_t>& eprosima::test::CompleteTestType::bounded_sequence_u
  * @brief This function returns a reference to member bounded_sequence_uint8_field
  * @return Reference to member bounded_sequence_uint8_field
  */
-std::vector<uint8_t>& eprosima::test::CompleteTestType::bounded_sequence_uint8_field()
+std::vector<uint8_t>& CompleteTestType::bounded_sequence_uint8_field()
 {
     return m_bounded_sequence_uint8_field;
 }
@@ -2644,7 +2651,7 @@ std::vector<uint8_t>& eprosima::test::CompleteTestType::bounded_sequence_uint8_f
  * @brief This function copies the value in member bounded_sequence_int16_field
  * @param _bounded_sequence_int16_field New value to be copied in member bounded_sequence_int16_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_int16_field(
+void CompleteTestType::bounded_sequence_int16_field(
         const std::vector<int16_t>& _bounded_sequence_int16_field)
 {
     m_bounded_sequence_int16_field = _bounded_sequence_int16_field;
@@ -2654,7 +2661,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_int16_field(
  * @brief This function moves the value in member bounded_sequence_int16_field
  * @param _bounded_sequence_int16_field New value to be moved in member bounded_sequence_int16_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_int16_field(
+void CompleteTestType::bounded_sequence_int16_field(
         std::vector<int16_t>&& _bounded_sequence_int16_field)
 {
     m_bounded_sequence_int16_field = std::move(_bounded_sequence_int16_field);
@@ -2664,7 +2671,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_int16_field(
  * @brief This function returns a constant reference to member bounded_sequence_int16_field
  * @return Constant reference to member bounded_sequence_int16_field
  */
-const std::vector<int16_t>& eprosima::test::CompleteTestType::bounded_sequence_int16_field() const
+const std::vector<int16_t>& CompleteTestType::bounded_sequence_int16_field() const
 {
     return m_bounded_sequence_int16_field;
 }
@@ -2673,7 +2680,7 @@ const std::vector<int16_t>& eprosima::test::CompleteTestType::bounded_sequence_i
  * @brief This function returns a reference to member bounded_sequence_int16_field
  * @return Reference to member bounded_sequence_int16_field
  */
-std::vector<int16_t>& eprosima::test::CompleteTestType::bounded_sequence_int16_field()
+std::vector<int16_t>& CompleteTestType::bounded_sequence_int16_field()
 {
     return m_bounded_sequence_int16_field;
 }
@@ -2683,7 +2690,7 @@ std::vector<int16_t>& eprosima::test::CompleteTestType::bounded_sequence_int16_f
  * @brief This function copies the value in member bounded_sequence_uint16_field
  * @param _bounded_sequence_uint16_field New value to be copied in member bounded_sequence_uint16_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint16_field(
+void CompleteTestType::bounded_sequence_uint16_field(
         const std::vector<uint16_t>& _bounded_sequence_uint16_field)
 {
     m_bounded_sequence_uint16_field = _bounded_sequence_uint16_field;
@@ -2693,7 +2700,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint16_field(
  * @brief This function moves the value in member bounded_sequence_uint16_field
  * @param _bounded_sequence_uint16_field New value to be moved in member bounded_sequence_uint16_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint16_field(
+void CompleteTestType::bounded_sequence_uint16_field(
         std::vector<uint16_t>&& _bounded_sequence_uint16_field)
 {
     m_bounded_sequence_uint16_field = std::move(_bounded_sequence_uint16_field);
@@ -2703,7 +2710,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint16_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint16_field
  * @return Constant reference to member bounded_sequence_uint16_field
  */
-const std::vector<uint16_t>& eprosima::test::CompleteTestType::bounded_sequence_uint16_field() const
+const std::vector<uint16_t>& CompleteTestType::bounded_sequence_uint16_field() const
 {
     return m_bounded_sequence_uint16_field;
 }
@@ -2712,7 +2719,7 @@ const std::vector<uint16_t>& eprosima::test::CompleteTestType::bounded_sequence_
  * @brief This function returns a reference to member bounded_sequence_uint16_field
  * @return Reference to member bounded_sequence_uint16_field
  */
-std::vector<uint16_t>& eprosima::test::CompleteTestType::bounded_sequence_uint16_field()
+std::vector<uint16_t>& CompleteTestType::bounded_sequence_uint16_field()
 {
     return m_bounded_sequence_uint16_field;
 }
@@ -2722,7 +2729,7 @@ std::vector<uint16_t>& eprosima::test::CompleteTestType::bounded_sequence_uint16
  * @brief This function copies the value in member bounded_sequence_int32_field
  * @param _bounded_sequence_int32_field New value to be copied in member bounded_sequence_int32_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_int32_field(
+void CompleteTestType::bounded_sequence_int32_field(
         const std::vector<int32_t>& _bounded_sequence_int32_field)
 {
     m_bounded_sequence_int32_field = _bounded_sequence_int32_field;
@@ -2732,7 +2739,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_int32_field(
  * @brief This function moves the value in member bounded_sequence_int32_field
  * @param _bounded_sequence_int32_field New value to be moved in member bounded_sequence_int32_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_int32_field(
+void CompleteTestType::bounded_sequence_int32_field(
         std::vector<int32_t>&& _bounded_sequence_int32_field)
 {
     m_bounded_sequence_int32_field = std::move(_bounded_sequence_int32_field);
@@ -2742,7 +2749,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_int32_field(
  * @brief This function returns a constant reference to member bounded_sequence_int32_field
  * @return Constant reference to member bounded_sequence_int32_field
  */
-const std::vector<int32_t>& eprosima::test::CompleteTestType::bounded_sequence_int32_field() const
+const std::vector<int32_t>& CompleteTestType::bounded_sequence_int32_field() const
 {
     return m_bounded_sequence_int32_field;
 }
@@ -2751,7 +2758,7 @@ const std::vector<int32_t>& eprosima::test::CompleteTestType::bounded_sequence_i
  * @brief This function returns a reference to member bounded_sequence_int32_field
  * @return Reference to member bounded_sequence_int32_field
  */
-std::vector<int32_t>& eprosima::test::CompleteTestType::bounded_sequence_int32_field()
+std::vector<int32_t>& CompleteTestType::bounded_sequence_int32_field()
 {
     return m_bounded_sequence_int32_field;
 }
@@ -2761,7 +2768,7 @@ std::vector<int32_t>& eprosima::test::CompleteTestType::bounded_sequence_int32_f
  * @brief This function copies the value in member bounded_sequence_uint32_field
  * @param _bounded_sequence_uint32_field New value to be copied in member bounded_sequence_uint32_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint32_field(
+void CompleteTestType::bounded_sequence_uint32_field(
         const std::vector<uint32_t>& _bounded_sequence_uint32_field)
 {
     m_bounded_sequence_uint32_field = _bounded_sequence_uint32_field;
@@ -2771,7 +2778,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint32_field(
  * @brief This function moves the value in member bounded_sequence_uint32_field
  * @param _bounded_sequence_uint32_field New value to be moved in member bounded_sequence_uint32_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint32_field(
+void CompleteTestType::bounded_sequence_uint32_field(
         std::vector<uint32_t>&& _bounded_sequence_uint32_field)
 {
     m_bounded_sequence_uint32_field = std::move(_bounded_sequence_uint32_field);
@@ -2781,7 +2788,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint32_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint32_field
  * @return Constant reference to member bounded_sequence_uint32_field
  */
-const std::vector<uint32_t>& eprosima::test::CompleteTestType::bounded_sequence_uint32_field() const
+const std::vector<uint32_t>& CompleteTestType::bounded_sequence_uint32_field() const
 {
     return m_bounded_sequence_uint32_field;
 }
@@ -2790,7 +2797,7 @@ const std::vector<uint32_t>& eprosima::test::CompleteTestType::bounded_sequence_
  * @brief This function returns a reference to member bounded_sequence_uint32_field
  * @return Reference to member bounded_sequence_uint32_field
  */
-std::vector<uint32_t>& eprosima::test::CompleteTestType::bounded_sequence_uint32_field()
+std::vector<uint32_t>& CompleteTestType::bounded_sequence_uint32_field()
 {
     return m_bounded_sequence_uint32_field;
 }
@@ -2800,7 +2807,7 @@ std::vector<uint32_t>& eprosima::test::CompleteTestType::bounded_sequence_uint32
  * @brief This function copies the value in member bounded_sequence_int64_field
  * @param _bounded_sequence_int64_field New value to be copied in member bounded_sequence_int64_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_int64_field(
+void CompleteTestType::bounded_sequence_int64_field(
         const std::vector<int64_t>& _bounded_sequence_int64_field)
 {
     m_bounded_sequence_int64_field = _bounded_sequence_int64_field;
@@ -2810,7 +2817,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_int64_field(
  * @brief This function moves the value in member bounded_sequence_int64_field
  * @param _bounded_sequence_int64_field New value to be moved in member bounded_sequence_int64_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_int64_field(
+void CompleteTestType::bounded_sequence_int64_field(
         std::vector<int64_t>&& _bounded_sequence_int64_field)
 {
     m_bounded_sequence_int64_field = std::move(_bounded_sequence_int64_field);
@@ -2820,7 +2827,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_int64_field(
  * @brief This function returns a constant reference to member bounded_sequence_int64_field
  * @return Constant reference to member bounded_sequence_int64_field
  */
-const std::vector<int64_t>& eprosima::test::CompleteTestType::bounded_sequence_int64_field() const
+const std::vector<int64_t>& CompleteTestType::bounded_sequence_int64_field() const
 {
     return m_bounded_sequence_int64_field;
 }
@@ -2829,7 +2836,7 @@ const std::vector<int64_t>& eprosima::test::CompleteTestType::bounded_sequence_i
  * @brief This function returns a reference to member bounded_sequence_int64_field
  * @return Reference to member bounded_sequence_int64_field
  */
-std::vector<int64_t>& eprosima::test::CompleteTestType::bounded_sequence_int64_field()
+std::vector<int64_t>& CompleteTestType::bounded_sequence_int64_field()
 {
     return m_bounded_sequence_int64_field;
 }
@@ -2839,7 +2846,7 @@ std::vector<int64_t>& eprosima::test::CompleteTestType::bounded_sequence_int64_f
  * @brief This function copies the value in member bounded_sequence_uint64_field
  * @param _bounded_sequence_uint64_field New value to be copied in member bounded_sequence_uint64_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint64_field(
+void CompleteTestType::bounded_sequence_uint64_field(
         const std::vector<uint64_t>& _bounded_sequence_uint64_field)
 {
     m_bounded_sequence_uint64_field = _bounded_sequence_uint64_field;
@@ -2849,7 +2856,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint64_field(
  * @brief This function moves the value in member bounded_sequence_uint64_field
  * @param _bounded_sequence_uint64_field New value to be moved in member bounded_sequence_uint64_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_uint64_field(
+void CompleteTestType::bounded_sequence_uint64_field(
         std::vector<uint64_t>&& _bounded_sequence_uint64_field)
 {
     m_bounded_sequence_uint64_field = std::move(_bounded_sequence_uint64_field);
@@ -2859,7 +2866,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_uint64_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint64_field
  * @return Constant reference to member bounded_sequence_uint64_field
  */
-const std::vector<uint64_t>& eprosima::test::CompleteTestType::bounded_sequence_uint64_field() const
+const std::vector<uint64_t>& CompleteTestType::bounded_sequence_uint64_field() const
 {
     return m_bounded_sequence_uint64_field;
 }
@@ -2868,7 +2875,7 @@ const std::vector<uint64_t>& eprosima::test::CompleteTestType::bounded_sequence_
  * @brief This function returns a reference to member bounded_sequence_uint64_field
  * @return Reference to member bounded_sequence_uint64_field
  */
-std::vector<uint64_t>& eprosima::test::CompleteTestType::bounded_sequence_uint64_field()
+std::vector<uint64_t>& CompleteTestType::bounded_sequence_uint64_field()
 {
     return m_bounded_sequence_uint64_field;
 }
@@ -2878,7 +2885,7 @@ std::vector<uint64_t>& eprosima::test::CompleteTestType::bounded_sequence_uint64
  * @brief This function copies the value in member bounded_sequence_float_field
  * @param _bounded_sequence_float_field New value to be copied in member bounded_sequence_float_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_float_field(
+void CompleteTestType::bounded_sequence_float_field(
         const std::vector<float>& _bounded_sequence_float_field)
 {
     m_bounded_sequence_float_field = _bounded_sequence_float_field;
@@ -2888,7 +2895,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_float_field(
  * @brief This function moves the value in member bounded_sequence_float_field
  * @param _bounded_sequence_float_field New value to be moved in member bounded_sequence_float_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_float_field(
+void CompleteTestType::bounded_sequence_float_field(
         std::vector<float>&& _bounded_sequence_float_field)
 {
     m_bounded_sequence_float_field = std::move(_bounded_sequence_float_field);
@@ -2898,7 +2905,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_float_field(
  * @brief This function returns a constant reference to member bounded_sequence_float_field
  * @return Constant reference to member bounded_sequence_float_field
  */
-const std::vector<float>& eprosima::test::CompleteTestType::bounded_sequence_float_field() const
+const std::vector<float>& CompleteTestType::bounded_sequence_float_field() const
 {
     return m_bounded_sequence_float_field;
 }
@@ -2907,7 +2914,7 @@ const std::vector<float>& eprosima::test::CompleteTestType::bounded_sequence_flo
  * @brief This function returns a reference to member bounded_sequence_float_field
  * @return Reference to member bounded_sequence_float_field
  */
-std::vector<float>& eprosima::test::CompleteTestType::bounded_sequence_float_field()
+std::vector<float>& CompleteTestType::bounded_sequence_float_field()
 {
     return m_bounded_sequence_float_field;
 }
@@ -2917,7 +2924,7 @@ std::vector<float>& eprosima::test::CompleteTestType::bounded_sequence_float_fie
  * @brief This function copies the value in member bounded_sequence_double_field
  * @param _bounded_sequence_double_field New value to be copied in member bounded_sequence_double_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_double_field(
+void CompleteTestType::bounded_sequence_double_field(
         const std::vector<double>& _bounded_sequence_double_field)
 {
     m_bounded_sequence_double_field = _bounded_sequence_double_field;
@@ -2927,7 +2934,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_double_field(
  * @brief This function moves the value in member bounded_sequence_double_field
  * @param _bounded_sequence_double_field New value to be moved in member bounded_sequence_double_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_double_field(
+void CompleteTestType::bounded_sequence_double_field(
         std::vector<double>&& _bounded_sequence_double_field)
 {
     m_bounded_sequence_double_field = std::move(_bounded_sequence_double_field);
@@ -2937,7 +2944,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_double_field(
  * @brief This function returns a constant reference to member bounded_sequence_double_field
  * @return Constant reference to member bounded_sequence_double_field
  */
-const std::vector<double>& eprosima::test::CompleteTestType::bounded_sequence_double_field() const
+const std::vector<double>& CompleteTestType::bounded_sequence_double_field() const
 {
     return m_bounded_sequence_double_field;
 }
@@ -2946,7 +2953,7 @@ const std::vector<double>& eprosima::test::CompleteTestType::bounded_sequence_do
  * @brief This function returns a reference to member bounded_sequence_double_field
  * @return Reference to member bounded_sequence_double_field
  */
-std::vector<double>& eprosima::test::CompleteTestType::bounded_sequence_double_field()
+std::vector<double>& CompleteTestType::bounded_sequence_double_field()
 {
     return m_bounded_sequence_double_field;
 }
@@ -2956,7 +2963,7 @@ std::vector<double>& eprosima::test::CompleteTestType::bounded_sequence_double_f
  * @brief This function copies the value in member bounded_sequence_bool_field
  * @param _bounded_sequence_bool_field New value to be copied in member bounded_sequence_bool_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_bool_field(
+void CompleteTestType::bounded_sequence_bool_field(
         const std::vector<bool>& _bounded_sequence_bool_field)
 {
     m_bounded_sequence_bool_field = _bounded_sequence_bool_field;
@@ -2966,7 +2973,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_bool_field(
  * @brief This function moves the value in member bounded_sequence_bool_field
  * @param _bounded_sequence_bool_field New value to be moved in member bounded_sequence_bool_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_bool_field(
+void CompleteTestType::bounded_sequence_bool_field(
         std::vector<bool>&& _bounded_sequence_bool_field)
 {
     m_bounded_sequence_bool_field = std::move(_bounded_sequence_bool_field);
@@ -2976,7 +2983,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_bool_field(
  * @brief This function returns a constant reference to member bounded_sequence_bool_field
  * @return Constant reference to member bounded_sequence_bool_field
  */
-const std::vector<bool>& eprosima::test::CompleteTestType::bounded_sequence_bool_field() const
+const std::vector<bool>& CompleteTestType::bounded_sequence_bool_field() const
 {
     return m_bounded_sequence_bool_field;
 }
@@ -2985,7 +2992,7 @@ const std::vector<bool>& eprosima::test::CompleteTestType::bounded_sequence_bool
  * @brief This function returns a reference to member bounded_sequence_bool_field
  * @return Reference to member bounded_sequence_bool_field
  */
-std::vector<bool>& eprosima::test::CompleteTestType::bounded_sequence_bool_field()
+std::vector<bool>& CompleteTestType::bounded_sequence_bool_field()
 {
     return m_bounded_sequence_bool_field;
 }
@@ -2995,7 +3002,7 @@ std::vector<bool>& eprosima::test::CompleteTestType::bounded_sequence_bool_field
  * @brief This function copies the value in member bounded_sequence_enum_field
  * @param _bounded_sequence_enum_field New value to be copied in member bounded_sequence_enum_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_enum_field(
+void CompleteTestType::bounded_sequence_enum_field(
         const std::vector<eprosima::test::Color>& _bounded_sequence_enum_field)
 {
     m_bounded_sequence_enum_field = _bounded_sequence_enum_field;
@@ -3005,7 +3012,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_enum_field(
  * @brief This function moves the value in member bounded_sequence_enum_field
  * @param _bounded_sequence_enum_field New value to be moved in member bounded_sequence_enum_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_enum_field(
+void CompleteTestType::bounded_sequence_enum_field(
         std::vector<eprosima::test::Color>&& _bounded_sequence_enum_field)
 {
     m_bounded_sequence_enum_field = std::move(_bounded_sequence_enum_field);
@@ -3015,7 +3022,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_enum_field(
  * @brief This function returns a constant reference to member bounded_sequence_enum_field
  * @return Constant reference to member bounded_sequence_enum_field
  */
-const std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::bounded_sequence_enum_field() const
+const std::vector<eprosima::test::Color>& CompleteTestType::bounded_sequence_enum_field() const
 {
     return m_bounded_sequence_enum_field;
 }
@@ -3024,7 +3031,7 @@ const std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::boun
  * @brief This function returns a reference to member bounded_sequence_enum_field
  * @return Reference to member bounded_sequence_enum_field
  */
-std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::bounded_sequence_enum_field()
+std::vector<eprosima::test::Color>& CompleteTestType::bounded_sequence_enum_field()
 {
     return m_bounded_sequence_enum_field;
 }
@@ -3034,7 +3041,7 @@ std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::bounded_se
  * @brief This function copies the value in member bounded_sequence_enum2_field
  * @param _bounded_sequence_enum2_field New value to be copied in member bounded_sequence_enum2_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_enum2_field(
+void CompleteTestType::bounded_sequence_enum2_field(
         const std::vector<eprosima::test::Material>& _bounded_sequence_enum2_field)
 {
     m_bounded_sequence_enum2_field = _bounded_sequence_enum2_field;
@@ -3044,7 +3051,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_enum2_field(
  * @brief This function moves the value in member bounded_sequence_enum2_field
  * @param _bounded_sequence_enum2_field New value to be moved in member bounded_sequence_enum2_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_enum2_field(
+void CompleteTestType::bounded_sequence_enum2_field(
         std::vector<eprosima::test::Material>&& _bounded_sequence_enum2_field)
 {
     m_bounded_sequence_enum2_field = std::move(_bounded_sequence_enum2_field);
@@ -3054,7 +3061,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_enum2_field(
  * @brief This function returns a constant reference to member bounded_sequence_enum2_field
  * @return Constant reference to member bounded_sequence_enum2_field
  */
-const std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::bounded_sequence_enum2_field() const
+const std::vector<eprosima::test::Material>& CompleteTestType::bounded_sequence_enum2_field() const
 {
     return m_bounded_sequence_enum2_field;
 }
@@ -3063,7 +3070,7 @@ const std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::b
  * @brief This function returns a reference to member bounded_sequence_enum2_field
  * @return Reference to member bounded_sequence_enum2_field
  */
-std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::bounded_sequence_enum2_field()
+std::vector<eprosima::test::Material>& CompleteTestType::bounded_sequence_enum2_field()
 {
     return m_bounded_sequence_enum2_field;
 }
@@ -3073,7 +3080,7 @@ std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::bounded
  * @brief This function copies the value in member bounded_sequence_struct_field
  * @param _bounded_sequence_struct_field New value to be copied in member bounded_sequence_struct_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_struct_field(
+void CompleteTestType::bounded_sequence_struct_field(
         const std::vector<eprosima::test::StructType>& _bounded_sequence_struct_field)
 {
     m_bounded_sequence_struct_field = _bounded_sequence_struct_field;
@@ -3083,7 +3090,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_struct_field(
  * @brief This function moves the value in member bounded_sequence_struct_field
  * @param _bounded_sequence_struct_field New value to be moved in member bounded_sequence_struct_field
  */
-void eprosima::test::CompleteTestType::bounded_sequence_struct_field(
+void CompleteTestType::bounded_sequence_struct_field(
         std::vector<eprosima::test::StructType>&& _bounded_sequence_struct_field)
 {
     m_bounded_sequence_struct_field = std::move(_bounded_sequence_struct_field);
@@ -3093,7 +3100,7 @@ void eprosima::test::CompleteTestType::bounded_sequence_struct_field(
  * @brief This function returns a constant reference to member bounded_sequence_struct_field
  * @return Constant reference to member bounded_sequence_struct_field
  */
-const std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType::bounded_sequence_struct_field() const
+const std::vector<eprosima::test::StructType>& CompleteTestType::bounded_sequence_struct_field() const
 {
     return m_bounded_sequence_struct_field;
 }
@@ -3102,7 +3109,7 @@ const std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType:
  * @brief This function returns a reference to member bounded_sequence_struct_field
  * @return Reference to member bounded_sequence_struct_field
  */
-std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType::bounded_sequence_struct_field()
+std::vector<eprosima::test::StructType>& CompleteTestType::bounded_sequence_struct_field()
 {
     return m_bounded_sequence_struct_field;
 }
@@ -3112,7 +3119,7 @@ std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType::bound
  * @brief This function copies the value in member unbounded_sequence_char_field
  * @param _unbounded_sequence_char_field New value to be copied in member unbounded_sequence_char_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_char_field(
+void CompleteTestType::unbounded_sequence_char_field(
         const std::vector<char>& _unbounded_sequence_char_field)
 {
     m_unbounded_sequence_char_field = _unbounded_sequence_char_field;
@@ -3122,7 +3129,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_char_field(
  * @brief This function moves the value in member unbounded_sequence_char_field
  * @param _unbounded_sequence_char_field New value to be moved in member unbounded_sequence_char_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_char_field(
+void CompleteTestType::unbounded_sequence_char_field(
         std::vector<char>&& _unbounded_sequence_char_field)
 {
     m_unbounded_sequence_char_field = std::move(_unbounded_sequence_char_field);
@@ -3132,7 +3139,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_char_field(
  * @brief This function returns a constant reference to member unbounded_sequence_char_field
  * @return Constant reference to member unbounded_sequence_char_field
  */
-const std::vector<char>& eprosima::test::CompleteTestType::unbounded_sequence_char_field() const
+const std::vector<char>& CompleteTestType::unbounded_sequence_char_field() const
 {
     return m_unbounded_sequence_char_field;
 }
@@ -3141,7 +3148,7 @@ const std::vector<char>& eprosima::test::CompleteTestType::unbounded_sequence_ch
  * @brief This function returns a reference to member unbounded_sequence_char_field
  * @return Reference to member unbounded_sequence_char_field
  */
-std::vector<char>& eprosima::test::CompleteTestType::unbounded_sequence_char_field()
+std::vector<char>& CompleteTestType::unbounded_sequence_char_field()
 {
     return m_unbounded_sequence_char_field;
 }
@@ -3151,7 +3158,7 @@ std::vector<char>& eprosima::test::CompleteTestType::unbounded_sequence_char_fie
  * @brief This function copies the value in member unbounded_sequence_uint8_field
  * @param _unbounded_sequence_uint8_field New value to be copied in member unbounded_sequence_uint8_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint8_field(
+void CompleteTestType::unbounded_sequence_uint8_field(
         const std::vector<uint8_t>& _unbounded_sequence_uint8_field)
 {
     m_unbounded_sequence_uint8_field = _unbounded_sequence_uint8_field;
@@ -3161,7 +3168,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint8_field(
  * @brief This function moves the value in member unbounded_sequence_uint8_field
  * @param _unbounded_sequence_uint8_field New value to be moved in member unbounded_sequence_uint8_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint8_field(
+void CompleteTestType::unbounded_sequence_uint8_field(
         std::vector<uint8_t>&& _unbounded_sequence_uint8_field)
 {
     m_unbounded_sequence_uint8_field = std::move(_unbounded_sequence_uint8_field);
@@ -3171,7 +3178,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint8_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint8_field
  * @return Constant reference to member unbounded_sequence_uint8_field
  */
-const std::vector<uint8_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint8_field() const
+const std::vector<uint8_t>& CompleteTestType::unbounded_sequence_uint8_field() const
 {
     return m_unbounded_sequence_uint8_field;
 }
@@ -3180,7 +3187,7 @@ const std::vector<uint8_t>& eprosima::test::CompleteTestType::unbounded_sequence
  * @brief This function returns a reference to member unbounded_sequence_uint8_field
  * @return Reference to member unbounded_sequence_uint8_field
  */
-std::vector<uint8_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint8_field()
+std::vector<uint8_t>& CompleteTestType::unbounded_sequence_uint8_field()
 {
     return m_unbounded_sequence_uint8_field;
 }
@@ -3190,7 +3197,7 @@ std::vector<uint8_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint8
  * @brief This function copies the value in member unbounded_sequence_int16_field
  * @param _unbounded_sequence_int16_field New value to be copied in member unbounded_sequence_int16_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_int16_field(
+void CompleteTestType::unbounded_sequence_int16_field(
         const std::vector<int16_t>& _unbounded_sequence_int16_field)
 {
     m_unbounded_sequence_int16_field = _unbounded_sequence_int16_field;
@@ -3200,7 +3207,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_int16_field(
  * @brief This function moves the value in member unbounded_sequence_int16_field
  * @param _unbounded_sequence_int16_field New value to be moved in member unbounded_sequence_int16_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_int16_field(
+void CompleteTestType::unbounded_sequence_int16_field(
         std::vector<int16_t>&& _unbounded_sequence_int16_field)
 {
     m_unbounded_sequence_int16_field = std::move(_unbounded_sequence_int16_field);
@@ -3210,7 +3217,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_int16_field(
  * @brief This function returns a constant reference to member unbounded_sequence_int16_field
  * @return Constant reference to member unbounded_sequence_int16_field
  */
-const std::vector<int16_t>& eprosima::test::CompleteTestType::unbounded_sequence_int16_field() const
+const std::vector<int16_t>& CompleteTestType::unbounded_sequence_int16_field() const
 {
     return m_unbounded_sequence_int16_field;
 }
@@ -3219,7 +3226,7 @@ const std::vector<int16_t>& eprosima::test::CompleteTestType::unbounded_sequence
  * @brief This function returns a reference to member unbounded_sequence_int16_field
  * @return Reference to member unbounded_sequence_int16_field
  */
-std::vector<int16_t>& eprosima::test::CompleteTestType::unbounded_sequence_int16_field()
+std::vector<int16_t>& CompleteTestType::unbounded_sequence_int16_field()
 {
     return m_unbounded_sequence_int16_field;
 }
@@ -3229,7 +3236,7 @@ std::vector<int16_t>& eprosima::test::CompleteTestType::unbounded_sequence_int16
  * @brief This function copies the value in member unbounded_sequence_uint16_field
  * @param _unbounded_sequence_uint16_field New value to be copied in member unbounded_sequence_uint16_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint16_field(
+void CompleteTestType::unbounded_sequence_uint16_field(
         const std::vector<uint16_t>& _unbounded_sequence_uint16_field)
 {
     m_unbounded_sequence_uint16_field = _unbounded_sequence_uint16_field;
@@ -3239,7 +3246,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint16_field(
  * @brief This function moves the value in member unbounded_sequence_uint16_field
  * @param _unbounded_sequence_uint16_field New value to be moved in member unbounded_sequence_uint16_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint16_field(
+void CompleteTestType::unbounded_sequence_uint16_field(
         std::vector<uint16_t>&& _unbounded_sequence_uint16_field)
 {
     m_unbounded_sequence_uint16_field = std::move(_unbounded_sequence_uint16_field);
@@ -3249,7 +3256,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint16_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint16_field
  * @return Constant reference to member unbounded_sequence_uint16_field
  */
-const std::vector<uint16_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint16_field() const
+const std::vector<uint16_t>& CompleteTestType::unbounded_sequence_uint16_field() const
 {
     return m_unbounded_sequence_uint16_field;
 }
@@ -3258,7 +3265,7 @@ const std::vector<uint16_t>& eprosima::test::CompleteTestType::unbounded_sequenc
  * @brief This function returns a reference to member unbounded_sequence_uint16_field
  * @return Reference to member unbounded_sequence_uint16_field
  */
-std::vector<uint16_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint16_field()
+std::vector<uint16_t>& CompleteTestType::unbounded_sequence_uint16_field()
 {
     return m_unbounded_sequence_uint16_field;
 }
@@ -3268,7 +3275,7 @@ std::vector<uint16_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint
  * @brief This function copies the value in member unbounded_sequence_int32_field
  * @param _unbounded_sequence_int32_field New value to be copied in member unbounded_sequence_int32_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_int32_field(
+void CompleteTestType::unbounded_sequence_int32_field(
         const std::vector<int32_t>& _unbounded_sequence_int32_field)
 {
     m_unbounded_sequence_int32_field = _unbounded_sequence_int32_field;
@@ -3278,7 +3285,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_int32_field(
  * @brief This function moves the value in member unbounded_sequence_int32_field
  * @param _unbounded_sequence_int32_field New value to be moved in member unbounded_sequence_int32_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_int32_field(
+void CompleteTestType::unbounded_sequence_int32_field(
         std::vector<int32_t>&& _unbounded_sequence_int32_field)
 {
     m_unbounded_sequence_int32_field = std::move(_unbounded_sequence_int32_field);
@@ -3288,7 +3295,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_int32_field(
  * @brief This function returns a constant reference to member unbounded_sequence_int32_field
  * @return Constant reference to member unbounded_sequence_int32_field
  */
-const std::vector<int32_t>& eprosima::test::CompleteTestType::unbounded_sequence_int32_field() const
+const std::vector<int32_t>& CompleteTestType::unbounded_sequence_int32_field() const
 {
     return m_unbounded_sequence_int32_field;
 }
@@ -3297,7 +3304,7 @@ const std::vector<int32_t>& eprosima::test::CompleteTestType::unbounded_sequence
  * @brief This function returns a reference to member unbounded_sequence_int32_field
  * @return Reference to member unbounded_sequence_int32_field
  */
-std::vector<int32_t>& eprosima::test::CompleteTestType::unbounded_sequence_int32_field()
+std::vector<int32_t>& CompleteTestType::unbounded_sequence_int32_field()
 {
     return m_unbounded_sequence_int32_field;
 }
@@ -3307,7 +3314,7 @@ std::vector<int32_t>& eprosima::test::CompleteTestType::unbounded_sequence_int32
  * @brief This function copies the value in member unbounded_sequence_uint32_field
  * @param _unbounded_sequence_uint32_field New value to be copied in member unbounded_sequence_uint32_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint32_field(
+void CompleteTestType::unbounded_sequence_uint32_field(
         const std::vector<uint32_t>& _unbounded_sequence_uint32_field)
 {
     m_unbounded_sequence_uint32_field = _unbounded_sequence_uint32_field;
@@ -3317,7 +3324,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint32_field(
  * @brief This function moves the value in member unbounded_sequence_uint32_field
  * @param _unbounded_sequence_uint32_field New value to be moved in member unbounded_sequence_uint32_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint32_field(
+void CompleteTestType::unbounded_sequence_uint32_field(
         std::vector<uint32_t>&& _unbounded_sequence_uint32_field)
 {
     m_unbounded_sequence_uint32_field = std::move(_unbounded_sequence_uint32_field);
@@ -3327,7 +3334,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint32_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint32_field
  * @return Constant reference to member unbounded_sequence_uint32_field
  */
-const std::vector<uint32_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint32_field() const
+const std::vector<uint32_t>& CompleteTestType::unbounded_sequence_uint32_field() const
 {
     return m_unbounded_sequence_uint32_field;
 }
@@ -3336,7 +3343,7 @@ const std::vector<uint32_t>& eprosima::test::CompleteTestType::unbounded_sequenc
  * @brief This function returns a reference to member unbounded_sequence_uint32_field
  * @return Reference to member unbounded_sequence_uint32_field
  */
-std::vector<uint32_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint32_field()
+std::vector<uint32_t>& CompleteTestType::unbounded_sequence_uint32_field()
 {
     return m_unbounded_sequence_uint32_field;
 }
@@ -3346,7 +3353,7 @@ std::vector<uint32_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint
  * @brief This function copies the value in member unbounded_sequence_int64_field
  * @param _unbounded_sequence_int64_field New value to be copied in member unbounded_sequence_int64_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_int64_field(
+void CompleteTestType::unbounded_sequence_int64_field(
         const std::vector<int64_t>& _unbounded_sequence_int64_field)
 {
     m_unbounded_sequence_int64_field = _unbounded_sequence_int64_field;
@@ -3356,7 +3363,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_int64_field(
  * @brief This function moves the value in member unbounded_sequence_int64_field
  * @param _unbounded_sequence_int64_field New value to be moved in member unbounded_sequence_int64_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_int64_field(
+void CompleteTestType::unbounded_sequence_int64_field(
         std::vector<int64_t>&& _unbounded_sequence_int64_field)
 {
     m_unbounded_sequence_int64_field = std::move(_unbounded_sequence_int64_field);
@@ -3366,7 +3373,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_int64_field(
  * @brief This function returns a constant reference to member unbounded_sequence_int64_field
  * @return Constant reference to member unbounded_sequence_int64_field
  */
-const std::vector<int64_t>& eprosima::test::CompleteTestType::unbounded_sequence_int64_field() const
+const std::vector<int64_t>& CompleteTestType::unbounded_sequence_int64_field() const
 {
     return m_unbounded_sequence_int64_field;
 }
@@ -3375,7 +3382,7 @@ const std::vector<int64_t>& eprosima::test::CompleteTestType::unbounded_sequence
  * @brief This function returns a reference to member unbounded_sequence_int64_field
  * @return Reference to member unbounded_sequence_int64_field
  */
-std::vector<int64_t>& eprosima::test::CompleteTestType::unbounded_sequence_int64_field()
+std::vector<int64_t>& CompleteTestType::unbounded_sequence_int64_field()
 {
     return m_unbounded_sequence_int64_field;
 }
@@ -3385,7 +3392,7 @@ std::vector<int64_t>& eprosima::test::CompleteTestType::unbounded_sequence_int64
  * @brief This function copies the value in member unbounded_sequence_uint64_field
  * @param _unbounded_sequence_uint64_field New value to be copied in member unbounded_sequence_uint64_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint64_field(
+void CompleteTestType::unbounded_sequence_uint64_field(
         const std::vector<uint64_t>& _unbounded_sequence_uint64_field)
 {
     m_unbounded_sequence_uint64_field = _unbounded_sequence_uint64_field;
@@ -3395,7 +3402,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint64_field(
  * @brief This function moves the value in member unbounded_sequence_uint64_field
  * @param _unbounded_sequence_uint64_field New value to be moved in member unbounded_sequence_uint64_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_uint64_field(
+void CompleteTestType::unbounded_sequence_uint64_field(
         std::vector<uint64_t>&& _unbounded_sequence_uint64_field)
 {
     m_unbounded_sequence_uint64_field = std::move(_unbounded_sequence_uint64_field);
@@ -3405,7 +3412,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_uint64_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint64_field
  * @return Constant reference to member unbounded_sequence_uint64_field
  */
-const std::vector<uint64_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint64_field() const
+const std::vector<uint64_t>& CompleteTestType::unbounded_sequence_uint64_field() const
 {
     return m_unbounded_sequence_uint64_field;
 }
@@ -3414,7 +3421,7 @@ const std::vector<uint64_t>& eprosima::test::CompleteTestType::unbounded_sequenc
  * @brief This function returns a reference to member unbounded_sequence_uint64_field
  * @return Reference to member unbounded_sequence_uint64_field
  */
-std::vector<uint64_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint64_field()
+std::vector<uint64_t>& CompleteTestType::unbounded_sequence_uint64_field()
 {
     return m_unbounded_sequence_uint64_field;
 }
@@ -3424,7 +3431,7 @@ std::vector<uint64_t>& eprosima::test::CompleteTestType::unbounded_sequence_uint
  * @brief This function copies the value in member unbounded_sequence_float_field
  * @param _unbounded_sequence_float_field New value to be copied in member unbounded_sequence_float_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_float_field(
+void CompleteTestType::unbounded_sequence_float_field(
         const std::vector<float>& _unbounded_sequence_float_field)
 {
     m_unbounded_sequence_float_field = _unbounded_sequence_float_field;
@@ -3434,7 +3441,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_float_field(
  * @brief This function moves the value in member unbounded_sequence_float_field
  * @param _unbounded_sequence_float_field New value to be moved in member unbounded_sequence_float_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_float_field(
+void CompleteTestType::unbounded_sequence_float_field(
         std::vector<float>&& _unbounded_sequence_float_field)
 {
     m_unbounded_sequence_float_field = std::move(_unbounded_sequence_float_field);
@@ -3444,7 +3451,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_float_field(
  * @brief This function returns a constant reference to member unbounded_sequence_float_field
  * @return Constant reference to member unbounded_sequence_float_field
  */
-const std::vector<float>& eprosima::test::CompleteTestType::unbounded_sequence_float_field() const
+const std::vector<float>& CompleteTestType::unbounded_sequence_float_field() const
 {
     return m_unbounded_sequence_float_field;
 }
@@ -3453,7 +3460,7 @@ const std::vector<float>& eprosima::test::CompleteTestType::unbounded_sequence_f
  * @brief This function returns a reference to member unbounded_sequence_float_field
  * @return Reference to member unbounded_sequence_float_field
  */
-std::vector<float>& eprosima::test::CompleteTestType::unbounded_sequence_float_field()
+std::vector<float>& CompleteTestType::unbounded_sequence_float_field()
 {
     return m_unbounded_sequence_float_field;
 }
@@ -3463,7 +3470,7 @@ std::vector<float>& eprosima::test::CompleteTestType::unbounded_sequence_float_f
  * @brief This function copies the value in member unbounded_sequence_double_field
  * @param _unbounded_sequence_double_field New value to be copied in member unbounded_sequence_double_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_double_field(
+void CompleteTestType::unbounded_sequence_double_field(
         const std::vector<double>& _unbounded_sequence_double_field)
 {
     m_unbounded_sequence_double_field = _unbounded_sequence_double_field;
@@ -3473,7 +3480,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_double_field(
  * @brief This function moves the value in member unbounded_sequence_double_field
  * @param _unbounded_sequence_double_field New value to be moved in member unbounded_sequence_double_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_double_field(
+void CompleteTestType::unbounded_sequence_double_field(
         std::vector<double>&& _unbounded_sequence_double_field)
 {
     m_unbounded_sequence_double_field = std::move(_unbounded_sequence_double_field);
@@ -3483,7 +3490,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_double_field(
  * @brief This function returns a constant reference to member unbounded_sequence_double_field
  * @return Constant reference to member unbounded_sequence_double_field
  */
-const std::vector<double>& eprosima::test::CompleteTestType::unbounded_sequence_double_field() const
+const std::vector<double>& CompleteTestType::unbounded_sequence_double_field() const
 {
     return m_unbounded_sequence_double_field;
 }
@@ -3492,7 +3499,7 @@ const std::vector<double>& eprosima::test::CompleteTestType::unbounded_sequence_
  * @brief This function returns a reference to member unbounded_sequence_double_field
  * @return Reference to member unbounded_sequence_double_field
  */
-std::vector<double>& eprosima::test::CompleteTestType::unbounded_sequence_double_field()
+std::vector<double>& CompleteTestType::unbounded_sequence_double_field()
 {
     return m_unbounded_sequence_double_field;
 }
@@ -3502,7 +3509,7 @@ std::vector<double>& eprosima::test::CompleteTestType::unbounded_sequence_double
  * @brief This function copies the value in member unbounded_sequence_bool_field
  * @param _unbounded_sequence_bool_field New value to be copied in member unbounded_sequence_bool_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_bool_field(
+void CompleteTestType::unbounded_sequence_bool_field(
         const std::vector<bool>& _unbounded_sequence_bool_field)
 {
     m_unbounded_sequence_bool_field = _unbounded_sequence_bool_field;
@@ -3512,7 +3519,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_bool_field(
  * @brief This function moves the value in member unbounded_sequence_bool_field
  * @param _unbounded_sequence_bool_field New value to be moved in member unbounded_sequence_bool_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_bool_field(
+void CompleteTestType::unbounded_sequence_bool_field(
         std::vector<bool>&& _unbounded_sequence_bool_field)
 {
     m_unbounded_sequence_bool_field = std::move(_unbounded_sequence_bool_field);
@@ -3522,7 +3529,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_bool_field(
  * @brief This function returns a constant reference to member unbounded_sequence_bool_field
  * @return Constant reference to member unbounded_sequence_bool_field
  */
-const std::vector<bool>& eprosima::test::CompleteTestType::unbounded_sequence_bool_field() const
+const std::vector<bool>& CompleteTestType::unbounded_sequence_bool_field() const
 {
     return m_unbounded_sequence_bool_field;
 }
@@ -3531,7 +3538,7 @@ const std::vector<bool>& eprosima::test::CompleteTestType::unbounded_sequence_bo
  * @brief This function returns a reference to member unbounded_sequence_bool_field
  * @return Reference to member unbounded_sequence_bool_field
  */
-std::vector<bool>& eprosima::test::CompleteTestType::unbounded_sequence_bool_field()
+std::vector<bool>& CompleteTestType::unbounded_sequence_bool_field()
 {
     return m_unbounded_sequence_bool_field;
 }
@@ -3541,7 +3548,7 @@ std::vector<bool>& eprosima::test::CompleteTestType::unbounded_sequence_bool_fie
  * @brief This function copies the value in member unbounded_sequence_enum_field
  * @param _unbounded_sequence_enum_field New value to be copied in member unbounded_sequence_enum_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_enum_field(
+void CompleteTestType::unbounded_sequence_enum_field(
         const std::vector<eprosima::test::Color>& _unbounded_sequence_enum_field)
 {
     m_unbounded_sequence_enum_field = _unbounded_sequence_enum_field;
@@ -3551,7 +3558,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_enum_field(
  * @brief This function moves the value in member unbounded_sequence_enum_field
  * @param _unbounded_sequence_enum_field New value to be moved in member unbounded_sequence_enum_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_enum_field(
+void CompleteTestType::unbounded_sequence_enum_field(
         std::vector<eprosima::test::Color>&& _unbounded_sequence_enum_field)
 {
     m_unbounded_sequence_enum_field = std::move(_unbounded_sequence_enum_field);
@@ -3561,7 +3568,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_enum_field(
  * @brief This function returns a constant reference to member unbounded_sequence_enum_field
  * @return Constant reference to member unbounded_sequence_enum_field
  */
-const std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::unbounded_sequence_enum_field() const
+const std::vector<eprosima::test::Color>& CompleteTestType::unbounded_sequence_enum_field() const
 {
     return m_unbounded_sequence_enum_field;
 }
@@ -3570,7 +3577,7 @@ const std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::unbo
  * @brief This function returns a reference to member unbounded_sequence_enum_field
  * @return Reference to member unbounded_sequence_enum_field
  */
-std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::unbounded_sequence_enum_field()
+std::vector<eprosima::test::Color>& CompleteTestType::unbounded_sequence_enum_field()
 {
     return m_unbounded_sequence_enum_field;
 }
@@ -3580,7 +3587,7 @@ std::vector<eprosima::test::Color>& eprosima::test::CompleteTestType::unbounded_
  * @brief This function copies the value in member unbounded_sequence_enum2_field
  * @param _unbounded_sequence_enum2_field New value to be copied in member unbounded_sequence_enum2_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_enum2_field(
+void CompleteTestType::unbounded_sequence_enum2_field(
         const std::vector<eprosima::test::Material>& _unbounded_sequence_enum2_field)
 {
     m_unbounded_sequence_enum2_field = _unbounded_sequence_enum2_field;
@@ -3590,7 +3597,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_enum2_field(
  * @brief This function moves the value in member unbounded_sequence_enum2_field
  * @param _unbounded_sequence_enum2_field New value to be moved in member unbounded_sequence_enum2_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_enum2_field(
+void CompleteTestType::unbounded_sequence_enum2_field(
         std::vector<eprosima::test::Material>&& _unbounded_sequence_enum2_field)
 {
     m_unbounded_sequence_enum2_field = std::move(_unbounded_sequence_enum2_field);
@@ -3600,7 +3607,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_enum2_field(
  * @brief This function returns a constant reference to member unbounded_sequence_enum2_field
  * @return Constant reference to member unbounded_sequence_enum2_field
  */
-const std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::unbounded_sequence_enum2_field() const
+const std::vector<eprosima::test::Material>& CompleteTestType::unbounded_sequence_enum2_field() const
 {
     return m_unbounded_sequence_enum2_field;
 }
@@ -3609,7 +3616,7 @@ const std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::u
  * @brief This function returns a reference to member unbounded_sequence_enum2_field
  * @return Reference to member unbounded_sequence_enum2_field
  */
-std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::unbounded_sequence_enum2_field()
+std::vector<eprosima::test::Material>& CompleteTestType::unbounded_sequence_enum2_field()
 {
     return m_unbounded_sequence_enum2_field;
 }
@@ -3619,7 +3626,7 @@ std::vector<eprosima::test::Material>& eprosima::test::CompleteTestType::unbound
  * @brief This function copies the value in member unbounded_sequence_struct_field
  * @param _unbounded_sequence_struct_field New value to be copied in member unbounded_sequence_struct_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_struct_field(
+void CompleteTestType::unbounded_sequence_struct_field(
         const std::vector<eprosima::test::StructType>& _unbounded_sequence_struct_field)
 {
     m_unbounded_sequence_struct_field = _unbounded_sequence_struct_field;
@@ -3629,7 +3636,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_struct_field(
  * @brief This function moves the value in member unbounded_sequence_struct_field
  * @param _unbounded_sequence_struct_field New value to be moved in member unbounded_sequence_struct_field
  */
-void eprosima::test::CompleteTestType::unbounded_sequence_struct_field(
+void CompleteTestType::unbounded_sequence_struct_field(
         std::vector<eprosima::test::StructType>&& _unbounded_sequence_struct_field)
 {
     m_unbounded_sequence_struct_field = std::move(_unbounded_sequence_struct_field);
@@ -3639,7 +3646,7 @@ void eprosima::test::CompleteTestType::unbounded_sequence_struct_field(
  * @brief This function returns a constant reference to member unbounded_sequence_struct_field
  * @return Constant reference to member unbounded_sequence_struct_field
  */
-const std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType::unbounded_sequence_struct_field() const
+const std::vector<eprosima::test::StructType>& CompleteTestType::unbounded_sequence_struct_field() const
 {
     return m_unbounded_sequence_struct_field;
 }
@@ -3648,22 +3655,25 @@ const std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType:
  * @brief This function returns a reference to member unbounded_sequence_struct_field
  * @return Reference to member unbounded_sequence_struct_field
  */
-std::vector<eprosima::test::StructType>& eprosima::test::CompleteTestType::unbounded_sequence_struct_field()
+std::vector<eprosima::test::StructType>& CompleteTestType::unbounded_sequence_struct_field()
 {
     return m_unbounded_sequence_struct_field;
 }
 
 
-eprosima::test::KeyedCompleteTestType::KeyedCompleteTestType()
-{
 
+
+
+
+KeyedCompleteTestType::KeyedCompleteTestType()
+{
 }
 
-eprosima::test::KeyedCompleteTestType::~KeyedCompleteTestType()
+KeyedCompleteTestType::~KeyedCompleteTestType()
 {
 }
 
-eprosima::test::KeyedCompleteTestType::KeyedCompleteTestType(
+KeyedCompleteTestType::KeyedCompleteTestType(
         const KeyedCompleteTestType& x)
 {
     m_id = x.m_id;
@@ -3741,7 +3751,7 @@ eprosima::test::KeyedCompleteTestType::KeyedCompleteTestType(
     m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
 }
 
-eprosima::test::KeyedCompleteTestType::KeyedCompleteTestType(
+KeyedCompleteTestType::KeyedCompleteTestType(
         KeyedCompleteTestType&& x) noexcept
 {
     m_id = x.m_id;
@@ -3819,7 +3829,7 @@ eprosima::test::KeyedCompleteTestType::KeyedCompleteTestType(
     m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
 }
 
-eprosima::test::KeyedCompleteTestType& eprosima::test::KeyedCompleteTestType::operator =(
+KeyedCompleteTestType& KeyedCompleteTestType::operator =(
         const KeyedCompleteTestType& x)
 {
 
@@ -3896,11 +3906,10 @@ eprosima::test::KeyedCompleteTestType& eprosima::test::KeyedCompleteTestType::op
     m_unbounded_sequence_enum_field = x.m_unbounded_sequence_enum_field;
     m_unbounded_sequence_enum2_field = x.m_unbounded_sequence_enum2_field;
     m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
-
     return *this;
 }
 
-eprosima::test::KeyedCompleteTestType& eprosima::test::KeyedCompleteTestType::operator =(
+KeyedCompleteTestType& KeyedCompleteTestType::operator =(
         KeyedCompleteTestType&& x) noexcept
 {
 
@@ -3977,11 +3986,10 @@ eprosima::test::KeyedCompleteTestType& eprosima::test::KeyedCompleteTestType::op
     m_unbounded_sequence_enum_field = std::move(x.m_unbounded_sequence_enum_field);
     m_unbounded_sequence_enum2_field = std::move(x.m_unbounded_sequence_enum2_field);
     m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
-
     return *this;
 }
 
-bool eprosima::test::KeyedCompleteTestType::operator ==(
+bool KeyedCompleteTestType::operator ==(
         const KeyedCompleteTestType& x) const
 {
     return (m_id == x.m_id &&
@@ -4059,7 +4067,7 @@ bool eprosima::test::KeyedCompleteTestType::operator ==(
            m_unbounded_sequence_struct_field == x.m_unbounded_sequence_struct_field);
 }
 
-bool eprosima::test::KeyedCompleteTestType::operator !=(
+bool KeyedCompleteTestType::operator !=(
         const KeyedCompleteTestType& x) const
 {
     return !(*this == x);
@@ -4069,7 +4077,7 @@ bool eprosima::test::KeyedCompleteTestType::operator !=(
  * @brief This function sets a value in member id
  * @param _id New value for member id
  */
-void eprosima::test::KeyedCompleteTestType::id(
+void KeyedCompleteTestType::id(
         int32_t _id)
 {
     m_id = _id;
@@ -4079,7 +4087,7 @@ void eprosima::test::KeyedCompleteTestType::id(
  * @brief This function returns the value of member id
  * @return Value of member id
  */
-int32_t eprosima::test::KeyedCompleteTestType::id() const
+int32_t KeyedCompleteTestType::id() const
 {
     return m_id;
 }
@@ -4088,7 +4096,7 @@ int32_t eprosima::test::KeyedCompleteTestType::id() const
  * @brief This function returns a reference to member id
  * @return Reference to member id
  */
-int32_t& eprosima::test::KeyedCompleteTestType::id()
+int32_t& KeyedCompleteTestType::id()
 {
     return m_id;
 }
@@ -4098,7 +4106,7 @@ int32_t& eprosima::test::KeyedCompleteTestType::id()
  * @brief This function sets a value in member char_field
  * @param _char_field New value for member char_field
  */
-void eprosima::test::KeyedCompleteTestType::char_field(
+void KeyedCompleteTestType::char_field(
         char _char_field)
 {
     m_char_field = _char_field;
@@ -4108,7 +4116,7 @@ void eprosima::test::KeyedCompleteTestType::char_field(
  * @brief This function returns the value of member char_field
  * @return Value of member char_field
  */
-char eprosima::test::KeyedCompleteTestType::char_field() const
+char KeyedCompleteTestType::char_field() const
 {
     return m_char_field;
 }
@@ -4117,7 +4125,7 @@ char eprosima::test::KeyedCompleteTestType::char_field() const
  * @brief This function returns a reference to member char_field
  * @return Reference to member char_field
  */
-char& eprosima::test::KeyedCompleteTestType::char_field()
+char& KeyedCompleteTestType::char_field()
 {
     return m_char_field;
 }
@@ -4127,7 +4135,7 @@ char& eprosima::test::KeyedCompleteTestType::char_field()
  * @brief This function sets a value in member uint8_field
  * @param _uint8_field New value for member uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::uint8_field(
+void KeyedCompleteTestType::uint8_field(
         uint8_t _uint8_field)
 {
     m_uint8_field = _uint8_field;
@@ -4137,7 +4145,7 @@ void eprosima::test::KeyedCompleteTestType::uint8_field(
  * @brief This function returns the value of member uint8_field
  * @return Value of member uint8_field
  */
-uint8_t eprosima::test::KeyedCompleteTestType::uint8_field() const
+uint8_t KeyedCompleteTestType::uint8_field() const
 {
     return m_uint8_field;
 }
@@ -4146,7 +4154,7 @@ uint8_t eprosima::test::KeyedCompleteTestType::uint8_field() const
  * @brief This function returns a reference to member uint8_field
  * @return Reference to member uint8_field
  */
-uint8_t& eprosima::test::KeyedCompleteTestType::uint8_field()
+uint8_t& KeyedCompleteTestType::uint8_field()
 {
     return m_uint8_field;
 }
@@ -4156,7 +4164,7 @@ uint8_t& eprosima::test::KeyedCompleteTestType::uint8_field()
  * @brief This function sets a value in member int16_field
  * @param _int16_field New value for member int16_field
  */
-void eprosima::test::KeyedCompleteTestType::int16_field(
+void KeyedCompleteTestType::int16_field(
         int16_t _int16_field)
 {
     m_int16_field = _int16_field;
@@ -4166,7 +4174,7 @@ void eprosima::test::KeyedCompleteTestType::int16_field(
  * @brief This function returns the value of member int16_field
  * @return Value of member int16_field
  */
-int16_t eprosima::test::KeyedCompleteTestType::int16_field() const
+int16_t KeyedCompleteTestType::int16_field() const
 {
     return m_int16_field;
 }
@@ -4175,7 +4183,7 @@ int16_t eprosima::test::KeyedCompleteTestType::int16_field() const
  * @brief This function returns a reference to member int16_field
  * @return Reference to member int16_field
  */
-int16_t& eprosima::test::KeyedCompleteTestType::int16_field()
+int16_t& KeyedCompleteTestType::int16_field()
 {
     return m_int16_field;
 }
@@ -4185,7 +4193,7 @@ int16_t& eprosima::test::KeyedCompleteTestType::int16_field()
  * @brief This function sets a value in member uint16_field
  * @param _uint16_field New value for member uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::uint16_field(
+void KeyedCompleteTestType::uint16_field(
         uint16_t _uint16_field)
 {
     m_uint16_field = _uint16_field;
@@ -4195,7 +4203,7 @@ void eprosima::test::KeyedCompleteTestType::uint16_field(
  * @brief This function returns the value of member uint16_field
  * @return Value of member uint16_field
  */
-uint16_t eprosima::test::KeyedCompleteTestType::uint16_field() const
+uint16_t KeyedCompleteTestType::uint16_field() const
 {
     return m_uint16_field;
 }
@@ -4204,7 +4212,7 @@ uint16_t eprosima::test::KeyedCompleteTestType::uint16_field() const
  * @brief This function returns a reference to member uint16_field
  * @return Reference to member uint16_field
  */
-uint16_t& eprosima::test::KeyedCompleteTestType::uint16_field()
+uint16_t& KeyedCompleteTestType::uint16_field()
 {
     return m_uint16_field;
 }
@@ -4214,7 +4222,7 @@ uint16_t& eprosima::test::KeyedCompleteTestType::uint16_field()
  * @brief This function sets a value in member int32_field
  * @param _int32_field New value for member int32_field
  */
-void eprosima::test::KeyedCompleteTestType::int32_field(
+void KeyedCompleteTestType::int32_field(
         int32_t _int32_field)
 {
     m_int32_field = _int32_field;
@@ -4224,7 +4232,7 @@ void eprosima::test::KeyedCompleteTestType::int32_field(
  * @brief This function returns the value of member int32_field
  * @return Value of member int32_field
  */
-int32_t eprosima::test::KeyedCompleteTestType::int32_field() const
+int32_t KeyedCompleteTestType::int32_field() const
 {
     return m_int32_field;
 }
@@ -4233,7 +4241,7 @@ int32_t eprosima::test::KeyedCompleteTestType::int32_field() const
  * @brief This function returns a reference to member int32_field
  * @return Reference to member int32_field
  */
-int32_t& eprosima::test::KeyedCompleteTestType::int32_field()
+int32_t& KeyedCompleteTestType::int32_field()
 {
     return m_int32_field;
 }
@@ -4243,7 +4251,7 @@ int32_t& eprosima::test::KeyedCompleteTestType::int32_field()
  * @brief This function sets a value in member uint32_field
  * @param _uint32_field New value for member uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::uint32_field(
+void KeyedCompleteTestType::uint32_field(
         uint32_t _uint32_field)
 {
     m_uint32_field = _uint32_field;
@@ -4253,7 +4261,7 @@ void eprosima::test::KeyedCompleteTestType::uint32_field(
  * @brief This function returns the value of member uint32_field
  * @return Value of member uint32_field
  */
-uint32_t eprosima::test::KeyedCompleteTestType::uint32_field() const
+uint32_t KeyedCompleteTestType::uint32_field() const
 {
     return m_uint32_field;
 }
@@ -4262,7 +4270,7 @@ uint32_t eprosima::test::KeyedCompleteTestType::uint32_field() const
  * @brief This function returns a reference to member uint32_field
  * @return Reference to member uint32_field
  */
-uint32_t& eprosima::test::KeyedCompleteTestType::uint32_field()
+uint32_t& KeyedCompleteTestType::uint32_field()
 {
     return m_uint32_field;
 }
@@ -4272,7 +4280,7 @@ uint32_t& eprosima::test::KeyedCompleteTestType::uint32_field()
  * @brief This function sets a value in member int64_field
  * @param _int64_field New value for member int64_field
  */
-void eprosima::test::KeyedCompleteTestType::int64_field(
+void KeyedCompleteTestType::int64_field(
         int64_t _int64_field)
 {
     m_int64_field = _int64_field;
@@ -4282,7 +4290,7 @@ void eprosima::test::KeyedCompleteTestType::int64_field(
  * @brief This function returns the value of member int64_field
  * @return Value of member int64_field
  */
-int64_t eprosima::test::KeyedCompleteTestType::int64_field() const
+int64_t KeyedCompleteTestType::int64_field() const
 {
     return m_int64_field;
 }
@@ -4291,7 +4299,7 @@ int64_t eprosima::test::KeyedCompleteTestType::int64_field() const
  * @brief This function returns a reference to member int64_field
  * @return Reference to member int64_field
  */
-int64_t& eprosima::test::KeyedCompleteTestType::int64_field()
+int64_t& KeyedCompleteTestType::int64_field()
 {
     return m_int64_field;
 }
@@ -4301,7 +4309,7 @@ int64_t& eprosima::test::KeyedCompleteTestType::int64_field()
  * @brief This function sets a value in member uint64_field
  * @param _uint64_field New value for member uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::uint64_field(
+void KeyedCompleteTestType::uint64_field(
         uint64_t _uint64_field)
 {
     m_uint64_field = _uint64_field;
@@ -4311,7 +4319,7 @@ void eprosima::test::KeyedCompleteTestType::uint64_field(
  * @brief This function returns the value of member uint64_field
  * @return Value of member uint64_field
  */
-uint64_t eprosima::test::KeyedCompleteTestType::uint64_field() const
+uint64_t KeyedCompleteTestType::uint64_field() const
 {
     return m_uint64_field;
 }
@@ -4320,7 +4328,7 @@ uint64_t eprosima::test::KeyedCompleteTestType::uint64_field() const
  * @brief This function returns a reference to member uint64_field
  * @return Reference to member uint64_field
  */
-uint64_t& eprosima::test::KeyedCompleteTestType::uint64_field()
+uint64_t& KeyedCompleteTestType::uint64_field()
 {
     return m_uint64_field;
 }
@@ -4330,7 +4338,7 @@ uint64_t& eprosima::test::KeyedCompleteTestType::uint64_field()
  * @brief This function sets a value in member float_field
  * @param _float_field New value for member float_field
  */
-void eprosima::test::KeyedCompleteTestType::float_field(
+void KeyedCompleteTestType::float_field(
         float _float_field)
 {
     m_float_field = _float_field;
@@ -4340,7 +4348,7 @@ void eprosima::test::KeyedCompleteTestType::float_field(
  * @brief This function returns the value of member float_field
  * @return Value of member float_field
  */
-float eprosima::test::KeyedCompleteTestType::float_field() const
+float KeyedCompleteTestType::float_field() const
 {
     return m_float_field;
 }
@@ -4349,7 +4357,7 @@ float eprosima::test::KeyedCompleteTestType::float_field() const
  * @brief This function returns a reference to member float_field
  * @return Reference to member float_field
  */
-float& eprosima::test::KeyedCompleteTestType::float_field()
+float& KeyedCompleteTestType::float_field()
 {
     return m_float_field;
 }
@@ -4359,7 +4367,7 @@ float& eprosima::test::KeyedCompleteTestType::float_field()
  * @brief This function sets a value in member double_field
  * @param _double_field New value for member double_field
  */
-void eprosima::test::KeyedCompleteTestType::double_field(
+void KeyedCompleteTestType::double_field(
         double _double_field)
 {
     m_double_field = _double_field;
@@ -4369,7 +4377,7 @@ void eprosima::test::KeyedCompleteTestType::double_field(
  * @brief This function returns the value of member double_field
  * @return Value of member double_field
  */
-double eprosima::test::KeyedCompleteTestType::double_field() const
+double KeyedCompleteTestType::double_field() const
 {
     return m_double_field;
 }
@@ -4378,7 +4386,7 @@ double eprosima::test::KeyedCompleteTestType::double_field() const
  * @brief This function returns a reference to member double_field
  * @return Reference to member double_field
  */
-double& eprosima::test::KeyedCompleteTestType::double_field()
+double& KeyedCompleteTestType::double_field()
 {
     return m_double_field;
 }
@@ -4388,7 +4396,7 @@ double& eprosima::test::KeyedCompleteTestType::double_field()
  * @brief This function sets a value in member bool_field
  * @param _bool_field New value for member bool_field
  */
-void eprosima::test::KeyedCompleteTestType::bool_field(
+void KeyedCompleteTestType::bool_field(
         bool _bool_field)
 {
     m_bool_field = _bool_field;
@@ -4398,7 +4406,7 @@ void eprosima::test::KeyedCompleteTestType::bool_field(
  * @brief This function returns the value of member bool_field
  * @return Value of member bool_field
  */
-bool eprosima::test::KeyedCompleteTestType::bool_field() const
+bool KeyedCompleteTestType::bool_field() const
 {
     return m_bool_field;
 }
@@ -4407,7 +4415,7 @@ bool eprosima::test::KeyedCompleteTestType::bool_field() const
  * @brief This function returns a reference to member bool_field
  * @return Reference to member bool_field
  */
-bool& eprosima::test::KeyedCompleteTestType::bool_field()
+bool& KeyedCompleteTestType::bool_field()
 {
     return m_bool_field;
 }
@@ -4417,7 +4425,7 @@ bool& eprosima::test::KeyedCompleteTestType::bool_field()
  * @brief This function copies the value in member string_field
  * @param _string_field New value to be copied in member string_field
  */
-void eprosima::test::KeyedCompleteTestType::string_field(
+void KeyedCompleteTestType::string_field(
         const std::string& _string_field)
 {
     m_string_field = _string_field;
@@ -4427,7 +4435,7 @@ void eprosima::test::KeyedCompleteTestType::string_field(
  * @brief This function moves the value in member string_field
  * @param _string_field New value to be moved in member string_field
  */
-void eprosima::test::KeyedCompleteTestType::string_field(
+void KeyedCompleteTestType::string_field(
         std::string&& _string_field)
 {
     m_string_field = std::move(_string_field);
@@ -4437,7 +4445,7 @@ void eprosima::test::KeyedCompleteTestType::string_field(
  * @brief This function returns a constant reference to member string_field
  * @return Constant reference to member string_field
  */
-const std::string& eprosima::test::KeyedCompleteTestType::string_field() const
+const std::string& KeyedCompleteTestType::string_field() const
 {
     return m_string_field;
 }
@@ -4446,7 +4454,7 @@ const std::string& eprosima::test::KeyedCompleteTestType::string_field() const
  * @brief This function returns a reference to member string_field
  * @return Reference to member string_field
  */
-std::string& eprosima::test::KeyedCompleteTestType::string_field()
+std::string& KeyedCompleteTestType::string_field()
 {
     return m_string_field;
 }
@@ -4456,7 +4464,7 @@ std::string& eprosima::test::KeyedCompleteTestType::string_field()
  * @brief This function sets a value in member enum_field
  * @param _enum_field New value for member enum_field
  */
-void eprosima::test::KeyedCompleteTestType::enum_field(
+void KeyedCompleteTestType::enum_field(
         eprosima::test::Color _enum_field)
 {
     m_enum_field = _enum_field;
@@ -4466,7 +4474,7 @@ void eprosima::test::KeyedCompleteTestType::enum_field(
  * @brief This function returns the value of member enum_field
  * @return Value of member enum_field
  */
-eprosima::test::Color eprosima::test::KeyedCompleteTestType::enum_field() const
+eprosima::test::Color KeyedCompleteTestType::enum_field() const
 {
     return m_enum_field;
 }
@@ -4475,7 +4483,7 @@ eprosima::test::Color eprosima::test::KeyedCompleteTestType::enum_field() const
  * @brief This function returns a reference to member enum_field
  * @return Reference to member enum_field
  */
-eprosima::test::Color& eprosima::test::KeyedCompleteTestType::enum_field()
+eprosima::test::Color& KeyedCompleteTestType::enum_field()
 {
     return m_enum_field;
 }
@@ -4485,7 +4493,7 @@ eprosima::test::Color& eprosima::test::KeyedCompleteTestType::enum_field()
  * @brief This function sets a value in member enum2_field
  * @param _enum2_field New value for member enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::enum2_field(
+void KeyedCompleteTestType::enum2_field(
         eprosima::test::Material _enum2_field)
 {
     m_enum2_field = _enum2_field;
@@ -4495,7 +4503,7 @@ void eprosima::test::KeyedCompleteTestType::enum2_field(
  * @brief This function returns the value of member enum2_field
  * @return Value of member enum2_field
  */
-eprosima::test::Material eprosima::test::KeyedCompleteTestType::enum2_field() const
+eprosima::test::Material KeyedCompleteTestType::enum2_field() const
 {
     return m_enum2_field;
 }
@@ -4504,7 +4512,7 @@ eprosima::test::Material eprosima::test::KeyedCompleteTestType::enum2_field() co
  * @brief This function returns a reference to member enum2_field
  * @return Reference to member enum2_field
  */
-eprosima::test::Material& eprosima::test::KeyedCompleteTestType::enum2_field()
+eprosima::test::Material& KeyedCompleteTestType::enum2_field()
 {
     return m_enum2_field;
 }
@@ -4514,7 +4522,7 @@ eprosima::test::Material& eprosima::test::KeyedCompleteTestType::enum2_field()
  * @brief This function copies the value in member struct_field
  * @param _struct_field New value to be copied in member struct_field
  */
-void eprosima::test::KeyedCompleteTestType::struct_field(
+void KeyedCompleteTestType::struct_field(
         const eprosima::test::StructType& _struct_field)
 {
     m_struct_field = _struct_field;
@@ -4524,7 +4532,7 @@ void eprosima::test::KeyedCompleteTestType::struct_field(
  * @brief This function moves the value in member struct_field
  * @param _struct_field New value to be moved in member struct_field
  */
-void eprosima::test::KeyedCompleteTestType::struct_field(
+void KeyedCompleteTestType::struct_field(
         eprosima::test::StructType&& _struct_field)
 {
     m_struct_field = std::move(_struct_field);
@@ -4534,7 +4542,7 @@ void eprosima::test::KeyedCompleteTestType::struct_field(
  * @brief This function returns a constant reference to member struct_field
  * @return Constant reference to member struct_field
  */
-const eprosima::test::StructType& eprosima::test::KeyedCompleteTestType::struct_field() const
+const eprosima::test::StructType& KeyedCompleteTestType::struct_field() const
 {
     return m_struct_field;
 }
@@ -4543,7 +4551,7 @@ const eprosima::test::StructType& eprosima::test::KeyedCompleteTestType::struct_
  * @brief This function returns a reference to member struct_field
  * @return Reference to member struct_field
  */
-eprosima::test::StructType& eprosima::test::KeyedCompleteTestType::struct_field()
+eprosima::test::StructType& KeyedCompleteTestType::struct_field()
 {
     return m_struct_field;
 }
@@ -4553,7 +4561,7 @@ eprosima::test::StructType& eprosima::test::KeyedCompleteTestType::struct_field(
  * @brief This function copies the value in member char_opt_field
  * @param _char_opt_field New value to be copied in member char_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::char_opt_field(
+void KeyedCompleteTestType::char_opt_field(
         const eprosima::fastcdr::optional<char>& _char_opt_field)
 {
     m_char_opt_field = _char_opt_field;
@@ -4563,7 +4571,7 @@ void eprosima::test::KeyedCompleteTestType::char_opt_field(
  * @brief This function moves the value in member char_opt_field
  * @param _char_opt_field New value to be moved in member char_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::char_opt_field(
+void KeyedCompleteTestType::char_opt_field(
         eprosima::fastcdr::optional<char>&& _char_opt_field)
 {
     m_char_opt_field = std::move(_char_opt_field);
@@ -4573,7 +4581,7 @@ void eprosima::test::KeyedCompleteTestType::char_opt_field(
  * @brief This function returns a constant reference to member char_opt_field
  * @return Constant reference to member char_opt_field
  */
-const eprosima::fastcdr::optional<char>& eprosima::test::KeyedCompleteTestType::char_opt_field() const
+const eprosima::fastcdr::optional<char>& KeyedCompleteTestType::char_opt_field() const
 {
     return m_char_opt_field;
 }
@@ -4582,7 +4590,7 @@ const eprosima::fastcdr::optional<char>& eprosima::test::KeyedCompleteTestType::
  * @brief This function returns a reference to member char_opt_field
  * @return Reference to member char_opt_field
  */
-eprosima::fastcdr::optional<char>& eprosima::test::KeyedCompleteTestType::char_opt_field()
+eprosima::fastcdr::optional<char>& KeyedCompleteTestType::char_opt_field()
 {
     return m_char_opt_field;
 }
@@ -4592,7 +4600,7 @@ eprosima::fastcdr::optional<char>& eprosima::test::KeyedCompleteTestType::char_o
  * @brief This function copies the value in member uint8_opt_field
  * @param _uint8_opt_field New value to be copied in member uint8_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint8_opt_field(
+void KeyedCompleteTestType::uint8_opt_field(
         const eprosima::fastcdr::optional<uint8_t>& _uint8_opt_field)
 {
     m_uint8_opt_field = _uint8_opt_field;
@@ -4602,7 +4610,7 @@ void eprosima::test::KeyedCompleteTestType::uint8_opt_field(
  * @brief This function moves the value in member uint8_opt_field
  * @param _uint8_opt_field New value to be moved in member uint8_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint8_opt_field(
+void KeyedCompleteTestType::uint8_opt_field(
         eprosima::fastcdr::optional<uint8_t>&& _uint8_opt_field)
 {
     m_uint8_opt_field = std::move(_uint8_opt_field);
@@ -4612,7 +4620,7 @@ void eprosima::test::KeyedCompleteTestType::uint8_opt_field(
  * @brief This function returns a constant reference to member uint8_opt_field
  * @return Constant reference to member uint8_opt_field
  */
-const eprosima::fastcdr::optional<uint8_t>& eprosima::test::KeyedCompleteTestType::uint8_opt_field() const
+const eprosima::fastcdr::optional<uint8_t>& KeyedCompleteTestType::uint8_opt_field() const
 {
     return m_uint8_opt_field;
 }
@@ -4621,7 +4629,7 @@ const eprosima::fastcdr::optional<uint8_t>& eprosima::test::KeyedCompleteTestTyp
  * @brief This function returns a reference to member uint8_opt_field
  * @return Reference to member uint8_opt_field
  */
-eprosima::fastcdr::optional<uint8_t>& eprosima::test::KeyedCompleteTestType::uint8_opt_field()
+eprosima::fastcdr::optional<uint8_t>& KeyedCompleteTestType::uint8_opt_field()
 {
     return m_uint8_opt_field;
 }
@@ -4631,7 +4639,7 @@ eprosima::fastcdr::optional<uint8_t>& eprosima::test::KeyedCompleteTestType::uin
  * @brief This function copies the value in member int16_opt_field
  * @param _int16_opt_field New value to be copied in member int16_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::int16_opt_field(
+void KeyedCompleteTestType::int16_opt_field(
         const eprosima::fastcdr::optional<int16_t>& _int16_opt_field)
 {
     m_int16_opt_field = _int16_opt_field;
@@ -4641,7 +4649,7 @@ void eprosima::test::KeyedCompleteTestType::int16_opt_field(
  * @brief This function moves the value in member int16_opt_field
  * @param _int16_opt_field New value to be moved in member int16_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::int16_opt_field(
+void KeyedCompleteTestType::int16_opt_field(
         eprosima::fastcdr::optional<int16_t>&& _int16_opt_field)
 {
     m_int16_opt_field = std::move(_int16_opt_field);
@@ -4651,7 +4659,7 @@ void eprosima::test::KeyedCompleteTestType::int16_opt_field(
  * @brief This function returns a constant reference to member int16_opt_field
  * @return Constant reference to member int16_opt_field
  */
-const eprosima::fastcdr::optional<int16_t>& eprosima::test::KeyedCompleteTestType::int16_opt_field() const
+const eprosima::fastcdr::optional<int16_t>& KeyedCompleteTestType::int16_opt_field() const
 {
     return m_int16_opt_field;
 }
@@ -4660,7 +4668,7 @@ const eprosima::fastcdr::optional<int16_t>& eprosima::test::KeyedCompleteTestTyp
  * @brief This function returns a reference to member int16_opt_field
  * @return Reference to member int16_opt_field
  */
-eprosima::fastcdr::optional<int16_t>& eprosima::test::KeyedCompleteTestType::int16_opt_field()
+eprosima::fastcdr::optional<int16_t>& KeyedCompleteTestType::int16_opt_field()
 {
     return m_int16_opt_field;
 }
@@ -4670,7 +4678,7 @@ eprosima::fastcdr::optional<int16_t>& eprosima::test::KeyedCompleteTestType::int
  * @brief This function copies the value in member uint16_opt_field
  * @param _uint16_opt_field New value to be copied in member uint16_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint16_opt_field(
+void KeyedCompleteTestType::uint16_opt_field(
         const eprosima::fastcdr::optional<uint16_t>& _uint16_opt_field)
 {
     m_uint16_opt_field = _uint16_opt_field;
@@ -4680,7 +4688,7 @@ void eprosima::test::KeyedCompleteTestType::uint16_opt_field(
  * @brief This function moves the value in member uint16_opt_field
  * @param _uint16_opt_field New value to be moved in member uint16_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint16_opt_field(
+void KeyedCompleteTestType::uint16_opt_field(
         eprosima::fastcdr::optional<uint16_t>&& _uint16_opt_field)
 {
     m_uint16_opt_field = std::move(_uint16_opt_field);
@@ -4690,7 +4698,7 @@ void eprosima::test::KeyedCompleteTestType::uint16_opt_field(
  * @brief This function returns a constant reference to member uint16_opt_field
  * @return Constant reference to member uint16_opt_field
  */
-const eprosima::fastcdr::optional<uint16_t>& eprosima::test::KeyedCompleteTestType::uint16_opt_field() const
+const eprosima::fastcdr::optional<uint16_t>& KeyedCompleteTestType::uint16_opt_field() const
 {
     return m_uint16_opt_field;
 }
@@ -4699,7 +4707,7 @@ const eprosima::fastcdr::optional<uint16_t>& eprosima::test::KeyedCompleteTestTy
  * @brief This function returns a reference to member uint16_opt_field
  * @return Reference to member uint16_opt_field
  */
-eprosima::fastcdr::optional<uint16_t>& eprosima::test::KeyedCompleteTestType::uint16_opt_field()
+eprosima::fastcdr::optional<uint16_t>& KeyedCompleteTestType::uint16_opt_field()
 {
     return m_uint16_opt_field;
 }
@@ -4709,7 +4717,7 @@ eprosima::fastcdr::optional<uint16_t>& eprosima::test::KeyedCompleteTestType::ui
  * @brief This function copies the value in member int32_opt_field
  * @param _int32_opt_field New value to be copied in member int32_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::int32_opt_field(
+void KeyedCompleteTestType::int32_opt_field(
         const eprosima::fastcdr::optional<int32_t>& _int32_opt_field)
 {
     m_int32_opt_field = _int32_opt_field;
@@ -4719,7 +4727,7 @@ void eprosima::test::KeyedCompleteTestType::int32_opt_field(
  * @brief This function moves the value in member int32_opt_field
  * @param _int32_opt_field New value to be moved in member int32_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::int32_opt_field(
+void KeyedCompleteTestType::int32_opt_field(
         eprosima::fastcdr::optional<int32_t>&& _int32_opt_field)
 {
     m_int32_opt_field = std::move(_int32_opt_field);
@@ -4729,7 +4737,7 @@ void eprosima::test::KeyedCompleteTestType::int32_opt_field(
  * @brief This function returns a constant reference to member int32_opt_field
  * @return Constant reference to member int32_opt_field
  */
-const eprosima::fastcdr::optional<int32_t>& eprosima::test::KeyedCompleteTestType::int32_opt_field() const
+const eprosima::fastcdr::optional<int32_t>& KeyedCompleteTestType::int32_opt_field() const
 {
     return m_int32_opt_field;
 }
@@ -4738,7 +4746,7 @@ const eprosima::fastcdr::optional<int32_t>& eprosima::test::KeyedCompleteTestTyp
  * @brief This function returns a reference to member int32_opt_field
  * @return Reference to member int32_opt_field
  */
-eprosima::fastcdr::optional<int32_t>& eprosima::test::KeyedCompleteTestType::int32_opt_field()
+eprosima::fastcdr::optional<int32_t>& KeyedCompleteTestType::int32_opt_field()
 {
     return m_int32_opt_field;
 }
@@ -4748,7 +4756,7 @@ eprosima::fastcdr::optional<int32_t>& eprosima::test::KeyedCompleteTestType::int
  * @brief This function copies the value in member uint32_opt_field
  * @param _uint32_opt_field New value to be copied in member uint32_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint32_opt_field(
+void KeyedCompleteTestType::uint32_opt_field(
         const eprosima::fastcdr::optional<uint32_t>& _uint32_opt_field)
 {
     m_uint32_opt_field = _uint32_opt_field;
@@ -4758,7 +4766,7 @@ void eprosima::test::KeyedCompleteTestType::uint32_opt_field(
  * @brief This function moves the value in member uint32_opt_field
  * @param _uint32_opt_field New value to be moved in member uint32_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint32_opt_field(
+void KeyedCompleteTestType::uint32_opt_field(
         eprosima::fastcdr::optional<uint32_t>&& _uint32_opt_field)
 {
     m_uint32_opt_field = std::move(_uint32_opt_field);
@@ -4768,7 +4776,7 @@ void eprosima::test::KeyedCompleteTestType::uint32_opt_field(
  * @brief This function returns a constant reference to member uint32_opt_field
  * @return Constant reference to member uint32_opt_field
  */
-const eprosima::fastcdr::optional<uint32_t>& eprosima::test::KeyedCompleteTestType::uint32_opt_field() const
+const eprosima::fastcdr::optional<uint32_t>& KeyedCompleteTestType::uint32_opt_field() const
 {
     return m_uint32_opt_field;
 }
@@ -4777,7 +4785,7 @@ const eprosima::fastcdr::optional<uint32_t>& eprosima::test::KeyedCompleteTestTy
  * @brief This function returns a reference to member uint32_opt_field
  * @return Reference to member uint32_opt_field
  */
-eprosima::fastcdr::optional<uint32_t>& eprosima::test::KeyedCompleteTestType::uint32_opt_field()
+eprosima::fastcdr::optional<uint32_t>& KeyedCompleteTestType::uint32_opt_field()
 {
     return m_uint32_opt_field;
 }
@@ -4787,7 +4795,7 @@ eprosima::fastcdr::optional<uint32_t>& eprosima::test::KeyedCompleteTestType::ui
  * @brief This function copies the value in member int64_opt_field
  * @param _int64_opt_field New value to be copied in member int64_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::int64_opt_field(
+void KeyedCompleteTestType::int64_opt_field(
         const eprosima::fastcdr::optional<int64_t>& _int64_opt_field)
 {
     m_int64_opt_field = _int64_opt_field;
@@ -4797,7 +4805,7 @@ void eprosima::test::KeyedCompleteTestType::int64_opt_field(
  * @brief This function moves the value in member int64_opt_field
  * @param _int64_opt_field New value to be moved in member int64_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::int64_opt_field(
+void KeyedCompleteTestType::int64_opt_field(
         eprosima::fastcdr::optional<int64_t>&& _int64_opt_field)
 {
     m_int64_opt_field = std::move(_int64_opt_field);
@@ -4807,7 +4815,7 @@ void eprosima::test::KeyedCompleteTestType::int64_opt_field(
  * @brief This function returns a constant reference to member int64_opt_field
  * @return Constant reference to member int64_opt_field
  */
-const eprosima::fastcdr::optional<int64_t>& eprosima::test::KeyedCompleteTestType::int64_opt_field() const
+const eprosima::fastcdr::optional<int64_t>& KeyedCompleteTestType::int64_opt_field() const
 {
     return m_int64_opt_field;
 }
@@ -4816,7 +4824,7 @@ const eprosima::fastcdr::optional<int64_t>& eprosima::test::KeyedCompleteTestTyp
  * @brief This function returns a reference to member int64_opt_field
  * @return Reference to member int64_opt_field
  */
-eprosima::fastcdr::optional<int64_t>& eprosima::test::KeyedCompleteTestType::int64_opt_field()
+eprosima::fastcdr::optional<int64_t>& KeyedCompleteTestType::int64_opt_field()
 {
     return m_int64_opt_field;
 }
@@ -4826,7 +4834,7 @@ eprosima::fastcdr::optional<int64_t>& eprosima::test::KeyedCompleteTestType::int
  * @brief This function copies the value in member uint64_opt_field
  * @param _uint64_opt_field New value to be copied in member uint64_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint64_opt_field(
+void KeyedCompleteTestType::uint64_opt_field(
         const eprosima::fastcdr::optional<uint64_t>& _uint64_opt_field)
 {
     m_uint64_opt_field = _uint64_opt_field;
@@ -4836,7 +4844,7 @@ void eprosima::test::KeyedCompleteTestType::uint64_opt_field(
  * @brief This function moves the value in member uint64_opt_field
  * @param _uint64_opt_field New value to be moved in member uint64_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::uint64_opt_field(
+void KeyedCompleteTestType::uint64_opt_field(
         eprosima::fastcdr::optional<uint64_t>&& _uint64_opt_field)
 {
     m_uint64_opt_field = std::move(_uint64_opt_field);
@@ -4846,7 +4854,7 @@ void eprosima::test::KeyedCompleteTestType::uint64_opt_field(
  * @brief This function returns a constant reference to member uint64_opt_field
  * @return Constant reference to member uint64_opt_field
  */
-const eprosima::fastcdr::optional<uint64_t>& eprosima::test::KeyedCompleteTestType::uint64_opt_field() const
+const eprosima::fastcdr::optional<uint64_t>& KeyedCompleteTestType::uint64_opt_field() const
 {
     return m_uint64_opt_field;
 }
@@ -4855,7 +4863,7 @@ const eprosima::fastcdr::optional<uint64_t>& eprosima::test::KeyedCompleteTestTy
  * @brief This function returns a reference to member uint64_opt_field
  * @return Reference to member uint64_opt_field
  */
-eprosima::fastcdr::optional<uint64_t>& eprosima::test::KeyedCompleteTestType::uint64_opt_field()
+eprosima::fastcdr::optional<uint64_t>& KeyedCompleteTestType::uint64_opt_field()
 {
     return m_uint64_opt_field;
 }
@@ -4865,7 +4873,7 @@ eprosima::fastcdr::optional<uint64_t>& eprosima::test::KeyedCompleteTestType::ui
  * @brief This function copies the value in member float_opt_field
  * @param _float_opt_field New value to be copied in member float_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::float_opt_field(
+void KeyedCompleteTestType::float_opt_field(
         const eprosima::fastcdr::optional<float>& _float_opt_field)
 {
     m_float_opt_field = _float_opt_field;
@@ -4875,7 +4883,7 @@ void eprosima::test::KeyedCompleteTestType::float_opt_field(
  * @brief This function moves the value in member float_opt_field
  * @param _float_opt_field New value to be moved in member float_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::float_opt_field(
+void KeyedCompleteTestType::float_opt_field(
         eprosima::fastcdr::optional<float>&& _float_opt_field)
 {
     m_float_opt_field = std::move(_float_opt_field);
@@ -4885,7 +4893,7 @@ void eprosima::test::KeyedCompleteTestType::float_opt_field(
  * @brief This function returns a constant reference to member float_opt_field
  * @return Constant reference to member float_opt_field
  */
-const eprosima::fastcdr::optional<float>& eprosima::test::KeyedCompleteTestType::float_opt_field() const
+const eprosima::fastcdr::optional<float>& KeyedCompleteTestType::float_opt_field() const
 {
     return m_float_opt_field;
 }
@@ -4894,7 +4902,7 @@ const eprosima::fastcdr::optional<float>& eprosima::test::KeyedCompleteTestType:
  * @brief This function returns a reference to member float_opt_field
  * @return Reference to member float_opt_field
  */
-eprosima::fastcdr::optional<float>& eprosima::test::KeyedCompleteTestType::float_opt_field()
+eprosima::fastcdr::optional<float>& KeyedCompleteTestType::float_opt_field()
 {
     return m_float_opt_field;
 }
@@ -4904,7 +4912,7 @@ eprosima::fastcdr::optional<float>& eprosima::test::KeyedCompleteTestType::float
  * @brief This function copies the value in member double_opt_field
  * @param _double_opt_field New value to be copied in member double_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::double_opt_field(
+void KeyedCompleteTestType::double_opt_field(
         const eprosima::fastcdr::optional<double>& _double_opt_field)
 {
     m_double_opt_field = _double_opt_field;
@@ -4914,7 +4922,7 @@ void eprosima::test::KeyedCompleteTestType::double_opt_field(
  * @brief This function moves the value in member double_opt_field
  * @param _double_opt_field New value to be moved in member double_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::double_opt_field(
+void KeyedCompleteTestType::double_opt_field(
         eprosima::fastcdr::optional<double>&& _double_opt_field)
 {
     m_double_opt_field = std::move(_double_opt_field);
@@ -4924,7 +4932,7 @@ void eprosima::test::KeyedCompleteTestType::double_opt_field(
  * @brief This function returns a constant reference to member double_opt_field
  * @return Constant reference to member double_opt_field
  */
-const eprosima::fastcdr::optional<double>& eprosima::test::KeyedCompleteTestType::double_opt_field() const
+const eprosima::fastcdr::optional<double>& KeyedCompleteTestType::double_opt_field() const
 {
     return m_double_opt_field;
 }
@@ -4933,7 +4941,7 @@ const eprosima::fastcdr::optional<double>& eprosima::test::KeyedCompleteTestType
  * @brief This function returns a reference to member double_opt_field
  * @return Reference to member double_opt_field
  */
-eprosima::fastcdr::optional<double>& eprosima::test::KeyedCompleteTestType::double_opt_field()
+eprosima::fastcdr::optional<double>& KeyedCompleteTestType::double_opt_field()
 {
     return m_double_opt_field;
 }
@@ -4943,7 +4951,7 @@ eprosima::fastcdr::optional<double>& eprosima::test::KeyedCompleteTestType::doub
  * @brief This function copies the value in member bool_opt_field
  * @param _bool_opt_field New value to be copied in member bool_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::bool_opt_field(
+void KeyedCompleteTestType::bool_opt_field(
         const eprosima::fastcdr::optional<bool>& _bool_opt_field)
 {
     m_bool_opt_field = _bool_opt_field;
@@ -4953,7 +4961,7 @@ void eprosima::test::KeyedCompleteTestType::bool_opt_field(
  * @brief This function moves the value in member bool_opt_field
  * @param _bool_opt_field New value to be moved in member bool_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::bool_opt_field(
+void KeyedCompleteTestType::bool_opt_field(
         eprosima::fastcdr::optional<bool>&& _bool_opt_field)
 {
     m_bool_opt_field = std::move(_bool_opt_field);
@@ -4963,7 +4971,7 @@ void eprosima::test::KeyedCompleteTestType::bool_opt_field(
  * @brief This function returns a constant reference to member bool_opt_field
  * @return Constant reference to member bool_opt_field
  */
-const eprosima::fastcdr::optional<bool>& eprosima::test::KeyedCompleteTestType::bool_opt_field() const
+const eprosima::fastcdr::optional<bool>& KeyedCompleteTestType::bool_opt_field() const
 {
     return m_bool_opt_field;
 }
@@ -4972,7 +4980,7 @@ const eprosima::fastcdr::optional<bool>& eprosima::test::KeyedCompleteTestType::
  * @brief This function returns a reference to member bool_opt_field
  * @return Reference to member bool_opt_field
  */
-eprosima::fastcdr::optional<bool>& eprosima::test::KeyedCompleteTestType::bool_opt_field()
+eprosima::fastcdr::optional<bool>& KeyedCompleteTestType::bool_opt_field()
 {
     return m_bool_opt_field;
 }
@@ -4982,7 +4990,7 @@ eprosima::fastcdr::optional<bool>& eprosima::test::KeyedCompleteTestType::bool_o
  * @brief This function copies the value in member string_opt_field
  * @param _string_opt_field New value to be copied in member string_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::string_opt_field(
+void KeyedCompleteTestType::string_opt_field(
         const eprosima::fastcdr::optional<std::string>& _string_opt_field)
 {
     m_string_opt_field = _string_opt_field;
@@ -4992,7 +5000,7 @@ void eprosima::test::KeyedCompleteTestType::string_opt_field(
  * @brief This function moves the value in member string_opt_field
  * @param _string_opt_field New value to be moved in member string_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::string_opt_field(
+void KeyedCompleteTestType::string_opt_field(
         eprosima::fastcdr::optional<std::string>&& _string_opt_field)
 {
     m_string_opt_field = std::move(_string_opt_field);
@@ -5002,7 +5010,7 @@ void eprosima::test::KeyedCompleteTestType::string_opt_field(
  * @brief This function returns a constant reference to member string_opt_field
  * @return Constant reference to member string_opt_field
  */
-const eprosima::fastcdr::optional<std::string>& eprosima::test::KeyedCompleteTestType::string_opt_field() const
+const eprosima::fastcdr::optional<std::string>& KeyedCompleteTestType::string_opt_field() const
 {
     return m_string_opt_field;
 }
@@ -5011,7 +5019,7 @@ const eprosima::fastcdr::optional<std::string>& eprosima::test::KeyedCompleteTes
  * @brief This function returns a reference to member string_opt_field
  * @return Reference to member string_opt_field
  */
-eprosima::fastcdr::optional<std::string>& eprosima::test::KeyedCompleteTestType::string_opt_field()
+eprosima::fastcdr::optional<std::string>& KeyedCompleteTestType::string_opt_field()
 {
     return m_string_opt_field;
 }
@@ -5021,7 +5029,7 @@ eprosima::fastcdr::optional<std::string>& eprosima::test::KeyedCompleteTestType:
  * @brief This function copies the value in member enum_opt_field
  * @param _enum_opt_field New value to be copied in member enum_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::enum_opt_field(
+void KeyedCompleteTestType::enum_opt_field(
         const eprosima::fastcdr::optional<eprosima::test::Color>& _enum_opt_field)
 {
     m_enum_opt_field = _enum_opt_field;
@@ -5031,7 +5039,7 @@ void eprosima::test::KeyedCompleteTestType::enum_opt_field(
  * @brief This function moves the value in member enum_opt_field
  * @param _enum_opt_field New value to be moved in member enum_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::enum_opt_field(
+void KeyedCompleteTestType::enum_opt_field(
         eprosima::fastcdr::optional<eprosima::test::Color>&& _enum_opt_field)
 {
     m_enum_opt_field = std::move(_enum_opt_field);
@@ -5041,7 +5049,7 @@ void eprosima::test::KeyedCompleteTestType::enum_opt_field(
  * @brief This function returns a constant reference to member enum_opt_field
  * @return Constant reference to member enum_opt_field
  */
-const eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::enum_opt_field() const
+const eprosima::fastcdr::optional<eprosima::test::Color>& KeyedCompleteTestType::enum_opt_field() const
 {
     return m_enum_opt_field;
 }
@@ -5050,7 +5058,7 @@ const eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::KeyedC
  * @brief This function returns a reference to member enum_opt_field
  * @return Reference to member enum_opt_field
  */
-eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::enum_opt_field()
+eprosima::fastcdr::optional<eprosima::test::Color>& KeyedCompleteTestType::enum_opt_field()
 {
     return m_enum_opt_field;
 }
@@ -5060,7 +5068,7 @@ eprosima::fastcdr::optional<eprosima::test::Color>& eprosima::test::KeyedComplet
  * @brief This function copies the value in member enum2_opt_field
  * @param _enum2_opt_field New value to be copied in member enum2_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::enum2_opt_field(
+void KeyedCompleteTestType::enum2_opt_field(
         const eprosima::fastcdr::optional<eprosima::test::Material>& _enum2_opt_field)
 {
     m_enum2_opt_field = _enum2_opt_field;
@@ -5070,7 +5078,7 @@ void eprosima::test::KeyedCompleteTestType::enum2_opt_field(
  * @brief This function moves the value in member enum2_opt_field
  * @param _enum2_opt_field New value to be moved in member enum2_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::enum2_opt_field(
+void KeyedCompleteTestType::enum2_opt_field(
         eprosima::fastcdr::optional<eprosima::test::Material>&& _enum2_opt_field)
 {
     m_enum2_opt_field = std::move(_enum2_opt_field);
@@ -5080,7 +5088,7 @@ void eprosima::test::KeyedCompleteTestType::enum2_opt_field(
  * @brief This function returns a constant reference to member enum2_opt_field
  * @return Constant reference to member enum2_opt_field
  */
-const eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::enum2_opt_field() const
+const eprosima::fastcdr::optional<eprosima::test::Material>& KeyedCompleteTestType::enum2_opt_field() const
 {
     return m_enum2_opt_field;
 }
@@ -5089,7 +5097,7 @@ const eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::Key
  * @brief This function returns a reference to member enum2_opt_field
  * @return Reference to member enum2_opt_field
  */
-eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::enum2_opt_field()
+eprosima::fastcdr::optional<eprosima::test::Material>& KeyedCompleteTestType::enum2_opt_field()
 {
     return m_enum2_opt_field;
 }
@@ -5099,7 +5107,7 @@ eprosima::fastcdr::optional<eprosima::test::Material>& eprosima::test::KeyedComp
  * @brief This function copies the value in member struct_opt_field
  * @param _struct_opt_field New value to be copied in member struct_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::struct_opt_field(
+void KeyedCompleteTestType::struct_opt_field(
         const eprosima::fastcdr::optional<eprosima::test::StructType>& _struct_opt_field)
 {
     m_struct_opt_field = _struct_opt_field;
@@ -5109,7 +5117,7 @@ void eprosima::test::KeyedCompleteTestType::struct_opt_field(
  * @brief This function moves the value in member struct_opt_field
  * @param _struct_opt_field New value to be moved in member struct_opt_field
  */
-void eprosima::test::KeyedCompleteTestType::struct_opt_field(
+void KeyedCompleteTestType::struct_opt_field(
         eprosima::fastcdr::optional<eprosima::test::StructType>&& _struct_opt_field)
 {
     m_struct_opt_field = std::move(_struct_opt_field);
@@ -5119,7 +5127,7 @@ void eprosima::test::KeyedCompleteTestType::struct_opt_field(
  * @brief This function returns a constant reference to member struct_opt_field
  * @return Constant reference to member struct_opt_field
  */
-const eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::struct_opt_field() const
+const eprosima::fastcdr::optional<eprosima::test::StructType>& KeyedCompleteTestType::struct_opt_field() const
 {
     return m_struct_opt_field;
 }
@@ -5128,7 +5136,7 @@ const eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::K
  * @brief This function returns a reference to member struct_opt_field
  * @return Reference to member struct_opt_field
  */
-eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::struct_opt_field()
+eprosima::fastcdr::optional<eprosima::test::StructType>& KeyedCompleteTestType::struct_opt_field()
 {
     return m_struct_opt_field;
 }
@@ -5138,8 +5146,8 @@ eprosima::fastcdr::optional<eprosima::test::StructType>& eprosima::test::KeyedCo
  * @brief This function copies the value in member array_char_field
  * @param _array_char_field New value to be copied in member array_char_field
  */
-void eprosima::test::KeyedCompleteTestType::array_char_field(
-        const std::array<char, 3>& _array_char_field)
+void KeyedCompleteTestType::array_char_field(
+        const std::array<char, max_array_size>& _array_char_field)
 {
     m_array_char_field = _array_char_field;
 }
@@ -5148,8 +5156,8 @@ void eprosima::test::KeyedCompleteTestType::array_char_field(
  * @brief This function moves the value in member array_char_field
  * @param _array_char_field New value to be moved in member array_char_field
  */
-void eprosima::test::KeyedCompleteTestType::array_char_field(
-        std::array<char, 3>&& _array_char_field)
+void KeyedCompleteTestType::array_char_field(
+        std::array<char, max_array_size>&& _array_char_field)
 {
     m_array_char_field = std::move(_array_char_field);
 }
@@ -5158,7 +5166,7 @@ void eprosima::test::KeyedCompleteTestType::array_char_field(
  * @brief This function returns a constant reference to member array_char_field
  * @return Constant reference to member array_char_field
  */
-const std::array<char, 3>& eprosima::test::KeyedCompleteTestType::array_char_field() const
+const std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field() const
 {
     return m_array_char_field;
 }
@@ -5167,7 +5175,7 @@ const std::array<char, 3>& eprosima::test::KeyedCompleteTestType::array_char_fie
  * @brief This function returns a reference to member array_char_field
  * @return Reference to member array_char_field
  */
-std::array<char, 3>& eprosima::test::KeyedCompleteTestType::array_char_field()
+std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field()
 {
     return m_array_char_field;
 }
@@ -5177,8 +5185,8 @@ std::array<char, 3>& eprosima::test::KeyedCompleteTestType::array_char_field()
  * @brief This function copies the value in member array_uint8_field
  * @param _array_uint8_field New value to be copied in member array_uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint8_field(
-        const std::array<uint8_t, 3>& _array_uint8_field)
+void KeyedCompleteTestType::array_uint8_field(
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
 {
     m_array_uint8_field = _array_uint8_field;
 }
@@ -5187,8 +5195,8 @@ void eprosima::test::KeyedCompleteTestType::array_uint8_field(
  * @brief This function moves the value in member array_uint8_field
  * @param _array_uint8_field New value to be moved in member array_uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint8_field(
-        std::array<uint8_t, 3>&& _array_uint8_field)
+void KeyedCompleteTestType::array_uint8_field(
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
 {
     m_array_uint8_field = std::move(_array_uint8_field);
 }
@@ -5197,7 +5205,7 @@ void eprosima::test::KeyedCompleteTestType::array_uint8_field(
  * @brief This function returns a constant reference to member array_uint8_field
  * @return Constant reference to member array_uint8_field
  */
-const std::array<uint8_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint8_field() const
+const std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field() const
 {
     return m_array_uint8_field;
 }
@@ -5206,7 +5214,7 @@ const std::array<uint8_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint8
  * @brief This function returns a reference to member array_uint8_field
  * @return Reference to member array_uint8_field
  */
-std::array<uint8_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint8_field()
+std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field()
 {
     return m_array_uint8_field;
 }
@@ -5216,8 +5224,8 @@ std::array<uint8_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint8_field
  * @brief This function copies the value in member array_int16_field
  * @param _array_int16_field New value to be copied in member array_int16_field
  */
-void eprosima::test::KeyedCompleteTestType::array_int16_field(
-        const std::array<int16_t, 3>& _array_int16_field)
+void KeyedCompleteTestType::array_int16_field(
+        const std::array<int16_t, max_array_size>& _array_int16_field)
 {
     m_array_int16_field = _array_int16_field;
 }
@@ -5226,8 +5234,8 @@ void eprosima::test::KeyedCompleteTestType::array_int16_field(
  * @brief This function moves the value in member array_int16_field
  * @param _array_int16_field New value to be moved in member array_int16_field
  */
-void eprosima::test::KeyedCompleteTestType::array_int16_field(
-        std::array<int16_t, 3>&& _array_int16_field)
+void KeyedCompleteTestType::array_int16_field(
+        std::array<int16_t, max_array_size>&& _array_int16_field)
 {
     m_array_int16_field = std::move(_array_int16_field);
 }
@@ -5236,7 +5244,7 @@ void eprosima::test::KeyedCompleteTestType::array_int16_field(
  * @brief This function returns a constant reference to member array_int16_field
  * @return Constant reference to member array_int16_field
  */
-const std::array<int16_t, 3>& eprosima::test::KeyedCompleteTestType::array_int16_field() const
+const std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field() const
 {
     return m_array_int16_field;
 }
@@ -5245,7 +5253,7 @@ const std::array<int16_t, 3>& eprosima::test::KeyedCompleteTestType::array_int16
  * @brief This function returns a reference to member array_int16_field
  * @return Reference to member array_int16_field
  */
-std::array<int16_t, 3>& eprosima::test::KeyedCompleteTestType::array_int16_field()
+std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field()
 {
     return m_array_int16_field;
 }
@@ -5255,8 +5263,8 @@ std::array<int16_t, 3>& eprosima::test::KeyedCompleteTestType::array_int16_field
  * @brief This function copies the value in member array_uint16_field
  * @param _array_uint16_field New value to be copied in member array_uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint16_field(
-        const std::array<uint16_t, 3>& _array_uint16_field)
+void KeyedCompleteTestType::array_uint16_field(
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
 {
     m_array_uint16_field = _array_uint16_field;
 }
@@ -5265,8 +5273,8 @@ void eprosima::test::KeyedCompleteTestType::array_uint16_field(
  * @brief This function moves the value in member array_uint16_field
  * @param _array_uint16_field New value to be moved in member array_uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint16_field(
-        std::array<uint16_t, 3>&& _array_uint16_field)
+void KeyedCompleteTestType::array_uint16_field(
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
 {
     m_array_uint16_field = std::move(_array_uint16_field);
 }
@@ -5275,7 +5283,7 @@ void eprosima::test::KeyedCompleteTestType::array_uint16_field(
  * @brief This function returns a constant reference to member array_uint16_field
  * @return Constant reference to member array_uint16_field
  */
-const std::array<uint16_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint16_field() const
+const std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field() const
 {
     return m_array_uint16_field;
 }
@@ -5284,7 +5292,7 @@ const std::array<uint16_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint
  * @brief This function returns a reference to member array_uint16_field
  * @return Reference to member array_uint16_field
  */
-std::array<uint16_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint16_field()
+std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field()
 {
     return m_array_uint16_field;
 }
@@ -5294,8 +5302,8 @@ std::array<uint16_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint16_fie
  * @brief This function copies the value in member array_int32_field
  * @param _array_int32_field New value to be copied in member array_int32_field
  */
-void eprosima::test::KeyedCompleteTestType::array_int32_field(
-        const std::array<int32_t, 3>& _array_int32_field)
+void KeyedCompleteTestType::array_int32_field(
+        const std::array<int32_t, max_array_size>& _array_int32_field)
 {
     m_array_int32_field = _array_int32_field;
 }
@@ -5304,8 +5312,8 @@ void eprosima::test::KeyedCompleteTestType::array_int32_field(
  * @brief This function moves the value in member array_int32_field
  * @param _array_int32_field New value to be moved in member array_int32_field
  */
-void eprosima::test::KeyedCompleteTestType::array_int32_field(
-        std::array<int32_t, 3>&& _array_int32_field)
+void KeyedCompleteTestType::array_int32_field(
+        std::array<int32_t, max_array_size>&& _array_int32_field)
 {
     m_array_int32_field = std::move(_array_int32_field);
 }
@@ -5314,7 +5322,7 @@ void eprosima::test::KeyedCompleteTestType::array_int32_field(
  * @brief This function returns a constant reference to member array_int32_field
  * @return Constant reference to member array_int32_field
  */
-const std::array<int32_t, 3>& eprosima::test::KeyedCompleteTestType::array_int32_field() const
+const std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field() const
 {
     return m_array_int32_field;
 }
@@ -5323,7 +5331,7 @@ const std::array<int32_t, 3>& eprosima::test::KeyedCompleteTestType::array_int32
  * @brief This function returns a reference to member array_int32_field
  * @return Reference to member array_int32_field
  */
-std::array<int32_t, 3>& eprosima::test::KeyedCompleteTestType::array_int32_field()
+std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field()
 {
     return m_array_int32_field;
 }
@@ -5333,8 +5341,8 @@ std::array<int32_t, 3>& eprosima::test::KeyedCompleteTestType::array_int32_field
  * @brief This function copies the value in member array_uint32_field
  * @param _array_uint32_field New value to be copied in member array_uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint32_field(
-        const std::array<uint32_t, 3>& _array_uint32_field)
+void KeyedCompleteTestType::array_uint32_field(
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
 {
     m_array_uint32_field = _array_uint32_field;
 }
@@ -5343,8 +5351,8 @@ void eprosima::test::KeyedCompleteTestType::array_uint32_field(
  * @brief This function moves the value in member array_uint32_field
  * @param _array_uint32_field New value to be moved in member array_uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint32_field(
-        std::array<uint32_t, 3>&& _array_uint32_field)
+void KeyedCompleteTestType::array_uint32_field(
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
 {
     m_array_uint32_field = std::move(_array_uint32_field);
 }
@@ -5353,7 +5361,7 @@ void eprosima::test::KeyedCompleteTestType::array_uint32_field(
  * @brief This function returns a constant reference to member array_uint32_field
  * @return Constant reference to member array_uint32_field
  */
-const std::array<uint32_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint32_field() const
+const std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field() const
 {
     return m_array_uint32_field;
 }
@@ -5362,7 +5370,7 @@ const std::array<uint32_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint
  * @brief This function returns a reference to member array_uint32_field
  * @return Reference to member array_uint32_field
  */
-std::array<uint32_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint32_field()
+std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field()
 {
     return m_array_uint32_field;
 }
@@ -5372,8 +5380,8 @@ std::array<uint32_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint32_fie
  * @brief This function copies the value in member array_int64_field
  * @param _array_int64_field New value to be copied in member array_int64_field
  */
-void eprosima::test::KeyedCompleteTestType::array_int64_field(
-        const std::array<int64_t, 3>& _array_int64_field)
+void KeyedCompleteTestType::array_int64_field(
+        const std::array<int64_t, max_array_size>& _array_int64_field)
 {
     m_array_int64_field = _array_int64_field;
 }
@@ -5382,8 +5390,8 @@ void eprosima::test::KeyedCompleteTestType::array_int64_field(
  * @brief This function moves the value in member array_int64_field
  * @param _array_int64_field New value to be moved in member array_int64_field
  */
-void eprosima::test::KeyedCompleteTestType::array_int64_field(
-        std::array<int64_t, 3>&& _array_int64_field)
+void KeyedCompleteTestType::array_int64_field(
+        std::array<int64_t, max_array_size>&& _array_int64_field)
 {
     m_array_int64_field = std::move(_array_int64_field);
 }
@@ -5392,7 +5400,7 @@ void eprosima::test::KeyedCompleteTestType::array_int64_field(
  * @brief This function returns a constant reference to member array_int64_field
  * @return Constant reference to member array_int64_field
  */
-const std::array<int64_t, 3>& eprosima::test::KeyedCompleteTestType::array_int64_field() const
+const std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field() const
 {
     return m_array_int64_field;
 }
@@ -5401,7 +5409,7 @@ const std::array<int64_t, 3>& eprosima::test::KeyedCompleteTestType::array_int64
  * @brief This function returns a reference to member array_int64_field
  * @return Reference to member array_int64_field
  */
-std::array<int64_t, 3>& eprosima::test::KeyedCompleteTestType::array_int64_field()
+std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field()
 {
     return m_array_int64_field;
 }
@@ -5411,8 +5419,8 @@ std::array<int64_t, 3>& eprosima::test::KeyedCompleteTestType::array_int64_field
  * @brief This function copies the value in member array_uint64_field
  * @param _array_uint64_field New value to be copied in member array_uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint64_field(
-        const std::array<uint64_t, 3>& _array_uint64_field)
+void KeyedCompleteTestType::array_uint64_field(
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
 {
     m_array_uint64_field = _array_uint64_field;
 }
@@ -5421,8 +5429,8 @@ void eprosima::test::KeyedCompleteTestType::array_uint64_field(
  * @brief This function moves the value in member array_uint64_field
  * @param _array_uint64_field New value to be moved in member array_uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::array_uint64_field(
-        std::array<uint64_t, 3>&& _array_uint64_field)
+void KeyedCompleteTestType::array_uint64_field(
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
 {
     m_array_uint64_field = std::move(_array_uint64_field);
 }
@@ -5431,7 +5439,7 @@ void eprosima::test::KeyedCompleteTestType::array_uint64_field(
  * @brief This function returns a constant reference to member array_uint64_field
  * @return Constant reference to member array_uint64_field
  */
-const std::array<uint64_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint64_field() const
+const std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field() const
 {
     return m_array_uint64_field;
 }
@@ -5440,7 +5448,7 @@ const std::array<uint64_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint
  * @brief This function returns a reference to member array_uint64_field
  * @return Reference to member array_uint64_field
  */
-std::array<uint64_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint64_field()
+std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field()
 {
     return m_array_uint64_field;
 }
@@ -5450,8 +5458,8 @@ std::array<uint64_t, 3>& eprosima::test::KeyedCompleteTestType::array_uint64_fie
  * @brief This function copies the value in member array_float_field
  * @param _array_float_field New value to be copied in member array_float_field
  */
-void eprosima::test::KeyedCompleteTestType::array_float_field(
-        const std::array<float, 3>& _array_float_field)
+void KeyedCompleteTestType::array_float_field(
+        const std::array<float, max_array_size>& _array_float_field)
 {
     m_array_float_field = _array_float_field;
 }
@@ -5460,8 +5468,8 @@ void eprosima::test::KeyedCompleteTestType::array_float_field(
  * @brief This function moves the value in member array_float_field
  * @param _array_float_field New value to be moved in member array_float_field
  */
-void eprosima::test::KeyedCompleteTestType::array_float_field(
-        std::array<float, 3>&& _array_float_field)
+void KeyedCompleteTestType::array_float_field(
+        std::array<float, max_array_size>&& _array_float_field)
 {
     m_array_float_field = std::move(_array_float_field);
 }
@@ -5470,7 +5478,7 @@ void eprosima::test::KeyedCompleteTestType::array_float_field(
  * @brief This function returns a constant reference to member array_float_field
  * @return Constant reference to member array_float_field
  */
-const std::array<float, 3>& eprosima::test::KeyedCompleteTestType::array_float_field() const
+const std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field() const
 {
     return m_array_float_field;
 }
@@ -5479,7 +5487,7 @@ const std::array<float, 3>& eprosima::test::KeyedCompleteTestType::array_float_f
  * @brief This function returns a reference to member array_float_field
  * @return Reference to member array_float_field
  */
-std::array<float, 3>& eprosima::test::KeyedCompleteTestType::array_float_field()
+std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field()
 {
     return m_array_float_field;
 }
@@ -5489,8 +5497,8 @@ std::array<float, 3>& eprosima::test::KeyedCompleteTestType::array_float_field()
  * @brief This function copies the value in member array_double_field
  * @param _array_double_field New value to be copied in member array_double_field
  */
-void eprosima::test::KeyedCompleteTestType::array_double_field(
-        const std::array<double, 3>& _array_double_field)
+void KeyedCompleteTestType::array_double_field(
+        const std::array<double, max_array_size>& _array_double_field)
 {
     m_array_double_field = _array_double_field;
 }
@@ -5499,8 +5507,8 @@ void eprosima::test::KeyedCompleteTestType::array_double_field(
  * @brief This function moves the value in member array_double_field
  * @param _array_double_field New value to be moved in member array_double_field
  */
-void eprosima::test::KeyedCompleteTestType::array_double_field(
-        std::array<double, 3>&& _array_double_field)
+void KeyedCompleteTestType::array_double_field(
+        std::array<double, max_array_size>&& _array_double_field)
 {
     m_array_double_field = std::move(_array_double_field);
 }
@@ -5509,7 +5517,7 @@ void eprosima::test::KeyedCompleteTestType::array_double_field(
  * @brief This function returns a constant reference to member array_double_field
  * @return Constant reference to member array_double_field
  */
-const std::array<double, 3>& eprosima::test::KeyedCompleteTestType::array_double_field() const
+const std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field() const
 {
     return m_array_double_field;
 }
@@ -5518,7 +5526,7 @@ const std::array<double, 3>& eprosima::test::KeyedCompleteTestType::array_double
  * @brief This function returns a reference to member array_double_field
  * @return Reference to member array_double_field
  */
-std::array<double, 3>& eprosima::test::KeyedCompleteTestType::array_double_field()
+std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field()
 {
     return m_array_double_field;
 }
@@ -5528,8 +5536,8 @@ std::array<double, 3>& eprosima::test::KeyedCompleteTestType::array_double_field
  * @brief This function copies the value in member array_bool_field
  * @param _array_bool_field New value to be copied in member array_bool_field
  */
-void eprosima::test::KeyedCompleteTestType::array_bool_field(
-        const std::array<bool, 3>& _array_bool_field)
+void KeyedCompleteTestType::array_bool_field(
+        const std::array<bool, max_array_size>& _array_bool_field)
 {
     m_array_bool_field = _array_bool_field;
 }
@@ -5538,8 +5546,8 @@ void eprosima::test::KeyedCompleteTestType::array_bool_field(
  * @brief This function moves the value in member array_bool_field
  * @param _array_bool_field New value to be moved in member array_bool_field
  */
-void eprosima::test::KeyedCompleteTestType::array_bool_field(
-        std::array<bool, 3>&& _array_bool_field)
+void KeyedCompleteTestType::array_bool_field(
+        std::array<bool, max_array_size>&& _array_bool_field)
 {
     m_array_bool_field = std::move(_array_bool_field);
 }
@@ -5548,7 +5556,7 @@ void eprosima::test::KeyedCompleteTestType::array_bool_field(
  * @brief This function returns a constant reference to member array_bool_field
  * @return Constant reference to member array_bool_field
  */
-const std::array<bool, 3>& eprosima::test::KeyedCompleteTestType::array_bool_field() const
+const std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field() const
 {
     return m_array_bool_field;
 }
@@ -5557,7 +5565,7 @@ const std::array<bool, 3>& eprosima::test::KeyedCompleteTestType::array_bool_fie
  * @brief This function returns a reference to member array_bool_field
  * @return Reference to member array_bool_field
  */
-std::array<bool, 3>& eprosima::test::KeyedCompleteTestType::array_bool_field()
+std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field()
 {
     return m_array_bool_field;
 }
@@ -5567,8 +5575,8 @@ std::array<bool, 3>& eprosima::test::KeyedCompleteTestType::array_bool_field()
  * @brief This function copies the value in member array_enum_field
  * @param _array_enum_field New value to be copied in member array_enum_field
  */
-void eprosima::test::KeyedCompleteTestType::array_enum_field(
-        const std::array<eprosima::test::Color, 3>& _array_enum_field)
+void KeyedCompleteTestType::array_enum_field(
+        const std::array<eprosima::test::Color, max_array_size>& _array_enum_field)
 {
     m_array_enum_field = _array_enum_field;
 }
@@ -5577,8 +5585,8 @@ void eprosima::test::KeyedCompleteTestType::array_enum_field(
  * @brief This function moves the value in member array_enum_field
  * @param _array_enum_field New value to be moved in member array_enum_field
  */
-void eprosima::test::KeyedCompleteTestType::array_enum_field(
-        std::array<eprosima::test::Color, 3>&& _array_enum_field)
+void KeyedCompleteTestType::array_enum_field(
+        std::array<eprosima::test::Color, max_array_size>&& _array_enum_field)
 {
     m_array_enum_field = std::move(_array_enum_field);
 }
@@ -5587,7 +5595,7 @@ void eprosima::test::KeyedCompleteTestType::array_enum_field(
  * @brief This function returns a constant reference to member array_enum_field
  * @return Constant reference to member array_enum_field
  */
-const std::array<eprosima::test::Color, 3>& eprosima::test::KeyedCompleteTestType::array_enum_field() const
+const std::array<eprosima::test::Color, max_array_size>& KeyedCompleteTestType::array_enum_field() const
 {
     return m_array_enum_field;
 }
@@ -5596,7 +5604,7 @@ const std::array<eprosima::test::Color, 3>& eprosima::test::KeyedCompleteTestTyp
  * @brief This function returns a reference to member array_enum_field
  * @return Reference to member array_enum_field
  */
-std::array<eprosima::test::Color, 3>& eprosima::test::KeyedCompleteTestType::array_enum_field()
+std::array<eprosima::test::Color, max_array_size>& KeyedCompleteTestType::array_enum_field()
 {
     return m_array_enum_field;
 }
@@ -5606,8 +5614,8 @@ std::array<eprosima::test::Color, 3>& eprosima::test::KeyedCompleteTestType::arr
  * @brief This function copies the value in member array_enum2_field
  * @param _array_enum2_field New value to be copied in member array_enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::array_enum2_field(
-        const std::array<eprosima::test::Material, 3>& _array_enum2_field)
+void KeyedCompleteTestType::array_enum2_field(
+        const std::array<eprosima::test::Material, max_array_size>& _array_enum2_field)
 {
     m_array_enum2_field = _array_enum2_field;
 }
@@ -5616,8 +5624,8 @@ void eprosima::test::KeyedCompleteTestType::array_enum2_field(
  * @brief This function moves the value in member array_enum2_field
  * @param _array_enum2_field New value to be moved in member array_enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::array_enum2_field(
-        std::array<eprosima::test::Material, 3>&& _array_enum2_field)
+void KeyedCompleteTestType::array_enum2_field(
+        std::array<eprosima::test::Material, max_array_size>&& _array_enum2_field)
 {
     m_array_enum2_field = std::move(_array_enum2_field);
 }
@@ -5626,7 +5634,7 @@ void eprosima::test::KeyedCompleteTestType::array_enum2_field(
  * @brief This function returns a constant reference to member array_enum2_field
  * @return Constant reference to member array_enum2_field
  */
-const std::array<eprosima::test::Material, 3>& eprosima::test::KeyedCompleteTestType::array_enum2_field() const
+const std::array<eprosima::test::Material, max_array_size>& KeyedCompleteTestType::array_enum2_field() const
 {
     return m_array_enum2_field;
 }
@@ -5635,7 +5643,7 @@ const std::array<eprosima::test::Material, 3>& eprosima::test::KeyedCompleteTest
  * @brief This function returns a reference to member array_enum2_field
  * @return Reference to member array_enum2_field
  */
-std::array<eprosima::test::Material, 3>& eprosima::test::KeyedCompleteTestType::array_enum2_field()
+std::array<eprosima::test::Material, max_array_size>& KeyedCompleteTestType::array_enum2_field()
 {
     return m_array_enum2_field;
 }
@@ -5645,8 +5653,8 @@ std::array<eprosima::test::Material, 3>& eprosima::test::KeyedCompleteTestType::
  * @brief This function copies the value in member array_struct_field
  * @param _array_struct_field New value to be copied in member array_struct_field
  */
-void eprosima::test::KeyedCompleteTestType::array_struct_field(
-        const std::array<eprosima::test::StructType, 3>& _array_struct_field)
+void KeyedCompleteTestType::array_struct_field(
+        const std::array<eprosima::test::StructType, max_array_size>& _array_struct_field)
 {
     m_array_struct_field = _array_struct_field;
 }
@@ -5655,8 +5663,8 @@ void eprosima::test::KeyedCompleteTestType::array_struct_field(
  * @brief This function moves the value in member array_struct_field
  * @param _array_struct_field New value to be moved in member array_struct_field
  */
-void eprosima::test::KeyedCompleteTestType::array_struct_field(
-        std::array<eprosima::test::StructType, 3>&& _array_struct_field)
+void KeyedCompleteTestType::array_struct_field(
+        std::array<eprosima::test::StructType, max_array_size>&& _array_struct_field)
 {
     m_array_struct_field = std::move(_array_struct_field);
 }
@@ -5665,7 +5673,7 @@ void eprosima::test::KeyedCompleteTestType::array_struct_field(
  * @brief This function returns a constant reference to member array_struct_field
  * @return Constant reference to member array_struct_field
  */
-const std::array<eprosima::test::StructType, 3>& eprosima::test::KeyedCompleteTestType::array_struct_field() const
+const std::array<eprosima::test::StructType, max_array_size>& KeyedCompleteTestType::array_struct_field() const
 {
     return m_array_struct_field;
 }
@@ -5674,7 +5682,7 @@ const std::array<eprosima::test::StructType, 3>& eprosima::test::KeyedCompleteTe
  * @brief This function returns a reference to member array_struct_field
  * @return Reference to member array_struct_field
  */
-std::array<eprosima::test::StructType, 3>& eprosima::test::KeyedCompleteTestType::array_struct_field()
+std::array<eprosima::test::StructType, max_array_size>& KeyedCompleteTestType::array_struct_field()
 {
     return m_array_struct_field;
 }
@@ -5684,7 +5692,7 @@ std::array<eprosima::test::StructType, 3>& eprosima::test::KeyedCompleteTestType
  * @brief This function copies the value in member bounded_sequence_char_field
  * @param _bounded_sequence_char_field New value to be copied in member bounded_sequence_char_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field(
+void KeyedCompleteTestType::bounded_sequence_char_field(
         const std::vector<char>& _bounded_sequence_char_field)
 {
     m_bounded_sequence_char_field = _bounded_sequence_char_field;
@@ -5694,7 +5702,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field(
  * @brief This function moves the value in member bounded_sequence_char_field
  * @param _bounded_sequence_char_field New value to be moved in member bounded_sequence_char_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field(
+void KeyedCompleteTestType::bounded_sequence_char_field(
         std::vector<char>&& _bounded_sequence_char_field)
 {
     m_bounded_sequence_char_field = std::move(_bounded_sequence_char_field);
@@ -5704,7 +5712,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field(
  * @brief This function returns a constant reference to member bounded_sequence_char_field
  * @return Constant reference to member bounded_sequence_char_field
  */
-const std::vector<char>& eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field() const
+const std::vector<char>& KeyedCompleteTestType::bounded_sequence_char_field() const
 {
     return m_bounded_sequence_char_field;
 }
@@ -5713,7 +5721,7 @@ const std::vector<char>& eprosima::test::KeyedCompleteTestType::bounded_sequence
  * @brief This function returns a reference to member bounded_sequence_char_field
  * @return Reference to member bounded_sequence_char_field
  */
-std::vector<char>& eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field()
+std::vector<char>& KeyedCompleteTestType::bounded_sequence_char_field()
 {
     return m_bounded_sequence_char_field;
 }
@@ -5723,7 +5731,7 @@ std::vector<char>& eprosima::test::KeyedCompleteTestType::bounded_sequence_char_
  * @brief This function copies the value in member bounded_sequence_uint8_field
  * @param _bounded_sequence_uint8_field New value to be copied in member bounded_sequence_uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field(
+void KeyedCompleteTestType::bounded_sequence_uint8_field(
         const std::vector<uint8_t>& _bounded_sequence_uint8_field)
 {
     m_bounded_sequence_uint8_field = _bounded_sequence_uint8_field;
@@ -5733,7 +5741,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field(
  * @brief This function moves the value in member bounded_sequence_uint8_field
  * @param _bounded_sequence_uint8_field New value to be moved in member bounded_sequence_uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field(
+void KeyedCompleteTestType::bounded_sequence_uint8_field(
         std::vector<uint8_t>&& _bounded_sequence_uint8_field)
 {
     m_bounded_sequence_uint8_field = std::move(_bounded_sequence_uint8_field);
@@ -5743,7 +5751,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint8_field
  * @return Constant reference to member bounded_sequence_uint8_field
  */
-const std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field() const
+const std::vector<uint8_t>& KeyedCompleteTestType::bounded_sequence_uint8_field() const
 {
     return m_bounded_sequence_uint8_field;
 }
@@ -5752,7 +5760,7 @@ const std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::bounded_seque
  * @brief This function returns a reference to member bounded_sequence_uint8_field
  * @return Reference to member bounded_sequence_uint8_field
  */
-std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field()
+std::vector<uint8_t>& KeyedCompleteTestType::bounded_sequence_uint8_field()
 {
     return m_bounded_sequence_uint8_field;
 }
@@ -5762,7 +5770,7 @@ std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_ui
  * @brief This function copies the value in member bounded_sequence_int16_field
  * @param _bounded_sequence_int16_field New value to be copied in member bounded_sequence_int16_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field(
+void KeyedCompleteTestType::bounded_sequence_int16_field(
         const std::vector<int16_t>& _bounded_sequence_int16_field)
 {
     m_bounded_sequence_int16_field = _bounded_sequence_int16_field;
@@ -5772,7 +5780,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field(
  * @brief This function moves the value in member bounded_sequence_int16_field
  * @param _bounded_sequence_int16_field New value to be moved in member bounded_sequence_int16_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field(
+void KeyedCompleteTestType::bounded_sequence_int16_field(
         std::vector<int16_t>&& _bounded_sequence_int16_field)
 {
     m_bounded_sequence_int16_field = std::move(_bounded_sequence_int16_field);
@@ -5782,7 +5790,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field(
  * @brief This function returns a constant reference to member bounded_sequence_int16_field
  * @return Constant reference to member bounded_sequence_int16_field
  */
-const std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field() const
+const std::vector<int16_t>& KeyedCompleteTestType::bounded_sequence_int16_field() const
 {
     return m_bounded_sequence_int16_field;
 }
@@ -5791,7 +5799,7 @@ const std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::bounded_seque
  * @brief This function returns a reference to member bounded_sequence_int16_field
  * @return Reference to member bounded_sequence_int16_field
  */
-std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field()
+std::vector<int16_t>& KeyedCompleteTestType::bounded_sequence_int16_field()
 {
     return m_bounded_sequence_int16_field;
 }
@@ -5801,7 +5809,7 @@ std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_in
  * @brief This function copies the value in member bounded_sequence_uint16_field
  * @param _bounded_sequence_uint16_field New value to be copied in member bounded_sequence_uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field(
+void KeyedCompleteTestType::bounded_sequence_uint16_field(
         const std::vector<uint16_t>& _bounded_sequence_uint16_field)
 {
     m_bounded_sequence_uint16_field = _bounded_sequence_uint16_field;
@@ -5811,7 +5819,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field(
  * @brief This function moves the value in member bounded_sequence_uint16_field
  * @param _bounded_sequence_uint16_field New value to be moved in member bounded_sequence_uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field(
+void KeyedCompleteTestType::bounded_sequence_uint16_field(
         std::vector<uint16_t>&& _bounded_sequence_uint16_field)
 {
     m_bounded_sequence_uint16_field = std::move(_bounded_sequence_uint16_field);
@@ -5821,7 +5829,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint16_field
  * @return Constant reference to member bounded_sequence_uint16_field
  */
-const std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field() const
+const std::vector<uint16_t>& KeyedCompleteTestType::bounded_sequence_uint16_field() const
 {
     return m_bounded_sequence_uint16_field;
 }
@@ -5830,7 +5838,7 @@ const std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequ
  * @brief This function returns a reference to member bounded_sequence_uint16_field
  * @return Reference to member bounded_sequence_uint16_field
  */
-std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field()
+std::vector<uint16_t>& KeyedCompleteTestType::bounded_sequence_uint16_field()
 {
     return m_bounded_sequence_uint16_field;
 }
@@ -5840,7 +5848,7 @@ std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_u
  * @brief This function copies the value in member bounded_sequence_int32_field
  * @param _bounded_sequence_int32_field New value to be copied in member bounded_sequence_int32_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field(
+void KeyedCompleteTestType::bounded_sequence_int32_field(
         const std::vector<int32_t>& _bounded_sequence_int32_field)
 {
     m_bounded_sequence_int32_field = _bounded_sequence_int32_field;
@@ -5850,7 +5858,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field(
  * @brief This function moves the value in member bounded_sequence_int32_field
  * @param _bounded_sequence_int32_field New value to be moved in member bounded_sequence_int32_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field(
+void KeyedCompleteTestType::bounded_sequence_int32_field(
         std::vector<int32_t>&& _bounded_sequence_int32_field)
 {
     m_bounded_sequence_int32_field = std::move(_bounded_sequence_int32_field);
@@ -5860,7 +5868,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field(
  * @brief This function returns a constant reference to member bounded_sequence_int32_field
  * @return Constant reference to member bounded_sequence_int32_field
  */
-const std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field() const
+const std::vector<int32_t>& KeyedCompleteTestType::bounded_sequence_int32_field() const
 {
     return m_bounded_sequence_int32_field;
 }
@@ -5869,7 +5877,7 @@ const std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::bounded_seque
  * @brief This function returns a reference to member bounded_sequence_int32_field
  * @return Reference to member bounded_sequence_int32_field
  */
-std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field()
+std::vector<int32_t>& KeyedCompleteTestType::bounded_sequence_int32_field()
 {
     return m_bounded_sequence_int32_field;
 }
@@ -5879,7 +5887,7 @@ std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_in
  * @brief This function copies the value in member bounded_sequence_uint32_field
  * @param _bounded_sequence_uint32_field New value to be copied in member bounded_sequence_uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field(
+void KeyedCompleteTestType::bounded_sequence_uint32_field(
         const std::vector<uint32_t>& _bounded_sequence_uint32_field)
 {
     m_bounded_sequence_uint32_field = _bounded_sequence_uint32_field;
@@ -5889,7 +5897,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field(
  * @brief This function moves the value in member bounded_sequence_uint32_field
  * @param _bounded_sequence_uint32_field New value to be moved in member bounded_sequence_uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field(
+void KeyedCompleteTestType::bounded_sequence_uint32_field(
         std::vector<uint32_t>&& _bounded_sequence_uint32_field)
 {
     m_bounded_sequence_uint32_field = std::move(_bounded_sequence_uint32_field);
@@ -5899,7 +5907,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint32_field
  * @return Constant reference to member bounded_sequence_uint32_field
  */
-const std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field() const
+const std::vector<uint32_t>& KeyedCompleteTestType::bounded_sequence_uint32_field() const
 {
     return m_bounded_sequence_uint32_field;
 }
@@ -5908,7 +5916,7 @@ const std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequ
  * @brief This function returns a reference to member bounded_sequence_uint32_field
  * @return Reference to member bounded_sequence_uint32_field
  */
-std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field()
+std::vector<uint32_t>& KeyedCompleteTestType::bounded_sequence_uint32_field()
 {
     return m_bounded_sequence_uint32_field;
 }
@@ -5918,7 +5926,7 @@ std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_u
  * @brief This function copies the value in member bounded_sequence_int64_field
  * @param _bounded_sequence_int64_field New value to be copied in member bounded_sequence_int64_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field(
+void KeyedCompleteTestType::bounded_sequence_int64_field(
         const std::vector<int64_t>& _bounded_sequence_int64_field)
 {
     m_bounded_sequence_int64_field = _bounded_sequence_int64_field;
@@ -5928,7 +5936,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field(
  * @brief This function moves the value in member bounded_sequence_int64_field
  * @param _bounded_sequence_int64_field New value to be moved in member bounded_sequence_int64_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field(
+void KeyedCompleteTestType::bounded_sequence_int64_field(
         std::vector<int64_t>&& _bounded_sequence_int64_field)
 {
     m_bounded_sequence_int64_field = std::move(_bounded_sequence_int64_field);
@@ -5938,7 +5946,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field(
  * @brief This function returns a constant reference to member bounded_sequence_int64_field
  * @return Constant reference to member bounded_sequence_int64_field
  */
-const std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field() const
+const std::vector<int64_t>& KeyedCompleteTestType::bounded_sequence_int64_field() const
 {
     return m_bounded_sequence_int64_field;
 }
@@ -5947,7 +5955,7 @@ const std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::bounded_seque
  * @brief This function returns a reference to member bounded_sequence_int64_field
  * @return Reference to member bounded_sequence_int64_field
  */
-std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field()
+std::vector<int64_t>& KeyedCompleteTestType::bounded_sequence_int64_field()
 {
     return m_bounded_sequence_int64_field;
 }
@@ -5957,7 +5965,7 @@ std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_in
  * @brief This function copies the value in member bounded_sequence_uint64_field
  * @param _bounded_sequence_uint64_field New value to be copied in member bounded_sequence_uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field(
+void KeyedCompleteTestType::bounded_sequence_uint64_field(
         const std::vector<uint64_t>& _bounded_sequence_uint64_field)
 {
     m_bounded_sequence_uint64_field = _bounded_sequence_uint64_field;
@@ -5967,7 +5975,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field(
  * @brief This function moves the value in member bounded_sequence_uint64_field
  * @param _bounded_sequence_uint64_field New value to be moved in member bounded_sequence_uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field(
+void KeyedCompleteTestType::bounded_sequence_uint64_field(
         std::vector<uint64_t>&& _bounded_sequence_uint64_field)
 {
     m_bounded_sequence_uint64_field = std::move(_bounded_sequence_uint64_field);
@@ -5977,7 +5985,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field(
  * @brief This function returns a constant reference to member bounded_sequence_uint64_field
  * @return Constant reference to member bounded_sequence_uint64_field
  */
-const std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field() const
+const std::vector<uint64_t>& KeyedCompleteTestType::bounded_sequence_uint64_field() const
 {
     return m_bounded_sequence_uint64_field;
 }
@@ -5986,7 +5994,7 @@ const std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequ
  * @brief This function returns a reference to member bounded_sequence_uint64_field
  * @return Reference to member bounded_sequence_uint64_field
  */
-std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field()
+std::vector<uint64_t>& KeyedCompleteTestType::bounded_sequence_uint64_field()
 {
     return m_bounded_sequence_uint64_field;
 }
@@ -5996,7 +6004,7 @@ std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::bounded_sequence_u
  * @brief This function copies the value in member bounded_sequence_float_field
  * @param _bounded_sequence_float_field New value to be copied in member bounded_sequence_float_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field(
+void KeyedCompleteTestType::bounded_sequence_float_field(
         const std::vector<float>& _bounded_sequence_float_field)
 {
     m_bounded_sequence_float_field = _bounded_sequence_float_field;
@@ -6006,7 +6014,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field(
  * @brief This function moves the value in member bounded_sequence_float_field
  * @param _bounded_sequence_float_field New value to be moved in member bounded_sequence_float_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field(
+void KeyedCompleteTestType::bounded_sequence_float_field(
         std::vector<float>&& _bounded_sequence_float_field)
 {
     m_bounded_sequence_float_field = std::move(_bounded_sequence_float_field);
@@ -6016,7 +6024,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field(
  * @brief This function returns a constant reference to member bounded_sequence_float_field
  * @return Constant reference to member bounded_sequence_float_field
  */
-const std::vector<float>& eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field() const
+const std::vector<float>& KeyedCompleteTestType::bounded_sequence_float_field() const
 {
     return m_bounded_sequence_float_field;
 }
@@ -6025,7 +6033,7 @@ const std::vector<float>& eprosima::test::KeyedCompleteTestType::bounded_sequenc
  * @brief This function returns a reference to member bounded_sequence_float_field
  * @return Reference to member bounded_sequence_float_field
  */
-std::vector<float>& eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field()
+std::vector<float>& KeyedCompleteTestType::bounded_sequence_float_field()
 {
     return m_bounded_sequence_float_field;
 }
@@ -6035,7 +6043,7 @@ std::vector<float>& eprosima::test::KeyedCompleteTestType::bounded_sequence_floa
  * @brief This function copies the value in member bounded_sequence_double_field
  * @param _bounded_sequence_double_field New value to be copied in member bounded_sequence_double_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field(
+void KeyedCompleteTestType::bounded_sequence_double_field(
         const std::vector<double>& _bounded_sequence_double_field)
 {
     m_bounded_sequence_double_field = _bounded_sequence_double_field;
@@ -6045,7 +6053,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field(
  * @brief This function moves the value in member bounded_sequence_double_field
  * @param _bounded_sequence_double_field New value to be moved in member bounded_sequence_double_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field(
+void KeyedCompleteTestType::bounded_sequence_double_field(
         std::vector<double>&& _bounded_sequence_double_field)
 {
     m_bounded_sequence_double_field = std::move(_bounded_sequence_double_field);
@@ -6055,7 +6063,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field(
  * @brief This function returns a constant reference to member bounded_sequence_double_field
  * @return Constant reference to member bounded_sequence_double_field
  */
-const std::vector<double>& eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field() const
+const std::vector<double>& KeyedCompleteTestType::bounded_sequence_double_field() const
 {
     return m_bounded_sequence_double_field;
 }
@@ -6064,7 +6072,7 @@ const std::vector<double>& eprosima::test::KeyedCompleteTestType::bounded_sequen
  * @brief This function returns a reference to member bounded_sequence_double_field
  * @return Reference to member bounded_sequence_double_field
  */
-std::vector<double>& eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field()
+std::vector<double>& KeyedCompleteTestType::bounded_sequence_double_field()
 {
     return m_bounded_sequence_double_field;
 }
@@ -6074,7 +6082,7 @@ std::vector<double>& eprosima::test::KeyedCompleteTestType::bounded_sequence_dou
  * @brief This function copies the value in member bounded_sequence_bool_field
  * @param _bounded_sequence_bool_field New value to be copied in member bounded_sequence_bool_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(
+void KeyedCompleteTestType::bounded_sequence_bool_field(
         const std::vector<bool>& _bounded_sequence_bool_field)
 {
     m_bounded_sequence_bool_field = _bounded_sequence_bool_field;
@@ -6084,7 +6092,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(
  * @brief This function moves the value in member bounded_sequence_bool_field
  * @param _bounded_sequence_bool_field New value to be moved in member bounded_sequence_bool_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(
+void KeyedCompleteTestType::bounded_sequence_bool_field(
         std::vector<bool>&& _bounded_sequence_bool_field)
 {
     m_bounded_sequence_bool_field = std::move(_bounded_sequence_bool_field);
@@ -6094,7 +6102,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(
  * @brief This function returns a constant reference to member bounded_sequence_bool_field
  * @return Constant reference to member bounded_sequence_bool_field
  */
-const std::vector<bool>& eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field() const
+const std::vector<bool>& KeyedCompleteTestType::bounded_sequence_bool_field() const
 {
     return m_bounded_sequence_bool_field;
 }
@@ -6103,7 +6111,7 @@ const std::vector<bool>& eprosima::test::KeyedCompleteTestType::bounded_sequence
  * @brief This function returns a reference to member bounded_sequence_bool_field
  * @return Reference to member bounded_sequence_bool_field
  */
-std::vector<bool>& eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field()
+std::vector<bool>& KeyedCompleteTestType::bounded_sequence_bool_field()
 {
     return m_bounded_sequence_bool_field;
 }
@@ -6113,7 +6121,7 @@ std::vector<bool>& eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_
  * @brief This function copies the value in member bounded_sequence_enum_field
  * @param _bounded_sequence_enum_field New value to be copied in member bounded_sequence_enum_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(
+void KeyedCompleteTestType::bounded_sequence_enum_field(
         const std::vector<eprosima::test::Color>& _bounded_sequence_enum_field)
 {
     m_bounded_sequence_enum_field = _bounded_sequence_enum_field;
@@ -6123,7 +6131,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(
  * @brief This function moves the value in member bounded_sequence_enum_field
  * @param _bounded_sequence_enum_field New value to be moved in member bounded_sequence_enum_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(
+void KeyedCompleteTestType::bounded_sequence_enum_field(
         std::vector<eprosima::test::Color>&& _bounded_sequence_enum_field)
 {
     m_bounded_sequence_enum_field = std::move(_bounded_sequence_enum_field);
@@ -6133,7 +6141,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(
  * @brief This function returns a constant reference to member bounded_sequence_enum_field
  * @return Constant reference to member bounded_sequence_enum_field
  */
-const std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field() const
+const std::vector<eprosima::test::Color>& KeyedCompleteTestType::bounded_sequence_enum_field() const
 {
     return m_bounded_sequence_enum_field;
 }
@@ -6142,7 +6150,7 @@ const std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType:
  * @brief This function returns a reference to member bounded_sequence_enum_field
  * @return Reference to member bounded_sequence_enum_field
  */
-std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field()
+std::vector<eprosima::test::Color>& KeyedCompleteTestType::bounded_sequence_enum_field()
 {
     return m_bounded_sequence_enum_field;
 }
@@ -6152,7 +6160,7 @@ std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::bound
  * @brief This function copies the value in member bounded_sequence_enum2_field
  * @param _bounded_sequence_enum2_field New value to be copied in member bounded_sequence_enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field(
+void KeyedCompleteTestType::bounded_sequence_enum2_field(
         const std::vector<eprosima::test::Material>& _bounded_sequence_enum2_field)
 {
     m_bounded_sequence_enum2_field = _bounded_sequence_enum2_field;
@@ -6162,7 +6170,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field(
  * @brief This function moves the value in member bounded_sequence_enum2_field
  * @param _bounded_sequence_enum2_field New value to be moved in member bounded_sequence_enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field(
+void KeyedCompleteTestType::bounded_sequence_enum2_field(
         std::vector<eprosima::test::Material>&& _bounded_sequence_enum2_field)
 {
     m_bounded_sequence_enum2_field = std::move(_bounded_sequence_enum2_field);
@@ -6172,7 +6180,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field(
  * @brief This function returns a constant reference to member bounded_sequence_enum2_field
  * @return Constant reference to member bounded_sequence_enum2_field
  */
-const std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field() const
+const std::vector<eprosima::test::Material>& KeyedCompleteTestType::bounded_sequence_enum2_field() const
 {
     return m_bounded_sequence_enum2_field;
 }
@@ -6181,7 +6189,7 @@ const std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestTy
  * @brief This function returns a reference to member bounded_sequence_enum2_field
  * @return Reference to member bounded_sequence_enum2_field
  */
-std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field()
+std::vector<eprosima::test::Material>& KeyedCompleteTestType::bounded_sequence_enum2_field()
 {
     return m_bounded_sequence_enum2_field;
 }
@@ -6191,7 +6199,7 @@ std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::bo
  * @brief This function copies the value in member bounded_sequence_struct_field
  * @param _bounded_sequence_struct_field New value to be copied in member bounded_sequence_struct_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field(
+void KeyedCompleteTestType::bounded_sequence_struct_field(
         const std::vector<eprosima::test::StructType>& _bounded_sequence_struct_field)
 {
     m_bounded_sequence_struct_field = _bounded_sequence_struct_field;
@@ -6201,7 +6209,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field(
  * @brief This function moves the value in member bounded_sequence_struct_field
  * @param _bounded_sequence_struct_field New value to be moved in member bounded_sequence_struct_field
  */
-void eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field(
+void KeyedCompleteTestType::bounded_sequence_struct_field(
         std::vector<eprosima::test::StructType>&& _bounded_sequence_struct_field)
 {
     m_bounded_sequence_struct_field = std::move(_bounded_sequence_struct_field);
@@ -6211,7 +6219,7 @@ void eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field(
  * @brief This function returns a constant reference to member bounded_sequence_struct_field
  * @return Constant reference to member bounded_sequence_struct_field
  */
-const std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field() const
+const std::vector<eprosima::test::StructType>& KeyedCompleteTestType::bounded_sequence_struct_field() const
 {
     return m_bounded_sequence_struct_field;
 }
@@ -6220,7 +6228,7 @@ const std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTest
  * @brief This function returns a reference to member bounded_sequence_struct_field
  * @return Reference to member bounded_sequence_struct_field
  */
-std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field()
+std::vector<eprosima::test::StructType>& KeyedCompleteTestType::bounded_sequence_struct_field()
 {
     return m_bounded_sequence_struct_field;
 }
@@ -6230,7 +6238,7 @@ std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::
  * @brief This function copies the value in member unbounded_sequence_char_field
  * @param _unbounded_sequence_char_field New value to be copied in member unbounded_sequence_char_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field(
+void KeyedCompleteTestType::unbounded_sequence_char_field(
         const std::vector<char>& _unbounded_sequence_char_field)
 {
     m_unbounded_sequence_char_field = _unbounded_sequence_char_field;
@@ -6240,7 +6248,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field(
  * @brief This function moves the value in member unbounded_sequence_char_field
  * @param _unbounded_sequence_char_field New value to be moved in member unbounded_sequence_char_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field(
+void KeyedCompleteTestType::unbounded_sequence_char_field(
         std::vector<char>&& _unbounded_sequence_char_field)
 {
     m_unbounded_sequence_char_field = std::move(_unbounded_sequence_char_field);
@@ -6250,7 +6258,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field(
  * @brief This function returns a constant reference to member unbounded_sequence_char_field
  * @return Constant reference to member unbounded_sequence_char_field
  */
-const std::vector<char>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field() const
+const std::vector<char>& KeyedCompleteTestType::unbounded_sequence_char_field() const
 {
     return m_unbounded_sequence_char_field;
 }
@@ -6259,7 +6267,7 @@ const std::vector<char>& eprosima::test::KeyedCompleteTestType::unbounded_sequen
  * @brief This function returns a reference to member unbounded_sequence_char_field
  * @return Reference to member unbounded_sequence_char_field
  */
-std::vector<char>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field()
+std::vector<char>& KeyedCompleteTestType::unbounded_sequence_char_field()
 {
     return m_unbounded_sequence_char_field;
 }
@@ -6269,7 +6277,7 @@ std::vector<char>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_cha
  * @brief This function copies the value in member unbounded_sequence_uint8_field
  * @param _unbounded_sequence_uint8_field New value to be copied in member unbounded_sequence_uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field(
+void KeyedCompleteTestType::unbounded_sequence_uint8_field(
         const std::vector<uint8_t>& _unbounded_sequence_uint8_field)
 {
     m_unbounded_sequence_uint8_field = _unbounded_sequence_uint8_field;
@@ -6279,7 +6287,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field(
  * @brief This function moves the value in member unbounded_sequence_uint8_field
  * @param _unbounded_sequence_uint8_field New value to be moved in member unbounded_sequence_uint8_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field(
+void KeyedCompleteTestType::unbounded_sequence_uint8_field(
         std::vector<uint8_t>&& _unbounded_sequence_uint8_field)
 {
     m_unbounded_sequence_uint8_field = std::move(_unbounded_sequence_uint8_field);
@@ -6289,7 +6297,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint8_field
  * @return Constant reference to member unbounded_sequence_uint8_field
  */
-const std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field() const
+const std::vector<uint8_t>& KeyedCompleteTestType::unbounded_sequence_uint8_field() const
 {
     return m_unbounded_sequence_uint8_field;
 }
@@ -6298,7 +6306,7 @@ const std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::unbounded_seq
  * @brief This function returns a reference to member unbounded_sequence_uint8_field
  * @return Reference to member unbounded_sequence_uint8_field
  */
-std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field()
+std::vector<uint8_t>& KeyedCompleteTestType::unbounded_sequence_uint8_field()
 {
     return m_unbounded_sequence_uint8_field;
 }
@@ -6308,7 +6316,7 @@ std::vector<uint8_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_
  * @brief This function copies the value in member unbounded_sequence_int16_field
  * @param _unbounded_sequence_int16_field New value to be copied in member unbounded_sequence_int16_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field(
+void KeyedCompleteTestType::unbounded_sequence_int16_field(
         const std::vector<int16_t>& _unbounded_sequence_int16_field)
 {
     m_unbounded_sequence_int16_field = _unbounded_sequence_int16_field;
@@ -6318,7 +6326,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field(
  * @brief This function moves the value in member unbounded_sequence_int16_field
  * @param _unbounded_sequence_int16_field New value to be moved in member unbounded_sequence_int16_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field(
+void KeyedCompleteTestType::unbounded_sequence_int16_field(
         std::vector<int16_t>&& _unbounded_sequence_int16_field)
 {
     m_unbounded_sequence_int16_field = std::move(_unbounded_sequence_int16_field);
@@ -6328,7 +6336,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field(
  * @brief This function returns a constant reference to member unbounded_sequence_int16_field
  * @return Constant reference to member unbounded_sequence_int16_field
  */
-const std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field() const
+const std::vector<int16_t>& KeyedCompleteTestType::unbounded_sequence_int16_field() const
 {
     return m_unbounded_sequence_int16_field;
 }
@@ -6337,7 +6345,7 @@ const std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::unbounded_seq
  * @brief This function returns a reference to member unbounded_sequence_int16_field
  * @return Reference to member unbounded_sequence_int16_field
  */
-std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field()
+std::vector<int16_t>& KeyedCompleteTestType::unbounded_sequence_int16_field()
 {
     return m_unbounded_sequence_int16_field;
 }
@@ -6347,7 +6355,7 @@ std::vector<int16_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_
  * @brief This function copies the value in member unbounded_sequence_uint16_field
  * @param _unbounded_sequence_uint16_field New value to be copied in member unbounded_sequence_uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field(
+void KeyedCompleteTestType::unbounded_sequence_uint16_field(
         const std::vector<uint16_t>& _unbounded_sequence_uint16_field)
 {
     m_unbounded_sequence_uint16_field = _unbounded_sequence_uint16_field;
@@ -6357,7 +6365,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field(
  * @brief This function moves the value in member unbounded_sequence_uint16_field
  * @param _unbounded_sequence_uint16_field New value to be moved in member unbounded_sequence_uint16_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field(
+void KeyedCompleteTestType::unbounded_sequence_uint16_field(
         std::vector<uint16_t>&& _unbounded_sequence_uint16_field)
 {
     m_unbounded_sequence_uint16_field = std::move(_unbounded_sequence_uint16_field);
@@ -6367,7 +6375,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint16_field
  * @return Constant reference to member unbounded_sequence_uint16_field
  */
-const std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field() const
+const std::vector<uint16_t>& KeyedCompleteTestType::unbounded_sequence_uint16_field() const
 {
     return m_unbounded_sequence_uint16_field;
 }
@@ -6376,7 +6384,7 @@ const std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::unbounded_se
  * @brief This function returns a reference to member unbounded_sequence_uint16_field
  * @return Reference to member unbounded_sequence_uint16_field
  */
-std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field()
+std::vector<uint16_t>& KeyedCompleteTestType::unbounded_sequence_uint16_field()
 {
     return m_unbounded_sequence_uint16_field;
 }
@@ -6386,7 +6394,7 @@ std::vector<uint16_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence
  * @brief This function copies the value in member unbounded_sequence_int32_field
  * @param _unbounded_sequence_int32_field New value to be copied in member unbounded_sequence_int32_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field(
+void KeyedCompleteTestType::unbounded_sequence_int32_field(
         const std::vector<int32_t>& _unbounded_sequence_int32_field)
 {
     m_unbounded_sequence_int32_field = _unbounded_sequence_int32_field;
@@ -6396,7 +6404,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field(
  * @brief This function moves the value in member unbounded_sequence_int32_field
  * @param _unbounded_sequence_int32_field New value to be moved in member unbounded_sequence_int32_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field(
+void KeyedCompleteTestType::unbounded_sequence_int32_field(
         std::vector<int32_t>&& _unbounded_sequence_int32_field)
 {
     m_unbounded_sequence_int32_field = std::move(_unbounded_sequence_int32_field);
@@ -6406,7 +6414,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field(
  * @brief This function returns a constant reference to member unbounded_sequence_int32_field
  * @return Constant reference to member unbounded_sequence_int32_field
  */
-const std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field() const
+const std::vector<int32_t>& KeyedCompleteTestType::unbounded_sequence_int32_field() const
 {
     return m_unbounded_sequence_int32_field;
 }
@@ -6415,7 +6423,7 @@ const std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::unbounded_seq
  * @brief This function returns a reference to member unbounded_sequence_int32_field
  * @return Reference to member unbounded_sequence_int32_field
  */
-std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field()
+std::vector<int32_t>& KeyedCompleteTestType::unbounded_sequence_int32_field()
 {
     return m_unbounded_sequence_int32_field;
 }
@@ -6425,7 +6433,7 @@ std::vector<int32_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_
  * @brief This function copies the value in member unbounded_sequence_uint32_field
  * @param _unbounded_sequence_uint32_field New value to be copied in member unbounded_sequence_uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field(
+void KeyedCompleteTestType::unbounded_sequence_uint32_field(
         const std::vector<uint32_t>& _unbounded_sequence_uint32_field)
 {
     m_unbounded_sequence_uint32_field = _unbounded_sequence_uint32_field;
@@ -6435,7 +6443,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field(
  * @brief This function moves the value in member unbounded_sequence_uint32_field
  * @param _unbounded_sequence_uint32_field New value to be moved in member unbounded_sequence_uint32_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field(
+void KeyedCompleteTestType::unbounded_sequence_uint32_field(
         std::vector<uint32_t>&& _unbounded_sequence_uint32_field)
 {
     m_unbounded_sequence_uint32_field = std::move(_unbounded_sequence_uint32_field);
@@ -6445,7 +6453,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint32_field
  * @return Constant reference to member unbounded_sequence_uint32_field
  */
-const std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field() const
+const std::vector<uint32_t>& KeyedCompleteTestType::unbounded_sequence_uint32_field() const
 {
     return m_unbounded_sequence_uint32_field;
 }
@@ -6454,7 +6462,7 @@ const std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::unbounded_se
  * @brief This function returns a reference to member unbounded_sequence_uint32_field
  * @return Reference to member unbounded_sequence_uint32_field
  */
-std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field()
+std::vector<uint32_t>& KeyedCompleteTestType::unbounded_sequence_uint32_field()
 {
     return m_unbounded_sequence_uint32_field;
 }
@@ -6464,7 +6472,7 @@ std::vector<uint32_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence
  * @brief This function copies the value in member unbounded_sequence_int64_field
  * @param _unbounded_sequence_int64_field New value to be copied in member unbounded_sequence_int64_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field(
+void KeyedCompleteTestType::unbounded_sequence_int64_field(
         const std::vector<int64_t>& _unbounded_sequence_int64_field)
 {
     m_unbounded_sequence_int64_field = _unbounded_sequence_int64_field;
@@ -6474,7 +6482,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field(
  * @brief This function moves the value in member unbounded_sequence_int64_field
  * @param _unbounded_sequence_int64_field New value to be moved in member unbounded_sequence_int64_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field(
+void KeyedCompleteTestType::unbounded_sequence_int64_field(
         std::vector<int64_t>&& _unbounded_sequence_int64_field)
 {
     m_unbounded_sequence_int64_field = std::move(_unbounded_sequence_int64_field);
@@ -6484,7 +6492,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field(
  * @brief This function returns a constant reference to member unbounded_sequence_int64_field
  * @return Constant reference to member unbounded_sequence_int64_field
  */
-const std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field() const
+const std::vector<int64_t>& KeyedCompleteTestType::unbounded_sequence_int64_field() const
 {
     return m_unbounded_sequence_int64_field;
 }
@@ -6493,7 +6501,7 @@ const std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::unbounded_seq
  * @brief This function returns a reference to member unbounded_sequence_int64_field
  * @return Reference to member unbounded_sequence_int64_field
  */
-std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field()
+std::vector<int64_t>& KeyedCompleteTestType::unbounded_sequence_int64_field()
 {
     return m_unbounded_sequence_int64_field;
 }
@@ -6503,7 +6511,7 @@ std::vector<int64_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_
  * @brief This function copies the value in member unbounded_sequence_uint64_field
  * @param _unbounded_sequence_uint64_field New value to be copied in member unbounded_sequence_uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field(
+void KeyedCompleteTestType::unbounded_sequence_uint64_field(
         const std::vector<uint64_t>& _unbounded_sequence_uint64_field)
 {
     m_unbounded_sequence_uint64_field = _unbounded_sequence_uint64_field;
@@ -6513,7 +6521,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field(
  * @brief This function moves the value in member unbounded_sequence_uint64_field
  * @param _unbounded_sequence_uint64_field New value to be moved in member unbounded_sequence_uint64_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field(
+void KeyedCompleteTestType::unbounded_sequence_uint64_field(
         std::vector<uint64_t>&& _unbounded_sequence_uint64_field)
 {
     m_unbounded_sequence_uint64_field = std::move(_unbounded_sequence_uint64_field);
@@ -6523,7 +6531,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field(
  * @brief This function returns a constant reference to member unbounded_sequence_uint64_field
  * @return Constant reference to member unbounded_sequence_uint64_field
  */
-const std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field() const
+const std::vector<uint64_t>& KeyedCompleteTestType::unbounded_sequence_uint64_field() const
 {
     return m_unbounded_sequence_uint64_field;
 }
@@ -6532,7 +6540,7 @@ const std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::unbounded_se
  * @brief This function returns a reference to member unbounded_sequence_uint64_field
  * @return Reference to member unbounded_sequence_uint64_field
  */
-std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field()
+std::vector<uint64_t>& KeyedCompleteTestType::unbounded_sequence_uint64_field()
 {
     return m_unbounded_sequence_uint64_field;
 }
@@ -6542,7 +6550,7 @@ std::vector<uint64_t>& eprosima::test::KeyedCompleteTestType::unbounded_sequence
  * @brief This function copies the value in member unbounded_sequence_float_field
  * @param _unbounded_sequence_float_field New value to be copied in member unbounded_sequence_float_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field(
+void KeyedCompleteTestType::unbounded_sequence_float_field(
         const std::vector<float>& _unbounded_sequence_float_field)
 {
     m_unbounded_sequence_float_field = _unbounded_sequence_float_field;
@@ -6552,7 +6560,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field(
  * @brief This function moves the value in member unbounded_sequence_float_field
  * @param _unbounded_sequence_float_field New value to be moved in member unbounded_sequence_float_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field(
+void KeyedCompleteTestType::unbounded_sequence_float_field(
         std::vector<float>&& _unbounded_sequence_float_field)
 {
     m_unbounded_sequence_float_field = std::move(_unbounded_sequence_float_field);
@@ -6562,7 +6570,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field(
  * @brief This function returns a constant reference to member unbounded_sequence_float_field
  * @return Constant reference to member unbounded_sequence_float_field
  */
-const std::vector<float>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field() const
+const std::vector<float>& KeyedCompleteTestType::unbounded_sequence_float_field() const
 {
     return m_unbounded_sequence_float_field;
 }
@@ -6571,7 +6579,7 @@ const std::vector<float>& eprosima::test::KeyedCompleteTestType::unbounded_seque
  * @brief This function returns a reference to member unbounded_sequence_float_field
  * @return Reference to member unbounded_sequence_float_field
  */
-std::vector<float>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field()
+std::vector<float>& KeyedCompleteTestType::unbounded_sequence_float_field()
 {
     return m_unbounded_sequence_float_field;
 }
@@ -6581,7 +6589,7 @@ std::vector<float>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_fl
  * @brief This function copies the value in member unbounded_sequence_double_field
  * @param _unbounded_sequence_double_field New value to be copied in member unbounded_sequence_double_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field(
+void KeyedCompleteTestType::unbounded_sequence_double_field(
         const std::vector<double>& _unbounded_sequence_double_field)
 {
     m_unbounded_sequence_double_field = _unbounded_sequence_double_field;
@@ -6591,7 +6599,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field(
  * @brief This function moves the value in member unbounded_sequence_double_field
  * @param _unbounded_sequence_double_field New value to be moved in member unbounded_sequence_double_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field(
+void KeyedCompleteTestType::unbounded_sequence_double_field(
         std::vector<double>&& _unbounded_sequence_double_field)
 {
     m_unbounded_sequence_double_field = std::move(_unbounded_sequence_double_field);
@@ -6601,7 +6609,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field(
  * @brief This function returns a constant reference to member unbounded_sequence_double_field
  * @return Constant reference to member unbounded_sequence_double_field
  */
-const std::vector<double>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field() const
+const std::vector<double>& KeyedCompleteTestType::unbounded_sequence_double_field() const
 {
     return m_unbounded_sequence_double_field;
 }
@@ -6610,7 +6618,7 @@ const std::vector<double>& eprosima::test::KeyedCompleteTestType::unbounded_sequ
  * @brief This function returns a reference to member unbounded_sequence_double_field
  * @return Reference to member unbounded_sequence_double_field
  */
-std::vector<double>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field()
+std::vector<double>& KeyedCompleteTestType::unbounded_sequence_double_field()
 {
     return m_unbounded_sequence_double_field;
 }
@@ -6620,7 +6628,7 @@ std::vector<double>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_d
  * @brief This function copies the value in member unbounded_sequence_bool_field
  * @param _unbounded_sequence_bool_field New value to be copied in member unbounded_sequence_bool_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(
+void KeyedCompleteTestType::unbounded_sequence_bool_field(
         const std::vector<bool>& _unbounded_sequence_bool_field)
 {
     m_unbounded_sequence_bool_field = _unbounded_sequence_bool_field;
@@ -6630,7 +6638,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(
  * @brief This function moves the value in member unbounded_sequence_bool_field
  * @param _unbounded_sequence_bool_field New value to be moved in member unbounded_sequence_bool_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(
+void KeyedCompleteTestType::unbounded_sequence_bool_field(
         std::vector<bool>&& _unbounded_sequence_bool_field)
 {
     m_unbounded_sequence_bool_field = std::move(_unbounded_sequence_bool_field);
@@ -6640,7 +6648,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(
  * @brief This function returns a constant reference to member unbounded_sequence_bool_field
  * @return Constant reference to member unbounded_sequence_bool_field
  */
-const std::vector<bool>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field() const
+const std::vector<bool>& KeyedCompleteTestType::unbounded_sequence_bool_field() const
 {
     return m_unbounded_sequence_bool_field;
 }
@@ -6649,7 +6657,7 @@ const std::vector<bool>& eprosima::test::KeyedCompleteTestType::unbounded_sequen
  * @brief This function returns a reference to member unbounded_sequence_bool_field
  * @return Reference to member unbounded_sequence_bool_field
  */
-std::vector<bool>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field()
+std::vector<bool>& KeyedCompleteTestType::unbounded_sequence_bool_field()
 {
     return m_unbounded_sequence_bool_field;
 }
@@ -6659,7 +6667,7 @@ std::vector<bool>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_boo
  * @brief This function copies the value in member unbounded_sequence_enum_field
  * @param _unbounded_sequence_enum_field New value to be copied in member unbounded_sequence_enum_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(
+void KeyedCompleteTestType::unbounded_sequence_enum_field(
         const std::vector<eprosima::test::Color>& _unbounded_sequence_enum_field)
 {
     m_unbounded_sequence_enum_field = _unbounded_sequence_enum_field;
@@ -6669,7 +6677,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(
  * @brief This function moves the value in member unbounded_sequence_enum_field
  * @param _unbounded_sequence_enum_field New value to be moved in member unbounded_sequence_enum_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(
+void KeyedCompleteTestType::unbounded_sequence_enum_field(
         std::vector<eprosima::test::Color>&& _unbounded_sequence_enum_field)
 {
     m_unbounded_sequence_enum_field = std::move(_unbounded_sequence_enum_field);
@@ -6679,7 +6687,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(
  * @brief This function returns a constant reference to member unbounded_sequence_enum_field
  * @return Constant reference to member unbounded_sequence_enum_field
  */
-const std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field() const
+const std::vector<eprosima::test::Color>& KeyedCompleteTestType::unbounded_sequence_enum_field() const
 {
     return m_unbounded_sequence_enum_field;
 }
@@ -6688,7 +6696,7 @@ const std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType:
  * @brief This function returns a reference to member unbounded_sequence_enum_field
  * @return Reference to member unbounded_sequence_enum_field
  */
-std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field()
+std::vector<eprosima::test::Color>& KeyedCompleteTestType::unbounded_sequence_enum_field()
 {
     return m_unbounded_sequence_enum_field;
 }
@@ -6698,7 +6706,7 @@ std::vector<eprosima::test::Color>& eprosima::test::KeyedCompleteTestType::unbou
  * @brief This function copies the value in member unbounded_sequence_enum2_field
  * @param _unbounded_sequence_enum2_field New value to be copied in member unbounded_sequence_enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field(
+void KeyedCompleteTestType::unbounded_sequence_enum2_field(
         const std::vector<eprosima::test::Material>& _unbounded_sequence_enum2_field)
 {
     m_unbounded_sequence_enum2_field = _unbounded_sequence_enum2_field;
@@ -6708,7 +6716,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field(
  * @brief This function moves the value in member unbounded_sequence_enum2_field
  * @param _unbounded_sequence_enum2_field New value to be moved in member unbounded_sequence_enum2_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field(
+void KeyedCompleteTestType::unbounded_sequence_enum2_field(
         std::vector<eprosima::test::Material>&& _unbounded_sequence_enum2_field)
 {
     m_unbounded_sequence_enum2_field = std::move(_unbounded_sequence_enum2_field);
@@ -6718,7 +6726,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field(
  * @brief This function returns a constant reference to member unbounded_sequence_enum2_field
  * @return Constant reference to member unbounded_sequence_enum2_field
  */
-const std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field() const
+const std::vector<eprosima::test::Material>& KeyedCompleteTestType::unbounded_sequence_enum2_field() const
 {
     return m_unbounded_sequence_enum2_field;
 }
@@ -6727,7 +6735,7 @@ const std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestTy
  * @brief This function returns a reference to member unbounded_sequence_enum2_field
  * @return Reference to member unbounded_sequence_enum2_field
  */
-std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field()
+std::vector<eprosima::test::Material>& KeyedCompleteTestType::unbounded_sequence_enum2_field()
 {
     return m_unbounded_sequence_enum2_field;
 }
@@ -6737,7 +6745,7 @@ std::vector<eprosima::test::Material>& eprosima::test::KeyedCompleteTestType::un
  * @brief This function copies the value in member unbounded_sequence_struct_field
  * @param _unbounded_sequence_struct_field New value to be copied in member unbounded_sequence_struct_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field(
+void KeyedCompleteTestType::unbounded_sequence_struct_field(
         const std::vector<eprosima::test::StructType>& _unbounded_sequence_struct_field)
 {
     m_unbounded_sequence_struct_field = _unbounded_sequence_struct_field;
@@ -6747,7 +6755,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field(
  * @brief This function moves the value in member unbounded_sequence_struct_field
  * @param _unbounded_sequence_struct_field New value to be moved in member unbounded_sequence_struct_field
  */
-void eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field(
+void KeyedCompleteTestType::unbounded_sequence_struct_field(
         std::vector<eprosima::test::StructType>&& _unbounded_sequence_struct_field)
 {
     m_unbounded_sequence_struct_field = std::move(_unbounded_sequence_struct_field);
@@ -6757,7 +6765,7 @@ void eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field(
  * @brief This function returns a constant reference to member unbounded_sequence_struct_field
  * @return Constant reference to member unbounded_sequence_struct_field
  */
-const std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field() const
+const std::vector<eprosima::test::StructType>& KeyedCompleteTestType::unbounded_sequence_struct_field() const
 {
     return m_unbounded_sequence_struct_field;
 }
@@ -6766,7 +6774,7 @@ const std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTest
  * @brief This function returns a reference to member unbounded_sequence_struct_field
  * @return Reference to member unbounded_sequence_struct_field
  */
-std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field()
+std::vector<eprosima::test::StructType>& KeyedCompleteTestType::unbounded_sequence_struct_field()
 {
     return m_unbounded_sequence_struct_field;
 }
@@ -6774,5 +6782,11 @@ std::vector<eprosima::test::StructType>& eprosima::test::KeyedCompleteTestType::
 
 
 
+} // namespace test
+
+
+} // namespace eprosima
 // Include auxiliary functions like for serializing/deserializing.
 #include "test_modulesCdrAux.ipp"
+
+#endif // FASTCDR_VERSION_MAJOR > 1

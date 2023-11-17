@@ -2,6 +2,19 @@ name: test
 
 on:
   workflow_dispatch:
+    inputs:
+      foonathan_memory_vendor_branch:
+        description: 'foonathan_memory_vendor branch to be used'
+        required: false
+        default: 'master'
+      fastcdr_versions:
+        description: 'Fast-CDR branches to be used'
+        required: false
+        default: '["1.1.x", "master"]'
+      fastdds_branch:
+        description: 'Fast-DDS branch to be used'
+        required: false
+        default: 'master'
   pull_request:
   push:
     branches:
@@ -12,6 +25,9 @@ on:
 jobs:
   windows-build-test:
     runs-on: windows-2019
+    strategy:
+      matrix:
+        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
 
     env:
       CXXFLAGS: /MP
@@ -20,6 +36,17 @@ jobs:
     steps:
 
       - uses: eProsima/eProsima-CI/windows/install_openssl@v0
+
+      - name: Install Asio and TinyXML2
+        shell: pwsh
+        run: |
+          mkdir "$pwdpath/choco_packages"
+          Invoke-WebRequest -Uri https://github.com/ros2/choco-packages/releases/download/2020-02-24/asio.1.12.1.nupkg -OutFile "$pwdpath/choco_packages/asio.1.12.1.nupkg"
+          Invoke-WebRequest -Uri https://github.com/ros2/choco-packages/releases/download/2020-02-24/tinyxml2.6.0.0.nupkg -OutFile "$pwdpath/choco_packages/tinyxml2.6.0.0.nupkg"
+          choco install -y -s "$pwdpath/choco_packages" asio tinyxml2
+          Set-Item -Force -Path "env:PATH" -Value "C:\ProgramData\chocolatey\lib\asio;C:\ProgramData\chocolatey\lib\tinyxml2;C:\ProgramData\chocolatey\lib\tinyxml2\lib;$env:PATH"
+          echo "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
 
       - name: Install swig
         shell: pwsh
@@ -31,7 +58,7 @@ jobs:
 
       - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
         with:
-          packages: pytest pywin32 vcstool
+          packages: pytest pywin32
 
       - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
@@ -39,10 +66,11 @@ jobs:
         with:
           path: src/fastdds_python
 
-      - name: Fetch repositories
-        shell: pwsh
-        run: |
-          vcs import src --skip-existing --input src/fastdds_python/fastdds_python.repos
+      - uses: ./src/fastdds_python/.github/actions/fetch-fastdds_python-repos
+        with:
+          foonathan-memory-vendor-branch: ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
+          fastcdr-branch: ${{ matrix.fastcdr_version }}
+          fastdds-branch: ${{ github.event.inputs.fastdds_branch || 'master' }}
 
       - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
@@ -58,7 +86,6 @@ jobs:
       - name: Setup ccache
         uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
         with:
-          install_ccache: false
           windows_compile_environment: msvc
 
       - name: Build workspace
@@ -89,6 +116,9 @@ jobs:
 
   ubuntu-build-test:
     runs-on: ubuntu-22.04
+    strategy:
+      matrix:
+        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
 
     steps:
       - uses: eProsima/eProsima-CI/external/checkout@v0
@@ -97,17 +127,15 @@ jobs:
 
       - uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libpython3-dev swig
-
-      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
-        with:
-          packages: vcstool
+          packages: libasio-dev libtinyxml2-dev libpython3-dev swig
 
       - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
-      - name: Fetch repositories
-        run: |
-          vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
+      - uses: ./src/fastdds_python/.github/actions/fetch-fastdds_python-repos
+        with:
+          foonathan-memory-vendor-branch: ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
+          fastcdr-branch: ${{ matrix.fastcdr_version }}
+          fastdds-branch: ${{ github.event.inputs.fastdds_branch || 'master' }}
 
       - uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:

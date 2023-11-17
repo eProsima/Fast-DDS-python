@@ -27,6 +27,9 @@ char dummy;
 #endif  // _WIN32
 
 #include "test_complete.h"
+
+#if FASTCDR_VERSION_MAJOR > 1
+
 #include <fastcdr/Cdr.h>
 
 
@@ -36,9 +39,10 @@ using namespace eprosima::fastcdr::exception;
 #include <utility>
 
 
+
+
 StructType::StructType()
 {
-
 }
 
 StructType::~StructType()
@@ -104,7 +108,6 @@ StructType& StructType::operator =(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_included_module_struct = x.m_included_module_struct;
-
     return *this;
 }
 
@@ -127,7 +130,6 @@ StructType& StructType::operator =(
     m_enum_field = x.m_enum_field;
     m_enum2_field = x.m_enum2_field;
     m_included_module_struct = std::move(x.m_included_module_struct);
-
     return *this;
 }
 
@@ -614,9 +616,12 @@ eprosima::test2::StructType2& StructType::included_module_struct()
 
 
 
+
+
+
+
 CompleteTestType::CompleteTestType()
 {
-
 }
 
 CompleteTestType::~CompleteTestType()
@@ -853,7 +858,6 @@ CompleteTestType& CompleteTestType::operator =(
     m_unbounded_sequence_enum_field = x.m_unbounded_sequence_enum_field;
     m_unbounded_sequence_enum2_field = x.m_unbounded_sequence_enum2_field;
     m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
-
     return *this;
 }
 
@@ -933,7 +937,6 @@ CompleteTestType& CompleteTestType::operator =(
     m_unbounded_sequence_enum_field = std::move(x.m_unbounded_sequence_enum_field);
     m_unbounded_sequence_enum2_field = std::move(x.m_unbounded_sequence_enum2_field);
     m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
-
     return *this;
 }
 
@@ -2065,7 +2068,7 @@ eprosima::fastcdr::optional<StructType>& CompleteTestType::struct_opt_field()
  * @param _array_char_field New value to be copied in member array_char_field
  */
 void CompleteTestType::array_char_field(
-        const std::array<char, 3>& _array_char_field)
+        const std::array<char, max_array_size>& _array_char_field)
 {
     m_array_char_field = _array_char_field;
 }
@@ -2075,7 +2078,7 @@ void CompleteTestType::array_char_field(
  * @param _array_char_field New value to be moved in member array_char_field
  */
 void CompleteTestType::array_char_field(
-        std::array<char, 3>&& _array_char_field)
+        std::array<char, max_array_size>&& _array_char_field)
 {
     m_array_char_field = std::move(_array_char_field);
 }
@@ -2084,7 +2087,7 @@ void CompleteTestType::array_char_field(
  * @brief This function returns a constant reference to member array_char_field
  * @return Constant reference to member array_char_field
  */
-const std::array<char, 3>& CompleteTestType::array_char_field() const
+const std::array<char, max_array_size>& CompleteTestType::array_char_field() const
 {
     return m_array_char_field;
 }
@@ -2093,7 +2096,7 @@ const std::array<char, 3>& CompleteTestType::array_char_field() const
  * @brief This function returns a reference to member array_char_field
  * @return Reference to member array_char_field
  */
-std::array<char, 3>& CompleteTestType::array_char_field()
+std::array<char, max_array_size>& CompleteTestType::array_char_field()
 {
     return m_array_char_field;
 }
@@ -2104,7 +2107,7 @@ std::array<char, 3>& CompleteTestType::array_char_field()
  * @param _array_uint8_field New value to be copied in member array_uint8_field
  */
 void CompleteTestType::array_uint8_field(
-        const std::array<uint8_t, 3>& _array_uint8_field)
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
 {
     m_array_uint8_field = _array_uint8_field;
 }
@@ -2114,7 +2117,7 @@ void CompleteTestType::array_uint8_field(
  * @param _array_uint8_field New value to be moved in member array_uint8_field
  */
 void CompleteTestType::array_uint8_field(
-        std::array<uint8_t, 3>&& _array_uint8_field)
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
 {
     m_array_uint8_field = std::move(_array_uint8_field);
 }
@@ -2123,7 +2126,7 @@ void CompleteTestType::array_uint8_field(
  * @brief This function returns a constant reference to member array_uint8_field
  * @return Constant reference to member array_uint8_field
  */
-const std::array<uint8_t, 3>& CompleteTestType::array_uint8_field() const
+const std::array<uint8_t, max_array_size>& CompleteTestType::array_uint8_field() const
 {
     return m_array_uint8_field;
 }
@@ -2132,7 +2135,7 @@ const std::array<uint8_t, 3>& CompleteTestType::array_uint8_field() const
  * @brief This function returns a reference to member array_uint8_field
  * @return Reference to member array_uint8_field
  */
-std::array<uint8_t, 3>& CompleteTestType::array_uint8_field()
+std::array<uint8_t, max_array_size>& CompleteTestType::array_uint8_field()
 {
     return m_array_uint8_field;
 }
@@ -2143,7 +2146,7 @@ std::array<uint8_t, 3>& CompleteTestType::array_uint8_field()
  * @param _array_int16_field New value to be copied in member array_int16_field
  */
 void CompleteTestType::array_int16_field(
-        const std::array<int16_t, 3>& _array_int16_field)
+        const std::array<int16_t, max_array_size>& _array_int16_field)
 {
     m_array_int16_field = _array_int16_field;
 }
@@ -2153,7 +2156,7 @@ void CompleteTestType::array_int16_field(
  * @param _array_int16_field New value to be moved in member array_int16_field
  */
 void CompleteTestType::array_int16_field(
-        std::array<int16_t, 3>&& _array_int16_field)
+        std::array<int16_t, max_array_size>&& _array_int16_field)
 {
     m_array_int16_field = std::move(_array_int16_field);
 }
@@ -2162,7 +2165,7 @@ void CompleteTestType::array_int16_field(
  * @brief This function returns a constant reference to member array_int16_field
  * @return Constant reference to member array_int16_field
  */
-const std::array<int16_t, 3>& CompleteTestType::array_int16_field() const
+const std::array<int16_t, max_array_size>& CompleteTestType::array_int16_field() const
 {
     return m_array_int16_field;
 }
@@ -2171,7 +2174,7 @@ const std::array<int16_t, 3>& CompleteTestType::array_int16_field() const
  * @brief This function returns a reference to member array_int16_field
  * @return Reference to member array_int16_field
  */
-std::array<int16_t, 3>& CompleteTestType::array_int16_field()
+std::array<int16_t, max_array_size>& CompleteTestType::array_int16_field()
 {
     return m_array_int16_field;
 }
@@ -2182,7 +2185,7 @@ std::array<int16_t, 3>& CompleteTestType::array_int16_field()
  * @param _array_uint16_field New value to be copied in member array_uint16_field
  */
 void CompleteTestType::array_uint16_field(
-        const std::array<uint16_t, 3>& _array_uint16_field)
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
 {
     m_array_uint16_field = _array_uint16_field;
 }
@@ -2192,7 +2195,7 @@ void CompleteTestType::array_uint16_field(
  * @param _array_uint16_field New value to be moved in member array_uint16_field
  */
 void CompleteTestType::array_uint16_field(
-        std::array<uint16_t, 3>&& _array_uint16_field)
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
 {
     m_array_uint16_field = std::move(_array_uint16_field);
 }
@@ -2201,7 +2204,7 @@ void CompleteTestType::array_uint16_field(
  * @brief This function returns a constant reference to member array_uint16_field
  * @return Constant reference to member array_uint16_field
  */
-const std::array<uint16_t, 3>& CompleteTestType::array_uint16_field() const
+const std::array<uint16_t, max_array_size>& CompleteTestType::array_uint16_field() const
 {
     return m_array_uint16_field;
 }
@@ -2210,7 +2213,7 @@ const std::array<uint16_t, 3>& CompleteTestType::array_uint16_field() const
  * @brief This function returns a reference to member array_uint16_field
  * @return Reference to member array_uint16_field
  */
-std::array<uint16_t, 3>& CompleteTestType::array_uint16_field()
+std::array<uint16_t, max_array_size>& CompleteTestType::array_uint16_field()
 {
     return m_array_uint16_field;
 }
@@ -2221,7 +2224,7 @@ std::array<uint16_t, 3>& CompleteTestType::array_uint16_field()
  * @param _array_int32_field New value to be copied in member array_int32_field
  */
 void CompleteTestType::array_int32_field(
-        const std::array<int32_t, 3>& _array_int32_field)
+        const std::array<int32_t, max_array_size>& _array_int32_field)
 {
     m_array_int32_field = _array_int32_field;
 }
@@ -2231,7 +2234,7 @@ void CompleteTestType::array_int32_field(
  * @param _array_int32_field New value to be moved in member array_int32_field
  */
 void CompleteTestType::array_int32_field(
-        std::array<int32_t, 3>&& _array_int32_field)
+        std::array<int32_t, max_array_size>&& _array_int32_field)
 {
     m_array_int32_field = std::move(_array_int32_field);
 }
@@ -2240,7 +2243,7 @@ void CompleteTestType::array_int32_field(
  * @brief This function returns a constant reference to member array_int32_field
  * @return Constant reference to member array_int32_field
  */
-const std::array<int32_t, 3>& CompleteTestType::array_int32_field() const
+const std::array<int32_t, max_array_size>& CompleteTestType::array_int32_field() const
 {
     return m_array_int32_field;
 }
@@ -2249,7 +2252,7 @@ const std::array<int32_t, 3>& CompleteTestType::array_int32_field() const
  * @brief This function returns a reference to member array_int32_field
  * @return Reference to member array_int32_field
  */
-std::array<int32_t, 3>& CompleteTestType::array_int32_field()
+std::array<int32_t, max_array_size>& CompleteTestType::array_int32_field()
 {
     return m_array_int32_field;
 }
@@ -2260,7 +2263,7 @@ std::array<int32_t, 3>& CompleteTestType::array_int32_field()
  * @param _array_uint32_field New value to be copied in member array_uint32_field
  */
 void CompleteTestType::array_uint32_field(
-        const std::array<uint32_t, 3>& _array_uint32_field)
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
 {
     m_array_uint32_field = _array_uint32_field;
 }
@@ -2270,7 +2273,7 @@ void CompleteTestType::array_uint32_field(
  * @param _array_uint32_field New value to be moved in member array_uint32_field
  */
 void CompleteTestType::array_uint32_field(
-        std::array<uint32_t, 3>&& _array_uint32_field)
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
 {
     m_array_uint32_field = std::move(_array_uint32_field);
 }
@@ -2279,7 +2282,7 @@ void CompleteTestType::array_uint32_field(
  * @brief This function returns a constant reference to member array_uint32_field
  * @return Constant reference to member array_uint32_field
  */
-const std::array<uint32_t, 3>& CompleteTestType::array_uint32_field() const
+const std::array<uint32_t, max_array_size>& CompleteTestType::array_uint32_field() const
 {
     return m_array_uint32_field;
 }
@@ -2288,7 +2291,7 @@ const std::array<uint32_t, 3>& CompleteTestType::array_uint32_field() const
  * @brief This function returns a reference to member array_uint32_field
  * @return Reference to member array_uint32_field
  */
-std::array<uint32_t, 3>& CompleteTestType::array_uint32_field()
+std::array<uint32_t, max_array_size>& CompleteTestType::array_uint32_field()
 {
     return m_array_uint32_field;
 }
@@ -2299,7 +2302,7 @@ std::array<uint32_t, 3>& CompleteTestType::array_uint32_field()
  * @param _array_int64_field New value to be copied in member array_int64_field
  */
 void CompleteTestType::array_int64_field(
-        const std::array<int64_t, 3>& _array_int64_field)
+        const std::array<int64_t, max_array_size>& _array_int64_field)
 {
     m_array_int64_field = _array_int64_field;
 }
@@ -2309,7 +2312,7 @@ void CompleteTestType::array_int64_field(
  * @param _array_int64_field New value to be moved in member array_int64_field
  */
 void CompleteTestType::array_int64_field(
-        std::array<int64_t, 3>&& _array_int64_field)
+        std::array<int64_t, max_array_size>&& _array_int64_field)
 {
     m_array_int64_field = std::move(_array_int64_field);
 }
@@ -2318,7 +2321,7 @@ void CompleteTestType::array_int64_field(
  * @brief This function returns a constant reference to member array_int64_field
  * @return Constant reference to member array_int64_field
  */
-const std::array<int64_t, 3>& CompleteTestType::array_int64_field() const
+const std::array<int64_t, max_array_size>& CompleteTestType::array_int64_field() const
 {
     return m_array_int64_field;
 }
@@ -2327,7 +2330,7 @@ const std::array<int64_t, 3>& CompleteTestType::array_int64_field() const
  * @brief This function returns a reference to member array_int64_field
  * @return Reference to member array_int64_field
  */
-std::array<int64_t, 3>& CompleteTestType::array_int64_field()
+std::array<int64_t, max_array_size>& CompleteTestType::array_int64_field()
 {
     return m_array_int64_field;
 }
@@ -2338,7 +2341,7 @@ std::array<int64_t, 3>& CompleteTestType::array_int64_field()
  * @param _array_uint64_field New value to be copied in member array_uint64_field
  */
 void CompleteTestType::array_uint64_field(
-        const std::array<uint64_t, 3>& _array_uint64_field)
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
 {
     m_array_uint64_field = _array_uint64_field;
 }
@@ -2348,7 +2351,7 @@ void CompleteTestType::array_uint64_field(
  * @param _array_uint64_field New value to be moved in member array_uint64_field
  */
 void CompleteTestType::array_uint64_field(
-        std::array<uint64_t, 3>&& _array_uint64_field)
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
 {
     m_array_uint64_field = std::move(_array_uint64_field);
 }
@@ -2357,7 +2360,7 @@ void CompleteTestType::array_uint64_field(
  * @brief This function returns a constant reference to member array_uint64_field
  * @return Constant reference to member array_uint64_field
  */
-const std::array<uint64_t, 3>& CompleteTestType::array_uint64_field() const
+const std::array<uint64_t, max_array_size>& CompleteTestType::array_uint64_field() const
 {
     return m_array_uint64_field;
 }
@@ -2366,7 +2369,7 @@ const std::array<uint64_t, 3>& CompleteTestType::array_uint64_field() const
  * @brief This function returns a reference to member array_uint64_field
  * @return Reference to member array_uint64_field
  */
-std::array<uint64_t, 3>& CompleteTestType::array_uint64_field()
+std::array<uint64_t, max_array_size>& CompleteTestType::array_uint64_field()
 {
     return m_array_uint64_field;
 }
@@ -2377,7 +2380,7 @@ std::array<uint64_t, 3>& CompleteTestType::array_uint64_field()
  * @param _array_float_field New value to be copied in member array_float_field
  */
 void CompleteTestType::array_float_field(
-        const std::array<float, 3>& _array_float_field)
+        const std::array<float, max_array_size>& _array_float_field)
 {
     m_array_float_field = _array_float_field;
 }
@@ -2387,7 +2390,7 @@ void CompleteTestType::array_float_field(
  * @param _array_float_field New value to be moved in member array_float_field
  */
 void CompleteTestType::array_float_field(
-        std::array<float, 3>&& _array_float_field)
+        std::array<float, max_array_size>&& _array_float_field)
 {
     m_array_float_field = std::move(_array_float_field);
 }
@@ -2396,7 +2399,7 @@ void CompleteTestType::array_float_field(
  * @brief This function returns a constant reference to member array_float_field
  * @return Constant reference to member array_float_field
  */
-const std::array<float, 3>& CompleteTestType::array_float_field() const
+const std::array<float, max_array_size>& CompleteTestType::array_float_field() const
 {
     return m_array_float_field;
 }
@@ -2405,7 +2408,7 @@ const std::array<float, 3>& CompleteTestType::array_float_field() const
  * @brief This function returns a reference to member array_float_field
  * @return Reference to member array_float_field
  */
-std::array<float, 3>& CompleteTestType::array_float_field()
+std::array<float, max_array_size>& CompleteTestType::array_float_field()
 {
     return m_array_float_field;
 }
@@ -2416,7 +2419,7 @@ std::array<float, 3>& CompleteTestType::array_float_field()
  * @param _array_double_field New value to be copied in member array_double_field
  */
 void CompleteTestType::array_double_field(
-        const std::array<double, 3>& _array_double_field)
+        const std::array<double, max_array_size>& _array_double_field)
 {
     m_array_double_field = _array_double_field;
 }
@@ -2426,7 +2429,7 @@ void CompleteTestType::array_double_field(
  * @param _array_double_field New value to be moved in member array_double_field
  */
 void CompleteTestType::array_double_field(
-        std::array<double, 3>&& _array_double_field)
+        std::array<double, max_array_size>&& _array_double_field)
 {
     m_array_double_field = std::move(_array_double_field);
 }
@@ -2435,7 +2438,7 @@ void CompleteTestType::array_double_field(
  * @brief This function returns a constant reference to member array_double_field
  * @return Constant reference to member array_double_field
  */
-const std::array<double, 3>& CompleteTestType::array_double_field() const
+const std::array<double, max_array_size>& CompleteTestType::array_double_field() const
 {
     return m_array_double_field;
 }
@@ -2444,7 +2447,7 @@ const std::array<double, 3>& CompleteTestType::array_double_field() const
  * @brief This function returns a reference to member array_double_field
  * @return Reference to member array_double_field
  */
-std::array<double, 3>& CompleteTestType::array_double_field()
+std::array<double, max_array_size>& CompleteTestType::array_double_field()
 {
     return m_array_double_field;
 }
@@ -2455,7 +2458,7 @@ std::array<double, 3>& CompleteTestType::array_double_field()
  * @param _array_bool_field New value to be copied in member array_bool_field
  */
 void CompleteTestType::array_bool_field(
-        const std::array<bool, 3>& _array_bool_field)
+        const std::array<bool, max_array_size>& _array_bool_field)
 {
     m_array_bool_field = _array_bool_field;
 }
@@ -2465,7 +2468,7 @@ void CompleteTestType::array_bool_field(
  * @param _array_bool_field New value to be moved in member array_bool_field
  */
 void CompleteTestType::array_bool_field(
-        std::array<bool, 3>&& _array_bool_field)
+        std::array<bool, max_array_size>&& _array_bool_field)
 {
     m_array_bool_field = std::move(_array_bool_field);
 }
@@ -2474,7 +2477,7 @@ void CompleteTestType::array_bool_field(
  * @brief This function returns a constant reference to member array_bool_field
  * @return Constant reference to member array_bool_field
  */
-const std::array<bool, 3>& CompleteTestType::array_bool_field() const
+const std::array<bool, max_array_size>& CompleteTestType::array_bool_field() const
 {
     return m_array_bool_field;
 }
@@ -2483,7 +2486,7 @@ const std::array<bool, 3>& CompleteTestType::array_bool_field() const
  * @brief This function returns a reference to member array_bool_field
  * @return Reference to member array_bool_field
  */
-std::array<bool, 3>& CompleteTestType::array_bool_field()
+std::array<bool, max_array_size>& CompleteTestType::array_bool_field()
 {
     return m_array_bool_field;
 }
@@ -2494,7 +2497,7 @@ std::array<bool, 3>& CompleteTestType::array_bool_field()
  * @param _array_enum_field New value to be copied in member array_enum_field
  */
 void CompleteTestType::array_enum_field(
-        const std::array<Color, 3>& _array_enum_field)
+        const std::array<Color, max_array_size>& _array_enum_field)
 {
     m_array_enum_field = _array_enum_field;
 }
@@ -2504,7 +2507,7 @@ void CompleteTestType::array_enum_field(
  * @param _array_enum_field New value to be moved in member array_enum_field
  */
 void CompleteTestType::array_enum_field(
-        std::array<Color, 3>&& _array_enum_field)
+        std::array<Color, max_array_size>&& _array_enum_field)
 {
     m_array_enum_field = std::move(_array_enum_field);
 }
@@ -2513,7 +2516,7 @@ void CompleteTestType::array_enum_field(
  * @brief This function returns a constant reference to member array_enum_field
  * @return Constant reference to member array_enum_field
  */
-const std::array<Color, 3>& CompleteTestType::array_enum_field() const
+const std::array<Color, max_array_size>& CompleteTestType::array_enum_field() const
 {
     return m_array_enum_field;
 }
@@ -2522,7 +2525,7 @@ const std::array<Color, 3>& CompleteTestType::array_enum_field() const
  * @brief This function returns a reference to member array_enum_field
  * @return Reference to member array_enum_field
  */
-std::array<Color, 3>& CompleteTestType::array_enum_field()
+std::array<Color, max_array_size>& CompleteTestType::array_enum_field()
 {
     return m_array_enum_field;
 }
@@ -2533,7 +2536,7 @@ std::array<Color, 3>& CompleteTestType::array_enum_field()
  * @param _array_enum2_field New value to be copied in member array_enum2_field
  */
 void CompleteTestType::array_enum2_field(
-        const std::array<Material, 3>& _array_enum2_field)
+        const std::array<Material, max_array_size>& _array_enum2_field)
 {
     m_array_enum2_field = _array_enum2_field;
 }
@@ -2543,7 +2546,7 @@ void CompleteTestType::array_enum2_field(
  * @param _array_enum2_field New value to be moved in member array_enum2_field
  */
 void CompleteTestType::array_enum2_field(
-        std::array<Material, 3>&& _array_enum2_field)
+        std::array<Material, max_array_size>&& _array_enum2_field)
 {
     m_array_enum2_field = std::move(_array_enum2_field);
 }
@@ -2552,7 +2555,7 @@ void CompleteTestType::array_enum2_field(
  * @brief This function returns a constant reference to member array_enum2_field
  * @return Constant reference to member array_enum2_field
  */
-const std::array<Material, 3>& CompleteTestType::array_enum2_field() const
+const std::array<Material, max_array_size>& CompleteTestType::array_enum2_field() const
 {
     return m_array_enum2_field;
 }
@@ -2561,7 +2564,7 @@ const std::array<Material, 3>& CompleteTestType::array_enum2_field() const
  * @brief This function returns a reference to member array_enum2_field
  * @return Reference to member array_enum2_field
  */
-std::array<Material, 3>& CompleteTestType::array_enum2_field()
+std::array<Material, max_array_size>& CompleteTestType::array_enum2_field()
 {
     return m_array_enum2_field;
 }
@@ -2572,7 +2575,7 @@ std::array<Material, 3>& CompleteTestType::array_enum2_field()
  * @param _array_struct_field New value to be copied in member array_struct_field
  */
 void CompleteTestType::array_struct_field(
-        const std::array<StructType, 3>& _array_struct_field)
+        const std::array<StructType, max_array_size>& _array_struct_field)
 {
     m_array_struct_field = _array_struct_field;
 }
@@ -2582,7 +2585,7 @@ void CompleteTestType::array_struct_field(
  * @param _array_struct_field New value to be moved in member array_struct_field
  */
 void CompleteTestType::array_struct_field(
-        std::array<StructType, 3>&& _array_struct_field)
+        std::array<StructType, max_array_size>&& _array_struct_field)
 {
     m_array_struct_field = std::move(_array_struct_field);
 }
@@ -2591,7 +2594,7 @@ void CompleteTestType::array_struct_field(
  * @brief This function returns a constant reference to member array_struct_field
  * @return Constant reference to member array_struct_field
  */
-const std::array<StructType, 3>& CompleteTestType::array_struct_field() const
+const std::array<StructType, max_array_size>& CompleteTestType::array_struct_field() const
 {
     return m_array_struct_field;
 }
@@ -2600,7 +2603,7 @@ const std::array<StructType, 3>& CompleteTestType::array_struct_field() const
  * @brief This function returns a reference to member array_struct_field
  * @return Reference to member array_struct_field
  */
-std::array<StructType, 3>& CompleteTestType::array_struct_field()
+std::array<StructType, max_array_size>& CompleteTestType::array_struct_field()
 {
     return m_array_struct_field;
 }
@@ -3698,9 +3701,12 @@ std::vector<StructType>& CompleteTestType::unbounded_sequence_struct_field()
 }
 
 
+
+
+
+
 KeyedCompleteTestType::KeyedCompleteTestType()
 {
-
 }
 
 KeyedCompleteTestType::~KeyedCompleteTestType()
@@ -3940,7 +3946,6 @@ KeyedCompleteTestType& KeyedCompleteTestType::operator =(
     m_unbounded_sequence_enum_field = x.m_unbounded_sequence_enum_field;
     m_unbounded_sequence_enum2_field = x.m_unbounded_sequence_enum2_field;
     m_unbounded_sequence_struct_field = x.m_unbounded_sequence_struct_field;
-
     return *this;
 }
 
@@ -4021,7 +4026,6 @@ KeyedCompleteTestType& KeyedCompleteTestType::operator =(
     m_unbounded_sequence_enum_field = std::move(x.m_unbounded_sequence_enum_field);
     m_unbounded_sequence_enum2_field = std::move(x.m_unbounded_sequence_enum2_field);
     m_unbounded_sequence_struct_field = std::move(x.m_unbounded_sequence_struct_field);
-
     return *this;
 }
 
@@ -5183,7 +5187,7 @@ eprosima::fastcdr::optional<StructType>& KeyedCompleteTestType::struct_opt_field
  * @param _array_char_field New value to be copied in member array_char_field
  */
 void KeyedCompleteTestType::array_char_field(
-        const std::array<char, 3>& _array_char_field)
+        const std::array<char, max_array_size>& _array_char_field)
 {
     m_array_char_field = _array_char_field;
 }
@@ -5193,7 +5197,7 @@ void KeyedCompleteTestType::array_char_field(
  * @param _array_char_field New value to be moved in member array_char_field
  */
 void KeyedCompleteTestType::array_char_field(
-        std::array<char, 3>&& _array_char_field)
+        std::array<char, max_array_size>&& _array_char_field)
 {
     m_array_char_field = std::move(_array_char_field);
 }
@@ -5202,7 +5206,7 @@ void KeyedCompleteTestType::array_char_field(
  * @brief This function returns a constant reference to member array_char_field
  * @return Constant reference to member array_char_field
  */
-const std::array<char, 3>& KeyedCompleteTestType::array_char_field() const
+const std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field() const
 {
     return m_array_char_field;
 }
@@ -5211,7 +5215,7 @@ const std::array<char, 3>& KeyedCompleteTestType::array_char_field() const
  * @brief This function returns a reference to member array_char_field
  * @return Reference to member array_char_field
  */
-std::array<char, 3>& KeyedCompleteTestType::array_char_field()
+std::array<char, max_array_size>& KeyedCompleteTestType::array_char_field()
 {
     return m_array_char_field;
 }
@@ -5222,7 +5226,7 @@ std::array<char, 3>& KeyedCompleteTestType::array_char_field()
  * @param _array_uint8_field New value to be copied in member array_uint8_field
  */
 void KeyedCompleteTestType::array_uint8_field(
-        const std::array<uint8_t, 3>& _array_uint8_field)
+        const std::array<uint8_t, max_array_size>& _array_uint8_field)
 {
     m_array_uint8_field = _array_uint8_field;
 }
@@ -5232,7 +5236,7 @@ void KeyedCompleteTestType::array_uint8_field(
  * @param _array_uint8_field New value to be moved in member array_uint8_field
  */
 void KeyedCompleteTestType::array_uint8_field(
-        std::array<uint8_t, 3>&& _array_uint8_field)
+        std::array<uint8_t, max_array_size>&& _array_uint8_field)
 {
     m_array_uint8_field = std::move(_array_uint8_field);
 }
@@ -5241,7 +5245,7 @@ void KeyedCompleteTestType::array_uint8_field(
  * @brief This function returns a constant reference to member array_uint8_field
  * @return Constant reference to member array_uint8_field
  */
-const std::array<uint8_t, 3>& KeyedCompleteTestType::array_uint8_field() const
+const std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field() const
 {
     return m_array_uint8_field;
 }
@@ -5250,7 +5254,7 @@ const std::array<uint8_t, 3>& KeyedCompleteTestType::array_uint8_field() const
  * @brief This function returns a reference to member array_uint8_field
  * @return Reference to member array_uint8_field
  */
-std::array<uint8_t, 3>& KeyedCompleteTestType::array_uint8_field()
+std::array<uint8_t, max_array_size>& KeyedCompleteTestType::array_uint8_field()
 {
     return m_array_uint8_field;
 }
@@ -5261,7 +5265,7 @@ std::array<uint8_t, 3>& KeyedCompleteTestType::array_uint8_field()
  * @param _array_int16_field New value to be copied in member array_int16_field
  */
 void KeyedCompleteTestType::array_int16_field(
-        const std::array<int16_t, 3>& _array_int16_field)
+        const std::array<int16_t, max_array_size>& _array_int16_field)
 {
     m_array_int16_field = _array_int16_field;
 }
@@ -5271,7 +5275,7 @@ void KeyedCompleteTestType::array_int16_field(
  * @param _array_int16_field New value to be moved in member array_int16_field
  */
 void KeyedCompleteTestType::array_int16_field(
-        std::array<int16_t, 3>&& _array_int16_field)
+        std::array<int16_t, max_array_size>&& _array_int16_field)
 {
     m_array_int16_field = std::move(_array_int16_field);
 }
@@ -5280,7 +5284,7 @@ void KeyedCompleteTestType::array_int16_field(
  * @brief This function returns a constant reference to member array_int16_field
  * @return Constant reference to member array_int16_field
  */
-const std::array<int16_t, 3>& KeyedCompleteTestType::array_int16_field() const
+const std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field() const
 {
     return m_array_int16_field;
 }
@@ -5289,7 +5293,7 @@ const std::array<int16_t, 3>& KeyedCompleteTestType::array_int16_field() const
  * @brief This function returns a reference to member array_int16_field
  * @return Reference to member array_int16_field
  */
-std::array<int16_t, 3>& KeyedCompleteTestType::array_int16_field()
+std::array<int16_t, max_array_size>& KeyedCompleteTestType::array_int16_field()
 {
     return m_array_int16_field;
 }
@@ -5300,7 +5304,7 @@ std::array<int16_t, 3>& KeyedCompleteTestType::array_int16_field()
  * @param _array_uint16_field New value to be copied in member array_uint16_field
  */
 void KeyedCompleteTestType::array_uint16_field(
-        const std::array<uint16_t, 3>& _array_uint16_field)
+        const std::array<uint16_t, max_array_size>& _array_uint16_field)
 {
     m_array_uint16_field = _array_uint16_field;
 }
@@ -5310,7 +5314,7 @@ void KeyedCompleteTestType::array_uint16_field(
  * @param _array_uint16_field New value to be moved in member array_uint16_field
  */
 void KeyedCompleteTestType::array_uint16_field(
-        std::array<uint16_t, 3>&& _array_uint16_field)
+        std::array<uint16_t, max_array_size>&& _array_uint16_field)
 {
     m_array_uint16_field = std::move(_array_uint16_field);
 }
@@ -5319,7 +5323,7 @@ void KeyedCompleteTestType::array_uint16_field(
  * @brief This function returns a constant reference to member array_uint16_field
  * @return Constant reference to member array_uint16_field
  */
-const std::array<uint16_t, 3>& KeyedCompleteTestType::array_uint16_field() const
+const std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field() const
 {
     return m_array_uint16_field;
 }
@@ -5328,7 +5332,7 @@ const std::array<uint16_t, 3>& KeyedCompleteTestType::array_uint16_field() const
  * @brief This function returns a reference to member array_uint16_field
  * @return Reference to member array_uint16_field
  */
-std::array<uint16_t, 3>& KeyedCompleteTestType::array_uint16_field()
+std::array<uint16_t, max_array_size>& KeyedCompleteTestType::array_uint16_field()
 {
     return m_array_uint16_field;
 }
@@ -5339,7 +5343,7 @@ std::array<uint16_t, 3>& KeyedCompleteTestType::array_uint16_field()
  * @param _array_int32_field New value to be copied in member array_int32_field
  */
 void KeyedCompleteTestType::array_int32_field(
-        const std::array<int32_t, 3>& _array_int32_field)
+        const std::array<int32_t, max_array_size>& _array_int32_field)
 {
     m_array_int32_field = _array_int32_field;
 }
@@ -5349,7 +5353,7 @@ void KeyedCompleteTestType::array_int32_field(
  * @param _array_int32_field New value to be moved in member array_int32_field
  */
 void KeyedCompleteTestType::array_int32_field(
-        std::array<int32_t, 3>&& _array_int32_field)
+        std::array<int32_t, max_array_size>&& _array_int32_field)
 {
     m_array_int32_field = std::move(_array_int32_field);
 }
@@ -5358,7 +5362,7 @@ void KeyedCompleteTestType::array_int32_field(
  * @brief This function returns a constant reference to member array_int32_field
  * @return Constant reference to member array_int32_field
  */
-const std::array<int32_t, 3>& KeyedCompleteTestType::array_int32_field() const
+const std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field() const
 {
     return m_array_int32_field;
 }
@@ -5367,7 +5371,7 @@ const std::array<int32_t, 3>& KeyedCompleteTestType::array_int32_field() const
  * @brief This function returns a reference to member array_int32_field
  * @return Reference to member array_int32_field
  */
-std::array<int32_t, 3>& KeyedCompleteTestType::array_int32_field()
+std::array<int32_t, max_array_size>& KeyedCompleteTestType::array_int32_field()
 {
     return m_array_int32_field;
 }
@@ -5378,7 +5382,7 @@ std::array<int32_t, 3>& KeyedCompleteTestType::array_int32_field()
  * @param _array_uint32_field New value to be copied in member array_uint32_field
  */
 void KeyedCompleteTestType::array_uint32_field(
-        const std::array<uint32_t, 3>& _array_uint32_field)
+        const std::array<uint32_t, max_array_size>& _array_uint32_field)
 {
     m_array_uint32_field = _array_uint32_field;
 }
@@ -5388,7 +5392,7 @@ void KeyedCompleteTestType::array_uint32_field(
  * @param _array_uint32_field New value to be moved in member array_uint32_field
  */
 void KeyedCompleteTestType::array_uint32_field(
-        std::array<uint32_t, 3>&& _array_uint32_field)
+        std::array<uint32_t, max_array_size>&& _array_uint32_field)
 {
     m_array_uint32_field = std::move(_array_uint32_field);
 }
@@ -5397,7 +5401,7 @@ void KeyedCompleteTestType::array_uint32_field(
  * @brief This function returns a constant reference to member array_uint32_field
  * @return Constant reference to member array_uint32_field
  */
-const std::array<uint32_t, 3>& KeyedCompleteTestType::array_uint32_field() const
+const std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field() const
 {
     return m_array_uint32_field;
 }
@@ -5406,7 +5410,7 @@ const std::array<uint32_t, 3>& KeyedCompleteTestType::array_uint32_field() const
  * @brief This function returns a reference to member array_uint32_field
  * @return Reference to member array_uint32_field
  */
-std::array<uint32_t, 3>& KeyedCompleteTestType::array_uint32_field()
+std::array<uint32_t, max_array_size>& KeyedCompleteTestType::array_uint32_field()
 {
     return m_array_uint32_field;
 }
@@ -5417,7 +5421,7 @@ std::array<uint32_t, 3>& KeyedCompleteTestType::array_uint32_field()
  * @param _array_int64_field New value to be copied in member array_int64_field
  */
 void KeyedCompleteTestType::array_int64_field(
-        const std::array<int64_t, 3>& _array_int64_field)
+        const std::array<int64_t, max_array_size>& _array_int64_field)
 {
     m_array_int64_field = _array_int64_field;
 }
@@ -5427,7 +5431,7 @@ void KeyedCompleteTestType::array_int64_field(
  * @param _array_int64_field New value to be moved in member array_int64_field
  */
 void KeyedCompleteTestType::array_int64_field(
-        std::array<int64_t, 3>&& _array_int64_field)
+        std::array<int64_t, max_array_size>&& _array_int64_field)
 {
     m_array_int64_field = std::move(_array_int64_field);
 }
@@ -5436,7 +5440,7 @@ void KeyedCompleteTestType::array_int64_field(
  * @brief This function returns a constant reference to member array_int64_field
  * @return Constant reference to member array_int64_field
  */
-const std::array<int64_t, 3>& KeyedCompleteTestType::array_int64_field() const
+const std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field() const
 {
     return m_array_int64_field;
 }
@@ -5445,7 +5449,7 @@ const std::array<int64_t, 3>& KeyedCompleteTestType::array_int64_field() const
  * @brief This function returns a reference to member array_int64_field
  * @return Reference to member array_int64_field
  */
-std::array<int64_t, 3>& KeyedCompleteTestType::array_int64_field()
+std::array<int64_t, max_array_size>& KeyedCompleteTestType::array_int64_field()
 {
     return m_array_int64_field;
 }
@@ -5456,7 +5460,7 @@ std::array<int64_t, 3>& KeyedCompleteTestType::array_int64_field()
  * @param _array_uint64_field New value to be copied in member array_uint64_field
  */
 void KeyedCompleteTestType::array_uint64_field(
-        const std::array<uint64_t, 3>& _array_uint64_field)
+        const std::array<uint64_t, max_array_size>& _array_uint64_field)
 {
     m_array_uint64_field = _array_uint64_field;
 }
@@ -5466,7 +5470,7 @@ void KeyedCompleteTestType::array_uint64_field(
  * @param _array_uint64_field New value to be moved in member array_uint64_field
  */
 void KeyedCompleteTestType::array_uint64_field(
-        std::array<uint64_t, 3>&& _array_uint64_field)
+        std::array<uint64_t, max_array_size>&& _array_uint64_field)
 {
     m_array_uint64_field = std::move(_array_uint64_field);
 }
@@ -5475,7 +5479,7 @@ void KeyedCompleteTestType::array_uint64_field(
  * @brief This function returns a constant reference to member array_uint64_field
  * @return Constant reference to member array_uint64_field
  */
-const std::array<uint64_t, 3>& KeyedCompleteTestType::array_uint64_field() const
+const std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field() const
 {
     return m_array_uint64_field;
 }
@@ -5484,7 +5488,7 @@ const std::array<uint64_t, 3>& KeyedCompleteTestType::array_uint64_field() const
  * @brief This function returns a reference to member array_uint64_field
  * @return Reference to member array_uint64_field
  */
-std::array<uint64_t, 3>& KeyedCompleteTestType::array_uint64_field()
+std::array<uint64_t, max_array_size>& KeyedCompleteTestType::array_uint64_field()
 {
     return m_array_uint64_field;
 }
@@ -5495,7 +5499,7 @@ std::array<uint64_t, 3>& KeyedCompleteTestType::array_uint64_field()
  * @param _array_float_field New value to be copied in member array_float_field
  */
 void KeyedCompleteTestType::array_float_field(
-        const std::array<float, 3>& _array_float_field)
+        const std::array<float, max_array_size>& _array_float_field)
 {
     m_array_float_field = _array_float_field;
 }
@@ -5505,7 +5509,7 @@ void KeyedCompleteTestType::array_float_field(
  * @param _array_float_field New value to be moved in member array_float_field
  */
 void KeyedCompleteTestType::array_float_field(
-        std::array<float, 3>&& _array_float_field)
+        std::array<float, max_array_size>&& _array_float_field)
 {
     m_array_float_field = std::move(_array_float_field);
 }
@@ -5514,7 +5518,7 @@ void KeyedCompleteTestType::array_float_field(
  * @brief This function returns a constant reference to member array_float_field
  * @return Constant reference to member array_float_field
  */
-const std::array<float, 3>& KeyedCompleteTestType::array_float_field() const
+const std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field() const
 {
     return m_array_float_field;
 }
@@ -5523,7 +5527,7 @@ const std::array<float, 3>& KeyedCompleteTestType::array_float_field() const
  * @brief This function returns a reference to member array_float_field
  * @return Reference to member array_float_field
  */
-std::array<float, 3>& KeyedCompleteTestType::array_float_field()
+std::array<float, max_array_size>& KeyedCompleteTestType::array_float_field()
 {
     return m_array_float_field;
 }
@@ -5534,7 +5538,7 @@ std::array<float, 3>& KeyedCompleteTestType::array_float_field()
  * @param _array_double_field New value to be copied in member array_double_field
  */
 void KeyedCompleteTestType::array_double_field(
-        const std::array<double, 3>& _array_double_field)
+        const std::array<double, max_array_size>& _array_double_field)
 {
     m_array_double_field = _array_double_field;
 }
@@ -5544,7 +5548,7 @@ void KeyedCompleteTestType::array_double_field(
  * @param _array_double_field New value to be moved in member array_double_field
  */
 void KeyedCompleteTestType::array_double_field(
-        std::array<double, 3>&& _array_double_field)
+        std::array<double, max_array_size>&& _array_double_field)
 {
     m_array_double_field = std::move(_array_double_field);
 }
@@ -5553,7 +5557,7 @@ void KeyedCompleteTestType::array_double_field(
  * @brief This function returns a constant reference to member array_double_field
  * @return Constant reference to member array_double_field
  */
-const std::array<double, 3>& KeyedCompleteTestType::array_double_field() const
+const std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field() const
 {
     return m_array_double_field;
 }
@@ -5562,7 +5566,7 @@ const std::array<double, 3>& KeyedCompleteTestType::array_double_field() const
  * @brief This function returns a reference to member array_double_field
  * @return Reference to member array_double_field
  */
-std::array<double, 3>& KeyedCompleteTestType::array_double_field()
+std::array<double, max_array_size>& KeyedCompleteTestType::array_double_field()
 {
     return m_array_double_field;
 }
@@ -5573,7 +5577,7 @@ std::array<double, 3>& KeyedCompleteTestType::array_double_field()
  * @param _array_bool_field New value to be copied in member array_bool_field
  */
 void KeyedCompleteTestType::array_bool_field(
-        const std::array<bool, 3>& _array_bool_field)
+        const std::array<bool, max_array_size>& _array_bool_field)
 {
     m_array_bool_field = _array_bool_field;
 }
@@ -5583,7 +5587,7 @@ void KeyedCompleteTestType::array_bool_field(
  * @param _array_bool_field New value to be moved in member array_bool_field
  */
 void KeyedCompleteTestType::array_bool_field(
-        std::array<bool, 3>&& _array_bool_field)
+        std::array<bool, max_array_size>&& _array_bool_field)
 {
     m_array_bool_field = std::move(_array_bool_field);
 }
@@ -5592,7 +5596,7 @@ void KeyedCompleteTestType::array_bool_field(
  * @brief This function returns a constant reference to member array_bool_field
  * @return Constant reference to member array_bool_field
  */
-const std::array<bool, 3>& KeyedCompleteTestType::array_bool_field() const
+const std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field() const
 {
     return m_array_bool_field;
 }
@@ -5601,7 +5605,7 @@ const std::array<bool, 3>& KeyedCompleteTestType::array_bool_field() const
  * @brief This function returns a reference to member array_bool_field
  * @return Reference to member array_bool_field
  */
-std::array<bool, 3>& KeyedCompleteTestType::array_bool_field()
+std::array<bool, max_array_size>& KeyedCompleteTestType::array_bool_field()
 {
     return m_array_bool_field;
 }
@@ -5612,7 +5616,7 @@ std::array<bool, 3>& KeyedCompleteTestType::array_bool_field()
  * @param _array_enum_field New value to be copied in member array_enum_field
  */
 void KeyedCompleteTestType::array_enum_field(
-        const std::array<Color, 3>& _array_enum_field)
+        const std::array<Color, max_array_size>& _array_enum_field)
 {
     m_array_enum_field = _array_enum_field;
 }
@@ -5622,7 +5626,7 @@ void KeyedCompleteTestType::array_enum_field(
  * @param _array_enum_field New value to be moved in member array_enum_field
  */
 void KeyedCompleteTestType::array_enum_field(
-        std::array<Color, 3>&& _array_enum_field)
+        std::array<Color, max_array_size>&& _array_enum_field)
 {
     m_array_enum_field = std::move(_array_enum_field);
 }
@@ -5631,7 +5635,7 @@ void KeyedCompleteTestType::array_enum_field(
  * @brief This function returns a constant reference to member array_enum_field
  * @return Constant reference to member array_enum_field
  */
-const std::array<Color, 3>& KeyedCompleteTestType::array_enum_field() const
+const std::array<Color, max_array_size>& KeyedCompleteTestType::array_enum_field() const
 {
     return m_array_enum_field;
 }
@@ -5640,7 +5644,7 @@ const std::array<Color, 3>& KeyedCompleteTestType::array_enum_field() const
  * @brief This function returns a reference to member array_enum_field
  * @return Reference to member array_enum_field
  */
-std::array<Color, 3>& KeyedCompleteTestType::array_enum_field()
+std::array<Color, max_array_size>& KeyedCompleteTestType::array_enum_field()
 {
     return m_array_enum_field;
 }
@@ -5651,7 +5655,7 @@ std::array<Color, 3>& KeyedCompleteTestType::array_enum_field()
  * @param _array_enum2_field New value to be copied in member array_enum2_field
  */
 void KeyedCompleteTestType::array_enum2_field(
-        const std::array<Material, 3>& _array_enum2_field)
+        const std::array<Material, max_array_size>& _array_enum2_field)
 {
     m_array_enum2_field = _array_enum2_field;
 }
@@ -5661,7 +5665,7 @@ void KeyedCompleteTestType::array_enum2_field(
  * @param _array_enum2_field New value to be moved in member array_enum2_field
  */
 void KeyedCompleteTestType::array_enum2_field(
-        std::array<Material, 3>&& _array_enum2_field)
+        std::array<Material, max_array_size>&& _array_enum2_field)
 {
     m_array_enum2_field = std::move(_array_enum2_field);
 }
@@ -5670,7 +5674,7 @@ void KeyedCompleteTestType::array_enum2_field(
  * @brief This function returns a constant reference to member array_enum2_field
  * @return Constant reference to member array_enum2_field
  */
-const std::array<Material, 3>& KeyedCompleteTestType::array_enum2_field() const
+const std::array<Material, max_array_size>& KeyedCompleteTestType::array_enum2_field() const
 {
     return m_array_enum2_field;
 }
@@ -5679,7 +5683,7 @@ const std::array<Material, 3>& KeyedCompleteTestType::array_enum2_field() const
  * @brief This function returns a reference to member array_enum2_field
  * @return Reference to member array_enum2_field
  */
-std::array<Material, 3>& KeyedCompleteTestType::array_enum2_field()
+std::array<Material, max_array_size>& KeyedCompleteTestType::array_enum2_field()
 {
     return m_array_enum2_field;
 }
@@ -5690,7 +5694,7 @@ std::array<Material, 3>& KeyedCompleteTestType::array_enum2_field()
  * @param _array_struct_field New value to be copied in member array_struct_field
  */
 void KeyedCompleteTestType::array_struct_field(
-        const std::array<StructType, 3>& _array_struct_field)
+        const std::array<StructType, max_array_size>& _array_struct_field)
 {
     m_array_struct_field = _array_struct_field;
 }
@@ -5700,7 +5704,7 @@ void KeyedCompleteTestType::array_struct_field(
  * @param _array_struct_field New value to be moved in member array_struct_field
  */
 void KeyedCompleteTestType::array_struct_field(
-        std::array<StructType, 3>&& _array_struct_field)
+        std::array<StructType, max_array_size>&& _array_struct_field)
 {
     m_array_struct_field = std::move(_array_struct_field);
 }
@@ -5709,7 +5713,7 @@ void KeyedCompleteTestType::array_struct_field(
  * @brief This function returns a constant reference to member array_struct_field
  * @return Constant reference to member array_struct_field
  */
-const std::array<StructType, 3>& KeyedCompleteTestType::array_struct_field() const
+const std::array<StructType, max_array_size>& KeyedCompleteTestType::array_struct_field() const
 {
     return m_array_struct_field;
 }
@@ -5718,7 +5722,7 @@ const std::array<StructType, 3>& KeyedCompleteTestType::array_struct_field() con
  * @brief This function returns a reference to member array_struct_field
  * @return Reference to member array_struct_field
  */
-std::array<StructType, 3>& KeyedCompleteTestType::array_struct_field()
+std::array<StructType, max_array_size>& KeyedCompleteTestType::array_struct_field()
 {
     return m_array_struct_field;
 }
@@ -6818,3 +6822,5 @@ std::vector<StructType>& KeyedCompleteTestType::unbounded_sequence_struct_field(
 
 // Include auxiliary functions like for serializing/deserializing.
 #include "test_completeCdrAux.ipp"
+
+#endif // FASTCDR_VERSION_MAJOR > 1

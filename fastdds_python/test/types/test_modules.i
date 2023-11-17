@@ -45,7 +45,10 @@
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
 
+%include <fastcdr/config.h>
+#if FASTCDR_VERSION_MAJOR > 1
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
+#endif
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -64,6 +67,8 @@ namespace swig {
 
 %traits_penumn(enum eprosima::test::Color);
 %traits_penumn(enum eprosima::test::Material);
+
+
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::StructType
 ////////////////////////////////////////////////////////
@@ -76,6 +81,7 @@ namespace swig {
 // Avoid a warning ignoring all but one
 %ignore eprosima::test::StructType::char_field(char&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -85,6 +91,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::uint8_field(uint8_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -96,6 +103,7 @@ namespace swig {
 
 %ignore eprosima::test::StructType::int16_field(int16_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -105,6 +113,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::uint16_field(uint16_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -116,6 +125,7 @@ namespace swig {
 
 %ignore eprosima::test::StructType::int32_field(int32_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -125,6 +135,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::uint32_field(uint32_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -136,6 +147,7 @@ namespace swig {
 
 %ignore eprosima::test::StructType::int64_field(int64_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -145,6 +157,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::uint64_field(uint64_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -156,6 +169,7 @@ namespace swig {
 
 %ignore eprosima::test::StructType::float_field(float&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -165,6 +179,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::double_field(double&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -176,6 +191,7 @@ namespace swig {
 
 %ignore eprosima::test::StructType::bool_field(bool&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -185,6 +201,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::string_field(std::string&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -196,6 +213,7 @@ namespace swig {
 
 %ignore eprosima::test::StructType::enum_field(eprosima::test::Color&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -205,6 +223,7 @@ namespace swig {
 
 
 %ignore eprosima::test::StructType::enum2_field(eprosima::test::Material&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -231,6 +250,12 @@ namespace swig {
 
 
 
+
+
+
+
+
+
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::CompleteTestType
 ////////////////////////////////////////////////////////
@@ -243,6 +268,7 @@ namespace swig {
 // Avoid a warning ignoring all but one
 %ignore eprosima::test::CompleteTestType::char_field(char&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -252,6 +278,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::uint8_field(uint8_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -263,6 +290,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::int16_field(int16_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -272,6 +300,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::uint16_field(uint16_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -283,6 +312,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::int32_field(int32_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -292,6 +322,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::uint32_field(uint32_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -303,6 +334,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::int64_field(int64_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -312,6 +344,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::uint64_field(uint64_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -323,6 +356,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::float_field(float&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -332,6 +366,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::double_field(double&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -343,6 +378,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bool_field(bool&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -352,6 +388,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::string_field(std::string&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -363,6 +400,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::enum_field(eprosima::test::Color&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -372,6 +410,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::enum2_field(eprosima::test::Material&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -383,6 +422,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::struct_field(eprosima::test::StructType&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -391,6 +431,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::char_opt_field(char&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(charOpt) eprosima::fastcdr::optional<char>;
@@ -403,8 +446,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::char_opt_field(char&&);
+%ignore eprosima::test::CompleteTestType::char_opt_field(eprosima::fastcdr::optional<char>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -414,6 +457,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::uint8_opt_field(uint8_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint8_tOpt) eprosima::fastcdr::optional<uint8_t>;
@@ -426,8 +472,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::uint8_opt_field(uint8_t&&);
+%ignore eprosima::test::CompleteTestType::uint8_opt_field(eprosima::fastcdr::optional<uint8_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -437,6 +483,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::int16_opt_field(int16_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int16_tOpt) eprosima::fastcdr::optional<int16_t>;
@@ -449,8 +498,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::int16_opt_field(int16_t&&);
+%ignore eprosima::test::CompleteTestType::int16_opt_field(eprosima::fastcdr::optional<int16_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -460,6 +509,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::uint16_opt_field(uint16_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint16_tOpt) eprosima::fastcdr::optional<uint16_t>;
@@ -472,8 +524,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::uint16_opt_field(uint16_t&&);
+%ignore eprosima::test::CompleteTestType::uint16_opt_field(eprosima::fastcdr::optional<uint16_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -483,6 +535,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::int32_opt_field(int32_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int32_tOpt) eprosima::fastcdr::optional<int32_t>;
@@ -495,8 +550,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::int32_opt_field(int32_t&&);
+%ignore eprosima::test::CompleteTestType::int32_opt_field(eprosima::fastcdr::optional<int32_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -506,6 +561,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::uint32_opt_field(uint32_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint32_tOpt) eprosima::fastcdr::optional<uint32_t>;
@@ -518,8 +576,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::uint32_opt_field(uint32_t&&);
+%ignore eprosima::test::CompleteTestType::uint32_opt_field(eprosima::fastcdr::optional<uint32_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -529,6 +587,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::int64_opt_field(int64_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int64_tOpt) eprosima::fastcdr::optional<int64_t>;
@@ -541,8 +602,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::int64_opt_field(int64_t&&);
+%ignore eprosima::test::CompleteTestType::int64_opt_field(eprosima::fastcdr::optional<int64_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -552,6 +613,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::uint64_opt_field(uint64_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint64_tOpt) eprosima::fastcdr::optional<uint64_t>;
@@ -564,8 +628,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::uint64_opt_field(uint64_t&&);
+%ignore eprosima::test::CompleteTestType::uint64_opt_field(eprosima::fastcdr::optional<uint64_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -575,6 +639,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::float_opt_field(float&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(floatOpt) eprosima::fastcdr::optional<float>;
@@ -587,8 +654,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::float_opt_field(float&&);
+%ignore eprosima::test::CompleteTestType::float_opt_field(eprosima::fastcdr::optional<float>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -598,6 +665,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::double_opt_field(double&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(doubleOpt) eprosima::fastcdr::optional<double>;
@@ -610,8 +680,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::double_opt_field(double&&);
+%ignore eprosima::test::CompleteTestType::double_opt_field(eprosima::fastcdr::optional<double>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -621,6 +691,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::bool_opt_field(bool&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(boolOpt) eprosima::fastcdr::optional<bool>;
@@ -633,8 +706,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::bool_opt_field(bool&&);
+%ignore eprosima::test::CompleteTestType::bool_opt_field(eprosima::fastcdr::optional<bool>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -644,6 +717,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::string_opt_field(std::string&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(stringOpt) eprosima::fastcdr::optional<std::string>;
@@ -656,8 +732,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::string_opt_field(std::string&&);
+%ignore eprosima::test::CompleteTestType::string_opt_field(eprosima::fastcdr::optional<std::string>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -667,6 +743,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::enum_opt_field(eprosima::test::Color&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(ColorOpt) eprosima::fastcdr::optional<eprosima::test::Color>;
@@ -679,8 +758,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::enum_opt_field(eprosima::test::Color&&);
+%ignore eprosima::test::CompleteTestType::enum_opt_field(eprosima::fastcdr::optional<eprosima::test::Color>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -690,6 +769,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::enum2_opt_field(eprosima::test::Material&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(MaterialOpt) eprosima::fastcdr::optional<eprosima::test::Material>;
@@ -702,8 +784,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::enum2_opt_field(eprosima::test::Material&&);
+%ignore eprosima::test::CompleteTestType::enum2_opt_field(eprosima::fastcdr::optional<eprosima::test::Material>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -713,6 +795,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::CompleteTestType::struct_opt_field(eprosima::test::StructType&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(StructTypeOpt) eprosima::fastcdr::optional<eprosima::test::StructType>;
@@ -725,8 +810,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::CompleteTestType::struct_opt_field(eprosima::test::StructType&&);
+%ignore eprosima::test::CompleteTestType::struct_opt_field(eprosima::fastcdr::optional<eprosima::test::StructType>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -736,7 +821,8 @@ namespace swig {
 
 
 
-%ignore eprosima::test::CompleteTestType::array_char_field(std::array<char, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_char_field(std::array<char, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -752,7 +838,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_uint8_field(std::array<uint8_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -768,7 +855,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_int16_field(std::array<int16_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -784,7 +872,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_uint16_field(std::array<uint16_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -800,7 +889,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_int32_field(std::array<int32_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -816,7 +906,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_uint32_field(std::array<uint32_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -832,7 +923,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_int64_field(std::array<int64_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -848,7 +940,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_uint64_field(std::array<uint64_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -864,7 +957,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_float_field(std::array<float, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_float_field(std::array<float, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -880,7 +974,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_double_field(std::array<double, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_double_field(std::array<double, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -896,7 +991,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_bool_field(std::array<bool, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_bool_field(std::array<bool, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -912,7 +1008,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_enum_field(std::array<eprosima::test::Color, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_enum_field(std::array<eprosima::test::Color, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -928,7 +1025,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_enum2_field(std::array<eprosima::test::Material, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_enum2_field(std::array<eprosima::test::Material, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -944,7 +1042,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::CompleteTestType::array_struct_field(std::array<eprosima::test::StructType, 3>&&);
+%ignore eprosima::test::CompleteTestType::array_struct_field(std::array<eprosima::test::StructType, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -954,6 +1053,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -972,6 +1072,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -988,6 +1089,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_int16_field(std::vector<int16_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1006,6 +1108,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1022,6 +1125,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_int32_field(std::vector<int32_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1040,6 +1144,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1056,6 +1161,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_int64_field(std::vector<int64_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1074,6 +1180,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1090,6 +1197,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_float_field(std::vector<float>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1108,6 +1216,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_double_field(std::vector<double>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1125,6 +1234,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1133,6 +1243,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1151,6 +1262,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1168,6 +1280,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::bounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1176,6 +1289,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_char_field(std::vector<char>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1194,6 +1308,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1210,6 +1325,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_int16_field(std::vector<int16_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1228,6 +1344,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1244,6 +1361,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_int32_field(std::vector<int32_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1262,6 +1380,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1278,6 +1397,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_int64_field(std::vector<int64_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1296,6 +1416,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1312,6 +1433,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_float_field(std::vector<float>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1330,6 +1452,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_double_field(std::vector<double>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1347,6 +1470,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1355,6 +1479,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1373,6 +1498,7 @@ namespace swig {
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1389,6 +1515,7 @@ namespace swig {
 
 
 %ignore eprosima::test::CompleteTestType::unbounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1412,6 +1539,10 @@ namespace swig {
     }
 }
 
+
+
+
+
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::KeyedCompleteTestType
 ////////////////////////////////////////////////////////
@@ -1424,6 +1555,7 @@ namespace swig {
 // Avoid a warning ignoring all but one
 %ignore eprosima::test::KeyedCompleteTestType::id(int32_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1433,6 +1565,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::char_field(char&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1444,6 +1577,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::uint8_field(uint8_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1453,6 +1587,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::int16_field(int16_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1464,6 +1599,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::uint16_field(uint16_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1473,6 +1609,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::int32_field(int32_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1484,6 +1621,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::uint32_field(uint32_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1493,6 +1631,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::int64_field(int64_t&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1504,6 +1643,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::uint64_field(uint64_t&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1513,6 +1653,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::float_field(float&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1524,6 +1665,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::double_field(double&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1533,6 +1675,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bool_field(bool&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1544,6 +1687,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::string_field(std::string&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1553,6 +1697,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::enum_field(eprosima::test::Color&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1564,6 +1709,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::enum2_field(eprosima::test::Material&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1574,6 +1720,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::struct_field(eprosima::test::StructType&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -1582,6 +1729,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::char_opt_field(char&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(charOpt) eprosima::fastcdr::optional<char>;
@@ -1594,8 +1744,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::char_opt_field(char&&);
+%ignore eprosima::test::KeyedCompleteTestType::char_opt_field(eprosima::fastcdr::optional<char>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1605,6 +1755,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::uint8_opt_field(uint8_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint8_tOpt) eprosima::fastcdr::optional<uint8_t>;
@@ -1617,8 +1770,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::uint8_opt_field(uint8_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::uint8_opt_field(eprosima::fastcdr::optional<uint8_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1628,6 +1781,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::int16_opt_field(int16_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int16_tOpt) eprosima::fastcdr::optional<int16_t>;
@@ -1640,8 +1796,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::int16_opt_field(int16_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::int16_opt_field(eprosima::fastcdr::optional<int16_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1651,6 +1807,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::uint16_opt_field(uint16_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint16_tOpt) eprosima::fastcdr::optional<uint16_t>;
@@ -1663,8 +1822,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::uint16_opt_field(uint16_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::uint16_opt_field(eprosima::fastcdr::optional<uint16_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1674,6 +1833,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::int32_opt_field(int32_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int32_tOpt) eprosima::fastcdr::optional<int32_t>;
@@ -1686,8 +1848,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::int32_opt_field(int32_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::int32_opt_field(eprosima::fastcdr::optional<int32_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1697,6 +1859,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::uint32_opt_field(uint32_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint32_tOpt) eprosima::fastcdr::optional<uint32_t>;
@@ -1709,8 +1874,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::uint32_opt_field(uint32_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::uint32_opt_field(eprosima::fastcdr::optional<uint32_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1720,6 +1885,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::int64_opt_field(int64_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int64_tOpt) eprosima::fastcdr::optional<int64_t>;
@@ -1732,8 +1900,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::int64_opt_field(int64_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::int64_opt_field(eprosima::fastcdr::optional<int64_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1743,6 +1911,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::uint64_opt_field(uint64_t&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint64_tOpt) eprosima::fastcdr::optional<uint64_t>;
@@ -1755,8 +1926,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::uint64_opt_field(uint64_t&&);
+%ignore eprosima::test::KeyedCompleteTestType::uint64_opt_field(eprosima::fastcdr::optional<uint64_t>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1766,6 +1937,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::float_opt_field(float&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(floatOpt) eprosima::fastcdr::optional<float>;
@@ -1778,8 +1952,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::float_opt_field(float&&);
+%ignore eprosima::test::KeyedCompleteTestType::float_opt_field(eprosima::fastcdr::optional<float>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1789,6 +1963,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::double_opt_field(double&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(doubleOpt) eprosima::fastcdr::optional<double>;
@@ -1801,8 +1978,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::double_opt_field(double&&);
+%ignore eprosima::test::KeyedCompleteTestType::double_opt_field(eprosima::fastcdr::optional<double>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1812,6 +1989,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::bool_opt_field(bool&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(boolOpt) eprosima::fastcdr::optional<bool>;
@@ -1824,8 +2004,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::bool_opt_field(bool&&);
+%ignore eprosima::test::KeyedCompleteTestType::bool_opt_field(eprosima::fastcdr::optional<bool>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1835,6 +2015,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::string_opt_field(std::string&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(stringOpt) eprosima::fastcdr::optional<std::string>;
@@ -1847,8 +2030,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::string_opt_field(std::string&&);
+%ignore eprosima::test::KeyedCompleteTestType::string_opt_field(eprosima::fastcdr::optional<std::string>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1858,6 +2041,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::enum_opt_field(eprosima::test::Color&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(ColorOpt) eprosima::fastcdr::optional<eprosima::test::Color>;
@@ -1870,8 +2056,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::enum_opt_field(eprosima::test::Color&&);
+%ignore eprosima::test::KeyedCompleteTestType::enum_opt_field(eprosima::fastcdr::optional<eprosima::test::Color>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1881,6 +2067,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::enum2_opt_field(eprosima::test::Material&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(MaterialOpt) eprosima::fastcdr::optional<eprosima::test::Material>;
@@ -1893,8 +2082,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::enum2_opt_field(eprosima::test::Material&&);
+%ignore eprosima::test::KeyedCompleteTestType::enum2_opt_field(eprosima::fastcdr::optional<eprosima::test::Material>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1904,6 +2093,9 @@ namespace swig {
 
 
 
+#if FASTCDR_VERSION_MAJOR == 1
+%ignore eprosima::test::KeyedCompleteTestType::struct_opt_field(eprosima::test::StructType&&);
+#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(StructTypeOpt) eprosima::fastcdr::optional<eprosima::test::StructType>;
@@ -1916,8 +2108,8 @@ namespace swig {
       *$self = value;
   }
 }
-
-%ignore eprosima::test::KeyedCompleteTestType::struct_opt_field(eprosima::test::StructType&&);
+%ignore eprosima::test::KeyedCompleteTestType::struct_opt_field(eprosima::fastcdr::optional<eprosima::test::StructType>&&);
+#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1927,7 +2119,8 @@ namespace swig {
 
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_char_field(std::array<char, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_char_field(std::array<char, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1943,7 +2136,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_uint8_field(std::array<uint8_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1959,7 +2153,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_int16_field(std::array<int16_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_int16_field(std::array<int16_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1975,7 +2170,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_uint16_field(std::array<uint16_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1991,7 +2187,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_int32_field(std::array<int32_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_int32_field(std::array<int32_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2007,7 +2204,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_uint32_field(std::array<uint32_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2023,7 +2221,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_int64_field(std::array<int64_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_int64_field(std::array<int64_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2039,7 +2238,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_uint64_field(std::array<uint64_t, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2055,7 +2255,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_float_field(std::array<float, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_float_field(std::array<float, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2071,7 +2272,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_double_field(std::array<double, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_double_field(std::array<double, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2087,7 +2289,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_bool_field(std::array<bool, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_bool_field(std::array<bool, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2103,7 +2306,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_enum_field(std::array<eprosima::test::Color, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_enum_field(std::array<eprosima::test::Color, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2119,7 +2323,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_enum2_field(std::array<eprosima::test::Material, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_enum2_field(std::array<eprosima::test::Material, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2135,7 +2340,8 @@ namespace swig {
 }
 
 
-%ignore eprosima::test::KeyedCompleteTestType::array_struct_field(std::array<eprosima::test::StructType, 3>&&);
+%ignore eprosima::test::KeyedCompleteTestType::array_struct_field(std::array<eprosima::test::StructType, max_array_size>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2145,6 +2351,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_char_field(std::vector<char>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2163,6 +2370,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2179,6 +2387,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_int16_field(std::vector<int16_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2197,6 +2406,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2213,6 +2423,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_int32_field(std::vector<int32_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2231,6 +2442,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2247,6 +2459,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_int64_field(std::vector<int64_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2265,6 +2478,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2281,6 +2495,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_float_field(std::vector<float>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2299,6 +2514,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_double_field(std::vector<double>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2316,6 +2532,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_bool_field(std::vector<bool>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2324,6 +2541,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2342,6 +2560,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2359,6 +2578,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::bounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2367,6 +2587,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_char_field(std::vector<char>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2385,6 +2606,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint8_field(std::vector<uint8_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2401,6 +2623,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_int16_field(std::vector<int16_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2419,6 +2642,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint16_field(std::vector<uint16_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2435,6 +2659,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_int32_field(std::vector<int32_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2453,6 +2678,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint32_field(std::vector<uint32_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2469,6 +2695,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_int64_field(std::vector<int64_t>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2487,6 +2714,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_uint64_field(std::vector<uint64_t>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2503,6 +2731,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_float_field(std::vector<float>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2521,6 +2750,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_double_field(std::vector<double>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2538,6 +2768,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_bool_field(std::vector<bool>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2546,6 +2777,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum_field(std::vector<eprosima::test::Color>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2564,6 +2796,7 @@ namespace swig {
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_enum2_field(std::vector<eprosima::test::Material>&&);
 
+
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
 // We ignore them to prevent this
@@ -2580,6 +2813,7 @@ namespace swig {
 
 
 %ignore eprosima::test::KeyedCompleteTestType::unbounded_sequence_struct_field(std::vector<eprosima::test::StructType>&&);
+
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2608,6 +2842,7 @@ namespace swig {
 
 // Include the class interfaces
 %include "test_modules.h"
+%include "test_modulesv1.h"
 
 // Include the corresponding TopicDataType
 %include "test_modulesPubSubTypes.i"

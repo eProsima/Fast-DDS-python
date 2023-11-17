@@ -39,6 +39,8 @@
 #endif  // GEN_API_VER
 
 
+
+
 /*!
  * @brief This class represents the TopicDataType of the type StructType defined by the user in the IDL file.
  * @ingroup test_complete
@@ -129,6 +131,12 @@ public:
 
 
 
+
+
+
+
+
+
 /*!
  * @brief This class represents the TopicDataType of the type CompleteTestType defined by the user in the IDL file.
  * @ingroup test_complete
@@ -216,6 +224,10 @@ public:
     unsigned char* m_keyBuffer;
 
 };
+
+
+
+
 
 /*!
  * @brief This class represents the TopicDataType of the type KeyedCompleteTestType defined by the user in the IDL file.

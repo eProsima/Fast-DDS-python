@@ -24,7 +24,7 @@ if(POLICY CMP0086)
   cmake_policy(SET CMP0086 NEW)
 endif()
 
-project(fastdds_python VERSION 1.3.0)
+project(fastdds_python VERSION 1.3.1)
 
 # Set BUILD_TESTING to OFF by default.
 if(NOT BUILD_TESTING)
@@ -42,7 +42,7 @@ set(CMAKE_SWIG_FLAGS "")
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
-find_package(fastcdr 2 REQUIRED)
+find_package(fastcdr REQUIRED)
 find_package(fastrtps 2.12 REQUIRED)
 
 ###############################################################################

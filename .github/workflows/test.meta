@@ -4,8 +4,7 @@
         "fastrtps":
         {
             "cmake-args": [
-                "-DTHIRDPARTY=ON",
-                "-DSECURITY=ON",
+                "-DSECURITY=ON"
             ]
         },
         "fastdds_python":

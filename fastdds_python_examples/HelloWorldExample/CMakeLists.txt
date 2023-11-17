@@ -25,16 +25,14 @@ project(HelloWorld)
 find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
-
-set(${PROJECT_NAME}_FILES
-    HelloWorld.cxx
-    HelloWorldPubSubTypes.cxx
-    )
-
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
-add_library(${PROJECT_NAME} SHARED ${${PROJECT_NAME}_FILES})
+add_library(${PROJECT_NAME} SHARED
+        HelloWorld.cxx
+        HelloWorldv1.cxx
+        HelloWorldPubSubTypes.cxx
+        )
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
 endif(WIN32)

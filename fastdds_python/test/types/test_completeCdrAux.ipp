@@ -34,6 +34,8 @@ using namespace eprosima::fastcdr::exception;
 namespace eprosima {
 namespace fastcdr {
 
+
+
 template<>
 eProsima_user_DllExport size_t calculate_serialized_size(
         eprosima::fastcdr::CdrSizeCalculator& calculator,
@@ -129,7 +131,6 @@ eProsima_user_DllExport void serialize(
         << eprosima::fastcdr::MemberId(13) << data.enum2_field()
         << eprosima::fastcdr::MemberId(14) << data.included_module_struct()
 ;
-
     scdr.end_serialize_type(current_state);
 }
 
@@ -221,6 +222,12 @@ void serialize_key(
     static_cast<void>(scdr);
     static_cast<void>(data);
 }
+
+
+
+
+
+
 
 
 
@@ -548,7 +555,6 @@ eProsima_user_DllExport void serialize(
         << eprosima::fastcdr::MemberId(70) << data.unbounded_sequence_enum2_field()
         << eprosima::fastcdr::MemberId(71) << data.unbounded_sequence_struct_field()
 ;
-
     scdr.end_serialize_type(current_state);
 }
 
@@ -868,6 +874,10 @@ void serialize_key(
     static_cast<void>(scdr);
     static_cast<void>(data);
 }
+
+
+
+
 
 
 template<>
@@ -1197,7 +1207,6 @@ eProsima_user_DllExport void serialize(
         << eprosima::fastcdr::MemberId(71) << data.unbounded_sequence_enum2_field()
         << eprosima::fastcdr::MemberId(72) << data.unbounded_sequence_struct_field()
 ;
-
     scdr.end_serialize_type(current_state);
 }
 

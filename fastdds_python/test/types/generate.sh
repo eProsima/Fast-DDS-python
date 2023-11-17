@@ -4,4 +4,4 @@ if [[ -z "$(which fastddsgen)" ]]; then
     exit -1
 fi
 
-fastddsgen -python -replace test_complete.idl test_modules.idl
+fastddsgen -cdr both -python -replace test_complete.idl test_modules.idl
