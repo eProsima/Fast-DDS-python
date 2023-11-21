@@ -141,6 +141,7 @@ namespace builtin {
 %include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
 %include "fastrtps/utils/collections/ResourceLimitedVector.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
+%include "fastdds/rtps/attributes/ThreadSettings.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.i"
 %include "fastdds/rtps/attributes/PropertyPolicy.i"
