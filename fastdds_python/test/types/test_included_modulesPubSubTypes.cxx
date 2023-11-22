@@ -221,9 +221,10 @@ namespace eprosima {
             return true;
         }
 
+    } // namespace test2
 
-    } //End of namespace test2
+} // namespace eprosima
 
 
-} //End of namespace eprosima
-
+// Include auxiliary functions like for serializing/deserializing.
+#include "test_included_modulesCdrAux.ipp"

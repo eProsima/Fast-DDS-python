@@ -29,7 +29,7 @@
 #include <fastdds/rtps/common/SerializedPayload.h>
 #include <fastdds/utils/md5.h>
 
-#include "test_modules.h"
+#include "test_modules.hpp"
 
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 2)
@@ -136,10 +136,6 @@ namespace eprosima
 
 
 
-
-
-
-
         /*!
          * @brief This class represents the TopicDataType of the type CompleteTestType defined by the user in the IDL file.
          * @ingroup test_modules
@@ -230,8 +226,6 @@ namespace eprosima
 
 
 
-
-
         /*!
          * @brief This class represents the TopicDataType of the type KeyedCompleteTestType defined by the user in the IDL file.
          * @ingroup test_modules
@@ -319,8 +313,8 @@ namespace eprosima
             unsigned char* m_keyBuffer;
 
         };
-    }
-}
+    } // namespace test
+} // namespace eprosima
 
 #endif // _FAST_DDS_GENERATED_EPROSIMA_TEST_TEST_MODULES_PUBSUBTYPES_H_
 

@@ -225,10 +225,6 @@ namespace eprosima {
 
 
 
-
-
-
-
         CompleteTestTypePubSubType::CompleteTestTypePubSubType()
         {
             setName("eprosima::test::CompleteTestType");
@@ -416,8 +412,6 @@ namespace eprosima {
             }
             return true;
         }
-
-
 
 
 
@@ -609,9 +603,10 @@ namespace eprosima {
             return true;
         }
 
+    } // namespace test
 
-    } //End of namespace test
+} // namespace eprosima
 
 
-} //End of namespace eprosima
-
+// Include auxiliary functions like for serializing/deserializing.
+#include "test_modulesCdrAux.ipp"

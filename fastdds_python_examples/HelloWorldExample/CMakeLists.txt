@@ -29,8 +29,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        HelloWorld.cxx
-        HelloWorldv1.cxx
         HelloWorldPubSubTypes.cxx
         )
 if(WIN32)

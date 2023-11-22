@@ -40,7 +40,7 @@
 
 
 %{
-#include "HelloWorld.h"
+#include "HelloWorld.hpp"
 
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
@@ -116,8 +116,7 @@ namespace swig {
 
 
 // Include the class interfaces
-%include "HelloWorld.h"
-%include "HelloWorldv1.h"
+%include "HelloWorld.hpp"
 
 // Include the corresponding TopicDataType
 %include "HelloWorldPubSubTypes.i"

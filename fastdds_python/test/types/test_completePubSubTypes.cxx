@@ -223,10 +223,6 @@ bool StructTypePubSubType::getKey(
 
 
 
-
-
-
-
 CompleteTestTypePubSubType::CompleteTestTypePubSubType()
 {
     setName("CompleteTestType");
@@ -414,8 +410,6 @@ bool CompleteTestTypePubSubType::getKey(
     }
     return true;
 }
-
-
 
 
 
@@ -607,3 +601,6 @@ bool KeyedCompleteTestTypePubSubType::getKey(
     return true;
 }
 
+
+// Include auxiliary functions like for serializing/deserializing.
+#include "test_completeCdrAux.ipp"
