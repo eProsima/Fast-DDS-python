@@ -41,7 +41,7 @@
 %include "test_included_modules.i"
 
 %{
-#include "test_complete.h"
+#include "test_complete.hpp"
 
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
@@ -259,10 +259,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
-
-
 
 
 
@@ -1550,8 +1546,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 
 
@@ -2851,8 +2845,7 @@ namespace swig {
 
 
 // Include the class interfaces
-%include "test_complete.h"
-%include "test_completev1.h"
+%include "test_complete.hpp"
 
 // Include the corresponding TopicDataType
 %include "test_completePubSubTypes.i"

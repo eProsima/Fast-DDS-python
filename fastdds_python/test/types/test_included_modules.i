@@ -40,7 +40,7 @@
 
 
 %{
-#include "test_included_modules.h"
+#include "test_included_modules.hpp"
 
 #include <fastdds/dds/core/LoanableSequence.hpp>
 %}
@@ -249,11 +249,8 @@ namespace swig {
 }
 
 
-
-
 // Include the class interfaces
-%include "test_included_modules.h"
-%include "test_included_modulesv1.h"
+%include "test_included_modules.hpp"
 
 // Include the corresponding TopicDataType
 %include "test_included_modulesPubSubTypes.i"

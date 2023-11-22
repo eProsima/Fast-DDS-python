@@ -29,8 +29,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        test_included_modules.cxx
-        test_included_modulesv1.cxx
         test_included_modulesPubSubTypes.cxx
         )
 if(WIN32)
@@ -137,8 +135,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        test_modules.cxx
-        test_modulesv1.cxx
         test_modulesPubSubTypes.cxx
         )
 if(WIN32)
@@ -245,8 +241,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        test_complete.cxx
-        test_completev1.cxx
         test_completePubSubTypes.cxx
         )
 if(WIN32)

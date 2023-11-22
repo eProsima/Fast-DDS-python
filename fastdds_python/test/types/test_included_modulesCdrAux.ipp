@@ -225,8 +225,6 @@ void serialize_key(
 
 
 
-
-
 } // namespace fastcdr
 } // namespace eprosima
 
