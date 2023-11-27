@@ -22,9 +22,6 @@
 // We must explicitly declare the specializations of the templates
 %template(OctetSeq) std::vector<eprosima::fastrtps::rtps::octet>;
 
-// Although explicitly deleted, SWIG still tries to create this method
-%ignore eprosima::fastrtps::types::ReturnCode_t::operator bool;
-
 // Ignore overloaded constructors
 %ignore eprosima::fastrtps::types::MemberFlag::MemberFlag(MemberFlag &&);
 %ignore eprosima::fastrtps::types::TypeFlag::TypeFlag(TypeFlag &&);
@@ -43,23 +40,19 @@
 %ignore eprosima::fastrtps::types::operator==;
 %ignore eprosima::fastrtps::types::operator!=;
 
+%ignore eprosima::fastrtps::types::RETCODE_OK;
+%ignore eprosima::fastrtps::types::RETCODE_ERROR;
+%ignore eprosima::fastrtps::types::RETCODE_UNSUPPORTED;
+%ignore eprosima::fastrtps::types::RETCODE_BAD_PARAMETER;
+%ignore eprosima::fastrtps::types::RETCODE_PRECONDITION_NOT_MET;
+%ignore eprosima::fastrtps::types::RETCODE_OUT_OF_RESOURCES;
+%ignore eprosima::fastrtps::types::RETCODE_NOT_ENABLED;
+%ignore eprosima::fastrtps::types::RETCODE_IMMUTABLE_POLICY;
+%ignore eprosima::fastrtps::types::RETCODE_INCONSISTENT_POLICY;
+%ignore eprosima::fastrtps::types::RETCODE_ALREADY_DELETED;
+%ignore eprosima::fastrtps::types::RETCODE_TIMEOUT;
+%ignore eprosima::fastrtps::types::RETCODE_NO_DATA;
+%ignore eprosima::fastrtps::types::RETCODE_ILLEGAL_OPERATION;
+
+
 %include "fastrtps/types/TypesBase.h"
-
-%extend eprosima::fastrtps::types::ReturnCode_t {
-    std::string __str__() const
-    {
-        std::ostringstream out;
-        out << (*$self)();
-        return out.str();
-    }
-
-    bool operator==(eprosima::fastrtps::types::ReturnCode_t::ReturnCodeValue value) const
-    {
-        return *$self == value;
-    }
-
-    bool operator!=(eprosima::fastrtps::types::ReturnCode_t::ReturnCodeValue value) const
-    {
-        return *$self != value;
-    }
-}

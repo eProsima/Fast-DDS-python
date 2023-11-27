@@ -41,9 +41,9 @@
         eprosima::fastdds::dds::DataReaderListener* old_listener =
             const_cast<eprosima::fastdds::dds::DataReaderListener*>(self->get_listener());
 
-        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->set_listener(listener);
 
-        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
+        if ( (eprosima::fastdds::dds::RETCODE_OK == ret) && (listener != old_listener) )
         {
 
             SWIG_PYTHON_THREAD_BEGIN_BLOCK;
@@ -79,16 +79,16 @@
         eprosima::fastdds::dds::DataReaderListener* old_listener =
             const_cast<eprosima::fastdds::dds::DataReaderListener*>(self->get_listener());
 
-        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener, mask);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->set_listener(listener, mask);
 
-        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
+        if ( (eprosima::fastdds::dds::RETCODE_OK == ret) && (listener != old_listener) )
         {
 
             SWIG_PYTHON_THREAD_BEGIN_BLOCK;
             if (nullptr != listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_INCREF(director->swig_get_self());
@@ -97,7 +97,7 @@
             if (nullptr != old_listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_DECREF(director->swig_get_self());

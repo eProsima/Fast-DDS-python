@@ -123,7 +123,7 @@
     {
         eprosima::fastdds::dds::DomainParticipantListener* listener =
             const_cast<eprosima::fastdds::dds::DomainParticipantListener*>(part->get_listener());
-        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_participant(part);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->delete_participant(part);
 
         if (nullptr != listener)
         {
