@@ -40,6 +40,9 @@
 %ignore eprosima::fastrtps::types::TypeFlag::deserialize;
 %ignore eprosima::fastrtps::types::TypeFlag::getCdrSerializedSize;
 
+%ignore eprosima::fastrtps::types::operator==;
+%ignore eprosima::fastrtps::types::operator!=;
+
 %include "fastrtps/types/TypesBase.h"
 
 %extend eprosima::fastrtps::types::ReturnCode_t {
