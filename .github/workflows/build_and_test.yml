@@ -8,11 +8,11 @@ on:
         required: false
         default: 'master'
       fastcdr_versions:
-        description: 'Fast-CDR branches to be used'
+        description: 'Fast CDR branches to be used'
         required: false
         default: '["1.1.x", "master"]'
       fastdds_branch:
-        description: 'Fast-DDS branch to be used'
+        description: 'Fast DDS branch to be used'
         required: false
         default: 'master'
   pull_request:
@@ -22,12 +22,21 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
+
 jobs:
   windows-build-test:
     runs-on: windows-2019
     strategy:
+      fail-fast: false
       matrix:
+        foonathan_memory_vendor_version:
+          - ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
         fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
+        fastdds_version:
+          - ${{ github.event.inputs.fastdds_branch || 'master' }}
 
     env:
       CXXFLAGS: /MP
@@ -47,32 +56,51 @@ jobs:
           Set-Item -Force -Path "env:PATH" -Value "C:\ProgramData\chocolatey\lib\asio;C:\ProgramData\chocolatey\lib\tinyxml2;C:\ProgramData\chocolatey\lib\tinyxml2\lib;$env:PATH"
           echo "PATH=$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
-
       - name: Install swig
         shell: pwsh
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
 
-      - uses: eProsima/eProsima-CI/external/setup-python@v0
+      - name: Setup Python version
+        uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
+      - name: Install Python dependencies
+        uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
         with:
           packages: pytest pywin32
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
+      - name: Install colcon
+        uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
-      - uses: eProsima/eProsima-CI/external/checkout@v0
+      - name: Checkout Fast DDS Python
+        uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           path: src/fastdds_python
 
-      - uses: ./src/fastdds_python/.github/actions/fetch-fastdds_python-repos
+      - name: Checkout foonathan memory vendor
+        uses: eProsima/eProsima-CI/external/checkout@v0
         with:
-          foonathan-memory-vendor-branch: ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
-          fastcdr-branch: ${{ matrix.fastcdr_version }}
-          fastdds-branch: ${{ github.event.inputs.fastdds_branch || 'master' }}
+          repository: eProsima/foonathan_memory_vendor
+          path: src/foonathan_memory_vendor
+          ref: ${{ matrix.foonathan_memory_vendor_version }}
 
-      - uses: eProsima/eProsima-CI/external/get-cmake@v0
+      - name: Checkout Fast CDR
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-CDR
+          path: src/fastcdr
+          ref: ${{ matrix.fastcdr_version }}
+
+      - name: Checkout Fast DDS
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-DDS
+          path: src/fastdds
+          ref: ${{ matrix.fastdds_version }}
+
+      - name: Setup CMake version
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: 3.22.6
 
@@ -89,23 +117,24 @@ jobs:
           windows_compile_environment: msvc
 
       - name: Build workspace
-        shell: pwsh
-        run: |
-          $installpath = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
-          $modulepath = "$installpath\Common7\Tools\Microsoft.VisualStudio.DevShell.dll"
-          Import-Module $modulepath
-          Enter-VsDevShell -SetDefaultWindowTitle -InstallPath $installpath `
-                           -StartInPath (pwd) -DevCmdArguments '/arch=x64 /host_arch=x64';
-          cmake --version
-          colcon build --executor parallel --event-handlers console_direct+ desktop_notification- `
-              --metas ./src/fastdds_python/.github/workflows/test.meta `
-              --mixin rel-with-deb-info ccache ${{ steps.ninja.outputs.cmake_generator }}
+        uses: eProsima/eProsima-CI/windows/colcon_build@v0
+        with:
+          colcon_meta_file: ./src/fastdds_python/.github/workflows/test.meta
+          colcon_build_args: --executor parallel --mixin ccache ${{ steps.ninja.outputs.cmake_generator }}
+          colcon_build_args_default: --event-handlers console_direct+ desktop_notification-
+          cmake_build_type: RelWithDebInfo
+          cmake_args_default: ' '
+          workspace: ${{ github.workspace }}
 
       - name: Run tests
-        shell: pwsh
-        run: |
-          colcon test --packages-select fastdds_python --event-handlers console_direct+ desktop_notification- `
-                      --return-code-on-test-failure --ctest-args --timeout 60
+        id: test
+        uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
+        with:
+          colcon_test_args: --packages-select fastdds_python --return-code-on-test-failure
+          colcon_test_args_default: --event-handlers console_direct+ desktop_notification-
+          ctest_args_default: --timeout 60
+          workspace: ${{ github.workspace }}
+          workspace_dependencies: ${{ github.workspace }}
 
       - name: Upload Logs
         uses: actions/upload-artifact@v1
@@ -117,27 +146,52 @@ jobs:
   ubuntu-build-test:
     runs-on: ubuntu-22.04
     strategy:
+      fail-fast: false
       matrix:
+        foonathan_memory_vendor_version:
+          - ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
         fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
+        fastdds_version:
+          - ${{ github.event.inputs.fastdds_branch || 'master' }}
+
 
     steps:
-      - uses: eProsima/eProsima-CI/external/checkout@v0
+      - name: Checkout Fast DDS Python
+        uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           path: src/fastdds_python
 
-      - uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
+      - name: Install apt dependencies
+        uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
           packages: libasio-dev libtinyxml2-dev libpython3-dev swig
 
-      - uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
+      - name: Install colcon
+        uses: eProsima/eProsima-CI/multiplatform/install_colcon@v0
 
-      - uses: ./src/fastdds_python/.github/actions/fetch-fastdds_python-repos
+      - name: Checkout foonathan memory vendor
+        uses: eProsima/eProsima-CI/external/checkout@v0
         with:
-          foonathan-memory-vendor-branch: ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
-          fastcdr-branch: ${{ matrix.fastcdr_version }}
-          fastdds-branch: ${{ github.event.inputs.fastdds_branch || 'master' }}
+          repository: eProsima/foonathan_memory_vendor
+          path: src/foonathan_memory_vendor
+          ref: ${{ matrix.foonathan_memory_vendor_version }}
 
-      - uses: eProsima/eProsima-CI/external/get-cmake@v0
+      - name: Checkout Fast CDR
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-CDR
+          path: src/fastcdr
+          ref: ${{ matrix.fastcdr_version }}
+
+      - name: Checkout Fast DDS
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-DDS
+          path: src/fastdds
+          ref: ${{ matrix.fastdds_version }}
+
+      - name: Setup CMake version
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: 3.22.6
 
@@ -145,23 +199,23 @@ jobs:
         uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
 
       - name: Build workspace
-        run: |
-          cmake --version
-          colcon build \
-            --event-handlers=console_direct+ \
-            --metas ./src/fastdds_python/.github/workflows/test.meta \
-            --mixin rel-with-deb-info ccache
+        uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
+        with:
+          colcon_meta_file: ./src/fastdds_python/.github/workflows/test.meta
+          colcon_build_args: --executor parallel --mixin ccache
+          colcon_build_args_default: --event-handlers console_direct+
+          cmake_build_type: RelWithDebInfo
+          cmake_args_default: ''
+          workspace: ${{ github.workspace }}
 
       - name: Run tests
-        run: |
-          source install/setup.bash && \
-          colcon test \
-            --packages-select fastdds_python \
-            --event-handlers=console_direct+ \
-            --return-code-on-test-failure \
-            --ctest-args \
-              --output-on-failure \
-              --timeout 60
+        id: test
+        uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
+        with:
+          colcon_test_args: --packages-select fastdds_python --return-code-on-test-failure
+          colcon_test_args_default: --event-handlers console_direct+
+          ctest_args_default: --timeout 60
+          workspace: ${{ github.workspace }}
 
       - name: Upload Logs
         uses: actions/upload-artifact@v1
