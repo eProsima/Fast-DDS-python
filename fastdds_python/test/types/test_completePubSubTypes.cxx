@@ -36,7 +36,7 @@ StructTypePubSubType::StructTypePubSubType()
     setName("StructType");
     uint32_t type_size =
 #if FASTCDR_VERSION_MAJOR == 1
-        StructType::getMaxCdrSerializedSize();
+        static_cast<uint32_t>(StructType::getMaxCdrSerializedSize());
 #else
         StructType_max_cdr_typesize;
 #endif
@@ -139,23 +139,24 @@ std::function<uint32_t()> StructTypePubSubType::getSerializedSizeProvider(
     return [data, data_representation]() -> uint32_t
            {
 #if FASTCDR_VERSION_MAJOR == 1
-                return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<StructType*>(data))) +
+               static_cast<void>(data_representation);
+               return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<StructType*>(data))) +
                       4u /*encapsulation*/;
 #else
-                try
-                {
-                    eprosima::fastcdr::CdrSizeCalculator calculator(
-                        data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
-                        eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
-                    size_t current_alignment {0};
-                    return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                *static_cast<StructType*>(data), current_alignment)) +
-                            4u /*encapsulation*/;
-                }
-                catch (eprosima::fastcdr::exception::Exception& /*exception*/)
-                {
-                    return 0;
-                }
+               try
+               {
+                   eprosima::fastcdr::CdrSizeCalculator calculator(
+                       data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
+                       eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
+                   size_t current_alignment {0};
+                   return static_cast<uint32_t>(calculator.calculate_serialized_size(
+                               *static_cast<StructType*>(data), current_alignment)) +
+                           4u /*encapsulation*/;
+               }
+               catch (eprosima::fastcdr::exception::Exception& /*exception*/)
+               {
+                   return 0;
+               }
 #endif // FASTCDR_VERSION_MAJOR == 1
            };
 }
@@ -231,7 +232,7 @@ CompleteTestTypePubSubType::CompleteTestTypePubSubType()
     setName("CompleteTestType");
     uint32_t type_size =
 #if FASTCDR_VERSION_MAJOR == 1
-        CompleteTestType::getMaxCdrSerializedSize();
+        static_cast<uint32_t>(CompleteTestType::getMaxCdrSerializedSize());
 #else
         CompleteTestType_max_cdr_typesize;
 #endif
@@ -334,23 +335,24 @@ std::function<uint32_t()> CompleteTestTypePubSubType::getSerializedSizeProvider(
     return [data, data_representation]() -> uint32_t
            {
 #if FASTCDR_VERSION_MAJOR == 1
-                return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<CompleteTestType*>(data))) +
+               static_cast<void>(data_representation);
+               return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<CompleteTestType*>(data))) +
                       4u /*encapsulation*/;
 #else
-                try
-                {
-                    eprosima::fastcdr::CdrSizeCalculator calculator(
-                        data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
-                        eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
-                    size_t current_alignment {0};
-                    return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                *static_cast<CompleteTestType*>(data), current_alignment)) +
-                            4u /*encapsulation*/;
-                }
-                catch (eprosima::fastcdr::exception::Exception& /*exception*/)
-                {
-                    return 0;
-                }
+               try
+               {
+                   eprosima::fastcdr::CdrSizeCalculator calculator(
+                       data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
+                       eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
+                   size_t current_alignment {0};
+                   return static_cast<uint32_t>(calculator.calculate_serialized_size(
+                               *static_cast<CompleteTestType*>(data), current_alignment)) +
+                           4u /*encapsulation*/;
+               }
+               catch (eprosima::fastcdr::exception::Exception& /*exception*/)
+               {
+                   return 0;
+               }
 #endif // FASTCDR_VERSION_MAJOR == 1
            };
 }
@@ -422,7 +424,7 @@ KeyedCompleteTestTypePubSubType::KeyedCompleteTestTypePubSubType()
     setName("KeyedCompleteTestType");
     uint32_t type_size =
 #if FASTCDR_VERSION_MAJOR == 1
-        KeyedCompleteTestType::getMaxCdrSerializedSize();
+        static_cast<uint32_t>(KeyedCompleteTestType::getMaxCdrSerializedSize());
 #else
         KeyedCompleteTestType_max_cdr_typesize;
 #endif
@@ -525,23 +527,24 @@ std::function<uint32_t()> KeyedCompleteTestTypePubSubType::getSerializedSizeProv
     return [data, data_representation]() -> uint32_t
            {
 #if FASTCDR_VERSION_MAJOR == 1
-                return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<KeyedCompleteTestType*>(data))) +
+               static_cast<void>(data_representation);
+               return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<KeyedCompleteTestType*>(data))) +
                       4u /*encapsulation*/;
 #else
-                try
-                {
-                    eprosima::fastcdr::CdrSizeCalculator calculator(
-                        data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
-                        eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
-                    size_t current_alignment {0};
-                    return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                *static_cast<KeyedCompleteTestType*>(data), current_alignment)) +
-                            4u /*encapsulation*/;
-                }
-                catch (eprosima::fastcdr::exception::Exception& /*exception*/)
-                {
-                    return 0;
-                }
+               try
+               {
+                   eprosima::fastcdr::CdrSizeCalculator calculator(
+                       data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
+                       eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
+                   size_t current_alignment {0};
+                   return static_cast<uint32_t>(calculator.calculate_serialized_size(
+                               *static_cast<KeyedCompleteTestType*>(data), current_alignment)) +
+                           4u /*encapsulation*/;
+               }
+               catch (eprosima::fastcdr::exception::Exception& /*exception*/)
+               {
+                   return 0;
+               }
 #endif // FASTCDR_VERSION_MAJOR == 1
            };
 }
