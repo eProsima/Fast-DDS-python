@@ -38,7 +38,7 @@ namespace eprosima {
             setName("eprosima::test2::StructType2");
             uint32_t type_size =
         #if FASTCDR_VERSION_MAJOR == 1
-                StructType2::getMaxCdrSerializedSize();
+                static_cast<uint32_t>(StructType2::getMaxCdrSerializedSize());
         #else
                 eprosima_test2_StructType2_max_cdr_typesize;
         #endif
@@ -141,23 +141,24 @@ namespace eprosima {
             return [data, data_representation]() -> uint32_t
                    {
         #if FASTCDR_VERSION_MAJOR == 1
-                        return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<StructType2*>(data))) +
+                       static_cast<void>(data_representation);
+                       return static_cast<uint32_t>(type::getCdrSerializedSize(*static_cast<StructType2*>(data))) +
                               4u /*encapsulation*/;
         #else
-                        try
-                        {
-                            eprosima::fastcdr::CdrSizeCalculator calculator(
-                                data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
-                                eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
-                            size_t current_alignment {0};
-                            return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                        *static_cast<StructType2*>(data), current_alignment)) +
-                                    4u /*encapsulation*/;
-                        }
-                        catch (eprosima::fastcdr::exception::Exception& /*exception*/)
-                        {
-                            return 0;
-                        }
+                       try
+                       {
+                           eprosima::fastcdr::CdrSizeCalculator calculator(
+                               data_representation == DataRepresentationId_t::XCDR_DATA_REPRESENTATION ?
+                               eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
+                           size_t current_alignment {0};
+                           return static_cast<uint32_t>(calculator.calculate_serialized_size(
+                                       *static_cast<StructType2*>(data), current_alignment)) +
+                                   4u /*encapsulation*/;
+                       }
+                       catch (eprosima::fastcdr::exception::Exception& /*exception*/)
+                       {
+                           return 0;
+                       }
         #endif // FASTCDR_VERSION_MAJOR == 1
                    };
         }
