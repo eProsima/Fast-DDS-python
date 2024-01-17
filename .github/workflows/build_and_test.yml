@@ -44,7 +44,9 @@ jobs:
 
     steps:
 
-      - uses: eProsima/eProsima-CI/windows/install_openssl@v0
+      - uses: eProsima/eprosima-CI/windows/install_openssl@v0
+        with:
+          version: '3.1.1'
 
       - name: Install Asio and TinyXML2
         shell: pwsh
@@ -130,9 +132,10 @@ jobs:
         id: test
         uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
         with:
-          colcon_test_args: --packages-select fastdds_python --return-code-on-test-failure
+          colcon_test_args: --return-code-on-test-failure
           colcon_test_args_default: --event-handlers console_direct+ desktop_notification-
           ctest_args_default: --timeout 60
+          packages_names: fastdds_python
           workspace: ${{ github.workspace }}
           workspace_dependencies: ${{ github.workspace }}
 
@@ -212,9 +215,10 @@ jobs:
         id: test
         uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
         with:
-          colcon_test_args: --packages-select fastdds_python --return-code-on-test-failure
+          colcon_test_args: --return-code-on-test-failure
           colcon_test_args_default: --event-handlers console_direct+
           ctest_args_default: --timeout 60
+          packages_names: fastdds_python
           workspace: ${{ github.workspace }}
 
       - name: Upload Logs
