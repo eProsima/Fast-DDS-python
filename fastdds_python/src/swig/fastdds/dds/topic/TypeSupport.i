@@ -29,6 +29,7 @@
 // We need SWIG to be aware of it, so we ignore it here and redefine it later
 %ignore eprosima::fastdds::dds::TypeSupport::TypeSupport(fastdds::dds::TopicDataType*);
 
+%ignore eprosima::fastdds::dds::TypeSupport::TypeSupport(DynamicPubSubType);
 
 %include "fastdds/dds/topic/TypeSupport.hpp"
 
