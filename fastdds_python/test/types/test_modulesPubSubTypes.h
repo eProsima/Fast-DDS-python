@@ -42,8 +42,6 @@ namespace eprosima
     namespace test
     {
 
-
-
         /*!
          * @brief This class represents the TopicDataType of the type StructType defined by the user in the IDL file.
          * @ingroup test_modules
@@ -94,6 +92,9 @@ namespace eprosima
             eProsima_user_DllExport void deleteData(
                     void* data) override;
 
+            //Register TypeObject representation in Fast DDS TypeObjectRegistry
+            eProsima_user_DllExport void register_type_object_representation() const override;
+
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override
             {
@@ -131,8 +132,6 @@ namespace eprosima
             unsigned char* m_keyBuffer;
 
         };
-
-
 
 
 
@@ -186,6 +185,9 @@ namespace eprosima
             eProsima_user_DllExport void deleteData(
                     void* data) override;
 
+            //Register TypeObject representation in Fast DDS TypeObjectRegistry
+            eProsima_user_DllExport void register_type_object_representation() const override;
+
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override
             {
@@ -223,8 +225,6 @@ namespace eprosima
             unsigned char* m_keyBuffer;
 
         };
-
-
 
         /*!
          * @brief This class represents the TopicDataType of the type KeyedCompleteTestType defined by the user in the IDL file.
@@ -275,6 +275,9 @@ namespace eprosima
 
             eProsima_user_DllExport void deleteData(
                     void* data) override;
+
+            //Register TypeObject representation in Fast DDS TypeObjectRegistry
+            eProsima_user_DllExport void register_type_object_representation() const override;
 
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override

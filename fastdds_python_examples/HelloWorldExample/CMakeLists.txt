@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.22)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -29,6 +29,7 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
+        HelloWorldTypeObjectSupport.cxx
         HelloWorldPubSubTypes.cxx
         )
 if(WIN32)

@@ -68,8 +68,6 @@ namespace swig {
 
 %traits_penumn(enum Color);
 %traits_penumn(enum Material);
-
-
 ////////////////////////////////////////////////////////
 // Binding for class StructType
 ////////////////////////////////////////////////////////
@@ -259,8 +257,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 
 
@@ -1546,8 +1542,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 ////////////////////////////////////////////////////////
 // Binding for class KeyedCompleteTestType

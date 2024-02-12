@@ -22,19 +22,10 @@
 #ifndef _FAST_DDS_GENERATED_EPROSIMA_TEST2_TEST_INCLUDED_MODULES_HPP_
 #define _FAST_DDS_GENERATED_EPROSIMA_TEST2_TEST_INCLUDED_MODULES_HPP_
 
-#include <array>
-#include <bitset>
 #include <cstdint>
-#include <map>
 #include <string>
 #include <utility>
-#include <vector>
-
 #include <fastcdr/cdr/fixed_size_string.hpp>
-#include <fastcdr/xcdr/external.hpp>
-#include <fastcdr/xcdr/optional.hpp>
-#include <fastcdr/exceptions/BadParamException.h>
-
 
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
@@ -68,7 +59,7 @@ namespace test2 {
  * @brief This class represents the enumeration Color2 defined by the user in the IDL file.
  * @ingroup test_included_modules
  */
-enum Color2 : uint32_t
+enum class Color2 : uint32_t
 {
     RED2,
     GREEN2,
@@ -80,7 +71,7 @@ enum Color2 : uint32_t
  * @brief This class represents the enumeration Material2 defined by the user in the IDL file.
  * @ingroup test_included_modules
  */
-enum Material2 : uint32_t
+enum class Material2 : uint32_t
 {
     WOOD2,
     PLASTIC2,
@@ -88,8 +79,6 @@ enum Material2 : uint32_t
     CONCRETE2,
     STONE2
 };
-
-
 /*!
  * @brief This class represents the structure StructType2 defined by the user in the IDL file.
  * @ingroup test_included_modules
@@ -700,8 +689,8 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
-    Color2 m_enum_field{eprosima::test2::RED2};
-    Material2 m_enum2_field{eprosima::test2::WOOD2};
+    Color2 m_enum_field{Color2::RED2};
+    Material2 m_enum2_field{Material2::WOOD2};
 
 };
 
