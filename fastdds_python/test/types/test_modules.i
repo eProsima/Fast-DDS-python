@@ -67,8 +67,6 @@ namespace swig {
 
 %traits_penumn(enum eprosima::test::Color);
 %traits_penumn(enum eprosima::test::Material);
-
-
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::StructType
 ////////////////////////////////////////////////////////
@@ -247,8 +245,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 
 
@@ -1534,8 +1530,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::KeyedCompleteTestType

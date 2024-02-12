@@ -23,18 +23,13 @@
 #define _FAST_DDS_GENERATED_EPROSIMA_TEST_TEST_MODULES_HPP_
 
 #include <array>
-#include <bitset>
 #include <cstdint>
-#include <map>
 #include <string>
 #include <utility>
 #include <vector>
 
 #include <fastcdr/cdr/fixed_size_string.hpp>
-#include <fastcdr/xcdr/external.hpp>
 #include <fastcdr/xcdr/optional.hpp>
-#include <fastcdr/exceptions/BadParamException.h>
-
 
 #if defined(_WIN32)
 #if defined(EPROSIMA_USER_DLL_EXPORT)
@@ -68,7 +63,7 @@ namespace test {
  * @brief This class represents the enumeration Color defined by the user in the IDL file.
  * @ingroup test_modules
  */
-enum Color : uint32_t
+enum class Color : uint32_t
 {
     RED,
     GREEN,
@@ -80,7 +75,7 @@ enum Color : uint32_t
  * @brief This class represents the enumeration Material defined by the user in the IDL file.
  * @ingroup test_modules
  */
-enum Material : uint32_t
+enum class Material : uint32_t
 {
     WOOD,
     PLASTIC,
@@ -88,8 +83,6 @@ enum Material : uint32_t
     CONCRETE,
     STONE
 };
-
-
 /*!
  * @brief This class represents the structure StructType defined by the user in the IDL file.
  * @ingroup test_modules
@@ -700,14 +693,12 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
-    Color m_enum_field{eprosima::test::RED};
-    Material m_enum2_field{eprosima::test::WOOD};
+    Color m_enum_field{Color::RED};
+    Material m_enum2_field{Material::WOOD};
 
 };
 const uint32_t max_array_size = 3;
 const uint32_t max_seq_size = 5;
-
-
 /*!
  * @brief This class represents the structure CompleteTestType defined by the user in the IDL file.
  * @ingroup test_modules
@@ -3986,8 +3977,8 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
-    Color m_enum_field{eprosima::test::RED};
-    Material m_enum2_field{eprosima::test::WOOD};
+    Color m_enum_field{Color::RED};
+    Material m_enum2_field{Material::WOOD};
     StructType m_struct_field;
     eprosima::fastcdr::optional<char> m_char_opt_field;
     eprosima::fastcdr::optional<uint8_t> m_uint8_opt_field;
@@ -4015,8 +4006,8 @@ private:
     std::array<float, max_array_size> m_array_float_field{0.0};
     std::array<double, max_array_size> m_array_double_field{0.0};
     std::array<bool, max_array_size> m_array_bool_field{false};
-    std::array<Color, max_array_size> m_array_enum_field{eprosima::test::RED};
-    std::array<Material, max_array_size> m_array_enum2_field{eprosima::test::WOOD};
+    std::array<Color, max_array_size> m_array_enum_field{Color::RED};
+    std::array<Material, max_array_size> m_array_enum2_field{Material::WOOD};
     std::array<StructType, max_array_size> m_array_struct_field;
     std::vector<char> m_bounded_sequence_char_field;
     std::vector<uint8_t> m_bounded_sequence_uint8_field;
@@ -4048,8 +4039,6 @@ private:
     std::vector<StructType> m_unbounded_sequence_struct_field;
 
 };
-
-
 /*!
  * @brief This class represents the structure KeyedCompleteTestType defined by the user in the IDL file.
  * @ingroup test_modules
@@ -7365,8 +7354,8 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
-    Color m_enum_field{eprosima::test::RED};
-    Material m_enum2_field{eprosima::test::WOOD};
+    Color m_enum_field{Color::RED};
+    Material m_enum2_field{Material::WOOD};
     StructType m_struct_field;
     eprosima::fastcdr::optional<char> m_char_opt_field;
     eprosima::fastcdr::optional<uint8_t> m_uint8_opt_field;
@@ -7394,8 +7383,8 @@ private:
     std::array<float, max_array_size> m_array_float_field{0.0};
     std::array<double, max_array_size> m_array_double_field{0.0};
     std::array<bool, max_array_size> m_array_bool_field{false};
-    std::array<Color, max_array_size> m_array_enum_field{eprosima::test::RED};
-    std::array<Material, max_array_size> m_array_enum2_field{eprosima::test::WOOD};
+    std::array<Color, max_array_size> m_array_enum_field{Color::RED};
+    std::array<Material, max_array_size> m_array_enum2_field{Material::WOOD};
     std::array<StructType, max_array_size> m_array_struct_field;
     std::vector<char> m_bounded_sequence_char_field;
     std::vector<uint8_t> m_bounded_sequence_uint8_field;

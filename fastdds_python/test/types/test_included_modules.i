@@ -67,8 +67,6 @@ namespace swig {
 
 %traits_penumn(enum eprosima::test2::Color2);
 %traits_penumn(enum eprosima::test2::Material2);
-
-
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test2::StructType2
 ////////////////////////////////////////////////////////
