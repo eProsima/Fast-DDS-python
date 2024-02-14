@@ -23,7 +23,7 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 project(HelloWorld)
 
 find_package(fastcdr REQUIRED)
-find_package(fastrtps REQUIRED)
+find_package(fastdds REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -43,7 +43,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
     fastcdr
-    fastrtps
+    fastdds
     )
 
 ###############################################################################
@@ -88,7 +88,7 @@ endif()
 
 target_link_libraries(${${PROJECT_NAME}_MODULE}
     Python3::Module
-    fastrtps
+    fastdds
     ${PROJECT_NAME}
     )
 

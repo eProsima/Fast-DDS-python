@@ -43,7 +43,7 @@ set(CMAKE_SWIG_FLAGS "")
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
 
 find_package(fastcdr REQUIRED)
-find_package(fastrtps 2.12 REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 ###############################################################################
 # Project subdirectories
