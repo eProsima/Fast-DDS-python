@@ -10,11 +10,11 @@ on:
       fastcdr_versions:
         description: 'Fast CDR branches to be used'
         required: false
-        default: '["1.1.x", "master"]'
+        default: '["master"]'
       fastdds_branch:
         description: 'Fast DDS branch to be used'
         required: false
-        default: 'master'
+        default: '3.0.x-devel'
   pull_request:
   push:
     branches:
@@ -34,9 +34,9 @@ jobs:
       matrix:
         foonathan_memory_vendor_version:
           - ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
-        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
+        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["master"]') }}
         fastdds_version:
-          - ${{ github.event.inputs.fastdds_branch || 'master' }}
+          - ${{ github.event.inputs.fastdds_branch || '3.0.x-devel' }}
 
     env:
       CXXFLAGS: /MP
@@ -153,9 +153,9 @@ jobs:
       matrix:
         foonathan_memory_vendor_version:
           - ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
-        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["1.1.x", "master"]') }}
+        fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["master"]') }}
         fastdds_version:
-          - ${{ github.event.inputs.fastdds_branch || 'master' }}
+          - ${{ github.event.inputs.fastdds_branch || '3.0.x-devel' }}
 
 
     steps:
