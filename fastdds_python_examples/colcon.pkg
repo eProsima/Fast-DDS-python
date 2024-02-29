@@ -4,6 +4,6 @@
     "build-dependencies": [
         "fastdds_python",
         "fastcdr",
-        "fastrtps"
+        "fastdds"
     ]
 }
