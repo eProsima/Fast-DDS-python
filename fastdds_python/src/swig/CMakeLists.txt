@@ -56,7 +56,7 @@ endif()
 target_link_libraries(${PROJECT_NAME}
     Python3::Module
     fastcdr
-    fastrtps
+    fastdds
     )
 
 # Find the installation path
