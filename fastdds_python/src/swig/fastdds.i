@@ -89,7 +89,7 @@ bool has_statistics();
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
-#define RTPS_DllAPI
+#define FASTDDS_EXPORTED_API
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 #define FASTDDS_TODO_BEFORE(major, minor, msg)
 

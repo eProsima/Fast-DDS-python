@@ -84,7 +84,7 @@
             if (nullptr != listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_INCREF(director->swig_get_self());
@@ -93,7 +93,7 @@
             if (nullptr != old_listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_DECREF(director->swig_get_self());
@@ -227,7 +227,7 @@
      * @param mask StatusMask that holds statuses the listener responds to (default: all)
      * @return Pointer to the created Subscriber.
      */
-    RTPS_DllAPI Subscriber* create_subscriber_with_profile(
+    FASTDDS_EXPORTED_API Subscriber* create_subscriber_with_profile(
             const std::string& profile_name,
             SubscriberListener* listener = nullptr,
             const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
