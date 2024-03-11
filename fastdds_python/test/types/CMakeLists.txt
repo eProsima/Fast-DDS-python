@@ -23,7 +23,7 @@ message(STATUS "Configuring python wrapper for types in test_included_modules...
 project(test_included_modules)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -130,7 +130,7 @@ message(STATUS "Configuring python wrapper for types in test_modules...")
 project(test_modules)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -237,7 +237,7 @@ message(STATUS "Configuring python wrapper for types in test_complete...")
 project(test_complete)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 

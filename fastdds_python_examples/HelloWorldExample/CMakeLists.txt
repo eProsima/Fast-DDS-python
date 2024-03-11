@@ -23,7 +23,7 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 project(HelloWorld)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
