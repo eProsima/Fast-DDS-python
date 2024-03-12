@@ -123,6 +123,7 @@ namespace builtin {
 %include "fastcdr/xcdr/optional.i"
 #endif
 
+%include "fastdds/LibrarySettings.i"
 %include "fastdds/rtps/common/VendorId_t.i"
 %include "fastdds/rtps/common/Types.i"
 %include "fastdds/rtps/common/Time_t.i"
