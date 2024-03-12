@@ -35,7 +35,7 @@
 
 // Macro declarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
-#define RTPS_DllAPI
+#define FASTDDS_EXPORTED_API
 #define eProsima_user_DllExport
 
 

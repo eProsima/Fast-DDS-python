@@ -89,7 +89,7 @@ bool has_statistics();
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
-#define RTPS_DllAPI
+#define FASTDDS_EXPORTED_API
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 #define FASTDDS_TODO_BEFORE(major, minor, msg)
 
@@ -123,6 +123,7 @@ namespace builtin {
 %include "fastcdr/xcdr/optional.i"
 #endif
 
+%include "fastdds/LibrarySettings.i"
 %include "fastdds/rtps/common/VendorId_t.i"
 %include "fastdds/rtps/common/Types.i"
 %include "fastdds/rtps/common/Time_t.i"
