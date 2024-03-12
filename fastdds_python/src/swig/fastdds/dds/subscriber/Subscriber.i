@@ -145,7 +145,7 @@
      * @param mask StatusMask that holds statuses the listener responds to (default: all).
      * @return Pointer to the created DataReader. nullptr if failed.
      */
-    RTPS_DllAPI DataReader* create_datareader_with_profile(
+    FASTDDS_EXPORTED_API DataReader* create_datareader_with_profile(
             TopicDescription* topic,
             const std::string& profile_name,
             DataReaderListener* listener = nullptr,
