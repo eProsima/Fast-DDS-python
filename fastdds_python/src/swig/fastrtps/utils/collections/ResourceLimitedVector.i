@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/collections/ResourceLimitedVector.hpp"
+#include "fastdds/utils/collections/ResourceLimitedVector.hpp"
 %}
 
 // Operator[] is ignored by SWIG because it does not map correctly to target languages
@@ -61,4 +61,4 @@
     }
 }
 
-%include "fastrtps/utils/collections/ResourceLimitedVector.hpp"
+%include "fastdds/utils/collections/ResourceLimitedVector.hpp"

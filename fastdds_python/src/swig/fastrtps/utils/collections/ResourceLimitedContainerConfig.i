@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp"
+#include "fastdds/utils/collections/ResourceLimitedContainerConfig.hpp"
 %}
 
-%include "fastrtps/utils/collections/ResourceLimitedContainerConfig.hpp"
+%include "fastdds/utils/collections/ResourceLimitedContainerConfig.hpp"
