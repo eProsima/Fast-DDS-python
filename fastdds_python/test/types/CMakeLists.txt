@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.16.3)
+cmake_minimum_required(VERSION 3.22)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
