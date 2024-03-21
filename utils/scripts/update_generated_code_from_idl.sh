@@ -33,7 +33,8 @@ for idl_file in "${idl_files[@]}"; do
 
     cd "${idl_dir}"
 
-    echo "fastddsgen -cdr both -replace -flat-output-dir -python ${file_from_gen}"
+    echo "Running: fastddsgen -cdr both -replace -flat-output-dir -python ${file_from_gen}"
+    fastddsgen -cdr both -replace -flat-output-dir -python ${file_from_gen}
 
     if [[ $? != 0 ]]; then
         ret_value=-1
