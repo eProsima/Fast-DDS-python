@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/IPFinder.h"
+#include "fastdds/utils/IPFinder.h"
 %}
 
 // Flatten nested classes
@@ -25,7 +25,7 @@
 %rename (IPFinder_info_IP) eprosima::fastrtps::rtps::IPFinder::info_IP;
 %rename (IPFinder_info_MAC) eprosima::fastrtps::rtps::IPFinder::info_MAC;
 
-%include "fastrtps/utils/IPFinder.h"
+%include "fastdds/utils/IPFinder.h"
 
 // Deactivate class flattening
 %feature("flatnested", "0");

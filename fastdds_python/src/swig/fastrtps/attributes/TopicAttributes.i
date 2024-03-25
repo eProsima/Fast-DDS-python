@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/attributes/TopicAttributes.h"
+#include "fastdds/rtps/attributes/TopicAttributes.h"
 %}
 
-%include "fastrtps/attributes/TopicAttributes.h"
+%include "fastdds/rtps/attributes/TopicAttributes.h"
