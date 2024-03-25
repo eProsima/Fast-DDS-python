@@ -136,10 +136,9 @@ namespace builtin {
 %include "fastdds/rtps/common/Guid.i"
 %include "fastdds/rtps/common/PortParameters.i"
 %include "fastdds/rtps/common/InstanceHandle.i"
-%include "fastrtps/types/TypesBase.i"
 %include "fastdds/rtps/resources/ResourceManagement.i"
-%include "fastrtps/utils/collections/ResourceLimitedContainerConfig.i"
-%include "fastrtps/utils/collections/ResourceLimitedVector.i"
+%include "fastdds/utils/collections/ResourceLimitedContainerConfig.i"
+%include "fastdds/utils/collections/ResourceLimitedVector.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAllocationAttributes.i"
 %include "fastdds/rtps/attributes/ThreadSettings.i"
 %include "fastdds/rtps/flowcontrol/FlowControllerSchedulerPolicy.i"
@@ -152,6 +151,7 @@ namespace builtin {
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
 %include "fastdds/rtps/common/WriteParams.i"
+%include "fastrtps/types/TypesBase.i"
 
 /*
 %include "fastdds/rtps/common/SerializedPayload.i"
