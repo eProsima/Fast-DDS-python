@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/TimedMutex.hpp"
+#include "fastdds/utils/TimedMutex.hpp"
 %}
 
-%include "fastrtps/utils/TimedMutex.hpp"
+%include "fastdds/utils/TimedMutex.hpp"

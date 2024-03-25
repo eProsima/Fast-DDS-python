@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/IPLocator.h"
+#include "fastdds/utils/IPLocator.h"
 %}
 
-%include "fastrtps/utils/IPLocator.h"
+%include "fastdds/utils/IPLocator.h"

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/TimedConditionVariable.hpp"
+#include "fastdds/utils/TimedConditionVariable.hpp"
 %}
 
-%include "fastrtps/utils/TimedConditionVariable.hpp"
+%include "fastdds/utils/TimedConditionVariable.hpp"
