@@ -485,6 +485,8 @@ namespace builtin {
 %include "fastdds/dds/domain/DomainParticipantListener.i"
 %include "fastdds/dds/domain/qos/DomainParticipantFactoryQos.i"
 %include "fastdds/dds/domain/qos/DomainParticipantQos.i"
+%include "fastdds/dds/domain/qos/ReplierQos.i"
+%include "fastdds/dds/domain/qos/RequesterQos.i"
 %include "fastdds/dds/domain/DomainParticipant.i"
 %include "fastdds/dds/domain/DomainParticipantFactory.i"
 

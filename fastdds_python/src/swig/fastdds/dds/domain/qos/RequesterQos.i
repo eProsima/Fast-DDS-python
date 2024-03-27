@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/utils/DBQueue.h"
+#include "fastdds/dds/domain/qos/RequesterQos.hpp"
 %}
 
-%include "fastrtps/utils/DBQueue.h"
+%include "fastdds/dds/domain/qos/RequesterQos.hpp"
