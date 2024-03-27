@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastrtps/attributes/ReplierAttributes.hpp"
+#include "fastdds/dds/domain/qos/ReplierQos.hpp"
 %}
 
-%include "fastrtps/attributes/ReplierAttributes.hpp"
+%include "fastdds/dds/domain/qos/ReplierQos.hpp"

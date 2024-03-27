@@ -1829,3 +1829,53 @@ def test_domain_participant_factory_qos():
     assert(not default_factory_qos.entity_factory().
            autoenable_created_entities)
     default_factory_qos = fastdds.DomainParticipantFactoryQos()
+
+
+def test_replier_qos():
+    replier_qos = fastdds.ReplierQos()
+
+    replier_qos.service_name = "service_name"
+    assert("service_name" == replier_qos.service_name)
+
+    replier_qos.request_type = "request_type"
+    assert("request_type" == replier_qos.request_type)
+
+    replier_qos.reply_type = "reply_type"
+    assert("reply_type" == replier_qos.reply_type)
+
+    replier_qos.request_topic_name = "request_topic_name"
+    assert("request_topic_name" == replier_qos.request_topic_name)
+
+    replier_qos.reply_topic_name = "reply_topic_name"
+    assert("reply_topic_name" == replier_qos.reply_topic_name)
+
+    replier_qos.writer_qos = fastdds.DATAWRITER_QOS_DEFAULT
+    assert(fastdds.DATAWRITER_QOS_DEFAULT == replier_qos.writer_qos)
+
+    replier_qos.reader_qos = fastdds.DATAREADER_QOS_DEFAULT
+    assert(fastdds.DATAREADER_QOS_DEFAULT == replier_qos.reader_qos)
+
+
+def test_requester_qos():
+    requester_qos = fastdds.RequesterQos()
+
+    requester_qos.service_name = "service_name"
+    assert("service_name" == requester_qos.service_name)
+
+    requester_qos.request_type = "request_type"
+    assert("request_type" == requester_qos.request_type)
+
+    requester_qos.reply_type = "reply_type"
+    assert("reply_type" == requester_qos.reply_type)
+
+    requester_qos.request_topic_name = "request_topic_name"
+    assert("request_topic_name" == requester_qos.request_topic_name)
+
+    requester_qos.reply_topic_name = "reply_topic_name"
+    assert("reply_topic_name" == requester_qos.reply_topic_name)
+
+    requester_qos.writer_qos = fastdds.DATAWRITER_QOS_DEFAULT
+    assert(fastdds.DATAWRITER_QOS_DEFAULT == requester_qos.writer_qos)
+
+    requester_qos.reader_qos = fastdds.DATAREADER_QOS_DEFAULT
+    assert(fastdds.DATAREADER_QOS_DEFAULT == requester_qos.reader_qos)
