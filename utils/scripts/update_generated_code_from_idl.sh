@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 
-idl_files=(
-    './fastdds_python/test/types/test_modules.idl'
-    './fastdds_python/test/types/test_complete.idl'
-    './fastdds_python/test/types/test_included_modules.idl'
-    './fastdds_python_examples/HelloWorldExample/HelloWorld.idl'
-)
-
 red='\E[1;31m'
 yellow='\E[1;33m'
 textreset='\E[1;0m'
@@ -25,22 +18,26 @@ fi
 
 ret_value=0
 
-for idl_file in "${idl_files[@]}"; do
-    idl_dir=$(dirname "${idl_file}")
-    file_from_gen=$(basename "${idl_file}")
+cd ./fastdds_python/test/types
+echo -e "Processing ${yellow}test_complete.idl test_modules.idl${textreset}"
+echo "Running: fastddsgen -cdr both -replace -python test_complete.idl test_modules.idl"
+fastddsgen -cdr both -replace -python test_complete.idl test_modules.idl
+if [[ $? != 0 ]]; then
+    ret_value=-1
+fi
+cd -
 
-    echo -e "Processing ${yellow}${idl_file}${textreset}"
+if [[ $ret_value != -1 ]]; then
+    cd "./fastdds_python_examples/HelloWorldExample"
 
-    cd "${idl_dir}"
+echo -e "Processing ${yellow}HelloWorld.idl${textreset}"
+    echo "Running: fastddsgen -cdr both -replace -python HelloWorld.idl"
+    fastddsgen -cdr both -replace -python HelloWorld.idl
+fi
 
-    echo "Running: fastddsgen -cdr both -replace -flat-output-dir -python ${file_from_gen}"
-    fastddsgen -cdr both -replace -flat-output-dir -python ${file_from_gen}
-
-    if [[ $? != 0 ]]; then
-        ret_value=-1
-    fi
-
-    cd -
-done
+if [[ $? != 0 ]]; then
+    ret_value=-1
+fi
+cd -
 
 exit ${ret_value}
