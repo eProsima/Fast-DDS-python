@@ -58,7 +58,7 @@ def participant(participant_qos):
 
     yield participant
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -74,7 +74,7 @@ def test_contains_entity(participant):
 
     assert(participant.contains_entity(fastdds.InstanceHandle_t()) is False)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
 
@@ -95,7 +95,7 @@ def test_create_publisher(participant):
     assert(publisher is not None)
     assert(publisher.is_enabled())
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
     # Overload 2
@@ -104,7 +104,7 @@ def test_create_publisher(participant):
     assert(publisher is not None)
     assert(publisher.is_enabled())
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -116,14 +116,14 @@ def test_create_publisher(participant):
         assert(publisher is not None)
         assert(publisher.is_enabled())
         assert(status_mask_1 == publisher.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_publisher(publisher))
         publisher = participant.create_publisher(
             fastdds.PUBLISHER_QOS_DEFAULT, listnr, status_mask_2)
         assert(publisher is not None)
         assert(publisher.is_enabled())
         assert(status_mask_2 == publisher.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_publisher(publisher))
 
     # Overload 3: Different status masks
@@ -213,7 +213,7 @@ def test_create_publisher_with_profile(participant):
     qos = publisher.get_qos()
     assert('partition_name_c' == qos.partition()[0])
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
     # Overload 2
@@ -224,7 +224,7 @@ def test_create_publisher_with_profile(participant):
     qos = publisher.get_qos()
     assert('partition_name_c' == qos.partition()[0])
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -238,7 +238,7 @@ def test_create_publisher_with_profile(participant):
         qos = publisher.get_qos()
         assert('partition_name_c' == qos.partition()[0])
         assert(status_mask_1 == publisher.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_publisher(publisher))
         publisher = participant.create_publisher_with_profile(
             'test_publisher_profile', listnr, status_mask_2)
@@ -247,7 +247,7 @@ def test_create_publisher_with_profile(participant):
         qos = publisher.get_qos()
         assert('partition_name_c' == qos.partition()[0])
         assert(status_mask_2 == publisher.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_publisher(publisher))
 
     # Overload 3: Different status masks
@@ -329,7 +329,7 @@ def test_create_subscriber(participant):
     assert(subscriber is not None)
     assert(subscriber.is_enabled())
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
     # Overload 2
@@ -338,7 +338,7 @@ def test_create_subscriber(participant):
     assert(subscriber is not None)
     assert(subscriber.is_enabled())
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -350,14 +350,14 @@ def test_create_subscriber(participant):
         assert(subscriber is not None)
         assert(subscriber.is_enabled())
         assert(status_mask_1 == subscriber.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_subscriber(subscriber))
         subscriber = participant.create_subscriber(
             fastdds.SUBSCRIBER_QOS_DEFAULT, listnr, status_mask_2)
         assert(subscriber is not None)
         assert(subscriber.is_enabled())
         assert(status_mask_2 == subscriber.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_subscriber(subscriber))
 
     # Overload 3: Different status masks
@@ -447,7 +447,7 @@ def test_create_subscriber_with_profile(participant):
     qos = subscriber.get_qos()
     assert('partition_name_b' == qos.partition()[0])
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
     # Overload 2
@@ -458,7 +458,7 @@ def test_create_subscriber_with_profile(participant):
     qos = subscriber.get_qos()
     assert('partition_name_b' == qos.partition()[0])
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -472,7 +472,7 @@ def test_create_subscriber_with_profile(participant):
         qos = subscriber.get_qos()
         assert('partition_name_b' == qos.partition()[0])
         assert(status_mask_1 == subscriber.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_subscriber(subscriber))
         subscriber = participant.create_subscriber_with_profile(
             'test_subscriber_profile', listnr, status_mask_2)
@@ -481,7 +481,7 @@ def test_create_subscriber_with_profile(participant):
         qos = subscriber.get_qos()
         assert('partition_name_b' == qos.partition()[0])
         assert(status_mask_2 == subscriber.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_subscriber(subscriber))
 
     # Overload 3: Different status masks
@@ -567,7 +567,7 @@ def test_create_and_delete_topic(participant):
     assert(topic is None)
 
     # Now register the type
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 
     # Overload 1 - Success
@@ -576,7 +576,7 @@ def test_create_and_delete_topic(participant):
     assert(topic is not None)
     assert(topic.is_enabled())
     assert(fastdds.StatusMask.all() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
 
     # Overload 2
@@ -586,7 +586,7 @@ def test_create_and_delete_topic(participant):
     assert(topic is not None)
     assert(topic.is_enabled())
     assert(fastdds.StatusMask.all() == topic.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -599,7 +599,7 @@ def test_create_and_delete_topic(participant):
         assert(topic is not None)
         assert(topic.is_enabled())
         assert(status_mask_1 == topic.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_topic(topic))
         topic = participant.create_topic(
             "Complete", test_type.get_type_name(),
@@ -607,7 +607,7 @@ def test_create_and_delete_topic(participant):
         assert(topic is not None)
         assert(topic.is_enabled())
         assert(status_mask_2 == topic.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.delete_topic(topic))
 
     # Overload 3: Different status masks
@@ -680,7 +680,7 @@ def test_delete_contained_entities(participant):
             fastdds.SUBSCRIBER_QOS_DEFAULT)
     assert(subscriber is not None)
     test_type = fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
     topic = participant.create_topic(
             "Complete", test_type.get_type_name(), fastdds.TOPIC_QOS_DEFAULT)
@@ -688,10 +688,10 @@ def test_delete_contained_entities(participant):
 
     # Cannot delete participant without deleting its contained entities
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+    assert(fastdds.RETCODE_PRECONDITION_NOT_MET ==
            factory.delete_participant(participant))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_contained_entities())
 
 
@@ -702,12 +702,12 @@ def test_enable(not_autoenable_factory, participant):
     - DomainParticipant::is_enabled
     """
     assert(not participant.is_enabled())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.enable())
     assert(participant.is_enabled())
     factory_qos = fastdds.DomainParticipantFactoryQos()
     factory_qos.entity_factory().autoenable_created_entities = True
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            not_autoenable_factory.set_qos(factory_qos))
 
 
@@ -717,7 +717,7 @@ def test_find_topic(participant):
     - DomainParticipant::find_topic
     """
     test_type = fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 
     topic = participant.create_topic(
@@ -727,10 +727,10 @@ def test_find_topic(participant):
     topic_copy = participant.find_topic("Complete", fastdds.Duration_t(1, 0))
     assert(topic.get_type_name() == topic_copy.get_type_name())
     assert(topic.get_name() == topic_copy.get_name())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic_copy))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
 
 
@@ -756,10 +756,10 @@ def test_get_discovered_participants(participant):
     assert(participant2 is not None)
 
     ihs = fastdds.InstanceHandleVector()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            participant.get_discovered_participants(ihs))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant2))
 
 
@@ -776,7 +776,7 @@ def test_get_domain_id():
 
     assert(32 == participant.get_domain_id())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -816,7 +816,7 @@ def test_get_set_listener(participant):
     # Overload 1
     listener = DomainParticipantListener()
     assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.set_listener(listener))
     assert(participant.get_listener() == listener)
     assert(fastdds.StatusMask.all() == participant.get_status_mask())
@@ -827,13 +827,13 @@ def test_get_set_listener(participant):
         """
         listener = DomainParticipantListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.set_listener(listener, status_mask_1))
         assert(participant.get_listener() == listener)
         assert(status_mask_1 == participant.get_status_mask())
         listener = DomainParticipantListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                participant.set_listener(listener, status_mask_2))
         assert(participant.get_listener() == listener)
         assert(status_mask_2 == participant.get_status_mask())
@@ -915,16 +915,16 @@ def test_get_set_qos(participant):
     - DomainParticipant::set_qos
     """
     qos = fastdds.DomainParticipantQos()
-    assert(fastdds.ReturnCode_t.RETCODE_OK == participant.get_qos(qos))
+    assert(fastdds.RETCODE_OK == participant.get_qos(qos))
     qos.user_data().push_back(1)
     qos.user_data().push_back(2)
     assert(2 == len(qos.user_data()))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.set_qos(qos))
 
     qos2 = fastdds.DomainParticipantQos()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.get_qos(qos2))
     assert(2 == len(qos2.user_data()))
     assert(1 == qos2.user_data()[0])
@@ -938,7 +938,7 @@ def test_ignore_participant(participant):
     """
     ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.ignore_participant(ih))
 
 def test_ignore_publication(participant):
@@ -948,7 +948,7 @@ def test_ignore_publication(participant):
     """
     ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            participant.ignore_publication(ih))
 
 
@@ -959,7 +959,7 @@ def test_ignore_subscription(participant):
     """
     ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            participant.ignore_subscription(ih))
 
 
@@ -970,7 +970,7 @@ def test_ignore_topic(participant):
     """
     ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            participant.ignore_topic(ih))
 
 
@@ -980,7 +980,7 @@ def test_lookup_topicdescription(participant):
     - DomainParticipant::lookup_topicdescription
     """
     test_type = fastdds.TypeSupport(pytest.dds_type.CompleteTestTypePubSubType())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.register_type(test_type, test_type.get_type_name()))
 
     topic = participant.create_topic(
@@ -992,7 +992,7 @@ def test_lookup_topicdescription(participant):
     assert(topic.get_type_name() == topic_desc.get_type_name())
     assert(topic.get_name() == topic_desc.get_name())
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
 
 
@@ -1008,7 +1008,7 @@ def test_listener_ownership():
     participant = factory.create_participant(
             0, fastdds.PARTICIPANT_QOS_DEFAULT)
     time.sleep(1)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant2))

@@ -72,14 +72,14 @@ def datawriter(participant, topic, publisher, datawriter_qos):
 
     yield datawriter
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -107,7 +107,7 @@ def test_assert_liveliness(manual_liveliness_datawriter_qos, datawriter):
     This test checks:
     - DataWriter::assert_liveliness
     """
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.assert_liveliness())
 
 
@@ -119,7 +119,7 @@ def test_clear_history(keep_all_datawriter_qos, datawriter):
     sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(4)
     assert(datawriter.write(sample))
-    assert([fastdds.ReturnCode_t.RETCODE_OK, 1] ==
+    assert([fastdds.RETCODE_OK, 1] ==
            datawriter.clear_history())
 
 
@@ -140,9 +140,9 @@ def test_dispose(test_keyed_type, datawriter):
     ih2 = datawriter.register_instance(sample2)
     assert(fastdds.c_InstanceHandle_Unknown != ih2)
     assert(ih2 != ih)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.dispose(sample, ih))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.dispose(sample2, ih2))
 
     # Overload 2
@@ -153,7 +153,7 @@ def test_dispose(test_keyed_type, datawriter):
     timestamp.seconds = now.second
     ih = datawriter.register_instance_w_timestamp(sample, timestamp)
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.dispose_w_timestamp(sample, ih, timestamp))
 
 
@@ -188,39 +188,39 @@ def test_get_key_value(test_keyed_type, datawriter):
 
     # Check wrong handle
     test_sample = pytest.dds_type.KeyedCompleteTestType()
-    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+    assert(fastdds.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(test_sample, fastdds.c_InstanceHandle_Unknown))
 
     # Check wrong sample
-    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+    assert(fastdds.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(None, ih))
 
     # Check correct case
     test_sample = pytest.dds_type.KeyedCompleteTestType()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_key_value(test_sample, ih))
     assert(test_sample.id() == sample.id());
 
     # Calling get_key_value on an unregistered instance should fail
     test_sample = pytest.dds_type.KeyedCompleteTestType()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.unregister_instance(sample, ih))
-    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+    assert(fastdds.RETCODE_BAD_PARAMETER ==
            datawriter.get_key_value(test_sample, ih))
 
     # Calling get_key_value with a valid instance should work
     test_sample = pytest.dds_type.KeyedCompleteTestType()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.write(sample, fastdds.c_InstanceHandle_Unknown))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_key_value(test_sample, ih))
     assert(test_sample.id() == sample.id());
 
     # Calling get_key_value on a disposed instance should work
     test_sample = pytest.dds_type.KeyedCompleteTestType()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.dispose(sample, ih))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_key_value(test_sample, ih))
     assert(test_sample.id() == sample.id());
 
@@ -231,7 +231,7 @@ def test_get_sending_locators(datawriter):
     - DataWriter::get_sending_locators
     """
     locator_list = fastdds.LocatorList()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_sending_locators(locator_list))
     assert(0 < locator_list.size())
 
@@ -248,7 +248,7 @@ def test_get_set_listener(datawriter):
     # Overload 1
     listener = DataWriterListener()
     assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.set_listener(listener))
     assert(datawriter.get_listener() == listener)
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
@@ -259,13 +259,13 @@ def test_get_set_listener(datawriter):
         """
         listener = DataWriterListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                datawriter.set_listener(listener, status_mask_1))
         assert(datawriter.get_listener() == listener)
         assert(status_mask_1 == datawriter.get_status_mask())
         listener = DataWriterListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                datawriter.set_listener(listener, status_mask_2))
         assert(datawriter.get_listener() == listener)
         assert(status_mask_2 == datawriter.get_status_mask())
@@ -337,7 +337,7 @@ def test_get_liveliness_lost_status(datawriter):
     - DataWriter::get_liveliness_lost_status
     """
     status = fastdds.LivelinessLostStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_liveliness_lost_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -350,7 +350,7 @@ def test_get_matched_subscription_data(datawriter):
     """
     sub_data = fastdds.SubscriptionBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            datawriter.get_matched_subscription_data(sub_data, ih))
 
 
@@ -360,7 +360,7 @@ def test_get_matched_subscriptions(datawriter):
     - DataWriter::get_matched_subscriptions
     """
     ihs = fastdds.InstanceHandleVector()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            datawriter.get_matched_subscriptions(ihs))
 
 
@@ -370,7 +370,7 @@ def test_get_offered_deadline_missed_status(datawriter):
     - DataWriter::get_offered_deadline_missed_status
     """
     status = fastdds.OfferedDeadlineMissedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_offered_deadline_missed_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -383,7 +383,7 @@ def test_get_offered_incompatible_qos_status(datawriter):
     - DataWriter::get_offered_deadline_missed_status
     """
     status = fastdds.OfferedIncompatibleQosStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_offered_incompatible_qos_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -402,7 +402,7 @@ def test_get_publication_matched_status(datawriter):
     - DataWriter::get_publication_matched_status
     """
     status = fastdds.PublicationMatchedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.get_publication_matched_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -469,11 +469,11 @@ def test_register_instance(test_keyed_type, datawriter):
     ih2 = datawriter.register_instance(sample2)
     assert(fastdds.c_InstanceHandle_Unknown != ih2)
     assert(ih2 != ih)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.unregister_instance(sample, ih))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.unregister_instance(sample2, ih2))
-    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+    assert(fastdds.RETCODE_PRECONDITION_NOT_MET ==
            datawriter.unregister_instance(
                sample, fastdds.c_InstanceHandle_Unknown))
 
@@ -485,7 +485,7 @@ def test_register_instance(test_keyed_type, datawriter):
     timestamp.seconds = now.second
     ih = datawriter.register_instance_w_timestamp(sample, timestamp)
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.unregister_instance_w_timestamp(sample, ih, timestamp))
 
 
@@ -498,13 +498,13 @@ def test_wait_for_acknowledgments(test_keyed_type, datawriter):
     sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
     assert(datawriter.write(sample))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.wait_for_acknowledgments(fastdds.Duration_t(1, 0)))
 
     # Overload 2
     ih = datawriter.register_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown != ih)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.wait_for_acknowledgments(
                sample, ih, fastdds.Duration_t(1, 0)))
 
@@ -536,11 +536,11 @@ def test_write(test_keyed_type, datawriter):
     sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(1)
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.write(sample, ih))
     ih = fastdds.InstanceHandle_t()
     ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16)
-    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+    assert(fastdds.RETCODE_PRECONDITION_NOT_MET ==
            datawriter.write(sample, ih))
 
     # Overload 4
@@ -550,7 +550,7 @@ def test_write(test_keyed_type, datawriter):
     now = datetime.datetime.now().time()
     timestamp = fastdds.Time_t()
     timestamp.seconds = now.second
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.write_w_timestamp(sample, ih, timestamp))
 
 def test_listener_ownership(participant, reader_participant, topic,
@@ -566,19 +566,19 @@ def test_listener_ownership(participant, reader_participant, topic,
                 reader_topic, fastdds.DATAREADER_QOS_DEFAULT)
     time.sleep(1)
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            reader_participant.delete_topic(reader_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            reader_participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(reader_participant))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))

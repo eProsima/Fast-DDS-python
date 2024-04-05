@@ -43,12 +43,12 @@ def publisher(participant, topic):
 
     yield publisher
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -88,9 +88,9 @@ def test_coherent_changes(publisher):
     - Publisher::begin_coherent_changes
     - Publisher::end_coherent_changes
     """
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            publisher.begin_coherent_changes())
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            publisher.end_coherent_changes())
 
 
@@ -112,7 +112,7 @@ def test_create_datawriter(topic, publisher):
     assert(datawriter is not None)
     assert(datawriter.is_enabled())
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
     # Overload 2
@@ -121,7 +121,7 @@ def test_create_datawriter(topic, publisher):
     assert(datawriter is not None)
     assert(datawriter.is_enabled())
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -133,14 +133,14 @@ def test_create_datawriter(topic, publisher):
         assert(datawriter is not None)
         assert(datawriter.is_enabled())
         assert(status_mask_1 == datawriter.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                publisher.delete_datawriter(datawriter))
         datawriter = publisher.create_datawriter(
             topic, fastdds.DATAWRITER_QOS_DEFAULT, listnr, status_mask_2)
         assert(datawriter is not None)
         assert(datawriter.is_enabled())
         assert(status_mask_2 == datawriter.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                publisher.delete_datawriter(datawriter))
 
     # Overload 3: Different status masks
@@ -231,7 +231,7 @@ def test_create_datawriter_with_profile(topic, publisher):
     assert(fastdds.VOLATILE_DURABILITY_QOS ==
            qos.durability().kind)
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
     # Overload 2
@@ -243,7 +243,7 @@ def test_create_datawriter_with_profile(topic, publisher):
     assert(fastdds.VOLATILE_DURABILITY_QOS ==
            qos.durability().kind)
     assert(fastdds.StatusMask.all() == datawriter.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -258,7 +258,7 @@ def test_create_datawriter_with_profile(topic, publisher):
         assert(fastdds.VOLATILE_DURABILITY_QOS ==
                qos.durability().kind)
         assert(status_mask_1 == datawriter.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                publisher.delete_datawriter(datawriter))
         datawriter = publisher.create_datawriter_with_profile(
                 topic, 'test_datawriter_profile', listnr, status_mask_2)
@@ -268,7 +268,7 @@ def test_create_datawriter_with_profile(topic, publisher):
         assert(fastdds.VOLATILE_DURABILITY_QOS ==
                qos.durability().kind)
         assert(status_mask_2 == datawriter.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                publisher.delete_datawriter(datawriter))
 
     # Overload 3: Different status masks
@@ -343,10 +343,10 @@ def test_deleted_contained_entities(participant, topic, publisher):
     assert(datawriter is not None)
 
     # Cannot delete publisher with datawriters
-    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+    assert(fastdds.RETCODE_PRECONDITION_NOT_MET ==
            participant.delete_publisher(publisher))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_contained_entities())
     assert(publisher.has_datawriters() is False)
 
@@ -358,7 +358,7 @@ def test_enable(not_autoenable_participant_qos, publisher):
     - Publisher::is_enabled
     """
     assert(not publisher.is_enabled())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.enable())
     assert(publisher.is_enabled())
 
@@ -379,7 +379,7 @@ def test_get_datawriters(topic, publisher):
     assert(1 == len(datawriters))
     assert(datawriter == datawriters[0])
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
 
@@ -422,11 +422,11 @@ def test_get_set_qos(publisher):
 
     qos.partition().push_back('PartitionTest')
     qos.partition().push_back('PartitionTest2')
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.set_qos(qos))
 
     qos2 = fastdds.PublisherQos()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.get_qos(qos2))
 
     assert(2 == len(qos.partition()))
@@ -446,7 +446,7 @@ def test_get_set_listener(publisher):
     # Overload 1
     listener = PublisherListener()
     assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.set_listener(listener))
     assert(publisher.get_listener() == listener)
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
@@ -457,13 +457,13 @@ def test_get_set_listener(publisher):
         """
         listener = PublisherListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                publisher.set_listener(listener, status_mask_1))
         assert(publisher.get_listener() == listener)
         assert(status_mask_1 == publisher.get_status_mask())
         listener = PublisherListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                publisher.set_listener(listener, status_mask_2))
         assert(publisher.get_listener() == listener)
         assert(status_mask_2 == publisher.get_status_mask())
@@ -542,7 +542,7 @@ def test_lookup_datawriter(topic, publisher):
     assert(datawriter2 is not None)
     assert(datawriter == datawriter2)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
 
@@ -552,9 +552,9 @@ def test_suspend_publications(publisher):
     - Publisher::suspend_publications
     - Publisher::resume_publications
     """
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            publisher.suspend_publications())
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            publisher.resume_publications())
 
 
@@ -563,7 +563,7 @@ def test_wait_for_acknowlegments(publisher):
     This test checks:
     - Publisher::wait_for_acknowledgments
     """
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.wait_for_acknowledgments(fastdds.Duration_t(3, 0)))
     # TODO Test a timeout
 
@@ -583,19 +583,19 @@ def test_listener_ownership(participant, reader_participant, topic,
                 reader_topic, fastdds.DATAREADER_QOS_DEFAULT)
     time.sleep(1)
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            reader_participant.delete_topic(reader_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            reader_participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(reader_participant))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
