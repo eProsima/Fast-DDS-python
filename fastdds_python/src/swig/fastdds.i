@@ -108,6 +108,12 @@ namespace builtin {
     // Just declaring the namespace
 
 } // namespace builtin
+
+namespace xtypes {
+
+    // Just declaring the namespace
+
+} // namespace xtypes
 } // namespace dds
 } // namespace fastdds
 } // namespace eprosima
@@ -151,7 +157,6 @@ namespace builtin {
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
 %include "fastdds/rtps/common/WriteParams.i"
-%include "fastrtps/types/TypesBase.i"
 
 /*
 %include "fastdds/rtps/common/SerializedPayload.i"
@@ -429,6 +434,7 @@ namespace builtin {
 */
 
 %include "fastdds/dds/common/InstanceHandle.i"
+%include "fastdds/dds/core/ReturnCode.i"
 %include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/core/policy/ParameterTypes.i"
 %include "fastdds/dds/core/policy/QosPolicies.i"
@@ -449,6 +455,7 @@ namespace builtin {
 %include "fastdds/dds/core/UserAllocatedSequence.i"
 %include "fastdds/dds/core/LoanableSequence.i"
 %include "fastdds/dds/core/LoanableArray.i"
+%include "fastdds/dds/core/Types.i"
 %include "fastdds/dds/core/policy/ReaderDataLifecycleQosPolicy.i"
 %include "fastdds/dds/core/policy/WriterDataLifecycleQosPolicy.i"
 %include "fastdds/dds/core/status/LivelinessChangedStatus.i"

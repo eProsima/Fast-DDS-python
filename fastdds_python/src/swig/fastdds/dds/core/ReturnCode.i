@@ -1,4 +1,4 @@
-// Copyright 2022 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+// Copyright 2023 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,7 +13,10 @@
 // limitations under the License.
 
 %{
-#include "fastdds/dds/builtin/typelookup/TypeLookupReplyListener.hpp"
+#include "fastdds/dds/core/ReturnCode.hpp"
 %}
 
-%include "fastdds/dds/builtin/typelookup/TypeLookupReplyListener.hpp"
+
+%include "fastdds/dds/core/detail/DDSReturnCode.hpp"
+%include "fastdds/dds/core/detail/DDSSecurityReturnCode.hpp"
+%include "fastdds/dds/core/ReturnCode.hpp"

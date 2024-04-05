@@ -72,14 +72,14 @@ def datareader(participant, topic, subscriber, datareader_qos):
 
     yield datareader
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -109,14 +109,14 @@ def datawriter(writer_participant, writer_topic, publisher):
 
     yield datawriter
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_topic(writer_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_publisher(publisher))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(writer_participant))
 
 
@@ -135,8 +135,8 @@ def fill_keyed_complete_test_type(data, cdr_version):
     struct_type1.float_field(1.0)
     struct_type1.double_field(1200.5)
     struct_type1.bool_field(False)
-    struct_type1.enum_field(pytest.dds_type.RED)
-    struct_type1.enum2_field(pytest.dds_type.STONE)
+    struct_type1.enum_field(pytest.dds_type.Color_RED)
+    struct_type1.enum2_field(pytest.dds_type.Material_STONE)
     struct_type2 = pytest.dds_type.StructType()
     struct_type2.char_field('\x02')
     struct_type2.uint8_field(255)
@@ -149,8 +149,8 @@ def fill_keyed_complete_test_type(data, cdr_version):
     struct_type2.float_field(2.0)
     struct_type2.double_field(1202.5)
     struct_type2.bool_field(True)
-    struct_type2.enum_field(pytest.dds_type.BLUE)
-    struct_type2.enum2_field(pytest.dds_type.PLASTIC)
+    struct_type2.enum_field(pytest.dds_type.Color_BLUE)
+    struct_type2.enum2_field(pytest.dds_type.Material_PLASTIC)
     struct_type3 = pytest.dds_type.StructType()
     struct_type3.char_field('\x03')
     struct_type3.uint8_field(1)
@@ -163,8 +163,8 @@ def fill_keyed_complete_test_type(data, cdr_version):
     struct_type3.float_field(3.0)
     struct_type3.double_field(3.5)
     struct_type3.bool_field(False)
-    struct_type3.enum_field(pytest.dds_type.MAGENTA)
-    struct_type3.enum2_field(pytest.dds_type.METAL)
+    struct_type3.enum_field(pytest.dds_type.Color_MAGENTA)
+    struct_type3.enum2_field(pytest.dds_type.Material_METAL)
 
     data.char_field('\x01')
     data.uint8_field(254)
@@ -178,8 +178,8 @@ def fill_keyed_complete_test_type(data, cdr_version):
     data.double_field(1202.5)
     data.bool_field(True)
     data.string_field("Test string")
-    data.enum_field(pytest.dds_type.MAGENTA)
-    data.enum2_field(pytest.dds_type.METAL)
+    data.enum_field(pytest.dds_type.Color_MAGENTA)
+    data.enum2_field(pytest.dds_type.Material_METAL)
     data.struct_field().char_field('\x01')
     data.struct_field().uint8_field(254)
     data.struct_field().int16_field(-10)
@@ -192,8 +192,8 @@ def fill_keyed_complete_test_type(data, cdr_version):
     data.struct_field().double_field(1202.5)
     data.struct_field().bool_field(False)
     data.struct_field().string_field("Test string")
-    data.struct_field().enum_field(pytest.dds_type.MAGENTA)
-    data.struct_field().enum2_field(pytest.dds_type.METAL)
+    data.struct_field().enum_field(pytest.dds_type.Color_MAGENTA)
+    data.struct_field().enum2_field(pytest.dds_type.Material_METAL)
     if (cdr_version == 'v1'):
         data.char_opt_field('\x01')
         data.uint8_opt_field(254)
@@ -207,7 +207,7 @@ def fill_keyed_complete_test_type(data, cdr_version):
         data.double_opt_field(1202.5)
         data.bool_opt_field(True)
         data.string_opt_field("Test string")
-        data.enum_opt_field(pytest.dds_type.MAGENTA)
+        data.enum_opt_field(pytest.dds_type.Color_MAGENTA)
     else:
         data.char_opt_field().set_value('\x01')
         data.uint8_opt_field().set_value(254)
@@ -221,7 +221,7 @@ def fill_keyed_complete_test_type(data, cdr_version):
         data.double_opt_field().set_value(1202.5)
         data.bool_opt_field().set_value(True)
         data.string_opt_field().set_value("Test string")
-        data.enum_opt_field().set_value(pytest.dds_type.MAGENTA)
+        data.enum_opt_field().set_value(pytest.dds_type.Color_MAGENTA)
     struct_field = pytest.dds_type.StructType()
     struct_field.char_field('\x01')
     struct_field.uint8_field(254)
@@ -235,8 +235,8 @@ def fill_keyed_complete_test_type(data, cdr_version):
     struct_field.double_field(1202.5)
     struct_field.bool_field(True)
     struct_field.string_field("Test string")
-    struct_field.enum_field(pytest.dds_type.MAGENTA)
-    struct_field.enum2_field(pytest.dds_type.METAL)
+    struct_field.enum_field(pytest.dds_type.Color_MAGENTA)
+    struct_field.enum2_field(pytest.dds_type.Material_METAL)
     if (cdr_version == 'v1'):
         data.struct_opt_field(struct_field)
     else:
@@ -252,10 +252,10 @@ def fill_keyed_complete_test_type(data, cdr_version):
     data.array_float_field([1.0, 2.0, 3.0])
     data.array_double_field([1200.5, 1202.5, 3.5])
     data.array_bool_field([False, True, False])
-    data.array_enum_field([pytest.dds_type.RED, pytest.dds_type.BLUE, pytest.dds_type.MAGENTA])
-    data.array_enum2_field()[0] = pytest.dds_type.METAL
-    data.array_enum2_field()[1] = pytest.dds_type.STONE
-    data.array_enum2_field()[2] = pytest.dds_type.PLASTIC
+    data.array_enum_field([pytest.dds_type.Color_RED, pytest.dds_type.Color_BLUE, pytest.dds_type.Color_MAGENTA])
+    data.array_enum2_field()[0] = pytest.dds_type.Material_METAL
+    data.array_enum2_field()[1] = pytest.dds_type.Material_STONE
+    data.array_enum2_field()[2] = pytest.dds_type.Material_PLASTIC
     data.array_struct_field([struct_type1, struct_type2, struct_type3])
     data.bounded_sequence_char_field(['\x01', '\x02', '\x03'])
     data.bounded_sequence_uint8_field([254, 255, 1])
@@ -268,10 +268,10 @@ def fill_keyed_complete_test_type(data, cdr_version):
     data.bounded_sequence_float_field([1.0, 2.0, 3.0])
     data.bounded_sequence_double_field([1200.5, 1202.5, 3.5])
     data.bounded_sequence_bool_field([False, True, False])
-    data.bounded_sequence_enum_field([pytest.dds_type.RED, pytest.dds_type.BLUE, pytest.dds_type.MAGENTA])
-    data.bounded_sequence_enum2_field().push_back(pytest.dds_type.METAL)
-    data.bounded_sequence_enum2_field().push_back(pytest.dds_type.STONE)
-    data.bounded_sequence_enum2_field().push_back(pytest.dds_type.PLASTIC)
+    data.bounded_sequence_enum_field([pytest.dds_type.Color_RED, pytest.dds_type.Color_BLUE, pytest.dds_type.Color_MAGENTA])
+    data.bounded_sequence_enum2_field().push_back(pytest.dds_type.Material_METAL)
+    data.bounded_sequence_enum2_field().push_back(pytest.dds_type.Material_STONE)
+    data.bounded_sequence_enum2_field().push_back(pytest.dds_type.Material_PLASTIC)
     data.bounded_sequence_struct_field([struct_type1, struct_type2, struct_type3])
     data.unbounded_sequence_char_field(['\x01', '\x02', '\x03'])
     data.unbounded_sequence_uint8_field([254, 255, 1])
@@ -284,10 +284,10 @@ def fill_keyed_complete_test_type(data, cdr_version):
     data.unbounded_sequence_float_field([1.0, 2.0, 3.0])
     data.unbounded_sequence_double_field([1200.5, 1202.5, 3.5])
     data.unbounded_sequence_bool_field([False, True, False])
-    data.unbounded_sequence_enum_field([pytest.dds_type.RED, pytest.dds_type.BLUE, pytest.dds_type.MAGENTA])
-    data.unbounded_sequence_enum2_field().push_back(pytest.dds_type.METAL)
-    data.unbounded_sequence_enum2_field().push_back(pytest.dds_type.STONE)
-    data.unbounded_sequence_enum2_field().push_back(pytest.dds_type.PLASTIC)
+    data.unbounded_sequence_enum_field([pytest.dds_type.Color_RED, pytest.dds_type.Color_BLUE, pytest.dds_type.Color_MAGENTA])
+    data.unbounded_sequence_enum2_field().push_back(pytest.dds_type.Material_METAL)
+    data.unbounded_sequence_enum2_field().push_back(pytest.dds_type.Material_STONE)
+    data.unbounded_sequence_enum2_field().push_back(pytest.dds_type.Material_PLASTIC)
     data.unbounded_sequence_struct_field([struct_type1, struct_type2, struct_type3])
 
 
@@ -305,8 +305,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.double_field() == 1202.5)
     assert(data.bool_field() == True)
     assert(data.string_field() == "Test string")
-    assert(data.enum_field() == pytest.dds_type.MAGENTA)
-    assert(data.enum2_field() == pytest.dds_type.METAL)
+    assert(data.enum_field() == pytest.dds_type.Color_MAGENTA)
+    assert(data.enum2_field() == pytest.dds_type.Material_METAL)
     assert(data.struct_field().char_field() == '\x01')
     assert(data.struct_field().uint8_field() == 254)
     assert(data.struct_field().int16_field() == -10)
@@ -319,8 +319,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.struct_field().double_field() == 1202.5)
     assert(data.struct_field().bool_field() == False)
     assert(data.struct_field().string_field() == "Test string")
-    assert(data.struct_field().enum_field() == pytest.dds_type.MAGENTA)
-    assert(data.struct_field().enum2_field() == pytest.dds_type.METAL)
+    assert(data.struct_field().enum_field() == pytest.dds_type.Color_MAGENTA)
+    assert(data.struct_field().enum2_field() == pytest.dds_type.Material_METAL)
     if cdr_version == 'v1':
         assert(data.char_opt_field() == '\x01')
         assert(data.uint8_opt_field() == 254)
@@ -334,7 +334,7 @@ def check_keyed_complete_test_type(data, cdr_version):
         assert(data.double_opt_field() == 1202.5)
         assert(data.bool_opt_field() == True)
         assert(data.string_opt_field() == "Test string")
-        assert(data.enum_opt_field() == pytest.dds_type.MAGENTA)
+        assert(data.enum_opt_field() == pytest.dds_type.Color_MAGENTA)
     else:
         assert(data.char_opt_field().has_value())
         assert(data.char_opt_field().get_value() == '\x01')
@@ -361,7 +361,7 @@ def check_keyed_complete_test_type(data, cdr_version):
         assert(data.string_opt_field().has_value())
         assert(data.string_opt_field().get_value() == "Test string")
         assert(data.enum_opt_field().has_value())
-        assert(data.enum_opt_field().get_value() == pytest.dds_type.MAGENTA)
+        assert(data.enum_opt_field().get_value() == pytest.dds_type.Color_MAGENTA)
         assert(not data.enum2_opt_field().has_value())
         assert(data.struct_opt_field().has_value())
     assert(data.struct_opt_field().char_field() == '\x01')
@@ -376,8 +376,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.struct_opt_field().double_field() == 1202.5)
     assert(data.struct_opt_field().bool_field() == True)
     assert(data.struct_opt_field().string_field() == "Test string")
-    assert(data.struct_opt_field().enum_field() == pytest.dds_type.MAGENTA)
-    assert(data.struct_opt_field().enum2_field() == pytest.dds_type.METAL)
+    assert(data.struct_opt_field().enum_field() == pytest.dds_type.Color_MAGENTA)
+    assert(data.struct_opt_field().enum2_field() == pytest.dds_type.Material_METAL)
     assert(data.array_char_field()[0] == '\x01')
     assert(data.array_char_field()[1] == '\x02')
     assert(data.array_char_field()[2] == '\x03')
@@ -411,12 +411,12 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.array_bool_field()[0] == False)
     assert(data.array_bool_field()[1] == True)
     assert(data.array_bool_field()[2] == False)
-    assert(data.array_enum_field()[0] == pytest.dds_type.RED)
-    assert(data.array_enum_field()[1] == pytest.dds_type.BLUE)
-    assert(data.array_enum_field()[2] == pytest.dds_type.MAGENTA)
-    assert(data.array_enum2_field()[0] == pytest.dds_type.METAL)
-    assert(data.array_enum2_field()[1] == pytest.dds_type.STONE)
-    assert(data.array_enum2_field()[2] == pytest.dds_type.PLASTIC)
+    assert(data.array_enum_field()[0] == pytest.dds_type.Color_RED)
+    assert(data.array_enum_field()[1] == pytest.dds_type.Color_BLUE)
+    assert(data.array_enum_field()[2] == pytest.dds_type.Color_MAGENTA)
+    assert(data.array_enum2_field()[0] == pytest.dds_type.Material_METAL)
+    assert(data.array_enum2_field()[1] == pytest.dds_type.Material_STONE)
+    assert(data.array_enum2_field()[2] == pytest.dds_type.Material_PLASTIC)
     assert(data.array_struct_field()[0].char_field() == '\x01')
     assert(data.array_struct_field()[0].uint8_field() == 254)
     assert(data.array_struct_field()[0].int16_field() == -10)
@@ -428,8 +428,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.array_struct_field()[0].float_field() == 1.0)
     assert(data.array_struct_field()[0].double_field() == 1200.5)
     assert(data.array_struct_field()[0].bool_field() == False)
-    assert(data.array_struct_field()[0].enum_field() == pytest.dds_type.RED)
-    assert(data.array_struct_field()[0].enum2_field() == pytest.dds_type.STONE)
+    assert(data.array_struct_field()[0].enum_field() == pytest.dds_type.Color_RED)
+    assert(data.array_struct_field()[0].enum2_field() == pytest.dds_type.Material_STONE)
     assert(data.array_struct_field()[1].char_field() == '\x02')
     assert(data.array_struct_field()[1].uint8_field() == 255)
     assert(data.array_struct_field()[1].int16_field() == 10)
@@ -441,8 +441,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.array_struct_field()[1].float_field() == 2.0)
     assert(data.array_struct_field()[1].double_field() == 1202.5)
     assert(data.array_struct_field()[1].bool_field() == True)
-    assert(data.array_struct_field()[1].enum_field() == pytest.dds_type.BLUE)
-    assert(data.array_struct_field()[1].enum2_field() == pytest.dds_type.PLASTIC)
+    assert(data.array_struct_field()[1].enum_field() == pytest.dds_type.Color_BLUE)
+    assert(data.array_struct_field()[1].enum2_field() == pytest.dds_type.Material_PLASTIC)
     assert(data.array_struct_field()[2].char_field() == '\x03')
     assert(data.array_struct_field()[2].uint8_field() == 1)
     assert(data.array_struct_field()[2].int16_field() == -20)
@@ -454,8 +454,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.array_struct_field()[2].float_field() == 3.0)
     assert(data.array_struct_field()[2].double_field() == 3.5)
     assert(data.array_struct_field()[2].bool_field() == False)
-    assert(data.array_struct_field()[2].enum_field() == pytest.dds_type.MAGENTA)
-    assert(data.array_struct_field()[2].enum2_field() == pytest.dds_type.METAL)
+    assert(data.array_struct_field()[2].enum_field() == pytest.dds_type.Color_MAGENTA)
+    assert(data.array_struct_field()[2].enum2_field() == pytest.dds_type.Material_METAL)
     assert(data.bounded_sequence_char_field().size() == 3)
     assert(data.bounded_sequence_char_field()[0] == '\x01')
     assert(data.bounded_sequence_char_field()[1] == '\x02')
@@ -501,13 +501,13 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.bounded_sequence_bool_field()[1] == True)
     assert(data.bounded_sequence_bool_field()[2] == False)
     assert(data.bounded_sequence_enum_field().size() == 3)
-    assert(data.bounded_sequence_enum_field()[0] == pytest.dds_type.RED)
-    assert(data.bounded_sequence_enum_field()[1] == pytest.dds_type.BLUE)
-    assert(data.bounded_sequence_enum_field()[2] == pytest.dds_type.MAGENTA)
+    assert(data.bounded_sequence_enum_field()[0] == pytest.dds_type.Color_RED)
+    assert(data.bounded_sequence_enum_field()[1] == pytest.dds_type.Color_BLUE)
+    assert(data.bounded_sequence_enum_field()[2] == pytest.dds_type.Color_MAGENTA)
     assert(data.bounded_sequence_enum2_field().size() == 3)
-    assert(data.bounded_sequence_enum2_field()[0] == pytest.dds_type.METAL)
-    assert(data.bounded_sequence_enum2_field()[1] == pytest.dds_type.STONE)
-    assert(data.bounded_sequence_enum2_field()[2] == pytest.dds_type.PLASTIC)
+    assert(data.bounded_sequence_enum2_field()[0] == pytest.dds_type.Material_METAL)
+    assert(data.bounded_sequence_enum2_field()[1] == pytest.dds_type.Material_STONE)
+    assert(data.bounded_sequence_enum2_field()[2] == pytest.dds_type.Material_PLASTIC)
     assert(data.bounded_sequence_struct_field().size() == 3)
     assert(data.bounded_sequence_struct_field()[0].char_field() == '\x01')
     assert(data.bounded_sequence_struct_field()[0].uint8_field() == 254)
@@ -520,8 +520,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.bounded_sequence_struct_field()[0].float_field() == 1.0)
     assert(data.bounded_sequence_struct_field()[0].double_field() == 1200.5)
     assert(data.bounded_sequence_struct_field()[0].bool_field() == False)
-    assert(data.bounded_sequence_struct_field()[0].enum_field() == pytest.dds_type.RED)
-    assert(data.bounded_sequence_struct_field()[0].enum2_field() == pytest.dds_type.STONE)
+    assert(data.bounded_sequence_struct_field()[0].enum_field() == pytest.dds_type.Color_RED)
+    assert(data.bounded_sequence_struct_field()[0].enum2_field() == pytest.dds_type.Material_STONE)
     assert(data.bounded_sequence_struct_field()[1].char_field() == '\x02')
     assert(data.bounded_sequence_struct_field()[1].uint8_field() == 255)
     assert(data.bounded_sequence_struct_field()[1].int16_field() == 10)
@@ -533,8 +533,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.bounded_sequence_struct_field()[1].float_field() == 2.0)
     assert(data.bounded_sequence_struct_field()[1].double_field() == 1202.5)
     assert(data.bounded_sequence_struct_field()[1].bool_field() == True)
-    assert(data.bounded_sequence_struct_field()[1].enum_field() == pytest.dds_type.BLUE)
-    assert(data.bounded_sequence_struct_field()[1].enum2_field() == pytest.dds_type.PLASTIC)
+    assert(data.bounded_sequence_struct_field()[1].enum_field() == pytest.dds_type.Color_BLUE)
+    assert(data.bounded_sequence_struct_field()[1].enum2_field() == pytest.dds_type.Material_PLASTIC)
     assert(data.bounded_sequence_struct_field()[2].char_field() == '\x03')
     assert(data.bounded_sequence_struct_field()[2].uint8_field() == 1)
     assert(data.bounded_sequence_struct_field()[2].int16_field() == -20)
@@ -546,8 +546,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.bounded_sequence_struct_field()[2].float_field() == 3.0)
     assert(data.bounded_sequence_struct_field()[2].double_field() == 3.5)
     assert(data.bounded_sequence_struct_field()[2].bool_field() == False)
-    assert(data.bounded_sequence_struct_field()[2].enum_field() == pytest.dds_type.MAGENTA)
-    assert(data.bounded_sequence_struct_field()[2].enum2_field() == pytest.dds_type.METAL)
+    assert(data.bounded_sequence_struct_field()[2].enum_field() == pytest.dds_type.Color_MAGENTA)
+    assert(data.bounded_sequence_struct_field()[2].enum2_field() == pytest.dds_type.Material_METAL)
     assert(data.unbounded_sequence_char_field().size() == 3)
     assert(data.unbounded_sequence_char_field()[0] == '\x01')
     assert(data.unbounded_sequence_char_field()[1] == '\x02')
@@ -593,13 +593,13 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.unbounded_sequence_bool_field()[1] == True)
     assert(data.unbounded_sequence_bool_field()[2] == False)
     assert(data.unbounded_sequence_enum_field().size() == 3)
-    assert(data.unbounded_sequence_enum_field()[0] == pytest.dds_type.RED)
-    assert(data.unbounded_sequence_enum_field()[1] == pytest.dds_type.BLUE)
-    assert(data.unbounded_sequence_enum_field()[2] == pytest.dds_type.MAGENTA)
+    assert(data.unbounded_sequence_enum_field()[0] == pytest.dds_type.Color_RED)
+    assert(data.unbounded_sequence_enum_field()[1] == pytest.dds_type.Color_BLUE)
+    assert(data.unbounded_sequence_enum_field()[2] == pytest.dds_type.Color_MAGENTA)
     assert(data.unbounded_sequence_enum2_field().size() == 3)
-    assert(data.unbounded_sequence_enum2_field()[0] == pytest.dds_type.METAL)
-    assert(data.unbounded_sequence_enum2_field()[1] == pytest.dds_type.STONE)
-    assert(data.unbounded_sequence_enum2_field()[2] == pytest.dds_type.PLASTIC)
+    assert(data.unbounded_sequence_enum2_field()[0] == pytest.dds_type.Material_METAL)
+    assert(data.unbounded_sequence_enum2_field()[1] == pytest.dds_type.Material_STONE)
+    assert(data.unbounded_sequence_enum2_field()[2] == pytest.dds_type.Material_PLASTIC)
     assert(data.unbounded_sequence_struct_field().size() == 3)
     assert(data.unbounded_sequence_struct_field()[0].char_field() == '\x01')
     assert(data.unbounded_sequence_struct_field()[0].uint8_field() == 254)
@@ -612,8 +612,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.unbounded_sequence_struct_field()[0].float_field() == 1.0)
     assert(data.unbounded_sequence_struct_field()[0].double_field() == 1200.5)
     assert(data.unbounded_sequence_struct_field()[0].bool_field() == False)
-    assert(data.unbounded_sequence_struct_field()[0].enum_field() == pytest.dds_type.RED)
-    assert(data.unbounded_sequence_struct_field()[0].enum2_field() == pytest.dds_type.STONE)
+    assert(data.unbounded_sequence_struct_field()[0].enum_field() == pytest.dds_type.Color_RED)
+    assert(data.unbounded_sequence_struct_field()[0].enum2_field() == pytest.dds_type.Material_STONE)
     assert(data.unbounded_sequence_struct_field()[1].char_field() == '\x02')
     assert(data.unbounded_sequence_struct_field()[1].uint8_field() == 255)
     assert(data.unbounded_sequence_struct_field()[1].int16_field() == 10)
@@ -625,8 +625,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.unbounded_sequence_struct_field()[1].float_field() == 2.0)
     assert(data.unbounded_sequence_struct_field()[1].double_field() == 1202.5)
     assert(data.unbounded_sequence_struct_field()[1].bool_field() == True)
-    assert(data.unbounded_sequence_struct_field()[1].enum_field() == pytest.dds_type.BLUE)
-    assert(data.unbounded_sequence_struct_field()[1].enum2_field() == pytest.dds_type.PLASTIC)
+    assert(data.unbounded_sequence_struct_field()[1].enum_field() == pytest.dds_type.Color_BLUE)
+    assert(data.unbounded_sequence_struct_field()[1].enum2_field() == pytest.dds_type.Material_PLASTIC)
     assert(data.unbounded_sequence_struct_field()[2].char_field() == '\x03')
     assert(data.unbounded_sequence_struct_field()[2].uint8_field() == 1)
     assert(data.unbounded_sequence_struct_field()[2].int16_field() == -20)
@@ -638,8 +638,8 @@ def check_keyed_complete_test_type(data, cdr_version):
     assert(data.unbounded_sequence_struct_field()[2].float_field() == 3.0)
     assert(data.unbounded_sequence_struct_field()[2].double_field() == 3.5)
     assert(data.unbounded_sequence_struct_field()[2].bool_field() == False)
-    assert(data.unbounded_sequence_struct_field()[2].enum_field() == pytest.dds_type.MAGENTA)
-    assert(data.unbounded_sequence_struct_field()[2].enum2_field() == pytest.dds_type.METAL)
+    assert(data.unbounded_sequence_struct_field()[2].enum_field() == pytest.dds_type.Color_MAGENTA)
+    assert(data.unbounded_sequence_struct_field()[2].enum2_field() == pytest.dds_type.Material_METAL)
 
 
 def test_create_querycondition(datareader):
@@ -656,7 +656,7 @@ def test_create_querycondition(datareader):
     querycondition = datareader.create_querycondition(
                sv, vv, iv, "", qp)
     assert(querycondition is None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.delete_contained_entities())
 
 
@@ -673,7 +673,7 @@ def test_create_readcondition(datareader):
     readcondition = datareader.create_readcondition(
                sv, vv, iv)
     assert(readcondition is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.delete_readcondition(readcondition))
 
 
@@ -684,7 +684,7 @@ def test_get_first_untaken(transient_datareader_qos, datareader,
     - DataReader::get_first_untaken_info
     """
     info = fastdds.SampleInfo()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.get_first_untaken_info(info))
     qos = datareader.get_qos()
     assert(fastdds.TRANSIENT_LOCAL_DURABILITY_QOS == qos.durability().kind)
@@ -697,7 +697,7 @@ def test_get_first_untaken(transient_datareader_qos, datareader,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_first_untaken_info(info))
     assert(info.valid_data)
 
@@ -728,7 +728,7 @@ def test_get_key_value(test_keyed_type, datareader):
     sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(255)
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            datareader.get_key_value(sample, ih))
     assert(fastdds.c_InstanceHandle_Unknown == ih)
 
@@ -745,7 +745,7 @@ def test_get_set_listener(datareader):
     # Overload 1
     listener = DataReaderListener()
     assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.set_listener(listener))
     assert(datareader.get_listener() == listener)
     assert(fastdds.StatusMask.all() ==
@@ -757,13 +757,13 @@ def test_get_set_listener(datareader):
         """
         listener = DataReaderListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                datareader.set_listener(listener, status_mask_1))
         assert(datareader.get_listener() == listener)
         assert(status_mask_1 == datareader.get_status_mask())
         listener = DataReaderListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                datareader.set_listener(listener, status_mask_2))
         assert(datareader.get_listener() == listener)
         assert(status_mask_2 == datareader.get_status_mask())
@@ -835,7 +835,7 @@ def test_get_listening_locators(datareader):
     - DataReader::get_listening_locators
     """
     locator_list = fastdds.LocatorList()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_listening_locators(locator_list))
     assert(0 < locator_list.size())
 
@@ -846,7 +846,7 @@ def test_get_liveliness_changed_status(datareader):
     - DataReader::get_liveliness_changed_status
     """
     status = fastdds.LivelinessChangedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_liveliness_changed_status(status))
     assert(0 == status.alive_count)
     assert(0 == status.alive_count_change)
@@ -862,7 +862,7 @@ def test_get_matched_publication_data(datareader):
     """
     pub_data = fastdds.PublicationBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            datareader.get_matched_publication_data(pub_data, ih))
 
 
@@ -872,7 +872,7 @@ def test_get_matched_publications(datareader):
     - DataReader::get_matched_publications
     """
     ihs = fastdds.InstanceHandleVector()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            datareader.get_matched_publications(ihs))
 
 
@@ -882,7 +882,7 @@ def test_get_requested_deadline_missed_status(datareader):
     - DataReader::get_requested_deadline_missed_status
     """
     status = fastdds.RequestedDeadlineMissedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_requested_deadline_missed_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -895,7 +895,7 @@ def test_get_requested_incompatible_qos_status(datareader):
     - DataReader::get_requested_deadline_missed_status
     """
     status = fastdds.RequestedIncompatibleQosStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_requested_incompatible_qos_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -914,7 +914,7 @@ def test_get_sample_lost_status(datareader):
     - DataReader::get_sample_lost_status
     """
     status = fastdds.SampleLostStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_sample_lost_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -926,7 +926,7 @@ def test_get_sample_rejected_status(datareader):
     - DataReader::get_sample_rejected_status
     """
     status = fastdds.SampleRejectedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_sample_rejected_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -938,7 +938,7 @@ def test_get_subscription_matched_status(datareader):
     - DataReader::get_subscription_matched_status
     """
     status = fastdds.SubscriptionMatchedStatus()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.get_subscription_matched_status(status))
     assert(0 == status.total_count)
     assert(0 == status.total_count_change)
@@ -997,7 +997,7 @@ def test_is_sample_valid(transient_datareader_qos, datareader,
         fastdds.Duration_t(5, 0)))
     data = pytest.dds_type.CompleteTestType()
     info = fastdds.SampleInfo()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.read_next_sample(data, info))
     assert(datareader.is_sample_valid(data, info))
     assert(sample.int16_field() == data.int16_field())
@@ -1023,7 +1023,7 @@ def test_lookup_instance(transient_datareader_qos, test_keyed_type, datareader,
     # Test when instance is registered
     writer_ih = datawriter.register_instance(sample)
     assert(fastdds.c_InstanceHandle_Unknown != writer_ih)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datawriter.write(sample, writer_ih))
 
     assert(datareader.wait_for_unread_message(
@@ -1041,7 +1041,7 @@ def test_read(transient_datareader_qos, datareader,
     """
     data_seq = pytest.dds_type.CompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.read(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1055,7 +1055,7 @@ def test_read(transient_datareader_qos, datareader,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK == datareader.read(
+    assert(fastdds.RETCODE_OK == datareader.read(
         data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
@@ -1066,7 +1066,7 @@ def test_read(transient_datareader_qos, datareader,
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
     check_keyed_complete_test_type(data_seq[0], cdr_version)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
@@ -1080,7 +1080,7 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+    assert(fastdds.RETCODE_BAD_PARAMETER ==
            datareader.read_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1091,11 +1091,11 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     sample = pytest.dds_type.KeyedCompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
     ih = datawriter.register_instance(sample)
-    assert(datawriter.write(sample, ih))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample, ih))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.read_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1107,7 +1107,7 @@ def test_read_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
     check_keyed_complete_test_type(data_seq[0], cdr_version)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
@@ -1121,7 +1121,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.read_next_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1135,7 +1135,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.read_next_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1147,7 +1147,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
     check_keyed_complete_test_type(data_seq[0], cdr_version)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
@@ -1159,7 +1159,7 @@ def test_read_next_sample(transient_datareader_qos, datareader,
     """
     data = pytest.dds_type.CompleteTestType()
     info = fastdds.SampleInfo()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.read_next_sample(
                 data, info))
 
@@ -1169,7 +1169,7 @@ def test_read_next_sample(transient_datareader_qos, datareader,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.read_next_sample(data, info))
     assert(info.valid_data)
     assert(0 < info.source_timestamp.to_ns())
@@ -1187,7 +1187,7 @@ def test_take(transient_datareader_qos, datareader,
     """
     data_seq = pytest.dds_type.CompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.take(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1201,7 +1201,7 @@ def test_take(transient_datareader_qos, datareader,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK == datareader.take(
+    assert(fastdds.RETCODE_OK == datareader.take(
         data_seq, info_seq, fastdds.LENGTH_UNLIMITED,
         fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
         fastdds.ANY_INSTANCE_STATE))
@@ -1212,7 +1212,7 @@ def test_take(transient_datareader_qos, datareader,
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
     check_keyed_complete_test_type(data_seq[0], cdr_version)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
@@ -1226,7 +1226,7 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
+    assert(fastdds.RETCODE_BAD_PARAMETER ==
            datareader.take_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1237,11 +1237,11 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     sample = pytest.dds_type.KeyedCompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
     ih = datawriter.register_instance(sample)
-    assert(datawriter.write(sample, ih))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample, ih))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.take_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1253,7 +1253,7 @@ def test_take_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
     check_keyed_complete_test_type(data_seq[0], cdr_version)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
@@ -1267,7 +1267,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     data_seq = pytest.dds_type.KeyedCompleteTestTypeSeq()
     info_seq = fastdds.SampleInfoSeq()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.take_next_instance(
                data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1281,7 +1281,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.take_next_instance(
                 data_seq, info_seq, fastdds.LENGTH_UNLIMITED, ih,
                 fastdds.ANY_SAMPLE_STATE, fastdds.ANY_VIEW_STATE,
@@ -1293,7 +1293,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
     assert(0 < info_seq[0].reception_timestamp.to_ns())
     assert(sample == data_seq[0])
     check_keyed_complete_test_type(data_seq[0], cdr_version)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.return_loan(data_seq, info_seq))
 
 
@@ -1305,7 +1305,7 @@ def test_take_next_sample(transient_datareader_qos, datareader,
     """
     data = pytest.dds_type.CompleteTestType()
     info = fastdds.SampleInfo()
-    assert(fastdds.ReturnCode_t.RETCODE_NO_DATA ==
+    assert(fastdds.RETCODE_NO_DATA ==
            datareader.take_next_sample(
                 data, info))
 
@@ -1315,7 +1315,7 @@ def test_take_next_sample(transient_datareader_qos, datareader,
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.take_next_sample(data, info))
     assert(info.valid_data)
     assert(0 < info.source_timestamp.to_ns())
@@ -1339,7 +1339,7 @@ def test_wait_for_historical_data(datareader):
     This test checks:
     - DataReader::wait_for_historical_data
     """
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            datareader.wait_for_historical_data(
                fastdds.Duration_t(0, 100)))
 
@@ -1365,19 +1365,19 @@ def test_listener_ownership(participant, writer_participant, topic,
                 writer_topic, fastdds.DATAWRITER_QOS_DEFAULT)
     time.sleep(1)
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_topic(writer_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(writer_participant))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))

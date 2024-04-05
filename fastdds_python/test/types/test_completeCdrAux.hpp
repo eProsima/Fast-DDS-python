@@ -22,9 +22,9 @@
 #ifndef _FAST_DDS_GENERATED_TEST_COMPLETECDRAUX_HPP_
 #define _FAST_DDS_GENERATED_TEST_COMPLETECDRAUX_HPP_
 
-#include "test_complete.h"
+#include "test_complete.hpp"
 
-constexpr uint32_t CompleteTestType_max_cdr_typesize {78608UL};
+constexpr uint32_t CompleteTestType_max_cdr_typesize {7900UL};
 constexpr uint32_t CompleteTestType_max_key_cdr_typesize {0UL};
 
 
@@ -34,7 +34,7 @@ constexpr uint32_t StructType_max_key_cdr_typesize {0UL};
 
 
 
-constexpr uint32_t KeyedCompleteTestType_max_cdr_typesize {78608UL};
+constexpr uint32_t KeyedCompleteTestType_max_cdr_typesize {7900UL};
 constexpr uint32_t KeyedCompleteTestType_max_key_cdr_typesize {4UL};
 
 
@@ -45,27 +45,15 @@ namespace fastcdr {
 class Cdr;
 class CdrSizeCalculator;
 
-
-
 eProsima_user_DllExport void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
         const StructType& data);
 
 
 
-
-
-
-
-
-
 eProsima_user_DllExport void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
         const CompleteTestType& data);
-
-
-
-
 
 eProsima_user_DllExport void serialize_key(
         eprosima::fastcdr::Cdr& scdr,

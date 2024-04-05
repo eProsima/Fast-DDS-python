@@ -1505,13 +1505,6 @@ def test_domain_participant_qos():
     assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
     assert(fastdds.FILTER_DIFFERENT_HOST == participant_qos.
            wire_protocol().builtin.discovery_config.ignoreParticipantFlags)
-    # ## .typelookup_config;
-    participant_qos.wire_protocol().builtin.typelookup_config.use_client = True
-    participant_qos.wire_protocol().builtin.typelookup_config.use_server = True
-    assert(participant_qos.wire_protocol().builtin.
-           typelookup_config.use_client)
-    assert(participant_qos.wire_protocol().builtin.
-           typelookup_config.use_server)
     # ## .metatrafficUnicastLocatorList;
     locator = fastdds.Locator_t()
     locator.address = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 168, 1, 2)
@@ -1761,11 +1754,6 @@ def test_domain_participant_qos():
     assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
     assert(fastdds.FILTER_DIFFERENT_HOST == default_participant_qos.
            wire_protocol().builtin.discovery_config.ignoreParticipantFlags)
-    # ## .typelookup_config;
-    assert(default_participant_qos.wire_protocol().builtin.
-           typelookup_config.use_client)
-    assert(default_participant_qos.wire_protocol().builtin.
-           typelookup_config.use_server)
     # ## .metatrafficUnicastLocatorList;
     locator = default_participant_qos.wire_protocol().builtin. \
         metatrafficUnicastLocatorList[0]

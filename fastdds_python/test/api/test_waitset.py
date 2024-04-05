@@ -47,14 +47,14 @@ def datareader(participant, topic, subscriber):
 
     yield datareader
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -87,14 +87,14 @@ def datawriter(writer_participant, writer_topic, publisher):
 
     yield datawriter
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_topic(writer_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_publisher(publisher))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(writer_participant))
 
 
@@ -111,13 +111,13 @@ def test_waitset(datareader, datawriter):
     attached_conds = fastdds.ConditionSeq()
     conds = fastdds.ConditionSeq()
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.attach_condition(status_cond))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.attach_condition(guard_cond))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.attach_condition(read_cond))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.get_conditions(attached_conds))
     assert(3 == len(attached_conds))
     for c in attached_conds:
@@ -152,7 +152,7 @@ def test_waitset(datareader, datawriter):
             attached_read_cond = c.to_read_condition()
             assert(read_cond == attached_read_cond)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.wait(conds, fastdds.Duration_t(1, 0)))
 
     assert(1 == len(conds))
@@ -165,12 +165,12 @@ def test_waitset(datareader, datawriter):
     assert(changed_statuses.is_active(
         fastdds.StatusMask.requested_incompatible_qos()))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.detach_condition(status_cond))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.detach_condition(guard_cond))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            waitset.detach_condition(read_cond))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            datareader.delete_readcondition(read_cond))

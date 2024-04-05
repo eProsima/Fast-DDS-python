@@ -44,14 +44,14 @@ def subscriber(participant, topic):
 
     yield subscriber
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_contained_entities())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
 
@@ -91,9 +91,9 @@ def test_access(subscriber):
     This test checks:
     - ::resume_publications
     """
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            subscriber.begin_access())
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_UNSUPPORTED ==
            subscriber.end_access())
 
 
@@ -115,7 +115,7 @@ def test_create_datareader(topic, subscriber):
     assert(datareader is not None)
     assert(datareader.is_enabled())
     assert(fastdds.StatusMask.all() == datareader.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
     # Overload 2
@@ -124,7 +124,7 @@ def test_create_datareader(topic, subscriber):
     assert(datareader is not None)
     assert(datareader.is_enabled())
     assert(fastdds.StatusMask.all() == datareader.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -136,14 +136,14 @@ def test_create_datareader(topic, subscriber):
         assert(datareader is not None)
         assert(datareader.is_enabled())
         assert(status_mask_1 == datareader.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                subscriber.delete_datareader(datareader))
         datareader = subscriber.create_datareader(
             topic, fastdds.DATAREADER_QOS_DEFAULT, listnr, status_mask_2)
         assert(datareader is not None)
         assert(datareader.is_enabled())
         assert(status_mask_2 == datareader.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                subscriber.delete_datareader(datareader))
 
     # Overload 3: Different status masks
@@ -234,7 +234,7 @@ def test_create_datareader_with_profile(topic, subscriber):
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            qos.reliability().kind)
     assert(fastdds.StatusMask.all() == datareader.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
     # Overload 2
@@ -246,7 +246,7 @@ def test_create_datareader_with_profile(topic, subscriber):
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            qos.reliability().kind)
     assert(fastdds.StatusMask.all() == datareader.get_status_mask())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
     def test(status_mask_1, status_mask_2, listnr=None):
@@ -261,7 +261,7 @@ def test_create_datareader_with_profile(topic, subscriber):
         assert(fastdds.RELIABLE_RELIABILITY_QOS ==
                qos.reliability().kind)
         assert(status_mask_1 == datareader.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                subscriber.delete_datareader(datareader))
         datareader = subscriber.create_datareader_with_profile(
                 topic, 'test_datareader_profile', listnr, status_mask_2)
@@ -271,7 +271,7 @@ def test_create_datareader_with_profile(topic, subscriber):
         assert(fastdds.RELIABLE_RELIABILITY_QOS ==
                qos.reliability().kind)
         assert(status_mask_2 == datareader.get_status_mask())
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                subscriber.delete_datareader(datareader))
 
     # Overload 3: Different status masks
@@ -346,10 +346,10 @@ def test_delete_contained_entities(participant, topic, subscriber):
     assert(datareader is not None)
 
     # Cannot delete subscriber with datareaders
-    assert(fastdds.ReturnCode_t.RETCODE_PRECONDITION_NOT_MET ==
+    assert(fastdds.RETCODE_PRECONDITION_NOT_MET ==
            participant.delete_subscriber(subscriber))
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_contained_entities())
 
     assert(subscriber.has_datareaders() is False)
@@ -362,7 +362,7 @@ def test_enable(not_autoenable_participant_qos, subscriber):
     - Subscriber::is_enabled
     """
     assert(not subscriber.is_enabled())
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.enable())
     assert(subscriber.is_enabled())
 
@@ -379,11 +379,11 @@ def test_get_datareaders(topic, subscriber):
 
     assert(subscriber.has_datareaders())
     datareaders = fastdds.DataReaderVector()
-    assert(subscriber.get_datareaders(datareaders))
+    assert(fastdds.RETCODE_OK == subscriber.get_datareaders(datareaders))
     assert(1 == len(datareaders))
     assert(datareader == datareaders[0])
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
 
@@ -425,11 +425,11 @@ def test_get_set_qos(subscriber):
     qos = fastdds.SubscriberQos()
     qos.partition().push_back('PartitionTest')
     qos.partition().push_back('PartitionTest2')
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.set_qos(qos))
 
     qos2 = fastdds.SubscriberQos()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.get_qos(qos2))
 
 
@@ -445,7 +445,7 @@ def test_get_set_listener(subscriber):
     # Overload 1
     listener = SubscriberListener()
     assert(listener is not None)
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.set_listener(listener))
     assert(subscriber.get_listener() == listener)
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
@@ -456,13 +456,13 @@ def test_get_set_listener(subscriber):
         """
         listener = SubscriberListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                subscriber.set_listener(listener, status_mask_1))
         assert(subscriber.get_listener() == listener)
         assert(status_mask_1 == subscriber.get_status_mask())
         listener = SubscriberListener()
         assert(listener is not None)
-        assert(fastdds.ReturnCode_t.RETCODE_OK ==
+        assert(fastdds.RETCODE_OK ==
                subscriber.set_listener(listener, status_mask_2))
         assert(subscriber.get_listener() == listener)
         assert(status_mask_2 == subscriber.get_status_mask())
@@ -541,7 +541,7 @@ def test_lookup_datareader(topic, subscriber):
     assert(datareader2 is not None)
     assert(datareader == datareader2)
 
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
 
@@ -560,19 +560,19 @@ def test_listener_ownership(participant, writer_participant, topic,
                 writer_topic, fastdds.DATAWRITER_QOS_DEFAULT)
     time.sleep(1)
     factory = fastdds.DomainParticipantFactory.get_instance()
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_topic(writer_topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            writer_participant.delete_publisher(publisher))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(writer_participant))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
-    assert(fastdds.ReturnCode_t.RETCODE_OK ==
+    assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
