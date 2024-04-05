@@ -47,7 +47,7 @@
 // Ignore overloaded constructor that have no effect on target language
 %ignore eprosima::fastdds::dds::TypeIdV1::TypeIdV1(TypeIdV1 &&);
 %ignore eprosima::fastdds::dds::TypeObjectV1::TypeObjectV1(TypeObjectV1 &&);
-%ignore eprosima::fastdds::dds::xtypes::TypeInformation::TypeInformation(TypeInformation &&);
+%ignore eprosima::fastdds::dds::xtypes::TypeInformationParameter::TypeInformationParameter(TypeInformationParameter &&);
 
 namespace eprosima {
 namespace fastdds {

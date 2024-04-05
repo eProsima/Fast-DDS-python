@@ -123,7 +123,7 @@
     {
         eprosima::fastdds::dds::DomainParticipantListener* listener =
             const_cast<eprosima::fastdds::dds::DomainParticipantListener*>(part->get_listener());
-        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_participant(part);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->delete_participant(part);
 
         if (nullptr != listener)
         {
@@ -144,5 +144,6 @@
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant;
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile;
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::delete_participant;
+%ignore eprosima::fastdds::dds::DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name;
 
 %include "fastdds/dds/domain/DomainParticipantFactory.hpp"

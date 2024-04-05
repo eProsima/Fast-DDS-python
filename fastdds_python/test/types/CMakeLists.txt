@@ -23,14 +23,13 @@ message(STATUS "Configuring python wrapper for types in test_included_modules...
 project(test_included_modules)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        test_included_modules.cxx
-        test_included_modulesv1.cxx
+        test_included_modulesTypeObjectSupport.cxx
         test_included_modulesPubSubTypes.cxx
         )
 if(WIN32)
@@ -131,14 +130,13 @@ message(STATUS "Configuring python wrapper for types in test_modules...")
 project(test_modules)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        test_modules.cxx
-        test_modulesv1.cxx
+        test_modulesTypeObjectSupport.cxx
         test_modulesPubSubTypes.cxx
         )
 if(WIN32)
@@ -239,14 +237,13 @@ message(STATUS "Configuring python wrapper for types in test_complete...")
 project(test_complete)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        test_complete.cxx
-        test_completev1.cxx
+        test_completeTypeObjectSupport.cxx
         test_completePubSubTypes.cxx
         )
 if(WIN32)

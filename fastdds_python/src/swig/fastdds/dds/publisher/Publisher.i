@@ -30,9 +30,9 @@
         eprosima::fastdds::dds::PublisherListener* old_listener =
             const_cast<eprosima::fastdds::dds::PublisherListener*>(self->get_listener());
 
-        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->set_listener(listener);
 
-        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
+        if ( (eprosima::fastdds::dds::RETCODE_OK == ret) && (listener != old_listener) )
         {
 
             SWIG_PYTHON_THREAD_BEGIN_BLOCK;
@@ -76,9 +76,9 @@
         eprosima::fastdds::dds::PublisherListener* old_listener =
             const_cast<eprosima::fastdds::dds::PublisherListener*>(self->get_listener());
 
-        eprosima::fastrtps::types::ReturnCode_t ret = self->set_listener(listener, mask);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->set_listener(listener, mask);
 
-        if ( (eprosima::fastrtps::types::ReturnCode_t::RETCODE_OK == ret) && (listener != old_listener) )
+        if ( (eprosima::fastdds::dds::RETCODE_OK == ret) && (listener != old_listener) )
         {
 
             SWIG_PYTHON_THREAD_BEGIN_BLOCK;
@@ -187,7 +187,7 @@
     {
         eprosima::fastdds::dds::DataWriterListener* listener =
             const_cast<eprosima::fastdds::dds::DataWriterListener*>(writer->get_listener());
-        eprosima::fastrtps::types::ReturnCode_t ret = self->delete_datawriter(writer);
+        eprosima::fastdds::dds::ReturnCode_t ret = self->delete_datawriter(writer);
 
         if (nullptr != listener)
         {

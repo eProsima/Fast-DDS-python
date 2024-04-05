@@ -23,14 +23,13 @@ message(STATUS "Configuring python wrapper for types in HelloWorld...")
 project(HelloWorld)
 
 find_package(fastcdr REQUIRED)
-find_package(fastdds REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        HelloWorld.cxx
-        HelloWorldv1.cxx
+        HelloWorldTypeObjectSupport.cxx
         HelloWorldPubSubTypes.cxx
         )
 if(WIN32)

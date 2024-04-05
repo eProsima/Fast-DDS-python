@@ -29,7 +29,7 @@
 #include <fastdds/rtps/common/SerializedPayload.h>
 #include <fastdds/utils/md5.h>
 
-#include "test_included_modules.h"
+#include "test_included_modules.hpp"
 
 
 #if !defined(GEN_API_VER) || (GEN_API_VER != 2)
@@ -41,8 +41,6 @@ namespace eprosima
 {
     namespace test2
     {
-
-
 
         /*!
          * @brief This class represents the TopicDataType of the type StructType2 defined by the user in the IDL file.
@@ -94,6 +92,9 @@ namespace eprosima
             eProsima_user_DllExport void deleteData(
                     void* data) override;
 
+            //Register TypeObject representation in Fast DDS TypeObjectRegistry
+            eProsima_user_DllExport void register_type_object_representation() const override;
+
         #ifdef TOPIC_DATA_TYPE_API_HAS_IS_BOUNDED
             eProsima_user_DllExport inline bool is_bounded() const override
             {
@@ -131,8 +132,8 @@ namespace eprosima
             unsigned char* m_keyBuffer;
 
         };
-    }
-}
+    } // namespace test2
+} // namespace eprosima
 
 #endif // _FAST_DDS_GENERATED_EPROSIMA_TEST2_TEST_INCLUDED_MODULES_PUBSUBTYPES_H_
 
