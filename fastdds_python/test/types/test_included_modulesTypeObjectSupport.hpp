@@ -48,7 +48,7 @@ namespace test2 {
  *        Hash TypeIdentifiers require to fill the TypeObject information and hash it, consequently, the TypeObject is
  *        indirectly registered as well.
  */
-void register_eprosima_test2_StructType2_type_identifier();
+eProsima_user_DllExport void register_eprosima_test2_StructType2_type_identifier();
 
 } // namespace test2
 
