@@ -1,11 +1,3 @@
-# until https://bugs.python.org/issue46276 is not fixed we can apply this
-# workaround on windows
-import os
-if os.name == 'nt':
-    import win32api
-    win32api.LoadLibrary('test_complete')
-    win32api.LoadLibrary('test_modules')
-
 import fastdds
 import pytest
 import time
