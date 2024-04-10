@@ -73,7 +73,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test2")
 
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
@@ -91,10 +90,6 @@ target_link_libraries(${${PROJECT_NAME}_MODULE}
     ${PROJECT_NAME}
     )
 
-set_target_properties(${${PROJECT_NAME}_MODULE}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test2"
-    )
-
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -105,7 +100,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig
 get_filename_component (_ABS_PYTHON_MODULE_PATH ${_ABS_PYTHON_MODULE_PATH} ABSOLUTE)
 file (RELATIVE_PATH _REL_PYTHON_MODULE_PATH ${CMAKE_INSTALL_PREFIX} ${_ABS_PYTHON_MODULE_PATH})
 SET (PYTHON_MODULE_PATH
-    ${_REL_PYTHON_MODULE_PATH}/${PROJECT_NAME}
+    ${_REL_PYTHON_MODULE_PATH}/eprosima/test2/${PROJECT_NAME}
     )
 
 # Install
@@ -114,9 +109,9 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib/
     ARCHIVE DESTINATION lib/
     )
-install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/eprosima/test2)
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/eprosima/test2)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH} RENAME __init__.py)
 
 ###############################################################################
 # Library for types defined in test_modules IDL
@@ -180,8 +175,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test")
-
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
     LANGUAGE python
@@ -198,10 +191,6 @@ target_link_libraries(${${PROJECT_NAME}_MODULE}
     ${PROJECT_NAME}
     )
 
-set_target_properties(${${PROJECT_NAME}_MODULE}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/eprosima/test"
-    )
-
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -212,7 +201,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig
 get_filename_component (_ABS_PYTHON_MODULE_PATH ${_ABS_PYTHON_MODULE_PATH} ABSOLUTE)
 file (RELATIVE_PATH _REL_PYTHON_MODULE_PATH ${CMAKE_INSTALL_PREFIX} ${_ABS_PYTHON_MODULE_PATH})
 SET (PYTHON_MODULE_PATH
-    ${_REL_PYTHON_MODULE_PATH}/${PROJECT_NAME}
+    ${_REL_PYTHON_MODULE_PATH}/eprosima/test/${PROJECT_NAME}
     )
 
 # Install
@@ -221,9 +210,9 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib/
     ARCHIVE DESTINATION lib/
     )
-install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/eprosima/test)
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/eprosima/test)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH} RENAME __init__.py)
 
 ###############################################################################
 # Library for types defined in test_complete IDL
@@ -331,4 +320,4 @@ install(TARGETS ${PROJECT_NAME}
     )
 install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/)
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/ RENAME __init__.py)

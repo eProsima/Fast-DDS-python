@@ -28,7 +28,7 @@ def data_type(request):
         pytest.dds_type = __import__("test_complete")
     else:
         pytest.dds_type = __import__("eprosima.test.test_modules",
-                                    fromlist=[None])
+                                    fromlist=["test_modules"])
 
 @pytest.fixture
 def not_autoenable_factory():

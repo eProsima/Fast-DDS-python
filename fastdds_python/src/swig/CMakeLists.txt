@@ -28,9 +28,8 @@ set(${PROJECT_NAME}_FILES
     ${${PROJECT_NAME}_MODULE}.i
     )
 
-SET_SOURCE_FILES_PROPERTIES(
-    ${${PROJECT_NAME}_FILES}
-    PROPERTIES CPLUSPLUS ON
+set_source_files_properties(${${PROJECT_NAME}_FILES} PROPERTIES
+    CPLUSPLUS ON
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
@@ -75,8 +74,8 @@ install(TARGETS ${PROJECT_NAME}
     EXPORT ${PROJECT_NAME}-targets
     DESTINATION ${PYTHON_MODULE_PATH}
     )
-get_property(support_files TARGET ${PROJECT_NAME} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH})
+get_property(generated_python_file TARGET ${PROJECT_NAME} PROPERTY SWIG_SUPPORT_FILES)
+install(FILES ${generated_python_file} DESTINATION ${PYTHON_MODULE_PATH} RENAME __init__.py)
 
 export(TARGETS ${PROJECT_NAME} FILE ${PROJECT_BINARY_DIR}/cmake/config/${PROJECT_NAME}-targets.cmake)
 
