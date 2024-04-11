@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module(directors="1", threads="1", moduleimport="if __import__('os').name == 'nt': import win32api; win32api.LoadLibrary('fastdds-3.0.dll')\nif __package__ or '.' in __name__:\n    from . import _fastdds_python\nelse:\n    import _fastdds_python") fastdds
+%module(directors="1", threads="1", moduleimport="if __import__('os').name == 'nt': import win32api; win32api.LoadLibrary('fastdds-@fastdds_VERSION_MAJOR@.@fastdds_VERSION_MINOR@.dll')\nif __package__ or '.' in __name__:\n    from . import _fastdds_python\nelse:\n    import _fastdds_python") fastdds
 
 // Handle exceptions on python callbacks and send them back to C++ so that they can be catched
 // Also, add some meaningful description of the error
