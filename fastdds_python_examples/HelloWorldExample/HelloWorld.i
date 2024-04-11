@@ -20,6 +20,7 @@
  */
 
 %module HelloWorld
+%module(moduleimport="if __import__('os').name == 'nt': import win32api; win32api.LoadLibrary('HelloWorld.dll')\nif __package__ or '.' in __name__:\n    from . import _HelloWorldWrapper\nelse:\n    import _HelloWorldWrapper") HelloWorld
 
 // SWIG helper modules
 %include "stdint.i"
