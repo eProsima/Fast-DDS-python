@@ -28,7 +28,10 @@ set(${PROJECT_NAME}_FILE
     ${CMAKE_CURRENT_BINARY_DIR}/${${PROJECT_NAME}_MODULE}.i
     )
 
-configure_file(${${PROJECT_NAME}_MODULE}.i ${${PROJECT_NAME}_FILE} @ONLY)
+file(GENERATE
+    OUTPUT ${${PROJECT_NAME}_FILE}
+    INPUT ${${PROJECT_NAME}_MODULE}.i
+    )
 
 set_source_files_properties(${${PROJECT_NAME}_FILE} PROPERTIES
     CPLUSPLUS ON
@@ -44,7 +47,8 @@ endif (BUILD_DOCUMENTATION)
 swig_add_library(${PROJECT_NAME}
     TYPE SHARED
     LANGUAGE python
-    SOURCES ${${PROJECT_NAME}_FILE}
+    SOURCES
+    ${${PROJECT_NAME}_FILE}
     )
 
 if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)

@@ -21,6 +21,14 @@
 
 %module(moduleimport="if __import__('os').name == 'nt': import win32api; win32api.LoadLibrary('test_included_modules.dll')\nif __package__ or '.' in __name__:\n    from . import _test_included_modulesWrapper\nelse:\n    import _test_included_modulesWrapper") test_included_modules
 
+// If using windows in debug, it would try to use python_d, which would not be found.
+%begin %{
+#ifdef _MSC_VER
+#define SWIG_PYTHON_INTERPRETER_NO_DEBUG
+#endif
+#include <exception>
+%}
+
 // SWIG helper modules
 %include "stdint.i"
 %include "std_array.i"
