@@ -16,6 +16,20 @@
 #include "fastdds/dds/xtypes/type_representation/detail/dds_xtypes_typeobject.hpp"
 %}
 
+%ignore eprosima::fastdds::dds::xtypes::TypeObjectHashId;
+%ignore eprosima::fastdds::dds::xtypes::StringSTypeDefn;
+%ignore eprosima::fastdds::dds::xtypes::StringLTypeDefn;
+%ignore eprosima::fastdds::dds::xtypes::PlainCollectionHeader;
+%ignore eprosima::fastdds::dds::xtypes::PlainSequenceSElemDefn;
+%ignore eprosima::fastdds::dds::xtypes::PlainSequenceLElemDefn;
+%ignore eprosima::fastdds::dds::xtypes::PlainArraySElemDefn;
+%ignore eprosima::fastdds::dds::xtypes::PlainArrayLElemDefn;
+%ignore eprosima::fastdds::dds::xtypes::PlainMapSTypeDefn;
+%ignore eprosima::fastdds::dds::xtypes::PlainMapLTypeDefn;
+%ignore eprosima::fastdds::dds::xtypes::StronglyConnectedComponentId;
+%ignore eprosima::fastdds::dds::xtypes::ExtendedTypeDefn;
+%ignore eprosima::fastdds::dds::xtypes::TypeIdentifier;
+%ignore eprosima::fastdds::dds::xtypes::ExtendedAnnotationParameterValue;
 %ignore eprosima::fastdds::dds::xtypes::AnnotationParameterValue;
 %ignore eprosima::fastdds::dds::xtypes::AppliedAnnotationParameter;
 %ignore eprosima::fastdds::dds::xtypes::AppliedAnnotation;
@@ -54,6 +68,7 @@
 %ignore eprosima::fastdds::dds::xtypes::CompleteAliasBody;
 %ignore eprosima::fastdds::dds::xtypes::MinimalAliasBody;
 %ignore eprosima::fastdds::dds::xtypes::CompleteAliasHeader;
+%ignore eprosima::fastdds::dds::xtypes::MinimalAliasHeader;
 %ignore eprosima::fastdds::dds::xtypes::CompleteAliasType;
 %ignore eprosima::fastdds::dds::xtypes::MinimalAliasType;
 %ignore eprosima::fastdds::dds::xtypes::CompleteElementDetail;
@@ -102,5 +117,8 @@
 %ignore eprosima::fastdds::dds::xtypes::TypeIdentifierPair;
 %ignore eprosima::fastdds::dds::xtypes::TypeIdentfierWithSize;
 %ignore eprosima::fastdds::dds::xtypes::TypeIdentifierWithDependencies;
+%ignore eprosima::fastdds::dds::xtypes::TypeInformation::TypeInformation(TypeInformation&&);
+%ignore eprosima::fastdds::dds::xtypes::TypeInformation::minimal;
+%ignore eprosima::fastdds::dds::xtypes::TypeInformation::complete;
 
 %include "fastdds/dds/xtypes/type_representation/detail/dds_xtypes_typeobject.hpp"

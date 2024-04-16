@@ -24,8 +24,6 @@
             const fastrtps::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp(void*, const InstanceHandle_t&,
             const fastrtps::rtps::Time_t&);
-%ignore eprosima::fastdds::dds::DataWriter::get_matched_subscriptions(
-            std::vector<InstanceHandle_t*>&) const;
 
 // Unsupported function on Python are ignored
 %ignore loan_sample(void*&, LoanInitializationKind);
