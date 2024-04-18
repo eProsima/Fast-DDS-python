@@ -123,6 +123,7 @@
 
 // Template for std::vector<DataWriter*>
 %template(DataWriterVector) std::vector<eprosima::fastdds::dds::DataWriter*>;
+%typemap(doctype) std::vector<eprosima::fastdds::dds::DataWriter*> "DataWriterVector";
 
 %include "fastdds/dds/publisher/DataWriter.hpp"
 

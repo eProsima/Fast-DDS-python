@@ -18,7 +18,10 @@
 
 // Template for std::vector<DataReader*>
 %template(DataReaderVector) std::vector<eprosima::fastdds::dds::DataReader*>;
+%typemap(doctype) std::vector<eprosima::fastdds::dds::DataReader*> "DataReaderVector";
+
 %template(SampleInfoSeq) eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo>;
+%typemap(doctype) eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo> "SampleInfoSeq";
 %extend eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo>
 {
     size_t __len__() const
