@@ -8,6 +8,10 @@
 [![Forks](https://img.shields.io/github/forks/eProsima/Fast-DDS-python.svg)](https://github.com/eProsima/Fast-DDS-python/network/members)
 [![Stars](https://img.shields.io/github/stars/eProsima/Fast-DDS-python.svg)](https://github.com/eProsima/Fast-DDS-python/stargazers)
 
+<!-- TODO(eduponz): Remove this before releasing v3.0.0 -->
+> [!WARNING]
+> In preparation for v2.0.0 (bindings for Fast DDS v3.0.0), Fast DDS Python's master branch is undergoing major changes entailing **API breaks**.
+> Until Fast DDS Python v2.0.0 is released, it is strongly advisable to use the latest stable version, [v1.4.1](https://github.com/eProsima/Fast-DDS-python/tree/v1.4.1).
 
 *eProsima Fast DDS Python* is a Python binding for the [*eProsima Fast DDS*](https://github.com/eProsima/Fast-DDS) C++ library.
 This is a work in progress, but ultimately the goal is having the complete *Fast DDS* API available in Python.
