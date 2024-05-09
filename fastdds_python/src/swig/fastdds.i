@@ -89,6 +89,7 @@ bool has_statistics();
 
 // Macro delcarations
 // Any macro used on the Fast DDS header files will give an error if it is not redefined here
+#define eProsima_user_DllExport
 #define FASTDDS_EXPORTED_API
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 #define FASTDDS_TODO_BEFORE(major, minor, msg)
@@ -312,28 +313,6 @@ namespace xtypes {
 %include "fastrtps/qos/LivelinessLostStatus.i"
 %include "fastrtps/qos/LivelinessChangedStatus.i"
 %include "fastrtps/qos/SampleRejectedStatus.i"
-%include "fastrtps/types/DynamicDataFactory.i"
-%include "fastrtps/types/DynamicType.i"
-%include "fastrtps/types/TypeNamesGenerator.i"
-%include "fastrtps/types/AnnotationDescriptor.i"
-%include "fastrtps/types/TypeDescriptor.i"
-%include "fastrtps/types/DynamicDataPtr.i"
-%include "fastrtps/types/DynamicTypeBuilder.i"
-%include "fastrtps/types/DynamicTypeBuilderFactory.i"
-%include "fastrtps/types/TypeObjectHashId.i"
-%include "fastrtps/types/TypeObject.i"
-%include "fastrtps/types/BuiltinAnnotationsTypeObject.i"
-%include "fastrtps/types/DynamicDataHelper.i"
-%include "fastrtps/types/DynamicTypeBuilderPtr.i"
-%include "fastrtps/types/TypeIdentifier.i"
-%include "fastrtps/types/DynamicData.i"
-%include "fastrtps/types/MemberDescriptor.i"
-%include "fastrtps/types/TypeIdentifierTypes.i"
-%include "fastrtps/types/DynamicTypeMember.i"
-%include "fastrtps/types/AnnotationParameterValue.i"
-%include "fastrtps/types/TypeObjectFactory.i"
-%include "fastrtps/types/DynamicTypePtr.i"
-%include "fastrtps/types/DynamicPubSubType.i"
 %include "fastrtps/config/doxygen_modules.i"
 %include "fastrtps/log/Log.i"
 %include "fastrtps/log/StdoutConsumer.i"
@@ -496,6 +475,7 @@ namespace xtypes {
 %include "fastdds/dds/domain/qos/RequesterQos.i"
 %include "fastdds/dds/domain/DomainParticipant.i"
 %include "fastdds/dds/domain/DomainParticipantFactory.i"
+%include "fastdds/dds/xtypes/type_representation/TypeObject.i"
 
 // Log functionality not available in the bind
 // Logs in the library is still available, only 'Log' class will not be available on Python

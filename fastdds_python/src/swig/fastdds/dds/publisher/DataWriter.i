@@ -24,8 +24,6 @@
             const fastrtps::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp(void*, const InstanceHandle_t&,
             const fastrtps::rtps::Time_t&);
-%ignore eprosima::fastdds::dds::DataWriter::get_matched_subscriptions(
-            std::vector<InstanceHandle_t*>&) const;
 
 // Unsupported function on Python are ignored
 %ignore loan_sample(void*&, LoanInitializationKind);
@@ -125,6 +123,7 @@
 
 // Template for std::vector<DataWriter*>
 %template(DataWriterVector) std::vector<eprosima::fastdds::dds::DataWriter*>;
+%typemap(doctype) std::vector<eprosima::fastdds::dds::DataWriter*> "DataWriterVector";
 
 %include "fastdds/dds/publisher/DataWriter.hpp"
 
