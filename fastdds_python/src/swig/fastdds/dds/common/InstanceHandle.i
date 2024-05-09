@@ -16,5 +16,4 @@
 #include "fastdds/dds/common/InstanceHandle.hpp"
 %}
 
-
 %include "fastdds/dds/common/InstanceHandle.hpp"

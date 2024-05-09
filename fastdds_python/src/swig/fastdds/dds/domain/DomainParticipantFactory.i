@@ -16,11 +16,6 @@
 #include "fastdds/dds/domain/DomainParticipantFactory.hpp"
 %}
 
-/*
-%extend eprosima::fastdds::dds::DomainParticipantFactory
-{
-}
-*/
 %extend eprosima::fastdds::dds::DomainParticipantFactory
 {
     /**
