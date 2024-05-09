@@ -14,11 +14,11 @@ on:
       fastdds_branch:
         description: 'Fast DDS branch to be used'
         required: false
-        default: '3.0.x-devel'
+        default: 'master'
   pull_request:
   push:
     branches:
-      - 3.0.x-devel
+      - main
   schedule:
     - cron: '0 0 * * *'
 
@@ -36,7 +36,7 @@ jobs:
           - ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
         fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["master"]') }}
         fastdds_version:
-          - ${{ github.event.inputs.fastdds_branch || '3.0.x-devel' }}
+          - ${{ github.event.inputs.fastdds_branch || 'master' }}
 
     env:
       CXXFLAGS: /MP
@@ -155,7 +155,7 @@ jobs:
           - ${{ github.event.inputs.foonathan_memory_vendor_branch || 'master' }}
         fastcdr_version: ${{ fromJson(github.event.inputs.fastcdr_versions || '["master"]') }}
         fastdds_version:
-          - ${{ github.event.inputs.fastdds_branch || '3.0.x-devel' }}
+          - ${{ github.event.inputs.fastdds_branch || 'master' }}
 
 
     steps:
