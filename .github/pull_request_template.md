@@ -27,6 +27,11 @@
 
 ## Contributor Checklist
 
+<!--
+    - If any of the elements of the following checklist is not applicable, substitute the checkbox [ ] by _N/A_:
+    - If any of the elements of the following checklist is not fulfilled on purpose, please provide a reason and substitute the checkbox [ ] with ❌: or __NO__:.
+-->
+
 - [ ] Commit messages follow the project guidelines. <!-- External contributors should sign the DCO. Fast DDS Python developers must also refer to the internal Redmine task. -->
 - [ ] Tests that thoroughly check the new feature have been added/Regression tests checking the bug and its fix have been added; the added tests pass locally
 - [ ] Changes are API compatible. <!-- Public API must not be broken within the same major release. -->
