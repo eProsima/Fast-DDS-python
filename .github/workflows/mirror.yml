@@ -1,12 +1,11 @@
 # .github/workflows/mirror.yml
+name: Mirror
 on:
   push:
     branches:
       - 'main'
-      - '1.4.x'
 jobs:
-  mirror_job_main:
-    if: github.ref == 'refs/heads/main'
+  mirror_job:
     runs-on: ubuntu-latest
     name: Mirror main branch to compatible minor version branches
     strategy:
@@ -22,22 +21,4 @@ jobs:
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         source: 'main'
-        dest: ${{ matrix.dest_branch }}
-
-  mirror_job_1_x:
-    if: github.ref == 'refs/heads/1.4.x'
-    runs-on: ubuntu-latest
-    name: Mirror 1.4.x branch to compatible version branches
-    strategy:
-      fail-fast: false
-      matrix:
-        dest_branch:
-          - '1.x'
-    steps:
-    - name: Mirror action step
-      id: mirror
-      uses: eProsima/eProsima-CI/external/mirror-branch-action@v0
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        source: '1.4.x'
         dest: ${{ matrix.dest_branch }}
