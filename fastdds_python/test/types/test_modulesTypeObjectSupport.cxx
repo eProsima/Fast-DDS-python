@@ -43,18 +43,21 @@ void register_test_modules_type_objects()
     static std::once_flag once_flag;
     std::call_once(once_flag, []()
             {
-                eprosima::test::register_eprosima_test_StructType_type_identifier();
+                TypeIdentifier type_id;
+                eprosima::test::register_eprosima_test_StructType_type_identifier(type_id);
 
-                eprosima::test::register_eprosima_test_CompleteTestType_type_identifier();
+                eprosima::test::register_eprosima_test_CompleteTestType_type_identifier(type_id);
 
-                eprosima::test::register_eprosima_test_KeyedCompleteTestType_type_identifier();
+                eprosima::test::register_eprosima_test_KeyedCompleteTestType_type_identifier(type_id);
 
             });
 }
 
 namespace eprosima {
 namespace test {
-void register_eprosima_test_StructType_type_identifier()
+// TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
+void register_eprosima_test_StructType_type_identifier(
+        TypeIdentifier& type_id)
 {
     {
         StructTypeFlag struct_flags_StructType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
@@ -77,6 +80,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -123,6 +127,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_char_field = "char_field";
@@ -141,6 +146,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -187,6 +193,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint8_field = "uint8_field";
@@ -205,6 +212,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -251,6 +259,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int16_field = "int16_field";
@@ -269,6 +278,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -315,6 +325,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint16_field = "uint16_field";
@@ -333,6 +344,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -379,6 +391,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int32_field = "int32_field";
@@ -397,6 +410,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -443,6 +457,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint32_field = "uint32_field";
@@ -461,6 +476,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -507,6 +523,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int64_field = "int64_field";
@@ -525,6 +542,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -571,6 +589,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint64_field = "uint64_field";
@@ -589,6 +608,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -635,6 +655,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_float_field = "float_field";
@@ -653,6 +674,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -699,6 +721,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_double_field = "double_field";
@@ -717,6 +740,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -763,6 +787,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bool_field = "bool_field";
@@ -779,8 +804,6 @@ void register_eprosima_test_StructType_type_identifier()
 
             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
             {
-                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                 {
                     SBound bound = 0;
                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -792,24 +815,6 @@ void register_eprosima_test_StructType_type_identifier()
                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                {
-                    LBound bound = 255;
-                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                            "anonymous_string_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                "anonymous_string_unbounded: Unknown String kind.");
-                    return;
-                }
                 return_code_StructType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_string_unbounded", type_ids_StructType);
@@ -817,6 +822,7 @@ void register_eprosima_test_StructType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -864,6 +870,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure string_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_string_field = "string_field";
@@ -954,6 +961,7 @@ void register_eprosima_test_StructType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -1001,6 +1009,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum_field = "enum_field";
@@ -1091,6 +1100,7 @@ void register_eprosima_test_StructType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -1138,6 +1148,7 @@ void register_eprosima_test_StructType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum2_field = "enum2_field";
@@ -1149,7 +1160,7 @@ void register_eprosima_test_StructType_type_identifier()
         }
         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -1161,11 +1172,14 @@ void register_eprosima_test_StructType_type_identifier()
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+            type_id = TypeIdentifier();
             return;
         }
     }
 }
-void register_eprosima_test_CompleteTestType_type_identifier()
+// TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
+void register_eprosima_test_CompleteTestType_type_identifier(
+        TypeIdentifier& type_id)
 {
     {
         StructTypeFlag struct_flags_CompleteTestType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
@@ -1188,6 +1202,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1234,6 +1249,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_char_field = "char_field";
@@ -1252,6 +1268,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1298,6 +1315,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint8_field = "uint8_field";
@@ -1316,6 +1334,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1362,6 +1381,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int16_field = "int16_field";
@@ -1380,6 +1400,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1426,6 +1447,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint16_field = "uint16_field";
@@ -1444,6 +1466,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1490,6 +1513,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int32_field = "int32_field";
@@ -1508,6 +1532,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1554,6 +1579,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint32_field = "uint32_field";
@@ -1572,6 +1598,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1618,6 +1645,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int64_field = "int64_field";
@@ -1636,6 +1664,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1682,6 +1711,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint64_field = "uint64_field";
@@ -1700,6 +1730,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1746,6 +1777,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_float_field = "float_field";
@@ -1764,6 +1796,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1810,6 +1843,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_double_field = "double_field";
@@ -1828,6 +1862,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -1874,6 +1909,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bool_field = "bool_field";
@@ -1890,8 +1926,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
             if (return_code_CompleteTestType != eprosima::fastdds::dds::RETCODE_OK)
             {
-                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                 {
                     SBound bound = 0;
                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -1903,24 +1937,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                {
-                    LBound bound = 255;
-                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                            "anonymous_string_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                "anonymous_string_unbounded: Unknown String kind.");
-                    return;
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_string_unbounded", type_ids_CompleteTestType);
@@ -1928,6 +1944,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -1975,6 +1992,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure string_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_string_field = "string_field";
@@ -2065,6 +2083,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -2112,6 +2131,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum_field = "enum_field";
@@ -2202,6 +2222,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -2249,6 +2270,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum2_field = "enum2_field";
@@ -2286,6 +2308,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2332,6 +2355,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure char_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_char_field = "char_field";
@@ -2350,6 +2374,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2396,6 +2421,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint8_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint8_field = "uint8_field";
@@ -2414,6 +2440,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2460,6 +2487,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int16_field = "int16_field";
@@ -2478,6 +2506,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2524,6 +2553,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint16_field = "uint16_field";
@@ -2542,6 +2572,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2588,6 +2619,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int32_field = "int32_field";
@@ -2606,6 +2638,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2652,6 +2685,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint32_field = "uint32_field";
@@ -2670,6 +2704,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2716,6 +2751,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int64_field = "int64_field";
@@ -2734,6 +2770,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2780,6 +2817,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint64_field = "uint64_field";
@@ -2798,6 +2836,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2844,6 +2883,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure float_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_float_field = "float_field";
@@ -2862,6 +2902,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2908,6 +2949,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure double_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_double_field = "double_field";
@@ -2926,6 +2968,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -2972,6 +3015,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure bool_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_bool_field = "bool_field";
@@ -2988,8 +3032,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
                         if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                         {
-                            std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                            if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                             {
                                 SBound bound = 0;
                                 StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -3001,24 +3043,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                         "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                 }
                             }
-                            else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                            {
-                                LBound bound = 255;
-                                StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                        TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                        "anonymous_string_unbounded"))
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                        "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                }
-                            }
-                            else
-                            {
-                                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded: Unknown String kind.");
-                                return;
-                            }
                             return_code_StructType =
                                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                 "anonymous_string_unbounded", type_ids_StructType);
@@ -3026,6 +3050,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -3073,6 +3098,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure string_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_string_field = "string_field";
@@ -3163,6 +3189,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -3210,6 +3237,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum_field = "enum_field";
@@ -3300,6 +3328,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -3347,6 +3376,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum2_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum2_field = "enum2_field";
@@ -3358,7 +3388,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     }
                     CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -3370,8 +3400,11 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
+                    return_code_CompleteTestType = return_code_StructType;
+                    type_ids_CompleteTestType = type_ids_StructType;
                 }
             }
             StructMemberFlag member_flags_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3418,6 +3451,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_struct_field = "struct_field";
@@ -3436,6 +3470,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "char_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_char_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3482,6 +3517,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure char_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_char_opt_field = "char_opt_field";
@@ -3513,6 +3549,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint8_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint8_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3559,6 +3596,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint8_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint8_opt_field = "uint8_opt_field";
@@ -3590,6 +3628,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3636,6 +3675,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int16_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int16_opt_field = "int16_opt_field";
@@ -3667,6 +3707,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3713,6 +3754,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint16_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint16_opt_field = "uint16_opt_field";
@@ -3744,6 +3786,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3790,6 +3833,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int32_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int32_opt_field = "int32_opt_field";
@@ -3821,6 +3865,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3867,6 +3912,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint32_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint32_opt_field = "uint32_opt_field";
@@ -3898,6 +3944,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -3944,6 +3991,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int64_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int64_opt_field = "int64_opt_field";
@@ -3975,6 +4023,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4021,6 +4070,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint64_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint64_opt_field = "uint64_opt_field";
@@ -4052,6 +4102,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "float_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_float_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4098,6 +4149,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure float_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_float_opt_field = "float_opt_field";
@@ -4129,6 +4181,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "double_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_double_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4175,6 +4228,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure double_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_double_opt_field = "double_opt_field";
@@ -4206,6 +4260,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "bool_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_bool_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4252,6 +4307,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bool_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bool_opt_field = "bool_opt_field";
@@ -4281,8 +4337,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
             if (return_code_CompleteTestType != eprosima::fastdds::dds::RETCODE_OK)
             {
-                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                 {
                     SBound bound = 0;
                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -4294,24 +4348,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                {
-                    LBound bound = 255;
-                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                            "anonymous_string_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                "anonymous_string_unbounded: Unknown String kind.");
-                    return;
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_string_unbounded", type_ids_CompleteTestType);
@@ -4319,6 +4355,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -4366,6 +4403,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure string_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_string_opt_field = "string_opt_field";
@@ -4469,6 +4507,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -4516,6 +4555,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum_opt_field = "enum_opt_field";
@@ -4619,6 +4659,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -4666,6 +4707,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum2_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum2_opt_field = "enum2_opt_field";
@@ -4716,6 +4758,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4762,6 +4805,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure char_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_char_field = "char_field";
@@ -4780,6 +4824,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4826,6 +4871,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint8_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint8_field = "uint8_field";
@@ -4844,6 +4890,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4890,6 +4937,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int16_field = "int16_field";
@@ -4908,6 +4956,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -4954,6 +5003,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint16_field = "uint16_field";
@@ -4972,6 +5022,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5018,6 +5069,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int32_field = "int32_field";
@@ -5036,6 +5088,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5082,6 +5135,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint32_field = "uint32_field";
@@ -5100,6 +5154,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5146,6 +5201,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int64_field = "int64_field";
@@ -5164,6 +5220,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5210,6 +5267,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint64_field = "uint64_field";
@@ -5228,6 +5286,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5274,6 +5333,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure float_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_float_field = "float_field";
@@ -5292,6 +5352,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5338,6 +5399,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure double_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_double_field = "double_field";
@@ -5356,6 +5418,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5402,6 +5465,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure bool_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_bool_field = "bool_field";
@@ -5418,8 +5482,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
                         if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                         {
-                            std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                            if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                             {
                                 SBound bound = 0;
                                 StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -5431,24 +5493,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                         "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                 }
                             }
-                            else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                            {
-                                LBound bound = 255;
-                                StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                        TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                        "anonymous_string_unbounded"))
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                        "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                }
-                            }
-                            else
-                            {
-                                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded: Unknown String kind.");
-                                return;
-                            }
                             return_code_StructType =
                                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                 "anonymous_string_unbounded", type_ids_StructType);
@@ -5456,6 +5500,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -5503,6 +5548,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure string_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_string_field = "string_field";
@@ -5593,6 +5639,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -5640,6 +5687,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum_field = "enum_field";
@@ -5730,6 +5778,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -5777,6 +5826,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum2_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum2_field = "enum2_field";
@@ -5788,7 +5838,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     }
                     CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -5800,8 +5850,11 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
+                    return_code_CompleteTestType = return_code_StructType;
+                    type_ids_CompleteTestType = type_ids_StructType;
                 }
             }
             StructMemberFlag member_flags_struct_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -5848,6 +5901,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure struct_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_struct_opt_field = "struct_opt_field";
@@ -5885,6 +5939,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_char_3 {nullptr};
@@ -5928,6 +5983,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_char_3 = EK_COMPLETE;
@@ -5937,8 +5993,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_char_3 = 0;
                 PlainCollectionHeader header_anonymous_array_char_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_char_3, element_flags_anonymous_array_char_3);
-                std::string type_id_kind_anonymous_array_char_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_char_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -5952,20 +6006,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_char_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_char_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_char_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_char_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_char_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_char_3", type_ids_CompleteTestType);
@@ -5973,6 +6013,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_char_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6020,6 +6061,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_char_field = "array_char_field";
@@ -6044,6 +6086,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint8_t_3 {nullptr};
@@ -6087,6 +6130,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint8_t_3 = EK_COMPLETE;
@@ -6096,8 +6140,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint8_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint8_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint8_t_3, element_flags_anonymous_array_uint8_t_3);
-                std::string type_id_kind_anonymous_array_uint8_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint8_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -6111,20 +6153,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_uint8_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint8_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint8_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint8_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint8_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint8_t_3", type_ids_CompleteTestType);
@@ -6132,6 +6160,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint8_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6179,6 +6208,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint8_field = "array_uint8_field";
@@ -6203,6 +6233,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_int16_t_3 {nullptr};
@@ -6246,6 +6277,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_int16_t_3 = EK_COMPLETE;
@@ -6255,8 +6287,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_int16_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_int16_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_int16_t_3, element_flags_anonymous_array_int16_t_3);
-                std::string type_id_kind_anonymous_array_int16_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_int16_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -6270,20 +6300,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_int16_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_int16_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_int16_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_int16_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_int16_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_int16_t_3", type_ids_CompleteTestType);
@@ -6291,6 +6307,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_int16_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6338,6 +6355,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_int16_field = "array_int16_field";
@@ -6362,6 +6380,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint16_t_3 {nullptr};
@@ -6405,6 +6424,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint16_t_3 = EK_COMPLETE;
@@ -6414,8 +6434,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint16_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint16_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint16_t_3, element_flags_anonymous_array_uint16_t_3);
-                std::string type_id_kind_anonymous_array_uint16_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint16_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -6429,20 +6447,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_uint16_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint16_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint16_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint16_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint16_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint16_t_3", type_ids_CompleteTestType);
@@ -6450,6 +6454,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint16_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6497,6 +6502,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint16_field = "array_uint16_field";
@@ -6521,6 +6527,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_int32_t_3 {nullptr};
@@ -6564,6 +6571,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_int32_t_3 = EK_COMPLETE;
@@ -6573,8 +6581,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_int32_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_int32_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_int32_t_3, element_flags_anonymous_array_int32_t_3);
-                std::string type_id_kind_anonymous_array_int32_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_int32_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -6588,20 +6594,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_int32_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_int32_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_int32_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_int32_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_int32_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_int32_t_3", type_ids_CompleteTestType);
@@ -6609,6 +6601,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_int32_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6656,6 +6649,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_int32_field = "array_int32_field";
@@ -6680,6 +6674,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint32_t_3 {nullptr};
@@ -6723,6 +6718,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint32_t_3 = EK_COMPLETE;
@@ -6732,8 +6728,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint32_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint32_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint32_t_3, element_flags_anonymous_array_uint32_t_3);
-                std::string type_id_kind_anonymous_array_uint32_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint32_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -6747,20 +6741,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_uint32_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint32_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint32_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint32_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint32_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint32_t_3", type_ids_CompleteTestType);
@@ -6768,6 +6748,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint32_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6815,6 +6796,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint32_field = "array_uint32_field";
@@ -6839,6 +6821,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_int64_t_3 {nullptr};
@@ -6882,6 +6865,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_int64_t_3 = EK_COMPLETE;
@@ -6891,8 +6875,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_int64_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_int64_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_int64_t_3, element_flags_anonymous_array_int64_t_3);
-                std::string type_id_kind_anonymous_array_int64_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_int64_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -6906,20 +6888,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_int64_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_int64_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_int64_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_int64_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_int64_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_int64_t_3", type_ids_CompleteTestType);
@@ -6927,6 +6895,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_int64_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -6974,6 +6943,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_int64_field = "array_int64_field";
@@ -6998,6 +6968,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint64_t_3 {nullptr};
@@ -7041,6 +7012,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint64_t_3 = EK_COMPLETE;
@@ -7050,8 +7022,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint64_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint64_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint64_t_3, element_flags_anonymous_array_uint64_t_3);
-                std::string type_id_kind_anonymous_array_uint64_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint64_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -7065,20 +7035,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_uint64_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint64_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint64_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint64_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint64_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint64_t_3", type_ids_CompleteTestType);
@@ -7086,6 +7042,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint64_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -7133,6 +7090,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint64_field = "array_uint64_field";
@@ -7157,6 +7115,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_float_3 {nullptr};
@@ -7200,6 +7159,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_float_3 = EK_COMPLETE;
@@ -7209,8 +7169,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_float_3 = 0;
                 PlainCollectionHeader header_anonymous_array_float_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_float_3, element_flags_anonymous_array_float_3);
-                std::string type_id_kind_anonymous_array_float_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_float_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -7224,20 +7182,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_float_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_float_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_float_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_float_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_float_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_float_3", type_ids_CompleteTestType);
@@ -7245,6 +7189,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_float_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -7292,6 +7237,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_float_field = "array_float_field";
@@ -7316,6 +7262,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_double_3 {nullptr};
@@ -7359,6 +7306,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_double_3 = EK_COMPLETE;
@@ -7368,8 +7316,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_double_3 = 0;
                 PlainCollectionHeader header_anonymous_array_double_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_double_3, element_flags_anonymous_array_double_3);
-                std::string type_id_kind_anonymous_array_double_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_double_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -7383,20 +7329,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_double_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_double_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_double_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_double_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_double_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_double_3", type_ids_CompleteTestType);
@@ -7404,6 +7336,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_double_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -7451,6 +7384,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_double_field = "array_double_field";
@@ -7475,6 +7409,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_bool_3 {nullptr};
@@ -7518,6 +7453,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_bool_3 = EK_COMPLETE;
@@ -7527,8 +7463,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_bool_3 = 0;
                 PlainCollectionHeader header_anonymous_array_bool_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_bool_3, element_flags_anonymous_array_bool_3);
-                std::string type_id_kind_anonymous_array_bool_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_bool_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -7542,20 +7476,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_bool_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_bool_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_bool_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_bool_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_bool_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_bool_3", type_ids_CompleteTestType);
@@ -7563,6 +7483,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_bool_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -7610,6 +7531,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_bool_field = "array_bool_field";
@@ -7706,6 +7628,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -7750,6 +7673,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_eprosima_test_Color_3 = EK_COMPLETE;
@@ -7759,8 +7683,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_eprosima_test_Color_3 = 0;
                 PlainCollectionHeader header_anonymous_array_eprosima_test_Color_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_eprosima_test_Color_3, element_flags_anonymous_array_eprosima_test_Color_3);
-                std::string type_id_kind_anonymous_array_eprosima_test_Color_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_eprosima_test_Color_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -7774,20 +7696,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_eprosima_test_Color_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_eprosima_test_Color_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_eprosima_test_Color_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_eprosima_test_Color_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_eprosima_test_Color_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_eprosima_test_Color_3", type_ids_CompleteTestType);
@@ -7795,6 +7703,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_eprosima_test_Color_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -7842,6 +7751,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_enum_field = "array_enum_field";
@@ -7938,6 +7848,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -7982,6 +7893,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_eprosima_test_Material_3 = EK_COMPLETE;
@@ -7991,8 +7903,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_eprosima_test_Material_3 = 0;
                 PlainCollectionHeader header_anonymous_array_eprosima_test_Material_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_eprosima_test_Material_3, element_flags_anonymous_array_eprosima_test_Material_3);
-                std::string type_id_kind_anonymous_array_eprosima_test_Material_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_eprosima_test_Material_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -8006,20 +7916,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_eprosima_test_Material_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_eprosima_test_Material_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_eprosima_test_Material_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_eprosima_test_Material_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_eprosima_test_Material_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_eprosima_test_Material_3", type_ids_CompleteTestType);
@@ -8027,6 +7923,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_eprosima_test_Material_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -8074,6 +7971,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_enum2_field = "array_enum2_field";
@@ -8117,6 +8015,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8163,6 +8062,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure char_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_char_field = "char_field";
@@ -8181,6 +8081,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8227,6 +8128,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint8_field = "uint8_field";
@@ -8245,6 +8147,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8291,6 +8194,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int16_field = "int16_field";
@@ -8309,6 +8213,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8355,6 +8260,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint16_field = "uint16_field";
@@ -8373,6 +8279,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8419,6 +8326,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int32_field = "int32_field";
@@ -8437,6 +8345,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8483,6 +8392,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint32_field = "uint32_field";
@@ -8501,6 +8411,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8547,6 +8458,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int64_field = "int64_field";
@@ -8565,6 +8477,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8611,6 +8524,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint64_field = "uint64_field";
@@ -8629,6 +8543,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8675,6 +8590,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure float_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_float_field = "float_field";
@@ -8693,6 +8609,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8739,6 +8656,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure double_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_double_field = "double_field";
@@ -8757,6 +8675,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -8803,6 +8722,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure bool_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_bool_field = "bool_field";
@@ -8819,8 +8739,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
                             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                             {
-                                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                                 {
                                     SBound bound = 0;
                                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -8832,24 +8750,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                     }
                                 }
-                                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                                {
-                                    LBound bound = 255;
-                                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                            "anonymous_string_unbounded"))
-                                    {
-                                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                    }
-                                }
-                                else
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                                "anonymous_string_unbounded: Unknown String kind.");
-                                    return;
-                                }
                                 return_code_StructType =
                                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                     "anonymous_string_unbounded", type_ids_StructType);
@@ -8857,6 +8757,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -8904,6 +8805,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure string_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_string_field = "string_field";
@@ -8994,6 +8896,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -9041,6 +8944,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum_field = "enum_field";
@@ -9131,6 +9035,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -9178,6 +9083,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum2_field = "enum2_field";
@@ -9189,7 +9095,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         }
                         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -9201,8 +9107,11 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
+                        return_code_CompleteTestType = return_code_StructType;
+                        type_ids_CompleteTestType = type_ids_StructType;
                     }
                 }
                 TypeIdentifier* element_identifier_anonymous_array_eprosima_test_StructType_3 {nullptr};
@@ -9246,6 +9155,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_eprosima_test_StructType_3 = EK_COMPLETE;
@@ -9255,8 +9165,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_eprosima_test_StructType_3 = 0;
                 PlainCollectionHeader header_anonymous_array_eprosima_test_StructType_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_eprosima_test_StructType_3, element_flags_anonymous_array_eprosima_test_StructType_3);
-                std::string type_id_kind_anonymous_array_eprosima_test_StructType_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_eprosima_test_StructType_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -9270,20 +9178,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             "anonymous_array_eprosima_test_StructType_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_eprosima_test_StructType_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_eprosima_test_StructType_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_eprosima_test_StructType_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_eprosima_test_StructType_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_CompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_eprosima_test_StructType_3", type_ids_CompleteTestType);
@@ -9291,6 +9185,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_eprosima_test_StructType_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -9338,6 +9233,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_struct_field = "array_struct_field";
@@ -9362,6 +9258,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_char_5 {nullptr};
@@ -9405,6 +9302,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_char_5 = EK_COMPLETE;
@@ -9414,26 +9312,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_char_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_char_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_char_5, element_flags_anonymous_sequence_char_5);
-                std::string type_id_kind_anonymous_sequence_char_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_char_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_char_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_char_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_char_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_char_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_char_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_char_5 already registered in TypeObjectRegistry for a different type.");
@@ -9446,6 +9330,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_char_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -9493,6 +9378,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_char_field = "bounded_sequence_char_field";
@@ -9517,6 +9403,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint8_t_5 {nullptr};
@@ -9560,6 +9447,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint8_t_5 = EK_COMPLETE;
@@ -9569,26 +9457,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint8_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint8_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint8_t_5, element_flags_anonymous_sequence_uint8_t_5);
-                std::string type_id_kind_anonymous_sequence_uint8_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint8_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint8_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint8_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint8_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint8_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint8_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint8_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -9601,6 +9475,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint8_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -9648,6 +9523,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint8_field = "bounded_sequence_uint8_field";
@@ -9672,6 +9548,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int16_t_5 {nullptr};
@@ -9715,6 +9592,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int16_t_5 = EK_COMPLETE;
@@ -9724,26 +9602,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int16_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_int16_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int16_t_5, element_flags_anonymous_sequence_int16_t_5);
-                std::string type_id_kind_anonymous_sequence_int16_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int16_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int16_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int16_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int16_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int16_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int16_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int16_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -9756,6 +9620,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int16_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -9803,6 +9668,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_int16_field = "bounded_sequence_int16_field";
@@ -9827,6 +9693,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint16_t_5 {nullptr};
@@ -9870,6 +9737,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint16_t_5 = EK_COMPLETE;
@@ -9879,26 +9747,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint16_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint16_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint16_t_5, element_flags_anonymous_sequence_uint16_t_5);
-                std::string type_id_kind_anonymous_sequence_uint16_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint16_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint16_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint16_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint16_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint16_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint16_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint16_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -9911,6 +9765,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint16_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -9958,6 +9813,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint16_field = "bounded_sequence_uint16_field";
@@ -9982,6 +9838,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int32_t_5 {nullptr};
@@ -10025,6 +9882,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int32_t_5 = EK_COMPLETE;
@@ -10034,26 +9892,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int32_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_int32_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int32_t_5, element_flags_anonymous_sequence_int32_t_5);
-                std::string type_id_kind_anonymous_sequence_int32_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int32_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int32_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int32_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int32_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int32_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int32_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int32_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -10066,6 +9910,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int32_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -10113,6 +9958,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_int32_field = "bounded_sequence_int32_field";
@@ -10137,6 +9983,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint32_t_5 {nullptr};
@@ -10180,6 +10027,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint32_t_5 = EK_COMPLETE;
@@ -10189,26 +10037,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint32_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint32_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint32_t_5, element_flags_anonymous_sequence_uint32_t_5);
-                std::string type_id_kind_anonymous_sequence_uint32_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint32_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint32_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint32_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint32_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint32_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint32_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint32_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -10221,6 +10055,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint32_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -10268,6 +10103,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint32_field = "bounded_sequence_uint32_field";
@@ -10292,6 +10128,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int64_t_5 {nullptr};
@@ -10335,6 +10172,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int64_t_5 = EK_COMPLETE;
@@ -10344,26 +10182,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int64_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_int64_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int64_t_5, element_flags_anonymous_sequence_int64_t_5);
-                std::string type_id_kind_anonymous_sequence_int64_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int64_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int64_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int64_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int64_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int64_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int64_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int64_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -10376,6 +10200,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int64_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -10423,6 +10248,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_int64_field = "bounded_sequence_int64_field";
@@ -10447,6 +10273,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint64_t_5 {nullptr};
@@ -10490,6 +10317,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint64_t_5 = EK_COMPLETE;
@@ -10499,26 +10327,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint64_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint64_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint64_t_5, element_flags_anonymous_sequence_uint64_t_5);
-                std::string type_id_kind_anonymous_sequence_uint64_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint64_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint64_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint64_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint64_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint64_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint64_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint64_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -10531,6 +10345,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint64_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -10578,6 +10393,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint64_field = "bounded_sequence_uint64_field";
@@ -10602,6 +10418,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_float_5 {nullptr};
@@ -10645,6 +10462,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_float_5 = EK_COMPLETE;
@@ -10654,26 +10472,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_float_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_float_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_float_5, element_flags_anonymous_sequence_float_5);
-                std::string type_id_kind_anonymous_sequence_float_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_float_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_float_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_float_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_float_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_float_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_float_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_float_5 already registered in TypeObjectRegistry for a different type.");
@@ -10686,6 +10490,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_float_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -10733,6 +10538,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_float_field = "bounded_sequence_float_field";
@@ -10757,6 +10563,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_double_5 {nullptr};
@@ -10800,6 +10607,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_double_5 = EK_COMPLETE;
@@ -10809,26 +10617,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_double_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_double_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_double_5, element_flags_anonymous_sequence_double_5);
-                std::string type_id_kind_anonymous_sequence_double_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_double_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_double_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_double_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_double_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_double_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_double_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_double_5 already registered in TypeObjectRegistry for a different type.");
@@ -10841,6 +10635,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_double_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -10888,6 +10683,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_double_field = "bounded_sequence_double_field";
@@ -10912,6 +10708,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_bool_5 {nullptr};
@@ -10955,6 +10752,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_bool_5 = EK_COMPLETE;
@@ -10964,26 +10762,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_bool_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_bool_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_bool_5, element_flags_anonymous_sequence_bool_5);
-                std::string type_id_kind_anonymous_sequence_bool_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_bool_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_bool_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_bool_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_bool_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_bool_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_bool_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_bool_5 already registered in TypeObjectRegistry for a different type.");
@@ -10996,6 +10780,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_bool_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -11043,6 +10828,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_bool_field = "bounded_sequence_bool_field";
@@ -11139,6 +10925,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -11183,6 +10970,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Color_5 = EK_COMPLETE;
@@ -11192,26 +10980,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Color_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Color_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Color_5, element_flags_anonymous_sequence_eprosima_test_Color_5);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Color_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Color_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Color_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Color_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Color_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Color_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Color_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Color_5 already registered in TypeObjectRegistry for a different type.");
@@ -11224,6 +10998,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Color_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -11271,6 +11046,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_enum_field = "bounded_sequence_enum_field";
@@ -11367,6 +11143,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -11411,6 +11188,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Material_5 = EK_COMPLETE;
@@ -11420,26 +11198,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Material_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Material_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Material_5, element_flags_anonymous_sequence_eprosima_test_Material_5);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Material_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Material_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Material_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Material_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Material_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Material_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Material_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Material_5 already registered in TypeObjectRegistry for a different type.");
@@ -11452,6 +11216,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Material_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -11499,6 +11264,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_enum2_field = "bounded_sequence_enum2_field";
@@ -11542,6 +11308,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11588,6 +11355,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure char_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_char_field = "char_field";
@@ -11606,6 +11374,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11652,6 +11421,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint8_field = "uint8_field";
@@ -11670,6 +11440,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11716,6 +11487,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int16_field = "int16_field";
@@ -11734,6 +11506,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11780,6 +11553,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint16_field = "uint16_field";
@@ -11798,6 +11572,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11844,6 +11619,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int32_field = "int32_field";
@@ -11862,6 +11638,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11908,6 +11685,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint32_field = "uint32_field";
@@ -11926,6 +11704,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -11972,6 +11751,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int64_field = "int64_field";
@@ -11990,6 +11770,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -12036,6 +11817,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint64_field = "uint64_field";
@@ -12054,6 +11836,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -12100,6 +11883,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure float_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_float_field = "float_field";
@@ -12118,6 +11902,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -12164,6 +11949,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure double_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_double_field = "double_field";
@@ -12182,6 +11968,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -12228,6 +12015,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure bool_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_bool_field = "bool_field";
@@ -12244,8 +12032,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
                             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                             {
-                                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                                 {
                                     SBound bound = 0;
                                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -12257,24 +12043,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                     }
                                 }
-                                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                                {
-                                    LBound bound = 255;
-                                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                            "anonymous_string_unbounded"))
-                                    {
-                                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                    }
-                                }
-                                else
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                                "anonymous_string_unbounded: Unknown String kind.");
-                                    return;
-                                }
                                 return_code_StructType =
                                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                     "anonymous_string_unbounded", type_ids_StructType);
@@ -12282,6 +12050,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -12329,6 +12098,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure string_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_string_field = "string_field";
@@ -12419,6 +12189,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -12466,6 +12237,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum_field = "enum_field";
@@ -12556,6 +12328,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -12603,6 +12376,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum2_field = "enum2_field";
@@ -12614,7 +12388,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         }
                         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -12626,8 +12400,11 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
+                        return_code_CompleteTestType = return_code_StructType;
+                        type_ids_CompleteTestType = type_ids_StructType;
                     }
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_eprosima_test_StructType_5 {nullptr};
@@ -12671,6 +12448,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_StructType_5 = EK_COMPLETE;
@@ -12680,26 +12458,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_StructType_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_StructType_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_StructType_5, element_flags_anonymous_sequence_eprosima_test_StructType_5);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_StructType_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_StructType_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_StructType_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_StructType_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_StructType_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_StructType_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_StructType_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_StructType_5 already registered in TypeObjectRegistry for a different type.");
@@ -12712,6 +12476,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_StructType_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -12759,6 +12524,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_struct_field = "bounded_sequence_struct_field";
@@ -12783,6 +12549,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_char_unbounded {nullptr};
@@ -12826,6 +12593,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_char_unbounded = EK_COMPLETE;
@@ -12835,26 +12603,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_char_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_char_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_char_unbounded, element_flags_anonymous_sequence_char_unbounded);
-                std::string type_id_kind_anonymous_sequence_char_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_char_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_char_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_char_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_char_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_char_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_char_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_char_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -12867,6 +12621,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_char_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -12914,6 +12669,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_char_field = "unbounded_sequence_char_field";
@@ -12938,6 +12694,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint8_t_unbounded {nullptr};
@@ -12981,6 +12738,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint8_t_unbounded = EK_COMPLETE;
@@ -12990,26 +12748,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint8_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint8_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint8_t_unbounded, element_flags_anonymous_sequence_uint8_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint8_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint8_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint8_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint8_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint8_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint8_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint8_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint8_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13022,6 +12766,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint8_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13069,6 +12814,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint8_field = "unbounded_sequence_uint8_field";
@@ -13093,6 +12839,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int16_t_unbounded {nullptr};
@@ -13136,6 +12883,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int16_t_unbounded = EK_COMPLETE;
@@ -13145,26 +12893,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int16_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_int16_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int16_t_unbounded, element_flags_anonymous_sequence_int16_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_int16_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int16_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int16_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int16_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int16_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int16_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int16_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int16_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13177,6 +12911,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int16_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13224,6 +12959,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_int16_field = "unbounded_sequence_int16_field";
@@ -13248,6 +12984,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint16_t_unbounded {nullptr};
@@ -13291,6 +13028,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint16_t_unbounded = EK_COMPLETE;
@@ -13300,26 +13038,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint16_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint16_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint16_t_unbounded, element_flags_anonymous_sequence_uint16_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint16_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint16_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint16_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint16_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint16_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint16_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint16_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint16_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13332,6 +13056,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint16_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13379,6 +13104,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint16_field = "unbounded_sequence_uint16_field";
@@ -13403,6 +13129,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int32_t_unbounded {nullptr};
@@ -13446,6 +13173,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int32_t_unbounded = EK_COMPLETE;
@@ -13455,26 +13183,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int32_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_int32_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int32_t_unbounded, element_flags_anonymous_sequence_int32_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_int32_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int32_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int32_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int32_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int32_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int32_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int32_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int32_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13487,6 +13201,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int32_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13534,6 +13249,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_int32_field = "unbounded_sequence_int32_field";
@@ -13558,6 +13274,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint32_t_unbounded {nullptr};
@@ -13601,6 +13318,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint32_t_unbounded = EK_COMPLETE;
@@ -13610,26 +13328,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint32_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint32_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint32_t_unbounded, element_flags_anonymous_sequence_uint32_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint32_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint32_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint32_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint32_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint32_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint32_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint32_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint32_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13642,6 +13346,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint32_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13689,6 +13394,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint32_field = "unbounded_sequence_uint32_field";
@@ -13713,6 +13419,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int64_t_unbounded {nullptr};
@@ -13756,6 +13463,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int64_t_unbounded = EK_COMPLETE;
@@ -13765,26 +13473,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int64_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_int64_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int64_t_unbounded, element_flags_anonymous_sequence_int64_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_int64_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int64_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int64_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int64_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int64_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int64_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int64_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int64_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13797,6 +13491,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int64_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13844,6 +13539,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_int64_field = "unbounded_sequence_int64_field";
@@ -13868,6 +13564,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint64_t_unbounded {nullptr};
@@ -13911,6 +13608,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint64_t_unbounded = EK_COMPLETE;
@@ -13920,26 +13618,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint64_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint64_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint64_t_unbounded, element_flags_anonymous_sequence_uint64_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint64_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint64_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint64_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint64_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint64_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint64_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint64_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint64_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -13952,6 +13636,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint64_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -13999,6 +13684,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint64_field = "unbounded_sequence_uint64_field";
@@ -14023,6 +13709,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_float_unbounded {nullptr};
@@ -14066,6 +13753,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_float_unbounded = EK_COMPLETE;
@@ -14075,26 +13763,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_float_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_float_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_float_unbounded, element_flags_anonymous_sequence_float_unbounded);
-                std::string type_id_kind_anonymous_sequence_float_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_float_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_float_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_float_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_float_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_float_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_float_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_float_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -14107,6 +13781,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_float_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -14154,6 +13829,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_float_field = "unbounded_sequence_float_field";
@@ -14178,6 +13854,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_double_unbounded {nullptr};
@@ -14221,6 +13898,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_double_unbounded = EK_COMPLETE;
@@ -14230,26 +13908,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_double_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_double_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_double_unbounded, element_flags_anonymous_sequence_double_unbounded);
-                std::string type_id_kind_anonymous_sequence_double_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_double_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_double_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_double_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_double_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_double_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_double_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_double_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -14262,6 +13926,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_double_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -14309,6 +13974,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_double_field = "unbounded_sequence_double_field";
@@ -14333,6 +13999,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_bool_unbounded {nullptr};
@@ -14376,6 +14043,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_bool_unbounded = EK_COMPLETE;
@@ -14385,26 +14053,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_bool_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_bool_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_bool_unbounded, element_flags_anonymous_sequence_bool_unbounded);
-                std::string type_id_kind_anonymous_sequence_bool_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_bool_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_bool_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_bool_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_bool_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_bool_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_bool_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_bool_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -14417,6 +14071,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_bool_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -14464,6 +14119,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_bool_field = "unbounded_sequence_bool_field";
@@ -14560,6 +14216,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -14604,6 +14261,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Color_unbounded = EK_COMPLETE;
@@ -14613,26 +14271,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Color_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Color_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Color_unbounded, element_flags_anonymous_sequence_eprosima_test_Color_unbounded);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Color_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Color_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Color_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Color_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Color_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Color_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Color_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Color_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -14645,6 +14289,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Color_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -14692,6 +14337,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_enum_field = "unbounded_sequence_enum_field";
@@ -14788,6 +14434,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -14832,6 +14479,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Material_unbounded = EK_COMPLETE;
@@ -14841,26 +14489,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Material_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Material_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Material_unbounded, element_flags_anonymous_sequence_eprosima_test_Material_unbounded);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Material_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Material_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Material_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Material_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Material_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Material_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Material_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Material_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -14873,6 +14507,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Material_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -14920,6 +14555,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_enum2_field = "unbounded_sequence_enum2_field";
@@ -14963,6 +14599,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15009,6 +14646,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure char_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_char_field = "char_field";
@@ -15027,6 +14665,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15073,6 +14712,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint8_field = "uint8_field";
@@ -15091,6 +14731,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15137,6 +14778,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int16_field = "int16_field";
@@ -15155,6 +14797,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15201,6 +14844,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint16_field = "uint16_field";
@@ -15219,6 +14863,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15265,6 +14910,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int32_field = "int32_field";
@@ -15283,6 +14929,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15329,6 +14976,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint32_field = "uint32_field";
@@ -15347,6 +14995,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15393,6 +15042,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int64_field = "int64_field";
@@ -15411,6 +15061,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15457,6 +15108,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint64_field = "uint64_field";
@@ -15475,6 +15127,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15521,6 +15174,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure float_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_float_field = "float_field";
@@ -15539,6 +15193,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15585,6 +15240,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure double_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_double_field = "double_field";
@@ -15603,6 +15259,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -15649,6 +15306,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure bool_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_bool_field = "bool_field";
@@ -15665,8 +15323,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
 
                             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                             {
-                                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                                 {
                                     SBound bound = 0;
                                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -15678,24 +15334,6 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                     }
                                 }
-                                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                                {
-                                    LBound bound = 255;
-                                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                            "anonymous_string_unbounded"))
-                                    {
-                                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                    }
-                                }
-                                else
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                                "anonymous_string_unbounded: Unknown String kind.");
-                                    return;
-                                }
                                 return_code_StructType =
                                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                     "anonymous_string_unbounded", type_ids_StructType);
@@ -15703,6 +15341,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -15750,6 +15389,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure string_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_string_field = "string_field";
@@ -15840,6 +15480,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -15887,6 +15528,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum_field = "enum_field";
@@ -15977,6 +15619,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -16024,6 +15667,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum2_field = "enum2_field";
@@ -16035,7 +15679,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         }
                         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -16047,8 +15691,11 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
+                        return_code_CompleteTestType = return_code_StructType;
+                        type_ids_CompleteTestType = type_ids_StructType;
                     }
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_eprosima_test_StructType_unbounded {nullptr};
@@ -16092,6 +15739,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_StructType_unbounded = EK_COMPLETE;
@@ -16101,26 +15749,12 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_StructType_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_StructType_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_StructType_unbounded, element_flags_anonymous_sequence_eprosima_test_StructType_unbounded);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_StructType_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_StructType_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_StructType_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_StructType_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_StructType_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_StructType_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_StructType_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_StructType_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -16133,6 +15767,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_StructType_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -16180,6 +15815,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_struct_field = "unbounded_sequence_struct_field";
@@ -16191,7 +15827,7 @@ void register_eprosima_test_CompleteTestType_type_identifier()
         }
         CompleteStructType struct_type_CompleteTestType = TypeObjectUtils::build_complete_struct_type(struct_flags_CompleteTestType, header_CompleteTestType, member_seq_CompleteTestType);
         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_CompleteTestType, type_name_CompleteTestType.to_string()))
+                TypeObjectUtils::build_and_register_struct_type_object(struct_type_CompleteTestType, type_name_CompleteTestType.to_string(), type_id))
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                     "eprosima::test::CompleteTestType already registered in TypeObjectRegistry for a different type.");
@@ -16203,11 +15839,14 @@ void register_eprosima_test_CompleteTestType_type_identifier()
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "eprosima::test::CompleteTestType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+            type_id = TypeIdentifier();
             return;
         }
     }
 }
-void register_eprosima_test_KeyedCompleteTestType_type_identifier()
+// TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
+void register_eprosima_test_KeyedCompleteTestType_type_identifier(
+        TypeIdentifier& type_id)
 {
     {
         StructTypeFlag struct_flags_KeyedCompleteTestType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
@@ -16230,6 +15869,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "id Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_id = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16276,6 +15916,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure id member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_id = "id";
@@ -16307,6 +15948,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16353,6 +15995,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_char_field = "char_field";
@@ -16371,6 +16014,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16417,6 +16061,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint8_field = "uint8_field";
@@ -16435,6 +16080,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16481,6 +16127,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int16_field = "int16_field";
@@ -16499,6 +16146,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16545,6 +16193,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint16_field = "uint16_field";
@@ -16563,6 +16212,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16609,6 +16259,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int32_field = "int32_field";
@@ -16627,6 +16278,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16673,6 +16325,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint32_field = "uint32_field";
@@ -16691,6 +16344,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16737,6 +16391,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int64_field = "int64_field";
@@ -16755,6 +16410,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16801,6 +16457,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint64_field = "uint64_field";
@@ -16819,6 +16476,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16865,6 +16523,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_float_field = "float_field";
@@ -16883,6 +16542,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16929,6 +16589,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_double_field = "double_field";
@@ -16947,6 +16608,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -16993,6 +16655,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bool_field = "bool_field";
@@ -17009,8 +16672,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
             if (return_code_KeyedCompleteTestType != eprosima::fastdds::dds::RETCODE_OK)
             {
-                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                 {
                     SBound bound = 0;
                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -17022,24 +16683,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                {
-                    LBound bound = 255;
-                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                            "anonymous_string_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                "anonymous_string_unbounded: Unknown String kind.");
-                    return;
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_string_unbounded", type_ids_KeyedCompleteTestType);
@@ -17047,6 +16690,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -17094,6 +16738,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure string_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_string_field = "string_field";
@@ -17184,6 +16829,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -17231,6 +16877,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum_field = "enum_field";
@@ -17321,6 +16968,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -17368,6 +17016,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum2_field = "enum2_field";
@@ -17405,6 +17054,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17451,6 +17101,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure char_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_char_field = "char_field";
@@ -17469,6 +17120,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17515,6 +17167,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint8_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint8_field = "uint8_field";
@@ -17533,6 +17186,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17579,6 +17233,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int16_field = "int16_field";
@@ -17597,6 +17252,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17643,6 +17299,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint16_field = "uint16_field";
@@ -17661,6 +17318,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17707,6 +17365,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int32_field = "int32_field";
@@ -17725,6 +17384,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17771,6 +17431,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint32_field = "uint32_field";
@@ -17789,6 +17450,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17835,6 +17497,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int64_field = "int64_field";
@@ -17853,6 +17516,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17899,6 +17563,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint64_field = "uint64_field";
@@ -17917,6 +17582,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -17963,6 +17629,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure float_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_float_field = "float_field";
@@ -17981,6 +17648,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18027,6 +17695,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure double_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_double_field = "double_field";
@@ -18045,6 +17714,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18091,6 +17761,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure bool_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_bool_field = "bool_field";
@@ -18107,8 +17778,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
                         if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                         {
-                            std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                            if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                             {
                                 SBound bound = 0;
                                 StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -18120,24 +17789,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                         "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                 }
                             }
-                            else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                            {
-                                LBound bound = 255;
-                                StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                        TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                        "anonymous_string_unbounded"))
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                        "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                }
-                            }
-                            else
-                            {
-                                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded: Unknown String kind.");
-                                return;
-                            }
                             return_code_StructType =
                                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                 "anonymous_string_unbounded", type_ids_StructType);
@@ -18145,6 +17796,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -18192,6 +17844,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure string_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_string_field = "string_field";
@@ -18282,6 +17935,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -18329,6 +17983,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum_field = "enum_field";
@@ -18419,6 +18074,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -18466,6 +18122,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum2_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum2_field = "enum2_field";
@@ -18477,7 +18134,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     }
                     CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -18489,8 +18146,11 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
+                    return_code_KeyedCompleteTestType = return_code_StructType;
+                    type_ids_KeyedCompleteTestType = type_ids_StructType;
                 }
             }
             StructMemberFlag member_flags_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18537,6 +18197,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_struct_field = "struct_field";
@@ -18555,6 +18216,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "char_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_char_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18601,6 +18263,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure char_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_char_opt_field = "char_opt_field";
@@ -18632,6 +18295,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint8_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint8_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18678,6 +18342,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint8_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint8_opt_field = "uint8_opt_field";
@@ -18709,6 +18374,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18755,6 +18421,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int16_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int16_opt_field = "int16_opt_field";
@@ -18786,6 +18453,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18832,6 +18500,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint16_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint16_opt_field = "uint16_opt_field";
@@ -18863,6 +18532,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18909,6 +18579,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int32_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int32_opt_field = "int32_opt_field";
@@ -18940,6 +18611,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -18986,6 +18658,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint32_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint32_opt_field = "uint32_opt_field";
@@ -19017,6 +18690,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "int64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_int64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19063,6 +18737,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure int64_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_int64_opt_field = "int64_opt_field";
@@ -19094,6 +18769,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "uint64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_uint64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19140,6 +18816,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure uint64_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_uint64_opt_field = "uint64_opt_field";
@@ -19171,6 +18848,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "float_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_float_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19217,6 +18895,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure float_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_float_opt_field = "float_opt_field";
@@ -19248,6 +18927,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "double_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_double_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19294,6 +18974,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure double_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_double_opt_field = "double_opt_field";
@@ -19325,6 +19006,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "bool_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                type_id = TypeIdentifier();
                 return;
             }
             StructMemberFlag member_flags_bool_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19371,6 +19053,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bool_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bool_opt_field = "bool_opt_field";
@@ -19400,8 +19083,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
             if (return_code_KeyedCompleteTestType != eprosima::fastdds::dds::RETCODE_OK)
             {
-                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                 {
                     SBound bound = 0;
                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -19413,24 +19094,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                {
-                    LBound bound = 255;
-                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                            "anonymous_string_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                "anonymous_string_unbounded: Unknown String kind.");
-                    return;
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_string_unbounded", type_ids_KeyedCompleteTestType);
@@ -19438,6 +19101,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -19485,6 +19149,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure string_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_string_opt_field = "string_opt_field";
@@ -19588,6 +19253,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -19635,6 +19301,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum_opt_field = "enum_opt_field";
@@ -19738,6 +19405,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -19785,6 +19453,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure enum2_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_enum2_opt_field = "enum2_opt_field";
@@ -19835,6 +19504,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19881,6 +19551,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure char_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_char_field = "char_field";
@@ -19899,6 +19570,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -19945,6 +19617,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint8_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint8_field = "uint8_field";
@@ -19963,6 +19636,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20009,6 +19683,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int16_field = "int16_field";
@@ -20027,6 +19702,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20073,6 +19749,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint16_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint16_field = "uint16_field";
@@ -20091,6 +19768,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20137,6 +19815,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int32_field = "int32_field";
@@ -20155,6 +19834,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20201,6 +19881,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint32_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint32_field = "uint32_field";
@@ -20219,6 +19900,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20265,6 +19947,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure int64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_int64_field = "int64_field";
@@ -20283,6 +19966,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20329,6 +20013,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure uint64_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_uint64_field = "uint64_field";
@@ -20347,6 +20032,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20393,6 +20079,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure float_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_float_field = "float_field";
@@ -20411,6 +20098,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20457,6 +20145,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure double_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_double_field = "double_field";
@@ -20475,6 +20164,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20521,6 +20211,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure bool_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_bool_field = "bool_field";
@@ -20537,8 +20228,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
                         if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                         {
-                            std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                            if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                             {
                                 SBound bound = 0;
                                 StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -20550,24 +20239,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                         "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                 }
                             }
-                            else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                            {
-                                LBound bound = 255;
-                                StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                        TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                        "anonymous_string_unbounded"))
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                        "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                }
-                            }
-                            else
-                            {
-                                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded: Unknown String kind.");
-                                return;
-                            }
                             return_code_StructType =
                                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                 "anonymous_string_unbounded", type_ids_StructType);
@@ -20575,6 +20246,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -20622,6 +20294,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure string_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_string_field = "string_field";
@@ -20712,6 +20385,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -20759,6 +20433,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum_field = "enum_field";
@@ -20849,6 +20524,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                             "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                         }
@@ -20896,6 +20572,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "Structure enum2_field member TypeIdentifier inconsistent.");
+                            type_id = TypeIdentifier();
                             return;
                         }
                         MemberName name_enum2_field = "enum2_field";
@@ -20907,7 +20584,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     }
                     CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                            TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -20919,8 +20596,11 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
+                    return_code_KeyedCompleteTestType = return_code_StructType;
+                    type_ids_KeyedCompleteTestType = type_ids_StructType;
                 }
             }
             StructMemberFlag member_flags_struct_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -20967,6 +20647,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure struct_opt_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_struct_opt_field = "struct_opt_field";
@@ -21004,6 +20685,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_char_3 {nullptr};
@@ -21047,6 +20729,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_char_3 = EK_COMPLETE;
@@ -21056,8 +20739,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_char_3 = 0;
                 PlainCollectionHeader header_anonymous_array_char_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_char_3, element_flags_anonymous_array_char_3);
-                std::string type_id_kind_anonymous_array_char_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_char_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -21071,20 +20752,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_char_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_char_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_char_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_char_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_char_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_char_3", type_ids_KeyedCompleteTestType);
@@ -21092,6 +20759,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_char_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -21139,6 +20807,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_char_field = "array_char_field";
@@ -21163,6 +20832,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint8_t_3 {nullptr};
@@ -21206,6 +20876,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint8_t_3 = EK_COMPLETE;
@@ -21215,8 +20886,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint8_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint8_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint8_t_3, element_flags_anonymous_array_uint8_t_3);
-                std::string type_id_kind_anonymous_array_uint8_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint8_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -21230,20 +20899,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_uint8_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint8_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint8_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint8_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint8_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint8_t_3", type_ids_KeyedCompleteTestType);
@@ -21251,6 +20906,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint8_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -21298,6 +20954,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint8_field = "array_uint8_field";
@@ -21322,6 +20979,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_int16_t_3 {nullptr};
@@ -21365,6 +21023,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_int16_t_3 = EK_COMPLETE;
@@ -21374,8 +21033,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_int16_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_int16_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_int16_t_3, element_flags_anonymous_array_int16_t_3);
-                std::string type_id_kind_anonymous_array_int16_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_int16_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -21389,20 +21046,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_int16_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_int16_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_int16_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_int16_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_int16_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_int16_t_3", type_ids_KeyedCompleteTestType);
@@ -21410,6 +21053,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_int16_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -21457,6 +21101,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_int16_field = "array_int16_field";
@@ -21481,6 +21126,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint16_t_3 {nullptr};
@@ -21524,6 +21170,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint16_t_3 = EK_COMPLETE;
@@ -21533,8 +21180,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint16_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint16_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint16_t_3, element_flags_anonymous_array_uint16_t_3);
-                std::string type_id_kind_anonymous_array_uint16_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint16_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -21548,20 +21193,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_uint16_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint16_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint16_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint16_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint16_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint16_t_3", type_ids_KeyedCompleteTestType);
@@ -21569,6 +21200,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint16_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -21616,6 +21248,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint16_field = "array_uint16_field";
@@ -21640,6 +21273,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_int32_t_3 {nullptr};
@@ -21683,6 +21317,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_int32_t_3 = EK_COMPLETE;
@@ -21692,8 +21327,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_int32_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_int32_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_int32_t_3, element_flags_anonymous_array_int32_t_3);
-                std::string type_id_kind_anonymous_array_int32_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_int32_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -21707,20 +21340,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_int32_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_int32_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_int32_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_int32_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_int32_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_int32_t_3", type_ids_KeyedCompleteTestType);
@@ -21728,6 +21347,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_int32_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -21775,6 +21395,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_int32_field = "array_int32_field";
@@ -21799,6 +21420,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint32_t_3 {nullptr};
@@ -21842,6 +21464,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint32_t_3 = EK_COMPLETE;
@@ -21851,8 +21474,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint32_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint32_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint32_t_3, element_flags_anonymous_array_uint32_t_3);
-                std::string type_id_kind_anonymous_array_uint32_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint32_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -21866,20 +21487,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_uint32_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint32_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint32_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint32_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint32_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint32_t_3", type_ids_KeyedCompleteTestType);
@@ -21887,6 +21494,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint32_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -21934,6 +21542,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint32_field = "array_uint32_field";
@@ -21958,6 +21567,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_int64_t_3 {nullptr};
@@ -22001,6 +21611,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_int64_t_3 = EK_COMPLETE;
@@ -22010,8 +21621,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_int64_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_int64_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_int64_t_3, element_flags_anonymous_array_int64_t_3);
-                std::string type_id_kind_anonymous_array_int64_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_int64_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -22025,20 +21634,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_int64_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_int64_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_int64_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_int64_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_int64_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_int64_t_3", type_ids_KeyedCompleteTestType);
@@ -22046,6 +21641,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_int64_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -22093,6 +21689,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_int64_field = "array_int64_field";
@@ -22117,6 +21714,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_uint64_t_3 {nullptr};
@@ -22160,6 +21758,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_uint64_t_3 = EK_COMPLETE;
@@ -22169,8 +21768,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_uint64_t_3 = 0;
                 PlainCollectionHeader header_anonymous_array_uint64_t_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_uint64_t_3, element_flags_anonymous_array_uint64_t_3);
-                std::string type_id_kind_anonymous_array_uint64_t_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_uint64_t_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -22184,20 +21781,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_uint64_t_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_uint64_t_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_uint64_t_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_uint64_t_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_uint64_t_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_uint64_t_3", type_ids_KeyedCompleteTestType);
@@ -22205,6 +21788,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_uint64_t_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -22252,6 +21836,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_uint64_field = "array_uint64_field";
@@ -22276,6 +21861,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_float_3 {nullptr};
@@ -22319,6 +21905,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_float_3 = EK_COMPLETE;
@@ -22328,8 +21915,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_float_3 = 0;
                 PlainCollectionHeader header_anonymous_array_float_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_float_3, element_flags_anonymous_array_float_3);
-                std::string type_id_kind_anonymous_array_float_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_float_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -22343,20 +21928,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_float_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_float_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_float_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_float_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_float_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_float_3", type_ids_KeyedCompleteTestType);
@@ -22364,6 +21935,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_float_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -22411,6 +21983,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_float_field = "array_float_field";
@@ -22435,6 +22008,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_double_3 {nullptr};
@@ -22478,6 +22052,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_double_3 = EK_COMPLETE;
@@ -22487,8 +22062,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_double_3 = 0;
                 PlainCollectionHeader header_anonymous_array_double_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_double_3, element_flags_anonymous_array_double_3);
-                std::string type_id_kind_anonymous_array_double_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_double_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -22502,20 +22075,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_double_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_double_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_double_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_double_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_double_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_double_3", type_ids_KeyedCompleteTestType);
@@ -22523,6 +22082,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_double_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -22570,6 +22130,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_double_field = "array_double_field";
@@ -22594,6 +22155,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Array element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_array_bool_3 {nullptr};
@@ -22637,6 +22199,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_bool_3 = EK_COMPLETE;
@@ -22646,8 +22209,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_bool_3 = 0;
                 PlainCollectionHeader header_anonymous_array_bool_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_bool_3, element_flags_anonymous_array_bool_3);
-                std::string type_id_kind_anonymous_array_bool_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_bool_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -22661,20 +22222,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_bool_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_bool_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_bool_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_bool_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_bool_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_bool_3", type_ids_KeyedCompleteTestType);
@@ -22682,6 +22229,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_bool_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -22729,6 +22277,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_bool_field = "array_bool_field";
@@ -22825,6 +22374,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -22869,6 +22419,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_eprosima_test_Color_3 = EK_COMPLETE;
@@ -22878,8 +22429,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_eprosima_test_Color_3 = 0;
                 PlainCollectionHeader header_anonymous_array_eprosima_test_Color_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_eprosima_test_Color_3, element_flags_anonymous_array_eprosima_test_Color_3);
-                std::string type_id_kind_anonymous_array_eprosima_test_Color_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_eprosima_test_Color_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -22893,20 +22442,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_eprosima_test_Color_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_eprosima_test_Color_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_eprosima_test_Color_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_eprosima_test_Color_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_eprosima_test_Color_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_eprosima_test_Color_3", type_ids_KeyedCompleteTestType);
@@ -22914,6 +22449,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_eprosima_test_Color_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -22961,6 +22497,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_enum_field = "array_enum_field";
@@ -23057,6 +22594,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -23101,6 +22639,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_eprosima_test_Material_3 = EK_COMPLETE;
@@ -23110,8 +22649,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_eprosima_test_Material_3 = 0;
                 PlainCollectionHeader header_anonymous_array_eprosima_test_Material_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_eprosima_test_Material_3, element_flags_anonymous_array_eprosima_test_Material_3);
-                std::string type_id_kind_anonymous_array_eprosima_test_Material_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_eprosima_test_Material_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -23125,20 +22662,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_eprosima_test_Material_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_eprosima_test_Material_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_eprosima_test_Material_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_eprosima_test_Material_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_eprosima_test_Material_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_eprosima_test_Material_3", type_ids_KeyedCompleteTestType);
@@ -23146,6 +22669,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_eprosima_test_Material_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -23193,6 +22717,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_enum2_field = "array_enum2_field";
@@ -23236,6 +22761,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23282,6 +22808,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure char_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_char_field = "char_field";
@@ -23300,6 +22827,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23346,6 +22874,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint8_field = "uint8_field";
@@ -23364,6 +22893,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23410,6 +22940,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int16_field = "int16_field";
@@ -23428,6 +22959,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23474,6 +23006,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint16_field = "uint16_field";
@@ -23492,6 +23025,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23538,6 +23072,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int32_field = "int32_field";
@@ -23556,6 +23091,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23602,6 +23138,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint32_field = "uint32_field";
@@ -23620,6 +23157,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23666,6 +23204,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int64_field = "int64_field";
@@ -23684,6 +23223,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23730,6 +23270,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint64_field = "uint64_field";
@@ -23748,6 +23289,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23794,6 +23336,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure float_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_float_field = "float_field";
@@ -23812,6 +23355,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23858,6 +23402,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure double_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_double_field = "double_field";
@@ -23876,6 +23421,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -23922,6 +23468,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure bool_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_bool_field = "bool_field";
@@ -23938,8 +23485,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
                             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                             {
-                                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                                 {
                                     SBound bound = 0;
                                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -23951,24 +23496,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                     }
                                 }
-                                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                                {
-                                    LBound bound = 255;
-                                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                            "anonymous_string_unbounded"))
-                                    {
-                                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                    }
-                                }
-                                else
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                                "anonymous_string_unbounded: Unknown String kind.");
-                                    return;
-                                }
                                 return_code_StructType =
                                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                     "anonymous_string_unbounded", type_ids_StructType);
@@ -23976,6 +23503,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -24023,6 +23551,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure string_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_string_field = "string_field";
@@ -24113,6 +23642,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -24160,6 +23690,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum_field = "enum_field";
@@ -24250,6 +23781,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -24297,6 +23829,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum2_field = "enum2_field";
@@ -24308,7 +23841,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         }
                         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -24320,8 +23853,11 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
+                        return_code_KeyedCompleteTestType = return_code_StructType;
+                        type_ids_KeyedCompleteTestType = type_ids_StructType;
                     }
                 }
                 TypeIdentifier* element_identifier_anonymous_array_eprosima_test_StructType_3 {nullptr};
@@ -24365,6 +23901,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Array element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_array_eprosima_test_StructType_3 = EK_COMPLETE;
@@ -24374,8 +23911,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_array_eprosima_test_StructType_3 = 0;
                 PlainCollectionHeader header_anonymous_array_eprosima_test_StructType_3 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_array_eprosima_test_StructType_3, element_flags_anonymous_array_eprosima_test_StructType_3);
-                std::string type_id_kind_anonymous_array_eprosima_test_StructType_3("TI_PLAIN_ARRAY_SMALL");
-                if (type_id_kind_anonymous_array_eprosima_test_StructType_3 == "TI_PLAIN_ARRAY_SMALL")
                 {
                     SBoundSeq array_bound_seq;
                         TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<SBound>(3));
@@ -24389,20 +23924,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             "anonymous_array_eprosima_test_StructType_3 already registered in TypeObjectRegistry for a different type.");
                     }
                 }
-                else
-                {
-                    LBoundSeq array_bound_seq;
-                        TypeObjectUtils::add_array_dimension(array_bound_seq, static_cast<LBound>(3));
-
-                    PlainArrayLElemDefn array_ldefn = TypeObjectUtils::build_plain_array_l_elem_defn(header_anonymous_array_eprosima_test_StructType_3, array_bound_seq,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_array_eprosima_test_StructType_3));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_array_type_identifier(array_ldefn, "anonymous_array_eprosima_test_StructType_3"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_array_eprosima_test_StructType_3 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
                 return_code_KeyedCompleteTestType =
                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                     "anonymous_array_eprosima_test_StructType_3", type_ids_KeyedCompleteTestType);
@@ -24410,6 +23931,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_array_eprosima_test_StructType_3: Given Array TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -24457,6 +23979,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure array_struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_array_struct_field = "array_struct_field";
@@ -24481,6 +24004,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_char_5 {nullptr};
@@ -24524,6 +24048,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_char_5 = EK_COMPLETE;
@@ -24533,26 +24058,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_char_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_char_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_char_5, element_flags_anonymous_sequence_char_5);
-                std::string type_id_kind_anonymous_sequence_char_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_char_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_char_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_char_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_char_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_char_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_char_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_char_5 already registered in TypeObjectRegistry for a different type.");
@@ -24565,6 +24076,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_char_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -24612,6 +24124,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_char_field = "bounded_sequence_char_field";
@@ -24636,6 +24149,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint8_t_5 {nullptr};
@@ -24679,6 +24193,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint8_t_5 = EK_COMPLETE;
@@ -24688,26 +24203,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint8_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint8_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint8_t_5, element_flags_anonymous_sequence_uint8_t_5);
-                std::string type_id_kind_anonymous_sequence_uint8_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint8_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint8_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint8_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint8_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint8_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint8_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint8_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -24720,6 +24221,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint8_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -24767,6 +24269,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint8_field = "bounded_sequence_uint8_field";
@@ -24791,6 +24294,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int16_t_5 {nullptr};
@@ -24834,6 +24338,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int16_t_5 = EK_COMPLETE;
@@ -24843,26 +24348,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int16_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_int16_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int16_t_5, element_flags_anonymous_sequence_int16_t_5);
-                std::string type_id_kind_anonymous_sequence_int16_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int16_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int16_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int16_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int16_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int16_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int16_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int16_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -24875,6 +24366,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int16_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -24922,6 +24414,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_int16_field = "bounded_sequence_int16_field";
@@ -24946,6 +24439,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint16_t_5 {nullptr};
@@ -24989,6 +24483,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint16_t_5 = EK_COMPLETE;
@@ -24998,26 +24493,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint16_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint16_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint16_t_5, element_flags_anonymous_sequence_uint16_t_5);
-                std::string type_id_kind_anonymous_sequence_uint16_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint16_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint16_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint16_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint16_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint16_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint16_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint16_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -25030,6 +24511,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint16_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -25077,6 +24559,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint16_field = "bounded_sequence_uint16_field";
@@ -25101,6 +24584,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int32_t_5 {nullptr};
@@ -25144,6 +24628,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int32_t_5 = EK_COMPLETE;
@@ -25153,26 +24638,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int32_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_int32_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int32_t_5, element_flags_anonymous_sequence_int32_t_5);
-                std::string type_id_kind_anonymous_sequence_int32_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int32_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int32_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int32_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int32_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int32_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int32_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int32_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -25185,6 +24656,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int32_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -25232,6 +24704,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_int32_field = "bounded_sequence_int32_field";
@@ -25256,6 +24729,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint32_t_5 {nullptr};
@@ -25299,6 +24773,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint32_t_5 = EK_COMPLETE;
@@ -25308,26 +24783,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint32_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint32_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint32_t_5, element_flags_anonymous_sequence_uint32_t_5);
-                std::string type_id_kind_anonymous_sequence_uint32_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint32_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint32_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint32_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint32_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint32_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint32_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint32_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -25340,6 +24801,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint32_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -25387,6 +24849,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint32_field = "bounded_sequence_uint32_field";
@@ -25411,6 +24874,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int64_t_5 {nullptr};
@@ -25454,6 +24918,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int64_t_5 = EK_COMPLETE;
@@ -25463,26 +24928,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int64_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_int64_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int64_t_5, element_flags_anonymous_sequence_int64_t_5);
-                std::string type_id_kind_anonymous_sequence_int64_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int64_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int64_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int64_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int64_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int64_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int64_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int64_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -25495,6 +24946,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int64_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -25542,6 +24994,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_int64_field = "bounded_sequence_int64_field";
@@ -25566,6 +25019,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint64_t_5 {nullptr};
@@ -25609,6 +25063,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint64_t_5 = EK_COMPLETE;
@@ -25618,26 +25073,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint64_t_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint64_t_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint64_t_5, element_flags_anonymous_sequence_uint64_t_5);
-                std::string type_id_kind_anonymous_sequence_uint64_t_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint64_t_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint64_t_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint64_t_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint64_t_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint64_t_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint64_t_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint64_t_5 already registered in TypeObjectRegistry for a different type.");
@@ -25650,6 +25091,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint64_t_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -25697,6 +25139,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_uint64_field = "bounded_sequence_uint64_field";
@@ -25721,6 +25164,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_float_5 {nullptr};
@@ -25764,6 +25208,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_float_5 = EK_COMPLETE;
@@ -25773,26 +25218,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_float_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_float_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_float_5, element_flags_anonymous_sequence_float_5);
-                std::string type_id_kind_anonymous_sequence_float_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_float_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_float_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_float_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_float_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_float_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_float_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_float_5 already registered in TypeObjectRegistry for a different type.");
@@ -25805,6 +25236,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_float_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -25852,6 +25284,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_float_field = "bounded_sequence_float_field";
@@ -25876,6 +25309,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_double_5 {nullptr};
@@ -25919,6 +25353,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_double_5 = EK_COMPLETE;
@@ -25928,26 +25363,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_double_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_double_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_double_5, element_flags_anonymous_sequence_double_5);
-                std::string type_id_kind_anonymous_sequence_double_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_double_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_double_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_double_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_double_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_double_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_double_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_double_5 already registered in TypeObjectRegistry for a different type.");
@@ -25960,6 +25381,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_double_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -26007,6 +25429,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_double_field = "bounded_sequence_double_field";
@@ -26031,6 +25454,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_bool_5 {nullptr};
@@ -26074,6 +25498,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_bool_5 = EK_COMPLETE;
@@ -26083,26 +25508,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_bool_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_bool_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_bool_5, element_flags_anonymous_sequence_bool_5);
-                std::string type_id_kind_anonymous_sequence_bool_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_bool_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_bool_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_bool_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_bool_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_bool_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_bool_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_bool_5 already registered in TypeObjectRegistry for a different type.");
@@ -26115,6 +25526,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_bool_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -26162,6 +25574,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_bool_field = "bounded_sequence_bool_field";
@@ -26258,6 +25671,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -26302,6 +25716,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Color_5 = EK_COMPLETE;
@@ -26311,26 +25726,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Color_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Color_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Color_5, element_flags_anonymous_sequence_eprosima_test_Color_5);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Color_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Color_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Color_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Color_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Color_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Color_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Color_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Color_5 already registered in TypeObjectRegistry for a different type.");
@@ -26343,6 +25744,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Color_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -26390,6 +25792,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_enum_field = "bounded_sequence_enum_field";
@@ -26486,6 +25889,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -26530,6 +25934,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Material_5 = EK_COMPLETE;
@@ -26539,26 +25944,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Material_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Material_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Material_5, element_flags_anonymous_sequence_eprosima_test_Material_5);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Material_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Material_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Material_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Material_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Material_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Material_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Material_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Material_5 already registered in TypeObjectRegistry for a different type.");
@@ -26571,6 +25962,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Material_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -26618,6 +26010,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_enum2_field = "bounded_sequence_enum2_field";
@@ -26661,6 +26054,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -26707,6 +26101,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure char_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_char_field = "char_field";
@@ -26725,6 +26120,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -26771,6 +26167,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint8_field = "uint8_field";
@@ -26789,6 +26186,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -26835,6 +26233,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int16_field = "int16_field";
@@ -26853,6 +26252,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -26899,6 +26299,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint16_field = "uint16_field";
@@ -26917,6 +26318,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -26963,6 +26365,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int32_field = "int32_field";
@@ -26981,6 +26384,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -27027,6 +26431,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint32_field = "uint32_field";
@@ -27045,6 +26450,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -27091,6 +26497,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int64_field = "int64_field";
@@ -27109,6 +26516,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -27155,6 +26563,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint64_field = "uint64_field";
@@ -27173,6 +26582,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -27219,6 +26629,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure float_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_float_field = "float_field";
@@ -27237,6 +26648,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -27283,6 +26695,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure double_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_double_field = "double_field";
@@ -27301,6 +26714,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -27347,6 +26761,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure bool_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_bool_field = "bool_field";
@@ -27363,8 +26778,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
                             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                             {
-                                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                                 {
                                     SBound bound = 0;
                                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -27376,24 +26789,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                     }
                                 }
-                                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                                {
-                                    LBound bound = 255;
-                                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                            "anonymous_string_unbounded"))
-                                    {
-                                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                    }
-                                }
-                                else
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                                "anonymous_string_unbounded: Unknown String kind.");
-                                    return;
-                                }
                                 return_code_StructType =
                                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                     "anonymous_string_unbounded", type_ids_StructType);
@@ -27401,6 +26796,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -27448,6 +26844,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure string_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_string_field = "string_field";
@@ -27538,6 +26935,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -27585,6 +26983,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum_field = "enum_field";
@@ -27675,6 +27074,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -27722,6 +27122,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum2_field = "enum2_field";
@@ -27733,7 +27134,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         }
                         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -27745,8 +27146,11 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
+                        return_code_KeyedCompleteTestType = return_code_StructType;
+                        type_ids_KeyedCompleteTestType = type_ids_StructType;
                     }
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_eprosima_test_StructType_5 {nullptr};
@@ -27790,6 +27194,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_StructType_5 = EK_COMPLETE;
@@ -27799,26 +27204,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_StructType_5 = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_StructType_5 = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_StructType_5, element_flags_anonymous_sequence_eprosima_test_StructType_5);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_StructType_5("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_StructType_5 == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = static_cast<SBound>(5);
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_StructType_5, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_5));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_StructType_5"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_StructType_5 already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 5;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_StructType_5, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_5));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_StructType_5"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_StructType_5 already registered in TypeObjectRegistry for a different type.");
@@ -27831,6 +27222,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_StructType_5: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -27878,6 +27270,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure bounded_sequence_struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_bounded_sequence_struct_field = "bounded_sequence_struct_field";
@@ -27902,6 +27295,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_char_unbounded {nullptr};
@@ -27945,6 +27339,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_char_unbounded = EK_COMPLETE;
@@ -27954,26 +27349,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_char_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_char_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_char_unbounded, element_flags_anonymous_sequence_char_unbounded);
-                std::string type_id_kind_anonymous_sequence_char_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_char_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_char_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_char_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_char_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_char_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_char_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_char_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_char_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -27986,6 +27367,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_char_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28033,6 +27415,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_char_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_char_field = "unbounded_sequence_char_field";
@@ -28057,6 +27440,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint8_t_unbounded {nullptr};
@@ -28100,6 +27484,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint8_t_unbounded = EK_COMPLETE;
@@ -28109,26 +27494,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint8_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint8_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint8_t_unbounded, element_flags_anonymous_sequence_uint8_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint8_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint8_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint8_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint8_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint8_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint8_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint8_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint8_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint8_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -28141,6 +27512,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint8_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28188,6 +27560,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint8_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint8_field = "unbounded_sequence_uint8_field";
@@ -28212,6 +27585,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int16_t_unbounded {nullptr};
@@ -28255,6 +27629,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int16_t_unbounded = EK_COMPLETE;
@@ -28264,26 +27639,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int16_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_int16_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int16_t_unbounded, element_flags_anonymous_sequence_int16_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_int16_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int16_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int16_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int16_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int16_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int16_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int16_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int16_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int16_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -28296,6 +27657,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int16_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28343,6 +27705,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_int16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_int16_field = "unbounded_sequence_int16_field";
@@ -28367,6 +27730,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint16_t_unbounded {nullptr};
@@ -28410,6 +27774,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint16_t_unbounded = EK_COMPLETE;
@@ -28419,26 +27784,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint16_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint16_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint16_t_unbounded, element_flags_anonymous_sequence_uint16_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint16_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint16_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint16_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint16_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint16_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint16_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint16_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint16_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint16_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -28451,6 +27802,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint16_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28498,6 +27850,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint16_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint16_field = "unbounded_sequence_uint16_field";
@@ -28522,6 +27875,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int32_t_unbounded {nullptr};
@@ -28565,6 +27919,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int32_t_unbounded = EK_COMPLETE;
@@ -28574,26 +27929,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int32_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_int32_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int32_t_unbounded, element_flags_anonymous_sequence_int32_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_int32_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int32_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int32_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int32_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int32_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int32_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int32_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int32_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int32_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -28606,6 +27947,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int32_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28653,6 +27995,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_int32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_int32_field = "unbounded_sequence_int32_field";
@@ -28677,6 +28020,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint32_t_unbounded {nullptr};
@@ -28720,6 +28064,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint32_t_unbounded = EK_COMPLETE;
@@ -28729,26 +28074,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint32_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint32_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint32_t_unbounded, element_flags_anonymous_sequence_uint32_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint32_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint32_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint32_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint32_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint32_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint32_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint32_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint32_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint32_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -28761,6 +28092,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint32_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28808,6 +28140,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint32_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint32_field = "unbounded_sequence_uint32_field";
@@ -28832,6 +28165,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_int64_t_unbounded {nullptr};
@@ -28875,6 +28209,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_int64_t_unbounded = EK_COMPLETE;
@@ -28884,26 +28219,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_int64_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_int64_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_int64_t_unbounded, element_flags_anonymous_sequence_int64_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_int64_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_int64_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_int64_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_int64_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_int64_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_int64_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_int64_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_int64_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_int64_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -28916,6 +28237,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_int64_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -28963,6 +28285,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_int64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_int64_field = "unbounded_sequence_int64_field";
@@ -28987,6 +28310,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_uint64_t_unbounded {nullptr};
@@ -29030,6 +28354,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_uint64_t_unbounded = EK_COMPLETE;
@@ -29039,26 +28364,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_uint64_t_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_uint64_t_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_uint64_t_unbounded, element_flags_anonymous_sequence_uint64_t_unbounded);
-                std::string type_id_kind_anonymous_sequence_uint64_t_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_uint64_t_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_uint64_t_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_uint64_t_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_uint64_t_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_uint64_t_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_uint64_t_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_uint64_t_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_uint64_t_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -29071,6 +28382,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_uint64_t_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -29118,6 +28430,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_uint64_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_uint64_field = "unbounded_sequence_uint64_field";
@@ -29142,6 +28455,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_float_unbounded {nullptr};
@@ -29185,6 +28499,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_float_unbounded = EK_COMPLETE;
@@ -29194,26 +28509,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_float_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_float_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_float_unbounded, element_flags_anonymous_sequence_float_unbounded);
-                std::string type_id_kind_anonymous_sequence_float_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_float_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_float_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_float_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_float_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_float_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_float_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_float_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_float_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -29226,6 +28527,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_float_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -29273,6 +28575,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_float_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_float_field = "unbounded_sequence_float_field";
@@ -29297,6 +28600,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_double_unbounded {nullptr};
@@ -29340,6 +28644,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_double_unbounded = EK_COMPLETE;
@@ -29349,26 +28654,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_double_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_double_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_double_unbounded, element_flags_anonymous_sequence_double_unbounded);
-                std::string type_id_kind_anonymous_sequence_double_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_double_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_double_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_double_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_double_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_double_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_double_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_double_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_double_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -29381,6 +28672,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_double_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -29428,6 +28720,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_double_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_double_field = "unbounded_sequence_double_field";
@@ -29452,6 +28745,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "Sequence element TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_bool_unbounded {nullptr};
@@ -29495,6 +28789,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_bool_unbounded = EK_COMPLETE;
@@ -29504,26 +28799,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_bool_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_bool_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_bool_unbounded, element_flags_anonymous_sequence_bool_unbounded);
-                std::string type_id_kind_anonymous_sequence_bool_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_bool_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_bool_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_bool_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_bool_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_bool_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_bool_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_bool_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_bool_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -29536,6 +28817,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_bool_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -29583,6 +28865,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_bool_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_bool_field = "unbounded_sequence_bool_field";
@@ -29679,6 +28962,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -29723,6 +29007,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Color_unbounded = EK_COMPLETE;
@@ -29732,26 +29017,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Color_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Color_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Color_unbounded, element_flags_anonymous_sequence_eprosima_test_Color_unbounded);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Color_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Color_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Color_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Color_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Color_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Color_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Color_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Color_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Color_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -29764,6 +29035,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Color_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -29811,6 +29083,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_enum_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_enum_field = "unbounded_sequence_enum_field";
@@ -29907,6 +29180,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                        type_id = TypeIdentifier();
                         return;
                     }
                 }
@@ -29951,6 +29225,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_Material_unbounded = EK_COMPLETE;
@@ -29960,26 +29235,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_Material_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_Material_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_Material_unbounded, element_flags_anonymous_sequence_eprosima_test_Material_unbounded);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_Material_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_Material_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_Material_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_Material_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_Material_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_Material_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_Material_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_Material_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_Material_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -29992,6 +29253,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_Material_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -30039,6 +29301,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_enum2_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_enum2_field = "unbounded_sequence_enum2_field";
@@ -30082,6 +29345,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30128,6 +29392,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure char_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_char_field = "char_field";
@@ -30146,6 +29411,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30192,6 +29458,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint8_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint8_field = "uint8_field";
@@ -30210,6 +29477,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30256,6 +29524,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int16_field = "int16_field";
@@ -30274,6 +29543,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30320,6 +29590,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint16_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint16_field = "uint16_field";
@@ -30338,6 +29609,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30384,6 +29656,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int32_field = "int32_field";
@@ -30402,6 +29675,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30448,6 +29722,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint32_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint32_field = "uint32_field";
@@ -30466,6 +29741,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30512,6 +29788,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure int64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_int64_field = "int64_field";
@@ -30530,6 +29807,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30576,6 +29854,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure uint64_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_uint64_field = "uint64_field";
@@ -30594,6 +29873,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30640,6 +29920,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure float_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_float_field = "float_field";
@@ -30658,6 +29939,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30704,6 +29986,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure double_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_double_field = "double_field";
@@ -30722,6 +30005,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
@@ -30768,6 +30052,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure bool_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_bool_field = "bool_field";
@@ -30784,8 +30069,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
 
                             if (return_code_StructType != eprosima::fastdds::dds::RETCODE_OK)
                             {
-                                std::string type_id_kind_anonymous_string_unbounded("TI_STRING8_SMALL");
-                                if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_SMALL")
                                 {
                                     SBound bound = 0;
                                     StringSTypeDefn string_sdefn = TypeObjectUtils::build_string_s_type_defn(bound);
@@ -30797,24 +30080,6 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                             "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
                                     }
                                 }
-                                else if (type_id_kind_anonymous_string_unbounded == "TI_STRING8_LARGE")
-                                {
-                                    LBound bound = 255;
-                                    StringLTypeDefn string_ldefn = TypeObjectUtils::build_string_l_type_defn(bound);
-                                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                            TypeObjectUtils::build_and_register_l_string_type_identifier(string_ldefn,
-                                            "anonymous_string_unbounded"))
-                                    {
-                                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                            "anonymous_string_unbounded already registered in TypeObjectRegistry for a different type.");
-                                    }
-                                }
-                                else
-                                {
-                                    EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                                                "anonymous_string_unbounded: Unknown String kind.");
-                                    return;
-                                }
                                 return_code_StructType =
                                     eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
                                     "anonymous_string_unbounded", type_ids_StructType);
@@ -30822,6 +30087,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "anonymous_string_unbounded: Given String TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -30869,6 +30135,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure string_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_string_field = "string_field";
@@ -30959,6 +30226,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Color: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -31006,6 +30274,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum_field = "enum_field";
@@ -31096,6 +30365,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                                 {
                                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                                 "eprosima::test::Material: Given Enum TypeIdentifier unknown to TypeObjectRegistry.");
+                                    type_id = TypeIdentifier();
                                     return;
                                 }
                             }
@@ -31143,6 +30413,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                             {
                                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "Structure enum2_field member TypeIdentifier inconsistent.");
+                                type_id = TypeIdentifier();
                                 return;
                             }
                             MemberName name_enum2_field = "enum2_field";
@@ -31154,7 +30425,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         }
                         CompleteStructType struct_type_StructType = TypeObjectUtils::build_complete_struct_type(struct_flags_StructType, header_StructType, member_seq_StructType);
                         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string()))
+                                TypeObjectUtils::build_and_register_struct_type_object(struct_type_StructType, type_name_StructType.to_string(), type_id))
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                     "eprosima::test::StructType already registered in TypeObjectRegistry for a different type.");
@@ -31166,8 +30437,11 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                         {
                             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                         "eprosima::test::StructType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+                            type_id = TypeIdentifier();
                             return;
                         }
+                        return_code_KeyedCompleteTestType = return_code_StructType;
+                        type_ids_KeyedCompleteTestType = type_ids_StructType;
                     }
                 }
                 TypeIdentifier* element_identifier_anonymous_sequence_eprosima_test_StructType_unbounded {nullptr};
@@ -31211,6 +30485,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Sequence element TypeIdentifier inconsistent.");
+                    type_id = TypeIdentifier();
                     return;
                 }
                 EquivalenceKind equiv_kind_anonymous_sequence_eprosima_test_StructType_unbounded = EK_COMPLETE;
@@ -31220,26 +30495,12 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 }
                 CollectionElementFlag element_flags_anonymous_sequence_eprosima_test_StructType_unbounded = 0;
                 PlainCollectionHeader header_anonymous_sequence_eprosima_test_StructType_unbounded = TypeObjectUtils::build_plain_collection_header(equiv_kind_anonymous_sequence_eprosima_test_StructType_unbounded, element_flags_anonymous_sequence_eprosima_test_StructType_unbounded);
-                std::string type_id_kind_anonymous_sequence_eprosima_test_StructType_unbounded("TI_PLAIN_SEQUENCE_SMALL");
-                if (type_id_kind_anonymous_sequence_eprosima_test_StructType_unbounded == "TI_PLAIN_SEQUENCE_SMALL")
                 {
                     SBound bound = 0;
                     PlainSequenceSElemDefn seq_sdefn = TypeObjectUtils::build_plain_sequence_s_elem_defn(header_anonymous_sequence_eprosima_test_StructType_unbounded, bound,
                                 eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_unbounded));
                     if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
                             TypeObjectUtils::build_and_register_s_sequence_type_identifier(seq_sdefn, "anonymous_sequence_eprosima_test_StructType_unbounded"))
-                    {
-                        EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                            "anonymous_sequence_eprosima_test_StructType_unbounded already registered in TypeObjectRegistry for a different type.");
-                    }
-                }
-                else
-                {
-                    LBound bound = 0;
-                    PlainSequenceLElemDefn seq_ldefn = TypeObjectUtils::build_plain_sequence_l_elem_defn(header_anonymous_sequence_eprosima_test_StructType_unbounded, bound,
-                                eprosima::fastcdr::external<TypeIdentifier>(element_identifier_anonymous_sequence_eprosima_test_StructType_unbounded));
-                    if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                            TypeObjectUtils::build_and_register_l_sequence_type_identifier(seq_ldefn, "anonymous_sequence_eprosima_test_StructType_unbounded"))
                     {
                         EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                             "anonymous_sequence_eprosima_test_StructType_unbounded already registered in TypeObjectRegistry for a different type.");
@@ -31252,6 +30513,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
                 {
                     EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                                 "anonymous_sequence_eprosima_test_StructType_unbounded: Given Sequence TypeIdentifier unknown to TypeObjectRegistry.");
+                    type_id = TypeIdentifier();
                     return;
                 }
             }
@@ -31299,6 +30561,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
             {
                 EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "Structure unbounded_sequence_struct_field member TypeIdentifier inconsistent.");
+                type_id = TypeIdentifier();
                 return;
             }
             MemberName name_unbounded_sequence_struct_field = "unbounded_sequence_struct_field";
@@ -31310,7 +30573,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
         }
         CompleteStructType struct_type_KeyedCompleteTestType = TypeObjectUtils::build_complete_struct_type(struct_flags_KeyedCompleteTestType, header_KeyedCompleteTestType, member_seq_KeyedCompleteTestType);
         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_KeyedCompleteTestType, type_name_KeyedCompleteTestType.to_string()))
+                TypeObjectUtils::build_and_register_struct_type_object(struct_type_KeyedCompleteTestType, type_name_KeyedCompleteTestType.to_string(), type_id))
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                     "eprosima::test::KeyedCompleteTestType already registered in TypeObjectRegistry for a different type.");
@@ -31322,6 +30585,7 @@ void register_eprosima_test_KeyedCompleteTestType_type_identifier()
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
                         "eprosima::test::KeyedCompleteTestType: Given Struct TypeIdentifier unknown to TypeObjectRegistry.");
+            type_id = TypeIdentifier();
             return;
         }
     }
