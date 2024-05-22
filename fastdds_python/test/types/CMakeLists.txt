@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.20)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -73,7 +73,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
     LANGUAGE python
@@ -89,7 +88,6 @@ target_link_libraries(${${PROJECT_NAME}_MODULE}
     fastdds
     ${PROJECT_NAME}
     )
-
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -191,7 +189,6 @@ target_link_libraries(${${PROJECT_NAME}_MODULE}
     ${PROJECT_NAME}
     )
 
-
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
     OUTPUT_VARIABLE _ABS_PYTHON_MODULE_PATH
@@ -277,8 +274,6 @@ SET_SOURCE_FILES_PROPERTIES(
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
 
-set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
-
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
     LANGUAGE python
@@ -294,11 +289,6 @@ target_link_libraries(${${PROJECT_NAME}_MODULE}
     fastdds
     ${PROJECT_NAME}
     )
-
-set_target_properties(${${PROJECT_NAME}_MODULE}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
-    )
-
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -318,6 +308,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib/
     ARCHIVE DESTINATION lib/
     )
-install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/)
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/ RENAME __init__.py)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH} RENAME __init__.py)
+

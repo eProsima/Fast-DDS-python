@@ -126,3 +126,4 @@ namespace swig {
 
 // Include the corresponding TopicDataType
 %include "HelloWorldPubSubTypes.i"
+
