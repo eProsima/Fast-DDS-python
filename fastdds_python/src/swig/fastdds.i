@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-%module(directors="1", threads="1") fastdds
+%module(directors="1", threads="1", moduleimport="if __import__('os').name == 'nt': import win32api; win32api.LoadLibrary('$<TARGET_FILE_NAME:fastdds>')\nif __package__ or '.' in __name__:\n    from . import _fastdds_python\nelse:\n    import _fastdds_python") fastdds
 
 // Handle exceptions on python callbacks and send them back to C++ so that they can be catched
 // Also, add some meaningful description of the error
@@ -42,6 +42,14 @@
     Swig::DirectorMethodException::raise(err_msg.c_str());
   }
 }
+
+// If using windows in debug, it would try to use python_d, which would not be found.
+%begin %{
+#ifdef _MSC_VER
+#define SWIG_PYTHON_INTERPRETER_NO_DEBUG
+#endif
+#include <exception>
+%}
 
 %exception {
     try { $action }
