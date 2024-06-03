@@ -221,9 +221,9 @@ namespace eprosima {
             return true;
         }
 
-        void StructType2PubSubType::register_type_object_representation() const
+        void StructType2PubSubType::register_type_object_representation()
         {
-            register_test_included_modules_type_objects();
+            register_StructType2_type_identifier(type_identifiers_);
         }
 
     } // namespace test2

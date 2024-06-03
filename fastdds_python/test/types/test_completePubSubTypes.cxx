@@ -219,9 +219,9 @@ bool StructTypePubSubType::getKey(
     return true;
 }
 
-void StructTypePubSubType::register_type_object_representation() const
+void StructTypePubSubType::register_type_object_representation()
 {
-    register_test_complete_type_objects();
+    register_StructType_type_identifier(type_identifiers_);
 }
 
 
@@ -414,9 +414,9 @@ bool CompleteTestTypePubSubType::getKey(
     return true;
 }
 
-void CompleteTestTypePubSubType::register_type_object_representation() const
+void CompleteTestTypePubSubType::register_type_object_representation()
 {
-    register_test_complete_type_objects();
+    register_CompleteTestType_type_identifier(type_identifiers_);
 }
 
 KeyedCompleteTestTypePubSubType::KeyedCompleteTestTypePubSubType()
@@ -607,9 +607,9 @@ bool KeyedCompleteTestTypePubSubType::getKey(
     return true;
 }
 
-void KeyedCompleteTestTypePubSubType::register_type_object_representation() const
+void KeyedCompleteTestTypePubSubType::register_type_object_representation()
 {
-    register_test_complete_type_objects();
+    register_KeyedCompleteTestType_type_identifier(type_identifiers_);
 }
 
 
