@@ -205,7 +205,7 @@ void register_StructType_type_identifier(
         "eprosima::test::StructType", type_ids_StructType);
     if (eprosima::fastdds::dds::RETCODE_OK != return_code_StructType)
     {
-        StructTypeFlag struct_flags_StructType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
+        StructTypeFlag struct_flags_StructType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::APPENDABLE,
                 false, false);
         QualifiedTypeName type_name_StructType = "eprosima::test::StructType";
         eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_StructType;
@@ -227,7 +227,7 @@ void register_StructType_type_identifier(
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_char_field = 0x00000000;
             bool common_char_field_ec {false};
@@ -257,7 +257,7 @@ void register_StructType_type_identifier(
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint8_field = 0x00000001;
             bool common_uint8_field_ec {false};
@@ -287,7 +287,7 @@ void register_StructType_type_identifier(
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int16_field = 0x00000002;
             bool common_int16_field_ec {false};
@@ -317,7 +317,7 @@ void register_StructType_type_identifier(
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint16_field = 0x00000003;
             bool common_uint16_field_ec {false};
@@ -347,7 +347,7 @@ void register_StructType_type_identifier(
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int32_field = 0x00000004;
             bool common_int32_field_ec {false};
@@ -377,7 +377,7 @@ void register_StructType_type_identifier(
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint32_field = 0x00000005;
             bool common_uint32_field_ec {false};
@@ -407,7 +407,7 @@ void register_StructType_type_identifier(
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int64_field = 0x00000006;
             bool common_int64_field_ec {false};
@@ -437,7 +437,7 @@ void register_StructType_type_identifier(
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint64_field = 0x00000007;
             bool common_uint64_field_ec {false};
@@ -467,7 +467,7 @@ void register_StructType_type_identifier(
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_float_field = 0x00000008;
             bool common_float_field_ec {false};
@@ -497,7 +497,7 @@ void register_StructType_type_identifier(
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_double_field = 0x00000009;
             bool common_double_field_ec {false};
@@ -527,7 +527,7 @@ void register_StructType_type_identifier(
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bool_field = 0x0000000a;
             bool common_bool_field_ec {false};
@@ -565,7 +565,7 @@ void register_StructType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_string_field = 0x0000000b;
             bool common_string_field_ec {false};
@@ -593,7 +593,7 @@ void register_StructType_type_identifier(
             {
                 eprosima::test::register_Color_type_identifier(type_ids_enum_field);
             }
-            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum_field = 0x0000000c;
             bool common_enum_field_ec {false};
@@ -621,7 +621,7 @@ void register_StructType_type_identifier(
             {
                 eprosima::test::register_Material_type_identifier(type_ids_enum2_field);
             }
-            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum2_field = 0x0000000d;
             bool common_enum2_field_ec {false};
@@ -658,7 +658,7 @@ void register_CompleteTestType_type_identifier(
         "eprosima::test::CompleteTestType", type_ids_CompleteTestType);
     if (eprosima::fastdds::dds::RETCODE_OK != return_code_CompleteTestType)
     {
-        StructTypeFlag struct_flags_CompleteTestType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
+        StructTypeFlag struct_flags_CompleteTestType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::APPENDABLE,
                 false, false);
         QualifiedTypeName type_name_CompleteTestType = "eprosima::test::CompleteTestType";
         eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_CompleteTestType;
@@ -680,7 +680,7 @@ void register_CompleteTestType_type_identifier(
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_char_field = 0x00000000;
             bool common_char_field_ec {false};
@@ -710,7 +710,7 @@ void register_CompleteTestType_type_identifier(
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint8_field = 0x00000001;
             bool common_uint8_field_ec {false};
@@ -740,7 +740,7 @@ void register_CompleteTestType_type_identifier(
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int16_field = 0x00000002;
             bool common_int16_field_ec {false};
@@ -770,7 +770,7 @@ void register_CompleteTestType_type_identifier(
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint16_field = 0x00000003;
             bool common_uint16_field_ec {false};
@@ -800,7 +800,7 @@ void register_CompleteTestType_type_identifier(
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int32_field = 0x00000004;
             bool common_int32_field_ec {false};
@@ -830,7 +830,7 @@ void register_CompleteTestType_type_identifier(
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint32_field = 0x00000005;
             bool common_uint32_field_ec {false};
@@ -860,7 +860,7 @@ void register_CompleteTestType_type_identifier(
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int64_field = 0x00000006;
             bool common_int64_field_ec {false};
@@ -890,7 +890,7 @@ void register_CompleteTestType_type_identifier(
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint64_field = 0x00000007;
             bool common_uint64_field_ec {false};
@@ -920,7 +920,7 @@ void register_CompleteTestType_type_identifier(
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_float_field = 0x00000008;
             bool common_float_field_ec {false};
@@ -950,7 +950,7 @@ void register_CompleteTestType_type_identifier(
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_double_field = 0x00000009;
             bool common_double_field_ec {false};
@@ -980,7 +980,7 @@ void register_CompleteTestType_type_identifier(
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bool_field = 0x0000000a;
             bool common_bool_field_ec {false};
@@ -1018,7 +1018,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_string_field = 0x0000000b;
             bool common_string_field_ec {false};
@@ -1046,7 +1046,7 @@ void register_CompleteTestType_type_identifier(
             {
                 eprosima::test::register_Color_type_identifier(type_ids_enum_field);
             }
-            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum_field = 0x0000000c;
             bool common_enum_field_ec {false};
@@ -1074,7 +1074,7 @@ void register_CompleteTestType_type_identifier(
             {
                 eprosima::test::register_Material_type_identifier(type_ids_enum2_field);
             }
-            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum2_field = 0x0000000d;
             bool common_enum2_field_ec {false};
@@ -1102,7 +1102,7 @@ void register_CompleteTestType_type_identifier(
             {
                 eprosima::test::register_StructType_type_identifier(type_ids_struct_field);
             }
-            StructMemberFlag member_flags_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_struct_field = 0x0000000e;
             bool common_struct_field_ec {false};
@@ -1132,7 +1132,7 @@ void register_CompleteTestType_type_identifier(
                         "char_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_char_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_char_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_char_opt_field = 0x0000000f;
             bool common_char_opt_field_ec {false};
@@ -1175,7 +1175,7 @@ void register_CompleteTestType_type_identifier(
                         "uint8_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint8_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint8_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint8_opt_field = 0x00000010;
             bool common_uint8_opt_field_ec {false};
@@ -1218,7 +1218,7 @@ void register_CompleteTestType_type_identifier(
                         "int16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_int16_opt_field = 0x00000011;
             bool common_int16_opt_field_ec {false};
@@ -1261,7 +1261,7 @@ void register_CompleteTestType_type_identifier(
                         "uint16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint16_opt_field = 0x00000012;
             bool common_uint16_opt_field_ec {false};
@@ -1304,7 +1304,7 @@ void register_CompleteTestType_type_identifier(
                         "int32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_int32_opt_field = 0x00000013;
             bool common_int32_opt_field_ec {false};
@@ -1347,7 +1347,7 @@ void register_CompleteTestType_type_identifier(
                         "uint32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint32_opt_field = 0x00000014;
             bool common_uint32_opt_field_ec {false};
@@ -1390,7 +1390,7 @@ void register_CompleteTestType_type_identifier(
                         "int64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_int64_opt_field = 0x00000015;
             bool common_int64_opt_field_ec {false};
@@ -1433,7 +1433,7 @@ void register_CompleteTestType_type_identifier(
                         "uint64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint64_opt_field = 0x00000016;
             bool common_uint64_opt_field_ec {false};
@@ -1476,7 +1476,7 @@ void register_CompleteTestType_type_identifier(
                         "float_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_float_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_float_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_float_opt_field = 0x00000017;
             bool common_float_opt_field_ec {false};
@@ -1519,7 +1519,7 @@ void register_CompleteTestType_type_identifier(
                         "double_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_double_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_double_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_double_opt_field = 0x00000018;
             bool common_double_opt_field_ec {false};
@@ -1562,7 +1562,7 @@ void register_CompleteTestType_type_identifier(
                         "bool_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_bool_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bool_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_bool_opt_field = 0x00000019;
             bool common_bool_opt_field_ec {false};
@@ -1613,7 +1613,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_string_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_string_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_string_opt_field = 0x0000001a;
             bool common_string_opt_field_ec {false};
@@ -1654,7 +1654,7 @@ void register_CompleteTestType_type_identifier(
             {
                 eprosima::test::register_Color_type_identifier(type_ids_enum_opt_field);
             }
-            StructMemberFlag member_flags_enum_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_enum_opt_field = 0x0000001b;
             bool common_enum_opt_field_ec {false};
@@ -1695,7 +1695,7 @@ void register_CompleteTestType_type_identifier(
             {
                 eprosima::test::register_Material_type_identifier(type_ids_enum2_opt_field);
             }
-            StructMemberFlag member_flags_enum2_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum2_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_enum2_opt_field = 0x0000001c;
             bool common_enum2_opt_field_ec {false};
@@ -1736,7 +1736,7 @@ void register_CompleteTestType_type_identifier(
             {
                 eprosima::test::register_StructType_type_identifier(type_ids_struct_opt_field);
             }
-            StructMemberFlag member_flags_struct_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_struct_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_struct_opt_field = 0x0000001d;
             bool common_struct_opt_field_ec {false};
@@ -1813,7 +1813,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_char_field = 0x0000001e;
             bool common_array_char_field_ec {false};
@@ -1877,7 +1877,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint8_field = 0x0000001f;
             bool common_array_uint8_field_ec {false};
@@ -1941,7 +1941,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_int16_field = 0x00000020;
             bool common_array_int16_field_ec {false};
@@ -2005,7 +2005,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint16_field = 0x00000021;
             bool common_array_uint16_field_ec {false};
@@ -2069,7 +2069,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_int32_field = 0x00000022;
             bool common_array_int32_field_ec {false};
@@ -2133,7 +2133,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint32_field = 0x00000023;
             bool common_array_uint32_field_ec {false};
@@ -2197,7 +2197,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_int64_field = 0x00000024;
             bool common_array_int64_field_ec {false};
@@ -2261,7 +2261,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint64_field = 0x00000025;
             bool common_array_uint64_field_ec {false};
@@ -2325,7 +2325,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_float_field = 0x00000026;
             bool common_array_float_field_ec {false};
@@ -2389,7 +2389,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_double_field = 0x00000027;
             bool common_array_double_field_ec {false};
@@ -2453,7 +2453,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_bool_field = 0x00000028;
             bool common_array_bool_field_ec {false};
@@ -2515,7 +2515,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_enum_field = 0x00000029;
             bool common_array_enum_field_ec {false};
@@ -2577,7 +2577,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_enum2_field = 0x0000002a;
             bool common_array_enum2_field_ec {false};
@@ -2639,7 +2639,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_struct_field = 0x0000002b;
             bool common_array_struct_field_ec {false};
@@ -2701,7 +2701,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_char_field = 0x0000002c;
             bool common_bounded_sequence_char_field_ec {false};
@@ -2763,7 +2763,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint8_field = 0x0000002d;
             bool common_bounded_sequence_uint8_field_ec {false};
@@ -2825,7 +2825,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_int16_field = 0x0000002e;
             bool common_bounded_sequence_int16_field_ec {false};
@@ -2887,7 +2887,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint16_field = 0x0000002f;
             bool common_bounded_sequence_uint16_field_ec {false};
@@ -2949,7 +2949,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_int32_field = 0x00000030;
             bool common_bounded_sequence_int32_field_ec {false};
@@ -3011,7 +3011,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint32_field = 0x00000031;
             bool common_bounded_sequence_uint32_field_ec {false};
@@ -3073,7 +3073,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_int64_field = 0x00000032;
             bool common_bounded_sequence_int64_field_ec {false};
@@ -3135,7 +3135,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint64_field = 0x00000033;
             bool common_bounded_sequence_uint64_field_ec {false};
@@ -3197,7 +3197,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_float_field = 0x00000034;
             bool common_bounded_sequence_float_field_ec {false};
@@ -3259,7 +3259,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_double_field = 0x00000035;
             bool common_bounded_sequence_double_field_ec {false};
@@ -3321,7 +3321,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_bool_field = 0x00000036;
             bool common_bounded_sequence_bool_field_ec {false};
@@ -3381,7 +3381,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_enum_field = 0x00000037;
             bool common_bounded_sequence_enum_field_ec {false};
@@ -3441,7 +3441,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_enum2_field = 0x00000038;
             bool common_bounded_sequence_enum2_field_ec {false};
@@ -3501,7 +3501,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_struct_field = 0x00000039;
             bool common_bounded_sequence_struct_field_ec {false};
@@ -3563,7 +3563,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_char_field = 0x0000003a;
             bool common_unbounded_sequence_char_field_ec {false};
@@ -3625,7 +3625,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint8_field = 0x0000003b;
             bool common_unbounded_sequence_uint8_field_ec {false};
@@ -3687,7 +3687,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_int16_field = 0x0000003c;
             bool common_unbounded_sequence_int16_field_ec {false};
@@ -3749,7 +3749,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint16_field = 0x0000003d;
             bool common_unbounded_sequence_uint16_field_ec {false};
@@ -3811,7 +3811,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_int32_field = 0x0000003e;
             bool common_unbounded_sequence_int32_field_ec {false};
@@ -3873,7 +3873,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint32_field = 0x0000003f;
             bool common_unbounded_sequence_uint32_field_ec {false};
@@ -3935,7 +3935,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_int64_field = 0x00000040;
             bool common_unbounded_sequence_int64_field_ec {false};
@@ -3997,7 +3997,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint64_field = 0x00000041;
             bool common_unbounded_sequence_uint64_field_ec {false};
@@ -4059,7 +4059,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_float_field = 0x00000042;
             bool common_unbounded_sequence_float_field_ec {false};
@@ -4121,7 +4121,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_double_field = 0x00000043;
             bool common_unbounded_sequence_double_field_ec {false};
@@ -4183,7 +4183,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_bool_field = 0x00000044;
             bool common_unbounded_sequence_bool_field_ec {false};
@@ -4243,7 +4243,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_enum_field = 0x00000045;
             bool common_unbounded_sequence_enum_field_ec {false};
@@ -4303,7 +4303,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_enum2_field = 0x00000046;
             bool common_unbounded_sequence_enum2_field_ec {false};
@@ -4363,7 +4363,7 @@ void register_CompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_struct_field = 0x00000047;
             bool common_unbounded_sequence_struct_field_ec {false};
@@ -4400,7 +4400,7 @@ void register_KeyedCompleteTestType_type_identifier(
         "eprosima::test::KeyedCompleteTestType", type_ids_KeyedCompleteTestType);
     if (eprosima::fastdds::dds::RETCODE_OK != return_code_KeyedCompleteTestType)
     {
-        StructTypeFlag struct_flags_KeyedCompleteTestType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
+        StructTypeFlag struct_flags_KeyedCompleteTestType = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::APPENDABLE,
                 false, false);
         QualifiedTypeName type_name_KeyedCompleteTestType = "eprosima::test::KeyedCompleteTestType";
         eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_KeyedCompleteTestType;
@@ -4422,7 +4422,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "id Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_id = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_id = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, true, false);
             MemberId member_id_id = 0x00000000;
             bool common_id_ec {false};
@@ -4465,7 +4465,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_char_field = 0x00000001;
             bool common_char_field_ec {false};
@@ -4495,7 +4495,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint8_field = 0x00000002;
             bool common_uint8_field_ec {false};
@@ -4525,7 +4525,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int16_field = 0x00000003;
             bool common_int16_field_ec {false};
@@ -4555,7 +4555,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint16_field = 0x00000004;
             bool common_uint16_field_ec {false};
@@ -4585,7 +4585,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int32_field = 0x00000005;
             bool common_int32_field_ec {false};
@@ -4615,7 +4615,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint32_field = 0x00000006;
             bool common_uint32_field_ec {false};
@@ -4645,7 +4645,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int64_field = 0x00000007;
             bool common_int64_field_ec {false};
@@ -4675,7 +4675,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint64_field = 0x00000008;
             bool common_uint64_field_ec {false};
@@ -4705,7 +4705,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_float_field = 0x00000009;
             bool common_float_field_ec {false};
@@ -4735,7 +4735,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_double_field = 0x0000000a;
             bool common_double_field_ec {false};
@@ -4765,7 +4765,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bool_field = 0x0000000b;
             bool common_bool_field_ec {false};
@@ -4803,7 +4803,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_string_field = 0x0000000c;
             bool common_string_field_ec {false};
@@ -4831,7 +4831,7 @@ void register_KeyedCompleteTestType_type_identifier(
             {
                 eprosima::test::register_Color_type_identifier(type_ids_enum_field);
             }
-            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum_field = 0x0000000d;
             bool common_enum_field_ec {false};
@@ -4859,7 +4859,7 @@ void register_KeyedCompleteTestType_type_identifier(
             {
                 eprosima::test::register_Material_type_identifier(type_ids_enum2_field);
             }
-            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum2_field = 0x0000000e;
             bool common_enum2_field_ec {false};
@@ -4887,7 +4887,7 @@ void register_KeyedCompleteTestType_type_identifier(
             {
                 eprosima::test::register_StructType_type_identifier(type_ids_struct_field);
             }
-            StructMemberFlag member_flags_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_struct_field = 0x0000000f;
             bool common_struct_field_ec {false};
@@ -4917,7 +4917,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "char_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_char_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_char_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_char_opt_field = 0x00000010;
             bool common_char_opt_field_ec {false};
@@ -4960,7 +4960,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint8_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint8_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint8_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint8_opt_field = 0x00000011;
             bool common_uint8_opt_field_ec {false};
@@ -5003,7 +5003,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "int16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_int16_opt_field = 0x00000012;
             bool common_int16_opt_field_ec {false};
@@ -5046,7 +5046,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint16_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint16_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint16_opt_field = 0x00000013;
             bool common_uint16_opt_field_ec {false};
@@ -5089,7 +5089,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "int32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_int32_opt_field = 0x00000014;
             bool common_int32_opt_field_ec {false};
@@ -5132,7 +5132,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint32_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint32_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint32_opt_field = 0x00000015;
             bool common_uint32_opt_field_ec {false};
@@ -5175,7 +5175,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "int64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_int64_opt_field = 0x00000016;
             bool common_int64_opt_field_ec {false};
@@ -5218,7 +5218,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "uint64_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint64_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_uint64_opt_field = 0x00000017;
             bool common_uint64_opt_field_ec {false};
@@ -5261,7 +5261,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "float_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_float_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_float_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_float_opt_field = 0x00000018;
             bool common_float_opt_field_ec {false};
@@ -5304,7 +5304,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "double_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_double_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_double_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_double_opt_field = 0x00000019;
             bool common_double_opt_field_ec {false};
@@ -5347,7 +5347,7 @@ void register_KeyedCompleteTestType_type_identifier(
                         "bool_opt_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_bool_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bool_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_bool_opt_field = 0x0000001a;
             bool common_bool_opt_field_ec {false};
@@ -5398,7 +5398,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_string_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_string_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_string_opt_field = 0x0000001b;
             bool common_string_opt_field_ec {false};
@@ -5439,7 +5439,7 @@ void register_KeyedCompleteTestType_type_identifier(
             {
                 eprosima::test::register_Color_type_identifier(type_ids_enum_opt_field);
             }
-            StructMemberFlag member_flags_enum_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_enum_opt_field = 0x0000001c;
             bool common_enum_opt_field_ec {false};
@@ -5480,7 +5480,7 @@ void register_KeyedCompleteTestType_type_identifier(
             {
                 eprosima::test::register_Material_type_identifier(type_ids_enum2_opt_field);
             }
-            StructMemberFlag member_flags_enum2_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum2_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_enum2_opt_field = 0x0000001d;
             bool common_enum2_opt_field_ec {false};
@@ -5521,7 +5521,7 @@ void register_KeyedCompleteTestType_type_identifier(
             {
                 eprosima::test::register_StructType_type_identifier(type_ids_struct_opt_field);
             }
-            StructMemberFlag member_flags_struct_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_struct_opt_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
             MemberId member_id_struct_opt_field = 0x0000001e;
             bool common_struct_opt_field_ec {false};
@@ -5598,7 +5598,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_char_field = 0x0000001f;
             bool common_array_char_field_ec {false};
@@ -5662,7 +5662,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint8_field = 0x00000020;
             bool common_array_uint8_field_ec {false};
@@ -5726,7 +5726,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_int16_field = 0x00000021;
             bool common_array_int16_field_ec {false};
@@ -5790,7 +5790,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint16_field = 0x00000022;
             bool common_array_uint16_field_ec {false};
@@ -5854,7 +5854,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_int32_field = 0x00000023;
             bool common_array_int32_field_ec {false};
@@ -5918,7 +5918,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint32_field = 0x00000024;
             bool common_array_uint32_field_ec {false};
@@ -5982,7 +5982,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_int64_field = 0x00000025;
             bool common_array_int64_field_ec {false};
@@ -6046,7 +6046,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_uint64_field = 0x00000026;
             bool common_array_uint64_field_ec {false};
@@ -6110,7 +6110,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_float_field = 0x00000027;
             bool common_array_float_field_ec {false};
@@ -6174,7 +6174,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_double_field = 0x00000028;
             bool common_array_double_field_ec {false};
@@ -6238,7 +6238,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_bool_field = 0x00000029;
             bool common_array_bool_field_ec {false};
@@ -6300,7 +6300,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_enum_field = 0x0000002a;
             bool common_array_enum_field_ec {false};
@@ -6362,7 +6362,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_enum2_field = 0x0000002b;
             bool common_array_enum2_field_ec {false};
@@ -6424,7 +6424,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_array_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_array_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_array_struct_field = 0x0000002c;
             bool common_array_struct_field_ec {false};
@@ -6486,7 +6486,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_char_field = 0x0000002d;
             bool common_bounded_sequence_char_field_ec {false};
@@ -6548,7 +6548,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint8_field = 0x0000002e;
             bool common_bounded_sequence_uint8_field_ec {false};
@@ -6610,7 +6610,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_int16_field = 0x0000002f;
             bool common_bounded_sequence_int16_field_ec {false};
@@ -6672,7 +6672,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint16_field = 0x00000030;
             bool common_bounded_sequence_uint16_field_ec {false};
@@ -6734,7 +6734,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_int32_field = 0x00000031;
             bool common_bounded_sequence_int32_field_ec {false};
@@ -6796,7 +6796,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint32_field = 0x00000032;
             bool common_bounded_sequence_uint32_field_ec {false};
@@ -6858,7 +6858,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_int64_field = 0x00000033;
             bool common_bounded_sequence_int64_field_ec {false};
@@ -6920,7 +6920,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_uint64_field = 0x00000034;
             bool common_bounded_sequence_uint64_field_ec {false};
@@ -6982,7 +6982,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_float_field = 0x00000035;
             bool common_bounded_sequence_float_field_ec {false};
@@ -7044,7 +7044,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_double_field = 0x00000036;
             bool common_bounded_sequence_double_field_ec {false};
@@ -7106,7 +7106,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_bool_field = 0x00000037;
             bool common_bounded_sequence_bool_field_ec {false};
@@ -7166,7 +7166,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_enum_field = 0x00000038;
             bool common_bounded_sequence_enum_field_ec {false};
@@ -7226,7 +7226,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_enum2_field = 0x00000039;
             bool common_bounded_sequence_enum2_field_ec {false};
@@ -7286,7 +7286,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_bounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bounded_sequence_struct_field = 0x0000003a;
             bool common_bounded_sequence_struct_field_ec {false};
@@ -7348,7 +7348,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_char_field = 0x0000003b;
             bool common_unbounded_sequence_char_field_ec {false};
@@ -7410,7 +7410,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint8_field = 0x0000003c;
             bool common_unbounded_sequence_uint8_field_ec {false};
@@ -7472,7 +7472,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_int16_field = 0x0000003d;
             bool common_unbounded_sequence_int16_field_ec {false};
@@ -7534,7 +7534,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint16_field = 0x0000003e;
             bool common_unbounded_sequence_uint16_field_ec {false};
@@ -7596,7 +7596,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_int32_field = 0x0000003f;
             bool common_unbounded_sequence_int32_field_ec {false};
@@ -7658,7 +7658,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint32_field = 0x00000040;
             bool common_unbounded_sequence_uint32_field_ec {false};
@@ -7720,7 +7720,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_int64_field = 0x00000041;
             bool common_unbounded_sequence_int64_field_ec {false};
@@ -7782,7 +7782,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_uint64_field = 0x00000042;
             bool common_unbounded_sequence_uint64_field_ec {false};
@@ -7844,7 +7844,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_float_field = 0x00000043;
             bool common_unbounded_sequence_float_field_ec {false};
@@ -7906,7 +7906,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_double_field = 0x00000044;
             bool common_unbounded_sequence_double_field_ec {false};
@@ -7968,7 +7968,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_bool_field = 0x00000045;
             bool common_unbounded_sequence_bool_field_ec {false};
@@ -8028,7 +8028,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_enum_field = 0x00000046;
             bool common_unbounded_sequence_enum_field_ec {false};
@@ -8088,7 +8088,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_enum2_field = 0x00000047;
             bool common_unbounded_sequence_enum2_field_ec {false};
@@ -8148,7 +8148,7 @@ void register_KeyedCompleteTestType_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_unbounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_unbounded_sequence_struct_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_unbounded_sequence_struct_field = 0x00000048;
             bool common_unbounded_sequence_struct_field_ec {false};

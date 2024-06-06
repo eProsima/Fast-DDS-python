@@ -205,7 +205,7 @@ void register_StructType2_type_identifier(
         "eprosima::test2::StructType2", type_ids_StructType2);
     if (eprosima::fastdds::dds::RETCODE_OK != return_code_StructType2)
     {
-        StructTypeFlag struct_flags_StructType2 = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::NOT_APPLIED,
+        StructTypeFlag struct_flags_StructType2 = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::APPENDABLE,
                 false, false);
         QualifiedTypeName type_name_StructType2 = "eprosima::test2::StructType2";
         eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_StructType2;
@@ -227,7 +227,7 @@ void register_StructType2_type_identifier(
                         "char_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_char_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_char_field = 0x00000000;
             bool common_char_field_ec {false};
@@ -257,7 +257,7 @@ void register_StructType2_type_identifier(
                         "uint8_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint8_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint8_field = 0x00000001;
             bool common_uint8_field_ec {false};
@@ -287,7 +287,7 @@ void register_StructType2_type_identifier(
                         "int16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int16_field = 0x00000002;
             bool common_int16_field_ec {false};
@@ -317,7 +317,7 @@ void register_StructType2_type_identifier(
                         "uint16_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint16_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint16_field = 0x00000003;
             bool common_uint16_field_ec {false};
@@ -347,7 +347,7 @@ void register_StructType2_type_identifier(
                         "int32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int32_field = 0x00000004;
             bool common_int32_field_ec {false};
@@ -377,7 +377,7 @@ void register_StructType2_type_identifier(
                         "uint32_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint32_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint32_field = 0x00000005;
             bool common_uint32_field_ec {false};
@@ -407,7 +407,7 @@ void register_StructType2_type_identifier(
                         "int64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_int64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_int64_field = 0x00000006;
             bool common_int64_field_ec {false};
@@ -437,7 +437,7 @@ void register_StructType2_type_identifier(
                         "uint64_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_uint64_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_uint64_field = 0x00000007;
             bool common_uint64_field_ec {false};
@@ -467,7 +467,7 @@ void register_StructType2_type_identifier(
                         "float_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_float_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_float_field = 0x00000008;
             bool common_float_field_ec {false};
@@ -497,7 +497,7 @@ void register_StructType2_type_identifier(
                         "double_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_double_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_double_field = 0x00000009;
             bool common_double_field_ec {false};
@@ -527,7 +527,7 @@ void register_StructType2_type_identifier(
                         "bool_field Structure member TypeIdentifier unknown to TypeObjectRegistry.");
                 return;
             }
-            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_bool_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_bool_field = 0x0000000a;
             bool common_bool_field_ec {false};
@@ -565,7 +565,7 @@ void register_StructType2_type_identifier(
                     }
                 }
             }
-            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_string_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_string_field = 0x0000000b;
             bool common_string_field_ec {false};
@@ -593,7 +593,7 @@ void register_StructType2_type_identifier(
             {
                 eprosima::test2::register_Color2_type_identifier(type_ids_enum_field);
             }
-            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum_field = 0x0000000c;
             bool common_enum_field_ec {false};
@@ -621,7 +621,7 @@ void register_StructType2_type_identifier(
             {
                 eprosima::test2::register_Material2_type_identifier(type_ids_enum2_field);
             }
-            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructKind::NOT_APPLIED,
+            StructMemberFlag member_flags_enum2_field = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     false, false, false, false);
             MemberId member_id_enum2_field = 0x0000000d;
             bool common_enum2_field_ec {false};
