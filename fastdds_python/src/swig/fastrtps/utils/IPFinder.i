@@ -21,9 +21,9 @@
 
 // Need to create a custom name for the flattened classes
 // since other classes also define the same inner class
-%rename (IPFinder_IPTYPE) eprosima::fastrtps::rtps::IPFinder::IPTYPE;
-%rename (IPFinder_info_IP) eprosima::fastrtps::rtps::IPFinder::info_IP;
-%rename (IPFinder_info_MAC) eprosima::fastrtps::rtps::IPFinder::info_MAC;
+%rename (IPFinder_IPTYPE) eprosima::fastdds::rtps::IPFinder::IPTYPE;
+%rename (IPFinder_info_IP) eprosima::fastdds::rtps::IPFinder::info_IP;
+%rename (IPFinder_info_MAC) eprosima::fastdds::rtps::IPFinder::info_MAC;
 
 %include "fastdds/utils/IPFinder.h"
 

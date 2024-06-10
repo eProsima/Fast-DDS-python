@@ -21,7 +21,7 @@
 
 // Need to create a custom name for the flattened classes
 // since other classes also define the same inner class
-%rename (LocatorSelectorEntry_EntryState) eprosima::fastrtps::rtps::LocatorSelectorEntry::EntryState;
+%rename (LocatorSelectorEntry_EntryState) eprosima::fastdds::rtps::LocatorSelectorEntry::EntryState;
 
 %include "fastdds/rtps/common/LocatorSelectorEntry.hpp"
 

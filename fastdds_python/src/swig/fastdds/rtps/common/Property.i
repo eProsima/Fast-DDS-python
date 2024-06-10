@@ -17,16 +17,16 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastrtps::rtps::Property::Property(Property &&);
-%ignore eprosima::fastrtps::rtps::Property::name(std::string &&);
-%ignore eprosima::fastrtps::rtps::Property::value(std::string &&);
-%ignore eprosima::fastrtps::rtps::Property::propagate() const;
-%ignore eprosima::fastrtps::rtps::Property::name() const;
-%ignore eprosima::fastrtps::rtps::Property::value() const;
+%ignore eprosima::fastdds::rtps::Property::Property(Property &&);
+%ignore eprosima::fastdds::rtps::Property::name(std::string &&);
+%ignore eprosima::fastdds::rtps::Property::value(std::string &&);
+%ignore eprosima::fastdds::rtps::Property::propagate() const;
+%ignore eprosima::fastdds::rtps::Property::name() const;
+%ignore eprosima::fastdds::rtps::Property::value() const;
 
 // SWIG does not support templates in the generated binding,
 // because not all output languages support them
 // We must explicitly declare the specializations of the templates
-%template(PropertySeq) std::vector<eprosima::fastrtps::rtps::Property>;
+%template(PropertySeq) std::vector<eprosima::fastdds::rtps::Property>;
 
 %include "fastdds/rtps/common/Property.h"

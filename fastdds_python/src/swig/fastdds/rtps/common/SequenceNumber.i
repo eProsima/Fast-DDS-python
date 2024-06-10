@@ -17,9 +17,9 @@
 %}
 
 
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const SequenceNumber_t&);
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const std::vector<SequenceNumber_t>&);
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const SequenceNumberSet_t&);
-%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, SequenceNumber_t&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const SequenceNumber_t&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const std::vector<SequenceNumber_t>&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const SequenceNumberSet_t&);
+%ignore eprosima::fastdds::rtps::operator >>(std::istream&, SequenceNumber_t&);
 
 %include "fastdds/rtps/common/SequenceNumber.h"

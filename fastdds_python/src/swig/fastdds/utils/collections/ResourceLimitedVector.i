@@ -19,26 +19,26 @@
 // Operator[] is ignored by SWIG because it does not map correctly to target languages
 // mostly because of its dual getter/setter nature
 // We can ignore them and extend to make the getter and setter methods explicit and break the overload
-%ignore eprosima::fastrtps::ResourceLimitedVector::operator[];
+%ignore eprosima::fastdds::ResourceLimitedVector::operator[];
 
 // These methods return references.
 // This is usually supported by SWIG, however, this being a template, and the returns being typedefs,
 // it seems that SWIG handles them differently and compilation fails
 // when trying to create a pointer to a reference and/or calling new for a reference
 // We rewrite them in terms of pointer results
-%ignore eprosima::fastrtps::ResourceLimitedVector::at;
-%ignore eprosima::fastrtps::ResourceLimitedVector::front;
-%ignore eprosima::fastrtps::ResourceLimitedVector::back;
+%ignore eprosima::fastdds::ResourceLimitedVector::at;
+%ignore eprosima::fastdds::ResourceLimitedVector::front;
+%ignore eprosima::fastdds::ResourceLimitedVector::back;
 
 // Initializer lists are note supported in SWIG. Ignore the method
-%ignore eprosima::fastrtps::ResourceLimitedVector::assign(std::initializer_list<value_type>);
+%ignore eprosima::fastdds::ResourceLimitedVector::assign(std::initializer_list<value_type>);
 
 // Casting to the inner 'collection_type' makes no sense in the target language
 // and SWIG does not support it in any case
-%ignore eprosima::fastrtps::ResourceLimitedVector::operator const collection_type&;
+%ignore eprosima::fastdds::ResourceLimitedVector::operator const collection_type&;
 
 
-%extend eprosima::fastrtps::ResourceLimitedVector {
+%extend eprosima::fastdds::ResourceLimitedVector {
     pointer at(size_type pos)
     {
         return &($self->at(pos));

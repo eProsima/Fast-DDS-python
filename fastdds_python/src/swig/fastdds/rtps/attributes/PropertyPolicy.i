@@ -17,7 +17,7 @@
 %}
 
 // Ignore overloaded constructor that have no effect on target language
-%ignore eprosima::fastrtps::rtps::PropertyPolicy::PropertyPolicy(PropertyPolicy &&);
-%ignore eprosima::fastrtps::rtps::PropertyPolicyHelper;
+%ignore eprosima::fastdds::rtps::PropertyPolicy::PropertyPolicy(PropertyPolicy &&);
+%ignore eprosima::fastdds::rtps::PropertyPolicyHelper;
 
 %include "fastdds/rtps/attributes/PropertyPolicy.h"

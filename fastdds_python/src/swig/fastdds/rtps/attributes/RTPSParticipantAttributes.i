@@ -17,9 +17,9 @@
 %}
 
 // Ignore deprecated methods
-%ignore eprosima::fastrtps::rtps::DiscoverySettings::setStaticEndpointXMLFilename;
-%ignore eprosima::fastrtps::rtps::DiscoverySettings::getStaticEndpointXMLFilename;
-%ignore eprosima::fastrtps::rtps::RTPSParticipantAttributes;
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const DiscoveryProtocol&);;
+%ignore eprosima::fastdds::rtps::DiscoverySettings::setStaticEndpointXMLFilename;
+%ignore eprosima::fastdds::rtps::DiscoverySettings::getStaticEndpointXMLFilename;
+%ignore eprosima::fastdds::rtps::RTPSParticipantAttributes;
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const DiscoveryProtocol&);;
 
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.h"

@@ -17,13 +17,13 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastrtps::rtps::Locator_t::Locator_t(Locator_t&&);
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const Locator_t&);
-%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, Locator_t&);
-%ignore eprosima::fastrtps::rtps::operator ==(const Locator_t&, const Locator_t&);
-%ignore eprosima::fastrtps::rtps::operator !=(const Locator_t&, const Locator_t&);
+%ignore eprosima::fastdds::rtps::Locator_t::Locator_t(Locator_t&&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const Locator_t&);
+%ignore eprosima::fastdds::rtps::operator >>(std::istream&, Locator_t&);
+%ignore eprosima::fastdds::rtps::operator ==(const Locator_t&, const Locator_t&);
+%ignore eprosima::fastdds::rtps::operator !=(const Locator_t&, const Locator_t&);
 
-%typemap(in) eprosima::fastrtps::rtps::octet[16](eprosima::fastrtps::rtps::octet temp[16])
+%typemap(in) eprosima::fastdds::rtps::octet[16](eprosima::fastdds::rtps::octet temp[16])
 {
     if (PyTuple_Check($input))
     {
@@ -43,7 +43,7 @@
     }
 }
 
-%typemap(out) eprosima::fastrtps::rtps::octet[16]
+%typemap(out) eprosima::fastdds::rtps::octet[16]
 {
     PyObject* python_tuple = PyTuple_New(16);
 
@@ -60,7 +60,7 @@
 
 %include "fastdds/rtps/common/Locator.h"
 
-%extend eprosima::fastrtps::rtps::Locator_t
+%extend eprosima::fastdds::rtps::Locator_t
 {
     bool operator==(const Locator_t& other_locator) const
     {
