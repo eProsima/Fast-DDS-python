@@ -118,6 +118,7 @@ jobs:
         uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
         with:
           windows_compile_environment: msvc
+          api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build workspace
         uses: eProsima/eProsima-CI/windows/colcon_build@v0
@@ -202,6 +203,8 @@ jobs:
 
       - name: Setup ccache
         uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        with:
+          api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build workspace
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
