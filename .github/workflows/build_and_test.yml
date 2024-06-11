@@ -57,7 +57,17 @@ jobs:
       - name: Fetch repositories
         shell: pwsh
         run: |
+<<<<<<< HEAD
           vcs import src --skip-existing --input src/fastdds_python/fastdds_python.repos
+=======
+          echo "cmake_generator=ninja" >> $Env:GITHUB_OUTPUT
+
+      - name: Setup ccache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        with:
+          windows_compile_environment: msvc
+          api_token: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> cce555d (Use token for ccache action (#136))
 
       - name: Build workspace
         shell: pwsh
@@ -107,9 +117,42 @@ jobs:
             vcstool \
             colcon-common-extensions
 
+<<<<<<< HEAD
       - name: Fetch repositories
         run: |
           vcs import --skip-existing src < src/fastdds_python/fastdds_python.repos
+=======
+      - name: Checkout foonathan memory vendor
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/foonathan_memory_vendor
+          path: src/foonathan_memory_vendor
+          ref: ${{ matrix.foonathan_memory_vendor_version }}
+
+      - name: Checkout Fast CDR
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-CDR
+          path: src/fastcdr
+          ref: ${{ matrix.fastcdr_version }}
+
+      - name: Checkout Fast DDS
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-DDS
+          path: src/fastdds
+          ref: ${{ matrix.fastdds_version }}
+
+      - name: Setup CMake version
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
+        with:
+          cmakeVersion: 3.22.6
+
+      - name: Setup ccache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        with:
+          api_token: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> cce555d (Use token for ccache action (#136))
 
       - name: Build workspace
         run: >
