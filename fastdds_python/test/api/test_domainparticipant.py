@@ -202,7 +202,7 @@ def test_create_publisher_with_profile(participant):
 
     # Failure
     publisher = participant.create_publisher_with_profile(
-            'no_exits_profile')
+            'no_exists_profile')
     assert(publisher is None)
 
     # Overload 1
@@ -436,7 +436,7 @@ def test_create_subscriber_with_profile(participant):
 
     # Failure
     subscriber = participant.create_subscriber_with_profile(
-            'no_exits_profile')
+            'no_exists_profile')
     assert(subscriber is None)
 
     # Overload 1

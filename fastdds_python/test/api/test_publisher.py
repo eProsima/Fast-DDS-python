@@ -219,7 +219,7 @@ def test_create_datawriter_with_profile(topic, publisher):
 
     # Failure
     datawriter = publisher.create_datawriter_with_profile(
-            topic, 'no_exits_profile')
+            topic, 'no_exists_profile')
     assert(datawriter is None)
 
     # Overload 1
