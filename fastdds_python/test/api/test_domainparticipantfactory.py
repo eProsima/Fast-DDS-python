@@ -125,10 +125,10 @@ def test_create_participant_with_profile():
 
     # Failure
     participant = factory.create_participant_with_profile(
-            'no_exits_profile')
+            'no_exists_profile')
     assert(participant is None)
     participant = factory.create_participant_with_profile(
-            0, 'no_exits_profile')
+            0, 'no_exists_profile')
     assert(participant is None)
 
     # Overload 1

@@ -222,7 +222,7 @@ def test_create_datareader_with_profile(topic, subscriber):
 
     # Failure
     datareader = subscriber.create_datareader_with_profile(
-            topic, 'no_exits_profile')
+            topic, 'no_exists_profile')
     assert(datareader is None)
 
     # Overload 1

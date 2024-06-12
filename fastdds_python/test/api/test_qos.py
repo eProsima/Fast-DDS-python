@@ -153,11 +153,11 @@ def test_datareader_qos():
            datareader_qos.durability_service().service_cleanup_delay.nanosec)
 
     # .reliable_reader_qos
-    datareader_qos.reliable_reader_qos().times.initialAcknackDelay.seconds = 34
-    datareader_qos.reliable_reader_qos().times.initialAcknackDelay.nanosec = 32
-    datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay. \
+    datareader_qos.reliable_reader_qos().times.initial_acknack_delay.seconds = 34
+    datareader_qos.reliable_reader_qos().times.initial_acknack_delay.nanosec = 32
+    datareader_qos.reliable_reader_qos().times.heartbeat_response_delay. \
         seconds = 432
-    datareader_qos.reliable_reader_qos().times.heartbeatResponseDelay. \
+    datareader_qos.reliable_reader_qos().times.heartbeat_response_delay. \
         nanosec = 43
     datareader_qos.reliable_reader_qos().disable_positive_ACKs.enabled = True
     datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration. \
@@ -165,13 +165,13 @@ def test_datareader_qos():
     datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration. \
         nanosec = 320
     assert(34 == datareader_qos.reliable_reader_qos().times.
-           initialAcknackDelay.seconds)
+           initial_acknack_delay.seconds)
     assert(32 == datareader_qos.reliable_reader_qos().times.
-           initialAcknackDelay.nanosec)
+           initial_acknack_delay.nanosec)
     assert(432 == datareader_qos.reliable_reader_qos().times.
-           heartbeatResponseDelay.seconds)
+           heartbeat_response_delay.seconds)
     assert(43 == datareader_qos.reliable_reader_qos().times.
-           heartbeatResponseDelay.nanosec)
+           heartbeat_response_delay.nanosec)
     assert(datareader_qos.reliable_reader_qos().
            disable_positive_ACKs.enabled)
     assert(13 == datareader_qos.reliable_reader_qos().
@@ -389,13 +389,13 @@ def test_datareader_qos():
 
     # .reliable_reader_qos
     assert(34 == default_datareader_qos.reliable_reader_qos().times.
-           initialAcknackDelay.seconds)
+           initial_acknack_delay.seconds)
     assert(32 == default_datareader_qos.reliable_reader_qos().times.
-           initialAcknackDelay.nanosec)
+           initial_acknack_delay.nanosec)
     assert(432 == default_datareader_qos.reliable_reader_qos().times.
-           heartbeatResponseDelay.seconds)
+           heartbeat_response_delay.seconds)
     assert(43 == default_datareader_qos.reliable_reader_qos().times.
-           heartbeatResponseDelay.nanosec)
+           heartbeat_response_delay.nanosec)
     assert(default_datareader_qos.reliable_reader_qos().
            disable_positive_ACKs.enabled)
     assert(13 == default_datareader_qos.reliable_reader_qos().
