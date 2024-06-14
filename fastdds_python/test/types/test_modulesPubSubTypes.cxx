@@ -221,9 +221,9 @@ namespace eprosima {
             return true;
         }
 
-        void StructTypePubSubType::register_type_object_representation() const
+        void StructTypePubSubType::register_type_object_representation()
         {
-            register_test_modules_type_objects();
+            register_StructType_type_identifier(type_identifiers_);
         }
 
 
@@ -416,9 +416,9 @@ namespace eprosima {
             return true;
         }
 
-        void CompleteTestTypePubSubType::register_type_object_representation() const
+        void CompleteTestTypePubSubType::register_type_object_representation()
         {
-            register_test_modules_type_objects();
+            register_CompleteTestType_type_identifier(type_identifiers_);
         }
 
         KeyedCompleteTestTypePubSubType::KeyedCompleteTestTypePubSubType()
@@ -609,9 +609,9 @@ namespace eprosima {
             return true;
         }
 
-        void KeyedCompleteTestTypePubSubType::register_type_object_representation() const
+        void KeyedCompleteTestTypePubSubType::register_type_object_representation()
         {
-            register_test_modules_type_objects();
+            register_KeyedCompleteTestType_type_identifier(type_identifiers_);
         }
 
     } // namespace test
