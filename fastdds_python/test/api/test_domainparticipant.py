@@ -916,8 +916,8 @@ def test_get_set_qos(participant):
     """
     qos = fastdds.DomainParticipantQos()
     assert(fastdds.RETCODE_OK == participant.get_qos(qos))
-    qos.user_data().push_back(1)
-    qos.user_data().push_back(2)
+    qos.user_data().append(1)
+    qos.user_data().append(2)
     assert(2 == len(qos.user_data()))
 
     assert(fastdds.RETCODE_OK ==
