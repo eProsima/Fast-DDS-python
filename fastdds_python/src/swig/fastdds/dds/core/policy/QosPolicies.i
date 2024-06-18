@@ -52,8 +52,8 @@
 namespace eprosima {
 namespace fastdds {
 namespace dds {
-    struct ParticipantResourceLimitsQos : public fastrtps::rtps::RTPSParticipantAllocationAttributes {};
-    struct PropertyPolicyQos : public fastrtps::rtps::PropertyPolicy {};
+    struct ParticipantResourceLimitsQos : public fastdds::rtps::RTPSParticipantAllocationAttributes {};
+    struct PropertyPolicyQos : public fastdds::rtps::PropertyPolicy {};
 }
 }
 }
@@ -63,21 +63,21 @@ class OctetResourceLimitedVectorStopIterator {};
 class OctetResourceLimitedVectorIterator {
 public:
     OctetResourceLimitedVectorIterator(
-            eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator _cur,
-            eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator _end) : cur(_cur), end(_end) {}
+            eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator _cur,
+            eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator _end) : cur(_cur), end(_end) {}
     OctetResourceLimitedVectorIterator* __iter__()
     {
         return this;
     }
-    eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator cur;
-    eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::iterator end;
+    eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator cur;
+    eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator end;
 };
 %}
 
 // SWIG does not support templates in the generated binding,
 // because not all output languages support them
 // We must explicitly declare the specializations of the templates
-%template(OctetResourceLimitedVector) eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>;
+%template(OctetResourceLimitedVector) eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>;
 
 %include "fastdds/dds/core/policy/QosPolicies.hpp"
 
@@ -96,7 +96,7 @@ public:
 
 %extend OctetResourceLimitedVectorIterator
 {
-    eprosima::fastrtps::rtps::octet __next__()
+    eprosima::fastdds::rtps::octet __next__()
     {
         if ($self->cur != $self->end)
         {
@@ -108,7 +108,7 @@ public:
     }
 }
 
-%exception eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>::__getitem__
+%exception eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::__getitem__
 {
     try
     {
@@ -120,7 +120,7 @@ public:
     }
 }
 
-%extend eprosima::fastrtps::ResourceLimitedVector<eprosima::fastrtps::rtps::octet>
+%extend eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>
 {
     OctetResourceLimitedVectorIterator __iter__()
     {
@@ -133,7 +133,7 @@ public:
         return self->size();
     }
 
-    eprosima::fastrtps::rtps::octet __getitem__(int i)
+    eprosima::fastdds::rtps::octet __getitem__(int i)
     {
         if (self->size() <= i)
         {

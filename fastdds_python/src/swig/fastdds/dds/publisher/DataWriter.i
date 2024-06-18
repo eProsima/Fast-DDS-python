@@ -19,11 +19,11 @@
 
 // Deprecated function are ignored
 %ignore eprosima::fastdds::dds::DataWriter::write_w_timestamp(void*, const InstanceHandle_t&,
-            const fastrtps::rtps::Time_t&);
+            const fastdds::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::register_instance_w_timestamp(void*,
-            const fastrtps::rtps::Time_t&);
+            const fastdds::rtps::Time_t&);
 %ignore eprosima::fastdds::dds::DataWriter::unregister_instance_w_timestamp(void*, const InstanceHandle_t&,
-            const fastrtps::rtps::Time_t&);
+            const fastdds::rtps::Time_t&);
 
 // Unsupported function on Python are ignored
 %ignore loan_sample(void*&, LoanInitializationKind);

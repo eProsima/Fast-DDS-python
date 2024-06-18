@@ -16,6 +16,6 @@
 #include "fastdds/rtps/common/Types.h"
 %}
 
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const ProtocolVersion_t&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const ProtocolVersion_t&);
 
 %include "fastdds/rtps/common/Types.h"

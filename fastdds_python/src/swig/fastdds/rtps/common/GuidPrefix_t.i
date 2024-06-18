@@ -17,10 +17,10 @@
 
 // Define a hash method in global scope for GuidPrefix_t types
 // This is necessary if we want other classes to hash an internal GuidPrefix_t
-long hash(const eprosima::fastrtps::rtps::GuidPrefix_t& prefix)
+long hash(const eprosima::fastdds::rtps::GuidPrefix_t& prefix)
 {
     long ret = 0;
-    for (unsigned int i = 0; i < eprosima::fastrtps::rtps::GuidPrefix_t::size; ++i)
+    for (unsigned int i = 0; i < eprosima::fastdds::rtps::GuidPrefix_t::size; ++i)
     {
         ret = (ret * 31) ^ prefix.value[i];
     }
@@ -28,7 +28,7 @@ long hash(const eprosima::fastrtps::rtps::GuidPrefix_t& prefix)
 }
 %}
 
-%typemap(in) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::GuidPrefix_t::size](eprosima::fastrtps::rtps::octet temp[eprosima::fastrtps::rtps::GuidPrefix_t::size])
+%typemap(in) eprosima::fastdds::rtps::octet[eprosima::fastdds::rtps::GuidPrefix_t::size](eprosima::fastdds::rtps::octet temp[eprosima::fastdds::rtps::GuidPrefix_t::size])
 {
     if (PyTuple_Check($input))
     {
@@ -47,13 +47,13 @@ long hash(const eprosima::fastrtps::rtps::GuidPrefix_t& prefix)
     }
 }
 
-%typemap(out) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::GuidPrefix_t::size]
+%typemap(out) eprosima::fastdds::rtps::octet[eprosima::fastdds::rtps::GuidPrefix_t::size]
 {
-    PyObject* python_tuple = PyTuple_New(eprosima::fastrtps::rtps::GuidPrefix_t::size);
+    PyObject* python_tuple = PyTuple_New(eprosima::fastdds::rtps::GuidPrefix_t::size);
 
     if (python_tuple)
     {
-        for(size_t count = 0; count < eprosima::fastrtps::rtps::GuidPrefix_t::size; ++count)
+        for(size_t count = 0; count < eprosima::fastdds::rtps::GuidPrefix_t::size; ++count)
         {
             PyTuple_SetItem(python_tuple, count, PyInt_FromLong($1[count]));
         }
@@ -62,13 +62,13 @@ long hash(const eprosima::fastrtps::rtps::GuidPrefix_t& prefix)
     $result = python_tuple;
 }
 
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const GuidPrefix_t&);
-%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, GuidPrefix_t&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const GuidPrefix_t&);
+%ignore eprosima::fastdds::rtps::operator >>(std::istream&, GuidPrefix_t&);
 
 %include "fastdds/rtps/common/GuidPrefix_t.hpp"
 
 // Declare the comparison operators as internal to the class
-%extend eprosima::fastrtps::rtps::GuidPrefix_t {
+%extend eprosima::fastdds::rtps::GuidPrefix_t {
     std::string __str__() const
     {
         std::ostringstream out;

@@ -17,10 +17,10 @@
 
 // Define a hash method in global scope for EntityId_t types
 // This is necessary if we want other classes to hash an internal EntityId_t
-long hash(const eprosima::fastrtps::rtps::EntityId_t& id)
+long hash(const eprosima::fastdds::rtps::EntityId_t& id)
 {
     long ret = 0;
-    for (unsigned int i = 0; i < eprosima::fastrtps::rtps::EntityId_t::size; ++i)
+    for (unsigned int i = 0; i < eprosima::fastdds::rtps::EntityId_t::size; ++i)
     {
         ret = (ret * 31) ^ id.value[i];
     }
@@ -29,13 +29,13 @@ long hash(const eprosima::fastrtps::rtps::EntityId_t& id)
 %}
 
 // Overloaded constructor ignored
-%ignore eprosima::fastrtps::rtps::EntityId_t::EntityId_t(EntityId_t &&);
-%ignore eprosima::fastrtps::rtps::operator <<(std::ostream&, const EntityId_t&);
-%ignore eprosima::fastrtps::rtps::operator >>(std::istream&, EntityId_t&);
+%ignore eprosima::fastdds::rtps::EntityId_t::EntityId_t(EntityId_t &&);
+%ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const EntityId_t&);
+%ignore eprosima::fastdds::rtps::operator >>(std::istream&, EntityId_t&);
 
 // Operators declared outside the class conflict with those declared for other types
-%ignore eprosima::fastrtps::rtps::operator==;
-%ignore eprosima::fastrtps::rtps::operator!=;
+%ignore eprosima::fastdds::rtps::operator==;
+%ignore eprosima::fastdds::rtps::operator!=;
 
 // Declare hash so that we do not get a warning
 // This will make an empty class on the target, but the user should not need this anyway.
@@ -44,7 +44,7 @@ namespace std {
     struct hash;
 }
 
-%typemap(in) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::EntityId_t::size](eprosima::fastrtps::rtps::octet temp[eprosima::fastrtps::rtps::EntityId_t::size])
+%typemap(in) eprosima::fastdds::rtps::octet[eprosima::fastdds::rtps::EntityId_t::size](eprosima::fastdds::rtps::octet temp[eprosima::fastdds::rtps::EntityId_t::size])
 {
     if (PyTuple_Check($input))
     {
@@ -63,13 +63,13 @@ namespace std {
     }
 }
 
-%typemap(out) eprosima::fastrtps::rtps::octet[eprosima::fastrtps::rtps::EntityId_t::size]
+%typemap(out) eprosima::fastdds::rtps::octet[eprosima::fastdds::rtps::EntityId_t::size]
 {
-    PyObject* python_tuple = PyTuple_New(eprosima::fastrtps::rtps::EntityId_t::size);
+    PyObject* python_tuple = PyTuple_New(eprosima::fastdds::rtps::EntityId_t::size);
 
     if (python_tuple)
     {
-        for(size_t count = 0; count < eprosima::fastrtps::rtps::EntityId_t::size; ++count)
+        for(size_t count = 0; count < eprosima::fastdds::rtps::EntityId_t::size; ++count)
         {
             PyTuple_SetItem(python_tuple, count, PyInt_FromLong($1[count]));
         }
@@ -81,8 +81,8 @@ namespace std {
 %include "fastdds/rtps/common/EntityId_t.hpp"
 
 // Declare the comparison operators as internal to the class
-%extend eprosima::fastrtps::rtps::EntityId_t {
-    bool operator==(const eprosima::fastrtps::rtps::EntityId_t& other) const
+%extend eprosima::fastdds::rtps::EntityId_t {
+    bool operator==(const eprosima::fastdds::rtps::EntityId_t& other) const
     {
         return *$self == other;
     }
@@ -92,7 +92,7 @@ namespace std {
         return *$self == other;
     }
 
-    bool operator!=(const eprosima::fastrtps::rtps::EntityId_t& other) const
+    bool operator!=(const eprosima::fastdds::rtps::EntityId_t& other) const
     {
         return *$self != other;
     }
