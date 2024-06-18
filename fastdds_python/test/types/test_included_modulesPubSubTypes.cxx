@@ -59,11 +59,11 @@ namespace eprosima {
         }
 
         bool StructType2PubSubType::serialize(
-                void* data,
+                const void* const data,
                 SerializedPayload_t* payload,
                 DataRepresentationId_t data_representation)
         {
-            StructType2* p_type = static_cast<StructType2*>(data);
+            const StructType2* p_type = static_cast<const StructType2*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
@@ -135,7 +135,7 @@ namespace eprosima {
         }
 
         std::function<uint32_t()> StructType2PubSubType::getSerializedSizeProvider(
-                void* data,
+                const void* const data,
                 DataRepresentationId_t data_representation)
         {
             return [data, data_representation]() -> uint32_t
@@ -152,7 +152,7 @@ namespace eprosima {
                                eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
                            size_t current_alignment {0};
                            return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                       *static_cast<StructType2*>(data), current_alignment)) +
+                                       *static_cast<const StructType2*>(data), current_alignment)) +
                                    4u /*encapsulation*/;
                        }
                        catch (eprosima::fastcdr::exception::Exception& /*exception*/)
@@ -175,7 +175,7 @@ namespace eprosima {
         }
 
         bool StructType2PubSubType::getKey(
-                void* data,
+                const void* const data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
@@ -184,7 +184,7 @@ namespace eprosima {
                 return false;
             }
 
-            StructType2* p_type = static_cast<StructType2*>(data);
+            const StructType2* p_type = static_cast<const StructType2*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
