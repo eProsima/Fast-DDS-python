@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/resources/ResourceManagement.h"
+#include "fastdds/rtps/attributes/ResourceManagement.hpp"
 %}
 
-%include "fastdds/rtps/resources/ResourceManagement.h"
+%include "fastdds/rtps/attributes/ResourceManagement.hpp"
