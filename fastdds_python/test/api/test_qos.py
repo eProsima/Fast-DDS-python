@@ -159,10 +159,10 @@ def test_datareader_qos():
         seconds = 432
     datareader_qos.reliable_reader_qos().times.heartbeat_response_delay. \
         nanosec = 43
-    datareader_qos.reliable_reader_qos().disable_positive_ACKs.enabled = True
-    datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration. \
+    datareader_qos.reliable_reader_qos().disable_positive_acks.enabled = True
+    datareader_qos.reliable_reader_qos().disable_positive_acks.duration. \
         seconds = 13
-    datareader_qos.reliable_reader_qos().disable_positive_ACKs.duration. \
+    datareader_qos.reliable_reader_qos().disable_positive_acks.duration. \
         nanosec = 320
     assert(34 == datareader_qos.reliable_reader_qos().times.
            initial_acknack_delay.seconds)
@@ -173,11 +173,11 @@ def test_datareader_qos():
     assert(43 == datareader_qos.reliable_reader_qos().times.
            heartbeat_response_delay.nanosec)
     assert(datareader_qos.reliable_reader_qos().
-           disable_positive_ACKs.enabled)
+           disable_positive_acks.enabled)
     assert(13 == datareader_qos.reliable_reader_qos().
-           disable_positive_ACKs.duration.seconds)
+           disable_positive_acks.duration.seconds)
     assert(320 == datareader_qos.reliable_reader_qos().
-           disable_positive_ACKs.duration.nanosec)
+           disable_positive_acks.duration.nanosec)
 
     # TODO .type_consistency
 
@@ -397,11 +397,11 @@ def test_datareader_qos():
     assert(43 == default_datareader_qos.reliable_reader_qos().times.
            heartbeat_response_delay.nanosec)
     assert(default_datareader_qos.reliable_reader_qos().
-           disable_positive_ACKs.enabled)
+           disable_positive_acks.enabled)
     assert(13 == default_datareader_qos.reliable_reader_qos().
-           disable_positive_ACKs.duration.seconds)
+           disable_positive_acks.duration.seconds)
     assert(320 == default_datareader_qos.reliable_reader_qos().
-           disable_positive_ACKs.duration.nanosec)
+           disable_positive_acks.duration.nanosec)
 
     # .expects_inline_qos
     assert(default_datareader_qos.expects_inline_qos())
