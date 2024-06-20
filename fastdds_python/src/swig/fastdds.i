@@ -160,7 +160,6 @@ namespace xtypes {
 %include "fastdds/rtps/flowcontrol/FlowControllerDescriptor.i"
 %include "fastdds/rtps/attributes/PropertyPolicy.i"
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.i"
-%include "fastdds/rtps/attributes/ServerAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
 %include "fastdds/rtps/common/SequenceNumber.i"

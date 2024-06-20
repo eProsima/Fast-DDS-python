@@ -1436,16 +1436,12 @@ def test_domain_participant_qos():
         discoveryServer_client_syncperiod.nanosec = 10
     participant_qos.wire_protocol().builtin.discovery_config. \
         discoveryServer_client_syncperiod.nanosec = 10
-    server_info = fastdds.RemoteServerAttributes()
-    server_info.guidPrefix.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,  12)
     locator = fastdds.Locator_t()
     locator.address = (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 168, 1, 1)
     locator.port = 7400
     locator.kind = fastdds.LOCATOR_KIND_UDPv4
-    server_info.metatrafficMulticastLocatorList.push_back(locator)
-    server_info.metatrafficUnicastLocatorList.push_back(locator)
     participant_qos.wire_protocol().builtin.discovery_config. \
-        m_DiscoveryServers.push_back(server_info)
+        m_DiscoveryServers.push_back(locator)
     participant_qos.wire_protocol().builtin.discovery_config. \
         ignoreParticipantFlags = fastdds.FILTER_DIFFERENT_HOST
     assert(not participant_qos.wire_protocol().builtin.discovery_config.
@@ -1485,18 +1481,10 @@ def test_domain_participant_qos():
            discoveryServer_client_syncperiod.nanosec)
     server_info = participant_qos.wire_protocol().builtin.discovery_config. \
         m_DiscoveryServers[0]
-    assert((1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) ==
-           server_info.guidPrefix.value)
-    locator = server_info.metatrafficMulticastLocatorList[0]
     assert((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 168, 1, 1) ==
-           locator.address)
-    assert(7400 == locator.port)
-    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
-    locator = server_info.metatrafficUnicastLocatorList[0]
-    assert((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 168, 1, 1) ==
-           locator.address)
-    assert(7400 == locator.port)
-    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+           server_info.address)
+    assert(7400 == server_info.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == server_info.kind)
     assert(fastdds.FILTER_DIFFERENT_HOST == participant_qos.
            wire_protocol().builtin.discovery_config.ignoreParticipantFlags)
     # ## .metatrafficUnicastLocatorList;
@@ -1734,18 +1722,10 @@ def test_domain_participant_qos():
            discovery_config.discoveryServer_client_syncperiod.nanosec)
     server_info = default_participant_qos.wire_protocol().builtin. \
         discovery_config.m_DiscoveryServers[0]
-    assert((1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12) ==
-           server_info.guidPrefix.value)
-    locator = server_info.metatrafficMulticastLocatorList[0]
     assert((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 168, 1, 1) ==
-           locator.address)
-    assert(7400 == locator.port)
-    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
-    locator = server_info.metatrafficUnicastLocatorList[0]
-    assert((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 192, 168, 1, 1) ==
-           locator.address)
-    assert(7400 == locator.port)
-    assert(fastdds.LOCATOR_KIND_UDPv4 == locator.kind)
+           server_info.address)
+    assert(7400 == server_info.port)
+    assert(fastdds.LOCATOR_KIND_UDPv4 == server_info.kind)
     assert(fastdds.FILTER_DIFFERENT_HOST == default_participant_qos.
            wire_protocol().builtin.discovery_config.ignoreParticipantFlags)
     # ## .metatrafficUnicastLocatorList;
