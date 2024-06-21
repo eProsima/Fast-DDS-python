@@ -59,11 +59,11 @@ namespace eprosima {
         }
 
         bool StructTypePubSubType::serialize(
-                void* data,
+                const void* const data,
                 SerializedPayload_t* payload,
                 DataRepresentationId_t data_representation)
         {
-            StructType* p_type = static_cast<StructType*>(data);
+            const StructType* p_type = static_cast<const StructType*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
@@ -135,7 +135,7 @@ namespace eprosima {
         }
 
         std::function<uint32_t()> StructTypePubSubType::getSerializedSizeProvider(
-                void* data,
+                const void* const data,
                 DataRepresentationId_t data_representation)
         {
             return [data, data_representation]() -> uint32_t
@@ -152,7 +152,7 @@ namespace eprosima {
                                eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
                            size_t current_alignment {0};
                            return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                       *static_cast<StructType*>(data), current_alignment)) +
+                                       *static_cast<const StructType*>(data), current_alignment)) +
                                    4u /*encapsulation*/;
                        }
                        catch (eprosima::fastcdr::exception::Exception& /*exception*/)
@@ -175,7 +175,7 @@ namespace eprosima {
         }
 
         bool StructTypePubSubType::getKey(
-                void* data,
+                const void* const data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
@@ -184,7 +184,7 @@ namespace eprosima {
                 return false;
             }
 
-            StructType* p_type = static_cast<StructType*>(data);
+            const StructType* p_type = static_cast<const StructType*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
@@ -254,11 +254,11 @@ namespace eprosima {
         }
 
         bool CompleteTestTypePubSubType::serialize(
-                void* data,
+                const void* const data,
                 SerializedPayload_t* payload,
                 DataRepresentationId_t data_representation)
         {
-            CompleteTestType* p_type = static_cast<CompleteTestType*>(data);
+            const CompleteTestType* p_type = static_cast<const CompleteTestType*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
@@ -330,7 +330,7 @@ namespace eprosima {
         }
 
         std::function<uint32_t()> CompleteTestTypePubSubType::getSerializedSizeProvider(
-                void* data,
+                const void* const data,
                 DataRepresentationId_t data_representation)
         {
             return [data, data_representation]() -> uint32_t
@@ -347,7 +347,7 @@ namespace eprosima {
                                eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
                            size_t current_alignment {0};
                            return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                       *static_cast<CompleteTestType*>(data), current_alignment)) +
+                                       *static_cast<const CompleteTestType*>(data), current_alignment)) +
                                    4u /*encapsulation*/;
                        }
                        catch (eprosima::fastcdr::exception::Exception& /*exception*/)
@@ -370,7 +370,7 @@ namespace eprosima {
         }
 
         bool CompleteTestTypePubSubType::getKey(
-                void* data,
+                const void* const data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
@@ -379,7 +379,7 @@ namespace eprosima {
                 return false;
             }
 
-            CompleteTestType* p_type = static_cast<CompleteTestType*>(data);
+            const CompleteTestType* p_type = static_cast<const CompleteTestType*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
@@ -447,11 +447,11 @@ namespace eprosima {
         }
 
         bool KeyedCompleteTestTypePubSubType::serialize(
-                void* data,
+                const void* const data,
                 SerializedPayload_t* payload,
                 DataRepresentationId_t data_representation)
         {
-            KeyedCompleteTestType* p_type = static_cast<KeyedCompleteTestType*>(data);
+            const KeyedCompleteTestType* p_type = static_cast<const KeyedCompleteTestType*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(payload->data), payload->max_size);
@@ -523,7 +523,7 @@ namespace eprosima {
         }
 
         std::function<uint32_t()> KeyedCompleteTestTypePubSubType::getSerializedSizeProvider(
-                void* data,
+                const void* const data,
                 DataRepresentationId_t data_representation)
         {
             return [data, data_representation]() -> uint32_t
@@ -540,7 +540,7 @@ namespace eprosima {
                                eprosima::fastcdr::CdrVersion::XCDRv1 :eprosima::fastcdr::CdrVersion::XCDRv2);
                            size_t current_alignment {0};
                            return static_cast<uint32_t>(calculator.calculate_serialized_size(
-                                       *static_cast<KeyedCompleteTestType*>(data), current_alignment)) +
+                                       *static_cast<const KeyedCompleteTestType*>(data), current_alignment)) +
                                    4u /*encapsulation*/;
                        }
                        catch (eprosima::fastcdr::exception::Exception& /*exception*/)
@@ -563,7 +563,7 @@ namespace eprosima {
         }
 
         bool KeyedCompleteTestTypePubSubType::getKey(
-                void* data,
+                const void* const data,
                 InstanceHandle_t* handle,
                 bool force_md5)
         {
@@ -572,7 +572,7 @@ namespace eprosima {
                 return false;
             }
 
-            KeyedCompleteTestType* p_type = static_cast<KeyedCompleteTestType*>(data);
+            const KeyedCompleteTestType* p_type = static_cast<const KeyedCompleteTestType*>(data);
 
             // Object that manages the raw buffer.
             eprosima::fastcdr::FastBuffer fastbuffer(reinterpret_cast<char*>(m_keyBuffer),
