@@ -22,9 +22,9 @@
 %import(module="fastdds") "fastdds/dds/topic/TopicDataType.hpp";
 
 %{
-#include "HelloWorldPubSubTypes.h"
+#include "HelloWorldPubSubTypes.hpp"
 %}
 
 #define GEN_API_VER 2
 
-%include "HelloWorldPubSubTypes.h"
+%include "HelloWorldPubSubTypes.hpp"
