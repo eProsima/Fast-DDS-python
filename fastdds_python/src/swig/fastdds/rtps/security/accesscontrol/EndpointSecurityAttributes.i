@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/accesscontrol/EndpointSecurityAttributes.h"
+#include "fastdds/rtps/security/accesscontrol/EndpointSecurityAttributes.hpp"
 %}
 
-%include "fastdds/rtps/security/accesscontrol/EndpointSecurityAttributes.h"
+%include "fastdds/rtps/security/accesscontrol/EndpointSecurityAttributes.hpp"

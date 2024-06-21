@@ -13,9 +13,9 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/attributes/ReaderAttributes.h"
+#include "fastdds/rtps/attributes/ReaderAttributes.hpp"
 %}
 
 %ignore eprosima::fastdds::rtps::ReaderAttributes;
 
-%include "fastdds/rtps/attributes/ReaderAttributes.h"
+%include "fastdds/rtps/attributes/ReaderAttributes.hpp"

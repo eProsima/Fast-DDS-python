@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/RTPSWriter.h"
+#include "fastdds/rtps/writer/RTPSWriter.hpp"
 %}
 
-%include "fastdds/rtps/writer/RTPSWriter.h"
+%include "fastdds/rtps/writer/RTPSWriter.hpp"

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/network/ReceiverResource.h"
+#include "fastdds/rtps/network/ReceiverResource.hpp"
 %}
 
-%include "fastdds/rtps/network/ReceiverResource.h"
+%include "fastdds/rtps/network/ReceiverResource.hpp"

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/messages/MessageReceiver.h"
+#include "fastdds/rtps/messages/MessageReceiver.hpp"
 %}
 
-%include "fastdds/rtps/messages/MessageReceiver.h"
+%include "fastdds/rtps/messages/MessageReceiver.hpp"

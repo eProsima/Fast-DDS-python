@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/history/IPayloadPool.h"
+#include "fastdds/rtps/history/IPayloadPool.hpp"
 %}
 
-%include "fastdds/rtps/history/IPayloadPool.h"
+%include "fastdds/rtps/history/IPayloadPool.hpp"

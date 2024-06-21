@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/attributes/EndpointAttributes.h"
+#include "fastdds/rtps/attributes/EndpointAttributes.hpp"
 %}
 
-%include "fastdds/rtps/attributes/EndpointAttributes.h"
+%include "fastdds/rtps/attributes/EndpointAttributes.hpp"

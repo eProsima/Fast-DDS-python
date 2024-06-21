@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/history/ReaderHistory.h"
+#include "fastdds/rtps/history/ReaderHistory.hpp"
 %}
 
-%include "fastdds/rtps/history/ReaderHistory.h"
+%include "fastdds/rtps/history/ReaderHistory.hpp"

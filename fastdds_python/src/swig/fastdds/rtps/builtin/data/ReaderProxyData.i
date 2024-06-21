@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/builtin/data/ReaderProxyData.h"
+#include "fastdds/rtps/builtin/data/ReaderProxyData.hpp"
 %}
 
-%include "fastdds/rtps/builtin/data/ReaderProxyData.h"
+%include "fastdds/rtps/builtin/data/ReaderProxyData.hpp"

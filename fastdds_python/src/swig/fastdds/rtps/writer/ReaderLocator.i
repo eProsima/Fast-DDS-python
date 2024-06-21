@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/ReaderLocator.h"
+#include "fastdds/rtps/writer/ReaderLocator.hpp"
 %}
 
-%include "fastdds/rtps/writer/ReaderLocator.h"
+%include "fastdds/rtps/writer/ReaderLocator.hpp"

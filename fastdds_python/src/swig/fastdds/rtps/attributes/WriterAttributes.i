@@ -13,9 +13,9 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/attributes/WriterAttributes.h"
+#include "fastdds/rtps/attributes/WriterAttributes.hpp"
 %}
 
 %ignore eprosima::fastdds::rtps::WriterAttributes;
 
-%include "fastdds/rtps/attributes/WriterAttributes.h"
+%include "fastdds/rtps/attributes/WriterAttributes.hpp"

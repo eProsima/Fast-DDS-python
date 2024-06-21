@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/TransportDescriptorInterface.h"
+#include "fastdds/rtps/transport/TransportDescriptorInterface.hpp"
 %}
 
-%include "fastdds/rtps/transport/TransportDescriptorInterface.h"
+%include "fastdds/rtps/transport/TransportDescriptorInterface.hpp"

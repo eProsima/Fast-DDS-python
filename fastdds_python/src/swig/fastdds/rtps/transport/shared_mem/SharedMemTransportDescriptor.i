@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h"
+#include "fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp"
 %}
 
-%include "fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.h"
+%include "fastdds/rtps/transport/shared_mem/SharedMemTransportDescriptor.hpp"

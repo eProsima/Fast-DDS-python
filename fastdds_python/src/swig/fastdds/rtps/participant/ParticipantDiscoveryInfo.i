@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/participant/ParticipantDiscoveryInfo.h"
+#include "fastdds/rtps/participant/ParticipantDiscoveryInfo.hpp"
 %}
 
-%include "fastdds/rtps/participant/ParticipantDiscoveryInfo.h"
+%include "fastdds/rtps/participant/ParticipantDiscoveryInfo.hpp"

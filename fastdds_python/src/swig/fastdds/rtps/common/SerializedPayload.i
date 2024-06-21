@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/SerializedPayload.h"
+#include "fastdds/rtps/common/SerializedPayload.hpp"
 %}
 
-%include "fastdds/rtps/common/SerializedPayload.h"
+%include "fastdds/rtps/common/SerializedPayload.hpp"

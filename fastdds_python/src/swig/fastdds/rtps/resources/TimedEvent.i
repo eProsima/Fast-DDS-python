@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/resources/TimedEvent.h"
+#include "fastdds/rtps/resources/TimedEvent.hpp"
 %}
 
-%include "fastdds/rtps/resources/TimedEvent.h"
+%include "fastdds/rtps/resources/TimedEvent.hpp"

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/SocketTransportDescriptor.h"
+#include "fastdds/rtps/transport/SocketTransportDescriptor.hpp"
 %}
 
-%include "fastdds/rtps/transport/SocketTransportDescriptor.h"
+%include "fastdds/rtps/transport/SocketTransportDescriptor.hpp"

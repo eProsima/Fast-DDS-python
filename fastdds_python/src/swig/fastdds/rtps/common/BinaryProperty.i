@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/BinaryProperty.h"
+#include "fastdds/rtps/common/BinaryProperty.hpp"
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
@@ -29,4 +29,4 @@
 // We must explicitly declare the specializations of the templates
 %template(BinaryPropertySeq) std::vector<eprosima::fastdds::rtps::BinaryProperty>;
 
-%include "fastdds/rtps/common/BinaryProperty.h"
+%include "fastdds/rtps/common/BinaryProperty.hpp"

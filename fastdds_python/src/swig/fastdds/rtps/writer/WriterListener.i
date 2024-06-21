@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/WriterListener.h"
+#include "fastdds/rtps/writer/WriterListener.hpp"
 %}
 
-%include "fastdds/rtps/writer/WriterListener.h"
+%include "fastdds/rtps/writer/WriterListener.hpp"

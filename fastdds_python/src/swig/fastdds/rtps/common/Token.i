@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/Token.h"
+#include "fastdds/rtps/common/Token.hpp"
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
@@ -24,4 +24,4 @@
 %ignore eprosima::fastdds::rtps::DataHolderHelper::find_binary_property_value(const DataHolder& data_holder, const std::string& name);
 %ignore eprosima::fastdds::rtps::DataHolderHelper::find_binary_property(const DataHolder& data_holder, const std::string& name);
 
-%include "fastdds/rtps/common/Token.h"
+%include "fastdds/rtps/common/Token.hpp"

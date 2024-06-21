@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/RTPSDomain.h"
+#include "fastdds/rtps/RTPSDomain.hpp"
 %}
 
-%include "fastdds/rtps/RTPSDomain.h"
+%include "fastdds/rtps/RTPSDomain.hpp"

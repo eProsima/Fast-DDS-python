@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/ChangeForReader.h"
+#include "fastdds/rtps/writer/ChangeForReader.hpp"
 %}
 
-%include "fastdds/rtps/writer/ChangeForReader.h"
+%include "fastdds/rtps/writer/ChangeForReader.hpp"

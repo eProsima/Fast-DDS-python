@@ -13,11 +13,11 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/CacheChange.h"
+#include "fastdds/rtps/common/CacheChange.hpp"
 %}
 
 // Ignore problematic classes that are not part of the user API
 %ignore eprosima::fastdds::rtps::CacheChangeWriterInfo_t;
 %ignore eprosima::fastdds::rtps::CacheChangeReaderInfo_t;
 
-%include "fastdds/rtps/common/CacheChange.h"
+%include "fastdds/rtps/common/CacheChange.hpp"

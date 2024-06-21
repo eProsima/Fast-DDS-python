@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/resources/ResourceEvent.h"
+#include "fastdds/rtps/resources/ResourceEvent.hpp"
 %}
 
-%include "fastdds/rtps/resources/ResourceEvent.h"
+%include "fastdds/rtps/resources/ResourceEvent.hpp"

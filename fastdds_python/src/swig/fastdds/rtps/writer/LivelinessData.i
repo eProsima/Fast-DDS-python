@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/LivelinessData.h"
+#include "fastdds/rtps/writer/LivelinessData.hpp"
 %}
 
-%include "fastdds/rtps/writer/LivelinessData.h"
+%include "fastdds/rtps/writer/LivelinessData.hpp"

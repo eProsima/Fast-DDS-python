@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/logging/BuiltinLoggingType.h"
+#include "fastdds/rtps/security/logging/BuiltinLoggingType.hpp"
 %}
 
-%include "fastdds/rtps/security/logging/BuiltinLoggingType.h"
+%include "fastdds/rtps/security/logging/BuiltinLoggingType.hpp"

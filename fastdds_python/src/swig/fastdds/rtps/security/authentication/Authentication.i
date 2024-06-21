@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/authentication/Authentication.h"
+#include "fastdds/rtps/security/authentication/Authentication.hpp"
 %}
 
-%include "fastdds/rtps/security/authentication/Authentication.h"
+%include "fastdds/rtps/security/authentication/Authentication.hpp"

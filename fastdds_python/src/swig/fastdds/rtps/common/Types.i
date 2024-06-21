@@ -13,9 +13,9 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/Types.h"
+#include "fastdds/rtps/common/Types.hpp"
 %}
 
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const ProtocolVersion_t&);
 
-%include "fastdds/rtps/common/Types.h"
+%include "fastdds/rtps/common/Types.hpp"
