@@ -51,6 +51,34 @@
     /**
      * Create a Participant.
      *
+     * @param extended_qos DomainParticipantExtendedQos Reference.
+     * @param listener DomainParticipantListener Pointer (default: nullptr)
+     * @param mask StatusMask Reference (default: all)
+     * @return DomainParticipant pointer. (nullptr if not created.)
+     */
+    DomainParticipant* create_participant(
+            const DomainParticipantExtendedQos& extended_qos,
+            DomainParticipantListener* listener = nullptr,
+            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
+    {
+        if (nullptr != listener)
+        {
+            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
+
+            if (nullptr != director)
+            {
+                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+                Py_INCREF(director->swig_get_self());
+                SWIG_PYTHON_THREAD_END_BLOCK;
+            }
+        }
+
+        return self->create_participant(extended_qos.domainId(), extended_qos, listener, mask);
+    }
+
+    /**
+     * Create a Participant.
+     *
      * @param domain_id Domain Id.
      * @param profile_name Participant profile name.
      * @param listener DomainParticipantListener Pointer (default: nullptr)

@@ -111,6 +111,16 @@ def test_create_participant():
          m,
          listener)
 
+    # Overload 4
+    extended_qos = fastdds.DomainParticipantExtendedQos()
+    participant = factory.create_participant(
+            extended_qos)
+    assert(participant.is_enabled())
+    assert(fastdds.StatusMask.all() == participant.get_status_mask())
+    assert(participant is not None)
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
 
 def test_create_participant_with_profile():
     """
