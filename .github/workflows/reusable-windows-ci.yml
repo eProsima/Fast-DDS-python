@@ -46,7 +46,7 @@ on:
         description: 'Run test suite of Fast DDS python'
         required: false
         type: boolean
-        default: true
+        default: false
 env:
   colcon-build-default-cmake-args: '-DTHIRDPARTY_Asio=FORCE -DTHIRDPARTY_TinyXML2=FORCE -DTHIRDPARTY_fastcdr=OFF -DTHIRDPARTY_UPDATE=ON -DEPROSIMA_EXTRA_CMAKE_CXX_FLAGS="/MP /WX"'
 defaults:

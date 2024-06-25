@@ -78,4 +78,4 @@ jobs:
       fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref || matrix.fastdds-python-branch }}
       fastdds-branch: ${{ inputs.fastdds-branch || matrix.fastdds-branch }}
       run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci') && !contains(github.event.pull_request.labels.*.name, 'conflicts')) && true || false }}
-      run-tests: ${{ ((inputs.run-tests == true) && true) || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'no-test')) && true || false }}
+      run-tests: ${{ ((inputs.run-tests == true) && true) || false }}

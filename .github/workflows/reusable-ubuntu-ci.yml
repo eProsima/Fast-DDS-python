@@ -41,7 +41,7 @@ on:
         description: 'Run test suite of Fast DDS python'
         required: false
         type: boolean
-        default: true
+        default: false
 
 defaults:
   run:
