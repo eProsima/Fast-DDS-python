@@ -3,6 +3,3 @@ names:
         cmake-args:
             - "-DSECURITY=ON"
             - "-DLOG_CONSUMER_DEFAULT=STDOUT"
-    fastdds_python:
-        cmake-args:
-            - "-DBUILD_TESTING=ON"

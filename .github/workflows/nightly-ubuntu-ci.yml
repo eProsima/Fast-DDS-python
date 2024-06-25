@@ -1,0 +1,88 @@
+name: Fast DDS Python Ubuntu CI (nightly)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  # python main - fastdds master
+  nightly-ubuntu-ci-main:
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version:
+          - 'ubuntu-22.04'
+        fastdds-python-branch:
+          - 'main'
+        fastdds-branch:
+          - 'master'
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@main
+    with:
+      os-version: ${{ matrix.os-version }}
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
+      fastdds-branch: ${{ matrix.fastdds-branch }}
+      run-build: true
+      run-tests: true
+
+  # python 1.4.x - fastdds 2.14.x/2.13.x
+  nightly-ubuntu-ci-1_4_x:
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version:
+          - 'ubuntu-22.04'
+        fastdds-python-branch:
+          - '1.4.x'
+        fastdds-branch:
+          - '2.14.x'
+          - '2.13.x'
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.4.x
+    with:
+      os-version: ${{ matrix.os-version }}
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
+      fastdds-branch: ${{ matrix.fastdds-branch }}
+      run-build: true
+      run-tests: true
+
+  # python 1.2.x - fastdds 2.10.x
+  nightly-ubuntu-ci-1_2_x:
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version:
+          - 'ubuntu-22.04'
+        fastdds-python-branch:
+          - '1.2.x'
+        fastdds-branch:
+          - '2.10.x'
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.2.x
+    with:
+      os-version: ${{ matrix.os-version }}
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
+      fastdds-branch: ${{ matrix.fastdds-branch }}
+      run-build: true
+      run-tests: true
+
+  # python 1.0.x - fastdds 2.6.x
+  nightly-ubuntu-ci-1_0_x:
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version:
+          - 'ubuntu-20.04'
+        fastdds-python-branch:
+          - '1.0.x'
+        fastdds-branch:
+          - '2.6.x'
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.0.x
+    with:
+      os-version: ${{ matrix.os-version }}
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
+      fastdds-branch: ${{ matrix.fastdds-branch }}
+      run-build: true
+      run-tests: false
