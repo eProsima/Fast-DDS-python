@@ -1,0 +1,286 @@
+name: Fast DDS Python Windows CI reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      os-version:
+        description: 'The OS image for the workflow'
+        required: false
+        default: 'windows-2019'
+        type: string
+      vs-toolset:
+        description: 'The VS toolset to use for the build'
+        required: false
+        default: 'v142'
+        type: string
+      label:
+        description: 'ID associated to the workflow'
+        required: true
+        type: string
+      colcon-args:
+        description: 'Extra arguments for colcon cli'
+        required: false
+        type: string
+      cmake-args:
+        description: 'Extra arguments for cmake cli'
+        required: false
+        type: string
+      ctest-args:
+        description: 'Extra arguments for ctest cli'
+        required: false
+        type: string
+      fastdds-python-branch:
+        description: 'Branch or tag of Fast DDS Python repository'
+        required: true
+        type: string
+      fastdds-branch:
+        description: 'Branch or tag of Fast DDS repository'
+        required: true
+        type: string
+      run-build:
+        description: 'Build Fast DDS Python (CI skipped otherwise)'
+        required: false
+        type: boolean
+        default: true
+      run-tests:
+        description: 'Run test suite of Fast DDS python'
+        required: false
+        type: boolean
+        default: true
+env:
+  colcon-build-default-cmake-args: '-DTHIRDPARTY_Asio=FORCE -DTHIRDPARTY_TinyXML2=FORCE -DTHIRDPARTY_fastcdr=OFF -DTHIRDPARTY_UPDATE=ON -DEPROSIMA_EXTRA_CMAKE_CXX_FLAGS="/MP /WX"'
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  fastdds_python_build:
+    runs-on: ${{ inputs.os-version }}
+    if: ${{ inputs.run-build == true }}
+    strategy:
+      fail-fast: false
+      matrix:
+        cmake-build-type:
+          - 'RelWithDebInfo'
+
+    steps:
+      - name: Add ci-pending label if PR
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: eProsima/eProsima-CI/external/add_labels@v0
+        with:
+          labels: ci-pending
+          number: ${{ github.event.number }}
+          repo: eProsima/Fast-DDS-Python
+
+      - name: Sync eProsima/Fast-DDS-Python repository
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          path: src/fastdds_python
+          ref: ${{ inputs.fastdds-python-branch }}
+
+      - name: Install Fix Python version
+        uses: eProsima/eProsima-CI/external/setup-python@v0
+        with:
+          python-version: '3.11'
+
+      - name: Get minimum supported version of CMake
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
+        with:
+          cmakeVersion: '3.22.6'
+
+      - name: Install OpenSSL
+        uses: eProsima/eprosima-CI/windows/install_openssl@v0
+        with:
+          version: '3.1.1'
+
+      - name: Update OpenSSL environment variables
+        run: |
+          # Update the environment
+          if (Test-Path -Path $Env:ProgramW6432\OpenSSL)
+          {
+            "OPENSSL64_ROOT=$Env:ProgramW6432\OpenSSL" | Out-File $Env:GITHUB_ENV -Append -Encoding OEM
+          }
+          elseif (Test-Path -Path $Env:ProgramW6432\OpenSSL-Win)
+          {
+            "OPENSSL64_ROOT=$Env:ProgramW6432\OpenSSL-Win" | Out-File $Env:GITHUB_ENV -Append -Encoding OEM
+          }
+          elseif (Test-Path -Path $Env:ProgramW6432\OpenSSL-Win64)
+          {
+            "OPENSSL64_ROOT=$Env:ProgramW6432\OpenSSL-Win64" | Out-File $Env:GITHUB_ENV -Append -Encoding OEM
+          }
+          else
+          {
+            Write-Error -Message "Cannot find OpenSSL installation."
+            exit 1
+          }
+
+      - name: Install colcon
+        uses: eProsima/eProsima-CI/windows/install_colcon@v0
+
+      - name: Install Python dependencies
+        uses: eProsima/eProsima-CI/windows/install_python_packages@v0
+        with:
+          packages: vcstool xmlschema pywin32
+
+      - name: Install swig
+        shell: pwsh
+        run: choco install swig --allow-downgrade --version=4.0.2.04082020
+
+        # Although this is a ubuntu action becuase it uses bash, it is compatible with windows
+      - name: Get Fast DDS branch
+        id: get_fastdds_branch
+        uses: eProsima/eProsima-CI/ubuntu/get_related_branch_from_repo@v0
+        with:
+          remote_repository: eProsima/Fast-DDS
+          fallback_branch: ${{ inputs.fastdds-branch }}
+
+      - name: Download Fast DDS repo
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-DDS
+          path: src/fastdds
+          ref: ${{ steps.get_fastdds_branch.outputs.deduced_branch }}
+
+      - name: Fetch Fast DDS Python dependencies
+        uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
+        with:
+          vcs_repos_file: ${{ github.workspace }}/src/fastdds_python/fastdds_python.repos
+          destination_workspace: src
+          skip_existing: 'true'
+
+      - name: Colcon build
+        continue-on-error: false
+        uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
+        with:
+          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta
+          colcon_build_args: ${{ inputs.colcon-args }}
+          colcon_build_args_default: --event-handlers console_direct+
+          cmake_args: ${{ inputs.cmake-args }}
+          cmake_args_default: '-T ${{ inputs.vs-toolset }} ${{ env.colcon-build-default-cmake-args }}'
+          cmake_build_type: ${{ matrix.cmake-build-type }}
+          workspace: ${{ github.workspace }}
+
+      - name: Upload build artifacts
+        uses: eProsima/eProsima-CI/external/upload-artifact@v0
+        with:
+          name: fastdds_python_build_${{ inputs.label }}
+          path: ${{ github.workspace }}
+
+
+  fastdds_python_test:
+    needs: fastdds_python_build
+    runs-on: ${{ inputs.os-version }}
+    if: ${{ inputs.run-tests == true }}
+    strategy:
+      fail-fast: false
+      matrix:
+        cmake-build-type:
+          - 'RelWithDebInfo'
+    steps:
+      - name: Download python build artifacts
+        uses: eProsima/eProsima-CI/external/download-artifact@v0
+        with:
+          name: fastdds_python_build_${{ inputs.label }}
+          path: ${{ github.workspace }}
+
+      - name: Install Fix Python version
+        uses: eProsima/eProsima-CI/external/setup-python@v0
+        with:
+          python-version: '3.11'
+
+      - name: Get minimum supported version of CMake
+        uses: eProsima/eProsima-CI/external/get-cmake@v0
+        with:
+          cmakeVersion: '3.22.6'
+
+      - name: Install OpenSSL
+        uses: eProsima/eprosima-CI/windows/install_openssl@v0
+        with:
+          version: '3.1.1'
+
+      - name: Update OpenSSL environment variables
+        run: |
+          # Update the environment
+          if (Test-Path -Path $Env:ProgramW6432\OpenSSL)
+          {
+            "OPENSSL64_ROOT=$Env:ProgramW6432\OpenSSL" | Out-File $Env:GITHUB_ENV -Append -Encoding OEM
+          }
+          elseif (Test-Path -Path $Env:ProgramW6432\OpenSSL-Win)
+          {
+            "OPENSSL64_ROOT=$Env:ProgramW6432\OpenSSL-Win" | Out-File $Env:GITHUB_ENV -Append -Encoding OEM
+          }
+          elseif (Test-Path -Path $Env:ProgramW6432\OpenSSL-Win64)
+          {
+            "OPENSSL64_ROOT=$Env:ProgramW6432\OpenSSL-Win64" | Out-File $Env:GITHUB_ENV -Append -Encoding OEM
+          }
+          else
+          {
+            Write-Error -Message "Cannot find OpenSSL installation."
+            exit 1
+          }
+
+      - name: Install colcon
+        uses: eProsima/eProsima-CI/windows/install_colcon@v0
+
+      - name: Install Python dependencies
+        uses: eProsima/eProsima-CI/windows/install_python_packages@v0
+        with:
+          packages: vcstool xmlschema pywin32 pytest
+
+      - name: Install swig
+        shell: pwsh
+        run: choco install swig --allow-downgrade --version=4.0.2.04082020
+
+
+      - name: Prepare build meta file
+        run: |
+            $build_meta_file = '${{ github.workspace }}\src\fastdds_python\.github\workflows\config\build.meta'
+            $test_meta_file = '${{ github.workspace }}\src\fastdds_python\.github\workflows\config\test.meta'
+            $build_test_meta_file = '${{ github.workspace }}\src\fastdds_python\.github\workflows\config\build_test.meta'
+
+            # Read the content of the build meta file
+            $build_meta_content = Get-Content -Path $build_meta_file
+
+            # Read the content of the test meta file, starting from line 4 (skipping "name" line [1], cmake project name line [2] and "cmake-args" line [3])
+            $test_meta_content = Get-Content -Path $test_meta_file | Select-Object -Skip 3
+
+            # Combine the content of the build meta file and the test meta file
+            $combined_content = $build_meta_content + $test_meta_content
+
+            # Write the combined content to the build test meta file
+            $combined_content | Out-File -FilePath $build_test_meta_file -Encoding UTF8
+
+      - name: Colcon build
+        continue-on-error: false
+        uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
+        with:
+          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build_test.meta
+          colcon_build_args: ${{ inputs.colcon-args }}
+          colcon_build_args_default: --event-handlers console_direct+
+          cmake_args: ${{ inputs.cmake-args }}
+          cmake_args_default: '-T ${{ inputs.vs-toolset }} ${{ env.colcon-build-default-cmake-args }}'
+          cmake_build_type: ${{ matrix.cmake-build-type }}
+          workspace: ${{ github.workspace }}
+
+      - name: Colcon test
+        id: python_test
+        uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
+        with:
+          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.meta
+          colcon_test_args: ${{ inputs.colcon-args }}
+          colcon_test_args_default: --event-handlers=console_direct+ 
+          ctest_args: ${{ inputs.ctest-args }}
+          packages_names: fastdds_python
+          workspace: ${{ github.workspace }}
+          workspace_dependencies: ''
+          test_report_artifact: ${{ format('test_report_{0}_{1}_{2}', inputs.label, github.job, join(matrix.*, '_')) }}
+
+      - name: Test summary
+        uses: eProsima/eProsima-CI/multiplatform/junit_summary@v0
+        if: ${{ !cancelled() }}
+        with:
+          junit_reports_dir: "${{ steps.python_test.outputs.ctest_results_path }}"
+          print_summary: 'True'
+          show_failed: 'True'
+          show_disabled: 'False'
+          show_skipped: 'False'
