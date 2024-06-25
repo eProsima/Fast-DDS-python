@@ -1,0 +1,82 @@
+name: Fast DDS Python Windows CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      os-version:
+        description: 'OS version to run the workflow'
+        required: false
+        default: 'windows-2019'
+        type: string
+      vs-toolset:
+        description: 'The VS toolset to use for the build'
+        required: false
+        default: 'v142'
+        type: string
+      colcon-args:
+        description: 'Extra arguments for colcon cli'
+        required: false
+        type: string
+      cmake-args:
+        description: 'Extra arguments for cmake cli'
+        required: false
+        type: string
+      ctest-args:
+        description: 'Extra arguments for ctest cli'
+        required: false
+        type: string
+      fastdds-python-branch:
+        description: 'Branch or tag of Fast DDS Python repository'
+        required: true
+        type: string
+      fastdds-branch:
+        description: 'Branch or tag of Fast DDS repository'
+        type: string
+        required: true
+      run-tests:
+        description: 'Run test suite of Fast DDS python'
+        required: false
+        type: boolean
+        default: true
+
+  pull_request:
+    types:
+      - review_requested
+    paths-ignore:
+      - '**.md'
+      - '**.txt'
+      - '!**/CMakeLists.txt'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        os-version:
+            - image: 'windows-2019'
+              vs-toolset: 'v142'
+            - image: 'windows-2017'
+              vs-toolset: 'v141'
+        fastdds-python-branch:
+          - '1.4.x'
+        fastdds-branch:
+          - '2.14.x'
+          - '2.13.x'
+    uses: ./.github/workflows/reusable-windows-ci.yml
+    with:
+      # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: ${{ inputs.os-version || matrix.os-version.image }}
+      vs-toolset: ${{ inputs.vs-toolset || matrix.os-version.vs-toolset }}
+      label: '${{ matrix.os-version.image }}-${{ matrix.os-version.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
+      colcon-args: ${{ inputs.colcon-args }}
+      cmake-args: ${{ inputs.cmake-args }}
+      ctest-args: ${{ inputs.ctest-args }}
+      fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref || matrix.fastdds-python-branch }}
+      fastdds-branch: ${{ inputs.fastdds-branch || matrix.fastdds-branch }}
+      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci') && !contains(github.event.pull_request.labels.*.name, 'conflicts')) && true || false }}
+      run-tests: ${{ ((inputs.run-tests == true) && true) || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'no-test')) && true || false }}
