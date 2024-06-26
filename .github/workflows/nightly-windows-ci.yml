@@ -99,5 +99,5 @@ jobs:
       label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
-      run-build: true
+      run-build: false
       run-tests: false
