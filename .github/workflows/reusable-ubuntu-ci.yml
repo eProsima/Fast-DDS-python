@@ -42,7 +42,8 @@ on:
         required: false
         type: boolean
         default: true
-
+env:
+  colcon-build-default-cmake-args: '-DBUILD_DOCUMENTATION=ON'
 defaults:
   run:
     shell: bash
@@ -164,7 +165,7 @@ jobs:
       - name: Install apt packages
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libasio-dev libtinyxml2-dev libssl-dev swig
+          packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen
 
       - name: Install colcon
         uses: eProsima/eProsima-CI/ubuntu/install_colcon@v0
@@ -188,7 +189,7 @@ jobs:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.meta
           colcon_build_args: ${{ inputs.colcon-args }}
           cmake_args: ${{ inputs.cmake-args }}
-          cmake_args_default: ''
+          cmake_args_default: ${{ env.colcon-build-default-cmake-args }}
           cmake_build_type: ${{ matrix.cmake-build-type }}
           workspace: ${{ github.workspace }}
 
