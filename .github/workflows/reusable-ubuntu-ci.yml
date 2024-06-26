@@ -42,6 +42,11 @@ on:
         required: false
         type: boolean
         default: true
+      use-ccache:
+        description: 'Use CCache to speed up the build'
+        required: false
+        type: boolean
+        default: false
 env:
   colcon-build-default-cmake-args: '-DBUILD_DOCUMENTATION=ON'
 defaults:
@@ -98,6 +103,12 @@ jobs:
           packages: vcstool xmlschema
           upgrade: false
 
+      - name: Setup CCache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        if: ${{ inputs.use-ccache == true }}
+        with:
+          api_token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Get Fast DDS branch
         id: get_fastdds_branch
         uses: eProsima/eProsima-CI/ubuntu/get_related_branch_from_repo@v0
@@ -118,7 +129,6 @@ jobs:
           vcs_repos_file: ${{ github.workspace }}/src/fastdds_python/fastdds_python.repos
           destination_workspace: src
           skip_existing: 'true'
-
 
       - name: Colcon build
         continue-on-error: false
@@ -173,14 +183,13 @@ jobs:
       - name: Install Python dependencies
         uses: eProsima/eProsima-CI/ubuntu/install_python_packages@v0
         with:
-          packages: vcstool xmlschema
+          packages: xmlschema pytest
 
-      - name: Fetch Fast DDS Python CI dependencies
-        uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
+      - name: Setup CCache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        if: ${{ inputs.use-ccache == true }}
         with:
-          vcs_repos_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.repos
-          destination_workspace: src
-          skip_existing: 'true'
+          api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Colcon build
         continue-on-error: false
