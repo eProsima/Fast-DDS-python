@@ -23,7 +23,7 @@ jobs:
     with:
       os-version: ${{ matrix.os-version }}
       vs.toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}'
+      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -35,10 +35,10 @@ jobs:
       fail-fast: false
       matrix:
         os-version:
-            - image: 'windows-2019'
-              vs-toolset: 'v142'
-            - image: 'windows-2017'
-              vs-toolset: 'v141'
+          - 'windows-2019'
+        vs-toolset:
+          - 'v141'
+          - 'v142'
         fastdds-python-branch:
           - '1.4.x'
         fastdds-branch:
@@ -46,9 +46,9 @@ jobs:
           - '2.13.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.4.x
     with:
-      os-version: ${{ matrix.os-version.image }}
-      vs.toolset: ${{ matrix.os-version.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version.image }}-${{ matrix.os-version.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
+      os-version: ${{ matrix.os-version }}
+      vs.toolset: ${{ matrix.vs-toolset }}
+      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -60,19 +60,19 @@ jobs:
       fail-fast: false
       matrix:
         os-version:
-            - image: 'windows-2019'
-              vs-toolset: 'v142'
-            - image: 'windows-2017'
-              vs-toolset: 'v141'
+          - 'windows-2019'
+        vs-toolset:
+          - 'v141'
+          - 'v142'
         fastdds-python-branch:
           - '1.2.x'
         fastdds-branch:
           - '2.10.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.2.x
     with:
-      os-version: ${{ matrix.os-version.image }}
-      vs.toolset: ${{ matrix.os-version.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version.image }}-${{ matrix.os-version.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}'
+      os-version: ${{ matrix.os-version }}
+      vs.toolset: ${{ matrix.vs-toolset }}
+      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -84,19 +84,19 @@ jobs:
       fail-fast: false
       matrix:
         os-version:
-            - image: 'windows-2019'
-              vs-toolset: 'v142'
-            - image: 'windows-2017'
-              vs-toolset: 'v141'
+          - 'windows-2019'
+        vs-toolset:
+          - 'v141'
+          - 'v142'
         fastdds-python-branch:
           - '1.0.x'
         fastdds-branch:
           - '2.6.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.0.x
     with:
-      os-version: ${{ matrix.os-version.image }}
-      vs.toolset: ${{ matrix.os-version.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version.image }}-${{ matrix.os-version.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}'
+      os-version: ${{ matrix.os-version }}
+      vs.toolset: ${{ matrix.vs-toolset }}
+      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true

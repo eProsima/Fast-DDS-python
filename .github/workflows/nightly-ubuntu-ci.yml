@@ -20,7 +20,7 @@ jobs:
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@main
     with:
       os-version: ${{ matrix.os-version }}
-      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -41,7 +41,7 @@ jobs:
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.4.x
     with:
       os-version: ${{ matrix.os-version }}
-      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -61,7 +61,7 @@ jobs:
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.2.x
     with:
       os-version: ${{ matrix.os-version }}
-      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -81,7 +81,7 @@ jobs:
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.0.x
     with:
       os-version: ${{ matrix.os-version }}
-      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}'
+      label: 'nightly-${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: ${{ matrix.fastdds-python-branch }}
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
