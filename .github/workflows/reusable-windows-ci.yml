@@ -231,6 +231,8 @@ jobs:
         shell: pwsh
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
 
+      - name: Install doxygen
+        uses: ssciwr/doxygen-install@v1
 
       - name: Prepare build meta file
         run: |
@@ -268,7 +270,7 @@ jobs:
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.meta
           colcon_test_args: ${{ inputs.colcon-args }}
-          colcon_test_args_default: --event-handlers=console_direct+ 
+          colcon_test_args_default: --event-handlers=console_direct+
           ctest_args: ${{ inputs.ctest-args }}
           packages_names: fastdds_python
           workspace: ${{ github.workspace }}
