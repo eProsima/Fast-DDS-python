@@ -57,10 +57,10 @@ jobs:
       fail-fast: false
       matrix:
         os-version:
-            - image: 'windows-2019'
-              vs-toolset: 'v142'
-            - image: 'windows-2017'
-              vs-toolset: 'v141'
+          - 'windows-2019'
+        vs-toolset:
+          - 'v141'
+          - 'v142'
         fastdds-python-branch:
           - '1.0.x'
         fastdds-branch:
@@ -69,9 +69,9 @@ jobs:
     with:
       # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: ${{ inputs.os-version || matrix.os-version.image }}
-      vs-toolset: ${{ inputs.vs-toolset || matrix.os-version.vs-toolset }}
-      label: '${{ matrix.os-version.image }}-${{ matrix.os-version.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
+      os-version: ${{ inputs.os-version || matrix.os-version }}
+      vs-toolset: ${{ inputs.vs-toolset || matrix.vs-toolset }}
+      label: '${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
       colcon-args: ${{ inputs.colcon-args }}
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
