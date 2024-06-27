@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/SequenceNumber.h"
+#include "fastdds/rtps/common/SequenceNumber.hpp"
 %}
 
 
@@ -22,4 +22,4 @@
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const SequenceNumberSet_t&);
 %ignore eprosima::fastdds::rtps::operator >>(std::istream&, SequenceNumber_t&);
 
-%include "fastdds/rtps/common/SequenceNumber.h"
+%include "fastdds/rtps/common/SequenceNumber.hpp"

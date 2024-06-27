@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/logging/LogOptions.h"
+#include "fastdds/rtps/security/logging/LogOptions.hpp"
 %}
 
-%include "fastdds/rtps/security/logging/LogOptions.h"
+%include "fastdds/rtps/security/logging/LogOptions.hpp"

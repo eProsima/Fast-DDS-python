@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/network/NetworkFactory.h"
+#include "fastdds/rtps/network/NetworkFactory.hpp"
 %}
 
-%include "fastdds/rtps/network/NetworkFactory.h"
+%include "fastdds/rtps/network/NetworkFactory.hpp"

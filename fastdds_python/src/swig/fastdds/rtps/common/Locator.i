@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/Locator.h"
+#include "fastdds/rtps/common/Locator.hpp"
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
@@ -58,7 +58,7 @@
     $result = python_tuple;
 }
 
-%include "fastdds/rtps/common/Locator.h"
+%include "fastdds/rtps/common/Locator.hpp"
 
 %extend eprosima::fastdds::rtps::Locator_t
 {

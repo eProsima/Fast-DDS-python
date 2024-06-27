@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/test_UDPv4TransportDescriptor.h"
+#include "fastdds/rtps/transport/test_UDPv4TransportDescriptor.hpp"
 %}
 
-%include "fastdds/rtps/transport/test_UDPv4TransportDescriptor.h"
+%include "fastdds/rtps/transport/test_UDPv4TransportDescriptor.hpp"

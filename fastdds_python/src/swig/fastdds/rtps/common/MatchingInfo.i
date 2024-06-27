@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/MatchingInfo.h"
+#include "fastdds/rtps/common/MatchingInfo.hpp"
 %}
 
-%include "fastdds/rtps/common/MatchingInfo.h"
+%include "fastdds/rtps/common/MatchingInfo.hpp"

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/attributes/ServerAttributes.h"
+#include "fastdds/rtps/attributes/ServerAttributes.hpp"
 %}
 
 // Ignore deprecated methods
@@ -24,4 +24,4 @@
 
 %template(RemoteServerAttributesList) std::list<eprosima::fastdds::rtps::RemoteServerAttributes>;
 
-%include "fastdds/rtps/attributes/ServerAttributes.h"
+%include "fastdds/rtps/attributes/ServerAttributes.hpp"

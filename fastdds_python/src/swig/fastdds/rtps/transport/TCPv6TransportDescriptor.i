@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/TCPv6TransportDescriptor.h"
+#include "fastdds/rtps/transport/TCPv6TransportDescriptor.hpp"
 %}
 
-%include "fastdds/rtps/transport/TCPv6TransportDescriptor.h"
+%include "fastdds/rtps/transport/TCPv6TransportDescriptor.hpp"

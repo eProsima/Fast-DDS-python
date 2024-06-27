@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/PortParameters.h"
+#include "fastdds/rtps/common/PortParameters.hpp"
 %}
 
-%include "fastdds/rtps/common/PortParameters.h"
+%include "fastdds/rtps/common/PortParameters.hpp"

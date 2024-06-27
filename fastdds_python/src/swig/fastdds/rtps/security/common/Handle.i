@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/common/Handle.h"
+#include "fastdds/rtps/security/common/Handle.hpp"
 %}
 
-%include "fastdds/rtps/security/common/Handle.h"
+%include "fastdds/rtps/security/common/Handle.hpp"

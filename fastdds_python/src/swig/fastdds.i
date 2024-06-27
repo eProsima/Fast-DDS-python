@@ -65,7 +65,7 @@
 %include "typemaps.i"
 
 %{
-#include "fastdds/config.h"
+#include "fastdds/config.hpp"
 
 bool has_statistics()
 {

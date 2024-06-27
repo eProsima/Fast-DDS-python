@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/messages/RTPS_messages.h"
+#include "fastdds/rtps/messages/RTPS_messages.hpp"
 %}
 
-%include "fastdds/rtps/messages/RTPS_messages.h"
+%include "fastdds/rtps/messages/RTPS_messages.hpp"

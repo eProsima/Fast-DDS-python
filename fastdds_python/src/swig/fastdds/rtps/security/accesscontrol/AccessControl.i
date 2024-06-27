@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/accesscontrol/AccessControl.h"
+#include "fastdds/rtps/security/accesscontrol/AccessControl.hpp"
 %}
 
-%include "fastdds/rtps/security/accesscontrol/AccessControl.h"
+%include "fastdds/rtps/security/accesscontrol/AccessControl.hpp"

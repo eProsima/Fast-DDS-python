@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/reader/ReaderListener.h"
+#include "fastdds/rtps/reader/ReaderListener.hpp"
 %}
 
-%include "fastdds/rtps/reader/ReaderListener.h"
+%include "fastdds/rtps/reader/ReaderListener.hpp"

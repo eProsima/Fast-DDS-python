@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/attributes/HistoryAttributes.h"
+#include "fastdds/rtps/attributes/HistoryAttributes.hpp"
 %}
 
-%include "fastdds/rtps/attributes/HistoryAttributes.h"
+%include "fastdds/rtps/attributes/HistoryAttributes.hpp"

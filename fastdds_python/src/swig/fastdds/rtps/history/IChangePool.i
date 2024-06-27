@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/history/IChangePool.h"
+#include "fastdds/rtps/history/IChangePool.hpp"
 %}
 
-%include "fastdds/rtps/history/IChangePool.h"
+%include "fastdds/rtps/history/IChangePool.hpp"

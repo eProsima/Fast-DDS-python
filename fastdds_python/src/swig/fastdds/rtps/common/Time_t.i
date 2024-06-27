@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include <fastdds/rtps/common/Time_t.h>
+#include <fastdds/rtps/common/Time_t.hpp>
 %}
 
 // There are two definitions of Time_t in different namespaces
@@ -48,7 +48,7 @@
 %ignore eprosima::fastdds::operator+(const Time_t&, const Time_t&);
 %ignore eprosima::fastdds::operator-(const Time_t&, const Time_t&);
 
-%include <fastdds/rtps/common/Time_t.h>
+%include <fastdds/rtps/common/Time_t.hpp>
 
 // Declare the comparison operators as internal to the class
 %extend eprosima::fastdds::Time_t {

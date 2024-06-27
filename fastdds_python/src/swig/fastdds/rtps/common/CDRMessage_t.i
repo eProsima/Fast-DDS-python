@@ -13,10 +13,10 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/CDRMessage_t.h"
+#include "fastdds/rtps/common/CDRMessage_t.hpp"
 %}
 
 // Overloaded constructor ignored
 %ignore eprosima::fastdds::rtps::CDRMessage_t::CDRMessage_t(CDRMessage_t &&);
 
-%include "fastdds/rtps/common/CDRMessage_t.h"
+%include "fastdds/rtps/common/CDRMessage_t.hpp"

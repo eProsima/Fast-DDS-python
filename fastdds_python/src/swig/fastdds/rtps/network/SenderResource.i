@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/network/SenderResource.h"
+#include "fastdds/rtps/network/SenderResource.hpp"
 %}
 
-%include "fastdds/rtps/network/SenderResource.h"
+%include "fastdds/rtps/network/SenderResource.hpp"

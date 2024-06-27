@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/builtin/BuiltinProtocols.h"
+#include "fastdds/rtps/builtin/BuiltinProtocols.hpp"
 %}
 
-%include "fastdds/rtps/builtin/BuiltinProtocols.h"
+%include "fastdds/rtps/builtin/BuiltinProtocols.hpp"

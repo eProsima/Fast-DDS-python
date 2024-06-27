@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.h"
+#include "fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.hpp"
 %}
 
-%include "fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.h"
+%include "fastdds/rtps/flowcontrol/ThroughputControllerDescriptor.hpp"

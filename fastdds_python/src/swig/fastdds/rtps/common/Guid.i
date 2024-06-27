@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/Guid.h"
+#include "fastdds/rtps/common/Guid.hpp"
 
 // Define a hash method in global scope for GUID_t types
 // This is necessary if we want other classes to hash an internal GUID_t
@@ -33,7 +33,7 @@ long hash(const eprosima::fastdds::rtps::GUID_t& guid)
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const GUID_t&);
 %ignore eprosima::fastdds::rtps::operator >>(std::istream&, GUID_t&);
 
-%include "fastdds/rtps/common/Guid.h"
+%include "fastdds/rtps/common/Guid.hpp"
 
 // Declare the comparison operators as internal to the class
 %extend eprosima::fastdds::rtps::GUID_t {

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/WriteParams.h"
+#include "fastdds/rtps/common/WriteParams.hpp"
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
@@ -21,4 +21,4 @@
 %ignore eprosima::fastdds::rtps::WriteParams::sample_identity(SampleIdentity &&);
 %ignore eprosima::fastdds::rtps::WriteParams::related_sample_identity(SampleIdentity &&);
 
-%include "fastdds/rtps/common/WriteParams.h"
+%include "fastdds/rtps/common/WriteParams.hpp"

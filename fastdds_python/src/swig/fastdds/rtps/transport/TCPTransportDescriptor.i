@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/TCPTransportDescriptor.h"
+#include "fastdds/rtps/transport/TCPTransportDescriptor.hpp"
 %}
 
 // Flatten nested classes
@@ -26,7 +26,7 @@
 %rename (TCPTransportDescriptor_TLSConfig_TLSVerifyMode) eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSVerifyMode;
 %rename (TCPTransportDescriptor_TLSConfig_TLSHandShakeRole) eprosima::fastdds::rtps::TCPTransportDescriptor::TLSConfig::TLSHandShakeRole;
 
-%include "fastdds/rtps/transport/TCPTransportDescriptor.h"
+%include "fastdds/rtps/transport/TCPTransportDescriptor.hpp"
 
 // Deactivate class flattening
 %feature("flatnested", "0");

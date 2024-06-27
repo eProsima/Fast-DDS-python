@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/security/authentication/Handshake.h"
+#include "fastdds/rtps/security/authentication/Handshake.hpp"
 %}
 
-%include "fastdds/rtps/security/authentication/Handshake.h"
+%include "fastdds/rtps/security/authentication/Handshake.hpp"

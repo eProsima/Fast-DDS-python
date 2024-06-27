@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/attributes/RTPSParticipantAttributes.h"
+#include "fastdds/rtps/attributes/RTPSParticipantAttributes.hpp"
 %}
 
 // Ignore deprecated methods
@@ -22,4 +22,4 @@
 %ignore eprosima::fastdds::rtps::RTPSParticipantAttributes;
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const DiscoveryProtocol&);;
 
-%include "fastdds/rtps/attributes/RTPSParticipantAttributes.h"
+%include "fastdds/rtps/attributes/RTPSParticipantAttributes.hpp"

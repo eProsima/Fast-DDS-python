@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/WriterDiscoveryInfo.h"
+#include "fastdds/rtps/writer/WriterDiscoveryInfo.hpp"
 %}
 
-%include "fastdds/rtps/writer/WriterDiscoveryInfo.h"
+%include "fastdds/rtps/writer/WriterDiscoveryInfo.hpp"

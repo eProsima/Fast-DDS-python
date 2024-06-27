@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/InstanceHandle.h"
+#include "fastdds/rtps/common/InstanceHandle.hpp"
 
 // Define a hash method in global scope for InstanceHandle_t types
 // This is necessary if we want other classes to hash an internal InstanceHandle_t
@@ -79,7 +79,7 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
 %template(InstanceHandleVector) std::vector<eprosima::fastdds::rtps::InstanceHandle_t>;
 %typemap(doctype) std::vector<eprosima::fastdds::rtps::InstanceHandle_t>"InstanceHandleVector";
 
-%include "fastdds/rtps/common/InstanceHandle.h"
+%include "fastdds/rtps/common/InstanceHandle.hpp"
 
 // Declare the comparison operators as internal to the class
 %extend eprosima::fastdds::rtps::InstanceHandle_t {

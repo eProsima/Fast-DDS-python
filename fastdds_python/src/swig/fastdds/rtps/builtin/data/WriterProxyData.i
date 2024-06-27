@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/builtin/data/WriterProxyData.h"
+#include "fastdds/rtps/builtin/data/WriterProxyData.hpp"
 %}
 
-%include "fastdds/rtps/builtin/data/WriterProxyData.h"
+%include "fastdds/rtps/builtin/data/WriterProxyData.hpp"

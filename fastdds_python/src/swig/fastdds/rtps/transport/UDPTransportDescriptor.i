@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/transport/UDPTransportDescriptor.h"
+#include "fastdds/rtps/transport/UDPTransportDescriptor.hpp"
 %}
 
-%include "fastdds/rtps/transport/UDPTransportDescriptor.h"
+%include "fastdds/rtps/transport/UDPTransportDescriptor.hpp"

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/writer/PersistentWriter.h"
+#include "fastdds/rtps/writer/PersistentWriter.hpp"
 %}
 
-%include "fastdds/rtps/writer/PersistentWriter.h"
+%include "fastdds/rtps/writer/PersistentWriter.hpp"

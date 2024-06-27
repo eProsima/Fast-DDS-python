@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/SampleIdentity.h"
+#include "fastdds/rtps/common/SampleIdentity.hpp"
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
@@ -27,4 +27,4 @@
 %ignore operator >>(std::istream& input, SampleIdentity& sid);
 %ignore operator <<(std::ostream& output, const SampleIdentity& sid);
 
-%include "fastdds/rtps/common/SampleIdentity.h"
+%include "fastdds/rtps/common/SampleIdentity.hpp"
