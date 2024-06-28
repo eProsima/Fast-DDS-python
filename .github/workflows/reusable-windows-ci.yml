@@ -128,7 +128,7 @@ jobs:
 
       - name: Get Fast DDS branch
         id: get_fastdds_branch
-        uses: eProsima/eProsima-CI/multiplatform/get_related_branch_from_repo@feature/21228
+        uses: eProsima/eProsima-CI/multiplatform/get_related_branch_from_repo@v0
         with:
           remote_repository: eProsima/Fast-DDS
           fallback_branch: ${{ inputs.fastdds-branch }}
@@ -231,10 +231,10 @@ jobs:
         run: choco install swig --allow-downgrade --version=4.0.2.04082020
 
       - name: Install doxygen
-        uses: eProsima/eProsima-CI/external/install_doxygen@feature/21228
+        uses: eProsima/eProsima-CI/external/install_doxygen@v0
 
       - name: Prepare build meta file
-        uses: eProsima/eProsima-CI/windows/merge_yaml_metas@feature/21228
+        uses: eProsima/eProsima-CI/windows/merge_yaml_metas@v0
         with:
           metas: "@('${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta', '${{ github.workspace }}/src/fastdds_python/.github/workflows/config/windows_test.meta')"
           path: '${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build_test.meta'
