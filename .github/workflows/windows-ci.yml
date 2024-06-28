@@ -53,6 +53,7 @@ concurrency:
 
 jobs:
   windows-ci:
+    if: ${{ (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'conflicts')) && false || true }}
     uses: ./.github/workflows/reusable-windows-ci.yml
     with:
       # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
@@ -65,5 +66,5 @@ jobs:
       ctest-args: ${{ inputs.ctest-args }}
       fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref || 'main' }}
       fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
-      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci') && !contains(github.event.pull_request.labels.*.name, 'conflicts')) && true || false }}
+      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci')) && true || false }}
       run-tests: ${{ ((inputs.run-tests == true) && true) || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'no-test')) && true || false }}
