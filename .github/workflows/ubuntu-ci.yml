@@ -33,6 +33,11 @@ on:
         required: false
         type: boolean
         default: true
+      use-ccache:
+        description: 'Use CCache to speed up the build'
+        required: false
+        type: boolean
+        default: false
 
   pull_request:
     types:
@@ -51,23 +56,21 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os-version:
-          - 'ubuntu-22.04'
-        fastdds-python-branch:
-          - '1.4.x'
         fastdds-branch:
           - '2.14.x'
           - '2.13.x'
+    if: ${{ (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'conflicts')) && false || true }}
     uses: ./.github/workflows/reusable-ubuntu-ci.yml
     with:
       # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
-      os-version: ${{ inputs.os-version || matrix.os-version }}
-      label: '${{ matrix.os-version }}-ci-${{ matrix.fastdds-python-branch }}-${{ matrix.fastdds-branch }}'
+      os-version: ${{ inputs.os-version || 'ubuntu-22.04' }}
+      label: 'ubuntu-ci-1.4.x-${{ matrix.fastdds-branch }}'
       colcon-args: ${{ inputs.colcon-args }}
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
-      fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref || matrix.fastdds-python-branch }}
+      fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref || '1.4.x' }}
       fastdds-branch: ${{ inputs.fastdds-branch || matrix.fastdds-branch }}
-      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci') && !contains(github.event.pull_request.labels.*.name, 'conflicts')) && true || false }}
+      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci')) && true || false }}
       run-tests: ${{ ((inputs.run-tests == true) && true) || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'no-test')) && true || false }}
+      use-ccache: ${{ inputs.use-ccache || false }}
