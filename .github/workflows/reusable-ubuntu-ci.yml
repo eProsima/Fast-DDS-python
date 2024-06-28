@@ -42,6 +42,11 @@ on:
         required: false
         type: boolean
         default: true
+      use-ccache:
+        description: 'Use CCache to speed up the build'
+        required: false
+        type: boolean
+        default: false
 
 defaults:
   run:
@@ -84,7 +89,7 @@ jobs:
       - name: Install apt dependencies
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libasio-dev libtinyxml2-dev libssl-dev swig
+          packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen
           update: false
           upgrade: false
 
@@ -96,6 +101,12 @@ jobs:
         with:
           packages: vcstool xmlschema
           upgrade: false
+
+      - name: Setup CCache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        if: ${{ inputs.use-ccache == true }}
+        with:
+          api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Fast DDS branch
         id: get_fastdds_branch
@@ -164,7 +175,7 @@ jobs:
       - name: Install apt packages
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
-          packages: libasio-dev libtinyxml2-dev libssl-dev swig
+          packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen
 
       - name: Install colcon
         uses: eProsima/eProsima-CI/ubuntu/install_colcon@v0
@@ -172,20 +183,19 @@ jobs:
       - name: Install Python dependencies
         uses: eProsima/eProsima-CI/ubuntu/install_python_packages@v0
         with:
-          packages: vcstool xmlschema
+          packages: xmlschema pytest
 
-      - name: Fetch Fast DDS Python CI dependencies
-        uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
+      - name: Setup CCache
+        uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
+        if: ${{ inputs.use-ccache == true }}
         with:
-          vcs_repos_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.repos
-          destination_workspace: src
-          skip_existing: 'true'
+          api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Colcon build
         continue-on-error: false
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
-          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.meta
+          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/ubuntu_test.meta
           colcon_build_args: ${{ inputs.colcon-args }}
           cmake_args: ${{ inputs.cmake-args }}
           cmake_args_default: ''
@@ -196,7 +206,7 @@ jobs:
         id: python_test
         uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
         with:
-          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/test.meta
+          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/ubuntu_test.meta
           colcon_test_args: ${{ inputs.colcon-args }}
           colcon_test_args_default: --event-handlers=console_direct+
           ctest_args: ${{ inputs.ctest-args }}
