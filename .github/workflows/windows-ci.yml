@@ -59,7 +59,7 @@ jobs:
         vs-toolset:
           - 'v141'
           - 'v142'
-    if: ${{ (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'conflicts')) && false || true }}
+    if: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'conflicts') || false }}
     uses: ./.github/workflows/reusable-windows-ci.yml
     with:
       # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
@@ -72,5 +72,5 @@ jobs:
       ctest-args: ${{ inputs.ctest-args }}
       fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref || '1.2.x' }}
       fastdds-branch: ${{ inputs.fastdds-branch || '2.10.x' }}
-      run-build: ${{ !(github.event_name == 'pull_request') && true || (!contains(github.event.pull_request.labels.*.name, 'skip-ci')) && true || false }}
-      run-tests: ${{ ((inputs.run-tests == true) && true) || (github.event_name == 'pull_request' && !contains(github.event.pull_request.labels.*.name, 'no-test')) && true || false }}
+      run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') || false }}
+      run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) || false }}

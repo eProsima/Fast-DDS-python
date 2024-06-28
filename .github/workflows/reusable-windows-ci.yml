@@ -243,11 +243,12 @@ jobs:
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build_test.meta
           colcon_build_args: ${{ inputs.colcon-args }}
-          colcon_build_args_default: --event-handlers console_direct+
+          colcon_build_args_default: '--event-handlers console_direct+ --packages-select fastdds_python'
           cmake_args: ${{ inputs.cmake-args }}
           cmake_args_default: '-T ${{ inputs.vs-toolset }} ${{ env.colcon-build-default-cmake-args }}'
           cmake_build_type: ${{ matrix.cmake-build-type }}
           workspace: ${{ github.workspace }}
+          workspace_dependencies: ${{ github.workspace }}/install
 
       - name: Colcon test
         id: python_test
