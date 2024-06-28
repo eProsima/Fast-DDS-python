@@ -59,7 +59,7 @@ jobs:
         vs-toolset:
           - 'v141'
           - 'v142'
-    if: ${{ (github.event_name == 'pull_request' && contains(github.event.pull_request.labels.*.name, 'conflicts')) && false || true }}
+    if: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'conflicts') || false }}
     uses: ./.github/workflows/reusable-windows-ci.yml
     with:
       # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
