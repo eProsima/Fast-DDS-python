@@ -1,0 +1,9 @@
+names:
+    fastdds_python:
+        cmake-args:
+            - "-DBUILD_TESTING=ON"
+        ctest-args: [
+                "--repeat", "until-pass:3",
+                "--timeout", "300",
+                "--label-exclude", "xfail"
+        ]
