@@ -36,7 +36,13 @@ endif()
 # Dependencies
 ###############################################################################
 
-find_package(SWIG REQUIRED)
+find_package(SWIG)
+if (NOT SWIG_FOUND)
+    # Trick to find swig4.1 in Ubuntu noble.
+    find_program(SWIG_EXECUTABLE NAMES swig4.1 swig)
+    find_package(SWIG REQUIRED)
+endif()
+
 include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
