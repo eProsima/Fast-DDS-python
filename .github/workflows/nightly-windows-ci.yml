@@ -8,22 +8,15 @@ on:
 jobs:
   # python main - fastdds master
   nightly-windows-ci-main:
-    strategy:
-      fail-fast: false
-      matrix:
-        os-version:
-          - 'windows-2019'
-        vs-toolset:
-          - 'v142'
-        fastdds-branch:
-          - 'master'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@main
     with:
-      os-version: ${{ matrix.os-version }}
-      vs.toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-main-${{ matrix.fastdds-branch }}'
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'windows-2019'
+      vs.toolset: 'v142'
+      label: 'nightly-windows-v142-ci-main-master'
       fastdds-python-branch: 'main'
-      fastdds-branch: ${{ matrix.fastdds-branch }}
+      fastdds-branch: 'master'
       run-build: true
       run-tests: true
 
@@ -32,8 +25,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os-version:
-          - 'windows-2019'
         vs-toolset:
           - 'v141'
           - 'v142'
@@ -42,9 +33,11 @@ jobs:
           - '2.13.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.4.x
     with:
-      os-version: ${{ matrix.os-version }}
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'windows-2019'
       vs.toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-1.4.x-${{ matrix.fastdds-branch }}'
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.4.x-${{ matrix.fastdds-branch }}'
       fastdds-python-branch: '1.4.x'
       fastdds-branch: ${{ matrix.fastdds-branch }}
       run-build: true
@@ -55,20 +48,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os-version:
-          - 'windows-2019'
         vs-toolset:
           - 'v141'
           - 'v142'
-        fastdds-branch:
-          - '2.10.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.2.x
     with:
-      os-version: ${{ matrix.os-version }}
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'windows-2019'
       vs.toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-1.2.x-${{ matrix.fastdds-branch }}'
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.2.x-2.10.x'
       fastdds-python-branch: '1.2.x'
-      fastdds-branch: ${{ matrix.fastdds-branch }}
+      fastdds-branch: '2.10.x'
       run-build: true
       run-tests: true
 
@@ -77,19 +68,17 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os-version:
-          - 'windows-2019'
         vs-toolset:
           - 'v141'
           - 'v142'
-        fastdds-branch:
-          - '2.6.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.0.x
     with:
-      os-version: ${{ matrix.os-version }}
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'windows-2019'
       vs.toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-${{ matrix.os-version }}-${{ matrix.vs-toolset }}-ci-1.0.x-${{ matrix.fastdds-branch }}'
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.0.x-2.6.x'
       fastdds-python-branch: '1.0.x'
-      fastdds-branch: ${{ matrix.fastdds-branch }}
+      fastdds-branch: '2.6.x'
       run-build: false
       run-tests: false
