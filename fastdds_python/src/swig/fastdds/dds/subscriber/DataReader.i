@@ -18,7 +18,10 @@
 
 // Template for std::vector<DataReader*>
 %template(DataReaderVector) std::vector<eprosima::fastdds::dds::DataReader*>;
+%typemap(doctype) std::vector<eprosima::fastdds::dds::DataReader*> "DataReaderVector";
+
 %template(SampleInfoSeq) eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo>;
+%typemap(doctype) eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo> "SampleInfoSeq";
 %extend eprosima::fastdds::dds::LoanableSequence<eprosima::fastdds::dds::SampleInfo>
 {
     size_t __len__() const
@@ -88,7 +91,7 @@
             if (nullptr != listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_INCREF(director->swig_get_self());
@@ -97,7 +100,7 @@
             if (nullptr != old_listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_DECREF(director->swig_get_self());
