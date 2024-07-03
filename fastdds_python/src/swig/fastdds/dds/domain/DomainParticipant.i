@@ -84,7 +84,7 @@
             if (nullptr != listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_INCREF(director->swig_get_self());
@@ -93,7 +93,7 @@
             if (nullptr != old_listener)
             {
                 Swig::Director* director = SWIG_DIRECTOR_CAST(old_listener);
-    
+
                 if (nullptr != director)
                 {
                     Py_DECREF(director->swig_get_self());
@@ -287,5 +287,9 @@
 %ignore eprosima::fastdds::dds::DomainParticipant::delete_publisher;
 %ignore eprosima::fastdds::dds::DomainParticipant::delete_subscriber;
 %ignore eprosima::fastdds::dds::DomainParticipant::create_subscriber_with_profile;
+
+// Template for std::vector<DomainParticipant*>
+%template(DomainParticipantVector) std::vector<eprosima::fastdds::dds::DomainParticipant*>;
+%typemap(doctype) std::vector<eprosima::fastdds::dds::DomainParticipant*> "DomainParticipantVector";
 
 %include "fastdds/dds/domain/DomainParticipant.hpp"
