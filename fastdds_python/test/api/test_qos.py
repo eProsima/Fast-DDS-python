@@ -612,17 +612,17 @@ def test_datawriter_qos():
 
     # .reliable_writer_qos
     datawriter_qos.reliable_writer_qos().times. \
-        initialHeartbeatDelay.seconds = 2
+        initial_heartbeat_delay.seconds = 2
     datawriter_qos.reliable_writer_qos().times. \
-        initialHeartbeatDelay.nanosec = 15
-    datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.seconds = 3
-    datawriter_qos.reliable_writer_qos().times.heartbeatPeriod.nanosec = 16
-    datawriter_qos.reliable_writer_qos().times.nackResponseDelay.seconds = 4
-    datawriter_qos.reliable_writer_qos().times.nackResponseDelay.nanosec = 17
+        initial_heartbeat_delay.nanosec = 15
+    datawriter_qos.reliable_writer_qos().times.heartbeat_period.seconds = 3
+    datawriter_qos.reliable_writer_qos().times.heartbeat_period.nanosec = 16
+    datawriter_qos.reliable_writer_qos().times.nack_response_delay.seconds = 4
+    datawriter_qos.reliable_writer_qos().times.nack_response_delay.nanosec = 17
     datawriter_qos.reliable_writer_qos().times. \
-        nackSupressionDuration.seconds = 5
+        nack_supression_duration.seconds = 5
     datawriter_qos.reliable_writer_qos().times. \
-        nackSupressionDuration.nanosec = 18
+        nack_supression_duration.nanosec = 18
     datawriter_qos.reliable_writer_qos().disable_positive_acks.enabled = True
     datawriter_qos.reliable_writer_qos(). \
         disable_positive_acks.duration.seconds = 13
@@ -630,21 +630,21 @@ def test_datawriter_qos():
         disable_positive_acks.duration.nanosec = 320
     datawriter_qos.reliable_writer_qos().disable_heartbeat_piggyback = True
     assert(2 == datawriter_qos.reliable_writer_qos().times.
-           initialHeartbeatDelay.seconds)
+           initial_heartbeat_delay.seconds)
     assert(15 == datawriter_qos.reliable_writer_qos().times.
-           initialHeartbeatDelay.nanosec)
+           initial_heartbeat_delay.nanosec)
     assert(3 == datawriter_qos.reliable_writer_qos().times.
-           heartbeatPeriod.seconds)
+           heartbeat_period.seconds)
     assert(16 == datawriter_qos.reliable_writer_qos().times.
-           heartbeatPeriod.nanosec)
+           heartbeat_period.nanosec)
     assert(4 == datawriter_qos.reliable_writer_qos().times.
-           nackResponseDelay.seconds)
+           nack_response_delay.seconds)
     assert(17 == datawriter_qos.reliable_writer_qos().times.
-           nackResponseDelay.nanosec)
+           nack_response_delay.nanosec)
     assert(5 == datawriter_qos.reliable_writer_qos().times.
-           nackSupressionDuration.seconds)
+           nack_supression_duration.seconds)
     assert(18 == datawriter_qos.reliable_writer_qos().times.
-           nackSupressionDuration.nanosec)
+           nack_supression_duration.nanosec)
     assert(13 == datawriter_qos.reliable_writer_qos().
            disable_positive_acks.duration.seconds)
     assert(320 == datawriter_qos.reliable_writer_qos().
@@ -818,21 +818,21 @@ def test_datawriter_qos():
 
     # .reliable_writer_qos
     assert(2 == default_datawriter_qos.reliable_writer_qos().times.
-           initialHeartbeatDelay.seconds)
+           initial_heartbeat_delay.seconds)
     assert(15 == default_datawriter_qos.reliable_writer_qos().times.
-           initialHeartbeatDelay.nanosec)
+           initial_heartbeat_delay.nanosec)
     assert(3 == default_datawriter_qos.reliable_writer_qos().times.
-           heartbeatPeriod.seconds)
+           heartbeat_period.seconds)
     assert(16 == default_datawriter_qos.reliable_writer_qos().times.
-           heartbeatPeriod.nanosec)
+           heartbeat_period.nanosec)
     assert(4 == default_datawriter_qos.reliable_writer_qos().times.
-           nackResponseDelay.seconds)
+           nack_response_delay.seconds)
     assert(17 == default_datawriter_qos.reliable_writer_qos().times.
-           nackResponseDelay.nanosec)
+           nack_response_delay.nanosec)
     assert(5 == default_datawriter_qos.reliable_writer_qos().times.
-           nackSupressionDuration.seconds)
+           nack_supression_duration.seconds)
     assert(18 == default_datawriter_qos.reliable_writer_qos().times.
-           nackSupressionDuration.nanosec)
+           nack_supression_duration.nanosec)
     assert(default_datawriter_qos.reliable_writer_qos().
            disable_positive_acks.enabled)
     assert(13 == default_datawriter_qos.reliable_writer_qos().
