@@ -1,0 +1,20 @@
+name: Fast DDS Python Ubuntu CI (weekly)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * 1' # Run at minute 0 on Monday
+
+jobs:
+  weekly-ubuntu-ci-1_0_x:
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.0.x
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-20.04'
+      label: 'weekly-ubuntu-ci-1.0.x-2.6.x'
+      fastdds-python-branch: '1.0.x'
+      fastdds-branch: '2.6.x'
+      run-build: true
+      run-tests: false
+      use-ccache: false
