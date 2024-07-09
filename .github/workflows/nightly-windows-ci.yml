@@ -10,8 +10,6 @@ jobs:
   nightly-windows-ci-main:
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@main
     with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: 'windows-2019'
       vs-toolset: 'v142'
       label: 'nightly-windows-v142-ci-main-master'
@@ -33,8 +31,6 @@ jobs:
           - '2.13.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.4.x
     with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: 'windows-2019'
       vs-toolset: ${{ matrix.vs-toolset }}
       label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.4.x-${{ matrix.fastdds-branch }}'
@@ -53,8 +49,6 @@ jobs:
           - 'v142'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.2.x
     with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: 'windows-2019'
       vs-toolset: ${{ matrix.vs-toolset }}
       label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.2.x-2.10.x'

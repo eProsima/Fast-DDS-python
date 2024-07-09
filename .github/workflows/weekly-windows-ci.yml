@@ -15,8 +15,6 @@ jobs:
           - 'v142'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.0.x
     with:
-      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
-      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: 'windows-2019'
       vs-toolset: ${{ matrix.vs-toolset }}
       label: 'weekly-windows-${{ matrix.vs-toolset }}-ci-1.0.x-2.6.x'
