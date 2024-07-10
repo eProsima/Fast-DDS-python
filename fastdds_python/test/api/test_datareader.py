@@ -685,7 +685,7 @@ def test_get_first_untaken(transient_datareader_qos, datareader,
 
     sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -968,7 +968,7 @@ def test_get_unread_count(transient_datareader_qos, datareader,
 
     sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -983,7 +983,7 @@ def test_is_sample_valid(transient_datareader_qos, datareader,
     """
     sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(255)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -1043,7 +1043,7 @@ def test_read(transient_datareader_qos, datareader,
 
     sample = pytest.dds_type.CompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -1123,7 +1123,7 @@ def test_read_next_instance(transient_datareader_qos, test_keyed_type,
 
     sample = pytest.dds_type.KeyedCompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -1157,7 +1157,7 @@ def test_read_next_sample(transient_datareader_qos, datareader,
 
     sample = pytest.dds_type.CompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -1189,7 +1189,7 @@ def test_take(transient_datareader_qos, datareader,
 
     sample = pytest.dds_type.CompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -1269,7 +1269,7 @@ def test_take_next_instance(transient_datareader_qos, test_keyed_type,
 
     sample = pytest.dds_type.KeyedCompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
@@ -1303,7 +1303,7 @@ def test_take_next_sample(transient_datareader_qos, datareader,
 
     sample = pytest.dds_type.CompleteTestType()
     fill_keyed_complete_test_type(sample, cdr_version)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     assert(datareader.wait_for_unread_message(
         fastdds.Duration_t(5, 0)))
