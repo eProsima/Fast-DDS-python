@@ -118,7 +118,7 @@ def test_clear_history(keep_all_datawriter_qos, datawriter):
     """
     sample = pytest.dds_type.CompleteTestType()
     sample.int16_field(4)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
     assert([fastdds.RETCODE_OK, 1] ==
            datawriter.clear_history())
 
@@ -497,7 +497,7 @@ def test_wait_for_acknowledgments(test_keyed_type, datawriter):
     # Overload 1
     sample = pytest.dds_type.KeyedCompleteTestType()
     sample.id(3)
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
     assert(fastdds.RETCODE_OK ==
            datawriter.wait_for_acknowledgments(fastdds.Duration_t(1, 0)))
 
@@ -517,7 +517,7 @@ def test_write(test_keyed_type, datawriter):
     """
     # Overload 1
     sample = pytest.dds_type.KeyedCompleteTestType()
-    assert(datawriter.write(sample))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample))
 
     # Overload 2
     sample = pytest.dds_type.KeyedCompleteTestType()
@@ -530,7 +530,7 @@ def test_write(test_keyed_type, datawriter):
     sequence_number.low = 1
     params.related_sample_identity().writer_guid(guid)
     params.related_sample_identity().sequence_number(sequence_number)
-    assert(datawriter.write(sample, params))
+    assert(fastdds.RETCODE_OK == datawriter.write(sample, params))
 
     # Overload 3
     sample = pytest.dds_type.KeyedCompleteTestType()
