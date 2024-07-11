@@ -129,7 +129,6 @@ jobs:
           destination_workspace: src
           skip_existing: 'true'
 
-
       - name: Colcon build
         continue-on-error: false
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
@@ -199,7 +198,6 @@ jobs:
           colcon_build_args: ${{ inputs.colcon-args }}
           colcon_build_args_default: '--packages-select fastdds_python'
           cmake_args: ${{ inputs.cmake-args }}
-          cmake_args_default: ''
           cmake_build_type: ${{ matrix.cmake-build-type }}
           workspace: ${{ github.workspace }}
           workspace_dependencies: ${{ github.workspace }}/install
