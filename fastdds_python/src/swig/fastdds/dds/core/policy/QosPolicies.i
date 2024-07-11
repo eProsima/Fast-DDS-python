@@ -58,90 +58,13 @@ namespace dds {
 }
 }
 
-%inline %{
-class OctetResourceLimitedVectorStopIterator {};
-class OctetResourceLimitedVectorIterator {
-public:
-    OctetResourceLimitedVectorIterator(
-            eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator _cur,
-            eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator _end) : cur(_cur), end(_end) {}
-    OctetResourceLimitedVectorIterator* __iter__()
-    {
-        return this;
-    }
-    eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator cur;
-    eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::iterator end;
-};
-%}
 
 // SWIG does not support templates in the generated binding,
 // because not all output languages support them
 // We must explicitly declare the specializations of the templates
-%template(OctetResourceLimitedVector) eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>;
+resource_limited_vector_template(OctetResourceLimitedVector, eprosima::fastdds::rtps::octet)
 
 %include "fastdds/dds/core/policy/QosPolicies.hpp"
-
-%include "exception.i"
-%exception OctetResourceLimitedVectorIterator::__next__ {
-    try
-    {
-        $action // calls %extend function __next__() below
-    }
-    catch (OctetResourceLimitedVectorStopIterator)
-    {
-        PyErr_SetString(PyExc_StopIteration, "End of iterator");
-        return nullptr;
-    }
-}
-
-%extend OctetResourceLimitedVectorIterator
-{
-    eprosima::fastdds::rtps::octet __next__()
-    {
-        if ($self->cur != $self->end)
-        {
-            // dereference the iterator and return reference to the object,
-            // after that it increments the iterator
-            return *$self->cur++;
-        }
-        throw OctetResourceLimitedVectorStopIterator();
-    }
-}
-
-%exception eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>::__getitem__
-{
-    try
-    {
-        $action
-    }
-    catch(std::out_of_range)
-    {
-        SWIG_exception(SWIG_IndexError, "Index out of bounds");
-    }
-}
-
-%extend eprosima::fastdds::ResourceLimitedVector<eprosima::fastdds::rtps::octet>
-{
-    OctetResourceLimitedVectorIterator __iter__()
-    {
-        // return a constructed Iterator object
-        return OctetResourceLimitedVectorIterator($self->begin(), $self->end());
-    }
-
-    size_t __len__() const
-    {
-        return self->size();
-    }
-
-    eprosima::fastdds::rtps::octet __getitem__(int i)
-    {
-        if (self->size() <= i)
-        {
-            throw std::out_of_range("Index out of bounds");
-        }
-        return (*self)[i];
-    }
-}
 
 %exception eprosima::fastdds::dds::PartitionQosPolicy::__getitem__
 {
