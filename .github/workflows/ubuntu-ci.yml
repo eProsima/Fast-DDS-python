@@ -67,3 +67,4 @@ jobs:
       fastdds-branch: ${{ inputs.fastdds-branch || '2.6.x' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || false }}
+      use-ccache: ${{ inputs.use-ccache || false }}
