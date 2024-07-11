@@ -7,7 +7,8 @@
 [![Issues](https://img.shields.io/github/issues/eProsima/Fast-DDS-python.svg)](https://github.com/eProsima/Fast-DDS-python/issues)
 [![Forks](https://img.shields.io/github/forks/eProsima/Fast-DDS-python.svg)](https://github.com/eProsima/Fast-DDS-python/network/members)
 [![Stars](https://img.shields.io/github/stars/eProsima/Fast-DDS-python.svg)](https://github.com/eProsima/Fast-DDS-python/stargazers)
-
+[![Fast DDS Python Ubuntu CI (nightly)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-ubuntu-ci.yml/badge.svg)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-ubuntu-ci.yml)
+[![Fast DDS Python Windows CI (nightly)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-windows-ci.yml/badge.svg)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-windows-ci.yml)
 
 *eProsima Fast DDS Python* is a Python binding for the [*eProsima Fast DDS*](https://github.com/eProsima/Fast-DDS) C++ library.
 This is a work in progress, but ultimately the goal is having the complete *Fast DDS* API available in Python.
