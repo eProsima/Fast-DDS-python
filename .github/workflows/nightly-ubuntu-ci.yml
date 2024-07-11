@@ -1,0 +1,55 @@
+name: Fast DDS Python Ubuntu CI (nightly)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * *'
+
+jobs:
+  # python main - fastdds master
+  nightly-ubuntu-ci-main:
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@main
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-22.04'
+      label: 'nightly-ubuntu-ci-main-master'
+      fastdds-python-branch: 'main'
+      fastdds-branch: 'master'
+      run-build: true
+      run-tests: true
+      use-ccache: false
+
+  # python 1.4.x - fastdds 2.14.x/2.13.x
+  nightly-ubuntu-ci-1_4_x:
+    strategy:
+      fail-fast: false
+      matrix:
+        fastdds-branch:
+          - '2.14.x'
+          - '2.13.x'
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.4.x
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-22.04'
+      label: 'nightly-ubuntu-ci-1.4.x-${{ matrix.fastdds-branch }}'
+      fastdds-python-branch: '1.4.x'
+      fastdds-branch: ${{ matrix.fastdds-branch }}
+      run-build: true
+      run-tests: true
+      use-ccache: false
+
+  # python 1.2.x - fastdds 2.10.x
+  nightly-ubuntu-ci-1_2_x:
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@1.2.x
+    with:
+      # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: 'ubuntu-22.04'
+      label: 'nightly-ubuntu-ci-1.2.x-2.10.x'
+      fastdds-python-branch: '1.2.x'
+      fastdds-branch: '2.10.x'
+      run-build: true
+      run-tests: true
+      use-ccache: false
