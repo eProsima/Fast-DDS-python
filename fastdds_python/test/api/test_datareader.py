@@ -850,7 +850,7 @@ def test_get_liveliness_changed_status(datareader):
 def test_get_matched_publication_data(datareader):
     """
     This test checks:
-    - DataWriter::get_matched_publication_data
+    - DataReader::get_matched_publication_data
     """
     pub_data = fastdds.PublicationBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
