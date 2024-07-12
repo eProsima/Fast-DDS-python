@@ -18,7 +18,7 @@ jobs:
       run-build: true
       run-tests: true
 
-  # python 1.4.x - fastdds 2.14.x/2.13.x
+  # python 1.4.x - fastdds 2.14.x
   nightly-windows-ci-1_4_x:
     strategy:
       fail-fast: false
@@ -26,16 +26,13 @@ jobs:
         vs-toolset:
           - 'v141'
           - 'v142'
-        fastdds-branch:
-          - '2.14.x'
-          - '2.13.x'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.4.x
     with:
       os-version: 'windows-2019'
       vs-toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.4.x-${{ matrix.fastdds-branch }}'
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.4.x-2.14.x'
       fastdds-python-branch: '1.4.x'
-      fastdds-branch: ${{ matrix.fastdds-branch }}
+      fastdds-branch: '2.14.x'
       run-build: true
       run-tests: true
 
