@@ -16,9 +16,5 @@
 #include "fastdds/dds/builtin/topic/PublicationBuiltinTopicData.hpp"
 %}
 
-// There are two definitions of PublicationBuiltinTopicData in different namespaces
-// The one in `dds` is an alias to the one in `rtps`.
-// As SWIG flattens the namespaces, we cannot have two classes with the same name
-%rename(PublicationBuiltinTopicData) eprosima::fastdds::rtps::PublicationBuiltinTopicData;
-
+%include "fastdds/rtps/builtin/data/PublicationBuiltinTopicData.hpp"
 %include "fastdds/dds/builtin/topic/PublicationBuiltinTopicData.hpp"
