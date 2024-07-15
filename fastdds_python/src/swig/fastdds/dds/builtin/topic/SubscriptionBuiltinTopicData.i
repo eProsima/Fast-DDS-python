@@ -16,4 +16,5 @@
 #include "fastdds/dds/builtin/topic/SubscriptionBuiltinTopicData.hpp"
 %}
 
+%include "fastdds/rtps/builtin/data/SubscriptionBuiltinTopicData.hpp"
 %include "fastdds/dds/builtin/topic/SubscriptionBuiltinTopicData.hpp"
