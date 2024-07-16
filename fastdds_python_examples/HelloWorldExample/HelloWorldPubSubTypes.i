@@ -25,6 +25,6 @@
 #include "HelloWorldPubSubTypes.hpp"
 %}
 
-#define GEN_API_VER 2
+#define FASTDDS_GEN_API_VER 3
 
 %include "HelloWorldPubSubTypes.hpp"
