@@ -16,4 +16,5 @@
 #include "fastdds/dds/builtin/topic/PublicationBuiltinTopicData.hpp"
 %}
 
+%include "fastdds/rtps/builtin/data/PublicationBuiltinTopicData.hpp"
 %include "fastdds/dds/builtin/topic/PublicationBuiltinTopicData.hpp"

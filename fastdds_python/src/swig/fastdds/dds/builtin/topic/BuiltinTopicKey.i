@@ -16,4 +16,5 @@
 #include "fastdds/dds/builtin/topic/BuiltinTopicKey.hpp"
 %}
 
+%include "fastdds/rtps/builtin/data/BuiltinTopicKey.hpp"
 %include "fastdds/dds/builtin/topic/BuiltinTopicKey.hpp"

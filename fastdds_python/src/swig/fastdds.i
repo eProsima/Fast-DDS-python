@@ -162,6 +162,7 @@ namespace xtypes {
 %include "fastdds/rtps/attributes/RTPSParticipantAttributes.i"
 %include "fastdds/rtps/attributes/ReaderAttributes.i"
 %include "fastdds/rtps/attributes/WriterAttributes.i"
+%include "fastdds/rtps/common/RemoteLocators.i"
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
 %include "fastdds/rtps/common/WriteParams.i"
