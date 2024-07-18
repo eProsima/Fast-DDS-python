@@ -13,7 +13,7 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/reader/ReaderDiscoveryInfo.hpp"
+#include "fastdds/rtps/reader/ReaderDiscoveryStatus.hpp"
 %}
 
-%include "fastdds/rtps/reader/ReaderDiscoveryInfo.hpp"
+%include "fastdds/rtps/reader/ReaderDiscoveryStatus.hpp"
