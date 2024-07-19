@@ -107,15 +107,15 @@ def test_create_publisher(participant):
     assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         publisher = participant.create_publisher(
-            fastdds.PUBLISHER_QOS_DEFAULT, listnr, status_mask_1)
+            fastdds.PUBLISHER_QOS_DEFAULT, listnr, status_mask)
         assert(publisher is not None)
         assert(publisher.is_enabled())
-        assert(status_mask_1 == publisher.get_status_mask())
+        assert(status_mask == publisher.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                participant.delete_publisher(publisher))
 
@@ -192,17 +192,17 @@ def test_create_publisher_with_profile(participant):
     assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         publisher = participant.create_publisher_with_profile(
-            'test_publisher_profile', listnr, status_mask_1)
+            'test_publisher_profile', listnr, status_mask)
         assert(publisher is not None)
         assert(publisher.is_enabled())
         qos = publisher.get_qos()
         assert('partition_name_c' == qos.partition()[0])
-        assert(status_mask_1 == publisher.get_status_mask())
+        assert(status_mask == publisher.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                participant.delete_publisher(publisher))
 
@@ -269,15 +269,15 @@ def test_create_subscriber(participant):
     assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         subscriber = participant.create_subscriber(
-            fastdds.SUBSCRIBER_QOS_DEFAULT, listnr, status_mask_1)
+            fastdds.SUBSCRIBER_QOS_DEFAULT, listnr, status_mask)
         assert(subscriber is not None)
         assert(subscriber.is_enabled())
-        assert(status_mask_1 == subscriber.get_status_mask())
+        assert(status_mask == subscriber.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                participant.delete_subscriber(subscriber))
 
@@ -354,17 +354,17 @@ def test_create_subscriber_with_profile(participant):
     assert(fastdds.RETCODE_OK ==
            participant.delete_subscriber(subscriber))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         subscriber = participant.create_subscriber_with_profile(
-            'test_subscriber_profile', listnr, status_mask_1)
+            'test_subscriber_profile', listnr, status_mask)
         assert(subscriber is not None)
         assert(subscriber.is_enabled())
         qos = subscriber.get_qos()
         assert('partition_name_b' == qos.partition()[0])
-        assert(status_mask_1 == subscriber.get_status_mask())
+        assert(status_mask == subscriber.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                participant.delete_subscriber(subscriber))
 
@@ -445,16 +445,16 @@ def test_create_and_delete_topic(participant):
     assert(fastdds.RETCODE_OK ==
            participant.delete_topic(topic))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         topic = participant.create_topic(
             "Complete", test_type.get_type_name(),
-            fastdds.TOPIC_QOS_DEFAULT, listnr, status_mask_1)
+            fastdds.TOPIC_QOS_DEFAULT, listnr, status_mask)
         assert(topic is not None)
         assert(topic.is_enabled())
-        assert(status_mask_1 == topic.get_status_mask())
+        assert(status_mask == topic.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                participant.delete_topic(topic))
 
@@ -641,19 +641,18 @@ def test_get_set_listener(participant):
     assert(participant.get_listener() == listener)
     assert(fastdds.StatusMask.all() == participant.get_status_mask())
 
-    def test(status_mask_1):
+    def test(status_mask):
         """
         Test the entity creation using the type of StatusMask.
         """
         listener = DomainParticipantListener()
         assert(listener is not None)
         assert(fastdds.RETCODE_OK ==
-               participant.set_listener(listener, status_mask_1))
+               participant.set_listener(listener, status_mask))
         assert(participant.get_listener() == listener)
-        assert(status_mask_1 == participant.get_status_mask())
+        assert(status_mask == participant.get_status_mask())
 
     # Overload 3: Different status masks
-    test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.none())
     test(fastdds.StatusMask.data_available())

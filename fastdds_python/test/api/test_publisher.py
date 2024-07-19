@@ -124,15 +124,15 @@ def test_create_datawriter(topic, publisher):
     assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         datawriter = publisher.create_datawriter(
-            topic, fastdds.DATAWRITER_QOS_DEFAULT, listnr, status_mask_1)
+            topic, fastdds.DATAWRITER_QOS_DEFAULT, listnr, status_mask)
         assert(datawriter is not None)
         assert(datawriter.is_enabled())
-        assert(status_mask_1 == datawriter.get_status_mask())
+        assert(status_mask == datawriter.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                publisher.delete_datawriter(datawriter))
 
@@ -211,18 +211,18 @@ def test_create_datawriter_with_profile(topic, publisher):
     assert(fastdds.RETCODE_OK ==
            publisher.delete_datawriter(datawriter))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the two types of StatusMasks.
         """
         datawriter = publisher.create_datawriter_with_profile(
-                topic, 'test_datawriter_profile', listnr, status_mask_1)
+                topic, 'test_datawriter_profile', listnr, status_mask)
         assert(datawriter is not None)
         assert(datawriter.is_enabled())
         qos = datawriter.get_qos()
         assert(fastdds.VOLATILE_DURABILITY_QOS ==
                qos.durability().kind)
-        assert(status_mask_1 == datawriter.get_status_mask())
+        assert(status_mask == datawriter.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                publisher.delete_datawriter(datawriter))
 
@@ -378,19 +378,18 @@ def test_get_set_listener(publisher):
     assert(publisher.get_listener() == listener)
     assert(fastdds.StatusMask.all() == publisher.get_status_mask())
 
-    def test(status_mask_1):
+    def test(status_mask):
         """
         Test the entity creation using the type of StatusMask.
         """
         listener = PublisherListener()
         assert(listener is not None)
         assert(fastdds.RETCODE_OK ==
-               publisher.set_listener(listener, status_mask_1))
+               publisher.set_listener(listener, status_mask))
         assert(publisher.get_listener() == listener)
-        assert(status_mask_1 == publisher.get_status_mask())
+        assert(status_mask == publisher.get_status_mask())
 
     # Overload 2: Different status masks
-    test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.none())
     test(fastdds.StatusMask.data_available())

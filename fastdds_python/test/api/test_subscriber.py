@@ -127,15 +127,15 @@ def test_create_datareader(topic, subscriber):
     assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         datareader = subscriber.create_datareader(
-            topic, fastdds.DATAREADER_QOS_DEFAULT, listnr, status_mask_1)
+            topic, fastdds.DATAREADER_QOS_DEFAULT, listnr, status_mask)
         assert(datareader is not None)
         assert(datareader.is_enabled())
-        assert(status_mask_1 == datareader.get_status_mask())
+        assert(status_mask == datareader.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                subscriber.delete_datareader(datareader))
 
@@ -214,18 +214,18 @@ def test_create_datareader_with_profile(topic, subscriber):
     assert(fastdds.RETCODE_OK ==
            subscriber.delete_datareader(datareader))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         datareader = subscriber.create_datareader_with_profile(
-                topic, 'test_datareader_profile', listnr, status_mask_1)
+                topic, 'test_datareader_profile', listnr, status_mask)
         assert(datareader is not None)
         assert(datareader.is_enabled())
         qos = datareader.get_qos()
         assert(fastdds.RELIABLE_RELIABILITY_QOS ==
                qos.reliability().kind)
-        assert(status_mask_1 == datareader.get_status_mask())
+        assert(status_mask == datareader.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                subscriber.delete_datareader(datareader))
 
@@ -377,19 +377,18 @@ def test_get_set_listener(subscriber):
     assert(subscriber.get_listener() == listener)
     assert(fastdds.StatusMask.all() == subscriber.get_status_mask())
 
-    def test(status_mask_1):
+    def test(status_mask):
         """
         Test the entity creation using the type of StatusMask.
         """
         listener = SubscriberListener()
         assert(listener is not None)
         assert(fastdds.RETCODE_OK ==
-               subscriber.set_listener(listener, status_mask_1))
+               subscriber.set_listener(listener, status_mask))
         assert(subscriber.get_listener() == listener)
-        assert(status_mask_1 == subscriber.get_status_mask())
+        assert(status_mask == subscriber.get_status_mask())
 
     # Overload 2: Different status masks
-    test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.none())
     test(fastdds.StatusMask.data_available())

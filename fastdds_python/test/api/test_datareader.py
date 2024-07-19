@@ -743,19 +743,18 @@ def test_get_set_listener(datareader):
     assert(fastdds.StatusMask.all() ==
            datareader.get_status_mask())
 
-    def test(status_mask_1):
+    def test(status_mask):
         """
         Test the entity creation using the type of StatusMask.
         """
         listener = DataReaderListener()
         assert(listener is not None)
         assert(fastdds.RETCODE_OK ==
-               datareader.set_listener(listener, status_mask_1))
+               datareader.set_listener(listener, status_mask))
         assert(datareader.get_listener() == listener)
-        assert(status_mask_1 == datareader.get_status_mask())
+        assert(status_mask == datareader.get_status_mask())
 
     # Overload 2: Different status masks
-    test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.all())
     test(fastdds.StatusMask.none())
     test(fastdds.StatusMask.data_available())

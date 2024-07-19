@@ -31,15 +31,15 @@ def test_create_participant():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         participant = factory.create_participant(
-                0, fastdds.PARTICIPANT_QOS_DEFAULT, listnr, status_mask_1)
+                0, fastdds.PARTICIPANT_QOS_DEFAULT, listnr, status_mask)
         assert(participant is not None)
         assert(participant.is_enabled())
-        assert(status_mask_1 == participant.get_status_mask())
+        assert(status_mask == participant.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                factory.delete_participant(participant))
 
@@ -151,28 +151,28 @@ def test_create_participant_with_profile():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-    def test(status_mask_1, listnr=None):
+    def test(status_mask, listnr=None):
         """
         Test the entity creation using the type of StatusMask.
         """
         participant = factory.create_participant_with_profile(
-                'test_participant_profile', listnr, status_mask_1)
+                'test_participant_profile', listnr, status_mask)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(3 == participant.get_domain_id())
         qos = participant.get_qos()
         assert('test_name' == qos.name())
-        assert(status_mask_1 == participant.get_status_mask())
+        assert(status_mask == participant.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                factory.delete_participant(participant))
         participant = factory.create_participant_with_profile(
-                0, 'test_participant_profile', listnr, status_mask_1)
+                0, 'test_participant_profile', listnr, status_mask)
         assert(participant is not None)
         assert(participant.is_enabled())
         assert(0 == participant.get_domain_id())
         qos = participant.get_qos()
         assert('test_name' == qos.name())
-        assert(status_mask_1 == participant.get_status_mask())
+        assert(status_mask == participant.get_status_mask())
         assert(fastdds.RETCODE_OK ==
                factory.delete_participant(participant))
 
