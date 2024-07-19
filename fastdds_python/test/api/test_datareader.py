@@ -743,67 +743,33 @@ def test_get_set_listener(datareader):
     assert(fastdds.StatusMask.all() ==
            datareader.get_status_mask())
 
-    def test(status_mask_1, status_mask_2):
+    def test(status_mask):
         """
-        Test the entity creation using the two types of StatusMasks.
+        Test the entity creation using the type of StatusMask.
         """
         listener = DataReaderListener()
         assert(listener is not None)
         assert(fastdds.RETCODE_OK ==
-               datareader.set_listener(listener, status_mask_1))
+               datareader.set_listener(listener, status_mask))
         assert(datareader.get_listener() == listener)
-        assert(status_mask_1 == datareader.get_status_mask())
-        listener = DataReaderListener()
-        assert(listener is not None)
-        assert(fastdds.RETCODE_OK ==
-               datareader.set_listener(listener, status_mask_2))
-        assert(datareader.get_listener() == listener)
-        assert(status_mask_2 == datareader.get_status_mask())
+        assert(status_mask == datareader.get_status_mask())
 
     # Overload 2: Different status masks
-    test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
-    test(fastdds.StatusMask.all(), fastdds.StatusMask_all())
-    test(fastdds.StatusMask.none(), fastdds.StatusMask_none())
-    test(fastdds.StatusMask.data_available(),
-         fastdds.StatusMask_data_available())
-    test(fastdds.StatusMask.data_on_readers(),
-         fastdds.StatusMask_data_on_readers())
-    test(fastdds.StatusMask.inconsistent_topic(),
-         fastdds.StatusMask_inconsistent_topic())
-    test(fastdds.StatusMask.liveliness_changed(),
-         fastdds.StatusMask_liveliness_changed())
-    test(fastdds.StatusMask.liveliness_lost(),
-         fastdds.StatusMask_liveliness_lost())
-    test(fastdds.StatusMask.offered_deadline_missed(),
-         fastdds.StatusMask_offered_deadline_missed())
-    test(fastdds.StatusMask.offered_incompatible_qos(),
-         fastdds.StatusMask_offered_incompatible_qos())
-    test(fastdds.StatusMask.publication_matched(),
-         fastdds.StatusMask_publication_matched())
-    test(fastdds.StatusMask.requested_deadline_missed(),
-         fastdds.StatusMask_requested_deadline_missed())
-    test(fastdds.StatusMask.requested_incompatible_qos(),
-         fastdds.StatusMask_requested_incompatible_qos())
-    test(fastdds.StatusMask.sample_lost(),
-         fastdds.StatusMask_sample_lost())
-    test(fastdds.StatusMask.sample_rejected(),
-         fastdds.StatusMask_sample_rejected())
-    test(fastdds.StatusMask.subscription_matched(),
-         fastdds.StatusMask_subscription_matched())
-
-    m = fastdds.StatusMask_data_available() << \
-        fastdds.StatusMask_data_on_readers() << \
-        fastdds.StatusMask_inconsistent_topic() << \
-        fastdds.StatusMask_liveliness_changed() << \
-        fastdds.StatusMask_liveliness_lost() << \
-        fastdds.StatusMask_offered_deadline_missed() << \
-        fastdds.StatusMask_offered_incompatible_qos() << \
-        fastdds.StatusMask_publication_matched() << \
-        fastdds.StatusMask_requested_deadline_missed() << \
-        fastdds.StatusMask_requested_incompatible_qos() << \
-        fastdds.StatusMask_sample_lost() << \
-        fastdds.StatusMask_sample_rejected() << \
-        fastdds.StatusMask_subscription_matched()
+    test(fastdds.StatusMask.all())
+    test(fastdds.StatusMask.none())
+    test(fastdds.StatusMask.data_available())
+    test(fastdds.StatusMask.data_on_readers())
+    test(fastdds.StatusMask.inconsistent_topic())
+    test(fastdds.StatusMask.liveliness_changed())
+    test(fastdds.StatusMask.liveliness_lost())
+    test(fastdds.StatusMask.offered_deadline_missed())
+    test(fastdds.StatusMask.offered_incompatible_qos())
+    test(fastdds.StatusMask.publication_matched())
+    test(fastdds.StatusMask.requested_deadline_missed())
+    test(fastdds.StatusMask.requested_incompatible_qos())
+    test(fastdds.StatusMask.sample_lost())
+    test(fastdds.StatusMask.sample_rejected())
+    test(fastdds.StatusMask.subscription_matched())
 
     test(fastdds.StatusMask.data_available() <<
          fastdds.StatusMask.data_on_readers() <<
@@ -817,8 +783,7 @@ def test_get_set_listener(datareader):
          fastdds.StatusMask.requested_incompatible_qos() <<
          fastdds.StatusMask.sample_lost() <<
          fastdds.StatusMask.sample_rejected() <<
-         fastdds.StatusMask.subscription_matched(),
-         m)
+         fastdds.StatusMask.subscription_matched())
 
 
 def test_get_listening_locators(datareader):

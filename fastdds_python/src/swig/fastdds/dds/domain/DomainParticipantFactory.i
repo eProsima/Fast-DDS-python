@@ -16,124 +16,22 @@
 #include "fastdds/dds/domain/DomainParticipantFactory.hpp"
 %}
 
+%typemap(in) (eprosima::fastdds::dds::DomainParticipantListener* listener) %{
+    $typemap(in, eprosima::fastdds::dds::DomainParticipantListener* DISOWN)
+    {
+        Swig::Director* director = SWIG_DIRECTOR_CAST($1);
+
+        if (nullptr != director)
+        {
+            SWIG_PYTHON_THREAD_BEGIN_BLOCK;
+            director->swig_incref();
+            SWIG_PYTHON_THREAD_END_BLOCK;
+        }
+    }
+    %}
+
 %extend eprosima::fastdds::dds::DomainParticipantFactory
 {
-    /**
-     * Create a Participant.
-     *
-     * @param domain_id Domain Id.
-     * @param qos DomainParticipantQos Reference.
-     * @param listener DomainParticipantListener Pointer (default: nullptr)
-     * @param mask StatusMask Reference (default: all)
-     * @return DomainParticipant pointer. (nullptr if not created.)
-     */
-    DomainParticipant* create_participant(
-            DomainId_t domain_id,
-            const DomainParticipantQos& qos,
-            DomainParticipantListener* listener = nullptr,
-            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
-    {
-        if (nullptr != listener)
-        {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-
-            if (nullptr != director)
-            {
-                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-                Py_INCREF(director->swig_get_self());
-                SWIG_PYTHON_THREAD_END_BLOCK;
-            }
-        }
-
-        return self->create_participant(domain_id, qos, listener, mask);
-    }
-
-    /**
-     * Create a Participant.
-     *
-     * @param extended_qos DomainParticipantExtendedQos Reference.
-     * @param listener DomainParticipantListener Pointer (default: nullptr)
-     * @param mask StatusMask Reference (default: all)
-     * @return DomainParticipant pointer. (nullptr if not created.)
-     */
-    DomainParticipant* create_participant(
-            const DomainParticipantExtendedQos& extended_qos,
-            DomainParticipantListener* listener = nullptr,
-            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
-    {
-        if (nullptr != listener)
-        {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-
-            if (nullptr != director)
-            {
-                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-                Py_INCREF(director->swig_get_self());
-                SWIG_PYTHON_THREAD_END_BLOCK;
-            }
-        }
-
-        return self->create_participant(extended_qos.domainId(), extended_qos, listener, mask);
-    }
-
-    /**
-     * Create a Participant.
-     *
-     * @param domain_id Domain Id.
-     * @param profile_name Participant profile name.
-     * @param listener DomainParticipantListener Pointer (default: nullptr)
-     * @param mask StatusMask Reference (default: all)
-     * @return DomainParticipant pointer. (nullptr if not created.)
-     */
-    DomainParticipant* create_participant_with_profile(
-            DomainId_t domain_id,
-            const std::string& profile_name,
-            DomainParticipantListener* listener = nullptr,
-            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
-    {
-        if (nullptr != listener)
-        {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-
-            if (nullptr != director)
-            {
-                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-                Py_INCREF(director->swig_get_self());
-                SWIG_PYTHON_THREAD_END_BLOCK;
-            }
-        }
-
-        return self->create_participant_with_profile(domain_id, profile_name, listener, mask);
-    }
-
-    /**
-     * Create a Participant.
-     *
-     * @param profile_name Participant profile name.
-     * @param listener DomainParticipantListener Pointer (default: nullptr)
-     * @param mask StatusMask Reference (default: all)
-     * @return DomainParticipant pointer. (nullptr if not created.)
-     */
-    DomainParticipant* create_participant_with_profile(
-            const std::string& profile_name,
-            DomainParticipantListener* listener = nullptr,
-            const StatusMask& mask = eprosima::fastdds::dds::StatusMask::all())
-    {
-        if (nullptr != listener)
-        {
-            Swig::Director* director = SWIG_DIRECTOR_CAST(listener);
-
-            if (nullptr != director)
-            {
-                SWIG_PYTHON_THREAD_BEGIN_BLOCK;
-                Py_INCREF(director->swig_get_self());
-                SWIG_PYTHON_THREAD_END_BLOCK;
-            }
-        }
-
-        return self->create_participant_with_profile(profile_name, listener, mask);
-    }
-
     /**
      * Remove a Participant and all associated publishers and subscribers.
      *
@@ -164,8 +62,6 @@
     }
 }
 
-%ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant;
-%ignore eprosima::fastdds::dds::DomainParticipantFactory::create_participant_with_profile;
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::delete_participant;
 %ignore eprosima::fastdds::dds::DomainParticipantFactory::get_dynamic_type_builder_from_xml_by_name;
 
