@@ -20,7 +20,6 @@ add_test(NAME api_tests
         ${Python3_EXECUTABLE}
         -m pytest
         -vrP
-        --cdr v2
     WORKING_DIRECTORY
         ${CMAKE_CURRENT_SOURCE_DIR}/api
     )
