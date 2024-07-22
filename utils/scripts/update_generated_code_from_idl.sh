@@ -19,9 +19,9 @@ fi
 ret_value=0
 
 cd ./fastdds_python/test/types
-echo -e "Processing ${yellow}test_complete.idl test_modules.idl${textreset}"
-echo "Running: fastddsgen -cdr both -replace -python test_complete.idl test_modules.idl"
-fastddsgen -cdr both -replace -python test_complete.idl test_modules.idl
+echo -e "Processing ${yellow}test_complete.idl${textreset}"
+echo "Running: fastddsgen -replace -python test_complete.idl"
+fastddsgen -replace -python test_complete.idl
 if [[ $? != 0 ]]; then
     ret_value=-1
 fi
@@ -31,8 +31,8 @@ if [[ $ret_value != -1 ]]; then
     cd "./fastdds_python_examples/HelloWorldExample"
 
 echo -e "Processing ${yellow}HelloWorld.idl${textreset}"
-    echo "Running: fastddsgen -cdr both -replace -python HelloWorld.idl"
-    fastddsgen -cdr both -replace -python HelloWorld.idl
+    echo "Running: fastddsgen -replace -python HelloWorld.idl"
+    fastddsgen -replace -python HelloWorld.idl
 fi
 
 if [[ $? != 0 ]]; then
