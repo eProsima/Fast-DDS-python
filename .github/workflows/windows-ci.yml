@@ -59,9 +59,6 @@ jobs:
         vs-toolset:
           - 'v141'
           - 'v142'
-        fastdds-branch:
-          - '2.14.x'
-          - '2.13.x'
     if: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'conflicts') }}
     uses: ./.github/workflows/reusable-windows-ci.yml
     with:
@@ -69,11 +66,11 @@ jobs:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: ${{ inputs.os-version || 'windows-2019' }}
       vs-toolset: ${{ inputs.vs-toolset || matrix.vs-toolset }}
-      label: 'windows-${{ matrix.vs-toolset }}-ci-1.4.x-${{ matrix.fastdds-branch }}'
+      label: 'windows-${{ matrix.vs-toolset }}-ci-1.4.x'
       colcon-args: ${{ inputs.colcon-args }}
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
       fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref }}
-      fastdds-branch: ${{ inputs.fastdds-branch || matrix.fastdds-branch }}
+      fastdds-branch: ${{ inputs.fastdds-branch || '2.14.x' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
