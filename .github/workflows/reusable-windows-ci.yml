@@ -233,17 +233,11 @@ jobs:
       - name: Install doxygen
         uses: eProsima/eProsima-CI/external/install_doxygen@v0
 
-      - name: Prepare build meta file
-        uses: eProsima/eProsima-CI/windows/merge_yaml_metas@v0
-        with:
-          metas: "@('${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta', '${{ github.workspace }}/src/fastdds_python/.github/workflows/config/windows_test.meta')"
-          path: '${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build_test.meta'
-
       - name: Colcon build
         continue-on-error: false
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
-          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build_test.meta
+          colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/windows_test.meta
           colcon_build_args: ${{ inputs.colcon-args }}
           colcon_build_args_default: '--event-handlers console_direct+ --packages-select fastdds_python'
           cmake_args: ${{ inputs.cmake-args }}
