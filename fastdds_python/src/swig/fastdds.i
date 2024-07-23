@@ -173,6 +173,7 @@ namespace xtypes {
 %include "fastdds/dds/core/status/StatusMask.i"
 %include "fastdds/dds/core/policy/ParameterTypes.i"
 %include "fastdds/dds/core/policy/QosPolicies.i"
+%include "fastdds/dds/core/Time_t.i"
 %include "fastdds/dds/topic/IContentFilter.i"
 %include "fastdds/dds/topic/TopicDataType.i"
 %include "fastdds/dds/topic/IContentFilterFactory.i"
