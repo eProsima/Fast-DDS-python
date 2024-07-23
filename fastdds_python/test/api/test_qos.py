@@ -82,10 +82,10 @@ def test_datareader_qos():
     assert(2 == datareader_qos.resource_limits().extra_samples)
 
     # .user_data
-    datareader_qos.user_data().push_back(0)
-    datareader_qos.user_data().push_back(1)
-    datareader_qos.user_data().push_back(2)
-    datareader_qos.user_data().push_back(3)
+    datareader_qos.user_data().append(0)
+    datareader_qos.user_data().append(1)
+    datareader_qos.user_data().append(2)
+    datareader_qos.user_data().append(3)
     count = 1
     for user_value in datareader_qos.user_data():
         if 1 == count:
@@ -560,10 +560,10 @@ def test_datawriter_qos():
     assert(33 == datawriter_qos.lifespan().duration.nanosec)
 
     # .user_data
-    datawriter_qos.user_data().push_back(0)
-    datawriter_qos.user_data().push_back(1)
-    datawriter_qos.user_data().push_back(2)
-    datawriter_qos.user_data().push_back(3)
+    datawriter_qos.user_data().append(0)
+    datawriter_qos.user_data().append(1)
+    datawriter_qos.user_data().append(2)
+    datawriter_qos.user_data().append(3)
     count = 1
     for user_value in datawriter_qos.user_data():
         if 1 == count:
@@ -873,10 +873,10 @@ def test_topic_qos():
     topic_qos = fastdds.TopicQos()
 
     # .topic_data
-    topic_qos.topic_data().push_back(0)
-    topic_qos.topic_data().push_back(1)
-    topic_qos.topic_data().push_back(2)
-    topic_qos.topic_data().push_back(3)
+    topic_qos.topic_data().append(0)
+    topic_qos.topic_data().append(1)
+    topic_qos.topic_data().append(2)
+    topic_qos.topic_data().append(3)
     count = 1
     for topic_value in topic_qos.topic_data():
         if 1 == count:
@@ -1091,10 +1091,10 @@ def test_subscriber_qos():
     assert('Partition2' == subscriber_qos.partition()[1])
 
     # .group_data
-    subscriber_qos.group_data().push_back(0)
-    subscriber_qos.group_data().push_back(1)
-    subscriber_qos.group_data().push_back(2)
-    subscriber_qos.group_data().push_back(3)
+    subscriber_qos.group_data().append(0)
+    subscriber_qos.group_data().append(1)
+    subscriber_qos.group_data().append(2)
+    subscriber_qos.group_data().append(3)
     count = 1
     for group_value in subscriber_qos.group_data():
         if 1 == count:
@@ -1175,10 +1175,10 @@ def test_publisher_qos():
     assert('Partition2' == publisher_qos.partition()[1])
 
     # .group_data
-    publisher_qos.group_data().push_back(0)
-    publisher_qos.group_data().push_back(1)
-    publisher_qos.group_data().push_back(2)
-    publisher_qos.group_data().push_back(3)
+    publisher_qos.group_data().append(0)
+    publisher_qos.group_data().append(1)
+    publisher_qos.group_data().append(2)
+    publisher_qos.group_data().append(3)
     count = 1
     for group_value in publisher_qos.group_data():
         if 1 == count:
@@ -1353,10 +1353,10 @@ def test_domain_participant_qos():
     assert(not participant_qos.transport().use_builtin_transports)
 
     # .user_data
-    participant_qos.user_data().push_back(0)
-    participant_qos.user_data().push_back(1)
-    participant_qos.user_data().push_back(2)
-    participant_qos.user_data().push_back(3)
+    participant_qos.user_data().append(0)
+    participant_qos.user_data().append(1)
+    participant_qos.user_data().append(2)
+    participant_qos.user_data().append(3)
     count = 1
     for user_value in participant_qos.user_data():
         if 1 == count:
