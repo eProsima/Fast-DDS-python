@@ -133,8 +133,8 @@ namespace xtypes {
 // Failing to do so will issue a warning, but will not stop the compilation.
 // However, the resulting derived class will **not** be considered as inheriting from the base class
 
+#ifndef FASTDDS_DOCS_BUILD
 %include <fastcdr/config.h>
-#if FASTCDR_VERSION_MAJOR > 1
 %include "fastcdr/xcdr/optional.i"
 #endif
 

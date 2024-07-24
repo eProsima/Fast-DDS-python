@@ -15,18 +15,11 @@
 # Compile types
 add_subdirectory(types)
 
-set(fastcdr_version_argument "v2")
-if (${fastcdr_VERSION_MAJOR} EQUAL 1)
-    set(fastcdr_version_argument "v1")
-endif()
-
-
 add_test(NAME api_tests
     COMMAND
         ${Python3_EXECUTABLE}
         -m pytest
         -vrP
-        --cdr ${fastcdr_version_argument}
     WORKING_DIRECTORY
         ${CMAKE_CURRENT_SOURCE_DIR}/api
     )

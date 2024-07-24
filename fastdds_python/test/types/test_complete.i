@@ -55,9 +55,7 @@
 %}
 
 %include <fastcdr/config.h>
-#if FASTCDR_VERSION_MAJOR > 1
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
-#endif
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -443,9 +441,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::char_opt_field(char&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(charOpt) eprosima::fastcdr::optional<char>;
@@ -459,7 +454,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::char_opt_field(eprosima::fastcdr::optional<char>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -469,9 +463,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::uint8_opt_field(uint8_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint8_tOpt) eprosima::fastcdr::optional<uint8_t>;
@@ -485,7 +476,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::uint8_opt_field(eprosima::fastcdr::optional<uint8_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -495,9 +485,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::int16_opt_field(int16_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int16_tOpt) eprosima::fastcdr::optional<int16_t>;
@@ -511,7 +498,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::int16_opt_field(eprosima::fastcdr::optional<int16_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -521,9 +507,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::uint16_opt_field(uint16_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint16_tOpt) eprosima::fastcdr::optional<uint16_t>;
@@ -537,7 +520,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::uint16_opt_field(eprosima::fastcdr::optional<uint16_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -547,9 +529,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::int32_opt_field(int32_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int32_tOpt) eprosima::fastcdr::optional<int32_t>;
@@ -563,7 +542,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::int32_opt_field(eprosima::fastcdr::optional<int32_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -573,9 +551,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::uint32_opt_field(uint32_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint32_tOpt) eprosima::fastcdr::optional<uint32_t>;
@@ -589,7 +564,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::uint32_opt_field(eprosima::fastcdr::optional<uint32_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -599,9 +573,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::int64_opt_field(int64_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int64_tOpt) eprosima::fastcdr::optional<int64_t>;
@@ -615,7 +586,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::int64_opt_field(eprosima::fastcdr::optional<int64_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -625,9 +595,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::uint64_opt_field(uint64_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint64_tOpt) eprosima::fastcdr::optional<uint64_t>;
@@ -641,7 +608,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::uint64_opt_field(eprosima::fastcdr::optional<uint64_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -651,9 +617,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::float_opt_field(float&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(floatOpt) eprosima::fastcdr::optional<float>;
@@ -667,7 +630,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::float_opt_field(eprosima::fastcdr::optional<float>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -677,9 +639,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::double_opt_field(double&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(doubleOpt) eprosima::fastcdr::optional<double>;
@@ -693,7 +652,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::double_opt_field(eprosima::fastcdr::optional<double>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -703,9 +661,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::bool_opt_field(bool&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(boolOpt) eprosima::fastcdr::optional<bool>;
@@ -719,7 +674,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::bool_opt_field(eprosima::fastcdr::optional<bool>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -729,9 +683,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::string_opt_field(std::string&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(stringOpt) eprosima::fastcdr::optional<std::string>;
@@ -745,7 +696,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::string_opt_field(eprosima::fastcdr::optional<std::string>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -755,9 +705,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::enum_opt_field(Color&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(ColorOpt) eprosima::fastcdr::optional<Color>;
@@ -771,7 +718,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::enum_opt_field(eprosima::fastcdr::optional<Color>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -781,9 +727,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::enum2_opt_field(Material&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(MaterialOpt) eprosima::fastcdr::optional<Material>;
@@ -797,7 +740,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::enum2_opt_field(eprosima::fastcdr::optional<Material>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -807,9 +749,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore CompleteTestType::struct_opt_field(StructType&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(StructTypeOpt) eprosima::fastcdr::optional<StructType>;
@@ -823,7 +762,6 @@ namespace swig {
   }
 }
 %ignore CompleteTestType::struct_opt_field(eprosima::fastcdr::optional<StructType>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1737,9 +1675,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::char_opt_field(char&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(charOpt) eprosima::fastcdr::optional<char>;
@@ -1753,7 +1688,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::char_opt_field(eprosima::fastcdr::optional<char>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1763,9 +1697,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::uint8_opt_field(uint8_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint8_tOpt) eprosima::fastcdr::optional<uint8_t>;
@@ -1779,7 +1710,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::uint8_opt_field(eprosima::fastcdr::optional<uint8_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1789,9 +1719,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::int16_opt_field(int16_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int16_tOpt) eprosima::fastcdr::optional<int16_t>;
@@ -1805,7 +1732,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::int16_opt_field(eprosima::fastcdr::optional<int16_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1815,9 +1741,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::uint16_opt_field(uint16_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint16_tOpt) eprosima::fastcdr::optional<uint16_t>;
@@ -1831,7 +1754,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::uint16_opt_field(eprosima::fastcdr::optional<uint16_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1841,9 +1763,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::int32_opt_field(int32_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int32_tOpt) eprosima::fastcdr::optional<int32_t>;
@@ -1857,7 +1776,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::int32_opt_field(eprosima::fastcdr::optional<int32_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1867,9 +1785,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::uint32_opt_field(uint32_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint32_tOpt) eprosima::fastcdr::optional<uint32_t>;
@@ -1883,7 +1798,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::uint32_opt_field(eprosima::fastcdr::optional<uint32_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1893,9 +1807,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::int64_opt_field(int64_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(int64_tOpt) eprosima::fastcdr::optional<int64_t>;
@@ -1909,7 +1820,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::int64_opt_field(eprosima::fastcdr::optional<int64_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1919,9 +1829,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::uint64_opt_field(uint64_t&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(uint64_tOpt) eprosima::fastcdr::optional<uint64_t>;
@@ -1935,7 +1842,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::uint64_opt_field(eprosima::fastcdr::optional<uint64_t>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1945,9 +1851,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::float_opt_field(float&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(floatOpt) eprosima::fastcdr::optional<float>;
@@ -1961,7 +1864,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::float_opt_field(eprosima::fastcdr::optional<float>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1971,9 +1873,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::double_opt_field(double&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(doubleOpt) eprosima::fastcdr::optional<double>;
@@ -1987,7 +1886,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::double_opt_field(eprosima::fastcdr::optional<double>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -1997,9 +1895,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::bool_opt_field(bool&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(boolOpt) eprosima::fastcdr::optional<bool>;
@@ -2013,7 +1908,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::bool_opt_field(eprosima::fastcdr::optional<bool>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2023,9 +1917,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::string_opt_field(std::string&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(stringOpt) eprosima::fastcdr::optional<std::string>;
@@ -2039,7 +1930,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::string_opt_field(eprosima::fastcdr::optional<std::string>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2049,9 +1939,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::enum_opt_field(Color&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(ColorOpt) eprosima::fastcdr::optional<Color>;
@@ -2065,7 +1952,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::enum_opt_field(eprosima::fastcdr::optional<Color>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2075,9 +1961,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::enum2_opt_field(Material&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(MaterialOpt) eprosima::fastcdr::optional<Material>;
@@ -2091,7 +1974,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::enum2_opt_field(eprosima::fastcdr::optional<Material>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
@@ -2101,9 +1983,6 @@ namespace swig {
 
 
 
-#if FASTCDR_VERSION_MAJOR == 1
-%ignore KeyedCompleteTestType::struct_opt_field(StructType&&);
-#else
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
 %template(StructTypeOpt) eprosima::fastcdr::optional<StructType>;
@@ -2117,7 +1996,6 @@ namespace swig {
   }
 }
 %ignore KeyedCompleteTestType::struct_opt_field(eprosima::fastcdr::optional<StructType>&&);
-#endif
 
 // Overloaded getter methods shadow each other and are equivalent in python
 // Const accesors produced constant enums instead of arrays/dictionaries when used
