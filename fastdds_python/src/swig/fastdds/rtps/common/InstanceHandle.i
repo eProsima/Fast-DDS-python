@@ -77,6 +77,7 @@ long hash(const eprosima::fastrtps::rtps::InstanceHandle_t& handle)
 
 // Template for std::vector<InstanceHandle_t>
 %template(InstanceHandleVector) std::vector<eprosima::fastrtps::rtps::InstanceHandle_t>;
+%typemap(doctype) std::vector<eprosima::fastrtps::rtps::InstanceHandle_t>"InstanceHandleVector";
 
 %include "fastdds/rtps/common/InstanceHandle.h"
 
