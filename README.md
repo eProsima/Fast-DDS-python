@@ -10,11 +10,6 @@
 [![Fast DDS Python Ubuntu CI (nightly)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-ubuntu-ci.yml/badge.svg)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-ubuntu-ci.yml)
 [![Fast DDS Python Windows CI (nightly)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-windows-ci.yml/badge.svg)](https://github.com/eProsima/Fast-DDS-Python/actions/workflows/nightly-windows-ci.yml)
 
-<!-- TODO(eduponz): Remove this before releasing v3.0.0 -->
-> [!WARNING]
-> In preparation for v2.0.0 (bindings for Fast DDS v3.0.0), Fast DDS Python's master branch is undergoing major changes entailing **API breaks**.
-> Until Fast DDS Python v2.0.0 is released, it is strongly advisable to use the latest stable version, [v1.4.1](https://github.com/eProsima/Fast-DDS-python/tree/v1.4.1).
-
 *eProsima Fast DDS Python* is a Python binding for the [*eProsima Fast DDS*](https://github.com/eProsima/Fast-DDS) C++ library.
 This is a work in progress, but ultimately the goal is having the complete *Fast DDS* API available in Python.
 Two packages are available in this repository: the proper Python binding, `fastdds_python`, and the examples, `fastdds_python_examples`.
