@@ -38,3 +38,8 @@ minimum_version = "3.22"
 source_path = "fastdds_python"
 build_type = "Release"
 
+[tool.cibuildwheel]
+# use podman instead of docker
+container-engine = "podman"
+
+build = ["cp39-manylinux_x86_64"]
