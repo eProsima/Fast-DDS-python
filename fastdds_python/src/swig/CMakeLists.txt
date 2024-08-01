@@ -52,7 +52,7 @@ endif()
 if(MSVC OR MSVC_IDE)
     target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
 endif()
-target_compile_options(${PROJECT_NAME} PRIVATE -DPy_LIMITED_API=0x030A0000)
+target_compile_options(${PROJECT_NAME} PRIVATE -DPy_LIMITED_API=0x03090000)
 
 target_link_libraries(${PROJECT_NAME}
     Python3::Module

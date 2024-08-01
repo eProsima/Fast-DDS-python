@@ -14,6 +14,8 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build wheels
+        env:
+          CIBW_BEFORE_BUILD: "scripts/build_deps.sh"
         uses: pypa/cibuildwheel@v2.19.2
 
       - uses: actions/upload-artifact@v4
