@@ -11,17 +11,17 @@ if [[ ! "$(pwd -P)" -ef "${current_dir}" ]]; then
     exit -1
 fi
 
-if [[ -z "$(which fastddsgen)" ]]; then
-    echo "Cannot find fastddsgen. Please, include it in PATH environment variable"
-    exit -1
-fi
+# if [[ -z "$(which fastddsgen)" ]]; then
+#     echo "Cannot find fastddsgen. Please, include it in PATH environment variable"
+#     exit -1
+# fi
 
 ret_value=0
 
 cd ./fastdds_python/test/types
 echo -e "Processing ${yellow}test_complete.idl test_modules.idl${textreset}"
 echo "Running: fastddsgen -replace -python test_complete.idl test_modules.idl"
-fastddsgen -replace -python test_complete.idl test_modules.idl
+/home/eprosima/fast-dds_ws_3/src/fastddsgen/scripts/fastddsgen -replace -python test_complete.idl test_modules.idl
 if [[ $? != 0 ]]; then
     ret_value=-1
 fi
@@ -32,7 +32,7 @@ if [[ $ret_value != -1 ]]; then
 
 echo -e "Processing ${yellow}HelloWorld.idl${textreset}"
     echo "Running: fastddsgen -replace -python HelloWorld.idl"
-    fastddsgen -replace -python HelloWorld.idl
+    /home/eprosima/fast-dds_ws_3/src/fastddsgen/scripts/fastddsgen -replace -python HelloWorld.idl
 fi
 
 if [[ $? != 0 ]]; then
