@@ -219,6 +219,34 @@ void serialize_key(
 
     static_cast<void>(scdr);
     static_cast<void>(data);
+                        scdr << data.char_field();
+
+                        scdr << data.uint8_field();
+
+                        scdr << data.int16_field();
+
+                        scdr << data.uint16_field();
+
+                        scdr << data.int32_field();
+
+                        scdr << data.uint32_field();
+
+                        scdr << data.int64_field();
+
+                        scdr << data.uint64_field();
+
+                        scdr << data.float_field();
+
+                        scdr << data.double_field();
+
+                        scdr << data.bool_field();
+
+                        scdr << data.string_field();
+
+                        scdr << data.enum_field();
+
+                        scdr << data.enum2_field();
+
 }
 
 

@@ -219,6 +219,34 @@ void serialize_key(
 
     static_cast<void>(scdr);
     static_cast<void>(data);
+                        scdr << data.char_field();
+
+                        scdr << data.uint8_field();
+
+                        scdr << data.int16_field();
+
+                        scdr << data.uint16_field();
+
+                        scdr << data.int32_field();
+
+                        scdr << data.uint32_field();
+
+                        scdr << data.int64_field();
+
+                        scdr << data.uint64_field();
+
+                        scdr << data.float_field();
+
+                        scdr << data.double_field();
+
+                        scdr << data.bool_field();
+
+                        scdr << data.string_field();
+
+                        scdr << data.enum_field();
+
+                        scdr << data.enum2_field();
+
 }
 
 
@@ -870,9 +898,262 @@ void serialize_key(
         const eprosima::test::CompleteTestType& data)
 {
     using namespace eprosima::test;
+            extern void serialize_key(
+                    Cdr& scdr,
+                    const eprosima::test::StructType& data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            extern void serialize_key(
+                    Cdr& scdr,
+                    const eprosima::test::StructType& data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     static_cast<void>(scdr);
     static_cast<void>(data);
+                        scdr << data.char_field();
+
+                        scdr << data.uint8_field();
+
+                        scdr << data.int16_field();
+
+                        scdr << data.uint16_field();
+
+                        scdr << data.int32_field();
+
+                        scdr << data.uint32_field();
+
+                        scdr << data.int64_field();
+
+                        scdr << data.uint64_field();
+
+                        scdr << data.float_field();
+
+                        scdr << data.double_field();
+
+                        scdr << data.bool_field();
+
+                        scdr << data.string_field();
+
+                        scdr << data.enum_field();
+
+                        scdr << data.enum2_field();
+
+                        serialize_key(scdr, data.struct_field());
+
+                        if (data.char_opt_field().has_value())
+                        {
+                            scdr << data.char_opt_field().value();
+                        }
+
+                        if (data.uint8_opt_field().has_value())
+                        {
+                            scdr << data.uint8_opt_field().value();
+                        }
+
+                        if (data.int16_opt_field().has_value())
+                        {
+                            scdr << data.int16_opt_field().value();
+                        }
+
+                        if (data.uint16_opt_field().has_value())
+                        {
+                            scdr << data.uint16_opt_field().value();
+                        }
+
+                        if (data.int32_opt_field().has_value())
+                        {
+                            scdr << data.int32_opt_field().value();
+                        }
+
+                        if (data.uint32_opt_field().has_value())
+                        {
+                            scdr << data.uint32_opt_field().value();
+                        }
+
+                        if (data.int64_opt_field().has_value())
+                        {
+                            scdr << data.int64_opt_field().value();
+                        }
+
+                        if (data.uint64_opt_field().has_value())
+                        {
+                            scdr << data.uint64_opt_field().value();
+                        }
+
+                        if (data.float_opt_field().has_value())
+                        {
+                            scdr << data.float_opt_field().value();
+                        }
+
+                        if (data.double_opt_field().has_value())
+                        {
+                            scdr << data.double_opt_field().value();
+                        }
+
+                        if (data.bool_opt_field().has_value())
+                        {
+                            scdr << data.bool_opt_field().value();
+                        }
+
+                        if (data.string_opt_field().has_value())
+                        {
+                            scdr << data.string_opt_field().value();
+                        }
+
+                        if (data.enum_opt_field().has_value())
+                        {
+                            scdr << data.enum_opt_field().value();
+                        }
+
+                        if (data.enum2_opt_field().has_value())
+                        {
+                            scdr << data.enum2_opt_field().value();
+                        }
+
+                        if (data.struct_opt_field().has_value())
+                        {
+                            serialize_key(scdr, data.struct_opt_field().value());
+                        }
+
+                        scdr << data.array_char_field();
+
+                        scdr << data.array_uint8_field();
+
+                        scdr << data.array_int16_field();
+
+                        scdr << data.array_uint16_field();
+
+                        scdr << data.array_int32_field();
+
+                        scdr << data.array_uint32_field();
+
+                        scdr << data.array_int64_field();
+
+                        scdr << data.array_uint64_field();
+
+                        scdr << data.array_float_field();
+
+                        scdr << data.array_double_field();
+
+                        scdr << data.array_bool_field();
+
+                        scdr << data.array_enum_field();
+
+                        scdr << data.array_enum2_field();
+
+                        scdr << data.array_struct_field();
+
+                        scdr << data.bounded_sequence_char_field();
+
+                        scdr << data.bounded_sequence_uint8_field();
+
+                        scdr << data.bounded_sequence_int16_field();
+
+                        scdr << data.bounded_sequence_uint16_field();
+
+                        scdr << data.bounded_sequence_int32_field();
+
+                        scdr << data.bounded_sequence_uint32_field();
+
+                        scdr << data.bounded_sequence_int64_field();
+
+                        scdr << data.bounded_sequence_uint64_field();
+
+                        scdr << data.bounded_sequence_float_field();
+
+                        scdr << data.bounded_sequence_double_field();
+
+                        scdr << data.bounded_sequence_bool_field();
+
+                        scdr << data.bounded_sequence_enum_field();
+
+                        scdr << data.bounded_sequence_enum2_field();
+
+                        scdr << data.bounded_sequence_struct_field();
+
+                        scdr << data.unbounded_sequence_char_field();
+
+                        scdr << data.unbounded_sequence_uint8_field();
+
+                        scdr << data.unbounded_sequence_int16_field();
+
+                        scdr << data.unbounded_sequence_uint16_field();
+
+                        scdr << data.unbounded_sequence_int32_field();
+
+                        scdr << data.unbounded_sequence_uint32_field();
+
+                        scdr << data.unbounded_sequence_int64_field();
+
+                        scdr << data.unbounded_sequence_uint64_field();
+
+                        scdr << data.unbounded_sequence_float_field();
+
+                        scdr << data.unbounded_sequence_double_field();
+
+                        scdr << data.unbounded_sequence_bool_field();
+
+                        scdr << data.unbounded_sequence_enum_field();
+
+                        scdr << data.unbounded_sequence_enum2_field();
+
+                        scdr << data.unbounded_sequence_struct_field();
+
 }
 
 
@@ -1530,10 +1811,74 @@ void serialize_key(
         const eprosima::test::KeyedCompleteTestType& data)
 {
     using namespace eprosima::test;
+            extern void serialize_key(
+                    Cdr& scdr,
+                    const eprosima::test::StructType& data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            extern void serialize_key(
+                    Cdr& scdr,
+                    const eprosima::test::StructType& data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     static_cast<void>(scdr);
     static_cast<void>(data);
-                            scdr << data.id();
+                        scdr << data.id();
 
 
 
