@@ -5,7 +5,7 @@
 set -eu
 
 # Install tinyxml2 and asio
-yum install -y tinyxml2-devel asio-devel
+# yum install -y tinyxml2-devel asio-devel
 
 # Foo nathan
 git clone --branch v0.7-3 https://github.com/foonathan/memory.git
