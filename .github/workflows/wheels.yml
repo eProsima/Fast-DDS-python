@@ -29,6 +29,7 @@ jobs:
   build-fastdds-linux:
     name: Build fast DDS library for manylinux2014
     runs-on: ubuntu-latest
+    image: quay.io/pypa/manylinux_2014_x86_64
 
     steps:
       - uses: actions/checkout@v4
