@@ -63,6 +63,19 @@ colcon build
 
 Please, refer to [colcon documentation](https://colcon.readthedocs.io/en/released/reference/verb/build.html) for more information, such as building only one of the packages.
 
+### Building a python wheel
+
+First build fast DDS as per usual. Setup CMAKE_PREFIX_PATH to point to this installation.
+
+Then build the python wheel using the [build frontend](https://build.pypa.io/en/stable/) and the [py-cmake-build](https://tttapa.github.io/py-build-cmake/) backend:
+
+```bash
+export CMAKE_PREFIX_PATH=~/fastdds/install
+pip install build
+python -m build  .
+
+```
+
 ## Python example
 
 Fast DDS documentation includes a first publisher-subscriber application using Python.

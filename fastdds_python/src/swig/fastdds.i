@@ -24,14 +24,14 @@
     std::string err_msg("In method '$symname': ");
 
     PyObject* exc_str = PyObject_GetAttrString(exc, "__name__");
-    err_msg += PyUnicode_AsUTF8(exc_str);
+    err_msg += "Oi";// PyUnicode_AsUTF8(exc_str);
     Py_XDECREF(exc_str);
 
     if (val != NULL)
     {
       PyObject* val_str = PyObject_Str(val);
       err_msg += ": ";
-      err_msg += PyUnicode_AsUTF8(val_str);
+      err_msg += "Oi"; // PyUnicode_AsUTF8(val_str);
       Py_XDECREF(val_str);
     }
 
