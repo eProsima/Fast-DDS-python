@@ -9,3 +9,6 @@ __pycache__
 
 # ignore vscode folder
 .vscode
+
+# py-build-cmake cache folder
+.py-build-cmake_cache

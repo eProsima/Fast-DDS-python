@@ -7,15 +7,17 @@ jobs:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest] # TODO:, macos-latest]
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build wheels
         env:
-          CIBW_BEFORE_BUILD: "scripts/build_deps.sh"
+          CIBW_BEFORE_BUILD_LINUX: "scripts/build_deps.sh"
+          CIBW_BEFORE_BUILD_WINDOWS: "scripts/build_deps.bat"
         uses: pypa/cibuildwheel@v2.19.2
 
       - uses: actions/upload-artifact@v4
