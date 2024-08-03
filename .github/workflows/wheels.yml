@@ -86,7 +86,7 @@ jobs:
         with:
           path: ./wheelhouse/*.whl
 
-  build-ubuntu-wheels:
+  build-linux-wheels:
     name: Build wheels for linux
     runs-on: ubuntu-latest
     needs: build-fastdds-linux
