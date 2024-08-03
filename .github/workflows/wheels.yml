@@ -19,7 +19,9 @@ jobs:
 
       - name: Build fast DDS library
         if: steps.cache-build.outputs.cache-hit != 'true'
-        run: scripts/build_deps.sh
+        run: |
+          sudo apt install -y libasio-dev libtinyxml2-dev libssl-dev
+          scripts/build_deps.sh
 
       - uses: actions/upload-artifact@v4
         with:
@@ -29,7 +31,7 @@ jobs:
   build-fastdds-linux:
     name: Build fast DDS library for manylinux2014
     runs-on: ubuntu-latest
-    container: quay.io/pypa/manylinux_2014_x86_64
+    container: quay.io/pypa/manylinux2014_x86_64
 
     steps:
       - uses: actions/checkout@v4
