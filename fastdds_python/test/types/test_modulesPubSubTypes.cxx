@@ -186,7 +186,8 @@ namespace eprosima {
                     eprosima_test_StructType_max_key_cdr_typesize);
 
             // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv1);
+            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv2);
+            ser.set_encoding_flag(eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR2);
             eprosima::fastcdr::serialize_key(ser, *p_type);
             if (force_md5 || eprosima_test_StructType_max_key_cdr_typesize > 16)
             {
@@ -368,7 +369,8 @@ namespace eprosima {
                     eprosima_test_CompleteTestType_max_key_cdr_typesize);
 
             // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv1);
+            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv2);
+            ser.set_encoding_flag(eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR2);
             eprosima::fastcdr::serialize_key(ser, *p_type);
             if (force_md5 || eprosima_test_CompleteTestType_max_key_cdr_typesize > 16)
             {
@@ -548,7 +550,8 @@ namespace eprosima {
                     eprosima_test_KeyedCompleteTestType_max_key_cdr_typesize);
 
             // Object that serializes the data.
-            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv1);
+            eprosima::fastcdr::Cdr ser(fastbuffer, eprosima::fastcdr::Cdr::BIG_ENDIANNESS, eprosima::fastcdr::CdrVersion::XCDRv2);
+            ser.set_encoding_flag(eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR2);
             eprosima::fastcdr::serialize_key(ser, *p_type);
             if (force_md5 || eprosima_test_KeyedCompleteTestType_max_key_cdr_typesize > 16)
             {
