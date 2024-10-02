@@ -862,7 +862,7 @@ def test_get_matched_publication_data(datareader):
     """
     pub_data = fastdds.PublicationBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
            datareader.get_matched_publication_data(pub_data, ih))
 
 
@@ -872,7 +872,7 @@ def test_get_matched_publications(datareader):
     - DataReader::get_matched_publications
     """
     ihs = fastdds.InstanceHandleVector()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datareader.get_matched_publications(ihs))
 
 
