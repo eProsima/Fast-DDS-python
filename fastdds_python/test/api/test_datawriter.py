@@ -350,7 +350,7 @@ def test_get_matched_subscription_data(datawriter):
     """
     sub_data = fastdds.SubscriptionBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_BAD_PARAMETER ==
            datawriter.get_matched_subscription_data(sub_data, ih))
 
 
@@ -360,7 +360,7 @@ def test_get_matched_subscriptions(datawriter):
     - DataWriter::get_matched_subscriptions
     """
     ihs = fastdds.InstanceHandleVector()
-    assert(fastdds.ReturnCode_t.RETCODE_UNSUPPORTED ==
+    assert(fastdds.ReturnCode_t.RETCODE_OK ==
            datawriter.get_matched_subscriptions(ihs))
 
 
