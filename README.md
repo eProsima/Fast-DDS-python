@@ -38,7 +38,7 @@ sudo apt install -y \
     libtinyxml2-dev
 ```
 
-Additionally, *Fast DDS Python* also depends on [SWIG 4.0](http://www.swig.org/) and python3-dev. Install these dependencies running:
+Additionally, *Fast DDS Python* also depends on a [SWIG](http://www.swig.org/) version lower than 4.2 (4.1 is recommended) and python3-dev. Install these dependencies running:  
 ```bash
 sudo apt update
 sudo apt install -y \
