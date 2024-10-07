@@ -42,7 +42,7 @@ Additionally, *Fast DDS Python* also depends on [SWIG 4.0](http://www.swig.org/)
 ```bash
 sudo apt update
 sudo apt install -y \
-    swig \
+    swig4.1 \
     libpython3-dev
 ```
 
