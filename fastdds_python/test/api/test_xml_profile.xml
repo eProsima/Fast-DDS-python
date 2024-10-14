@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"  ?>
+<dds xmlns="http://www.eprosima.com">
+    <profiles>
+        <participant profile_name="test_participant_profile" is_default_profile="true">
+            <domainId>3</domainId>
+            <rtps>
+                <name>test_name</name>
+            </rtps>
+        </participant>
+
+        <publisher profile_name="test_publisher_profile" is_default_profile="true">
+            <qos>
+                <partition>
+                    <names>
+                        <name>partition_name_c</name>
+                    </names>
+                </partition>
+                <durability>
+                    <kind>VOLATILE</kind>
+                </durability>
+            </qos>
+        </publisher>
+
+        <subscriber profile_name="test_subscriber_profile" is_default_profile="true">
+            <qos>
+                <partition>
+                    <names>
+                        <name>partition_name_b</name>
+                    </names>
+                </partition>
+                <reliability>
+                    <kind>RELIABLE</kind>
+                </reliability>
+            </qos>
+        </subscriber>
+
+        <topic profile_name="test_topic_profile" is_default_profile="true">
+            <historyQos>
+                <kind>KEEP_LAST</kind>
+                <depth>20</depth>
+            </historyQos>
+            <resourceLimitsQos>
+                <max_samples>200</max_samples>
+                <max_instances>20</max_instances>
+                <max_samples_per_instance>100</max_samples_per_instance>
+                <allocated_samples>50</allocated_samples>
+            </resourceLimitsQos>
+        </topic>
+
+        <replier profile_name="test_replier_profile"
+                service_name="service_name"
+                request_type="request_type"
+                reply_type="reply_type"
+                is_default_profile="true">
+            <request_topic_name>request_topic_name</request_topic_name>
+            <reply_topic_name>reply_topic_name</reply_topic_name>
+            <data_writer>
+                <qos>
+                    <liveliness>
+                        <kind>MANUAL_BY_TOPIC</kind>
+                    </liveliness>
+                </qos>
+            </data_writer>
+            <data_reader>
+                <qos>
+                    <liveliness>
+                        <kind>MANUAL_BY_TOPIC</kind>
+                    </liveliness>
+                </qos>
+            </data_reader>
+        </replier>
+
+        <requester profile_name="test_requester_profile"
+                service_name="service_name"
+                request_type="request_type"
+                reply_type="reply_type"
+                is_default_profile="true">
+            <request_topic_name>request_topic_name</request_topic_name>
+            <reply_topic_name>reply_topic_name</reply_topic_name>
+            <data_writer>
+                <qos>
+                    <liveliness>
+                        <kind>MANUAL_BY_TOPIC</kind>
+                    </liveliness>
+                </qos>
+            </data_writer>
+            <data_reader>
+                <qos>
+                    <liveliness>
+                        <kind>MANUAL_BY_TOPIC</kind>
+                    </liveliness>
+                </qos>
+            </data_reader>
+        </requester>
+    </profiles>
+</dds>

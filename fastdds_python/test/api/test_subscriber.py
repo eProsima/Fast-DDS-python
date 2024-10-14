@@ -468,3 +468,58 @@ def test_listener_ownership(participant, writer_participant, topic,
            participant.delete_subscriber(subscriber))
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
+
+def test_get_datareader_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+
+    qos = fastdds.DataReaderQos()
+    ret = subscriber.get_datareader_qos_from_xml(
+            xml_content, qos, 'test_subscriber_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.DataReaderQos()
+    ret = subscriber.get_datareader_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    # Non matching name takes the first subscriber found (the only one)
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+def test_get_default_datareader_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    subscriber = participant.create_subscriber(fastdds.SUBSCRIBER_QOS_DEFAULT)
+
+    default_qos = fastdds.DataReaderQos()
+    ret = subscriber.get_default_datareader_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.DataReaderQos()
+    ret = subscriber.get_datareader_qos_from_xml(
+            xml_content, qos, 'test_subscriber_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           participant.delete_subscriber(subscriber))
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))

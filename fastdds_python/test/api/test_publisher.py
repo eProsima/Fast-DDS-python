@@ -491,3 +491,58 @@ def test_listener_ownership(participant, reader_participant, topic,
            participant.delete_publisher(publisher))
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
+
+def test_get_datawriter_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+
+    qos = fastdds.DataWriterQos()
+    ret = publisher.get_datawriter_qos_from_xml(
+            xml_content, qos, 'test_publisher_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.DataWriterQos()
+    ret = publisher.get_datawriter_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    # Non matching name takes the first publisher found (the only one)
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+def test_get_default_datawriter_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+    publisher = participant.create_publisher(fastdds.PUBLISHER_QOS_DEFAULT)
+
+    default_qos = fastdds.DataWriterQos()
+    ret = publisher.get_default_datawriter_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.DataWriterQos()
+    ret = publisher.get_datawriter_qos_from_xml(
+            xml_content, qos, 'test_publisher_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           participant.delete_publisher(publisher))
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
