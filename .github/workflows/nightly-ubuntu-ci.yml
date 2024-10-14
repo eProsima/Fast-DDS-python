@@ -21,8 +21,8 @@ jobs:
       use-ccache: false
 
   # python 2.0.x - fastdds 3.0.x
-  nightly-ubuntu-ci-3_0_x:
-    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@3.0.x
+  nightly-ubuntu-ci-2_0_x:
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@2.0.x
     with:
       # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
