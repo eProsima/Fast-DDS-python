@@ -208,3 +208,82 @@ def test_create_participant_with_profile():
          fastdds.StatusMask.sample_rejected() <<
          fastdds.StatusMask.subscription_matched(),
          listener)
+
+def test_get_participant_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+
+    qos = fastdds.DomainParticipantQos()
+    ret = factory.get_participant_qos_from_xml(
+            xml_content, qos, 'test_participant_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.DomainParticipantQos()
+    ret = factory.get_participant_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+
+def test_get_default_participant_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+
+    default_qos = fastdds.DomainParticipantQos()
+    ret = factory.get_default_participant_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.DomainParticipantQos()
+    ret = factory.get_participant_qos_from_xml(
+            xml_content, qos, 'test_participant_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+
+def test_get_participant_extended_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+
+    qos = fastdds.DomainParticipantExtendedQos()
+    ret = factory.get_participant_extended_qos_from_xml(
+            xml_content, qos, 'test_participant_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.DomainParticipantExtendedQos()
+    ret = factory.get_participant_extended_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+
+def test_get_default_participant_extended_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+
+    default_qos = fastdds.DomainParticipantExtendedQos()
+    ret = factory.get_default_participant_extended_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.DomainParticipantExtendedQos()
+    ret = factory.get_participant_extended_qos_from_xml(
+            xml_content, qos, 'test_participant_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)

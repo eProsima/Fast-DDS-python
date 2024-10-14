@@ -796,3 +796,253 @@ def test_listener_ownership():
            factory.delete_participant(participant))
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant2))
+
+
+def test_get_publisher_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    qos = fastdds.PublisherQos()
+    ret = participant.get_publisher_qos_from_xml(
+            xml_content, qos, 'test_publisher_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.PublisherQos()
+    ret = participant.get_publisher_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_default_publisher_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    default_qos = fastdds.PublisherQos()
+    ret = participant.get_default_publisher_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.PublisherQos()
+    ret = participant.get_publisher_qos_from_xml(
+            xml_content, qos, 'test_publisher_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_subscriber_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    qos = fastdds.SubscriberQos()
+    ret = participant.get_subscriber_qos_from_xml(
+            xml_content, qos, 'test_subscriber_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.SubscriberQos()
+    ret = participant.get_subscriber_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_default_subscriber_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    default_qos = fastdds.SubscriberQos()
+    ret = participant.get_default_subscriber_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.SubscriberQos()
+    ret = participant.get_subscriber_qos_from_xml(
+            xml_content, qos, 'test_subscriber_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_topic_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    qos = fastdds.TopicQos()
+    ret = participant.get_topic_qos_from_xml(
+            xml_content, qos, 'test_topic_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.TopicQos()
+    ret = participant.get_topic_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_default_topic_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    default_qos = fastdds.TopicQos()
+    ret = participant.get_default_topic_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.TopicQos()
+    ret = participant.get_topic_qos_from_xml(
+            xml_content, qos, 'test_topic_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_requester_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    qos = fastdds.RequesterQos()
+    ret = participant.get_requester_qos_from_xml(
+            xml_content, qos, 'test_requester_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.RequesterQos()
+    ret = participant.get_requester_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_default_requester_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    default_qos = fastdds.RequesterQos()
+    ret = participant.get_default_requester_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.RequesterQos()
+    ret = participant.get_requester_qos_from_xml(
+            xml_content, qos, 'test_requester_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_replier_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    qos = fastdds.ReplierQos()
+    ret = participant.get_replier_qos_from_xml(
+            xml_content, qos, 'test_replier_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos_no_name = fastdds.ReplierQos()
+    ret = participant.get_replier_qos_from_xml(
+            xml_content, qos_no_name)
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(qos == qos_no_name)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
+
+
+def test_get_default_replier_qos_from_xml():
+
+    with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
+        xml_content = file.read()
+
+    factory = fastdds.DomainParticipantFactory.get_instance()
+    participant = factory.create_participant(
+            0, fastdds.PARTICIPANT_QOS_DEFAULT)
+
+    default_qos = fastdds.ReplierQos()
+    ret = participant.get_default_replier_qos_from_xml(
+            xml_content, default_qos)
+    assert(fastdds.RETCODE_OK == ret)
+
+    qos = fastdds.ReplierQos()
+    ret = participant.get_replier_qos_from_xml(
+            xml_content, qos, 'test_replier_profile')
+    assert(fastdds.RETCODE_OK == ret)
+
+    assert(default_qos == qos)
+
+    assert(fastdds.RETCODE_OK ==
+           factory.delete_participant(participant))
