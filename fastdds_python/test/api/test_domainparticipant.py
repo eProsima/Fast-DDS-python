@@ -797,7 +797,6 @@ def test_listener_ownership():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant2))
 
-
 def test_get_publisher_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -817,11 +816,11 @@ def test_get_publisher_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first publisher found (the only one)
     assert(qos == qos_no_name)
 
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-
 
 def test_get_default_publisher_qos_from_xml():
 
@@ -847,7 +846,6 @@ def test_get_default_publisher_qos_from_xml():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-
 def test_get_subscriber_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -867,11 +865,11 @@ def test_get_subscriber_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first subscriber found (the only one)
     assert(qos == qos_no_name)
 
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-
 
 def test_get_default_subscriber_qos_from_xml():
 
@@ -897,7 +895,6 @@ def test_get_default_subscriber_qos_from_xml():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-
 def test_get_topic_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -917,11 +914,11 @@ def test_get_topic_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first topic found (the only one)
     assert(qos == qos_no_name)
 
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-
 
 def test_get_default_topic_qos_from_xml():
 
@@ -947,7 +944,6 @@ def test_get_default_topic_qos_from_xml():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-
 def test_get_requester_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -967,11 +963,11 @@ def test_get_requester_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first requester found (the only one)
     assert(qos == qos_no_name)
 
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-
 
 def test_get_default_requester_qos_from_xml():
 
@@ -997,7 +993,6 @@ def test_get_default_requester_qos_from_xml():
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-
 def test_get_replier_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -1017,11 +1012,11 @@ def test_get_replier_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first replier found (the only one)
     assert(qos == qos_no_name)
 
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-
 
 def test_get_default_replier_qos_from_xml():
 

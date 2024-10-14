@@ -492,7 +492,6 @@ def test_listener_ownership(participant, reader_participant, topic,
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
 
-
 def test_get_datawriter_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -513,13 +512,13 @@ def test_get_datawriter_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first publisher found (the only one)
     assert(qos == qos_no_name)
 
     assert(fastdds.RETCODE_OK ==
            participant.delete_publisher(publisher))
     assert(fastdds.RETCODE_OK ==
            factory.delete_participant(participant))
-
 
 def test_get_default_datawriter_qos_from_xml():
 

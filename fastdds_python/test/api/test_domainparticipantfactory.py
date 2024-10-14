@@ -226,8 +226,8 @@ def test_get_participant_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first participant found (the only one)
     assert(qos == qos_no_name)
-
 
 def test_get_default_participant_qos_from_xml():
 
@@ -248,7 +248,6 @@ def test_get_default_participant_qos_from_xml():
 
     assert(default_qos == qos)
 
-
 def test_get_participant_extended_qos_from_xml():
 
     with open("test_xml_profile.xml", "r", encoding="utf-8") as file:
@@ -266,8 +265,8 @@ def test_get_participant_extended_qos_from_xml():
             xml_content, qos_no_name)
     assert(fastdds.RETCODE_OK == ret)
 
+    # Non matching name takes the first participant found (the only one)
     assert(qos == qos_no_name)
-
 
 def test_get_default_participant_extended_qos_from_xml():
 
