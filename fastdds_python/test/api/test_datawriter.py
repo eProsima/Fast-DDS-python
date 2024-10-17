@@ -308,26 +308,40 @@ def test_get_liveliness_lost_status(datawriter):
     assert(0 == status.total_count_change)
 
 
-def test_get_matched_subscription_data(datawriter):
+def test_get_matched_subscription_data(datawriter, reader_topic, subscriber):
     """
     This test checks:
     - DataWriter::get_matched_subscription_data
     """
+    # Check with an invalid instance handle
     sub_data = fastdds.SubscriptionBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
     assert(fastdds.RETCODE_BAD_PARAMETER ==
            datawriter.get_matched_subscription_data(sub_data, ih))
 
+    # Add a reader and check that the datawriter has matched subscriptions
+    datareader = subscriber.create_datareader(reader_topic, fastdds.DATAREADER_QOS_DEFAULT)
+    time.sleep(1)
+    assert(fastdds.RETCODE_OK ==
+           datawriter.get_matched_subscription_data(sub_data, datareader.get_instance_handle()))
+    assert(sub_data.guid == datareader.guid())
+    assert(fastdds.RETCODE_OK ==
+           subscriber.delete_datareader(datareader))
 
-def test_get_matched_subscriptions(datawriter):
+def test_get_matched_subscriptions(datawriter, reader_topic, subscriber):
     """
     This test checks:
     - DataWriter::get_matched_subscriptions
     """
     ihs = fastdds.InstanceHandleVector()
+    # Add a reader and check that the datawriter has matched subscriptions
+    datareader = subscriber.create_datareader(reader_topic, fastdds.DATAREADER_QOS_DEFAULT)
+    time.sleep(1)
+    assert(fastdds.RETCODE_OK == datawriter.get_matched_subscriptions(ihs))
+    assert(1 == ihs.size())
+    assert(ihs[0] == datareader.get_instance_handle())
     assert(fastdds.RETCODE_OK ==
-           datawriter.get_matched_subscriptions(ihs))
-
+           subscriber.delete_datareader(datareader))
 
 def test_get_offered_deadline_missed_status(datawriter):
     """
