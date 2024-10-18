@@ -14,6 +14,12 @@
 This is a work in progress, but ultimately the goal is having the complete *Fast DDS* API available in Python.
 Two packages are available in this repository: the proper Python binding, `fastdds_python`, and the examples, `fastdds_python_examples`.
 
+## Commercial support
+
+Looking for commercial support? Write us to info@eprosima.com
+
+Find more about us at [eProsima’s webpage](https://eprosima.com/).
+
 ## Installation guide
 
 This tutorial shows how to build *Fast DDS Python* using [colcon](https://colcon.readthedocs.io), a command line tool to build sets of software packages.
@@ -38,7 +44,7 @@ sudo apt install -y \
     libtinyxml2-dev
 ```
 
-Additionally, *Fast DDS Python* also depends on a [SWIG](http://www.swig.org/) version lower than 4.2 (4.1 is recommended) and python3-dev. Install these dependencies running:  
+Additionally, *Fast DDS Python* also depends on a [SWIG](http://www.swig.org/) version lower than 4.2 (4.1 is recommended) and python3-dev. Install these dependencies running:
 ```bash
 sudo apt update
 sudo apt install -y \
