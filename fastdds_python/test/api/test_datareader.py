@@ -802,6 +802,7 @@ def test_get_matched_publications(datareader, datawriter):
     # The datawriter (added in the fixture) is the only
     # one that should be matched
     assert(1 == ihs.size())
+    assert(ihs[0] == datawriter.get_instance_handle())
 
 
 def test_get_requested_deadline_missed_status(datareader):
