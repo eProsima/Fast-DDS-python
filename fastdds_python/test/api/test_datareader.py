@@ -773,25 +773,36 @@ def test_get_liveliness_changed_status(datareader):
     assert(fastdds.c_InstanceHandle_Unknown == status.last_publication_handle)
 
 
-def test_get_matched_publication_data(datareader):
+def test_get_matched_publication_data(datareader, datawriter):
     """
     This test checks:
     - DataReader::get_matched_publication_data
     """
+    # Check with an invalid instance handle
     pub_data = fastdds.PublicationBuiltinTopicData()
     ih = fastdds.InstanceHandle_t()
-    assert(fastdds.RETCODE_UNSUPPORTED ==
+    assert(fastdds.RETCODE_BAD_PARAMETER ==
            datareader.get_matched_publication_data(pub_data, ih))
 
+    time.sleep(1)
+    # Check with the writer's instance handle
+    assert(fastdds.RETCODE_OK ==
+           datareader.get_matched_publication_data(pub_data, datawriter.get_instance_handle()))
+    assert(pub_data.guid == datawriter.guid())
 
-def test_get_matched_publications(datareader):
+def test_get_matched_publications(datareader, datawriter):
     """
     This test checks:
     - DataReader::get_matched_publications
     """
     ihs = fastdds.InstanceHandleVector()
-    assert(fastdds.RETCODE_UNSUPPORTED ==
+    time.sleep(1)
+    assert(fastdds.RETCODE_OK ==
            datareader.get_matched_publications(ihs))
+    # The datawriter (added in the fixture) is the only
+    # one that should be matched
+    assert(1 == ihs.size())
+    assert(ihs[0] == datawriter.get_instance_handle())
 
 
 def test_get_requested_deadline_missed_status(datareader):
