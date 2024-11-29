@@ -24,7 +24,7 @@ if(POLICY CMP0086)
   cmake_policy(SET CMP0086 NEW)
 endif()
 
-project(fastdds_python VERSION 1.4.2)
+project(fastdds_python VERSION 1.4.3)
 
 # Set BUILD_TESTING to OFF by default.
 if(NOT BUILD_TESTING)
