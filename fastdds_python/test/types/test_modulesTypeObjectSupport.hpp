@@ -78,8 +78,6 @@ eProsima_user_DllExport void register_Material_type_identifier(
 eProsima_user_DllExport void register_StructType_type_identifier(
         eprosima::fastdds::dds::xtypes::TypeIdentifierPair& type_ids);
 
-
-
 /**
  * @brief Register CompleteTestType related TypeIdentifier.
  *        Fully-descriptive TypeIdentifiers are directly registered.

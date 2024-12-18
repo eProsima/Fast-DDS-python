@@ -123,8 +123,6 @@ namespace eprosima
 
         };
 
-
-
         /*!
          * @brief This class represents the TopicDataType of the type CompleteTestType defined by the user in the IDL file.
          * @ingroup test_modules
