@@ -160,7 +160,7 @@ jobs:
           workspace: ${{ github.workspace }}
 
       - name: Upload build artifacts
-        uses: eProsima/eProsima-CI/external/upload-artifact@v0
+        uses: eProsima/eProsima-CI/external/upload-artifact@upgrade/upload-artifact/v4.4.1
         with:
           name: fastdds_python_build_${{ inputs.label }}
           path: ${{ github.workspace }}
