@@ -25,6 +25,7 @@ if(POLICY CMP0086)
 endif()
 
 project(fastdds_python VERSION 2.4.0)
+set(CMAKE_SHARED_LIBRARY_SUFFIX .so)
 
 # Set BUILD_TESTING to OFF by default.
 if(NOT BUILD_TESTING)
