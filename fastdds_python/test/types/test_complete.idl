@@ -33,6 +33,7 @@ struct StructType
     //long double                  long_double_field;
     boolean                      bool_field;
     string                       string_field;
+    string<16>                   fixed_string_field;
     Color                        enum_field;
     Material                     enum2_field;
     eprosima::test2::StructType2 included_module_struct;
@@ -57,6 +58,7 @@ struct CompleteTestType
     //long double        long_double_field;
     boolean            bool_field;
     string             string_field;
+    string<16>         fixed_string_field;
     Color              enum_field;
     Material           enum2_field;
     StructType         struct_field;
@@ -75,6 +77,7 @@ struct CompleteTestType
     //@optional long double        long_double_opt_field;
     @optional boolean            bool_opt_field;
     @optional string             string_opt_field;
+    @optional string<16>         fixed_string_opt_field;
     @optional Color              enum_opt_field;
     @optional Material           enum2_opt_field;
     @optional StructType         struct_opt_field;
@@ -153,6 +156,7 @@ struct KeyedCompleteTestType
     //long double        long_double_field;
     boolean            bool_field;
     string             string_field;
+    string<16>         fixed_string_field;
     Color              enum_field;
     Material           enum2_field;
     StructType         struct_field;
@@ -171,6 +175,7 @@ struct KeyedCompleteTestType
     // @optional long double        long_double_opt_field;
     @optional boolean            bool_opt_field;
     @optional string             string_opt_field;
+    @optional string<16>         fixed_string_opt_field;
     @optional Color              enum_opt_field;
     @optional Material           enum2_opt_field;
     @optional StructType         struct_opt_field;
