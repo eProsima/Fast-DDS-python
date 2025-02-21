@@ -727,28 +727,6 @@ namespace swig {
 
 %ignore eprosima::fastcdr::optional::value;
 %ignore eprosima::fastcdr::optional::reset;
-%template(fixed_string<16>Opt) eprosima::fastcdr::optional<eprosima::fastcdr::fixed_string<16>>;
-%extend eprosima::fastcdr::optional<eprosima::fastcdr::fixed_string<16>> {
-  eprosima::fastcdr::fixed_string<16> get_value() const {
-      return $self->value();
-  }
-
-  void set_value(const eprosima::fastcdr::fixed_string<16>& value) {
-      *$self = value;
-  }
-}
-%ignore CompleteTestType::fixed_string_opt_field(eprosima::fastcdr::optional<eprosima::fastcdr::fixed_string<16>>&&);
-
-// Overloaded getter methods shadow each other and are equivalent in python
-// Const accesors produced constant enums instead of arrays/dictionaries when used
-// We ignore them to prevent this
-%ignore CompleteTestType::fixed_string_opt_field();
-%rename("%s") CompleteTestType::fixed_string_opt_field() const;
-
-
-
-%ignore eprosima::fastcdr::optional::value;
-%ignore eprosima::fastcdr::optional::reset;
 %template(ColorOpt) eprosima::fastcdr::optional<Color>;
 %extend eprosima::fastcdr::optional<Color> {
   Color get_value() const {
@@ -1989,28 +1967,6 @@ namespace swig {
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::string_opt_field();
 %rename("%s") KeyedCompleteTestType::string_opt_field() const;
-
-
-
-%ignore eprosima::fastcdr::optional::value;
-%ignore eprosima::fastcdr::optional::reset;
-%template(fixed_string<16>Opt) eprosima::fastcdr::optional<eprosima::fastcdr::fixed_string<16>>;
-%extend eprosima::fastcdr::optional<eprosima::fastcdr::fixed_string<16>> {
-  eprosima::fastcdr::fixed_string<16> get_value() const {
-      return $self->value();
-  }
-
-  void set_value(const eprosima::fastcdr::fixed_string<16>& value) {
-      *$self = value;
-  }
-}
-%ignore KeyedCompleteTestType::fixed_string_opt_field(eprosima::fastcdr::optional<eprosima::fastcdr::fixed_string<16>>&&);
-
-// Overloaded getter methods shadow each other and are equivalent in python
-// Const accesors produced constant enums instead of arrays/dictionaries when used
-// We ignore them to prevent this
-%ignore KeyedCompleteTestType::fixed_string_opt_field();
-%rename("%s") KeyedCompleteTestType::fixed_string_opt_field() const;
 
 
 
