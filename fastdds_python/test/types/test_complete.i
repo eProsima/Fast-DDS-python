@@ -56,6 +56,7 @@
 
 %include <fastcdr/config.h>
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
+%import(module="fastdds") "fastcdr/cdr/fixed_size_string.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -214,7 +215,7 @@ namespace swig {
 %ignore StructType::string_field();
 %rename("%s") StructType::string_field() const;
 
-
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
 
 %ignore StructType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
 
@@ -224,8 +225,6 @@ namespace swig {
 // We ignore them to prevent this
 %ignore StructType::fixed_string_field();
 %rename("%s") StructType::fixed_string_field() const;
-
-
 
 %ignore StructType::enum_field(Color&&);
 
