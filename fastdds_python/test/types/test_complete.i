@@ -226,6 +226,14 @@ namespace swig {
 %ignore StructType::fixed_string_field();
 %rename("%s") StructType::fixed_string_field() const;
 
+%extend StructType {
+    void fixed_string_field(const std::string& value)
+	{
+	    eprosima::fastcdr::fixed_string<16> tmp(value);
+	    $self->fixed_string_field(tmp);
+	}
+}
+
 %ignore StructType::enum_field(Color&&);
 
 
@@ -425,6 +433,13 @@ namespace swig {
 %ignore CompleteTestType::fixed_string_field();
 %rename("%s") CompleteTestType::fixed_string_field() const;
 
+%extend CompleteTestType {
+    void fixed_string_field(const std::string& value)
+	{
+	    eprosima::fastcdr::fixed_string<16> tmp(value);
+	    $self->fixed_string_field(tmp);
+	}
+}
 
 
 %ignore CompleteTestType::enum_field(Color&&);
@@ -1670,6 +1685,13 @@ namespace swig {
 %ignore KeyedCompleteTestType::fixed_string_field();
 %rename("%s") KeyedCompleteTestType::fixed_string_field() const;
 
+%extend KeyedCompleteTestType {
+    void fixed_string_field(const std::string& value)
+	{
+	    eprosima::fastcdr::fixed_string<16> tmp(value);
+	    $self->fixed_string_field(tmp);
+	}
+}
 
 
 %ignore KeyedCompleteTestType::enum_field(Color&&);
