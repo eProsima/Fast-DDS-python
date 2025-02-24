@@ -215,6 +215,17 @@ namespace swig {
 
 
 
+%ignore eprosima::test::StructType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::StructType::fixed_string_field();
+%rename("%s") eprosima::test::StructType::fixed_string_field() const;
+
+
+
 %ignore eprosima::test::StructType::enum_field(eprosima::test::Color&&);
 
 
@@ -391,6 +402,17 @@ namespace swig {
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::string_field();
 %rename("%s") eprosima::test::CompleteTestType::string_field() const;
+
+
+
+%ignore eprosima::test::CompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::fixed_string_field();
+%rename("%s") eprosima::test::CompleteTestType::fixed_string_field() const;
 
 
 
@@ -1625,6 +1647,17 @@ namespace swig {
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::string_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::string_field() const;
+
+
+
+%ignore eprosima::test::KeyedCompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::fixed_string_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::fixed_string_field() const;
 
 
 
