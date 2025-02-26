@@ -89,9 +89,12 @@ eProsima_user_DllExport size_t calculate_serialized_size(
                 data.string_field(), current_alignment);
 
         calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(12),
-                data.enum_field(), current_alignment);
+                data.fixed_string_field(), current_alignment);
 
         calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(13),
+                data.enum_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(14),
                 data.enum2_field(), current_alignment);
 
 
@@ -126,8 +129,9 @@ eProsima_user_DllExport void serialize(
         << eprosima::fastcdr::MemberId(9) << data.double_field()
         << eprosima::fastcdr::MemberId(10) << data.bool_field()
         << eprosima::fastcdr::MemberId(11) << data.string_field()
-        << eprosima::fastcdr::MemberId(12) << data.enum_field()
-        << eprosima::fastcdr::MemberId(13) << data.enum2_field()
+        << eprosima::fastcdr::MemberId(12) << data.fixed_string_field()
+        << eprosima::fastcdr::MemberId(13) << data.enum_field()
+        << eprosima::fastcdr::MemberId(14) << data.enum2_field()
 ;
     scdr.end_serialize_type(current_state);
 }
@@ -196,10 +200,14 @@ eProsima_user_DllExport void deserialize(
                                             break;
 
                                         case 12:
-                                                dcdr >> data.enum_field();
+                                                dcdr >> data.fixed_string_field();
                                             break;
 
                                         case 13:
+                                                dcdr >> data.enum_field();
+                                            break;
+
+                                        case 14:
                                                 dcdr >> data.enum2_field();
                                             break;
 
@@ -242,6 +250,8 @@ void serialize_key(
                         scdr << data.bool_field();
 
                         scdr << data.string_field();
+
+                        scdr << data.fixed_string_field();
 
                         scdr << data.enum_field();
 
@@ -307,912 +317,7 @@ eProsima_user_DllExport size_t calculate_serialized_size(
                 data.string_field(), current_alignment);
 
         calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(12),
-                data.enum_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(13),
-                data.enum2_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(14),
-                data.struct_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(15),
-                data.char_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(16),
-                data.uint8_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(17),
-                data.int16_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(18),
-                data.uint16_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(19),
-                data.int32_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(20),
-                data.uint32_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(21),
-                data.int64_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(22),
-                data.uint64_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(23),
-                data.float_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(24),
-                data.double_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(25),
-                data.bool_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(26),
-                data.string_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(27),
-                data.enum_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(28),
-                data.enum2_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(29),
-                data.struct_opt_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(30),
-                data.array_char_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(31),
-                data.array_uint8_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(32),
-                data.array_int16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(33),
-                data.array_uint16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(34),
-                data.array_int32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(35),
-                data.array_uint32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(36),
-                data.array_int64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(37),
-                data.array_uint64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(38),
-                data.array_float_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(39),
-                data.array_double_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(40),
-                data.array_bool_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(41),
-                data.array_enum_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(42),
-                data.array_enum2_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(43),
-                data.array_struct_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(44),
-                data.bounded_sequence_char_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(45),
-                data.bounded_sequence_uint8_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(46),
-                data.bounded_sequence_int16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(47),
-                data.bounded_sequence_uint16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(48),
-                data.bounded_sequence_int32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(49),
-                data.bounded_sequence_uint32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(50),
-                data.bounded_sequence_int64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(51),
-                data.bounded_sequence_uint64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(52),
-                data.bounded_sequence_float_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(53),
-                data.bounded_sequence_double_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(54),
-                data.bounded_sequence_bool_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(55),
-                data.bounded_sequence_enum_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(56),
-                data.bounded_sequence_enum2_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(57),
-                data.bounded_sequence_struct_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(58),
-                data.unbounded_sequence_char_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(59),
-                data.unbounded_sequence_uint8_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(60),
-                data.unbounded_sequence_int16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(61),
-                data.unbounded_sequence_uint16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(62),
-                data.unbounded_sequence_int32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(63),
-                data.unbounded_sequence_uint32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(64),
-                data.unbounded_sequence_int64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(65),
-                data.unbounded_sequence_uint64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(66),
-                data.unbounded_sequence_float_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(67),
-                data.unbounded_sequence_double_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(68),
-                data.unbounded_sequence_bool_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(69),
-                data.unbounded_sequence_enum_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(70),
-                data.unbounded_sequence_enum2_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(71),
-                data.unbounded_sequence_struct_field(), current_alignment);
-
-
-    calculated_size += calculator.end_calculate_type_serialized_size(previous_encoding, current_alignment);
-
-    return calculated_size;
-}
-
-template<>
-eProsima_user_DllExport void serialize(
-        eprosima::fastcdr::Cdr& scdr,
-        const eprosima::test::CompleteTestType& data)
-{
-    using namespace eprosima::test;
-
-    eprosima::fastcdr::Cdr::state current_state(scdr);
-    scdr.begin_serialize_type(current_state,
-            eprosima::fastcdr::CdrVersion::XCDRv2 == scdr.get_cdr_version() ?
-            eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
-            eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR);
-
-    scdr
-        << eprosima::fastcdr::MemberId(0) << data.char_field()
-        << eprosima::fastcdr::MemberId(1) << data.uint8_field()
-        << eprosima::fastcdr::MemberId(2) << data.int16_field()
-        << eprosima::fastcdr::MemberId(3) << data.uint16_field()
-        << eprosima::fastcdr::MemberId(4) << data.int32_field()
-        << eprosima::fastcdr::MemberId(5) << data.uint32_field()
-        << eprosima::fastcdr::MemberId(6) << data.int64_field()
-        << eprosima::fastcdr::MemberId(7) << data.uint64_field()
-        << eprosima::fastcdr::MemberId(8) << data.float_field()
-        << eprosima::fastcdr::MemberId(9) << data.double_field()
-        << eprosima::fastcdr::MemberId(10) << data.bool_field()
-        << eprosima::fastcdr::MemberId(11) << data.string_field()
-        << eprosima::fastcdr::MemberId(12) << data.enum_field()
-        << eprosima::fastcdr::MemberId(13) << data.enum2_field()
-        << eprosima::fastcdr::MemberId(14) << data.struct_field()
-        << eprosima::fastcdr::MemberId(15) << data.char_opt_field()
-        << eprosima::fastcdr::MemberId(16) << data.uint8_opt_field()
-        << eprosima::fastcdr::MemberId(17) << data.int16_opt_field()
-        << eprosima::fastcdr::MemberId(18) << data.uint16_opt_field()
-        << eprosima::fastcdr::MemberId(19) << data.int32_opt_field()
-        << eprosima::fastcdr::MemberId(20) << data.uint32_opt_field()
-        << eprosima::fastcdr::MemberId(21) << data.int64_opt_field()
-        << eprosima::fastcdr::MemberId(22) << data.uint64_opt_field()
-        << eprosima::fastcdr::MemberId(23) << data.float_opt_field()
-        << eprosima::fastcdr::MemberId(24) << data.double_opt_field()
-        << eprosima::fastcdr::MemberId(25) << data.bool_opt_field()
-        << eprosima::fastcdr::MemberId(26) << data.string_opt_field()
-        << eprosima::fastcdr::MemberId(27) << data.enum_opt_field()
-        << eprosima::fastcdr::MemberId(28) << data.enum2_opt_field()
-        << eprosima::fastcdr::MemberId(29) << data.struct_opt_field()
-        << eprosima::fastcdr::MemberId(30) << data.array_char_field()
-        << eprosima::fastcdr::MemberId(31) << data.array_uint8_field()
-        << eprosima::fastcdr::MemberId(32) << data.array_int16_field()
-        << eprosima::fastcdr::MemberId(33) << data.array_uint16_field()
-        << eprosima::fastcdr::MemberId(34) << data.array_int32_field()
-        << eprosima::fastcdr::MemberId(35) << data.array_uint32_field()
-        << eprosima::fastcdr::MemberId(36) << data.array_int64_field()
-        << eprosima::fastcdr::MemberId(37) << data.array_uint64_field()
-        << eprosima::fastcdr::MemberId(38) << data.array_float_field()
-        << eprosima::fastcdr::MemberId(39) << data.array_double_field()
-        << eprosima::fastcdr::MemberId(40) << data.array_bool_field()
-        << eprosima::fastcdr::MemberId(41) << data.array_enum_field()
-        << eprosima::fastcdr::MemberId(42) << data.array_enum2_field()
-        << eprosima::fastcdr::MemberId(43) << data.array_struct_field()
-        << eprosima::fastcdr::MemberId(44) << data.bounded_sequence_char_field()
-        << eprosima::fastcdr::MemberId(45) << data.bounded_sequence_uint8_field()
-        << eprosima::fastcdr::MemberId(46) << data.bounded_sequence_int16_field()
-        << eprosima::fastcdr::MemberId(47) << data.bounded_sequence_uint16_field()
-        << eprosima::fastcdr::MemberId(48) << data.bounded_sequence_int32_field()
-        << eprosima::fastcdr::MemberId(49) << data.bounded_sequence_uint32_field()
-        << eprosima::fastcdr::MemberId(50) << data.bounded_sequence_int64_field()
-        << eprosima::fastcdr::MemberId(51) << data.bounded_sequence_uint64_field()
-        << eprosima::fastcdr::MemberId(52) << data.bounded_sequence_float_field()
-        << eprosima::fastcdr::MemberId(53) << data.bounded_sequence_double_field()
-        << eprosima::fastcdr::MemberId(54) << data.bounded_sequence_bool_field()
-        << eprosima::fastcdr::MemberId(55) << data.bounded_sequence_enum_field()
-        << eprosima::fastcdr::MemberId(56) << data.bounded_sequence_enum2_field()
-        << eprosima::fastcdr::MemberId(57) << data.bounded_sequence_struct_field()
-        << eprosima::fastcdr::MemberId(58) << data.unbounded_sequence_char_field()
-        << eprosima::fastcdr::MemberId(59) << data.unbounded_sequence_uint8_field()
-        << eprosima::fastcdr::MemberId(60) << data.unbounded_sequence_int16_field()
-        << eprosima::fastcdr::MemberId(61) << data.unbounded_sequence_uint16_field()
-        << eprosima::fastcdr::MemberId(62) << data.unbounded_sequence_int32_field()
-        << eprosima::fastcdr::MemberId(63) << data.unbounded_sequence_uint32_field()
-        << eprosima::fastcdr::MemberId(64) << data.unbounded_sequence_int64_field()
-        << eprosima::fastcdr::MemberId(65) << data.unbounded_sequence_uint64_field()
-        << eprosima::fastcdr::MemberId(66) << data.unbounded_sequence_float_field()
-        << eprosima::fastcdr::MemberId(67) << data.unbounded_sequence_double_field()
-        << eprosima::fastcdr::MemberId(68) << data.unbounded_sequence_bool_field()
-        << eprosima::fastcdr::MemberId(69) << data.unbounded_sequence_enum_field()
-        << eprosima::fastcdr::MemberId(70) << data.unbounded_sequence_enum2_field()
-        << eprosima::fastcdr::MemberId(71) << data.unbounded_sequence_struct_field()
-;
-    scdr.end_serialize_type(current_state);
-}
-
-template<>
-eProsima_user_DllExport void deserialize(
-        eprosima::fastcdr::Cdr& cdr,
-        eprosima::test::CompleteTestType& data)
-{
-    using namespace eprosima::test;
-
-    cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
-            eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
-            eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR,
-            [&data](eprosima::fastcdr::Cdr& dcdr, const eprosima::fastcdr::MemberId& mid) -> bool
-            {
-                bool ret_value = true;
-                switch (mid.id)
-                {
-                                        case 0:
-                                                dcdr >> data.char_field();
-                                            break;
-
-                                        case 1:
-                                                dcdr >> data.uint8_field();
-                                            break;
-
-                                        case 2:
-                                                dcdr >> data.int16_field();
-                                            break;
-
-                                        case 3:
-                                                dcdr >> data.uint16_field();
-                                            break;
-
-                                        case 4:
-                                                dcdr >> data.int32_field();
-                                            break;
-
-                                        case 5:
-                                                dcdr >> data.uint32_field();
-                                            break;
-
-                                        case 6:
-                                                dcdr >> data.int64_field();
-                                            break;
-
-                                        case 7:
-                                                dcdr >> data.uint64_field();
-                                            break;
-
-                                        case 8:
-                                                dcdr >> data.float_field();
-                                            break;
-
-                                        case 9:
-                                                dcdr >> data.double_field();
-                                            break;
-
-                                        case 10:
-                                                dcdr >> data.bool_field();
-                                            break;
-
-                                        case 11:
-                                                dcdr >> data.string_field();
-                                            break;
-
-                                        case 12:
-                                                dcdr >> data.enum_field();
-                                            break;
-
-                                        case 13:
-                                                dcdr >> data.enum2_field();
-                                            break;
-
-                                        case 14:
-                                                dcdr >> data.struct_field();
-                                            break;
-
-                                        case 15:
-                                                dcdr >> data.char_opt_field();
-                                            break;
-
-                                        case 16:
-                                                dcdr >> data.uint8_opt_field();
-                                            break;
-
-                                        case 17:
-                                                dcdr >> data.int16_opt_field();
-                                            break;
-
-                                        case 18:
-                                                dcdr >> data.uint16_opt_field();
-                                            break;
-
-                                        case 19:
-                                                dcdr >> data.int32_opt_field();
-                                            break;
-
-                                        case 20:
-                                                dcdr >> data.uint32_opt_field();
-                                            break;
-
-                                        case 21:
-                                                dcdr >> data.int64_opt_field();
-                                            break;
-
-                                        case 22:
-                                                dcdr >> data.uint64_opt_field();
-                                            break;
-
-                                        case 23:
-                                                dcdr >> data.float_opt_field();
-                                            break;
-
-                                        case 24:
-                                                dcdr >> data.double_opt_field();
-                                            break;
-
-                                        case 25:
-                                                dcdr >> data.bool_opt_field();
-                                            break;
-
-                                        case 26:
-                                                dcdr >> data.string_opt_field();
-                                            break;
-
-                                        case 27:
-                                                dcdr >> data.enum_opt_field();
-                                            break;
-
-                                        case 28:
-                                                dcdr >> data.enum2_opt_field();
-                                            break;
-
-                                        case 29:
-                                                dcdr >> data.struct_opt_field();
-                                            break;
-
-                                        case 30:
-                                                dcdr >> data.array_char_field();
-                                            break;
-
-                                        case 31:
-                                                dcdr >> data.array_uint8_field();
-                                            break;
-
-                                        case 32:
-                                                dcdr >> data.array_int16_field();
-                                            break;
-
-                                        case 33:
-                                                dcdr >> data.array_uint16_field();
-                                            break;
-
-                                        case 34:
-                                                dcdr >> data.array_int32_field();
-                                            break;
-
-                                        case 35:
-                                                dcdr >> data.array_uint32_field();
-                                            break;
-
-                                        case 36:
-                                                dcdr >> data.array_int64_field();
-                                            break;
-
-                                        case 37:
-                                                dcdr >> data.array_uint64_field();
-                                            break;
-
-                                        case 38:
-                                                dcdr >> data.array_float_field();
-                                            break;
-
-                                        case 39:
-                                                dcdr >> data.array_double_field();
-                                            break;
-
-                                        case 40:
-                                                dcdr >> data.array_bool_field();
-                                            break;
-
-                                        case 41:
-                                                dcdr >> data.array_enum_field();
-                                            break;
-
-                                        case 42:
-                                                dcdr >> data.array_enum2_field();
-                                            break;
-
-                                        case 43:
-                                                dcdr >> data.array_struct_field();
-                                            break;
-
-                                        case 44:
-                                                dcdr >> data.bounded_sequence_char_field();
-                                            break;
-
-                                        case 45:
-                                                dcdr >> data.bounded_sequence_uint8_field();
-                                            break;
-
-                                        case 46:
-                                                dcdr >> data.bounded_sequence_int16_field();
-                                            break;
-
-                                        case 47:
-                                                dcdr >> data.bounded_sequence_uint16_field();
-                                            break;
-
-                                        case 48:
-                                                dcdr >> data.bounded_sequence_int32_field();
-                                            break;
-
-                                        case 49:
-                                                dcdr >> data.bounded_sequence_uint32_field();
-                                            break;
-
-                                        case 50:
-                                                dcdr >> data.bounded_sequence_int64_field();
-                                            break;
-
-                                        case 51:
-                                                dcdr >> data.bounded_sequence_uint64_field();
-                                            break;
-
-                                        case 52:
-                                                dcdr >> data.bounded_sequence_float_field();
-                                            break;
-
-                                        case 53:
-                                                dcdr >> data.bounded_sequence_double_field();
-                                            break;
-
-                                        case 54:
-                                                dcdr >> data.bounded_sequence_bool_field();
-                                            break;
-
-                                        case 55:
-                                                dcdr >> data.bounded_sequence_enum_field();
-                                            break;
-
-                                        case 56:
-                                                dcdr >> data.bounded_sequence_enum2_field();
-                                            break;
-
-                                        case 57:
-                                                dcdr >> data.bounded_sequence_struct_field();
-                                            break;
-
-                                        case 58:
-                                                dcdr >> data.unbounded_sequence_char_field();
-                                            break;
-
-                                        case 59:
-                                                dcdr >> data.unbounded_sequence_uint8_field();
-                                            break;
-
-                                        case 60:
-                                                dcdr >> data.unbounded_sequence_int16_field();
-                                            break;
-
-                                        case 61:
-                                                dcdr >> data.unbounded_sequence_uint16_field();
-                                            break;
-
-                                        case 62:
-                                                dcdr >> data.unbounded_sequence_int32_field();
-                                            break;
-
-                                        case 63:
-                                                dcdr >> data.unbounded_sequence_uint32_field();
-                                            break;
-
-                                        case 64:
-                                                dcdr >> data.unbounded_sequence_int64_field();
-                                            break;
-
-                                        case 65:
-                                                dcdr >> data.unbounded_sequence_uint64_field();
-                                            break;
-
-                                        case 66:
-                                                dcdr >> data.unbounded_sequence_float_field();
-                                            break;
-
-                                        case 67:
-                                                dcdr >> data.unbounded_sequence_double_field();
-                                            break;
-
-                                        case 68:
-                                                dcdr >> data.unbounded_sequence_bool_field();
-                                            break;
-
-                                        case 69:
-                                                dcdr >> data.unbounded_sequence_enum_field();
-                                            break;
-
-                                        case 70:
-                                                dcdr >> data.unbounded_sequence_enum2_field();
-                                            break;
-
-                                        case 71:
-                                                dcdr >> data.unbounded_sequence_struct_field();
-                                            break;
-
-                    default:
-                        ret_value = false;
-                        break;
-                }
-                return ret_value;
-            });
-}
-
-void serialize_key(
-        eprosima::fastcdr::Cdr& scdr,
-        const eprosima::test::CompleteTestType& data)
-{
-    using namespace eprosima::test;
-            extern void serialize_key(
-                    Cdr& scdr,
-                    const eprosima::test::StructType& data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            extern void serialize_key(
-                    Cdr& scdr,
-                    const eprosima::test::StructType& data);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    static_cast<void>(scdr);
-    static_cast<void>(data);
-                        scdr << data.char_field();
-
-                        scdr << data.uint8_field();
-
-                        scdr << data.int16_field();
-
-                        scdr << data.uint16_field();
-
-                        scdr << data.int32_field();
-
-                        scdr << data.uint32_field();
-
-                        scdr << data.int64_field();
-
-                        scdr << data.uint64_field();
-
-                        scdr << data.float_field();
-
-                        scdr << data.double_field();
-
-                        scdr << data.bool_field();
-
-                        scdr << data.string_field();
-
-                        scdr << data.enum_field();
-
-                        scdr << data.enum2_field();
-
-                        serialize_key(scdr, data.struct_field());
-
-                        if (data.char_opt_field().has_value())
-                        {
-                            scdr << data.char_opt_field().value();
-                        }
-
-                        if (data.uint8_opt_field().has_value())
-                        {
-                            scdr << data.uint8_opt_field().value();
-                        }
-
-                        if (data.int16_opt_field().has_value())
-                        {
-                            scdr << data.int16_opt_field().value();
-                        }
-
-                        if (data.uint16_opt_field().has_value())
-                        {
-                            scdr << data.uint16_opt_field().value();
-                        }
-
-                        if (data.int32_opt_field().has_value())
-                        {
-                            scdr << data.int32_opt_field().value();
-                        }
-
-                        if (data.uint32_opt_field().has_value())
-                        {
-                            scdr << data.uint32_opt_field().value();
-                        }
-
-                        if (data.int64_opt_field().has_value())
-                        {
-                            scdr << data.int64_opt_field().value();
-                        }
-
-                        if (data.uint64_opt_field().has_value())
-                        {
-                            scdr << data.uint64_opt_field().value();
-                        }
-
-                        if (data.float_opt_field().has_value())
-                        {
-                            scdr << data.float_opt_field().value();
-                        }
-
-                        if (data.double_opt_field().has_value())
-                        {
-                            scdr << data.double_opt_field().value();
-                        }
-
-                        if (data.bool_opt_field().has_value())
-                        {
-                            scdr << data.bool_opt_field().value();
-                        }
-
-                        if (data.string_opt_field().has_value())
-                        {
-                            scdr << data.string_opt_field().value();
-                        }
-
-                        if (data.enum_opt_field().has_value())
-                        {
-                            scdr << data.enum_opt_field().value();
-                        }
-
-                        if (data.enum2_opt_field().has_value())
-                        {
-                            scdr << data.enum2_opt_field().value();
-                        }
-
-                        if (data.struct_opt_field().has_value())
-                        {
-                            serialize_key(scdr, data.struct_opt_field().value());
-                        }
-
-                        scdr << data.array_char_field();
-
-                        scdr << data.array_uint8_field();
-
-                        scdr << data.array_int16_field();
-
-                        scdr << data.array_uint16_field();
-
-                        scdr << data.array_int32_field();
-
-                        scdr << data.array_uint32_field();
-
-                        scdr << data.array_int64_field();
-
-                        scdr << data.array_uint64_field();
-
-                        scdr << data.array_float_field();
-
-                        scdr << data.array_double_field();
-
-                        scdr << data.array_bool_field();
-
-                        scdr << data.array_enum_field();
-
-                        scdr << data.array_enum2_field();
-
-                        scdr << data.array_struct_field();
-
-                        scdr << data.bounded_sequence_char_field();
-
-                        scdr << data.bounded_sequence_uint8_field();
-
-                        scdr << data.bounded_sequence_int16_field();
-
-                        scdr << data.bounded_sequence_uint16_field();
-
-                        scdr << data.bounded_sequence_int32_field();
-
-                        scdr << data.bounded_sequence_uint32_field();
-
-                        scdr << data.bounded_sequence_int64_field();
-
-                        scdr << data.bounded_sequence_uint64_field();
-
-                        scdr << data.bounded_sequence_float_field();
-
-                        scdr << data.bounded_sequence_double_field();
-
-                        scdr << data.bounded_sequence_bool_field();
-
-                        scdr << data.bounded_sequence_enum_field();
-
-                        scdr << data.bounded_sequence_enum2_field();
-
-                        scdr << data.bounded_sequence_struct_field();
-
-                        scdr << data.unbounded_sequence_char_field();
-
-                        scdr << data.unbounded_sequence_uint8_field();
-
-                        scdr << data.unbounded_sequence_int16_field();
-
-                        scdr << data.unbounded_sequence_uint16_field();
-
-                        scdr << data.unbounded_sequence_int32_field();
-
-                        scdr << data.unbounded_sequence_uint32_field();
-
-                        scdr << data.unbounded_sequence_int64_field();
-
-                        scdr << data.unbounded_sequence_uint64_field();
-
-                        scdr << data.unbounded_sequence_float_field();
-
-                        scdr << data.unbounded_sequence_double_field();
-
-                        scdr << data.unbounded_sequence_bool_field();
-
-                        scdr << data.unbounded_sequence_enum_field();
-
-                        scdr << data.unbounded_sequence_enum2_field();
-
-                        scdr << data.unbounded_sequence_struct_field();
-
-}
-
-
-template<>
-eProsima_user_DllExport size_t calculate_serialized_size(
-        eprosima::fastcdr::CdrSizeCalculator& calculator,
-        const eprosima::test::KeyedCompleteTestType& data,
-        size_t& current_alignment)
-{
-    using namespace eprosima::test;
-
-    static_cast<void>(data);
-
-    eprosima::fastcdr::EncodingAlgorithmFlag previous_encoding = calculator.get_encoding();
-    size_t calculated_size {calculator.begin_calculate_type_serialized_size(
-                                eprosima::fastcdr::CdrVersion::XCDRv2 == calculator.get_cdr_version() ?
-                                eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
-                                eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR,
-                                current_alignment)};
-
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0),
-                data.id(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(1),
-                data.char_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(2),
-                data.uint8_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(3),
-                data.int16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(4),
-                data.uint16_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(5),
-                data.int32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(6),
-                data.uint32_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(7),
-                data.int64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(8),
-                data.uint64_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(9),
-                data.float_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(10),
-                data.double_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(11),
-                data.bool_field(), current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(12),
-                data.string_field(), current_alignment);
+                data.fixed_string_field(), current_alignment);
 
         calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(13),
                 data.enum_field(), current_alignment);
@@ -1403,7 +508,7 @@ eProsima_user_DllExport size_t calculate_serialized_size(
 template<>
 eProsima_user_DllExport void serialize(
         eprosima::fastcdr::Cdr& scdr,
-        const eprosima::test::KeyedCompleteTestType& data)
+        const eprosima::test::CompleteTestType& data)
 {
     using namespace eprosima::test;
 
@@ -1414,19 +519,19 @@ eProsima_user_DllExport void serialize(
             eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR);
 
     scdr
-        << eprosima::fastcdr::MemberId(0) << data.id()
-        << eprosima::fastcdr::MemberId(1) << data.char_field()
-        << eprosima::fastcdr::MemberId(2) << data.uint8_field()
-        << eprosima::fastcdr::MemberId(3) << data.int16_field()
-        << eprosima::fastcdr::MemberId(4) << data.uint16_field()
-        << eprosima::fastcdr::MemberId(5) << data.int32_field()
-        << eprosima::fastcdr::MemberId(6) << data.uint32_field()
-        << eprosima::fastcdr::MemberId(7) << data.int64_field()
-        << eprosima::fastcdr::MemberId(8) << data.uint64_field()
-        << eprosima::fastcdr::MemberId(9) << data.float_field()
-        << eprosima::fastcdr::MemberId(10) << data.double_field()
-        << eprosima::fastcdr::MemberId(11) << data.bool_field()
-        << eprosima::fastcdr::MemberId(12) << data.string_field()
+        << eprosima::fastcdr::MemberId(0) << data.char_field()
+        << eprosima::fastcdr::MemberId(1) << data.uint8_field()
+        << eprosima::fastcdr::MemberId(2) << data.int16_field()
+        << eprosima::fastcdr::MemberId(3) << data.uint16_field()
+        << eprosima::fastcdr::MemberId(4) << data.int32_field()
+        << eprosima::fastcdr::MemberId(5) << data.uint32_field()
+        << eprosima::fastcdr::MemberId(6) << data.int64_field()
+        << eprosima::fastcdr::MemberId(7) << data.uint64_field()
+        << eprosima::fastcdr::MemberId(8) << data.float_field()
+        << eprosima::fastcdr::MemberId(9) << data.double_field()
+        << eprosima::fastcdr::MemberId(10) << data.bool_field()
+        << eprosima::fastcdr::MemberId(11) << data.string_field()
+        << eprosima::fastcdr::MemberId(12) << data.fixed_string_field()
         << eprosima::fastcdr::MemberId(13) << data.enum_field()
         << eprosima::fastcdr::MemberId(14) << data.enum2_field()
         << eprosima::fastcdr::MemberId(15) << data.struct_field()
@@ -1494,7 +599,7 @@ eProsima_user_DllExport void serialize(
 template<>
 eProsima_user_DllExport void deserialize(
         eprosima::fastcdr::Cdr& cdr,
-        eprosima::test::KeyedCompleteTestType& data)
+        eprosima::test::CompleteTestType& data)
 {
     using namespace eprosima::test;
 
@@ -1507,55 +612,55 @@ eProsima_user_DllExport void deserialize(
                 switch (mid.id)
                 {
                                         case 0:
-                                                dcdr >> data.id();
-                                            break;
-
-                                        case 1:
                                                 dcdr >> data.char_field();
                                             break;
 
-                                        case 2:
+                                        case 1:
                                                 dcdr >> data.uint8_field();
                                             break;
 
-                                        case 3:
+                                        case 2:
                                                 dcdr >> data.int16_field();
                                             break;
 
-                                        case 4:
+                                        case 3:
                                                 dcdr >> data.uint16_field();
                                             break;
 
-                                        case 5:
+                                        case 4:
                                                 dcdr >> data.int32_field();
                                             break;
 
-                                        case 6:
+                                        case 5:
                                                 dcdr >> data.uint32_field();
                                             break;
 
-                                        case 7:
+                                        case 6:
                                                 dcdr >> data.int64_field();
                                             break;
 
-                                        case 8:
+                                        case 7:
                                                 dcdr >> data.uint64_field();
                                             break;
 
-                                        case 9:
+                                        case 8:
                                                 dcdr >> data.float_field();
                                             break;
 
-                                        case 10:
+                                        case 9:
                                                 dcdr >> data.double_field();
                                             break;
 
-                                        case 11:
+                                        case 10:
                                                 dcdr >> data.bool_field();
                                             break;
 
-                                        case 12:
+                                        case 11:
                                                 dcdr >> data.string_field();
+                                            break;
+
+                                        case 12:
+                                                dcdr >> data.fixed_string_field();
                                             break;
 
                                         case 13:
@@ -1808,6 +913,929 @@ eProsima_user_DllExport void deserialize(
 
 void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
+        const eprosima::test::CompleteTestType& data)
+{
+    using namespace eprosima::test;
+            extern void serialize_key(
+                    Cdr& scdr,
+                    const eprosima::test::StructType& data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            extern void serialize_key(
+                    Cdr& scdr,
+                    const eprosima::test::StructType& data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    static_cast<void>(scdr);
+    static_cast<void>(data);
+                        scdr << data.char_field();
+
+                        scdr << data.uint8_field();
+
+                        scdr << data.int16_field();
+
+                        scdr << data.uint16_field();
+
+                        scdr << data.int32_field();
+
+                        scdr << data.uint32_field();
+
+                        scdr << data.int64_field();
+
+                        scdr << data.uint64_field();
+
+                        scdr << data.float_field();
+
+                        scdr << data.double_field();
+
+                        scdr << data.bool_field();
+
+                        scdr << data.string_field();
+
+                        scdr << data.fixed_string_field();
+
+                        scdr << data.enum_field();
+
+                        scdr << data.enum2_field();
+
+                        serialize_key(scdr, data.struct_field());
+
+                        if (data.char_opt_field().has_value())
+                        {
+                            scdr << data.char_opt_field().value();
+                        }
+
+                        if (data.uint8_opt_field().has_value())
+                        {
+                            scdr << data.uint8_opt_field().value();
+                        }
+
+                        if (data.int16_opt_field().has_value())
+                        {
+                            scdr << data.int16_opt_field().value();
+                        }
+
+                        if (data.uint16_opt_field().has_value())
+                        {
+                            scdr << data.uint16_opt_field().value();
+                        }
+
+                        if (data.int32_opt_field().has_value())
+                        {
+                            scdr << data.int32_opt_field().value();
+                        }
+
+                        if (data.uint32_opt_field().has_value())
+                        {
+                            scdr << data.uint32_opt_field().value();
+                        }
+
+                        if (data.int64_opt_field().has_value())
+                        {
+                            scdr << data.int64_opt_field().value();
+                        }
+
+                        if (data.uint64_opt_field().has_value())
+                        {
+                            scdr << data.uint64_opt_field().value();
+                        }
+
+                        if (data.float_opt_field().has_value())
+                        {
+                            scdr << data.float_opt_field().value();
+                        }
+
+                        if (data.double_opt_field().has_value())
+                        {
+                            scdr << data.double_opt_field().value();
+                        }
+
+                        if (data.bool_opt_field().has_value())
+                        {
+                            scdr << data.bool_opt_field().value();
+                        }
+
+                        if (data.string_opt_field().has_value())
+                        {
+                            scdr << data.string_opt_field().value();
+                        }
+
+                        if (data.enum_opt_field().has_value())
+                        {
+                            scdr << data.enum_opt_field().value();
+                        }
+
+                        if (data.enum2_opt_field().has_value())
+                        {
+                            scdr << data.enum2_opt_field().value();
+                        }
+
+                        if (data.struct_opt_field().has_value())
+                        {
+                            serialize_key(scdr, data.struct_opt_field().value());
+                        }
+
+                        scdr << data.array_char_field();
+
+                        scdr << data.array_uint8_field();
+
+                        scdr << data.array_int16_field();
+
+                        scdr << data.array_uint16_field();
+
+                        scdr << data.array_int32_field();
+
+                        scdr << data.array_uint32_field();
+
+                        scdr << data.array_int64_field();
+
+                        scdr << data.array_uint64_field();
+
+                        scdr << data.array_float_field();
+
+                        scdr << data.array_double_field();
+
+                        scdr << data.array_bool_field();
+
+                        scdr << data.array_enum_field();
+
+                        scdr << data.array_enum2_field();
+
+                        scdr << data.array_struct_field();
+
+                        scdr << data.bounded_sequence_char_field();
+
+                        scdr << data.bounded_sequence_uint8_field();
+
+                        scdr << data.bounded_sequence_int16_field();
+
+                        scdr << data.bounded_sequence_uint16_field();
+
+                        scdr << data.bounded_sequence_int32_field();
+
+                        scdr << data.bounded_sequence_uint32_field();
+
+                        scdr << data.bounded_sequence_int64_field();
+
+                        scdr << data.bounded_sequence_uint64_field();
+
+                        scdr << data.bounded_sequence_float_field();
+
+                        scdr << data.bounded_sequence_double_field();
+
+                        scdr << data.bounded_sequence_bool_field();
+
+                        scdr << data.bounded_sequence_enum_field();
+
+                        scdr << data.bounded_sequence_enum2_field();
+
+                        scdr << data.bounded_sequence_struct_field();
+
+                        scdr << data.unbounded_sequence_char_field();
+
+                        scdr << data.unbounded_sequence_uint8_field();
+
+                        scdr << data.unbounded_sequence_int16_field();
+
+                        scdr << data.unbounded_sequence_uint16_field();
+
+                        scdr << data.unbounded_sequence_int32_field();
+
+                        scdr << data.unbounded_sequence_uint32_field();
+
+                        scdr << data.unbounded_sequence_int64_field();
+
+                        scdr << data.unbounded_sequence_uint64_field();
+
+                        scdr << data.unbounded_sequence_float_field();
+
+                        scdr << data.unbounded_sequence_double_field();
+
+                        scdr << data.unbounded_sequence_bool_field();
+
+                        scdr << data.unbounded_sequence_enum_field();
+
+                        scdr << data.unbounded_sequence_enum2_field();
+
+                        scdr << data.unbounded_sequence_struct_field();
+
+}
+
+
+template<>
+eProsima_user_DllExport size_t calculate_serialized_size(
+        eprosima::fastcdr::CdrSizeCalculator& calculator,
+        const eprosima::test::KeyedCompleteTestType& data,
+        size_t& current_alignment)
+{
+    using namespace eprosima::test;
+
+    static_cast<void>(data);
+
+    eprosima::fastcdr::EncodingAlgorithmFlag previous_encoding = calculator.get_encoding();
+    size_t calculated_size {calculator.begin_calculate_type_serialized_size(
+                                eprosima::fastcdr::CdrVersion::XCDRv2 == calculator.get_cdr_version() ?
+                                eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
+                                eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR,
+                                current_alignment)};
+
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0),
+                data.id(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(1),
+                data.char_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(2),
+                data.uint8_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(3),
+                data.int16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(4),
+                data.uint16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(5),
+                data.int32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(6),
+                data.uint32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(7),
+                data.int64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(8),
+                data.uint64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(9),
+                data.float_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(10),
+                data.double_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(11),
+                data.bool_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(12),
+                data.string_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(13),
+                data.fixed_string_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(14),
+                data.enum_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(15),
+                data.enum2_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(16),
+                data.struct_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(17),
+                data.char_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(18),
+                data.uint8_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(19),
+                data.int16_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(20),
+                data.uint16_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(21),
+                data.int32_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(22),
+                data.uint32_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(23),
+                data.int64_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(24),
+                data.uint64_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(25),
+                data.float_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(26),
+                data.double_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(27),
+                data.bool_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(28),
+                data.string_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(29),
+                data.enum_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(30),
+                data.enum2_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(31),
+                data.struct_opt_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(32),
+                data.array_char_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(33),
+                data.array_uint8_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(34),
+                data.array_int16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(35),
+                data.array_uint16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(36),
+                data.array_int32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(37),
+                data.array_uint32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(38),
+                data.array_int64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(39),
+                data.array_uint64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(40),
+                data.array_float_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(41),
+                data.array_double_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(42),
+                data.array_bool_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(43),
+                data.array_enum_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(44),
+                data.array_enum2_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(45),
+                data.array_struct_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(46),
+                data.bounded_sequence_char_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(47),
+                data.bounded_sequence_uint8_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(48),
+                data.bounded_sequence_int16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(49),
+                data.bounded_sequence_uint16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(50),
+                data.bounded_sequence_int32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(51),
+                data.bounded_sequence_uint32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(52),
+                data.bounded_sequence_int64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(53),
+                data.bounded_sequence_uint64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(54),
+                data.bounded_sequence_float_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(55),
+                data.bounded_sequence_double_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(56),
+                data.bounded_sequence_bool_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(57),
+                data.bounded_sequence_enum_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(58),
+                data.bounded_sequence_enum2_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(59),
+                data.bounded_sequence_struct_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(60),
+                data.unbounded_sequence_char_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(61),
+                data.unbounded_sequence_uint8_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(62),
+                data.unbounded_sequence_int16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(63),
+                data.unbounded_sequence_uint16_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(64),
+                data.unbounded_sequence_int32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(65),
+                data.unbounded_sequence_uint32_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(66),
+                data.unbounded_sequence_int64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(67),
+                data.unbounded_sequence_uint64_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(68),
+                data.unbounded_sequence_float_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(69),
+                data.unbounded_sequence_double_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(70),
+                data.unbounded_sequence_bool_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(71),
+                data.unbounded_sequence_enum_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(72),
+                data.unbounded_sequence_enum2_field(), current_alignment);
+
+        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(73),
+                data.unbounded_sequence_struct_field(), current_alignment);
+
+
+    calculated_size += calculator.end_calculate_type_serialized_size(previous_encoding, current_alignment);
+
+    return calculated_size;
+}
+
+template<>
+eProsima_user_DllExport void serialize(
+        eprosima::fastcdr::Cdr& scdr,
+        const eprosima::test::KeyedCompleteTestType& data)
+{
+    using namespace eprosima::test;
+
+    eprosima::fastcdr::Cdr::state current_state(scdr);
+    scdr.begin_serialize_type(current_state,
+            eprosima::fastcdr::CdrVersion::XCDRv2 == scdr.get_cdr_version() ?
+            eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
+            eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR);
+
+    scdr
+        << eprosima::fastcdr::MemberId(0) << data.id()
+        << eprosima::fastcdr::MemberId(1) << data.char_field()
+        << eprosima::fastcdr::MemberId(2) << data.uint8_field()
+        << eprosima::fastcdr::MemberId(3) << data.int16_field()
+        << eprosima::fastcdr::MemberId(4) << data.uint16_field()
+        << eprosima::fastcdr::MemberId(5) << data.int32_field()
+        << eprosima::fastcdr::MemberId(6) << data.uint32_field()
+        << eprosima::fastcdr::MemberId(7) << data.int64_field()
+        << eprosima::fastcdr::MemberId(8) << data.uint64_field()
+        << eprosima::fastcdr::MemberId(9) << data.float_field()
+        << eprosima::fastcdr::MemberId(10) << data.double_field()
+        << eprosima::fastcdr::MemberId(11) << data.bool_field()
+        << eprosima::fastcdr::MemberId(12) << data.string_field()
+        << eprosima::fastcdr::MemberId(13) << data.fixed_string_field()
+        << eprosima::fastcdr::MemberId(14) << data.enum_field()
+        << eprosima::fastcdr::MemberId(15) << data.enum2_field()
+        << eprosima::fastcdr::MemberId(16) << data.struct_field()
+        << eprosima::fastcdr::MemberId(17) << data.char_opt_field()
+        << eprosima::fastcdr::MemberId(18) << data.uint8_opt_field()
+        << eprosima::fastcdr::MemberId(19) << data.int16_opt_field()
+        << eprosima::fastcdr::MemberId(20) << data.uint16_opt_field()
+        << eprosima::fastcdr::MemberId(21) << data.int32_opt_field()
+        << eprosima::fastcdr::MemberId(22) << data.uint32_opt_field()
+        << eprosima::fastcdr::MemberId(23) << data.int64_opt_field()
+        << eprosima::fastcdr::MemberId(24) << data.uint64_opt_field()
+        << eprosima::fastcdr::MemberId(25) << data.float_opt_field()
+        << eprosima::fastcdr::MemberId(26) << data.double_opt_field()
+        << eprosima::fastcdr::MemberId(27) << data.bool_opt_field()
+        << eprosima::fastcdr::MemberId(28) << data.string_opt_field()
+        << eprosima::fastcdr::MemberId(29) << data.enum_opt_field()
+        << eprosima::fastcdr::MemberId(30) << data.enum2_opt_field()
+        << eprosima::fastcdr::MemberId(31) << data.struct_opt_field()
+        << eprosima::fastcdr::MemberId(32) << data.array_char_field()
+        << eprosima::fastcdr::MemberId(33) << data.array_uint8_field()
+        << eprosima::fastcdr::MemberId(34) << data.array_int16_field()
+        << eprosima::fastcdr::MemberId(35) << data.array_uint16_field()
+        << eprosima::fastcdr::MemberId(36) << data.array_int32_field()
+        << eprosima::fastcdr::MemberId(37) << data.array_uint32_field()
+        << eprosima::fastcdr::MemberId(38) << data.array_int64_field()
+        << eprosima::fastcdr::MemberId(39) << data.array_uint64_field()
+        << eprosima::fastcdr::MemberId(40) << data.array_float_field()
+        << eprosima::fastcdr::MemberId(41) << data.array_double_field()
+        << eprosima::fastcdr::MemberId(42) << data.array_bool_field()
+        << eprosima::fastcdr::MemberId(43) << data.array_enum_field()
+        << eprosima::fastcdr::MemberId(44) << data.array_enum2_field()
+        << eprosima::fastcdr::MemberId(45) << data.array_struct_field()
+        << eprosima::fastcdr::MemberId(46) << data.bounded_sequence_char_field()
+        << eprosima::fastcdr::MemberId(47) << data.bounded_sequence_uint8_field()
+        << eprosima::fastcdr::MemberId(48) << data.bounded_sequence_int16_field()
+        << eprosima::fastcdr::MemberId(49) << data.bounded_sequence_uint16_field()
+        << eprosima::fastcdr::MemberId(50) << data.bounded_sequence_int32_field()
+        << eprosima::fastcdr::MemberId(51) << data.bounded_sequence_uint32_field()
+        << eprosima::fastcdr::MemberId(52) << data.bounded_sequence_int64_field()
+        << eprosima::fastcdr::MemberId(53) << data.bounded_sequence_uint64_field()
+        << eprosima::fastcdr::MemberId(54) << data.bounded_sequence_float_field()
+        << eprosima::fastcdr::MemberId(55) << data.bounded_sequence_double_field()
+        << eprosima::fastcdr::MemberId(56) << data.bounded_sequence_bool_field()
+        << eprosima::fastcdr::MemberId(57) << data.bounded_sequence_enum_field()
+        << eprosima::fastcdr::MemberId(58) << data.bounded_sequence_enum2_field()
+        << eprosima::fastcdr::MemberId(59) << data.bounded_sequence_struct_field()
+        << eprosima::fastcdr::MemberId(60) << data.unbounded_sequence_char_field()
+        << eprosima::fastcdr::MemberId(61) << data.unbounded_sequence_uint8_field()
+        << eprosima::fastcdr::MemberId(62) << data.unbounded_sequence_int16_field()
+        << eprosima::fastcdr::MemberId(63) << data.unbounded_sequence_uint16_field()
+        << eprosima::fastcdr::MemberId(64) << data.unbounded_sequence_int32_field()
+        << eprosima::fastcdr::MemberId(65) << data.unbounded_sequence_uint32_field()
+        << eprosima::fastcdr::MemberId(66) << data.unbounded_sequence_int64_field()
+        << eprosima::fastcdr::MemberId(67) << data.unbounded_sequence_uint64_field()
+        << eprosima::fastcdr::MemberId(68) << data.unbounded_sequence_float_field()
+        << eprosima::fastcdr::MemberId(69) << data.unbounded_sequence_double_field()
+        << eprosima::fastcdr::MemberId(70) << data.unbounded_sequence_bool_field()
+        << eprosima::fastcdr::MemberId(71) << data.unbounded_sequence_enum_field()
+        << eprosima::fastcdr::MemberId(72) << data.unbounded_sequence_enum2_field()
+        << eprosima::fastcdr::MemberId(73) << data.unbounded_sequence_struct_field()
+;
+    scdr.end_serialize_type(current_state);
+}
+
+template<>
+eProsima_user_DllExport void deserialize(
+        eprosima::fastcdr::Cdr& cdr,
+        eprosima::test::KeyedCompleteTestType& data)
+{
+    using namespace eprosima::test;
+
+    cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
+            eprosima::fastcdr::EncodingAlgorithmFlag::DELIMIT_CDR2 :
+            eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR,
+            [&data](eprosima::fastcdr::Cdr& dcdr, const eprosima::fastcdr::MemberId& mid) -> bool
+            {
+                bool ret_value = true;
+                switch (mid.id)
+                {
+                                        case 0:
+                                                dcdr >> data.id();
+                                            break;
+
+                                        case 1:
+                                                dcdr >> data.char_field();
+                                            break;
+
+                                        case 2:
+                                                dcdr >> data.uint8_field();
+                                            break;
+
+                                        case 3:
+                                                dcdr >> data.int16_field();
+                                            break;
+
+                                        case 4:
+                                                dcdr >> data.uint16_field();
+                                            break;
+
+                                        case 5:
+                                                dcdr >> data.int32_field();
+                                            break;
+
+                                        case 6:
+                                                dcdr >> data.uint32_field();
+                                            break;
+
+                                        case 7:
+                                                dcdr >> data.int64_field();
+                                            break;
+
+                                        case 8:
+                                                dcdr >> data.uint64_field();
+                                            break;
+
+                                        case 9:
+                                                dcdr >> data.float_field();
+                                            break;
+
+                                        case 10:
+                                                dcdr >> data.double_field();
+                                            break;
+
+                                        case 11:
+                                                dcdr >> data.bool_field();
+                                            break;
+
+                                        case 12:
+                                                dcdr >> data.string_field();
+                                            break;
+
+                                        case 13:
+                                                dcdr >> data.fixed_string_field();
+                                            break;
+
+                                        case 14:
+                                                dcdr >> data.enum_field();
+                                            break;
+
+                                        case 15:
+                                                dcdr >> data.enum2_field();
+                                            break;
+
+                                        case 16:
+                                                dcdr >> data.struct_field();
+                                            break;
+
+                                        case 17:
+                                                dcdr >> data.char_opt_field();
+                                            break;
+
+                                        case 18:
+                                                dcdr >> data.uint8_opt_field();
+                                            break;
+
+                                        case 19:
+                                                dcdr >> data.int16_opt_field();
+                                            break;
+
+                                        case 20:
+                                                dcdr >> data.uint16_opt_field();
+                                            break;
+
+                                        case 21:
+                                                dcdr >> data.int32_opt_field();
+                                            break;
+
+                                        case 22:
+                                                dcdr >> data.uint32_opt_field();
+                                            break;
+
+                                        case 23:
+                                                dcdr >> data.int64_opt_field();
+                                            break;
+
+                                        case 24:
+                                                dcdr >> data.uint64_opt_field();
+                                            break;
+
+                                        case 25:
+                                                dcdr >> data.float_opt_field();
+                                            break;
+
+                                        case 26:
+                                                dcdr >> data.double_opt_field();
+                                            break;
+
+                                        case 27:
+                                                dcdr >> data.bool_opt_field();
+                                            break;
+
+                                        case 28:
+                                                dcdr >> data.string_opt_field();
+                                            break;
+
+                                        case 29:
+                                                dcdr >> data.enum_opt_field();
+                                            break;
+
+                                        case 30:
+                                                dcdr >> data.enum2_opt_field();
+                                            break;
+
+                                        case 31:
+                                                dcdr >> data.struct_opt_field();
+                                            break;
+
+                                        case 32:
+                                                dcdr >> data.array_char_field();
+                                            break;
+
+                                        case 33:
+                                                dcdr >> data.array_uint8_field();
+                                            break;
+
+                                        case 34:
+                                                dcdr >> data.array_int16_field();
+                                            break;
+
+                                        case 35:
+                                                dcdr >> data.array_uint16_field();
+                                            break;
+
+                                        case 36:
+                                                dcdr >> data.array_int32_field();
+                                            break;
+
+                                        case 37:
+                                                dcdr >> data.array_uint32_field();
+                                            break;
+
+                                        case 38:
+                                                dcdr >> data.array_int64_field();
+                                            break;
+
+                                        case 39:
+                                                dcdr >> data.array_uint64_field();
+                                            break;
+
+                                        case 40:
+                                                dcdr >> data.array_float_field();
+                                            break;
+
+                                        case 41:
+                                                dcdr >> data.array_double_field();
+                                            break;
+
+                                        case 42:
+                                                dcdr >> data.array_bool_field();
+                                            break;
+
+                                        case 43:
+                                                dcdr >> data.array_enum_field();
+                                            break;
+
+                                        case 44:
+                                                dcdr >> data.array_enum2_field();
+                                            break;
+
+                                        case 45:
+                                                dcdr >> data.array_struct_field();
+                                            break;
+
+                                        case 46:
+                                                dcdr >> data.bounded_sequence_char_field();
+                                            break;
+
+                                        case 47:
+                                                dcdr >> data.bounded_sequence_uint8_field();
+                                            break;
+
+                                        case 48:
+                                                dcdr >> data.bounded_sequence_int16_field();
+                                            break;
+
+                                        case 49:
+                                                dcdr >> data.bounded_sequence_uint16_field();
+                                            break;
+
+                                        case 50:
+                                                dcdr >> data.bounded_sequence_int32_field();
+                                            break;
+
+                                        case 51:
+                                                dcdr >> data.bounded_sequence_uint32_field();
+                                            break;
+
+                                        case 52:
+                                                dcdr >> data.bounded_sequence_int64_field();
+                                            break;
+
+                                        case 53:
+                                                dcdr >> data.bounded_sequence_uint64_field();
+                                            break;
+
+                                        case 54:
+                                                dcdr >> data.bounded_sequence_float_field();
+                                            break;
+
+                                        case 55:
+                                                dcdr >> data.bounded_sequence_double_field();
+                                            break;
+
+                                        case 56:
+                                                dcdr >> data.bounded_sequence_bool_field();
+                                            break;
+
+                                        case 57:
+                                                dcdr >> data.bounded_sequence_enum_field();
+                                            break;
+
+                                        case 58:
+                                                dcdr >> data.bounded_sequence_enum2_field();
+                                            break;
+
+                                        case 59:
+                                                dcdr >> data.bounded_sequence_struct_field();
+                                            break;
+
+                                        case 60:
+                                                dcdr >> data.unbounded_sequence_char_field();
+                                            break;
+
+                                        case 61:
+                                                dcdr >> data.unbounded_sequence_uint8_field();
+                                            break;
+
+                                        case 62:
+                                                dcdr >> data.unbounded_sequence_int16_field();
+                                            break;
+
+                                        case 63:
+                                                dcdr >> data.unbounded_sequence_uint16_field();
+                                            break;
+
+                                        case 64:
+                                                dcdr >> data.unbounded_sequence_int32_field();
+                                            break;
+
+                                        case 65:
+                                                dcdr >> data.unbounded_sequence_uint32_field();
+                                            break;
+
+                                        case 66:
+                                                dcdr >> data.unbounded_sequence_int64_field();
+                                            break;
+
+                                        case 67:
+                                                dcdr >> data.unbounded_sequence_uint64_field();
+                                            break;
+
+                                        case 68:
+                                                dcdr >> data.unbounded_sequence_float_field();
+                                            break;
+
+                                        case 69:
+                                                dcdr >> data.unbounded_sequence_double_field();
+                                            break;
+
+                                        case 70:
+                                                dcdr >> data.unbounded_sequence_bool_field();
+                                            break;
+
+                                        case 71:
+                                                dcdr >> data.unbounded_sequence_enum_field();
+                                            break;
+
+                                        case 72:
+                                                dcdr >> data.unbounded_sequence_enum2_field();
+                                            break;
+
+                                        case 73:
+                                                dcdr >> data.unbounded_sequence_struct_field();
+                                            break;
+
+                    default:
+                        ret_value = false;
+                        break;
+                }
+                return ret_value;
+            });
+}
+
+void serialize_key(
+        eprosima::fastcdr::Cdr& scdr,
         const eprosima::test::KeyedCompleteTestType& data)
 {
     using namespace eprosima::test;
@@ -1879,6 +1907,7 @@ void serialize_key(
     static_cast<void>(scdr);
     static_cast<void>(data);
                         scdr << data.id();
+
 
 
 
