@@ -56,6 +56,7 @@
 
 %include <fastcdr/config.h>
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
+%import(module="fastdds") "fastcdr/cdr/fixed_size_string.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -216,6 +217,27 @@ namespace swig {
 
 
 
+%ignore StructType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore StructType::fixed_string_field();
+%rename("%s") StructType::fixed_string_field() const;
+
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
+%extend StructType
+{
+    void fixed_string_field(const std::string& value)
+    {
+        eprosima::fastcdr::fixed_string<16> tmp(value);
+        $self->fixed_string_field(tmp);
+    }
+}
+
+
+
 %ignore StructType::enum_field(Color&&);
 
 
@@ -263,8 +285,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 ////////////////////////////////////////////////////////
 // Binding for class CompleteTestType
@@ -405,6 +425,27 @@ namespace swig {
 // We ignore them to prevent this
 %ignore CompleteTestType::string_field();
 %rename("%s") CompleteTestType::string_field() const;
+
+
+
+%ignore CompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore CompleteTestType::fixed_string_field();
+%rename("%s") CompleteTestType::fixed_string_field() const;
+
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
+%extend CompleteTestType
+{
+    void fixed_string_field(const std::string& value)
+    {
+        eprosima::fastcdr::fixed_string<16> tmp(value);
+        $self->fixed_string_field(tmp);
+    }
+}
 
 
 
@@ -1639,6 +1680,27 @@ namespace swig {
 // We ignore them to prevent this
 %ignore KeyedCompleteTestType::string_field();
 %rename("%s") KeyedCompleteTestType::string_field() const;
+
+
+
+%ignore KeyedCompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore KeyedCompleteTestType::fixed_string_field();
+%rename("%s") KeyedCompleteTestType::fixed_string_field() const;
+
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
+%extend KeyedCompleteTestType
+{
+    void fixed_string_field(const std::string& value)
+    {
+        eprosima::fastcdr::fixed_string<16> tmp(value);
+        $self->fixed_string_field(tmp);
+    }
+}
 
 
 

@@ -136,6 +136,7 @@ namespace xtypes {
 #ifndef FASTDDS_DOCS_BUILD
 %include <fastcdr/config.h>
 %include "fastcdr/xcdr/optional.i"
+%include "fastcdr/cdr/fixed_size_string.i"
 #endif
 
 %include "fastdds/LibrarySettings.i"
