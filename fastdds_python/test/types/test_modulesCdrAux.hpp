@@ -24,14 +24,14 @@
 
 #include "test_modules.hpp"
 
-constexpr uint32_t eprosima_test_KeyedCompleteTestType_max_cdr_typesize {4620UL};
+constexpr uint32_t eprosima_test_KeyedCompleteTestType_max_cdr_typesize {4884UL};
 constexpr uint32_t eprosima_test_KeyedCompleteTestType_max_key_cdr_typesize {4UL};
 
 
-constexpr uint32_t eprosima_test_CompleteTestType_max_cdr_typesize {4620UL};
+constexpr uint32_t eprosima_test_CompleteTestType_max_cdr_typesize {4884UL};
 constexpr uint32_t eprosima_test_CompleteTestType_max_key_cdr_typesize {0UL};
 
-constexpr uint32_t eprosima_test_StructType_max_cdr_typesize {328UL};
+constexpr uint32_t eprosima_test_StructType_max_cdr_typesize {352UL};
 constexpr uint32_t eprosima_test_StructType_max_key_cdr_typesize {0UL};
 
 
