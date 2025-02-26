@@ -216,6 +216,27 @@ namespace swig {
 
 
 
+%ignore eprosima::test::StructType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::StructType::fixed_string_field();
+%rename("%s") eprosima::test::StructType::fixed_string_field() const;
+
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
+%extend eprosima::test::StructType
+{
+    void fixed_string_field(const std::string& value)
+    {
+        eprosima::fastcdr::fixed_string<16> tmp(value);
+        $self->fixed_string_field(tmp);
+    }
+}
+
+
+
 %ignore eprosima::test::StructType::enum_field(eprosima::test::Color&&);
 
 
@@ -392,6 +413,27 @@ namespace swig {
 // We ignore them to prevent this
 %ignore eprosima::test::CompleteTestType::string_field();
 %rename("%s") eprosima::test::CompleteTestType::string_field() const;
+
+
+
+%ignore eprosima::test::CompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::CompleteTestType::fixed_string_field();
+%rename("%s") eprosima::test::CompleteTestType::fixed_string_field() const;
+
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
+%extend eprosima::test::CompleteTestType
+{
+    void fixed_string_field(const std::string& value)
+    {
+        eprosima::fastcdr::fixed_string<16> tmp(value);
+        $self->fixed_string_field(tmp);
+    }
+}
 
 
 
@@ -1626,6 +1668,27 @@ namespace swig {
 // We ignore them to prevent this
 %ignore eprosima::test::KeyedCompleteTestType::string_field();
 %rename("%s") eprosima::test::KeyedCompleteTestType::string_field() const;
+
+
+
+%ignore eprosima::test::KeyedCompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
+
+
+// Overloaded getter methods shadow each other and are equivalent in python
+// Const accesors produced constant enums instead of arrays/dictionaries when used
+// We ignore them to prevent this
+%ignore eprosima::test::KeyedCompleteTestType::fixed_string_field();
+%rename("%s") eprosima::test::KeyedCompleteTestType::fixed_string_field() const;
+
+%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
+%extend eprosima::test::KeyedCompleteTestType
+{
+    void fixed_string_field(const std::string& value)
+    {
+        eprosima::fastcdr::fixed_string<16> tmp(value);
+        $self->fixed_string_field(tmp);
+    }
+}
 
 
 
