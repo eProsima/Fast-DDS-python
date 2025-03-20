@@ -55,6 +55,7 @@
 
 %include <fastcdr/config.h>
 %import(module="fastdds") "fastcdr/xcdr/optional.hpp"
+%import(module="fastdds") "fastcdr/cdr/fixed_size_string.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
@@ -251,8 +252,6 @@ namespace swig {
         return (*self)[i];
     }
 }
-
-
 
 ////////////////////////////////////////////////////////
 // Binding for class eprosima::test::CompleteTestType
