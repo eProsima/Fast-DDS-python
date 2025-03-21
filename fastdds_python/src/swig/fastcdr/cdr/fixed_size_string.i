@@ -20,3 +20,6 @@
 %ignore eprosima::fastcdr::fixed_string::operator const char*() const;
 
 %include "fastcdr/cdr/fixed_size_string.hpp"
+
+// Define string_255 as a fixed_string<255>
+%template(string_255) eprosima::fastcdr::fixed_string<255>;
