@@ -167,6 +167,9 @@ namespace xtypes {
 %include "fastdds/rtps/common/SampleIdentity.i"
 %include "fastdds/rtps/common/WriteParams.i"
 %include "fastdds/rtps/builtin/data/ContentFilterProperty.i"
+%include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
+%include "fastdds/rtps/writer/WriterDiscoveryInfo.i"
+%include "fastdds/rtps/participant/ParticipantDiscoveryInfo.i"
 
 %include "fastdds/dds/common/InstanceHandle.i"
 %include "fastdds/dds/core/ReturnCode.i"
