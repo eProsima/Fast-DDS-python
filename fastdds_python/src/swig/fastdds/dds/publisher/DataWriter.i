@@ -26,7 +26,7 @@
             const fastdds::rtps::Time_t&);
 
 // Unsupported function on Python are ignored
-%ignore loan_sample(void*&, LoanInitializationKind);
+//%ignore loan_sample(void*&, LoanInitializationKind);
 %ignore discard_loan(void*&);
 
 
@@ -114,6 +114,13 @@
 
         }
 
+        return ret;
+    }
+
+    void* loan_sample()
+    {
+        void* ret = nullptr;
+        self->loan_sample(ret);
         return ret;
     }
 }
