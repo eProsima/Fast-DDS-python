@@ -36,7 +36,7 @@ on:
         description: 'Branch or tag of Fast CDR repository (https://github.com/eProsima/Fast-CDR)'
         required: false
         type: string
-        default: 'master'
+        default: '1.0.x'
       run-build:
         description: 'Build Fast DDS Python (CI skipped otherwise)'
         required: false
