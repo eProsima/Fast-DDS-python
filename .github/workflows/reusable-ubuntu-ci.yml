@@ -25,13 +25,18 @@ on:
         required: false
         type: string
       fastdds-python-branch:
-        description: 'Branch or tag of Fast DDS Python repository'
+        description: 'Branch or tag of Fast DDS Python repository (https://github.com/eProsima/Fast-DDS-python)'
         required: true
         type: string
       fastdds-branch:
-        description: 'Branch or tag of Fast DDS repository'
+        description: 'Branch or tag of Fast DDS repository (https://github.com/eProsima/Fast-DDS)'
         required: true
         type: string
+      fastcdr-branch:
+        description: 'Branch or tag of Fast CDR repository (https://github.com/eProsima/Fast-CDR)'
+        required: false
+        type: string
+        default: 'master'
       run-build:
         description: 'Build Fast DDS Python (CI skipped otherwise)'
         required: false
@@ -106,6 +111,20 @@ jobs:
         if: ${{ inputs.use-ccache == true }}
         with:
           api_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get Fast CDR branch
+        id: get_fastcdr_branch
+        uses: eProsima/eProsima-CI/ubuntu/get_related_branch_from_repo@v0
+        with:
+          remote_repository: eProsima/Fast-CDR
+          fallback_branch: ${{ inputs.fastcdr-branch }}
+
+      - name: Download Fast CDR
+        uses: eProsima/eProsima-CI/external/checkout@v0
+        with:
+          repository: eProsima/Fast-CDR
+          path: ${{ github.workspace }}/src/fastcdr
+          ref: ${{ steps.get_fastcdr_branch.outputs.deduced_branch }}
 
       - name: Get Fast DDS branch
         id: get_fastdds_branch
