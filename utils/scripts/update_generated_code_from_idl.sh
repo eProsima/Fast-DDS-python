@@ -40,4 +40,17 @@ if [[ $? != 0 ]]; then
 fi
 cd -
 
+if [[ $ret_value != -1 ]]; then
+    cd "./fastdds_python_examples/RPCExample"
+
+echo -e "Processing ${yellow}calculator.idl${textreset}"
+    echo "Running: fastddsgen -replace -python calculator.idl"
+    fastddsgen -replace -python calculator.idl
+fi
+
+if [[ $? != 0 ]]; then
+    ret_value=-1
+fi
+cd -
+
 exit ${ret_value}
