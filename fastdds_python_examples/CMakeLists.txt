@@ -20,4 +20,5 @@ project(FastDdsPythonExamples)
 # Examples subdirectory
 ###############################################################################
 
-add_subdirectory(HelloWorldExample)
+add_subdirectory(HelloWorldExample/generated_code)
+add_subdirectory(RPCExample/generated_code)

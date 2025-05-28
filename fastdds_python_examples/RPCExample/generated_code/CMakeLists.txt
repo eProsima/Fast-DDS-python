@@ -1,4 +1,18 @@
 
+# Copyright 2025 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 cmake_minimum_required(VERSION 3.20)
 
 # SWIG: use standard target name.
@@ -12,15 +26,15 @@ if(POLICY CMP0086)
 endif()
 
 ###############################################################################
-# Library for types defined in HelloWorld IDL
+# Library for types defined in calculator IDL
 ###############################################################################
 
-message(STATUS "Configuring python wrapper for types in HelloWorld...")
+message(STATUS "Configuring python wrapper for types in calculator...")
 
 ###############################################################################
 # Type library on C++
 
-project(HelloWorld)
+project(calculator)
 
 find_package(fastcdr REQUIRED)
 find_package(fastdds 3 REQUIRED)
@@ -29,8 +43,10 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        HelloWorldTypeObjectSupport.cxx
-        HelloWorldPubSubTypes.cxx
+        calculatorTypeObjectSupport.cxx
+        calculatorPubSubTypes.cxx
+        calculatorClient.cxx
+        calculatorServer.cxx
         )
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
@@ -65,11 +81,11 @@ set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
 include_directories(${PYTHON_INCLUDE_PATH})
 
 set(${PROJECT_NAME}_MODULE
-    HelloWorldWrapper
+    calculatorWrapper
     )
 
 set(${PROJECT_NAME}_MODULE_FILES
-    ${PROJECT_NAME}.i
+    calculator.i
     )
 
 SET_SOURCE_FILES_PROPERTIES(
