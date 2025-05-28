@@ -32,7 +32,7 @@ if [[ $ret_value != -1 ]]; then
 
 echo -e "Processing ${yellow}HelloWorld.idl${textreset}"
     echo "Running: fastddsgen -replace -python HelloWorld.idl"
-    fastddsgen -replace -python HelloWorld.idl
+    fastddsgen -replace -python -d generated_code HelloWorld.idl
 fi
 
 if [[ $? != 0 ]]; then
