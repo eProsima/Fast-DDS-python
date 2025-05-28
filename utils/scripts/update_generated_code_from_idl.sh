@@ -45,7 +45,7 @@ if [[ $ret_value != -1 ]]; then
 
 echo -e "Processing ${yellow}calculator.idl${textreset}"
     echo "Running: fastddsgen -replace -python calculator.idl"
-    fastddsgen -replace -python calculator.idl
+    fastddsgen -replace -python -d generated_code calculator.idl
 fi
 
 if [[ $? != 0 ]]; then

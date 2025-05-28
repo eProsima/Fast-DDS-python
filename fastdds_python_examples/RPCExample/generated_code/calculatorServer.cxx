@@ -1538,7 +1538,7 @@ private:
                         reply.fibonacci_seq->result->finished_ = true;
                         replier_->send_reply(&reply, req->info);
                     }
-                    catch (const frpc::RpcFeedCancelledException& ex)
+                    catch (const frpc::RpcFeedCancelledException& /*ex*/)
                     {
                         ReplyType reply{};
                         reply.fibonacci_seq = detail::Calculator_fibonacci_seq_Result{};
@@ -1592,7 +1592,7 @@ private:
                         reply.accumulator->result->finished_ = true;
                         replier_->send_reply(&reply, req->info);
                     }
-                    catch (const frpc::RpcFeedCancelledException& ex)
+                    catch (const frpc::RpcFeedCancelledException& /*ex*/)
                     {
                         ReplyType reply{};
                         reply.accumulator = detail::Calculator_accumulator_Result{};

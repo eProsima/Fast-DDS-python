@@ -1175,7 +1175,7 @@ private:
         }
 
         void set_exception(
-                std::exception_ptr exception)
+                std::exception_ptr exception) override
         {
             std::lock_guard<std::mutex> _(mtx_);
             if (!finished_)
@@ -1552,7 +1552,7 @@ private:
         }
 
         void set_exception(
-                std::exception_ptr exception)
+                std::exception_ptr exception) override
         {
             std::lock_guard<std::mutex> _(mtx_);
             if (!finished_)

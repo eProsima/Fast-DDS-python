@@ -36,9 +36,12 @@
 %}
 
 // SWIG helper modules
+%include "exception.i"
 %include "stdint.i"
 %include "std_array.i"
 %include "std_map.i"
+%include "std_pair.i"
+%include "std_shared_ptr.i"
 %include "std_string.i"
 %include "std_vector.i"
 %include "typemaps.i"
@@ -68,10 +71,6 @@
 %import(module="fastdds") "fastdds/dds/core/LoanableCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableTypedCollection.hpp"
 %import(module="fastdds") "fastdds/dds/core/LoanableSequence.hpp"
-
-%include <exception.i>
-%include <std_shared_ptr.i>
-%include <std_pair.i>
 
 %import(module="fastdds") "fastdds/dds/rpc/exceptions/RpcException.hpp"
 %import(module="fastdds") "fastdds/dds/rpc/exceptions/RpcOperationError.hpp"
