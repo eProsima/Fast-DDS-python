@@ -64,7 +64,7 @@ jobs:
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
       fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref }}
-      fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
+      fastdds-branch: ${{ inputs.fastdds-branch || '3.2.x' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
       use-ccache: ${{ inputs.use-ccache || false }}
