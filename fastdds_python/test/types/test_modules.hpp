@@ -136,6 +136,8 @@ public:
 
                     m_string_field = x.m_string_field;
 
+                    m_fixed_string_field = x.m_fixed_string_field;
+
                     m_enum_field = x.m_enum_field;
 
                     m_enum2_field = x.m_enum2_field;
@@ -161,6 +163,7 @@ public:
         m_double_field = x.m_double_field;
         m_bool_field = x.m_bool_field;
         m_string_field = std::move(x.m_string_field);
+        m_fixed_string_field = std::move(x.m_fixed_string_field);
         m_enum_field = x.m_enum_field;
         m_enum2_field = x.m_enum2_field;
     }
@@ -197,6 +200,8 @@ public:
 
                     m_string_field = x.m_string_field;
 
+                    m_fixed_string_field = x.m_fixed_string_field;
+
                     m_enum_field = x.m_enum_field;
 
                     m_enum2_field = x.m_enum2_field;
@@ -224,6 +229,7 @@ public:
         m_double_field = x.m_double_field;
         m_bool_field = x.m_bool_field;
         m_string_field = std::move(x.m_string_field);
+        m_fixed_string_field = std::move(x.m_fixed_string_field);
         m_enum_field = x.m_enum_field;
         m_enum2_field = x.m_enum2_field;
         return *this;
@@ -248,6 +254,7 @@ public:
            m_double_field == x.m_double_field &&
            m_bool_field == x.m_bool_field &&
            m_string_field == x.m_string_field &&
+           m_fixed_string_field == x.m_fixed_string_field &&
            m_enum_field == x.m_enum_field &&
            m_enum2_field == x.m_enum2_field);
     }
@@ -621,6 +628,45 @@ public:
 
 
     /*!
+     * @brief This function copies the value in member fixed_string_field
+     * @param _fixed_string_field New value to be copied in member fixed_string_field
+     */
+    eProsima_user_DllExport void fixed_string_field(
+            const eprosima::fastcdr::fixed_string<16>& _fixed_string_field)
+    {
+        m_fixed_string_field = _fixed_string_field;
+    }
+
+    /*!
+     * @brief This function moves the value in member fixed_string_field
+     * @param _fixed_string_field New value to be moved in member fixed_string_field
+     */
+    eProsima_user_DllExport void fixed_string_field(
+            eprosima::fastcdr::fixed_string<16>&& _fixed_string_field)
+    {
+        m_fixed_string_field = std::move(_fixed_string_field);
+    }
+
+    /*!
+     * @brief This function returns a constant reference to member fixed_string_field
+     * @return Constant reference to member fixed_string_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::fixed_string<16>& fixed_string_field() const
+    {
+        return m_fixed_string_field;
+    }
+
+    /*!
+     * @brief This function returns a reference to member fixed_string_field
+     * @return Reference to member fixed_string_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::fixed_string<16>& fixed_string_field()
+    {
+        return m_fixed_string_field;
+    }
+
+
+    /*!
      * @brief This function sets a value in member enum_field
      * @param _enum_field New value for member enum_field
      */
@@ -693,6 +739,7 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
+    eprosima::fastcdr::fixed_string<16> m_fixed_string_field;
     Color m_enum_field{Color::RED};
     Material m_enum2_field{Material::WOOD};
 
@@ -751,6 +798,8 @@ public:
                     m_bool_field = x.m_bool_field;
 
                     m_string_field = x.m_string_field;
+
+                    m_fixed_string_field = x.m_fixed_string_field;
 
                     m_enum_field = x.m_enum_field;
 
@@ -893,6 +942,7 @@ public:
         m_double_field = x.m_double_field;
         m_bool_field = x.m_bool_field;
         m_string_field = std::move(x.m_string_field);
+        m_fixed_string_field = std::move(x.m_fixed_string_field);
         m_enum_field = x.m_enum_field;
         m_enum2_field = x.m_enum2_field;
         m_struct_field = std::move(x.m_struct_field);
@@ -986,6 +1036,8 @@ public:
                     m_bool_field = x.m_bool_field;
 
                     m_string_field = x.m_string_field;
+
+                    m_fixed_string_field = x.m_fixed_string_field;
 
                     m_enum_field = x.m_enum_field;
 
@@ -1130,6 +1182,7 @@ public:
         m_double_field = x.m_double_field;
         m_bool_field = x.m_bool_field;
         m_string_field = std::move(x.m_string_field);
+        m_fixed_string_field = std::move(x.m_fixed_string_field);
         m_enum_field = x.m_enum_field;
         m_enum2_field = x.m_enum2_field;
         m_struct_field = std::move(x.m_struct_field);
@@ -1212,6 +1265,7 @@ public:
            m_double_field == x.m_double_field &&
            m_bool_field == x.m_bool_field &&
            m_string_field == x.m_string_field &&
+           m_fixed_string_field == x.m_fixed_string_field &&
            m_enum_field == x.m_enum_field &&
            m_enum2_field == x.m_enum2_field &&
            m_struct_field == x.m_struct_field &&
@@ -1639,6 +1693,45 @@ public:
     eProsima_user_DllExport std::string& string_field()
     {
         return m_string_field;
+    }
+
+
+    /*!
+     * @brief This function copies the value in member fixed_string_field
+     * @param _fixed_string_field New value to be copied in member fixed_string_field
+     */
+    eProsima_user_DllExport void fixed_string_field(
+            const eprosima::fastcdr::fixed_string<16>& _fixed_string_field)
+    {
+        m_fixed_string_field = _fixed_string_field;
+    }
+
+    /*!
+     * @brief This function moves the value in member fixed_string_field
+     * @param _fixed_string_field New value to be moved in member fixed_string_field
+     */
+    eProsima_user_DllExport void fixed_string_field(
+            eprosima::fastcdr::fixed_string<16>&& _fixed_string_field)
+    {
+        m_fixed_string_field = std::move(_fixed_string_field);
+    }
+
+    /*!
+     * @brief This function returns a constant reference to member fixed_string_field
+     * @return Constant reference to member fixed_string_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::fixed_string<16>& fixed_string_field() const
+    {
+        return m_fixed_string_field;
+    }
+
+    /*!
+     * @brief This function returns a reference to member fixed_string_field
+     * @return Reference to member fixed_string_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::fixed_string<16>& fixed_string_field()
+    {
+        return m_fixed_string_field;
     }
 
 
@@ -3977,6 +4070,7 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
+    eprosima::fastcdr::fixed_string<16> m_fixed_string_field;
     Color m_enum_field{Color::RED};
     Material m_enum2_field{Material::WOOD};
     StructType m_struct_field;
@@ -4093,6 +4187,8 @@ public:
                     m_bool_field = x.m_bool_field;
 
                     m_string_field = x.m_string_field;
+
+                    m_fixed_string_field = x.m_fixed_string_field;
 
                     m_enum_field = x.m_enum_field;
 
@@ -4236,6 +4332,7 @@ public:
         m_double_field = x.m_double_field;
         m_bool_field = x.m_bool_field;
         m_string_field = std::move(x.m_string_field);
+        m_fixed_string_field = std::move(x.m_fixed_string_field);
         m_enum_field = x.m_enum_field;
         m_enum2_field = x.m_enum2_field;
         m_struct_field = std::move(x.m_struct_field);
@@ -4331,6 +4428,8 @@ public:
                     m_bool_field = x.m_bool_field;
 
                     m_string_field = x.m_string_field;
+
+                    m_fixed_string_field = x.m_fixed_string_field;
 
                     m_enum_field = x.m_enum_field;
 
@@ -4476,6 +4575,7 @@ public:
         m_double_field = x.m_double_field;
         m_bool_field = x.m_bool_field;
         m_string_field = std::move(x.m_string_field);
+        m_fixed_string_field = std::move(x.m_fixed_string_field);
         m_enum_field = x.m_enum_field;
         m_enum2_field = x.m_enum2_field;
         m_struct_field = std::move(x.m_struct_field);
@@ -4559,6 +4659,7 @@ public:
            m_double_field == x.m_double_field &&
            m_bool_field == x.m_bool_field &&
            m_string_field == x.m_string_field &&
+           m_fixed_string_field == x.m_fixed_string_field &&
            m_enum_field == x.m_enum_field &&
            m_enum2_field == x.m_enum2_field &&
            m_struct_field == x.m_struct_field &&
@@ -5015,6 +5116,45 @@ public:
     eProsima_user_DllExport std::string& string_field()
     {
         return m_string_field;
+    }
+
+
+    /*!
+     * @brief This function copies the value in member fixed_string_field
+     * @param _fixed_string_field New value to be copied in member fixed_string_field
+     */
+    eProsima_user_DllExport void fixed_string_field(
+            const eprosima::fastcdr::fixed_string<16>& _fixed_string_field)
+    {
+        m_fixed_string_field = _fixed_string_field;
+    }
+
+    /*!
+     * @brief This function moves the value in member fixed_string_field
+     * @param _fixed_string_field New value to be moved in member fixed_string_field
+     */
+    eProsima_user_DllExport void fixed_string_field(
+            eprosima::fastcdr::fixed_string<16>&& _fixed_string_field)
+    {
+        m_fixed_string_field = std::move(_fixed_string_field);
+    }
+
+    /*!
+     * @brief This function returns a constant reference to member fixed_string_field
+     * @return Constant reference to member fixed_string_field
+     */
+    eProsima_user_DllExport const eprosima::fastcdr::fixed_string<16>& fixed_string_field() const
+    {
+        return m_fixed_string_field;
+    }
+
+    /*!
+     * @brief This function returns a reference to member fixed_string_field
+     * @return Reference to member fixed_string_field
+     */
+    eProsima_user_DllExport eprosima::fastcdr::fixed_string<16>& fixed_string_field()
+    {
+        return m_fixed_string_field;
     }
 
 
@@ -7354,6 +7494,7 @@ private:
     double m_double_field{0.0};
     bool m_bool_field{false};
     std::string m_string_field;
+    eprosima::fastcdr::fixed_string<16> m_fixed_string_field;
     Color m_enum_field{Color::RED};
     Material m_enum2_field{Material::WOOD};
     StructType m_struct_field;
