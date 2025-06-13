@@ -16,4 +16,11 @@
 #include "fastdds/dds/rpc/interfaces.hpp"
 %}
 
+%include "std_shared_ptr.i"
+
+%shared_ptr(eprosima::fastdds::dds::rpc::RpcServer);
+%ignore eprosima::fastdds::dds::rpc::RpcServer::execute_request;
+
+%include "fastdds/dds/rpc/interfaces/RpcRequest.hpp"
+%include "fastdds/dds/rpc/interfaces/RpcServer.hpp"
 %include "fastdds/dds/rpc/interfaces/RpcStatusCode.hpp"
