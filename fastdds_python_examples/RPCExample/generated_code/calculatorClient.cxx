@@ -205,6 +205,7 @@ private:
             std::shared_ptr<T> result,
             std::promise<TResult>& promise)
     {
+        result->info.related_sample_identity.writer_guid(requester_->get_requester_reader()->guid());
         if (fdds::RETCODE_OK == requester_->send_request((void*)&request, result->info))
         {
             std::lock_guard<std::mutex> _ (mtx_);
@@ -224,6 +225,7 @@ private:
             const RequestType& request,
             std::shared_ptr<T> result)
     {
+        result->info.related_sample_identity.writer_guid(requester_->get_requester_reader()->guid());
         if (fdds::RETCODE_OK == requester_->send_request((void*)&request, result->info))
         {
             std::lock_guard<std::mutex> _ (mtx_);
@@ -719,6 +721,7 @@ private:
             std::shared_ptr<T> result,
             std::promise<TResult>& promise)
     {
+        result->info.related_sample_identity.writer_guid(requester_->get_requester_reader()->guid());
         if (fdds::RETCODE_OK == requester_->send_request((void*)&request, result->info))
         {
             std::lock_guard<std::mutex> _ (mtx_);
@@ -738,6 +741,7 @@ private:
             const RequestType& request,
             std::shared_ptr<T> result)
     {
+        result->info.related_sample_identity.writer_guid(requester_->get_requester_reader()->guid());
         if (fdds::RETCODE_OK == requester_->send_request((void*)&request, result->info))
         {
             std::lock_guard<std::mutex> _ (mtx_);
