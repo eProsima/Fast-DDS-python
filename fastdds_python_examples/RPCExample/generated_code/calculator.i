@@ -29,6 +29,13 @@
 
 // If using windows in debug, it would try to use python_d, which would not be found.
 %begin %{
+/*
+ * From: https://github.com/swig/swig/issues/2638
+ * When a module uses a type in a module that is defined in a different module,
+ * a false positive memory leak is detected.
+ * The following line silences this warning.
+ */
+#define SWIG_PYTHON_SILENT_MEMLEAK
 #ifdef _MSC_VER
 #define SWIG_PYTHON_INTERPRETER_NO_DEBUG
 #endif
@@ -74,6 +81,7 @@
 
 %import(module="fastdds") "fastdds/dds/rpc/exceptions/RpcException.hpp"
 %import(module="fastdds") "fastdds/dds/rpc/exceptions/RpcOperationError.hpp"
+%import(module="fastdds") "fastdds/dds/rpc/interfaces/RpcServer.hpp"
 
 %exception {
     try
@@ -228,17 +236,6 @@ namespace swig {
 
 
 %shared_ptr(calculator_base::BasicCalculator);
-%shared_ptr(calculator_base::BasicCalculatorServer);
-%extend calculator_base::BasicCalculatorServer
-{
-    void run()
-    {
-        Py_BEGIN_ALLOW_THREADS
-        self->run();
-        Py_END_ALLOW_THREADS
-    }
-}
-
 %shared_ptr(calculator_base::BasicCalculatorServer_IServerImplementation);
 %shared_ptr(calculator_base::BasicCalculatorServerImplementation);
 %feature("director") calculator_base::BasicCalculatorServerImplementation;
@@ -246,17 +243,6 @@ namespace swig {
 
 
 %shared_ptr(Calculator);
-%shared_ptr(CalculatorServer);
-%extend CalculatorServer
-{
-    void run()
-    {
-        Py_BEGIN_ALLOW_THREADS
-        self->run();
-        Py_END_ALLOW_THREADS
-    }
-}
-
 %shared_ptr(CalculatorServer_IServerImplementation);
 %shared_ptr(CalculatorServerImplementation);
 %feature("director") CalculatorServerImplementation;

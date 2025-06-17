@@ -34,7 +34,7 @@ struct BasicCalculatorServerImplementation :
 {
 
     int32_t addition(
-            const BasicCalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -45,7 +45,7 @@ struct BasicCalculatorServerImplementation :
     }
 
     int32_t subtraction(
-            const BasicCalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -56,7 +56,7 @@ struct BasicCalculatorServerImplementation :
     }
 
     calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
-            const BasicCalculatorServer_ClientContext& info) override
+            const eprosima::fastdds::dds::rpc::RpcRequest& info) override
     {
         static_cast<void>(info);
         throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'representation_limits' is not implemented");
@@ -76,7 +76,7 @@ struct CalculatorServerImplementation :
 {
 
     int32_t addition(
-            const CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -87,7 +87,7 @@ struct CalculatorServerImplementation :
     }
 
     int32_t subtraction(
-            const CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ int32_t value1,
             /*in*/ int32_t value2) override
     {
@@ -98,14 +98,14 @@ struct CalculatorServerImplementation :
     }
 
     calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
-            const CalculatorServer_ClientContext& info) override
+            const eprosima::fastdds::dds::rpc::RpcRequest& info) override
     {
         static_cast<void>(info);
         throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'representation_limits' is not implemented");
     }
 
     void fibonacci_seq(
-            const CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ uint32_t n_results,
             /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override
     {
@@ -116,7 +116,7 @@ struct CalculatorServerImplementation :
     }
 
     int32_t sum_all(
-            const CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value) override
     {
         static_cast<void>(info);
@@ -125,7 +125,7 @@ struct CalculatorServerImplementation :
     }
 
     void accumulator(
-            const CalculatorServer_ClientContext& info,
+            const eprosima::fastdds::dds::rpc::RpcRequest& info,
             /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value,
             /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override
     {
