@@ -8,11 +8,17 @@ on:
 jobs:
   # python main - fastdds master
   nightly-windows-ci-main:
+    strategy:
+      fail-fast: false
+      matrix:
+        vs-toolset:
+          - 'v142'
+          - 'v143'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@main
     with:
-      os-version: 'windows-2019'
-      vs-toolset: 'v142'
-      label: 'nightly-windows-v142-ci-main-master'
+      os-version: 'windows-2022'
+      vs-toolset: ${{ matrix.vs-toolset }}
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-main-master'
       fastdds-python-branch: 'main'
       fastdds-branch: 'master'
       run-build: true
@@ -20,11 +26,17 @@ jobs:
 
   # python 2.2.x - fastdds 3.2.x
   nightly-windows-ci-2_2_x:
+    strategy:
+      fail-fast: false
+      matrix:
+        vs-toolset:
+          - 'v142'
+          - 'v143'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@2.2.x
     with:
-      os-version: 'windows-2019'
-      vs-toolset: 'v142'
-      label: 'nightly-windows-v142-ci-2.2.x-3.2.x'
+      os-version: 'windows-2022'
+      vs-toolset: ${{ matrix.vs-toolset }}
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-2.2.x-3.2.x'
       fastdds-python-branch: '2.2.x'
       fastdds-branch: '3.2.x'
       run-build: true
@@ -36,11 +48,10 @@ jobs:
       fail-fast: false
       matrix:
         vs-toolset:
-          - 'v141'
           - 'v142'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.4.x
     with:
-      os-version: 'windows-2019'
+      os-version: 'windows-2022'
       vs-toolset: ${{ matrix.vs-toolset }}
       label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-1.4.x-2.14.x'
       fastdds-python-branch: '1.4.x'
