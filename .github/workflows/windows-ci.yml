@@ -8,11 +8,6 @@ on:
         required: false
         default: 'windows-2022'
         type: string
-      vs-toolset:
-        description: 'The VS toolset to use for the build'
-        required: false
-        default: 'v142'
-        type: string
       colcon-args:
         description: 'Extra arguments for colcon cli'
         required: false
@@ -54,13 +49,19 @@ concurrency:
 jobs:
   windows-ci:
     if: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'conflicts') }}
+    strategy:
+      fail-fast: false
+      matrix:
+        vs-toolset:
+          - 'v142'
+          - 'v143'
     uses: ./.github/workflows/reusable-windows-ci.yml
     with:
       # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: ${{ inputs.os-version || 'windows-2022' }}
-      vs-toolset: ${{ inputs.vs-toolset || 'v142' }}
-      label: '${{ inputs.os-version }}-${{ inputs.vs-toolset }}-ci-${{ inputs.fastdds-python-branch }}-${{ inputs.fastdds-branch }}'
+      vs-toolset: ${{ matrix.vs-toolset }}
+      label: '${{ inputs.os-version }}-${{ matrix.vs-toolset }}-ci-${{ inputs.fastdds-python-branch }}-${{ inputs.fastdds-branch }}'
       colcon-args: ${{ inputs.colcon-args }}
       cmake-args: ${{ inputs.cmake-args }}
       ctest-args: ${{ inputs.ctest-args }}
