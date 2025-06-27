@@ -6,7 +6,7 @@ on:
       os-version:
         description: 'The OS image for the workflow'
         required: false
-        default: 'windows-2019'
+        default: 'windows-2022'
         type: string
       vs-toolset:
         description: 'The VS toolset to use for the build'
