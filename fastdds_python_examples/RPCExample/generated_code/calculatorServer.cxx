@@ -884,6 +884,7 @@ private:
             : info_(info)
             , replier_(replier)
         {
+            info_.has_more_replies = true;
             reply_.fibonacci_seq = detail::Calculator_fibonacci_seq_Result{};
             reply_.fibonacci_seq->result = detail::Calculator_fibonacci_seq_Out{};
         }
@@ -1172,6 +1173,7 @@ private:
             : info_(info)
             , replier_(replier)
         {
+            info_.has_more_replies = true;
             reply_.accumulator = detail::Calculator_accumulator_Result{};
             reply_.accumulator->result = detail::Calculator_accumulator_Out{};
         }
