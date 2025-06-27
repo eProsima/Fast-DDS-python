@@ -11,11 +11,10 @@ jobs:
       fail-fast: false
       matrix:
         vs-toolset:
-          - 'v141'
           - 'v142'
     uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@1.0.x
     with:
-      os-version: 'windows-2019'
+      os-version: 'windows-2022'
       vs-toolset: ${{ matrix.vs-toolset }}
       label: 'weekly-windows-${{ matrix.vs-toolset }}-ci-1.0.x-2.6.x'
       fastdds-python-branch: '1.0.x'
