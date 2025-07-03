@@ -175,6 +175,11 @@ namespace calculator_base {
             delete pData;
         }
 
+        eProsima_user_DllExport void register_type_object_representation() override
+        {
+            register_BasicCalculator_Request_type_identifier(type_identifiers_);
+        }
+
     };
 
     class BasicCalculator_ReplyPubSubType : public eprosima::fastdds::dds::TopicDataType
@@ -316,6 +321,11 @@ namespace calculator_base {
         {
             type* pData = static_cast<type*>(data);
             delete pData;
+        }
+
+        eProsima_user_DllExport void register_type_object_representation() override
+        {
+            register_BasicCalculator_Reply_type_identifier(type_identifiers_);
         }
 
     };
@@ -477,6 +487,11 @@ public:
         delete pData;
     }
 
+    eProsima_user_DllExport void register_type_object_representation() override
+    {
+        register_Calculator_Request_type_identifier(type_identifiers_);
+    }
+
 };
 
 class Calculator_ReplyPubSubType : public eprosima::fastdds::dds::TopicDataType
@@ -618,6 +633,11 @@ public:
     {
         type* pData = static_cast<type*>(data);
         delete pData;
+    }
+
+    eProsima_user_DllExport void register_type_object_representation() override
+    {
+        register_Calculator_Reply_type_identifier(type_identifiers_);
     }
 
 };
