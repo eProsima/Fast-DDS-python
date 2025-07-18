@@ -53,7 +53,7 @@ endif()
 include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
-find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+find_package(Python3 COMPONENTS Interpreter Development.SABIModule REQUIRED)
 
 find_package(fastcdr REQUIRED)
 find_package(fastdds 3 REQUIRED)

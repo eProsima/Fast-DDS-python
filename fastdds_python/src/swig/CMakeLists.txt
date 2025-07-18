@@ -59,10 +59,15 @@ endif()
 
 if(MSVC OR MSVC_IDE)
     target_compile_options(${PROJECT_NAME} PRIVATE /bigobj)
+    target_compile_definitions(${PROJECT_NAME}
+        PRIVATE
+        NOMINMAX
+        Py_LIMITED_API=0x03040000
+    )
 endif()
 
 target_link_libraries(${PROJECT_NAME}
-    Python3::Module
+    Python3::SABIModule
     fastcdr
     fastdds
     )
