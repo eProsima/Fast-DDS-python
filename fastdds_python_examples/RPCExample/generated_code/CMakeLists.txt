@@ -109,8 +109,23 @@ if(UNIX AND CMAKE_SIZEOF_VOID_P EQUAL 8)
     set_property(TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_COMPILE_DEFINITIONS SWIGWORDSIZE64)
 endif()
 
+if(MSVC OR MSVC_IDE)
+    if(USE_PYTHON_STABLE_ABI)
+        target_compile_definitions(${${PROJECT_NAME}_MODULE}
+            PRIVATE
+            NOMINMAX
+            Py_LIMITED_API=0x03040000
+        )
+    endif()
+endif()
+
+if(USE_PYTHON_STABLE_ABI)
+    target_link_libraries(${${PROJECT_NAME}_MODULE} Python3::SABIModule)
+else()
+    target_link_libraries(${${PROJECT_NAME}_MODULE} Python3::Module)
+endif()
+
 target_link_libraries(${${PROJECT_NAME}_MODULE}
-    Python3::Module
     fastdds
     ${PROJECT_NAME}
     )
