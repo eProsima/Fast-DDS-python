@@ -27,8 +27,10 @@ endif()
 project(fastdds_python VERSION 2.4.0)
 
 if(SHARED_LIBRARY_SUFFIX)
-  set(CMAKE_SHARED_LIBRARY_SUFFIX ".${SHARED_LIBRARY_SUFFIX}")
+    message(STATUS "ADDED ARGUMENT: .${SHARED_LIBRARY_SUFFIX}")
+    set(CMAKE_SHARED_LIBRARY_SUFFIX ".${SHARED_LIBRARY_SUFFIX}")
 else()
+    message(STATUS "NO ARGUMENT: DEFAULT VALUE")
 
     # Default values for shared library suffix
     if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
