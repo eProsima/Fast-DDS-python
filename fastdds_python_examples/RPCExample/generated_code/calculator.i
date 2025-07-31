@@ -208,7 +208,7 @@ class RpcFuture {
 %}
 %typemap(argout) std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& (PyObject* tmp) %{
     tmp = SWIG_NewPointerObj($1, $1_descriptor, SWIG_POINTER_OWN);
-    $result = SWIG_Python_AppendOutput($result, tmp);
+    $result = SWIG_Python_AppendOutput($result, tmp, 1);
 %}
 
 %exception;
