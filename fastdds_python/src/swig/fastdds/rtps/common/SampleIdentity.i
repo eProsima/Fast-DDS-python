@@ -28,3 +28,12 @@
 %ignore operator <<(std::ostream& output, const SampleIdentity& sid);
 
 %include "fastdds/rtps/common/SampleIdentity.hpp"
+
+// Copy constructor
+%extend eprosima::fastdds::rtps::SampleIdentity {
+
+    SampleIdentity(const eprosima::fastdds::rtps::SampleIdentity& sample_identity_)
+    {
+        return new eprosima::fastdds::rtps::SampleIdentity(sample_identity_);
+    }
+}
