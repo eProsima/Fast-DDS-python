@@ -1,4 +1,4 @@
-// Copyright 2022 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+// Copyright 2025 Proyectos y Sistemas de Mantenimiento SL (eProsima).
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,13 +13,14 @@
 // limitations under the License.
 
 %{
-#include "fastdds/rtps/common/WriteParams.hpp"
+#include "fastdds/rtps/common/OriginalWriterInfo.hpp"
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastdds::rtps::WriteParams::WriteParams(WriteParams &&);
-%ignore eprosima::fastdds::rtps::WriteParams::sample_identity(SampleIdentity &&);
-%ignore eprosima::fastdds::rtps::WriteParams::related_sample_identity(SampleIdentity &&);
-%ignore eprosima::fastdds::rtps::WriteParams::original_writer_info(OriginalWriterInfo &&);
+%ignore eprosima::fastdds::rtps::OriginalWriterInfo::OriginalWriterInfo(OriginalWriterInfo &&);
+%ignore eprosima::fastdds::rtps::OriginalWriterInfo::original_writer_guid(GUID_t &&);
+%ignore eprosima::fastdds::rtps::OriginalWriterInfo::original_writer_guid() const;
+%ignore eprosima::fastdds::rtps::OriginalWriterInfo::sequence_number(SequenceNumber_t &&);
+%ignore eprosima::fastdds::rtps::OriginalWriterInfo::sequence_number(SequenceNumber_t) const;
 
-%include "fastdds/rtps/common/WriteParams.hpp"
+%include "fastdds/rtps/common/OriginalWriterInfo.hpp"
