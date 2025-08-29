@@ -22,6 +22,8 @@
 // Ignore unimplemented method (the wrapper will try to use it)
 %ignore eprosima::fastdds::dds::ParameterSampleIdentity_t::addToCDRMessage;
 %ignore eprosima::fastdds::dds::ParameterSampleIdentity_t::readFromCDRMessage;
+%ignore eprosima::fastdds::dds::ParameterOriginalWriterInfo_t::addToCDRMessage;
+%ignore eprosima::fastdds::dds::ParameterOriginalWriterInfo_t::readFromCDRMessage;
 
 // The class ParameterPropertyList_t::iterator does not have default constructor
 // This tells SWIG it must wrap the constructors or the compilation will fail

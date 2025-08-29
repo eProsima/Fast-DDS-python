@@ -166,6 +166,7 @@ namespace xtypes {
 %include "fastdds/rtps/common/RemoteLocators.i"
 %include "fastdds/rtps/common/SequenceNumber.i"
 %include "fastdds/rtps/common/SampleIdentity.i"
+%include "fastdds/rtps/common/OriginalWriterInfo.i"
 %include "fastdds/rtps/common/WriteParams.i"
 %include "fastdds/rtps/builtin/data/ContentFilterProperty.i"
 %include "fastdds/rtps/reader/ReaderDiscoveryInfo.i"
