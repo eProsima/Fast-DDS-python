@@ -50,38 +50,6 @@ class MyCalculatorImplementation(calculator.CalculatorServerImplementation):
     ret_val.max_value = 2147483647
     return ret_val
 
-  def fibonacci_seq(self, info, n_results, result_writer):
-    self.operation_call_print(info, "fibonacci_seq")
-    a = 1
-    b = 1
-    c = 0
-    
-    while n_results > 0:
-      n_results = n_results - 1
-      
-      result_writer.write(a)
-      c = a + b
-      a = b
-      b = c
-
-  def sum_all(self, info, value):
-    self.operation_call_print(info, "sum_all")
-    ret = 0
-    has_value, n = value.read()
-    while has_value:
-      ret = ret + n
-      has_value, n = value.read()
-    return ret
-
-  def accumulator(self, info, value, result_writer):
-    self.operation_call_print(info, "accumulator")
-    ret = 0
-    has_value, n = value.read()
-    while has_value:
-      ret = ret + n
-      result_writer.write(ret)
-      has_value, n = value.read()
-
 ### Server application ###
 
 def run_server(server):
@@ -134,9 +102,6 @@ class Client:
     self.perform_addition()
     self.perform_subtraction()
     self.perform_representation_limits()
-    self.perform_fibonacci_seq()
-    self.perform_sum_all()
-    self.perform_accumulator()
 
   def perform_addition(self):
     try:
@@ -176,51 +141,6 @@ class Client:
       result = self.client.representation_limits()
       data = result.get()
       print("Result: {min}, {max}".format(min=data.min_value, max=data.max_value))
-    except Exception as e:
-      print("Exception: {}".format(type(e).__name__))
-      print("Exception message: {}".format(e))
-
-  def perform_fibonacci_seq(self):
-    try:
-      print("Performing fibonacci_seq(10)")
-      result = self.client.fibonacci_seq(10)
-      has_value, n = result.read()
-      while has_value:
-        print("Result: {}".format(n))
-        has_value, n = result.read()
-    except Exception as e:
-      print("Exception: {}".format(type(e).__name__))
-      print("Exception message: {}".format(e))
-
-  def perform_sum_all(self):
-    try:
-      print("Performing sum_all([1, 2, 3, 4, 5])")
-      result, value = self.client.sum_all()
-      value.write(1)
-      value.write(2)
-      value.write(3)
-      value.write(4)
-      value.write(5)
-      value.finish()
-      print("Result: {}".format(result.get()))
-    except Exception as e:
-      print("Exception: {}".format(type(e).__name__))
-      print("Exception message: {}".format(e))
-
-  def perform_accumulator(self):
-    try:
-      print("Performing accumulator([1, 2, 3, 4, 5])")
-      result, value = self.client.accumulator()
-      value.write(1)
-      value.write(2)
-      value.write(3)
-      value.write(4)
-      value.write(5)
-      value.finish()
-      has_value, n = result.read()
-      while has_value:
-        print("Result: {}".format(n))
-        has_value, n = result.read()
     except Exception as e:
       print("Exception: {}".format(type(e).__name__))
       print("Exception message: {}".format(e))

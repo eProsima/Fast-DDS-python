@@ -23,14 +23,11 @@
 #define FAST_DDS_GENERATED__CALCULATOR_HPP
 
 #include <cstdint>
-#include <memory>
 #include <string>
 #include <utility>
 #include <fastcdr/cdr/fixed_size_string.hpp>
 #include <fastcdr/xcdr/optional.hpp>
 #include <fastdds/dds/rpc/exceptions/RpcOperationError.hpp>
-#include <fastdds/dds/rpc/interfaces/RpcClientReader.hpp>
-#include <fastdds/dds/rpc/interfaces/RpcClientWriter.hpp>
 #include <fastdds/dds/rpc/interfaces/RpcFuture.hpp>
 
 
@@ -198,18 +195,6 @@ class eProsima_user_DllExport Calculator : public calculator_base::BasicCalculat
 {
 public:
     virtual ~Calculator() = default;
-
-
-    virtual std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientReader<int32_t> > fibonacci_seq(
-            /*in*/ uint32_t n_results) = 0;
-
-
-    virtual eprosima::fastdds::dds::rpc::RpcFuture<int32_t> sum_all(
-            /*in*/ std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& value) = 0;
-
-
-    virtual std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientReader<int32_t> > accumulator(
-            /*in*/ std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& value) = 0;
 
 };
 
