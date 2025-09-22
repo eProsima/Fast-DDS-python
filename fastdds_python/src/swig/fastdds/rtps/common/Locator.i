@@ -17,7 +17,7 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastdds::rtps::Locator_t::Locator_t(Locator_t&&);
+%copyctor eprosima::fastdds::rtps::Locator_t;
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const Locator_t&);
 %ignore eprosima::fastdds::rtps::operator >>(std::istream&, Locator_t&);
 %ignore eprosima::fastdds::rtps::operator ==(const Locator_t&, const Locator_t&);

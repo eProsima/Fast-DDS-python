@@ -16,29 +16,6 @@
 #include "fastdds/rtps/common/WriteParams.hpp"
 %}
 
+%copyctor eprosima::fastdds::rtps::WriteParams;
 
 %include "fastdds/rtps/common/WriteParams.hpp"
-
-
-//  methods as Python attributes
-%extend eprosima::fastdds::rtps::WriteParams
-{
-
-    eprosima::fastdds::rtps::SampleIdentity _get_sample_identity()
-    {
-        return $self->sample_identity();
-    }
-    void _set_sample_identity(const eprosima::fastdds::rtps::SampleIdentity& sid)
-    {
-        $self->sample_identity(sid);
-    }
-
-    eprosima::fastdds::rtps::SampleIdentity _get_related_sample_identity()
-    {
-        return $self->related_sample_identity();
-    }
-    void _set_related_sample_identity(const eprosima::fastdds::rtps::SampleIdentity& sid)
-    {
-        $self->related_sample_identity(sid);
-    }
-}

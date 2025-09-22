@@ -17,7 +17,7 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-//%ignore eprosima::fastdds::rtps::SampleIdentity::SampleIdentity(SampleIdentity &&);
+%copyctor eprosima::fastdds::rtps::SampleIdentity;
 %ignore eprosima::fastdds::rtps::SampleIdentity::writer_guid(GUID_t &&);
 %ignore eprosima::fastdds::rtps::SampleIdentity::writer_guid() const;
 %ignore eprosima::fastdds::rtps::SampleIdentity::sequence_number(SequenceNumber_t &&);
@@ -28,12 +28,3 @@
 %ignore operator <<(std::ostream& output, const SampleIdentity& sid);
 
 %include "fastdds/rtps/common/SampleIdentity.hpp"
-
-// Copy constructor
-%extend eprosima::fastdds::rtps::SampleIdentity {
-
-    SampleIdentity(const eprosima::fastdds::rtps::SampleIdentity& sample_identity_)
-    {
-        return new eprosima::fastdds::rtps::SampleIdentity(sample_identity_);
-    }
-}
