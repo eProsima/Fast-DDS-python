@@ -42,16 +42,9 @@ find_package(fastdds 3 REQUIRED)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if(NOT WIN32)
-    if(SHARED_LIBRARY_SUFFIX)
-        set(CMAKE_SHARED_LIBRARY_SUFFIX ".${SHARED_LIBRARY_SUFFIX}")
-    else()
-
-        # Default values for shared library suffix
-        if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
-            set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
-        elseif(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
-            set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
-        endif()
+    # Default values for shared library suffix in MacOS
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
     endif()
 endif()
 
