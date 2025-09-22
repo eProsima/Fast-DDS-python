@@ -17,7 +17,7 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastdds::rtps::Property::Property(Property &&);
+%copyctor eprosima::fastdds::rtps::Property;
 %ignore eprosima::fastdds::rtps::Property::name(std::string &&);
 %ignore eprosima::fastdds::rtps::Property::value(std::string &&);
 %ignore eprosima::fastdds::rtps::Property::propagate() const;

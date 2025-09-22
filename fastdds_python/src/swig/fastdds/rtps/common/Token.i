@@ -17,7 +17,7 @@
 %}
 
 // Ignore overloaded constructor and methods that have no effect on target language
-%ignore eprosima::fastdds::rtps::DataHolder::DataHolder(DataHolder &&);
+%copyctor eprosima::fastdds::rtps::DataHolder;
 %ignore eprosima::fastdds::rtps::DataHolderHelper::DataHolderHelper(DataHolderHelper &&);
 %ignore eprosima::fastdds::rtps::DataHolderHelper::find_property_value(const DataHolder& data_holder, const std::string& name);
 %ignore eprosima::fastdds::rtps::DataHolderHelper::find_property(const DataHolder& data_holder, const std::string& name);
