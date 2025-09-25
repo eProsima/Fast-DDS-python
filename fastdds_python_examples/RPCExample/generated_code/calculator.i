@@ -102,33 +102,6 @@
     }
 }
 
-%import(module="fastdds") "fastdds/dds/rpc/interfaces/RpcServerWriter.hpp"
-%ignore eprosima::fastdds::dds::rpc::RpcClientReader::read(T&);
-%ignore eprosima::fastdds::dds::rpc::RpcClientReader::read(T&,eprosima::fastdds::dds::Duration_t&);
-%import(module="fastdds") "fastdds/dds/rpc/interfaces/RpcClientReader.hpp"
-%extend eprosima::fastdds::dds::rpc::RpcClientReader {
-    std::pair<bool, T> read(
-        const eprosima::fastdds::dds::Duration_t& timeout = eprosima::fastdds::dds::c_TimeInfinite)
-    {
-        std::pair<bool, T> ret_val{};
-        if (eprosima::fastdds::dds::c_TimeInfinite == timeout)
-        {
-            ret_val.first = self->read(ret_val.second);
-        }
-        else
-        {
-            ret_val.first = self->read(ret_val.second, timeout);
-        }
-        return ret_val;
-    }
-}
-
-%shared_ptr(eprosima::fastdds::dds::rpc::RpcClientReader<int32_t>);
-%template(int32_t_client_reader_result) std::pair<bool, int32_t>;
-%template(int32_t_client_reader) eprosima::fastdds::dds::rpc::RpcClientReader<int32_t>;
-
-%template(int32_t_server_writer) eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>;
-
 // Code for std::future taken from https://github.com/swig/swig/issues/1828#issuecomment-648449092
 namespace eprosima::fastdds::dds::rpc
 {
@@ -159,12 +132,12 @@ class RpcFuture {
 
 }
 
-%shared_ptr(eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out>);
-%template(calculator_base_detail_BasicCalculator_representation_limits_Out_rpc_future) eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out>;
+%shared_ptr(eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out>);
+%template(detail_Calculator_representation_limits_Out_rpc_future) eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out>;
 
-%typemap(out, optimal="1") eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out> {
+%typemap(out, optimal="1") eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out> {
   std::shared_ptr<$1_ltype> *smartresult = new std::shared_ptr<$1_ltype>(new $1_ltype($1));
-  $result = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), $descriptor(std::shared_ptr< eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out>> *), SWIG_POINTER_OWN);
+  $result = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), $descriptor(std::shared_ptr< eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out>> *), SWIG_POINTER_OWN);
 }
 
 %shared_ptr(eprosima::fastdds::dds::rpc::RpcFuture<int32_t>);
@@ -174,42 +147,6 @@ class RpcFuture {
   std::shared_ptr<$1_ltype> *smartresult = new std::shared_ptr<$1_ltype>(new $1_ltype($1));
   $result = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), $descriptor(std::shared_ptr< eprosima::fastdds::dds::rpc::RpcFuture<int32_t>> *), SWIG_POINTER_OWN);
 }
-
-%import(module="fastdds") "fastdds/dds/rpc/interfaces/RpcClientWriter.hpp"
-%import(module="fastdds") "fastdds/dds/rpc/interfaces/RpcStatusCode.hpp"
-
-%ignore eprosima::fastdds::dds::rpc::RpcServerReader::read(T&);
-%ignore eprosima::fastdds::dds::rpc::RpcServerReader::read(T&,eprosima::fastdds::dds::Duration_t&);
-%import(module="fastdds") "fastdds/dds/rpc/interfaces/RpcServerReader.hpp"
-%extend eprosima::fastdds::dds::rpc::RpcServerReader {
-    std::pair<bool, T> read(
-        const eprosima::fastdds::dds::Duration_t& timeout = eprosima::fastdds::dds::c_TimeInfinite)
-    {
-        std::pair<bool, T> ret_val{};
-        if (eprosima::fastdds::dds::c_TimeInfinite == timeout)
-        {
-            ret_val.first = self->read(ret_val.second);
-        }
-        else
-        {
-            ret_val.first = self->read(ret_val.second, timeout);
-        }
-        return ret_val;
-    }
-}
-
-%template(int32_t_server_reader_result) std::pair<bool, int32_t>;
-%template(int32_t_server_reader) eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>;
-
-%shared_ptr(eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>);
-%template(int32_t_rpc_client_writer) eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>;
-%typemap(in,numinputs=0) std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& %{
-    $1 = new std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>();
-%}
-%typemap(argout) std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& (PyObject* tmp) %{
-    tmp = SWIG_NewPointerObj($1, $1_descriptor, SWIG_POINTER_OWN);
-    $result = SWIG_Python_AppendOutput($result, tmp);
-%}
 
 %exception;
 
@@ -232,13 +169,6 @@ namespace swig {
 
 
 %shared_ptr(calculator_base::Subtractor);
-
-
-
-%shared_ptr(calculator_base::BasicCalculator);
-%shared_ptr(calculator_base::BasicCalculatorServer_IServerImplementation);
-%shared_ptr(calculator_base::BasicCalculatorServerImplementation);
-%feature("director") calculator_base::BasicCalculatorServerImplementation;
 
 
 

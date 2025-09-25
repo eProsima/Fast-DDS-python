@@ -40,8 +40,6 @@
 
 namespace calculator_base
 {
-    eProsima_user_DllExport eprosima::fastdds::dds::rpc::ServiceTypeSupport create_BasicCalculator_service_type_support();
-
 } // namespace calculator_base
 eProsima_user_DllExport eprosima::fastdds::dds::rpc::ServiceTypeSupport create_Calculator_service_type_support();
 

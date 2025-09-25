@@ -23,14 +23,11 @@
 #define FAST_DDS_GENERATED__CALCULATOR_HPP
 
 #include <cstdint>
-#include <memory>
 #include <string>
 #include <utility>
 #include <fastcdr/cdr/fixed_size_string.hpp>
 #include <fastcdr/xcdr/optional.hpp>
 #include <fastdds/dds/rpc/exceptions/RpcOperationError.hpp>
-#include <fastdds/dds/rpc/interfaces/RpcClientReader.hpp>
-#include <fastdds/dds/rpc/interfaces/RpcClientWriter.hpp>
 #include <fastdds/dds/rpc/interfaces/RpcFuture.hpp>
 
 
@@ -155,30 +152,32 @@ public:
 
 
 
+} // namespace calculator_base
+
 namespace detail {
 
-struct BasicCalculator_representation_limits_Out;
+struct Calculator_representation_limits_Out;
 
 }  // namespace detail
 
 /*!
- * @brief This class represents the interface BasicCalculator defined by the user in the IDL file.
+ * @brief This class represents the interface Calculator defined by the user in the IDL file.
  * @ingroup calculator
  */
-class eProsima_user_DllExport BasicCalculator : public calculator_base::Adder, public calculator_base::Subtractor
+class eProsima_user_DllExport Calculator : public calculator_base::Adder, public calculator_base::Subtractor
 {
 public:
-    virtual ~BasicCalculator() = default;
+    virtual ~Calculator() = default;
 
 
-    virtual eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out> representation_limits(
+    virtual eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out> representation_limits(
     ) = 0;
 
 };
 
 namespace detail {
 
-struct BasicCalculator_representation_limits_Out
+struct Calculator_representation_limits_Out
 {
     int32_t min_value;
     int32_t max_value;
@@ -186,33 +185,6 @@ struct BasicCalculator_representation_limits_Out
 
 
 }  // namespace detail
-
-
-} // namespace calculator_base
-
-/*!
- * @brief This class represents the interface Calculator defined by the user in the IDL file.
- * @ingroup calculator
- */
-class eProsima_user_DllExport Calculator : public calculator_base::BasicCalculator
-{
-public:
-    virtual ~Calculator() = default;
-
-
-    virtual std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientReader<int32_t> > fibonacci_seq(
-            /*in*/ uint32_t n_results) = 0;
-
-
-    virtual eprosima::fastdds::dds::rpc::RpcFuture<int32_t> sum_all(
-            /*in*/ std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& value) = 0;
-
-
-    virtual std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientReader<int32_t> > accumulator(
-            /*in*/ std::shared_ptr<eprosima::fastdds::dds::rpc::RpcClientWriter<int32_t>>& value) = 0;
-
-};
-
 
 
 #endif // _FAST_DDS_GENERATED_CALCULATOR_HPP_

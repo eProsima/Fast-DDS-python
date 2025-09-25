@@ -27,45 +27,6 @@
 
 namespace calculator_base {
 
-//{ interface BasicCalculator
-
-struct BasicCalculatorServerImplementation :
-    public BasicCalculatorServer_IServerImplementation
-{
-
-    int32_t addition(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ int32_t value1,
-            /*in*/ int32_t value2) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(value1);
-        static_cast<void>(value2);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'addition' is not implemented");
-    }
-
-    int32_t subtraction(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ int32_t value1,
-            /*in*/ int32_t value2) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(value1);
-        static_cast<void>(value2);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'subtraction' is not implemented");
-    }
-
-    calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info) override
-    {
-        static_cast<void>(info);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'representation_limits' is not implemented");
-    }
-
-};
-
-//} interface BasicCalculator
-
 
 } // namespace calculator_base
 
@@ -97,42 +58,11 @@ struct CalculatorServerImplementation :
         throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'subtraction' is not implemented");
     }
 
-    calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
+    detail::Calculator_representation_limits_Out representation_limits(
             const eprosima::fastdds::dds::rpc::RpcRequest& info) override
     {
         static_cast<void>(info);
         throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'representation_limits' is not implemented");
-    }
-
-    void fibonacci_seq(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ uint32_t n_results,
-            /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(n_results);
-        static_cast<void>(result_writer);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'fibonacci_seq' is not implemented");
-    }
-
-    int32_t sum_all(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(value);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'sum_all' is not implemented");
-    }
-
-    void accumulator(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value,
-            /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(value);
-        static_cast<void>(result_writer);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'accumulator' is not implemented");
     }
 
 };
