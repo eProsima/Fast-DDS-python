@@ -1,5 +1,19 @@
 
-cmake_minimum_required(VERSION 3.22)
+# Copyright 2025 Proyectos y Sistemas de Mantenimiento SL (eProsima).
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+cmake_minimum_required(VERSION 3.20)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -12,18 +26,18 @@ if(POLICY CMP0086)
 endif()
 
 ###############################################################################
-# Library for types defined in HelloWorld IDL
+# Library for types defined in calculator IDL
 ###############################################################################
 
-message(STATUS "Configuring python wrapper for types in HelloWorld...")
+message(STATUS "Configuring python wrapper for types in calculator...")
 
 ###############################################################################
 # Type library on C++
 
-project(HelloWorld)
+project(calculator)
 
 find_package(fastcdr REQUIRED)
-find_package(fastrtps REQUIRED)
+find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
@@ -36,9 +50,10 @@ endif()
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
-        HelloWorld.cxx
-        HelloWorldv1.cxx
-        HelloWorldPubSubTypes.cxx
+        calculatorTypeObjectSupport.cxx
+        calculatorPubSubTypes.cxx
+        calculatorClient.cxx
+        calculatorServer.cxx
         )
 if(WIN32)
     target_compile_definitions(${PROJECT_NAME} PRIVATE EPROSIMA_USER_DLL_EXPORT)
@@ -50,13 +65,18 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
     fastcdr
-    fastrtps
+    fastdds
     )
 
 ###############################################################################
 # Python bindings for type
 
-find_package(SWIG REQUIRED)
+find_package(SWIG)
+if (NOT SWIG_FOUND)
+    # Trick to find swig4.1 in Ubuntu noble.
+    find_program(SWIG_EXECUTABLE NAMES swig4.1 swig)
+    find_package(SWIG REQUIRED)
+endif()
 include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
@@ -68,11 +88,11 @@ set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
 include_directories(${PYTHON_INCLUDE_PATH})
 
 set(${PROJECT_NAME}_MODULE
-    HelloWorldWrapper
+    calculatorWrapper
     )
 
 set(${PROJECT_NAME}_MODULE_FILES
-    ${PROJECT_NAME}.i
+    calculator.i
     )
 
 SET_SOURCE_FILES_PROPERTIES(
@@ -80,8 +100,6 @@ SET_SOURCE_FILES_PROPERTIES(
     PROPERTIES CPLUSPLUS ON
     USE_TARGET_INCLUDE_DIRECTORIES TRUE
     )
-
-set_property(SOURCE ${PROJECT_NAME}.i PROPERTY OUTPUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/")
 
 SWIG_ADD_LIBRARY(${${PROJECT_NAME}_MODULE}
     TYPE SHARED
@@ -95,14 +113,9 @@ endif()
 
 target_link_libraries(${${PROJECT_NAME}_MODULE}
     Python3::Module
-    fastrtps
+    fastdds
     ${PROJECT_NAME}
     )
-
-set_target_properties(${${PROJECT_NAME}_MODULE}
-    PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
-    )
-
 
 # Find the installation path
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}'))"
@@ -113,7 +126,7 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils import sysconfig
 get_filename_component (_ABS_PYTHON_MODULE_PATH ${_ABS_PYTHON_MODULE_PATH} ABSOLUTE)
 file (RELATIVE_PATH _REL_PYTHON_MODULE_PATH ${CMAKE_INSTALL_PREFIX} ${_ABS_PYTHON_MODULE_PATH})
 SET (PYTHON_MODULE_PATH
-    ${_REL_PYTHON_MODULE_PATH}
+    ${_REL_PYTHON_MODULE_PATH}/${PROJECT_NAME}
     )
 
 # Install
@@ -122,7 +135,7 @@ install(TARGETS ${PROJECT_NAME}
     LIBRARY DESTINATION lib/
     ARCHIVE DESTINATION lib/
     )
-install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH}/)
+install(TARGETS ${${PROJECT_NAME}_MODULE} DESTINATION ${PYTHON_MODULE_PATH})
 get_property(support_files TARGET ${${PROJECT_NAME}_MODULE} PROPERTY SWIG_SUPPORT_FILES)
-install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH}/)
+install(FILES ${support_files} DESTINATION ${PYTHON_MODULE_PATH} RENAME __init__.py)
 
