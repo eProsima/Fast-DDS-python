@@ -89,124 +89,24 @@ namespace calculator_base {
     //}  // Subtractor interface
 
     } // namespace detail
-    namespace detail {
-
-    //{ BasicCalculator interface
-
-    //{ representation_limits
-    struct BasicCalculator_representation_limits_In
-    {
-    };
-
-
-
-    struct BasicCalculator_representation_limits_Result
-    {
-        eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_Out> result;
-    };
-
-    //}  // representation_limits
-     
-
-    //{ top level
-
-    struct BasicCalculator_Request
-    {
-        eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_In> addition;   
-        eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_In> subtraction;   
-        eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_In> representation_limits; 
-    };
-
-    struct BasicCalculator_Reply
-    {
-        eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_Result> addition; 
-        eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_Result> subtraction; 
-        eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_Result> representation_limits; 
-        eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t> remoteEx;
-    };
-
-    //}  // top level
-
-    //}  // BasicCalculator interface
-
-    } // namespace detail
 }  // namespace calculator_base
 namespace detail {
 
 //{ Calculator interface
 
-//{ fibonacci_seq
-struct Calculator_fibonacci_seq_In
+//{ representation_limits
+struct Calculator_representation_limits_In
 {
-    uint32_t n_results; 
 };
 
- 
 
-struct Calculator_fibonacci_seq_Out
+
+struct Calculator_representation_limits_Result
 {
-    eprosima::fastcdr::optional<int32_t> return_;
-    eprosima::fastcdr::optional<bool> finished_;
+    eprosima::fastcdr::optional<detail::Calculator_representation_limits_Out> result;
 };
 
-struct Calculator_fibonacci_seq_Result
-{
-    eprosima::fastcdr::optional<detail::Calculator_fibonacci_seq_Out> result;
-    eprosima::fastcdr::optional<calculator_base::OverflowException> calculator_base_OverflowException_ex;
-};
-
-//}  // fibonacci_seq
- 
-//{ sum_all
-struct Calculator_sum_all_In
-{
-     
-};
-
-struct Calculator_sum_all_value_Feed
-{
-    eprosima::fastcdr::optional<int32_t> value;
-    eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RpcStatusCode> finished_;
-}; 
-
-struct Calculator_sum_all_Out
-{
-    int32_t return_;
-};
-
-struct Calculator_sum_all_Result
-{
-    eprosima::fastcdr::optional<detail::Calculator_sum_all_Out> result;
-    eprosima::fastcdr::optional<calculator_base::OverflowException> calculator_base_OverflowException_ex;
-};
-
-//}  // sum_all
- 
-//{ accumulator
-struct Calculator_accumulator_In
-{
-     
-};
-
-struct Calculator_accumulator_value_Feed
-{
-    eprosima::fastcdr::optional<int32_t> value;
-    eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RpcStatusCode> finished_;
-}; 
-
-struct Calculator_accumulator_Out
-{
-    eprosima::fastcdr::optional<int32_t> return_;
-    eprosima::fastcdr::optional<bool> finished_;
-};
-
-struct Calculator_accumulator_Result
-{
-    eprosima::fastcdr::optional<detail::Calculator_accumulator_Out> result;
-    eprosima::fastcdr::optional<calculator_base::OverflowException> calculator_base_OverflowException_ex;
-};
-
-//}  // accumulator
+//}  // representation_limits
  
 
 //{ top level
@@ -215,23 +115,14 @@ struct Calculator_Request
 {
     eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_In> addition;   
     eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_In> subtraction;   
-    eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_In> representation_limits; 
-    eprosima::fastcdr::optional<detail::Calculator_fibonacci_seq_In> fibonacci_seq;  
-    eprosima::fastcdr::optional<detail::Calculator_sum_all_In> sum_all;
-    eprosima::fastcdr::optional<detail::Calculator_sum_all_value_Feed> sum_all_value;  
-    eprosima::fastcdr::optional<detail::Calculator_accumulator_In> accumulator;
-    eprosima::fastcdr::optional<detail::Calculator_accumulator_value_Feed> accumulator_value;  
-    eprosima::fastcdr::optional<bool> feed_cancel_;
+    eprosima::fastcdr::optional<detail::Calculator_representation_limits_In> representation_limits; 
 };
 
 struct Calculator_Reply
 {
     eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_Result> addition; 
     eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_Result> subtraction; 
-    eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_Result> representation_limits; 
-    eprosima::fastcdr::optional<detail::Calculator_fibonacci_seq_Result> fibonacci_seq; 
-    eprosima::fastcdr::optional<detail::Calculator_sum_all_Result> sum_all; 
-    eprosima::fastcdr::optional<detail::Calculator_accumulator_Result> accumulator; 
+    eprosima::fastcdr::optional<detail::Calculator_representation_limits_Result> representation_limits; 
     eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t> remoteEx;
 };
 
