@@ -32,6 +32,7 @@ using InstanceHandle_t = eprosima::fastdds::rtps::InstanceHandle_t;
 using DataRepresentationId_t = eprosima::fastdds::dds::DataRepresentationId_t;
 
 namespace calculator_base {
+<<<<<<< HEAD
     // { BasicCalculator interface
 
     class BasicCalculator_RequestPubSubType : public eprosima::fastdds::dds::TopicDataType
@@ -332,6 +333,8 @@ namespace calculator_base {
 
     // }  // BasicCalculator interface
 
+=======
+>>>>>>> e143c3b (Remove `@feed` operations from example (#256))
 } // namespace calculator_base
 
 // { Calculator interface
@@ -346,7 +349,7 @@ public:
     Calculator_RequestPubSubType()
     {
         set_name("Calculator_Request");
-        uint32_t type_size = 168UL;
+        uint32_t type_size = 56UL;
         type_size += static_cast<uint32_t>(eprosima::fastcdr::Cdr::alignment(type_size, 4)); /* possible submessage alignment */
         max_serialized_type_size = type_size + 4; /*encapsulation*/
         is_compute_key_provided = false;
@@ -489,7 +492,7 @@ public:
     Calculator_ReplyPubSubType()
     {
         set_name("Calculator_Reply");
-        uint32_t type_size = 168UL;
+        uint32_t type_size = 56UL;
         type_size += static_cast<uint32_t>(eprosima::fastcdr::Cdr::alignment(type_size, 4)); /* possible submessage alignment */
         max_serialized_type_size = type_size + 4; /*encapsulation*/
         is_compute_key_provided = false;

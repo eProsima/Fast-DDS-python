@@ -54,6 +54,7 @@
 
 namespace calculator_base {
 
+<<<<<<< HEAD
 //{ interface BasicCalculator
 
 namespace detail {
@@ -596,6 +597,8 @@ std::shared_ptr<BasicCalculatorServer> create_BasicCalculatorServer(
 
 //} interface BasicCalculator
 
+=======
+>>>>>>> e143c3b (Remove `@feed` operations from example (#256))
 
 } // namespace calculator_base
 
@@ -758,6 +761,7 @@ private:
 
     //} operation representation_limits
 
+<<<<<<< HEAD
     //{ operation fibonacci_seq
 
     struct fibonacci_seq_result_writer :
@@ -1101,6 +1105,9 @@ private:
     //} operation accumulator
 
     struct RequestContext : CalculatorServer_ClientContext
+=======
+    struct RequestContext : frpc::RpcRequest
+>>>>>>> e143c3b (Remove `@feed` operations from example (#256))
     {
         RequestType request;
         frpc::RequestInfo info;
@@ -1121,27 +1128,6 @@ private:
         {
         }
         representation_limits_feeds;
-
-        struct fibonacci_seq_feeds_t
-        {
-            std::shared_ptr<fibonacci_seq_result_writer> result_writer;
-        }
-        fibonacci_seq_feeds;
-
-        struct sum_all_feeds_t
-        {
-            std::shared_ptr<sum_all_value_reader> value;
-
-        }
-        sum_all_feeds;
-
-        struct accumulator_feeds_t
-        {
-            std::shared_ptr<accumulator_value_reader> value;
-
-            std::shared_ptr<accumulator_result_writer> result_writer;
-        }
-        accumulator_feeds;
 
         const frtps::GUID_t& get_client_id() const override
         {
@@ -1171,12 +1157,6 @@ private:
             n_fields += request.addition.has_value() ? 1 : 0;
             n_fields += request.subtraction.has_value() ? 1 : 0;
             n_fields += request.representation_limits.has_value() ? 1 : 0;
-            n_fields += request.fibonacci_seq.has_value() ? 1 : 0;
-            n_fields += request.sum_all.has_value() ? 1 : 0;
-            n_fields += request.sum_all_value.has_value() ? 1 : 0;
-            n_fields += request.accumulator.has_value() ? 1 : 0;
-            n_fields += request.accumulator_value.has_value() ? 1 : 0;
-            n_fields += request.feed_cancel_.has_value() ? 1 : 0;
 
             return n_fields == 1U;
         }
@@ -1189,19 +1169,6 @@ private:
             should_erase = false;
             if (ctx->info.related_sample_identity == info.related_sample_identity)
             {
-                if (ctx->request.feed_cancel_.has_value())
-                {
-                    if (output_feed_cancellator_)
-                    {
-                        output_feed_cancellator_->cancel();
-                    }
-                    else
-                    {
-                        EPROSIMA_LOG_ERROR(RPC_SERVER, "Output feed cancel request received, but no output feed is active.");
-                    }
-
-                    return;
-                }
                 // Pass request to input feed processors
                 should_erase = true;
                 for (const auto& input_feed : input_feed_processors_)
@@ -1242,21 +1209,6 @@ private:
             if (request.representation_limits.has_value())
             {
                 return prepare_representation_limits(replier);
-            }
-
-            if (request.fibonacci_seq.has_value())
-            {
-                return prepare_fibonacci_seq(replier);
-            }
-
-            if (request.sum_all.has_value())
-            {
-                return prepare_sum_all(replier);
-            }
-
-            if (request.accumulator.has_value())
-            {
-                return prepare_accumulator(replier);
             }
 
 
@@ -1311,37 +1263,6 @@ private:
                 frpc::Replier* replier)
         {
             static_cast<void>(replier);
-            return true;
-        }
-
-        bool prepare_fibonacci_seq(
-                frpc::Replier* replier)
-        {
-            static_cast<void>(replier);
-            fibonacci_seq_feeds.result_writer = std::make_shared<fibonacci_seq_result_writer>(info, replier);
-            output_feed_cancellator_ = fibonacci_seq_feeds.result_writer;
-            return true;
-        }
-
-        bool prepare_sum_all(
-                frpc::Replier* replier)
-        {
-            static_cast<void>(replier);
-            sum_all_feeds.value = std::make_shared<sum_all_value_reader>();
-            input_feed_processors_.push_back(sum_all_feeds.value);
-
-            return true;
-        }
-
-        bool prepare_accumulator(
-                frpc::Replier* replier)
-        {
-            static_cast<void>(replier);
-            accumulator_feeds.value = std::make_shared<accumulator_value_reader>();
-            input_feed_processors_.push_back(accumulator_feeds.value);
-
-            accumulator_feeds.result_writer = std::make_shared<accumulator_result_writer>(info, replier);
-            output_feed_cancellator_ = accumulator_feeds.result_writer;
             return true;
         }
 
@@ -1516,95 +1437,9 @@ private:
                 {
                     {
                         ReplyType reply{};
-                        reply.representation_limits = calculator_base::detail::BasicCalculator_representation_limits_Result{};
+                        reply.representation_limits = detail::Calculator_representation_limits_Result{};
                         reply.representation_limits->result = implementation_->representation_limits(
                             *req);
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    break;
-                }
-
-                if (req->request.fibonacci_seq.has_value())
-                {
-                    try
-                    {
-                        implementation_->fibonacci_seq(
-                            *req,
-                            req->request.fibonacci_seq->n_results,
-                            *(req->fibonacci_seq_feeds.result_writer));
-                        ReplyType reply{};
-                        reply.fibonacci_seq = detail::Calculator_fibonacci_seq_Result{};
-                        reply.fibonacci_seq->result = detail::Calculator_fibonacci_seq_Out{};
-                        reply.fibonacci_seq->result->finished_ = true;
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    catch (const frpc::RpcFeedCancelledException& /*ex*/)
-                    {
-                        ReplyType reply{};
-                        reply.fibonacci_seq = detail::Calculator_fibonacci_seq_Result{};
-                        reply.fibonacci_seq->result = detail::Calculator_fibonacci_seq_Out{};
-                        reply.fibonacci_seq->result->finished_ = true;
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    catch (const calculator_base::OverflowException& ex)
-                    {
-                        ReplyType reply{};
-                        reply.fibonacci_seq = detail::Calculator_fibonacci_seq_Result{};
-                        reply.fibonacci_seq->calculator_base_OverflowException_ex = ex;
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    break;
-                }
-
-                if (req->request.sum_all.has_value())
-                {
-                    try
-                    {
-                        ReplyType reply{};
-                        reply.sum_all = detail::Calculator_sum_all_Result{};
-                        reply.sum_all->result = detail::Calculator_sum_all_Out{};
-                        reply.sum_all->result->return_ = implementation_->sum_all(
-                            *req,
-                            *(req->sum_all_feeds.value));
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    catch (const calculator_base::OverflowException& ex)
-                    {
-                        ReplyType reply{};
-                        reply.sum_all = detail::Calculator_sum_all_Result{};
-                        reply.sum_all->calculator_base_OverflowException_ex = ex;
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    break;
-                }
-
-                if (req->request.accumulator.has_value())
-                {
-                    try
-                    {
-                        implementation_->accumulator(
-                            *req,
-                            *(req->accumulator_feeds.value),
-                            *(req->accumulator_feeds.result_writer));
-                        ReplyType reply{};
-                        reply.accumulator = detail::Calculator_accumulator_Result{};
-                        reply.accumulator->result = detail::Calculator_accumulator_Out{};
-                        reply.accumulator->result->finished_ = true;
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    catch (const frpc::RpcFeedCancelledException& /*ex*/)
-                    {
-                        ReplyType reply{};
-                        reply.accumulator = detail::Calculator_accumulator_Result{};
-                        reply.accumulator->result = detail::Calculator_accumulator_Out{};
-                        reply.accumulator->result->finished_ = true;
-                        replier_->send_reply(&reply, req->info);
-                    }
-                    catch (const calculator_base::OverflowException& ex)
-                    {
-                        ReplyType reply{};
-                        reply.accumulator = detail::Calculator_accumulator_Result{};
-                        reply.accumulator->calculator_base_OverflowException_ex = ex;
                         replier_->send_reply(&reply, req->info);
                     }
                     break;

@@ -32,25 +32,10 @@ module calculator_base
         // Returns the result of value1 - value2
         long subtraction(in long value1, in long value2) raises(OverflowException);
     };
-
-    interface BasicCalculator : Adder, Subtractor
-    {
-        // Returns the minimum and maximum representable values
-        void representation_limits(out long min_value, out long max_value);
-    };
 };
 
-interface Calculator : calculator_base::BasicCalculator
+interface Calculator : calculator_base::Adder, calculator_base::Subtractor
 {
-    // Returns a feed of results with the n_results first elements of the Fibonacci sequence
-    // E.g. for an input of 5, returns a feed with {1, 1, 2, 3, 5}
-    @feed long fibonacci_seq(in unsigned long n_results) raises (calculator_base::OverflowException);
-
-    // Waits for an input feed to finish and returns the sum of all the received values
-    // E.g. for an input of {1, 2, 3, 4, 5} returns 15
-    long sum_all(@feed in long value) raises (calculator_base::OverflowException);
-
-    // Returns a feed of results with the sum of all received values
-    // E.g. for an input of {1, 2, 3, 4, 5}, returns a feed with {1, 3, 6, 10, 15}
-    @feed long accumulator(@feed in long value) raises (calculator_base::OverflowException);
+    // Returns the minimum and maximum representable values
+    void representation_limits(out long min_value, out long max_value);
 };

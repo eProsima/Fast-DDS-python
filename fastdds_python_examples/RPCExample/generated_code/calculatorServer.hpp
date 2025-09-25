@@ -35,6 +35,7 @@
 
 namespace calculator_base {
 
+<<<<<<< HEAD
 /**
  * @brief Context for a client request.
  */
@@ -119,6 +120,8 @@ extern eProsima_user_DllExport std::shared_ptr<BasicCalculatorServer> create_Bas
         size_t thread_pool_size,
         std::shared_ptr<BasicCalculatorServer_IServerImplementation> implementation);
 
+=======
+>>>>>>> e143c3b (Remove `@feed` operations from example (#256))
 
 } // namespace calculator_base
 
@@ -162,6 +165,7 @@ struct CalculatorServer_IServerImplementation
 
 
 
+<<<<<<< HEAD
     virtual calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
             const CalculatorServer_ClientContext& info) = 0;
 
@@ -185,6 +189,11 @@ struct CalculatorServer_IServerImplementation
             /*in*/ eprosima::fastdds::dds::rpc::RpcServerReader<int32_t>& value,
             /*result*/ eprosima::fastdds::dds::rpc::RpcServerWriter<int32_t>& result_writer) = 0;
 
+=======
+    virtual detail::Calculator_representation_limits_Out representation_limits(
+            const eprosima::fastdds::dds::rpc::RpcRequest& info) = 0;
+
+>>>>>>> e143c3b (Remove `@feed` operations from example (#256))
 };
 
 struct CalculatorServer
