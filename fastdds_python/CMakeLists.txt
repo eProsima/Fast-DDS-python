@@ -26,6 +26,13 @@ endif()
 
 project(fastdds_python VERSION 2.4.0)
 
+if(NOT WIN32)
+    # Default values for shared library suffix in MacOS
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+    endif()
+endif()
+
 # Set BUILD_TESTING to OFF by default.
 if(NOT BUILD_TESTING)
     message(STATUS "Tests not compiled by default")
