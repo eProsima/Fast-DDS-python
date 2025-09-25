@@ -232,6 +232,11 @@ namespace swig {
         eprosima::fastcdr::fixed_string<16> tmp(value);
         $self->fixed_string_field(tmp);
     }
+
+    std::string fixed_string_field_str() const
+    {
+        return std::string($self->fixed_string_field(), strnlen($self->fixed_string_field(), 16));
+    }
 }
 
 
@@ -431,6 +436,11 @@ namespace swig {
     {
         eprosima::fastcdr::fixed_string<16> tmp(value);
         $self->fixed_string_field(tmp);
+    }
+
+    std::string fixed_string_field_str() const
+    {
+        return std::string($self->fixed_string_field(), strnlen($self->fixed_string_field(), 16));
     }
 }
 
@@ -1686,6 +1696,11 @@ namespace swig {
     {
         eprosima::fastcdr::fixed_string<16> tmp(value);
         $self->fixed_string_field(tmp);
+    }
+
+    std::string fixed_string_field_str() const
+    {
+        return std::string($self->fixed_string_field(), strnlen($self->fixed_string_field(), 16));
     }
 }
 
