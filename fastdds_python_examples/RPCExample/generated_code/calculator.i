@@ -132,12 +132,12 @@ class RpcFuture {
 
 }
 
-%shared_ptr(eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out>);
-%template(calculator_base_detail_BasicCalculator_representation_limits_Out_rpc_future) eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out>;
+%shared_ptr(eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out>);
+%template(detail_Calculator_representation_limits_Out_rpc_future) eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out>;
 
-%typemap(out, optimal="1") eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out> {
+%typemap(out, optimal="1") eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out> {
   std::shared_ptr<$1_ltype> *smartresult = new std::shared_ptr<$1_ltype>(new $1_ltype($1));
-  $result = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), $descriptor(std::shared_ptr< eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out>> *), SWIG_POINTER_OWN);
+  $result = SWIG_NewPointerObj(SWIG_as_voidptr(smartresult), $descriptor(std::shared_ptr< eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out>> *), SWIG_POINTER_OWN);
 }
 
 %shared_ptr(eprosima::fastdds::dds::rpc::RpcFuture<int32_t>);
@@ -169,13 +169,6 @@ namespace swig {
 
 
 %shared_ptr(calculator_base::Subtractor);
-
-
-
-%shared_ptr(calculator_base::BasicCalculator);
-%shared_ptr(calculator_base::BasicCalculatorServer_IServerImplementation);
-%shared_ptr(calculator_base::BasicCalculatorServerImplementation);
-%feature("director") calculator_base::BasicCalculatorServerImplementation;
 
 
 

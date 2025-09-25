@@ -32,14 +32,10 @@ module calculator_base
         // Returns the result of value1 - value2
         long subtraction(in long value1, in long value2) raises(OverflowException);
     };
-
-    interface BasicCalculator : Adder, Subtractor
-    {
-        // Returns the minimum and maximum representable values
-        void representation_limits(out long min_value, out long max_value);
-    };
 };
 
-interface Calculator : calculator_base::BasicCalculator
+interface Calculator : calculator_base::Adder, calculator_base::Subtractor
 {
+    // Returns the minimum and maximum representable values
+    void representation_limits(out long min_value, out long max_value);
 };

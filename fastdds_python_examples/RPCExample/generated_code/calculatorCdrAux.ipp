@@ -693,22 +693,22 @@ void serialize_key(
 
 //}  // calculator_base::Subtractor interface
 
-//{ calculator_base::BasicCalculator interface
+//{ Calculator interface
 
 //{ representation_limits
-// Serialization methods for calculator_base::detail::BasicCalculator_representation_limits_In
+// Serialization methods for detail::Calculator_representation_limits_In
 /*
-struct BasicCalculator_representation_limits_In
+struct Calculator_representation_limits_In
 {
 };
 */
 template<>
 eProsima_user_DllExport size_t calculate_serialized_size(
         eprosima::fastcdr::CdrSizeCalculator& calculator,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_In& data,
+        const ::detail::Calculator_representation_limits_In& data,
         size_t& current_alignment)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     static_cast<void>(data);
 
@@ -729,9 +729,9 @@ eProsima_user_DllExport size_t calculate_serialized_size(
 template<>
 eProsima_user_DllExport void serialize(
         eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_In& data)
+        const ::detail::Calculator_representation_limits_In& data)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     eprosima::fastcdr::Cdr::state current_state(scdr);
     scdr.begin_serialize_type(current_state,
@@ -747,9 +747,9 @@ eProsima_user_DllExport void serialize(
 template<>
 eProsima_user_DllExport void deserialize(
         eprosima::fastcdr::Cdr& cdr,
-        ::calculator_base::detail::BasicCalculator_representation_limits_In& data)
+        ::detail::Calculator_representation_limits_In& data)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
             eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR2 :
@@ -765,16 +765,16 @@ eProsima_user_DllExport void deserialize(
 
 void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_In& data)
+        const ::detail::Calculator_representation_limits_In& data)
 {
     static_cast<void>(scdr);
     static_cast<void>(data);
 }
 
 
-// Serialization methods for calculator_base::detail::BasicCalculator_representation_limits_Out
+// Serialization methods for detail::Calculator_representation_limits_Out
 /*
-struct BasicCalculator_representation_limits_Out
+struct Calculator_representation_limits_Out
 {
     int32_t min_value;
     int32_t max_value;
@@ -783,10 +783,10 @@ struct BasicCalculator_representation_limits_Out
 template<>
 eProsima_user_DllExport size_t calculate_serialized_size(
         eprosima::fastcdr::CdrSizeCalculator& calculator,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_Out& data,
+        const ::detail::Calculator_representation_limits_Out& data,
         size_t& current_alignment)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     static_cast<void>(data);
 
@@ -813,9 +813,9 @@ eProsima_user_DllExport size_t calculate_serialized_size(
 template<>
 eProsima_user_DllExport void serialize(
         eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_Out& data)
+        const ::detail::Calculator_representation_limits_Out& data)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     eprosima::fastcdr::Cdr::state current_state(scdr);
     scdr.begin_serialize_type(current_state,
@@ -833,9 +833,9 @@ eProsima_user_DllExport void serialize(
 template<>
 eProsima_user_DllExport void deserialize(
         eprosima::fastcdr::Cdr& cdr,
-        ::calculator_base::detail::BasicCalculator_representation_limits_Out& data)
+        ::detail::Calculator_representation_limits_Out& data)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
             eprosima::fastcdr::EncodingAlgorithmFlag::PLAIN_CDR2 :
@@ -863,26 +863,26 @@ eProsima_user_DllExport void deserialize(
 
 void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_Out& data)
+        const ::detail::Calculator_representation_limits_Out& data)
 {
     static_cast<void>(scdr);
     static_cast<void>(data);
 }
 
-// Serialization methods for calculator_base::detail::BasicCalculator_representation_limits_Result
+// Serialization methods for detail::Calculator_representation_limits_Result
 /*
-struct BasicCalculator_representation_limits_Result
+struct Calculator_representation_limits_Result
 {
-    eprosima::fastcdr::optional<BasicCalculator_representation_limits_Out> result;
+    eprosima::fastcdr::optional<Calculator_representation_limits_Out> result;
 };
 */
 template<>
 eProsima_user_DllExport size_t calculate_serialized_size(
         eprosima::fastcdr::CdrSizeCalculator& calculator,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_Result& data,
+        const ::detail::Calculator_representation_limits_Result& data,
         size_t& current_alignment)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     static_cast<void>(data);
 
@@ -906,9 +906,9 @@ eProsima_user_DllExport size_t calculate_serialized_size(
 template<>
 eProsima_user_DllExport void serialize(
         eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_Result& data)
+        const ::detail::Calculator_representation_limits_Result& data)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     eprosima::fastcdr::Cdr::state current_state(scdr);
     scdr.begin_serialize_type(current_state,
@@ -925,9 +925,9 @@ eProsima_user_DllExport void serialize(
 template<>
 eProsima_user_DllExport void deserialize(
         eprosima::fastcdr::Cdr& cdr,
-        ::calculator_base::detail::BasicCalculator_representation_limits_Result& data)
+        ::detail::Calculator_representation_limits_Result& data)
 {
-    using namespace calculator_base::detail;
+    using namespace detail;
 
     cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
             eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
@@ -951,7 +951,7 @@ eProsima_user_DllExport void deserialize(
 
 void serialize_key(
         eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_representation_limits_Result& data)
+        const ::detail::Calculator_representation_limits_Result& data)
 {
     static_cast<void>(scdr);
     static_cast<void>(data);
@@ -959,236 +959,6 @@ void serialize_key(
 
 //}  // representation_limits
  
-
-//{ top level
-
-// Serialization methods for calculator_base::detail::BasicCalculator_Request
-/*
-struct BasicCalculator_Request
-{
-    eprosima::fastcdr::optional<BasicCalculator_addition_In> addition;   
-    eprosima::fastcdr::optional<BasicCalculator_subtraction_In> subtraction;   
-    eprosima::fastcdr::optional<BasicCalculator_representation_limits_In> representation_limits; 
-};
-*/
-template<>
-eProsima_user_DllExport size_t calculate_serialized_size(
-        eprosima::fastcdr::CdrSizeCalculator& calculator,
-        const ::calculator_base::detail::BasicCalculator_Request& data,
-        size_t& current_alignment)
-{
-    using namespace calculator_base::detail;
-
-    static_cast<void>(data);
-
-    eprosima::fastcdr::EncodingAlgorithmFlag previous_encoding = calculator.get_encoding();
-    size_t calculated_size {calculator.begin_calculate_type_serialized_size(
-                                eprosima::fastcdr::CdrVersion::XCDRv2 == calculator.get_cdr_version() ?
-                                eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
-                                eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR,
-                                current_alignment)};
-
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x04e82a2b),
-                data.addition, current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x096bbc8d),
-                data.subtraction, current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x0e205a8d),
-                data.representation_limits, current_alignment);
-
-
-    calculated_size += calculator.end_calculate_type_serialized_size(previous_encoding, current_alignment);
-
-    return calculated_size;
-}
-
-template<>
-eProsima_user_DllExport void serialize(
-        eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_Request& data)
-{
-    using namespace calculator_base::detail;
-
-    eprosima::fastcdr::Cdr::state current_state(scdr);
-    scdr.begin_serialize_type(current_state,
-            eprosima::fastcdr::CdrVersion::XCDRv2 == scdr.get_cdr_version() ?
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR);
-
-    scdr
-        << eprosima::fastcdr::MemberId(0x04e82a2b) << data.addition
-        << eprosima::fastcdr::MemberId(0x096bbc8d) << data.subtraction
-        << eprosima::fastcdr::MemberId(0x0e205a8d) << data.representation_limits
-;
-    scdr.end_serialize_type(current_state);
-}
-
-template<>
-eProsima_user_DllExport void deserialize(
-        eprosima::fastcdr::Cdr& cdr,
-        ::calculator_base::detail::BasicCalculator_Request& data)
-{
-    using namespace calculator_base::detail;
-
-    cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR,
-            [&data](eprosima::fastcdr::Cdr& dcdr, const eprosima::fastcdr::MemberId& mid) -> bool
-            {
-                bool ret_value = true;
-                switch (mid.id)
-                {
-                                        case 0x04e82a2b:
-                                                dcdr >> data.addition;
-                                            break;
-
-                                        case 0x096bbc8d:
-                                                dcdr >> data.subtraction;
-                                            break;
-
-                                        case 0x0e205a8d:
-                                                dcdr >> data.representation_limits;
-                                            break;
-
-                    default:
-                        ret_value = false;
-                        break;
-                }
-                return ret_value;
-            });
-}
-
-void serialize_key(
-        eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_Request& data)
-{
-    static_cast<void>(scdr);
-    static_cast<void>(data);
-}
-
-// Serialization methods for calculator_base::detail::BasicCalculator_Reply
-/*
-struct BasicCalculator_Reply
-{
-    eprosima::fastcdr::optional<BasicCalculator_addition_Result> addition; 
-    eprosima::fastcdr::optional<BasicCalculator_subtraction_Result> subtraction; 
-    eprosima::fastcdr::optional<BasicCalculator_representation_limits_Result> representation_limits; 
-    eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t> remoteEx;
-};
-*/
-template<>
-eProsima_user_DllExport size_t calculate_serialized_size(
-        eprosima::fastcdr::CdrSizeCalculator& calculator,
-        const ::calculator_base::detail::BasicCalculator_Reply& data,
-        size_t& current_alignment)
-{
-    using namespace calculator_base::detail;
-
-    static_cast<void>(data);
-
-    eprosima::fastcdr::EncodingAlgorithmFlag previous_encoding = calculator.get_encoding();
-    size_t calculated_size {calculator.begin_calculate_type_serialized_size(
-                                eprosima::fastcdr::CdrVersion::XCDRv2 == calculator.get_cdr_version() ?
-                                eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
-                                eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR,
-                                current_alignment)};
-
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x04e82a2b),
-                data.addition, current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x096bbc8d),
-                data.subtraction, current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x0e205a8d),
-                data.representation_limits, current_alignment);
-
-        calculated_size += calculator.calculate_member_serialized_size(eprosima::fastcdr::MemberId(0x0f8e48f0),
-                data.remoteEx, current_alignment);
-
-
-    calculated_size += calculator.end_calculate_type_serialized_size(previous_encoding, current_alignment);
-
-    return calculated_size;
-}
-
-template<>
-eProsima_user_DllExport void serialize(
-        eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_Reply& data)
-{
-    using namespace calculator_base::detail;
-
-    eprosima::fastcdr::Cdr::state current_state(scdr);
-    scdr.begin_serialize_type(current_state,
-            eprosima::fastcdr::CdrVersion::XCDRv2 == scdr.get_cdr_version() ?
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR);
-
-    scdr
-        << eprosima::fastcdr::MemberId(0x04e82a2b) << data.addition
-        << eprosima::fastcdr::MemberId(0x096bbc8d) << data.subtraction
-        << eprosima::fastcdr::MemberId(0x0e205a8d) << data.representation_limits
-        << eprosima::fastcdr::MemberId(0x0f8e48f0) << data.remoteEx
-;
-    scdr.end_serialize_type(current_state);
-}
-
-template<>
-eProsima_user_DllExport void deserialize(
-        eprosima::fastcdr::Cdr& cdr,
-        ::calculator_base::detail::BasicCalculator_Reply& data)
-{
-    using namespace calculator_base::detail;
-
-    cdr.deserialize_type(eprosima::fastcdr::CdrVersion::XCDRv2 == cdr.get_cdr_version() ?
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR2 :
-            eprosima::fastcdr::EncodingAlgorithmFlag::PL_CDR,
-            [&data](eprosima::fastcdr::Cdr& dcdr, const eprosima::fastcdr::MemberId& mid) -> bool
-            {
-                bool ret_value = true;
-                switch (mid.id)
-                {
-                                        case 0x04e82a2b:
-                                                dcdr >> data.addition;
-                                            break;
-
-                                        case 0x096bbc8d:
-                                                dcdr >> data.subtraction;
-                                            break;
-
-                                        case 0x0e205a8d:
-                                                dcdr >> data.representation_limits;
-                                            break;
-
-                                        case 0x0f8e48f0:
-                                                dcdr >> data.remoteEx;
-                                            break;
-
-                    default:
-                        ret_value = false;
-                        break;
-                }
-                return ret_value;
-            });
-}
-
-void serialize_key(
-        eprosima::fastcdr::Cdr& scdr,
-        const ::calculator_base::detail::BasicCalculator_Reply& data)
-{
-    static_cast<void>(scdr);
-    static_cast<void>(data);
-}
-
-//}  // top level
-
-//}  // calculator_base::BasicCalculator interface
-
-//{ Calculator interface
-
 
 //{ top level
 

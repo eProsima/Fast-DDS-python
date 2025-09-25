@@ -89,52 +89,25 @@ namespace calculator_base {
     //}  // Subtractor interface
 
     } // namespace detail
-    namespace detail {
-
-    //{ BasicCalculator interface
-
-    //{ representation_limits
-    struct BasicCalculator_representation_limits_In
-    {
-    };
-
-
-
-    struct BasicCalculator_representation_limits_Result
-    {
-        eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_Out> result;
-    };
-
-    //}  // representation_limits
-     
-
-    //{ top level
-
-    struct BasicCalculator_Request
-    {
-        eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_In> addition;   
-        eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_In> subtraction;   
-        eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_In> representation_limits; 
-    };
-
-    struct BasicCalculator_Reply
-    {
-        eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_Result> addition; 
-        eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_Result> subtraction; 
-        eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_Result> representation_limits; 
-        eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t> remoteEx;
-    };
-
-    //}  // top level
-
-    //}  // BasicCalculator interface
-
-    } // namespace detail
 }  // namespace calculator_base
 namespace detail {
 
 //{ Calculator interface
 
+//{ representation_limits
+struct Calculator_representation_limits_In
+{
+};
+
+
+
+struct Calculator_representation_limits_Result
+{
+    eprosima::fastcdr::optional<detail::Calculator_representation_limits_Out> result;
+};
+
+//}  // representation_limits
+ 
 
 //{ top level
 
@@ -142,14 +115,14 @@ struct Calculator_Request
 {
     eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_In> addition;   
     eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_In> subtraction;   
-    eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_In> representation_limits; 
+    eprosima::fastcdr::optional<detail::Calculator_representation_limits_In> representation_limits; 
 };
 
 struct Calculator_Reply
 {
     eprosima::fastcdr::optional<calculator_base::detail::Adder_addition_Result> addition; 
     eprosima::fastcdr::optional<calculator_base::detail::Subtractor_subtraction_Result> subtraction; 
-    eprosima::fastcdr::optional<calculator_base::detail::BasicCalculator_representation_limits_Result> representation_limits; 
+    eprosima::fastcdr::optional<detail::Calculator_representation_limits_Result> representation_limits; 
     eprosima::fastcdr::optional<eprosima::fastdds::dds::rpc::RemoteExceptionCode_t> remoteEx;
 };
 

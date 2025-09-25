@@ -27,45 +27,6 @@
 
 namespace calculator_base {
 
-//{ interface BasicCalculator
-
-struct BasicCalculatorServerImplementation :
-    public BasicCalculatorServer_IServerImplementation
-{
-
-    int32_t addition(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ int32_t value1,
-            /*in*/ int32_t value2) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(value1);
-        static_cast<void>(value2);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'addition' is not implemented");
-    }
-
-    int32_t subtraction(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ int32_t value1,
-            /*in*/ int32_t value2) override
-    {
-        static_cast<void>(info);
-        static_cast<void>(value1);
-        static_cast<void>(value2);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'subtraction' is not implemented");
-    }
-
-    calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info) override
-    {
-        static_cast<void>(info);
-        throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'representation_limits' is not implemented");
-    }
-
-};
-
-//} interface BasicCalculator
-
 
 } // namespace calculator_base
 
@@ -97,7 +58,7 @@ struct CalculatorServerImplementation :
         throw eprosima::fastdds::dds::rpc::RemoteUnsupportedError("Operation 'subtraction' is not implemented");
     }
 
-    calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
+    detail::Calculator_representation_limits_Out representation_limits(
             const eprosima::fastdds::dds::rpc::RpcRequest& info) override
     {
         static_cast<void>(info);

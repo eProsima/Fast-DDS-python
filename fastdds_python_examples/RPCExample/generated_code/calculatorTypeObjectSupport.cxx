@@ -646,61 +646,63 @@ void register_Subtractor_subtraction_Result_type_identifier(
 }  // namespace detail
 
 
+} // namespace calculator_base
+
 
 namespace detail {
 
 //{ representation_limits
 // TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
-void register_BasicCalculator_representation_limits_In_type_identifier(
-        TypeIdentifierPair& type_ids_BasicCalculator_representation_limits_In)
+void register_Calculator_representation_limits_In_type_identifier(
+        TypeIdentifierPair& type_ids_Calculator_representation_limits_In)
 {
 
-    ReturnCode_t return_code_BasicCalculator_representation_limits_In {eprosima::fastdds::dds::RETCODE_OK};
-    return_code_BasicCalculator_representation_limits_In =
+    ReturnCode_t return_code_Calculator_representation_limits_In {eprosima::fastdds::dds::RETCODE_OK};
+    return_code_Calculator_representation_limits_In =
         eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-        "calculator_base::detail::BasicCalculator_representation_limits_In", type_ids_BasicCalculator_representation_limits_In);
-    if (eprosima::fastdds::dds::RETCODE_OK != return_code_BasicCalculator_representation_limits_In)
+        "detail::Calculator_representation_limits_In", type_ids_Calculator_representation_limits_In);
+    if (eprosima::fastdds::dds::RETCODE_OK != return_code_Calculator_representation_limits_In)
     {
-        StructTypeFlag struct_flags_BasicCalculator_representation_limits_In = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::FINAL,
+        StructTypeFlag struct_flags_Calculator_representation_limits_In = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::FINAL,
                 false, false);
-        QualifiedTypeName type_name_BasicCalculator_representation_limits_In = "calculator_base::detail::BasicCalculator_representation_limits_In";
-        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_BasicCalculator_representation_limits_In;
-        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_BasicCalculator_representation_limits_In;
-        CompleteTypeDetail detail_BasicCalculator_representation_limits_In = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_BasicCalculator_representation_limits_In, ann_custom_BasicCalculator_representation_limits_In, type_name_BasicCalculator_representation_limits_In.to_string());
-        CompleteStructHeader header_BasicCalculator_representation_limits_In;
-        header_BasicCalculator_representation_limits_In = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_BasicCalculator_representation_limits_In);
-        CompleteStructMemberSeq member_seq_BasicCalculator_representation_limits_In;
-        CompleteStructType struct_type_BasicCalculator_representation_limits_In = TypeObjectUtils::build_complete_struct_type(struct_flags_BasicCalculator_representation_limits_In, header_BasicCalculator_representation_limits_In, member_seq_BasicCalculator_representation_limits_In);
+        QualifiedTypeName type_name_Calculator_representation_limits_In = "detail::Calculator_representation_limits_In";
+        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_Calculator_representation_limits_In;
+        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_Calculator_representation_limits_In;
+        CompleteTypeDetail detail_Calculator_representation_limits_In = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_Calculator_representation_limits_In, ann_custom_Calculator_representation_limits_In, type_name_Calculator_representation_limits_In.to_string());
+        CompleteStructHeader header_Calculator_representation_limits_In;
+        header_Calculator_representation_limits_In = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_Calculator_representation_limits_In);
+        CompleteStructMemberSeq member_seq_Calculator_representation_limits_In;
+        CompleteStructType struct_type_Calculator_representation_limits_In = TypeObjectUtils::build_complete_struct_type(struct_flags_Calculator_representation_limits_In, header_Calculator_representation_limits_In, member_seq_Calculator_representation_limits_In);
         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_BasicCalculator_representation_limits_In, type_name_BasicCalculator_representation_limits_In.to_string(), type_ids_BasicCalculator_representation_limits_In))
+                TypeObjectUtils::build_and_register_struct_type_object(struct_type_Calculator_representation_limits_In, type_name_Calculator_representation_limits_In.to_string(), type_ids_Calculator_representation_limits_In))
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                    "calculator_base::detail::BasicCalculator_representation_limits_In already registered in TypeObjectRegistry for a different type.");
+                    "detail::Calculator_representation_limits_In already registered in TypeObjectRegistry for a different type.");
         }
     }
 }
 
 
 // TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
-void register_BasicCalculator_representation_limits_Out_type_identifier(
-        TypeIdentifierPair& type_ids_BasicCalculator_representation_limits_Out)
+void register_Calculator_representation_limits_Out_type_identifier(
+        TypeIdentifierPair& type_ids_Calculator_representation_limits_Out)
 {
 
-    ReturnCode_t return_code_BasicCalculator_representation_limits_Out {eprosima::fastdds::dds::RETCODE_OK};
-    return_code_BasicCalculator_representation_limits_Out =
+    ReturnCode_t return_code_Calculator_representation_limits_Out {eprosima::fastdds::dds::RETCODE_OK};
+    return_code_Calculator_representation_limits_Out =
         eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-        "calculator_base::detail::BasicCalculator_representation_limits_Out", type_ids_BasicCalculator_representation_limits_Out);
-    if (eprosima::fastdds::dds::RETCODE_OK != return_code_BasicCalculator_representation_limits_Out)
+        "detail::Calculator_representation_limits_Out", type_ids_Calculator_representation_limits_Out);
+    if (eprosima::fastdds::dds::RETCODE_OK != return_code_Calculator_representation_limits_Out)
     {
-        StructTypeFlag struct_flags_BasicCalculator_representation_limits_Out = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::FINAL,
+        StructTypeFlag struct_flags_Calculator_representation_limits_Out = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::FINAL,
                 false, false);
-        QualifiedTypeName type_name_BasicCalculator_representation_limits_Out = "calculator_base::detail::BasicCalculator_representation_limits_Out";
-        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_BasicCalculator_representation_limits_Out;
-        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_BasicCalculator_representation_limits_Out;
-        CompleteTypeDetail detail_BasicCalculator_representation_limits_Out = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_BasicCalculator_representation_limits_Out, ann_custom_BasicCalculator_representation_limits_Out, type_name_BasicCalculator_representation_limits_Out.to_string());
-        CompleteStructHeader header_BasicCalculator_representation_limits_Out;
-        header_BasicCalculator_representation_limits_Out = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_BasicCalculator_representation_limits_Out);
-        CompleteStructMemberSeq member_seq_BasicCalculator_representation_limits_Out;
+        QualifiedTypeName type_name_Calculator_representation_limits_Out = "detail::Calculator_representation_limits_Out";
+        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_Calculator_representation_limits_Out;
+        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_Calculator_representation_limits_Out;
+        CompleteTypeDetail detail_Calculator_representation_limits_Out = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_Calculator_representation_limits_Out, ann_custom_Calculator_representation_limits_Out, type_name_Calculator_representation_limits_Out.to_string());
+        CompleteStructHeader header_Calculator_representation_limits_Out;
+        header_Calculator_representation_limits_Out = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_Calculator_representation_limits_Out);
+        CompleteStructMemberSeq member_seq_Calculator_representation_limits_Out;
         {
             TypeIdentifierPair type_ids_min_value;
             ReturnCode_t return_code_min_value {eprosima::fastdds::dds::RETCODE_OK};
@@ -726,10 +728,10 @@ void register_BasicCalculator_representation_limits_Out_type_identifier(
             }
             MemberName name_min_value = "min_value";
             eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_min_value;
-            ann_custom_BasicCalculator_representation_limits_Out.reset();
-            CompleteMemberDetail detail_min_value = TypeObjectUtils::build_complete_member_detail(name_min_value, member_ann_builtin_min_value, ann_custom_BasicCalculator_representation_limits_Out);
+            ann_custom_Calculator_representation_limits_Out.reset();
+            CompleteMemberDetail detail_min_value = TypeObjectUtils::build_complete_member_detail(name_min_value, member_ann_builtin_min_value, ann_custom_Calculator_representation_limits_Out);
             CompleteStructMember member_min_value = TypeObjectUtils::build_complete_struct_member(common_min_value, detail_min_value);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_representation_limits_Out, member_min_value);
+            TypeObjectUtils::add_complete_struct_member(member_seq_Calculator_representation_limits_Out, member_min_value);
         }
         {
             TypeIdentifierPair type_ids_max_value;
@@ -756,51 +758,51 @@ void register_BasicCalculator_representation_limits_Out_type_identifier(
             }
             MemberName name_max_value = "max_value";
             eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_max_value;
-            ann_custom_BasicCalculator_representation_limits_Out.reset();
-            CompleteMemberDetail detail_max_value = TypeObjectUtils::build_complete_member_detail(name_max_value, member_ann_builtin_max_value, ann_custom_BasicCalculator_representation_limits_Out);
+            ann_custom_Calculator_representation_limits_Out.reset();
+            CompleteMemberDetail detail_max_value = TypeObjectUtils::build_complete_member_detail(name_max_value, member_ann_builtin_max_value, ann_custom_Calculator_representation_limits_Out);
             CompleteStructMember member_max_value = TypeObjectUtils::build_complete_struct_member(common_max_value, detail_max_value);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_representation_limits_Out, member_max_value);
+            TypeObjectUtils::add_complete_struct_member(member_seq_Calculator_representation_limits_Out, member_max_value);
         }
-        CompleteStructType struct_type_BasicCalculator_representation_limits_Out = TypeObjectUtils::build_complete_struct_type(struct_flags_BasicCalculator_representation_limits_Out, header_BasicCalculator_representation_limits_Out, member_seq_BasicCalculator_representation_limits_Out);
+        CompleteStructType struct_type_Calculator_representation_limits_Out = TypeObjectUtils::build_complete_struct_type(struct_flags_Calculator_representation_limits_Out, header_Calculator_representation_limits_Out, member_seq_Calculator_representation_limits_Out);
         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_BasicCalculator_representation_limits_Out, type_name_BasicCalculator_representation_limits_Out.to_string(), type_ids_BasicCalculator_representation_limits_Out))
+                TypeObjectUtils::build_and_register_struct_type_object(struct_type_Calculator_representation_limits_Out, type_name_Calculator_representation_limits_Out.to_string(), type_ids_Calculator_representation_limits_Out))
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                    "calculator_base::detail::BasicCalculator_representation_limits_Out already registered in TypeObjectRegistry for a different type.");
+                    "detail::Calculator_representation_limits_Out already registered in TypeObjectRegistry for a different type.");
         }
     }
 }
 
 // TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
-void register_BasicCalculator_representation_limits_Result_type_identifier(
-        TypeIdentifierPair& type_ids_BasicCalculator_representation_limits_Result)
+void register_Calculator_representation_limits_Result_type_identifier(
+        TypeIdentifierPair& type_ids_Calculator_representation_limits_Result)
 {
 
-    ReturnCode_t return_code_BasicCalculator_representation_limits_Result {eprosima::fastdds::dds::RETCODE_OK};
-    return_code_BasicCalculator_representation_limits_Result =
+    ReturnCode_t return_code_Calculator_representation_limits_Result {eprosima::fastdds::dds::RETCODE_OK};
+    return_code_Calculator_representation_limits_Result =
         eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-        "calculator_base::detail::BasicCalculator_representation_limits_Result", type_ids_BasicCalculator_representation_limits_Result);
-    if (eprosima::fastdds::dds::RETCODE_OK != return_code_BasicCalculator_representation_limits_Result)
+        "detail::Calculator_representation_limits_Result", type_ids_Calculator_representation_limits_Result);
+    if (eprosima::fastdds::dds::RETCODE_OK != return_code_Calculator_representation_limits_Result)
     {
-        StructTypeFlag struct_flags_BasicCalculator_representation_limits_Result = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::MUTABLE,
+        StructTypeFlag struct_flags_Calculator_representation_limits_Result = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::MUTABLE,
                 false, false);
-        QualifiedTypeName type_name_BasicCalculator_representation_limits_Result = "calculator_base::detail::BasicCalculator_representation_limits_Result";
-        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_BasicCalculator_representation_limits_Result;
-        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_BasicCalculator_representation_limits_Result;
-        CompleteTypeDetail detail_BasicCalculator_representation_limits_Result = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_BasicCalculator_representation_limits_Result, ann_custom_BasicCalculator_representation_limits_Result, type_name_BasicCalculator_representation_limits_Result.to_string());
-        CompleteStructHeader header_BasicCalculator_representation_limits_Result;
-        header_BasicCalculator_representation_limits_Result = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_BasicCalculator_representation_limits_Result);
-        CompleteStructMemberSeq member_seq_BasicCalculator_representation_limits_Result;
+        QualifiedTypeName type_name_Calculator_representation_limits_Result = "detail::Calculator_representation_limits_Result";
+        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_Calculator_representation_limits_Result;
+        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_Calculator_representation_limits_Result;
+        CompleteTypeDetail detail_Calculator_representation_limits_Result = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_Calculator_representation_limits_Result, ann_custom_Calculator_representation_limits_Result, type_name_Calculator_representation_limits_Result.to_string());
+        CompleteStructHeader header_Calculator_representation_limits_Result;
+        header_Calculator_representation_limits_Result = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_Calculator_representation_limits_Result);
+        CompleteStructMemberSeq member_seq_Calculator_representation_limits_Result;
         {
             TypeIdentifierPair type_ids_result;
             ReturnCode_t return_code_result {eprosima::fastdds::dds::RETCODE_OK};
             return_code_result =
                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::BasicCalculator_representation_limits_Out", type_ids_result);
+                "detail::Calculator_representation_limits_Out", type_ids_result);
 
             if (eprosima::fastdds::dds::RETCODE_OK != return_code_result)
             {
-                ::calculator_base::detail::register_BasicCalculator_representation_limits_Out_type_identifier(type_ids_result);
+                ::detail::register_Calculator_representation_limits_Out_type_identifier(type_ids_result);
             }
             StructMemberFlag member_flags_result = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
@@ -814,7 +816,7 @@ void register_BasicCalculator_representation_limits_Result_type_identifier(
             }
             MemberName name_result = "result";
             eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_result;
-            ann_custom_BasicCalculator_representation_limits_Result.reset();
+            ann_custom_Calculator_representation_limits_Result.reset();
             AppliedAnnotationSeq tmp_ann_custom_result;
             eprosima::fastcdr::optional<std::string> unit_result;
             eprosima::fastcdr::optional<AnnotationParameterValue> min_result;
@@ -828,392 +830,24 @@ void register_BasicCalculator_representation_limits_Result_type_identifier(
             }
             if (!tmp_ann_custom_result.empty())
             {
-                ann_custom_BasicCalculator_representation_limits_Result = tmp_ann_custom_result;
+                ann_custom_Calculator_representation_limits_Result = tmp_ann_custom_result;
             }
-            CompleteMemberDetail detail_result = TypeObjectUtils::build_complete_member_detail(name_result, member_ann_builtin_result, ann_custom_BasicCalculator_representation_limits_Result);
+            CompleteMemberDetail detail_result = TypeObjectUtils::build_complete_member_detail(name_result, member_ann_builtin_result, ann_custom_Calculator_representation_limits_Result);
             CompleteStructMember member_result = TypeObjectUtils::build_complete_struct_member(common_result, detail_result);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_representation_limits_Result, member_result);
+            TypeObjectUtils::add_complete_struct_member(member_seq_Calculator_representation_limits_Result, member_result);
         }
-        CompleteStructType struct_type_BasicCalculator_representation_limits_Result = TypeObjectUtils::build_complete_struct_type(struct_flags_BasicCalculator_representation_limits_Result, header_BasicCalculator_representation_limits_Result, member_seq_BasicCalculator_representation_limits_Result);
+        CompleteStructType struct_type_Calculator_representation_limits_Result = TypeObjectUtils::build_complete_struct_type(struct_flags_Calculator_representation_limits_Result, header_Calculator_representation_limits_Result, member_seq_Calculator_representation_limits_Result);
         if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_BasicCalculator_representation_limits_Result, type_name_BasicCalculator_representation_limits_Result.to_string(), type_ids_BasicCalculator_representation_limits_Result))
+                TypeObjectUtils::build_and_register_struct_type_object(struct_type_Calculator_representation_limits_Result, type_name_Calculator_representation_limits_Result.to_string(), type_ids_Calculator_representation_limits_Result))
         {
             EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                    "calculator_base::detail::BasicCalculator_representation_limits_Result already registered in TypeObjectRegistry for a different type.");
+                    "detail::Calculator_representation_limits_Result already registered in TypeObjectRegistry for a different type.");
         }
     }
 }
 
 //}  // representation_limits
  
-
-}  // namespace detail
-
-// TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
-void register_BasicCalculator_Request_type_identifier(
-        TypeIdentifierPair& type_ids_BasicCalculator_Request)
-{
-
-    ReturnCode_t return_code_BasicCalculator_Request {eprosima::fastdds::dds::RETCODE_OK};
-    return_code_BasicCalculator_Request =
-        eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-        "calculator_base::detail::BasicCalculator_Request", type_ids_BasicCalculator_Request);
-    if (eprosima::fastdds::dds::RETCODE_OK != return_code_BasicCalculator_Request)
-    {
-        StructTypeFlag struct_flags_BasicCalculator_Request = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::MUTABLE,
-                false, false);
-        QualifiedTypeName type_name_BasicCalculator_Request = "calculator_base::detail::BasicCalculator_Request";
-        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_BasicCalculator_Request;
-        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_BasicCalculator_Request;
-        CompleteTypeDetail detail_BasicCalculator_Request = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_BasicCalculator_Request, ann_custom_BasicCalculator_Request, type_name_BasicCalculator_Request.to_string());
-        CompleteStructHeader header_BasicCalculator_Request;
-        header_BasicCalculator_Request = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_BasicCalculator_Request);
-        CompleteStructMemberSeq member_seq_BasicCalculator_Request;
-        {
-            TypeIdentifierPair type_ids_addition;
-            ReturnCode_t return_code_addition {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_addition =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::Adder_addition_In", type_ids_addition);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_addition)
-            {
-                ::calculator_base::detail::register_Adder_addition_In_type_identifier(type_ids_addition);
-            }
-            StructMemberFlag member_flags_addition = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_addition = 0x04e82a2b;
-            bool common_addition_ec {false};
-            CommonStructMember common_addition {TypeObjectUtils::build_common_struct_member(member_id_addition, member_flags_addition, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_addition, common_addition_ec))};
-            if (!common_addition_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure addition member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_addition = "addition";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_addition;
-            ann_custom_BasicCalculator_Request.reset();
-            AppliedAnnotationSeq tmp_ann_custom_addition;
-            eprosima::fastcdr::optional<std::string> unit_addition;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_addition;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_addition;
-            eprosima::fastcdr::optional<std::string> hash_id_addition;
-            hash_id_addition = "";
-
-            if (unit_addition.has_value() || min_addition.has_value() || max_addition.has_value() || hash_id_addition.has_value())
-            {
-                member_ann_builtin_addition = TypeObjectUtils::build_applied_builtin_member_annotations(unit_addition, min_addition, max_addition, hash_id_addition);
-            }
-            if (!tmp_ann_custom_addition.empty())
-            {
-                ann_custom_BasicCalculator_Request = tmp_ann_custom_addition;
-            }
-            CompleteMemberDetail detail_addition = TypeObjectUtils::build_complete_member_detail(name_addition, member_ann_builtin_addition, ann_custom_BasicCalculator_Request);
-            CompleteStructMember member_addition = TypeObjectUtils::build_complete_struct_member(common_addition, detail_addition);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Request, member_addition);
-        }
-        {
-            TypeIdentifierPair type_ids_subtraction;
-            ReturnCode_t return_code_subtraction {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_subtraction =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::Subtractor_subtraction_In", type_ids_subtraction);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_subtraction)
-            {
-                ::calculator_base::detail::register_Subtractor_subtraction_In_type_identifier(type_ids_subtraction);
-            }
-            StructMemberFlag member_flags_subtraction = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_subtraction = 0x096bbc8d;
-            bool common_subtraction_ec {false};
-            CommonStructMember common_subtraction {TypeObjectUtils::build_common_struct_member(member_id_subtraction, member_flags_subtraction, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_subtraction, common_subtraction_ec))};
-            if (!common_subtraction_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure subtraction member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_subtraction = "subtraction";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_subtraction;
-            ann_custom_BasicCalculator_Request.reset();
-            AppliedAnnotationSeq tmp_ann_custom_subtraction;
-            eprosima::fastcdr::optional<std::string> unit_subtraction;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_subtraction;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_subtraction;
-            eprosima::fastcdr::optional<std::string> hash_id_subtraction;
-            hash_id_subtraction = "";
-
-            if (unit_subtraction.has_value() || min_subtraction.has_value() || max_subtraction.has_value() || hash_id_subtraction.has_value())
-            {
-                member_ann_builtin_subtraction = TypeObjectUtils::build_applied_builtin_member_annotations(unit_subtraction, min_subtraction, max_subtraction, hash_id_subtraction);
-            }
-            if (!tmp_ann_custom_subtraction.empty())
-            {
-                ann_custom_BasicCalculator_Request = tmp_ann_custom_subtraction;
-            }
-            CompleteMemberDetail detail_subtraction = TypeObjectUtils::build_complete_member_detail(name_subtraction, member_ann_builtin_subtraction, ann_custom_BasicCalculator_Request);
-            CompleteStructMember member_subtraction = TypeObjectUtils::build_complete_struct_member(common_subtraction, detail_subtraction);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Request, member_subtraction);
-        }
-        {
-            TypeIdentifierPair type_ids_representation_limits;
-            ReturnCode_t return_code_representation_limits {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_representation_limits =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::BasicCalculator_representation_limits_In", type_ids_representation_limits);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_representation_limits)
-            {
-                ::calculator_base::detail::register_BasicCalculator_representation_limits_In_type_identifier(type_ids_representation_limits);
-            }
-            StructMemberFlag member_flags_representation_limits = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_representation_limits = 0x0e205a8d;
-            bool common_representation_limits_ec {false};
-            CommonStructMember common_representation_limits {TypeObjectUtils::build_common_struct_member(member_id_representation_limits, member_flags_representation_limits, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_representation_limits, common_representation_limits_ec))};
-            if (!common_representation_limits_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure representation_limits member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_representation_limits = "representation_limits";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_representation_limits;
-            ann_custom_BasicCalculator_Request.reset();
-            AppliedAnnotationSeq tmp_ann_custom_representation_limits;
-            eprosima::fastcdr::optional<std::string> unit_representation_limits;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_representation_limits;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_representation_limits;
-            eprosima::fastcdr::optional<std::string> hash_id_representation_limits;
-            hash_id_representation_limits = "";
-
-            if (unit_representation_limits.has_value() || min_representation_limits.has_value() || max_representation_limits.has_value() || hash_id_representation_limits.has_value())
-            {
-                member_ann_builtin_representation_limits = TypeObjectUtils::build_applied_builtin_member_annotations(unit_representation_limits, min_representation_limits, max_representation_limits, hash_id_representation_limits);
-            }
-            if (!tmp_ann_custom_representation_limits.empty())
-            {
-                ann_custom_BasicCalculator_Request = tmp_ann_custom_representation_limits;
-            }
-            CompleteMemberDetail detail_representation_limits = TypeObjectUtils::build_complete_member_detail(name_representation_limits, member_ann_builtin_representation_limits, ann_custom_BasicCalculator_Request);
-            CompleteStructMember member_representation_limits = TypeObjectUtils::build_complete_struct_member(common_representation_limits, detail_representation_limits);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Request, member_representation_limits);
-        }
-        CompleteStructType struct_type_BasicCalculator_Request = TypeObjectUtils::build_complete_struct_type(struct_flags_BasicCalculator_Request, header_BasicCalculator_Request, member_seq_BasicCalculator_Request);
-        if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_BasicCalculator_Request, type_name_BasicCalculator_Request.to_string(), type_ids_BasicCalculator_Request))
-        {
-            EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                    "calculator_base::detail::BasicCalculator_Request already registered in TypeObjectRegistry for a different type.");
-        }
-    }
-}
-// TypeIdentifier is returned by reference: dependent structures/unions are registered in this same method
-void register_BasicCalculator_Reply_type_identifier(
-        TypeIdentifierPair& type_ids_BasicCalculator_Reply)
-{
-
-    ReturnCode_t return_code_BasicCalculator_Reply {eprosima::fastdds::dds::RETCODE_OK};
-    return_code_BasicCalculator_Reply =
-        eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-        "calculator_base::detail::BasicCalculator_Reply", type_ids_BasicCalculator_Reply);
-    if (eprosima::fastdds::dds::RETCODE_OK != return_code_BasicCalculator_Reply)
-    {
-        StructTypeFlag struct_flags_BasicCalculator_Reply = TypeObjectUtils::build_struct_type_flag(eprosima::fastdds::dds::xtypes::ExtensibilityKind::MUTABLE,
-                false, false);
-        QualifiedTypeName type_name_BasicCalculator_Reply = "calculator_base::detail::BasicCalculator_Reply";
-        eprosima::fastcdr::optional<AppliedBuiltinTypeAnnotations> type_ann_builtin_BasicCalculator_Reply;
-        eprosima::fastcdr::optional<AppliedAnnotationSeq> ann_custom_BasicCalculator_Reply;
-        CompleteTypeDetail detail_BasicCalculator_Reply = TypeObjectUtils::build_complete_type_detail(type_ann_builtin_BasicCalculator_Reply, ann_custom_BasicCalculator_Reply, type_name_BasicCalculator_Reply.to_string());
-        CompleteStructHeader header_BasicCalculator_Reply;
-        header_BasicCalculator_Reply = TypeObjectUtils::build_complete_struct_header(TypeIdentifier(), detail_BasicCalculator_Reply);
-        CompleteStructMemberSeq member_seq_BasicCalculator_Reply;
-        {
-            TypeIdentifierPair type_ids_addition;
-            ReturnCode_t return_code_addition {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_addition =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::Adder_addition_Result", type_ids_addition);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_addition)
-            {
-                ::calculator_base::detail::register_Adder_addition_Result_type_identifier(type_ids_addition);
-            }
-            StructMemberFlag member_flags_addition = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_addition = 0x04e82a2b;
-            bool common_addition_ec {false};
-            CommonStructMember common_addition {TypeObjectUtils::build_common_struct_member(member_id_addition, member_flags_addition, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_addition, common_addition_ec))};
-            if (!common_addition_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure addition member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_addition = "addition";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_addition;
-            ann_custom_BasicCalculator_Reply.reset();
-            AppliedAnnotationSeq tmp_ann_custom_addition;
-            eprosima::fastcdr::optional<std::string> unit_addition;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_addition;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_addition;
-            eprosima::fastcdr::optional<std::string> hash_id_addition;
-            hash_id_addition = "";
-
-            if (unit_addition.has_value() || min_addition.has_value() || max_addition.has_value() || hash_id_addition.has_value())
-            {
-                member_ann_builtin_addition = TypeObjectUtils::build_applied_builtin_member_annotations(unit_addition, min_addition, max_addition, hash_id_addition);
-            }
-            if (!tmp_ann_custom_addition.empty())
-            {
-                ann_custom_BasicCalculator_Reply = tmp_ann_custom_addition;
-            }
-            CompleteMemberDetail detail_addition = TypeObjectUtils::build_complete_member_detail(name_addition, member_ann_builtin_addition, ann_custom_BasicCalculator_Reply);
-            CompleteStructMember member_addition = TypeObjectUtils::build_complete_struct_member(common_addition, detail_addition);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Reply, member_addition);
-        }
-        {
-            TypeIdentifierPair type_ids_subtraction;
-            ReturnCode_t return_code_subtraction {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_subtraction =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::Subtractor_subtraction_Result", type_ids_subtraction);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_subtraction)
-            {
-                ::calculator_base::detail::register_Subtractor_subtraction_Result_type_identifier(type_ids_subtraction);
-            }
-            StructMemberFlag member_flags_subtraction = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_subtraction = 0x096bbc8d;
-            bool common_subtraction_ec {false};
-            CommonStructMember common_subtraction {TypeObjectUtils::build_common_struct_member(member_id_subtraction, member_flags_subtraction, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_subtraction, common_subtraction_ec))};
-            if (!common_subtraction_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure subtraction member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_subtraction = "subtraction";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_subtraction;
-            ann_custom_BasicCalculator_Reply.reset();
-            AppliedAnnotationSeq tmp_ann_custom_subtraction;
-            eprosima::fastcdr::optional<std::string> unit_subtraction;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_subtraction;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_subtraction;
-            eprosima::fastcdr::optional<std::string> hash_id_subtraction;
-            hash_id_subtraction = "";
-
-            if (unit_subtraction.has_value() || min_subtraction.has_value() || max_subtraction.has_value() || hash_id_subtraction.has_value())
-            {
-                member_ann_builtin_subtraction = TypeObjectUtils::build_applied_builtin_member_annotations(unit_subtraction, min_subtraction, max_subtraction, hash_id_subtraction);
-            }
-            if (!tmp_ann_custom_subtraction.empty())
-            {
-                ann_custom_BasicCalculator_Reply = tmp_ann_custom_subtraction;
-            }
-            CompleteMemberDetail detail_subtraction = TypeObjectUtils::build_complete_member_detail(name_subtraction, member_ann_builtin_subtraction, ann_custom_BasicCalculator_Reply);
-            CompleteStructMember member_subtraction = TypeObjectUtils::build_complete_struct_member(common_subtraction, detail_subtraction);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Reply, member_subtraction);
-        }
-        {
-            TypeIdentifierPair type_ids_representation_limits;
-            ReturnCode_t return_code_representation_limits {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_representation_limits =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::BasicCalculator_representation_limits_Result", type_ids_representation_limits);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_representation_limits)
-            {
-                ::calculator_base::detail::register_BasicCalculator_representation_limits_Result_type_identifier(type_ids_representation_limits);
-            }
-            StructMemberFlag member_flags_representation_limits = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_representation_limits = 0x0e205a8d;
-            bool common_representation_limits_ec {false};
-            CommonStructMember common_representation_limits {TypeObjectUtils::build_common_struct_member(member_id_representation_limits, member_flags_representation_limits, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_representation_limits, common_representation_limits_ec))};
-            if (!common_representation_limits_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure representation_limits member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_representation_limits = "representation_limits";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_representation_limits;
-            ann_custom_BasicCalculator_Reply.reset();
-            AppliedAnnotationSeq tmp_ann_custom_representation_limits;
-            eprosima::fastcdr::optional<std::string> unit_representation_limits;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_representation_limits;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_representation_limits;
-            eprosima::fastcdr::optional<std::string> hash_id_representation_limits;
-            hash_id_representation_limits = "";
-
-            if (unit_representation_limits.has_value() || min_representation_limits.has_value() || max_representation_limits.has_value() || hash_id_representation_limits.has_value())
-            {
-                member_ann_builtin_representation_limits = TypeObjectUtils::build_applied_builtin_member_annotations(unit_representation_limits, min_representation_limits, max_representation_limits, hash_id_representation_limits);
-            }
-            if (!tmp_ann_custom_representation_limits.empty())
-            {
-                ann_custom_BasicCalculator_Reply = tmp_ann_custom_representation_limits;
-            }
-            CompleteMemberDetail detail_representation_limits = TypeObjectUtils::build_complete_member_detail(name_representation_limits, member_ann_builtin_representation_limits, ann_custom_BasicCalculator_Reply);
-            CompleteStructMember member_representation_limits = TypeObjectUtils::build_complete_struct_member(common_representation_limits, detail_representation_limits);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Reply, member_representation_limits);
-        }
-        {
-            TypeIdentifierPair type_ids_remoteEx;
-            ReturnCode_t return_code_remoteEx {eprosima::fastdds::dds::RETCODE_OK};
-            return_code_remoteEx =
-                eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "eprosima::fastdds::dds::rpc::RemoteExceptionCode_t", type_ids_remoteEx);
-
-            if (eprosima::fastdds::dds::RETCODE_OK != return_code_remoteEx)
-            {
-                ::eprosima::fastdds::dds::rpc::register_RemoteExceptionCode_t_type_identifier(type_ids_remoteEx);
-            }
-            StructMemberFlag member_flags_remoteEx = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
-                    true, false, false, false);
-            MemberId member_id_remoteEx = 0x0f8e48f0;
-            bool common_remoteEx_ec {false};
-            CommonStructMember common_remoteEx {TypeObjectUtils::build_common_struct_member(member_id_remoteEx, member_flags_remoteEx, TypeObjectUtils::retrieve_complete_type_identifier(type_ids_remoteEx, common_remoteEx_ec))};
-            if (!common_remoteEx_ec)
-            {
-                EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION, "Structure remoteEx member TypeIdentifier inconsistent.");
-                return;
-            }
-            MemberName name_remoteEx = "remoteEx";
-            eprosima::fastcdr::optional<AppliedBuiltinMemberAnnotations> member_ann_builtin_remoteEx;
-            ann_custom_BasicCalculator_Reply.reset();
-            AppliedAnnotationSeq tmp_ann_custom_remoteEx;
-            eprosima::fastcdr::optional<std::string> unit_remoteEx;
-            eprosima::fastcdr::optional<AnnotationParameterValue> min_remoteEx;
-            eprosima::fastcdr::optional<AnnotationParameterValue> max_remoteEx;
-            eprosima::fastcdr::optional<std::string> hash_id_remoteEx;
-            hash_id_remoteEx = "";
-
-            if (unit_remoteEx.has_value() || min_remoteEx.has_value() || max_remoteEx.has_value() || hash_id_remoteEx.has_value())
-            {
-                member_ann_builtin_remoteEx = TypeObjectUtils::build_applied_builtin_member_annotations(unit_remoteEx, min_remoteEx, max_remoteEx, hash_id_remoteEx);
-            }
-            if (!tmp_ann_custom_remoteEx.empty())
-            {
-                ann_custom_BasicCalculator_Reply = tmp_ann_custom_remoteEx;
-            }
-            CompleteMemberDetail detail_remoteEx = TypeObjectUtils::build_complete_member_detail(name_remoteEx, member_ann_builtin_remoteEx, ann_custom_BasicCalculator_Reply);
-            CompleteStructMember member_remoteEx = TypeObjectUtils::build_complete_struct_member(common_remoteEx, detail_remoteEx);
-            TypeObjectUtils::add_complete_struct_member(member_seq_BasicCalculator_Reply, member_remoteEx);
-        }
-        CompleteStructType struct_type_BasicCalculator_Reply = TypeObjectUtils::build_complete_struct_type(struct_flags_BasicCalculator_Reply, header_BasicCalculator_Reply, member_seq_BasicCalculator_Reply);
-        if (eprosima::fastdds::dds::RETCODE_BAD_PARAMETER ==
-                TypeObjectUtils::build_and_register_struct_type_object(struct_type_BasicCalculator_Reply, type_name_BasicCalculator_Reply.to_string(), type_ids_BasicCalculator_Reply))
-        {
-            EPROSIMA_LOG_ERROR(XTYPES_TYPE_REPRESENTATION,
-                    "calculator_base::detail::BasicCalculator_Reply already registered in TypeObjectRegistry for a different type.");
-        }
-    }
-}
-
-} // namespace calculator_base
-
-
-namespace detail {
-
 
 }  // namespace detail
 
@@ -1328,11 +962,11 @@ void register_Calculator_Request_type_identifier(
             ReturnCode_t return_code_representation_limits {eprosima::fastdds::dds::RETCODE_OK};
             return_code_representation_limits =
                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::BasicCalculator_representation_limits_In", type_ids_representation_limits);
+                "detail::Calculator_representation_limits_In", type_ids_representation_limits);
 
             if (eprosima::fastdds::dds::RETCODE_OK != return_code_representation_limits)
             {
-                ::calculator_base::detail::register_BasicCalculator_representation_limits_In_type_identifier(type_ids_representation_limits);
+                ::detail::register_Calculator_representation_limits_In_type_identifier(type_ids_representation_limits);
             }
             StructMemberFlag member_flags_representation_limits = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);
@@ -1486,11 +1120,11 @@ void register_Calculator_Reply_type_identifier(
             ReturnCode_t return_code_representation_limits {eprosima::fastdds::dds::RETCODE_OK};
             return_code_representation_limits =
                 eprosima::fastdds::dds::DomainParticipantFactory::get_instance()->type_object_registry().get_type_identifiers(
-                "calculator_base::detail::BasicCalculator_representation_limits_Result", type_ids_representation_limits);
+                "detail::Calculator_representation_limits_Result", type_ids_representation_limits);
 
             if (eprosima::fastdds::dds::RETCODE_OK != return_code_representation_limits)
             {
-                ::calculator_base::detail::register_BasicCalculator_representation_limits_Result_type_identifier(type_ids_representation_limits);
+                ::detail::register_Calculator_representation_limits_Result_type_identifier(type_ids_representation_limits);
             }
             StructMemberFlag member_flags_representation_limits = TypeObjectUtils::build_struct_member_flag(eprosima::fastdds::dds::xtypes::TryConstructFailAction::DISCARD,
                     true, false, false, false);

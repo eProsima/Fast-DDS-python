@@ -31,11 +31,6 @@
 
 namespace calculator_base {
 
-extern eProsima_user_DllExport std::shared_ptr<BasicCalculator> create_BasicCalculatorClient(
-        eprosima::fastdds::dds::DomainParticipant& part,
-        const char* service_name,
-        const eprosima::fastdds::dds::RequesterQos& qos);
-
 
 } // namespace calculator_base
 

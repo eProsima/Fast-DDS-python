@@ -152,30 +152,32 @@ public:
 
 
 
+} // namespace calculator_base
+
 namespace detail {
 
-struct BasicCalculator_representation_limits_Out;
+struct Calculator_representation_limits_Out;
 
 }  // namespace detail
 
 /*!
- * @brief This class represents the interface BasicCalculator defined by the user in the IDL file.
+ * @brief This class represents the interface Calculator defined by the user in the IDL file.
  * @ingroup calculator
  */
-class eProsima_user_DllExport BasicCalculator : public calculator_base::Adder, public calculator_base::Subtractor
+class eProsima_user_DllExport Calculator : public calculator_base::Adder, public calculator_base::Subtractor
 {
 public:
-    virtual ~BasicCalculator() = default;
+    virtual ~Calculator() = default;
 
 
-    virtual eprosima::fastdds::dds::rpc::RpcFuture<calculator_base::detail::BasicCalculator_representation_limits_Out> representation_limits(
+    virtual eprosima::fastdds::dds::rpc::RpcFuture<detail::Calculator_representation_limits_Out> representation_limits(
     ) = 0;
 
 };
 
 namespace detail {
 
-struct BasicCalculator_representation_limits_Out
+struct Calculator_representation_limits_Out
 {
     int32_t min_value;
     int32_t max_value;
@@ -183,21 +185,6 @@ struct BasicCalculator_representation_limits_Out
 
 
 }  // namespace detail
-
-
-} // namespace calculator_base
-
-/*!
- * @brief This class represents the interface Calculator defined by the user in the IDL file.
- * @ingroup calculator
- */
-class eProsima_user_DllExport Calculator : public calculator_base::BasicCalculator
-{
-public:
-    virtual ~Calculator() = default;
-
-};
-
 
 
 #endif // _FAST_DDS_GENERATED_CALCULATOR_HPP_

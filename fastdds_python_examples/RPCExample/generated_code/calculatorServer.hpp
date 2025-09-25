@@ -35,62 +35,6 @@
 
 namespace calculator_base {
 
-struct BasicCalculatorServer_IServerImplementation
-{
-    virtual ~BasicCalculatorServer_IServerImplementation() = default;
-
-    virtual int32_t addition(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ int32_t value1,
-            /*in*/ int32_t value2) = 0;
-
-
-
-    virtual int32_t subtraction(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info,
-            /*in*/ int32_t value1,
-            /*in*/ int32_t value2) = 0;
-
-
-
-    virtual calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
-            const eprosima::fastdds::dds::rpc::RpcRequest& info) = 0;
-
-};
-
-/**
- * @brief Create a BasicCalculator server instance.
- *
- * @param part             The DomainParticipant to use for the server.
- * @param service_name     The name of the service.
- * @param qos              The QoS settings for the server.
- * @param thread_pool_size The size of the thread pool to use for processing requests.
- *                         When set to 0, a pool with a single thread will be created.
- * @param implementation   The implementation of the server interface.
- */
-extern eProsima_user_DllExport std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer> create_BasicCalculatorServer(
-        eprosima::fastdds::dds::DomainParticipant& part,
-        const char* service_name,
-        const eprosima::fastdds::dds::ReplierQos& qos,
-        size_t thread_pool_size,
-        std::shared_ptr<BasicCalculatorServer_IServerImplementation> implementation);
-
-/**
- * @brief Create a BasicCalculator server instance.
- *
- * @param part            The DomainParticipant to use for the server.
- * @param service_name    The name of the service.
- * @param qos             The QoS settings for the server.
- * @param scheduler       The request scheduling strategy to use for the server.
- * @param implementation  The implementation of the server interface.
- */
-extern eProsima_user_DllExport std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServer> create_BasicCalculatorServer(
-        eprosima::fastdds::dds::DomainParticipant& part,
-        const char* service_name,
-        const eprosima::fastdds::dds::ReplierQos& qos,
-        std::shared_ptr<eprosima::fastdds::dds::rpc::RpcServerSchedulingStrategy> scheduler,
-        std::shared_ptr<BasicCalculatorServer_IServerImplementation> implementation);
-
 
 } // namespace calculator_base
 
@@ -112,7 +56,7 @@ struct CalculatorServer_IServerImplementation
 
 
 
-    virtual calculator_base::detail::BasicCalculator_representation_limits_Out representation_limits(
+    virtual detail::Calculator_representation_limits_Out representation_limits(
             const eprosima::fastdds::dds::rpc::RpcRequest& info) = 0;
 
 };
