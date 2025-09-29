@@ -53,6 +53,8 @@ endif()
 include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
+option(USE_PYTHON_STABLE_ABI "Generate Fast DDS python against Python Stable ABI" OFF)
+
 if(USE_PYTHON_STABLE_ABI)
     find_package(Python3 COMPONENTS Interpreter Development.SABIModule REQUIRED)
 else()

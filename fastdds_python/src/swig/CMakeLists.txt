@@ -70,13 +70,8 @@ if(MSVC OR MSVC_IDE)
 
 endif()
 
-if(USE_PYTHON_STABLE_ABI)
-    target_link_libraries(${PROJECT_NAME} Python3::SABIModule)
-else()
-    target_link_libraries(${PROJECT_NAME} Python3::Module)
-endif()
-
 target_link_libraries(${PROJECT_NAME}
+    $<IF:$<BOOL:${USE_PYTHON_STABLE_ABI}>, Python3::SABIModule, Python3::Module>
     fastcdr
     fastdds
     )
