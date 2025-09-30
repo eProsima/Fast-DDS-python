@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.24)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -53,7 +53,13 @@ endif()
 include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
-find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+option(USE_PYTHON_STABLE_ABI "Generate Fast DDS python against Python Stable ABI" OFF)
+
+if(USE_PYTHON_STABLE_ABI)
+    find_package(Python3 COMPONENTS Interpreter Development.SABIModule REQUIRED)
+else()
+    find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
+endif()
 
 find_package(fastcdr REQUIRED)
 find_package(fastdds 3 REQUIRED)
