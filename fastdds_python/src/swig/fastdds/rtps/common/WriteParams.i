@@ -18,4 +18,12 @@
 
 %copyctor eprosima::fastdds::rtps::WriteParams;
 
+// Ignore overloaded constructor and methods that have no effect on target language
+%ignore eprosima::fastdds::rtps::WriteParams::WriteParams(WriteParams &&);
+%ignore eprosima::fastdds::rtps::WriteParams::sample_identity(SampleIdentity &&);
+%ignore eprosima::fastdds::rtps::WriteParams::related_sample_identity(SampleIdentity &&);
+%ignore eprosima::fastdds::rtps::WriteParams::original_writer_info(OriginalWriterInfo &&);
+%ignore eprosima::fastdds::rtps::WriteParams::source_timestamp(Time_t &&);
+%ignore eprosima::fastdds::rtps::WriteParams::source_timestamp() const;
+
 %include "fastdds/rtps/common/WriteParams.hpp"

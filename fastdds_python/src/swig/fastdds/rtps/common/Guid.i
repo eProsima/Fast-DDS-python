@@ -23,6 +23,8 @@ long hash(const eprosima::fastdds::rtps::GUID_t& guid)
 }
 %}
 
+%copyctor eprosima::fastdds::rtps::GUID_t;
+
 // SWIG does not support type conversion operators correctly unless converted to a normal method
 %rename(get_instance_handle) eprosima::fastdds::rtps::GUID_t::operator const InstanceHandle_t&;
 

@@ -16,8 +16,11 @@
 #include "fastdds/rtps/common/OriginalWriterInfo.hpp"
 %}
 
+%copyctor eprosima::fastdds::rtps::OriginalWriterInfo;
+
 // Ignore overloaded constructor and methods that have no effect on target language
 %ignore eprosima::fastdds::rtps::OriginalWriterInfo::OriginalWriterInfo(OriginalWriterInfo &&);
+%ignore eprosima::fastdds::rtps::OriginalWriterInfo::OriginalWriterInfo(GUID_t &&, SequenceNumber_t &&);
 %ignore eprosima::fastdds::rtps::OriginalWriterInfo::original_writer_guid(GUID_t &&);
 %ignore eprosima::fastdds::rtps::OriginalWriterInfo::original_writer_guid() const;
 %ignore eprosima::fastdds::rtps::OriginalWriterInfo::sequence_number(SequenceNumber_t &&);

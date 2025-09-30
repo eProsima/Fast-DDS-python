@@ -21,6 +21,9 @@
 // We remove the one that is not used in the user API
 // We also remove all the related operators
 %rename(RTPSTime_t) eprosima::fastdds::rtps::Time_t;
+
+%copyctor eprosima::fastdds::rtps::Time_t;
+
 %ignore eprosima::fastdds::rtps::operator==(const Time_t&, const Time_t&);
 %ignore eprosima::fastdds::rtps::operator!=(const Time_t&, const Time_t&);
 %ignore eprosima::fastdds::rtps::operator<(const Time_t&, const Time_t&);
@@ -31,5 +34,7 @@
 %ignore eprosima::fastdds::rtps::operator-(const Time_t&, const Time_t&);
 %ignore eprosima::fastdds::rtps::operator<<(std::ostream&, const Time_t&);
 %ignore eprosima::fastdds::rtps::operator>>(std::istream&, Time_t&);
+%ignore eprosima::fastdds::rtps::Time_t::seconds() const;
+%ignore eprosima::fastdds::rtps::Time_t::fraction() const;
 
 %include <fastdds/rtps/common/Time_t.hpp>

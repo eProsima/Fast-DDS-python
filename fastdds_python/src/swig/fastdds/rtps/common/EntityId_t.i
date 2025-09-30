@@ -28,6 +28,8 @@ long hash(const eprosima::fastdds::rtps::EntityId_t& id)
 }
 %}
 
+%copyctor eprosima::fastdds::rtps::EntityId_t;
+
 // Overloaded constructor ignored
 %ignore eprosima::fastdds::rtps::EntityId_t::EntityId_t(EntityId_t &&);
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const EntityId_t&);
