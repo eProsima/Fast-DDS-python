@@ -16,6 +16,7 @@
 #include "fastdds/rtps/common/SequenceNumber.hpp"
 %}
 
+%copyctor eprosima::fastdds::rtps::SequenceNumber_t;
 
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const SequenceNumber_t&);
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const std::vector<SequenceNumber_t>&);

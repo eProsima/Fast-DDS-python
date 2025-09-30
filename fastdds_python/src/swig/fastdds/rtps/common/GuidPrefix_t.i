@@ -62,6 +62,8 @@ long hash(const eprosima::fastdds::rtps::GuidPrefix_t& prefix)
     $result = python_tuple;
 }
 
+%copyctor eprosima::fastdds::rtps::GuidPrefix_t;
+
 %ignore eprosima::fastdds::rtps::operator <<(std::ostream&, const GuidPrefix_t&);
 %ignore eprosima::fastdds::rtps::operator >>(std::istream&, GuidPrefix_t&);
 
