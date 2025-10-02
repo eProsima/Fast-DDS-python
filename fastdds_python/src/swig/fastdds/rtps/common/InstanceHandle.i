@@ -43,7 +43,7 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
 
 %extend eprosima::fastdds::rtps::InstanceHandleValue_t {
 
-    // Constructor from sequence of 16 bytes (tupla/lista/bytes/bytearray)
+    // Constructor from a sequence of 16 bytes (tuple/list/bytes/bytearray)
     InstanceHandleValue_t(PyObject* seq) {
         eprosima::fastdds::rtps::InstanceHandleValue_t* self = new eprosima::fastdds::rtps::InstanceHandleValue_t();
         SWIG_PYTHON_THREAD_BEGIN_BLOCK;
@@ -85,7 +85,7 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
             if (it)
             {
                 PyObject* item {nullptr};
-                while ((item = PyIter_Next(it)))
+                while ((item = PyIter_Next(it)) && count < 16)
                 {
                     long val = PyLong_AsLong(item);
                     Py_DECREF(item);
@@ -108,7 +108,7 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
                     ++count;
                 }
                 Py_DECREF(it);
-                if (count != 16)
+                if ((nullptr != item || count != 16) && nullptr != self)
                 {
                     delete self;
                     self = nullptr;
@@ -171,12 +171,12 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
 
     // Setter from sequence (tuple/list/bytes/bytearray)
     void from_sequence(PyObject* seq) {
-        // Reutiliza el constructor para validar y copiar
+        // Reuse the constructor to validate and copy
         eprosima::fastdds::rtps::InstanceHandleValue_t* tmp = new_eprosima_fastdds_rtps_InstanceHandleValue_t(seq);
         if (nullptr != tmp)
         {
             for (int i = 0; i < 16; ++i) $self->value[i] = (*tmp)[i];
-            delete tmp; // evitar fuga
+            delete tmp; // avoid memory leak
         }
     }
 

@@ -93,3 +93,49 @@ def test_create_instance_handle_from_list_with_more_elements():
         ih.value = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
     repr = exception.getrepr()
     assert str(repr).split("\n")[0] == "ValueError: Expected 16 elements"
+
+
+def test_create_instance_handle_from_bytearray_with_with_negative_number():
+    ih = fastdds.InstanceHandle_t()
+    with pytest.raises(ValueError) as exception:
+        ih.value = bytearray([1, 2, 3, 4, 5, 6, 7, 8, 9, -10, 11, 12, 13, 14, 15, 16])
+    assert str(exception.value) == "byte must be in range(0, 256)"
+
+
+def test_create_instance_handle_from_bytearray_with_large_number():
+    ih = fastdds.InstanceHandle_t()
+    with pytest.raises(ValueError) as exception:
+        ih.value = bytearray([1, 2, 3, 4, 5, 6, 7, 8, 9, 1000, 11, 12, 13, 14, 15, 16])
+    assert str(exception.value) == "byte must be in range(0, 256)"
+
+
+def test_create_instance_handle_from_tuple_with_negative_number():
+    ih = fastdds.InstanceHandle_t()
+    with pytest.raises(SystemError) as exception:
+        ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, -10, 11, 12, 13, 14, -15, 16)
+    repr = exception.getrepr()
+    assert str(repr).split("\n")[0] == "ValueError: Each value must be in 0..255"
+
+
+def test_create_instance_handle_from_tuple_with_large_number():
+    ih = fastdds.InstanceHandle_t()
+    with pytest.raises(SystemError) as exception:
+        ih.value = (1, 2, 3, 4, 5, 6, 7, 8, 9, 1000, 11, 12, 13, 14, 15, 16)
+    repr = exception.getrepr()
+    assert str(repr).split("\n")[0] == "ValueError: Each value must be in 0..255"
+
+
+def test_create_instance_handle_from_list_with_negative_number():
+    ih = fastdds.InstanceHandle_t()
+    with pytest.raises(SystemError) as exception:
+        ih.value = [1, 2, 3, 4, 5, 6, 7, 8, 9, -10, 11, 12, 13, 14, 15, 16]
+    repr = exception.getrepr()
+    assert str(repr).split("\n")[0] == "ValueError: Each value must be in 0..255"
+
+
+def test_create_instance_handle_from_list_with_large_number():
+    ih = fastdds.InstanceHandle_t()
+    with pytest.raises(SystemError) as exception:
+        ih.value = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1000, 11, 12, 13, 14, 15, 16]
+    repr = exception.getrepr()
+    assert str(repr).split("\n")[0] == "ValueError: Each value must be in 0..255"
