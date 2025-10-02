@@ -41,6 +41,13 @@ find_package(fastdds 3 REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+if(NOT WIN32)
+    # Default values for shared library suffix in MacOS
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+    endif()
+endif()
+
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
         calculatorTypeObjectSupport.cxx
@@ -74,7 +81,6 @@ include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-
 set(PYTHON_INCLUDE_PATH ${Python3_INCLUDE_DIRS})
 set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
 set(PYTHON_LIBRARIES ${Python3_LIBRARIES})

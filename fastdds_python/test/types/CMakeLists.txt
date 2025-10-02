@@ -79,7 +79,6 @@ include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-
 set(PYTHON_INCLUDE_PATH ${Python3_INCLUDE_DIRS})
 set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
 set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
@@ -192,7 +191,6 @@ include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-
 set(PYTHON_INCLUDE_PATH ${Python3_INCLUDE_DIRS})
 set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
 set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
@@ -306,7 +304,6 @@ include(${SWIG_USE_FILE})
 set(CMAKE_SWIG_FLAGS "")
 
 find_package(Python3 COMPONENTS Interpreter Development REQUIRED)
-
 set(PYTHON_INCLUDE_PATH ${Python3_INCLUDE_DIRS})
 set(PYTHON_EXECUTABLE ${Python3_EXECUTABLE})
 set(PYTHON_LIBRARIES ${Python3_LIBRARIES})
