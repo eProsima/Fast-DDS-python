@@ -173,8 +173,11 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
     void from_sequence(PyObject* seq) {
         // Reutiliza el constructor para validar y copiar
         eprosima::fastdds::rtps::InstanceHandleValue_t* tmp = new_eprosima_fastdds_rtps_InstanceHandleValue_t(seq);
-        for (int i = 0; i < 16; ++i) $self->value[i] = (*tmp)[i];
-        delete tmp; // evitar fuga
+        if (nullptr != tmp)
+        {
+            for (int i = 0; i < 16; ++i) $self->value[i] = (*tmp)[i];
+            delete tmp; // evitar fuga
+        }
     }
 
     // Getter: return a tuple of 16 ints (0..255)
