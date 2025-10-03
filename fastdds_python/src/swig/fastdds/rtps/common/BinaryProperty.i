@@ -18,6 +18,7 @@
 
 // Ignore overloaded constructor and methods that have no effect on target language
 %copyctor eprosima::fastdds::rtps::BinaryProperty;
+%ignore eprosima::fastdds::rtps::BinaryProperty::BinaryProperty(BinaryProperty&&);
 %ignore eprosima::fastdds::rtps::BinaryProperty::name(std::string &&);
 %ignore eprosima::fastdds::rtps::BinaryProperty::value(std::vector<uint8_t> &&);
 %ignore eprosima::fastdds::rtps::BinaryProperty::propagate() const;
