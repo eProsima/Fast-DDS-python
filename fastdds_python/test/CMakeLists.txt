@@ -15,6 +15,17 @@
 # Compile types
 add_subdirectory(types)
 
+# Unit tests
+add_test(NAME unit_tests
+    COMMAND
+        ${Python3_EXECUTABLE}
+        -m pytest
+        -vrP
+    WORKING_DIRECTORY
+        ${CMAKE_CURRENT_SOURCE_DIR}/unittest
+    )
+
+# DDS Api tests
 add_test(NAME api_tests
     COMMAND
         ${Python3_EXECUTABLE}
