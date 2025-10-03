@@ -32,6 +32,8 @@
 %ignore eprosima::fastdds::dds::operator+(const Time_t&, const Time_t&);
 %ignore eprosima::fastdds::dds::operator-(const Time_t&, const Time_t&);
 
+%ignore eprosima::fastdds::dds::Time_t::is_infinite(const Time_t&);
+
 // Declare the comparison operators as internal to the class
 %extend eprosima::fastdds::dds::Time_t {
     bool operator==(const eprosima::fastdds::dds::Time_t& other) const
