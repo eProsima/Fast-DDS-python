@@ -77,8 +77,14 @@ target_link_libraries(${PROJECT_NAME}
     fastdds
     )
 
+option(BUILD_FOR_DEBIAN_PACKAGE "Build for debian package" OFF)
+set(GET_PATH_SCHEME "posix_prefix")
+if (BUILD_FOR_DEBIAN_PACKAGE)
+    set(GET_PATH_SCHEME "deb_system")
+endif()
+
 # Find the installation path
-execute_process(COMMAND ${Python3_EXECUTABLE} -c "from distutils import sysconfig; print(sysconfig.get_python_lib(plat_specific=True, prefix='${CMAKE_INSTALL_PREFIX}' ) )"
+execute_process(COMMAND ${Python3_EXECUTABLE} -c "from sysconfig import get_path; print(get_path('purelib', '${GET_PATH_SCHEME}', {'base': '${CMAKE_INSTALL_PREFIX}'}))"
     OUTPUT_VARIABLE _ABS_PYTHON_MODULE_PATH
     OUTPUT_STRIP_TRAILING_WHITESPACE
     )
