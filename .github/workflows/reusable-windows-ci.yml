@@ -57,6 +57,11 @@ on:
         required: false
         type: boolean
         default: true
+      swig-version:
+        description: 'SWIG version to install'
+        required: false
+        default: '4.0.2.04082020'
+        type: string
 env:
   colcon-build-default-cmake-args: '-DTHIRDPARTY_Asio=FORCE -DTHIRDPARTY_TinyXML2=FORCE -DTHIRDPARTY_fastcdr=OFF -DTHIRDPARTY_UPDATE=ON -DEPROSIMA_EXTRA_CMAKE_CXX_FLAGS="/MP /WX"'
 defaults:
@@ -134,7 +139,7 @@ jobs:
 
       - name: Install swig
         shell: pwsh
-        run: choco install swig --allow-downgrade --version=4.0.2.04082020
+        run: choco install swig --allow-downgrade --version=${{ inputs.swig-version }}
 
       - name: Get Fast CDR branch
         id: get_fastcdr_branch
@@ -215,7 +220,7 @@ jobs:
       - name: Get minimum supported version of CMake
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
-          cmakeVersion: '3.24.4'
+          cmakeVersion: ${{ inputs.cmake-version }}
 
       - name: Install OpenSSL
         uses: eProsima/eprosima-CI/windows/install_openssl@v0
@@ -253,7 +258,7 @@ jobs:
 
       - name: Install swig
         shell: pwsh
-        run: choco install swig --allow-downgrade --version=4.0.2.04082020
+        run: choco install swig --allow-downgrade --version=${{ inputs.swig-version }}
 
       - name: Install doxygen
         uses: eProsima/eProsima-CI/external/install_doxygen@v0

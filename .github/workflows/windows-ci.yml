@@ -89,3 +89,4 @@ jobs:
       fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
+      swig-version: '4.3.1'
