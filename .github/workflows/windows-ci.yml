@@ -69,3 +69,23 @@ jobs:
       fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
       run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
       run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
+
+  windows-ci-stable-abi:
+    if: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'conflicts') }}
+    strategy:
+      fail-fast: false
+    uses: ./.github/workflows/reusable-windows-ci.yml
+    with:
+      # It would be desirable to have a matrix of windows OS for this job, but due to the issue opened in this ticket:
+      # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
+      os-version: ${{ inputs.os-version || 'windows-2022' }}
+      vs-toolset: 'v143'
+      label: '${{ inputs.os-version }}-${{ matrix.vs-toolset }}-stable-api-ci-${{ inputs.fastdds-python-branch }}-${{ inputs.fastdds-branch }}'
+      colcon-args: ${{ inputs.colcon-args }}
+      cmake-args: '${{ inputs.cmake-args }} -DUSE_PYTHON_STABLE_ABI=ON'
+      cmake-version: '3.30.8'
+      ctest-args: ${{ inputs.ctest-args }}
+      fastdds-python-branch: ${{ inputs.fastdds-python-branch || github.ref }}
+      fastdds-branch: ${{ inputs.fastdds-branch || 'master' }}
+      run-build: ${{ !(github.event_name == 'pull_request') || !contains(github.event.pull_request.labels.*.name, 'skip-ci') }}
+      run-tests: ${{ (inputs.run-tests == true) || ((github.event_name == 'pull_request') && (!contains(github.event.pull_request.labels.*.name, 'no-test'))) }}
