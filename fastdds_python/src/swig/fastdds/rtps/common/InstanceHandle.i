@@ -50,9 +50,9 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
 
         // Fast-path: bytes
         if (PyBytes_Check(seq)) {
-            if (PyBytes_GET_SIZE(seq) == 16)
+            if (PyBytes_Size(seq) == 16)
             {
-                const char* b = PyBytes_AS_STRING(seq);
+                const char* b = PyBytes_AsString(seq);
                 for (int i = 0; i < 16; ++i) (*self)[i] = (uint8_t)(unsigned char)b[i];
             }
             else
@@ -65,9 +65,9 @@ long hash(const eprosima::fastdds::rtps::InstanceHandle_t& handle)
         // Fast-path: bytearray
         else if (PyByteArray_Check(seq))
         {
-            if (PyByteArray_GET_SIZE(seq) == 16)
+            if (PyByteArray_Size(seq) == 16)
             {
-                const char* b = PyByteArray_AS_STRING(seq);
+                const char* b = PyByteArray_AsString(seq);
                 for (int i = 0; i < 16; ++i) (*self)[i] = (uint8_t)(unsigned char)b[i];
             }
             else

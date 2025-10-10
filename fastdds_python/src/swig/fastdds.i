@@ -106,8 +106,13 @@ bool has_statistics();
 #define FASTDDS_DEPRECATED_UNTIL(major, entity_name, msg)
 #define FASTDDS_TODO_BEFORE(major, minor, msg)
 
-// Defined template for std::vector<std::string>
+// Defined template for some vector containers.
 %template(StringVector) std::vector<std::string>;
+%template(uint8_t_vector) std::vector<uint8_t>;
+%template(uint16_t_vector) std::vector<uint16_t>;
+%template(int32_t_vector) std::vector<int32_t>;
+%template(uint32_t_vector) std::vector<uint32_t>;
+%template(uint64_t_vector) std::vector<uint64_t>;
 
 // Predeclaration of namespaces and/or classes not exported to the target language,
 // but that are part of the Fast DDS public API
