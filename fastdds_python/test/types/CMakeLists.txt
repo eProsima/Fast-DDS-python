@@ -76,7 +76,7 @@ set(${PROJECT_NAME}_MODULE
     )
 
 set(${PROJECT_NAME}_MODULE_FILES
-    ${PROJECT_NAME}.i
+    test_included_modules.i
     )
 
 SET_SOURCE_FILES_PROPERTIES(
@@ -188,7 +188,7 @@ set(${PROJECT_NAME}_MODULE
     )
 
 set(${PROJECT_NAME}_MODULE_FILES
-    ${PROJECT_NAME}.i
+    test_modules.i
     )
 
 SET_SOURCE_FILES_PROPERTIES(
@@ -301,7 +301,7 @@ set(${PROJECT_NAME}_MODULE
     )
 
 set(${PROJECT_NAME}_MODULE_FILES
-    ${PROJECT_NAME}.i
+    test_complete.i
     )
 
 SET_SOURCE_FILES_PROPERTIES(
