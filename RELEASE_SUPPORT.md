@@ -9,6 +9,8 @@ Please, refer to the [main branch](https://github.com/eProsima/Fast-DDS-Python/b
 
 |Fast DDS Version|Fast DDS Python Version|Fast DDS Python Version branch|Fast DDS Python Latest Release|
 |----------------|-----------------------|------------------------------|------------------------------|
+|3.4|2.4|[2.4.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.4.x)|[v2.4.1](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.4.1)|
+|3.3|2.3|[2.3.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.3.x)|[v2.3.0](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.3.0)|
 |3.2|2.2|[2.2.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.2.x)|[v2.2.1](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.2.1)|
 |2.14|1.4|[1.4.x](https://github.com/eProsima/Fast-DDS-Python/tree/1.4.x)|[v1.4.2](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v1.4.2)|
 |2.6|1.0|[1.0.x](https://github.com/eProsima/Fast-DDS-Python/tree/1.0.x)|[v1.0.2](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v1.0.2)|
@@ -25,4 +27,3 @@ Please, refer to the [main branch](https://github.com/eProsima/Fast-DDS-Python/b
 |2.7|1.1|[1.1.x](https://github.com/eProsima/Fast-DDS-Python/tree/1.1.x)|[v1.1.1](https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.1.1)|July 2022|January 2023|
 
 For detailed information about the lifecycle of the different *Fast DDS* versions (and their corresponding counterpart in this repository), please refer to the [release support section of the Fast DDS repository](https://github.com/eProsima/Fast-DDS/blob/master/RELEASE_SUPPORT.md).
-
