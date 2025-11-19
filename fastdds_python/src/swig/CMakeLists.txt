@@ -80,6 +80,8 @@ target_link_libraries(${PROJECT_NAME}
 option(BUILD_FOR_DEBIAN_PACKAGE "Build for debian package" OFF)
 if (BUILD_FOR_DEBIAN_PACKAGE)
     set(GET_PATH_SCHEME "\'deb_system\',")
+elseif (NOT WIN32)
+    set(GET_PATH_SCHEME "\'posix_prefix\',")
 endif()
 
 # Find the installation path
