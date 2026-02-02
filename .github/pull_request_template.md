@@ -17,7 +17,11 @@
     In case of bug fixes, please provide the list of supported branches where this fix should be also merged.
     Please uncomment following line, adjusting the corresponding target branches for the backport.
 -->
+<<<<<<< HEAD
 <!-- @Mergifyio backport 2.3.x 2.2.x 1.4.x -->
+=======
+<!-- @Mergifyio backport 2.4.x 2.2.x 1.4.x -->
+>>>>>>> 3a0c756 (Updates after 2.3.1 EOL (#282))
 
 <!-- If an issue is already opened, please uncomment next line with the corresponding issue number. -->
 <!-- Fixes #(issue) -->

@@ -10,7 +10,6 @@ Please, refer to the [main branch](https://github.com/eProsima/Fast-DDS-Python/b
 |Fast DDS Version|Fast DDS Python Version|Fast DDS Python Version branch|Fast DDS Python Latest Release|
 |----------------|-----------------------|------------------------------|------------------------------|
 |3.4|2.4|[2.4.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.4.x)|[v2.4.1](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.4.1)|
-|3.3|2.3|[2.3.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.3.x)|[v2.3.0](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.3.0)|
 |3.2|2.2|[2.2.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.2.x)|[v2.2.1](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.2.1)|
 |2.14|1.4|[1.4.x](https://github.com/eProsima/Fast-DDS-Python/tree/1.4.x)|[v1.4.2](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v1.4.2)|
 |2.6|1.0|[1.0.x](https://github.com/eProsima/Fast-DDS-Python/tree/1.0.x)|[v1.0.2](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v1.0.2)|
@@ -20,6 +19,7 @@ Please, refer to the [main branch](https://github.com/eProsima/Fast-DDS-Python/b
 
 |Fast DDS Version|Fast DDS Python Version|Fast DDS Python Version branch|Fast DDS Python Latest Release|Release Date|EOL Date|
 |----------------|-----------------------|------------------------------|------------------------------|------------|--------|
+|3.3|2.3|[2.3.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.3.x)|[v2.3.1](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.3.1)| July 2025 | January 2025 |
 |3.1|2.1|[2.1.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.1.x)|[v2.1.1](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.1.1)| October 2024 | June 2025 |
 |3.0|2.0|[2.0.x](https://github.com/eProsima/Fast-DDS-Python/tree/2.0.x)|[v2.0.0](https://github.com/eProsima/Fast-DDS-Python/releases/tag/v2.0.0)|August 2024| February 2025|
 |2.12|1.3|[1.3.x](https://github.com/eProsima/Fast-DDS-Python/tree/1.3.x)|[v1.3.2](https://github.com/eProsima/Fast-DDS-python/releases/tag/v1.3.2)|October 2023|July 2024|
