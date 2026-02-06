@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.20)
 
 # SWIG: use standard target name.
 if(POLICY CMP0078)
@@ -26,6 +26,13 @@ find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+if(NOT WIN32)
+    # Default values for shared library suffix in MacOS
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+    endif()
+endif()
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
@@ -135,6 +142,13 @@ find_package(fastrtps REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+if(NOT WIN32)
+    # Default values for shared library suffix in MacOS
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+    endif()
+endif()
+
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
         test_modules.cxx
@@ -242,6 +256,13 @@ find_package(fastcdr REQUIRED)
 find_package(fastrtps REQUIRED)
 
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+
+if(NOT WIN32)
+    # Default values for shared library suffix in MacOS
+    if(${CMAKE_SYSTEM_NAME} STREQUAL "Darwin")
+        set(CMAKE_SHARED_LIBRARY_SUFFIX ".so")
+    endif()
+endif()
 
 #Create library for C++ types
 add_library(${PROJECT_NAME} SHARED
