@@ -16,19 +16,3 @@
 #include "fastdds/dds/rpc/exceptions.hpp"
 %}
 
-// Base class should be included first
-%include "fastdds/dds/rpc/exceptions/RpcException.hpp"
-// Include first level inheritance
-%include "fastdds/dds/rpc/exceptions/RpcBrokenPipeException.hpp"
-%include "fastdds/dds/rpc/exceptions/RpcFeedCancelledException.hpp"
-%include "fastdds/dds/rpc/exceptions/RpcOperationError.hpp"
-%include "fastdds/dds/rpc/exceptions/RpcTimeoutException.hpp"
-// This is the base class for second level inheritance
-%include "fastdds/dds/rpc/RemoteExceptionCode_t.hpp"
-%include "fastdds/dds/rpc/exceptions/RpcRemoteException.hpp"
-// Include second level inheritance
-%include "fastdds/dds/rpc/exceptions/RemoteInvalidArgumentError.hpp"
-%include "fastdds/dds/rpc/exceptions/RemoteOutOfResourcesError.hpp"
-%include "fastdds/dds/rpc/exceptions/RemoteUnknownExceptionError.hpp"
-%include "fastdds/dds/rpc/exceptions/RemoteUnknownOperationError.hpp"
-%include "fastdds/dds/rpc/exceptions/RemoteUnsupportedError.hpp"
