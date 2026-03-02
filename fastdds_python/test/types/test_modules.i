@@ -211,35 +211,6 @@ namespace swig {
 
 
 
-<<<<<<< HEAD
-=======
-%ignore eprosima::test::StructType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
-
-
-// Overloaded getter methods shadow each other and are equivalent in python
-// Const accesors produced constant enums instead of arrays/dictionaries when used
-// We ignore them to prevent this
-%ignore eprosima::test::StructType::fixed_string_field();
-%rename("%s") eprosima::test::StructType::fixed_string_field() const;
-
-%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
-%extend eprosima::test::StructType
-{
-    void fixed_string_field(const std::string& value)
-    {
-        eprosima::fastcdr::fixed_string<16> tmp(value);
-        $self->fixed_string_field(tmp);
-    }
-
-    std::string fixed_string_field_str() const
-    {
-        return std::string($self->fixed_string_field(), strnlen($self->fixed_string_field(), 16));
-    }
-}
-
-
-
->>>>>>> 57a5541 (Set CMAKE_SHARED_LIBRARY_SUFFIX to always create .so files (#207))
 %ignore eprosima::test::StructType::enum_field(eprosima::test::Color&&);
 
 
@@ -427,35 +398,6 @@ namespace swig {
 
 
 
-<<<<<<< HEAD
-=======
-%ignore eprosima::test::CompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
-
-
-// Overloaded getter methods shadow each other and are equivalent in python
-// Const accesors produced constant enums instead of arrays/dictionaries when used
-// We ignore them to prevent this
-%ignore eprosima::test::CompleteTestType::fixed_string_field();
-%rename("%s") eprosima::test::CompleteTestType::fixed_string_field() const;
-
-%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
-%extend eprosima::test::CompleteTestType
-{
-    void fixed_string_field(const std::string& value)
-    {
-        eprosima::fastcdr::fixed_string<16> tmp(value);
-        $self->fixed_string_field(tmp);
-    }
-
-    std::string fixed_string_field_str() const
-    {
-        return std::string($self->fixed_string_field(), strnlen($self->fixed_string_field(), 16));
-    }
-}
-
-
-
->>>>>>> 57a5541 (Set CMAKE_SHARED_LIBRARY_SUFFIX to always create .so files (#207))
 %ignore eprosima::test::CompleteTestType::enum_field(eprosima::test::Color&&);
 
 
@@ -1754,35 +1696,6 @@ namespace swig {
 
 
 
-<<<<<<< HEAD
-=======
-%ignore eprosima::test::KeyedCompleteTestType::fixed_string_field(eprosima::fastcdr::fixed_string<16>&&);
-
-
-// Overloaded getter methods shadow each other and are equivalent in python
-// Const accesors produced constant enums instead of arrays/dictionaries when used
-// We ignore them to prevent this
-%ignore eprosima::test::KeyedCompleteTestType::fixed_string_field();
-%rename("%s") eprosima::test::KeyedCompleteTestType::fixed_string_field() const;
-
-%template(fixed_string_16) eprosima::fastcdr::fixed_string<16>;
-%extend eprosima::test::KeyedCompleteTestType
-{
-    void fixed_string_field(const std::string& value)
-    {
-        eprosima::fastcdr::fixed_string<16> tmp(value);
-        $self->fixed_string_field(tmp);
-    }
-
-    std::string fixed_string_field_str() const
-    {
-        return std::string($self->fixed_string_field(), strnlen($self->fixed_string_field(), 16));
-    }
-}
-
-
-
->>>>>>> 57a5541 (Set CMAKE_SHARED_LIBRARY_SUFFIX to always create .so files (#207))
 %ignore eprosima::test::KeyedCompleteTestType::enum_field(eprosima::test::Color&&);
 
 
