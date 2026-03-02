@@ -24,7 +24,7 @@ if(POLICY CMP0086)
   cmake_policy(SET CMP0086 NEW)
 endif()
 
-project(fastdds_python VERSION 1.4.3)
+project(fastdds_python VERSION 1.4.4)
 
 if(NOT WIN32)
     # Default values for shared library suffix in MacOS
