@@ -6,15 +6,15 @@ on:
     - cron: '0 1 * * *'
 
 jobs:
-  # python main - fastdds master
-  nightly-ubuntu-ci-main:
-    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@main
+  # python master - fastdds master
+  nightly-ubuntu-ci-master:
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-ubuntu-ci.yml@master
     with:
       # It would be desirable to have a matrix of ubuntu OS for this job, but due to the issue opened in this ticket:
       # https://github.com/orgs/community/discussions/128118 , it has been set as a single OS job.
       os-version: 'ubuntu-22.04'
-      label: 'nightly-ubuntu-ci-main-master'
-      fastdds-python-branch: 'main'
+      label: 'nightly-ubuntu-ci-master-master'
+      fastdds-python-branch: 'master'
       fastdds-branch: 'master'
       run-build: true
       run-tests: true
