@@ -61,7 +61,7 @@ cd <path_to_ws>
 mkdir -p fastdds_python_ws/src
 cd fastdds_python_ws
 # Get workspace setup file
-wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/main/fastdds_python.repos
+wget https://raw.githubusercontent.com/eProsima/Fast-DDS-python/master/fastdds_python.repos
 # Download repositories
 vcs import src < fastdds_python.repos
 # Build the workspace

@@ -6,20 +6,20 @@ on:
     - cron: '0 1 * * *'
 
 jobs:
-  # python main - fastdds master
-  nightly-windows-ci-main:
+  # python master - fastdds master
+  nightly-windows-ci-master:
     strategy:
       fail-fast: false
       matrix:
         vs-toolset:
           - 'v142'
           - 'v143'
-    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@main
+    uses: eProsima/Fast-DDS-Python/.github/workflows/reusable-windows-ci.yml@master
     with:
       os-version: 'windows-2022'
       vs-toolset: ${{ matrix.vs-toolset }}
-      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-main-master'
-      fastdds-python-branch: 'main'
+      label: 'nightly-windows-${{ matrix.vs-toolset }}-ci-master-master'
+      fastdds-python-branch: 'master'
       fastdds-branch: 'master'
       run-build: true
       run-tests: true
