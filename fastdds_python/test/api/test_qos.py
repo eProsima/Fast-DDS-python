@@ -49,13 +49,11 @@ def test_datareader_qos():
     # .reliability
     datareader_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
     datareader_qos.reliability().max_blocking_time.seconds = 100
-    datareader_qos.reliability().max_blocking_time.nanosec = \
-        fastdds.Time_t.INFINITE_NANOSECONDS
+    datareader_qos.reliability().max_blocking_time.nanosec = 1
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            datareader_qos.reliability().kind)
     assert(100 == datareader_qos.reliability().max_blocking_time.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           datareader_qos.reliability().max_blocking_time.nanosec)
+    assert(1 == datareader_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     datareader_qos.destination_order().kind = \
@@ -323,8 +321,7 @@ def test_datareader_qos():
            default_datareader_qos.reliability().kind)
     assert(100 == default_datareader_qos.reliability().
            max_blocking_time.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           default_datareader_qos.reliability().max_blocking_time.nanosec)
+    assert(1 == default_datareader_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS ==
@@ -517,13 +514,11 @@ def test_datawriter_qos():
     # .reliability
     datawriter_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
     datawriter_qos.reliability().max_blocking_time.seconds = 100
-    datawriter_qos.reliability().max_blocking_time.nanosec = \
-        fastdds.Time_t.INFINITE_NANOSECONDS
+    datawriter_qos.reliability().max_blocking_time.nanosec = 1
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            datawriter_qos.reliability().kind)
     assert(100 == datawriter_qos.reliability().max_blocking_time.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           datawriter_qos.reliability().max_blocking_time.nanosec)
+    assert(1 == datawriter_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     datawriter_qos.destination_order().kind = \
@@ -757,8 +752,7 @@ def test_datawriter_qos():
            default_datawriter_qos.reliability().kind)
     assert(100 == default_datawriter_qos.reliability().
            max_blocking_time.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           default_datawriter_qos.reliability().max_blocking_time.nanosec)
+    assert(1 == default_datawriter_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS ==
@@ -934,12 +928,10 @@ def test_topic_qos():
     # .reliability
     topic_qos.reliability().kind = fastdds.RELIABLE_RELIABILITY_QOS
     topic_qos.reliability().max_blocking_time.seconds = 100
-    topic_qos.reliability().max_blocking_time.nanosec = \
-        fastdds.Time_t.INFINITE_NANOSECONDS
+    topic_qos.reliability().max_blocking_time.nanosec = 1
     assert(fastdds.RELIABLE_RELIABILITY_QOS == topic_qos.reliability().kind)
     assert(100 == topic_qos.reliability().max_blocking_time.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           topic_qos.reliability().max_blocking_time.nanosec)
+    assert(1 == topic_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     topic_qos.destination_order().kind = \
@@ -1041,8 +1033,7 @@ def test_topic_qos():
     assert(fastdds.RELIABLE_RELIABILITY_QOS ==
            default_topic_qos.reliability().kind)
     assert(100 == default_topic_qos.reliability().max_blocking_time.seconds)
-    assert(fastdds.Time_t.INFINITE_NANOSECONDS ==
-           default_topic_qos.reliability().max_blocking_time.nanosec)
+    assert(1 == default_topic_qos.reliability().max_blocking_time.nanosec)
 
     # .destination_order
     assert(fastdds.BY_RECEPTION_TIMESTAMP_DESTINATIONORDER_QOS ==
