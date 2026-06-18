@@ -71,7 +71,6 @@ defaults:
 jobs:
   fastdds_python_build:
     runs-on: ${{ inputs.os-version }}
-    if: ${{ inputs.run-build == true }}
     strategy:
       fail-fast: false
       matrix:
@@ -88,27 +87,32 @@ jobs:
           repo: eProsima/Fast-DDS-Python
 
       - name: Sync eProsima/Fast-DDS-Python repository
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           path: src/fastdds_python
           ref: ${{ inputs.fastdds-python-branch }}
 
       - name: Install Fix Python version
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
 
       - name: Get minimum supported version of CMake
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: ${{ inputs.cmake-version }}
 
       - name: Install OpenSSL
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eprosima-CI/windows/install_openssl@v0
         with:
           version: '3.1.1'
 
       - name: Update OpenSSL environment variables
+        if: ${{ inputs.run-build == true }}
         run: |
           # Update the environment
           if (Test-Path -Path $Env:ProgramW6432\OpenSSL)
@@ -130,19 +134,23 @@ jobs:
           }
 
       - name: Install colcon
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/windows/install_colcon@v0
 
       - name: Install Python dependencies
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/windows/install_python_packages@v0
         with:
           packages: vcstool xmlschema pywin32
 
       - name: Install swig
+        if: ${{ inputs.run-build == true }}
         shell: pwsh
         run: choco install swig --allow-downgrade --version=${{ inputs.swig-version }}
 
       - name: Get Fast CDR branch
         id: get_fastcdr_branch
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/ubuntu/get_related_branch_from_repo@v0
         with:
           remote_repository: eProsima/Fast-CDR
@@ -150,6 +158,7 @@ jobs:
           skip_base: true
 
       - name: Download Fast CDR
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           repository: eProsima/Fast-CDR
@@ -158,12 +167,14 @@ jobs:
 
       - name: Get Fast DDS branch
         id: get_fastdds_branch
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/multiplatform/get_related_branch_from_repo@v0
         with:
           remote_repository: eProsima/Fast-DDS
           fallback_branch: ${{ inputs.fastdds-branch }}
 
       - name: Download Fast DDS repo
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           repository: eProsima/Fast-DDS
@@ -171,6 +182,7 @@ jobs:
           ref: ${{ steps.get_fastdds_branch.outputs.deduced_branch }}
 
       - name: Fetch Fast DDS Python dependencies
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
         with:
           vcs_repos_file: ${{ github.workspace }}/src/fastdds_python/fastdds_python.repos
@@ -179,6 +191,7 @@ jobs:
 
       - name: Colcon build
         continue-on-error: false
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta
@@ -190,6 +203,7 @@ jobs:
           workspace: ${{ github.workspace }}
 
       - name: Upload build artifacts
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/upload-artifact@v0
         with:
           name: fastdds_python_build_${{ inputs.label }}
@@ -199,7 +213,6 @@ jobs:
   fastdds_python_test:
     needs: fastdds_python_build
     runs-on: ${{ inputs.os-version }}
-    if: ${{ inputs.run-tests == true }}
     strategy:
       fail-fast: false
       matrix:
@@ -207,27 +220,32 @@ jobs:
           - 'RelWithDebInfo'
     steps:
       - name: Download python build artifacts
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/download-artifact@v0
         with:
           name: fastdds_python_build_${{ inputs.label }}
           path: ${{ github.workspace }}
 
       - name: Install Fix Python version
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
 
       - name: Get minimum supported version of CMake
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: ${{ inputs.cmake-version }}
 
       - name: Install OpenSSL
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eprosima-CI/windows/install_openssl@v0
         with:
           version: '3.1.1'
 
       - name: Update OpenSSL environment variables
+        if: ${{ inputs.run-tests == true }}
         run: |
           # Update the environment
           if (Test-Path -Path $Env:ProgramW6432\OpenSSL)
@@ -249,22 +267,27 @@ jobs:
           }
 
       - name: Install colcon
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/windows/install_colcon@v0
 
       - name: Install Python dependencies
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/windows/install_python_packages@v0
         with:
           packages: vcstool xmlschema pywin32 pytest
 
       - name: Install swig
+        if: ${{ inputs.run-tests == true }}
         shell: pwsh
         run: choco install swig --allow-downgrade --version=${{ inputs.swig-version }}
 
       - name: Install doxygen
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/install_doxygen@v0
 
       - name: Colcon build
         continue-on-error: false
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/windows_test.meta
@@ -278,6 +301,7 @@ jobs:
 
       - name: Colcon test
         id: python_test
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/windows_test.meta
@@ -291,7 +315,7 @@ jobs:
 
       - name: Test summary
         uses: eProsima/eProsima-CI/multiplatform/junit_summary@v0
-        if: ${{ !cancelled() }}
+        if: ${{ inputs.run-tests == true && !cancelled() }}
         with:
           junit_reports_dir: "${{ steps.python_test.outputs.ctest_results_path }}"
           print_summary: 'True'
