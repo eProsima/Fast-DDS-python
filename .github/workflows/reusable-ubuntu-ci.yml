@@ -59,7 +59,6 @@ defaults:
 jobs:
   fastdds_python_build:
     runs-on: ${{ inputs.os-version }}
-    if: ${{ inputs.run-build == true }}
     strategy:
       fail-fast: false
       matrix:
@@ -75,22 +74,26 @@ jobs:
           repo: eProsima/Fast-DDS-Python
 
       - name: Sync eProsima/Fast-DDS-Python repository
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           path: src/fastdds_python
           ref: ${{ inputs.fastdds-python-branch }}
 
       - name: Install Fix Python version
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
 
       - name: Get minimum supported version of CMake
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: '3.24.4'
 
       - name: Install apt dependencies
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
           packages: libasio-dev libtinyxml2-dev libssl-dev swig
@@ -98,22 +101,25 @@ jobs:
           upgrade: false
 
       - name: Install colcon
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/ubuntu/install_colcon@v0
 
       - name: Install Python dependencies
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/multiplatform/install_python_packages@v0
         with:
           packages: vcstool xmlschema
           upgrade: false
 
       - name: Setup CCache
+        if: ${{ inputs.run-build == true && inputs.use-ccache == true }}
         uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
-        if: ${{ inputs.use-ccache == true }}
         with:
           api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get Fast CDR branch
         id: get_fastcdr_branch
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/ubuntu/get_related_branch_from_repo@v0
         with:
           remote_repository: eProsima/Fast-CDR
@@ -121,6 +127,7 @@ jobs:
           skip_base: true
 
       - name: Download Fast CDR
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           repository: eProsima/Fast-CDR
@@ -129,12 +136,14 @@ jobs:
 
       - name: Get Fast DDS branch
         id: get_fastdds_branch
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/ubuntu/get_related_branch_from_repo@v0
         with:
           remote_repository: eProsima/Fast-DDS
           fallback_branch: ${{ inputs.fastdds-branch }}
 
       - name: Download Fast DDS repo
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/checkout@v0
         with:
           repository: eProsima/Fast-DDS
@@ -142,6 +151,7 @@ jobs:
           ref: ${{ steps.get_fastdds_branch.outputs.deduced_branch }}
 
       - name: Fetch Fast DDS Python dependencies
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/multiplatform/vcs_import@v0
         with:
           vcs_repos_file: ${{ github.workspace }}/src/fastdds_python/fastdds_python.repos
@@ -149,6 +159,7 @@ jobs:
           skip_existing: 'true'
 
       - name: Colcon build
+        if: ${{ inputs.run-build == true }}
         continue-on-error: false
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
@@ -159,6 +170,7 @@ jobs:
           workspace: ${{ github.workspace }}
 
       - name: Upload build artifacts
+        if: ${{ inputs.run-build == true }}
         uses: eProsima/eProsima-CI/external/upload-artifact@v0
         with:
           name: fastdds_python_build_${{ inputs.label }}
@@ -167,7 +179,6 @@ jobs:
   fastdds_python_test:
     needs: fastdds_python_build
     runs-on: ${{ inputs.os-version }}
-    if: ${{ inputs.run-tests == true }}
     strategy:
       fail-fast: false
       matrix:
@@ -175,42 +186,49 @@ jobs:
           - 'RelWithDebInfo'
     steps:
       - name: Download python build artifacts
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/download-artifact@v0
         with:
           name: fastdds_python_build_${{ inputs.label }}
           path: ${{ github.workspace }}
 
       - name: Install Fix Python version
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/setup-python@v0
         with:
           python-version: '3.11'
 
       - name: Get minimum supported version of CMake
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/external/get-cmake@v0
         with:
           cmakeVersion: '3.24.4'
 
       - name: Install apt packages
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/ubuntu/install_apt_packages@v0
         with:
           packages: libasio-dev libtinyxml2-dev libssl-dev swig doxygen
 
       - name: Install colcon
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/ubuntu/install_colcon@v0
 
       - name: Install Python dependencies
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/ubuntu/install_python_packages@v0
         with:
           packages: xmlschema pytest
 
       - name: Setup CCache
+        if: ${{ inputs.run-tests == true && inputs.use-ccache == true }}
         uses: eProsima/eProsima-CI/external/setup-ccache-action@v0
-        if: ${{ inputs.use-ccache == true }}
         with:
           api_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Colcon build
         continue-on-error: false
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/multiplatform/colcon_build@v0
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/build.meta ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/ubuntu_test.meta
@@ -223,6 +241,7 @@ jobs:
 
       - name: Colcon test
         id: python_test
+        if: ${{ inputs.run-tests == true }}
         uses: eProsima/eProsima-CI/multiplatform/colcon_test@v0
         with:
           colcon_meta_file: ${{ github.workspace }}/src/fastdds_python/.github/workflows/config/ubuntu_test.meta
@@ -236,7 +255,7 @@ jobs:
 
       - name: Fast DDS Python test summary
         uses: eProsima/eProsima-CI/multiplatform/junit_summary@v0
-        if: ${{ !cancelled() }}
+        if: ${{ inputs.run-tests == true && !cancelled() }}
         with:
           junit_reports_dir: "${{ steps.python_test.outputs.ctest_results_path }}"
           print_summary: 'True'
