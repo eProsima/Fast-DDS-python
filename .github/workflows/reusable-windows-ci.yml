@@ -79,7 +79,7 @@ jobs:
 
     steps:
       - name: Add ci-pending label if PR
-        if: ${{ github.event_name == 'pull_request' }}
+        if: ${{ inputs.run-build == true && github.event_name == 'pull_request' }}
         uses: eProsima/eProsima-CI/external/add_labels@v0
         with:
           labels: ci-pending
