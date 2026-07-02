@@ -141,6 +141,7 @@ jobs:
         with:
           remote_repository: eProsima/Fast-DDS
           fallback_branch: ${{ inputs.fastdds-branch }}
+          skip_base: true
 
       - name: Download Fast DDS repo
         if: ${{ inputs.run-build == true }}
