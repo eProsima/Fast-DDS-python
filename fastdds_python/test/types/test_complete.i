@@ -824,6 +824,26 @@ namespace swig {
   void set_value(const StructType& value) {
       *$self = value;
   }
+
+  StructType& _value_ref() {
+      return $self->value();
+  }
+
+  %pythoncode %{
+    def _checked_ref(self, what):
+        if not self.has_value():
+            raise ValueError("optional has no value (accessing '" + what + "')")
+        return self._value_ref()
+
+    def __getattr__(self, name):
+        # Forward to the contained value in Python, instead of through C++ operator->, so the
+        # wrapped type's %extend methods are resolved in the module that defines them.
+        if name.startswith('__') or name in ('this', 'thisown'):
+            raise AttributeError(name)
+        if not self.has_value():
+            raise AttributeError("optional has no value (accessing '" + name + "')")
+        return getattr(self._value_ref(), name)
+  %}
 }
 %ignore CompleteTestType::struct_opt_field(eprosima::fastcdr::optional<StructType>&&);
 
@@ -2106,6 +2126,26 @@ namespace swig {
   void set_value(const StructType& value) {
       *$self = value;
   }
+
+  StructType& _value_ref() {
+      return $self->value();
+  }
+
+  %pythoncode %{
+    def _checked_ref(self, what):
+        if not self.has_value():
+            raise ValueError("optional has no value (accessing '" + what + "')")
+        return self._value_ref()
+
+    def __getattr__(self, name):
+        # Forward to the contained value in Python, instead of through C++ operator->, so the
+        # wrapped type's %extend methods are resolved in the module that defines them.
+        if name.startswith('__') or name in ('this', 'thisown'):
+            raise AttributeError(name)
+        if not self.has_value():
+            raise AttributeError("optional has no value (accessing '" + name + "')")
+        return getattr(self._value_ref(), name)
+  %}
 }
 %ignore KeyedCompleteTestType::struct_opt_field(eprosima::fastcdr::optional<StructType>&&);
 

@@ -812,6 +812,26 @@ namespace swig {
   void set_value(const eprosima::test::StructType& value) {
       *$self = value;
   }
+
+  eprosima::test::StructType& _value_ref() {
+      return $self->value();
+  }
+
+  %pythoncode %{
+    def _checked_ref(self, what):
+        if not self.has_value():
+            raise ValueError("optional has no value (accessing '" + what + "')")
+        return self._value_ref()
+
+    def __getattr__(self, name):
+        # Forward to the contained value in Python, instead of through C++ operator->, so the
+        # wrapped type's %extend methods are resolved in the module that defines them.
+        if name.startswith('__') or name in ('this', 'thisown'):
+            raise AttributeError(name)
+        if not self.has_value():
+            raise AttributeError("optional has no value (accessing '" + name + "')")
+        return getattr(self._value_ref(), name)
+  %}
 }
 %ignore eprosima::test::CompleteTestType::struct_opt_field(eprosima::fastcdr::optional<eprosima::test::StructType>&&);
 
@@ -2094,6 +2114,26 @@ namespace swig {
   void set_value(const eprosima::test::StructType& value) {
       *$self = value;
   }
+
+  eprosima::test::StructType& _value_ref() {
+      return $self->value();
+  }
+
+  %pythoncode %{
+    def _checked_ref(self, what):
+        if not self.has_value():
+            raise ValueError("optional has no value (accessing '" + what + "')")
+        return self._value_ref()
+
+    def __getattr__(self, name):
+        # Forward to the contained value in Python, instead of through C++ operator->, so the
+        # wrapped type's %extend methods are resolved in the module that defines them.
+        if name.startswith('__') or name in ('this', 'thisown'):
+            raise AttributeError(name)
+        if not self.has_value():
+            raise AttributeError("optional has no value (accessing '" + name + "')")
+        return getattr(self._value_ref(), name)
+  %}
 }
 %ignore eprosima::test::KeyedCompleteTestType::struct_opt_field(eprosima::fastcdr::optional<eprosima::test::StructType>&&);
 
