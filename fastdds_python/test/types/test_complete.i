@@ -52,7 +52,7 @@
 #define FASTDDS_EXPORTED_API
 #define eProsima_user_DllExport
 
-%import "test_included_modules.i"
+%import(module="eprosima.test2.test_included_modules") "test_included_modules.i"
 
 %{
 #include "test_complete.hpp"
